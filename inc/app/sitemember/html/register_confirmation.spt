@@ -1,0 +1,20 @@
+Welcome {firstname} {lastname}!
+
+This email confirms that your sitellite.org membership account has been created.
+
+However, before you can log in to your account, you need to activate your account by clicking on the following link:
+
+http://{site/domain}{site/prefix}/index/sitemember-activate-action?user={user_id}&key={verify}
+
+If clicking the link doesn't open your web browser, try copying and pasting it into your browser's address bar.
+
+For your records, your username and password are:
+
+Username: {user_id}
+Password: {password}
+
+Please keep these in a safe place.
+
+Sincerely,
+
+- The Sitellite Team

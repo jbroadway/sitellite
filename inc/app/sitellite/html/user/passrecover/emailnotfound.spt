@@ -1,0 +1,17 @@
+<form
+	name="passrecover"
+	action="{site/prefix}/index/sitellite-user-passrecover-action"
+	method="post">
+
+<p class="invalid">{intl The specified email address could not be found.}</p>
+
+<p>
+	{intl Please enter your email address}<br />
+	<input type="text" name="email" />
+</p>
+
+<p>
+	<input type="submit" value="{intl Send info}" class="submit" />
+</p>
+
+</form>

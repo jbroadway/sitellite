@@ -1,0 +1,24 @@
+Building The SAF Docs
+
+To build the Sitellite Application Framework documentation, copy and paste
+the following commands into the command line:
+
+cd /PATH/TO/SITELLITE
+cd saf
+mkdir docs
+./lib/PEAR/PhpDocumentor/phpdoc -dn SAF -dc SAF -ti "Sitellite Application Framework" \
+	-d lib -t docs -i "*PEAR*,*Ext*" -o "HTML:Smarty:SitelliteDotOrg"
+
+The last command will take up to 5 minutes to complete and will generate lots
+of output.  In most cases, you should be able to ignore this output.  You will
+know the command has finished when you see the following lines:
+
+"Parsing time: 55 seconds
+
+Conversion time: 244 seconds
+
+Total Documentation Time: 299 seconds
+done"
+
+The documentation will now be available in the saf/docs folder of your
+Sitellite installation.

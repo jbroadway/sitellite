@@ -1,0 +1,7 @@
+<ul>
+	{loop obj[list]}
+		<li>
+			<a href="{site/prefix}/index/cms-filesystem-action/{path}{loop/name}.{loop/extension}">{loop/display_title}{if obj[show]}.{loop/extension}{end if}</a>
+		</li>
+	{end loop}
+</ul>

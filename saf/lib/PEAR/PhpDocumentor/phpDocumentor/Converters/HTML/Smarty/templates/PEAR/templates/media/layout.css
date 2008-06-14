@@ -1,0 +1,52 @@
+form {
+	margin:		0px;
+	padding:	1px;
+}
+#header2 {
+	text-align:	right;
+	padding-right:	1em;
+}
+#header1 .right {
+	position:	absolute;
+	right:		10px;
+}
+#header1 div#navlinks {
+	position:	absolute;
+	right:		10px;
+	bottom:		1.8em;
+}
+#header1 {
+	position:	relative;
+}
+#header2 {
+	position:	relative;
+}
+#logo {
+	padding:	5px;
+}
+#header1 h1 {
+	top:		2px;
+}
+#header1 div#navlinks {
+	top:		45px;
+}
+#nav {
+	padding:	5px;
+}
+#content {
+	text-align:	left;
+	padding:	10px;
+	float:		left;
+	width:		80%;
+	margin-right:	10px;
+	min-height:	85%;
+}
+#footer {
+	clear:		both;
+}
+div#indexes {
+	float:		left;
+}
+div#indexes a {
+	color:		white;
+}

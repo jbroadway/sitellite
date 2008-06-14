@@ -1,0 +1,12 @@
+<h1>Administration</h1>
+
+The administration of a Sitellite installation breaks down into the following roles:<br /><ul><li>Installation and upgrade management (for Sitellite, PHP, Apache, and MySQL)<br /></li><li>Backup management</li><li>User/permission management</li><li>Scheduled task management</li></ul>Installation and upgrade management should be done by a qualified system administrator, as improper installations of any of these applications could compromise the security of your server.  Installation and upgrade instructions are provided with the software and updates themselves.  The installation instructions for Sitellite can be found in the docs/INSTALL file.<br /><br />Backing up a Sitellite-powered web site is relatively simple using only a few built-in Unix system commands, and the "mysqldump" utility included with MySQL.  A Sitellite web site consists of 2 components that should be backed up on a regular basis: the web site document root, and the database.  The following series of commands will create a backup file that you can then transfer to your backup storage:<br />
+
+<pre>cd /PATH/TO/SITELLITE
+cd ..
+mysqldump -p -u USER DBNAME &gt; backup-2004-08-30.sql
+(enter password when prompted)
+tar -cf backup-2004-08-30.tar SITELLITE backup-2004-08-30.sql
+gzip backup-2004-08-30.tar</pre>
+
+User/permission management is done completely through the Sitellite control panel.  The permission concepts will be discussed later on in this help.<br /><br />Scheduled task management means the management and control of Sitellite's task scheduler.  The task scheduler documentation can be found <a href="help-app?appname=scheduler">here</a>.<br />

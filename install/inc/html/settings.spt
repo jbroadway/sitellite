@@ -1,0 +1,92 @@
+<script language="javascript" type="text/javascript">
+
+function validate (f) {
+	for (i = 0; i < f.elements.length; i++) {
+		try {
+			document.getElementById (f.elements[i].name).style.backgroundColor = '#fff';
+			document.getElementById (f.elements[i].name + '-label').style.color = '#000';
+		} catch (ex) {}
+	}
+
+	if (f.elements.dbhost.value.length == 0) {
+		alert ('You must enter a database host name');
+		document.getElementById ('dbhost-label').style.color = '#d00';
+		document.getElementById ('dbhost').style.backgroundColor = '#ffd';
+		return false;
+	}
+
+	if (f.elements.dbport.value.length == 0) {
+		alert ('You must enter a database port');
+		document.getElementById ('dbport-label').style.color = '#d00';
+		document.getElementById ('dbport').style.backgroundColor = '#ffd';
+		return false;
+	}
+
+	if (f.elements.database.value.length == 0) {
+		alert ('You must enter a database name');
+		document.getElementById ('database-label').style.color = '#d00';
+		document.getElementById ('database').style.backgroundColor = '#ffd';
+		return false;
+	}
+
+	if (f.elements.dbuser.value.length == 0) {
+		alert ('You must enter a database username');
+		document.getElementById ('dbuser-label').style.color = '#d00';
+		document.getElementById ('dbuser').style.backgroundColor = '#ffd';
+		return false;
+	}
+
+	if (f.elements.dbpass.value.length == 0) {
+		alert ('You must enter a database password');
+		document.getElementById ('dbpass-label').style.color = '#d00';
+		document.getElementById ('dbpass').style.backgroundColor = '#ffd';
+		return false;
+	}
+
+	if (f.elements.dbprepeat.value != f.elements.dbpass.value) {
+		alert ('Your database password doesn\'t match');
+		document.getElementById ('dbprepeat-label').style.color = '#d00';
+		document.getElementById ('dbprepeat').style.backgroundColor = '#ffd';
+		return false;
+	}
+
+	return true;
+}
+
+</script>
+
+<h2>Database Settings</h2>
+
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+	<tr>
+		<td><label id="dbhost-label" for="dbhost">Host Name</label></td>
+		<td><input type="text" name="dbhost" id="dbhost" value="{cgi/dbhost}" /></td>
+	</tr>
+	<tr>
+		<td><label id="dbport-label" for="dbport">Port</label></td>
+		<td><input type="text" name="dbport" id="dbport" value="{cgi/dbport}" /></td>
+	</tr>
+	<tr>
+		<td><label id="database-label" for="database">Database Name</label></td>
+		<td><input type="text" name="database" id="database" value="{cgi/database}" /></td>
+	</tr>
+	<tr>
+		<td><label id="dbuser-label" for="dbuser">Username</label></td>
+		<td><input type="text" name="dbuser" id="dbuser" value="{cgi/dbuser}" /></td>
+	</tr>
+	<tr>
+		<td><label id="dbpass-label" for="dbpass">Password</label></td>
+		<td><input type="password" name="dbpass" id="dbpass" value="{cgi/dbpass}" /></td>
+	</tr>
+	<tr>
+		<td><label id="dbprepeat-label" for="dbprepeat">Verify Password</label></td>
+		<td><input type="password" name="dbprepeat" id="dbprepeat" /></td>
+	</tr>
+	<tr>
+		<td valign="top"><label id="drop-label" for="drop">Drop tables if they exist?</label></td>
+		<td>
+			<input type="radio" name="drop" value="yes"{if cgi.drop eq 'yes'} checked="checked"{end if} /> Yes<br />
+			<input type="radio" name="drop" value="no"{if cgi.drop ne 'yes'} checked="checked"{end if} /> No
+		</td>
+	</tr>
+</table>

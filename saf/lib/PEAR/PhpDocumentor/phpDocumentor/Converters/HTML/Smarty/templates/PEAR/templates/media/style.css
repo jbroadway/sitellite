@@ -1,0 +1,100 @@
+body {
+	font-family:		verdana,arial,helvetica,sans-serif;
+	font-size:		90%;
+	background-color:	#f0f0f0;
+}
+h1 {
+	margin:			0px;
+	font-size:		125%;
+}
+h2 {
+	margin:			0px;
+	font-size:		115%;
+}
+h3 {
+	margin:			0px;
+	font-size:		105%;
+}
+h4 {
+	margin:			0px;
+	font-size:		100%;
+}
+#header {
+	background-color:	#339900;
+	color:			white;
+}
+#header1 {
+	border-bottom:		solid 1px #003300;
+}
+#header2 {
+	background-color:	#006600;
+	border-bottom:		solid 1px #003300;
+	font-size: 		75%;
+}
+select {
+	font-family: 		verdana,arial,helvetica,sans-serif;
+	font-weight: 		bold;
+	color: 			#003300;
+}
+#header1 div#navlinks {
+	font-size:		75%;
+	font-weight: 		bold;
+	color: 			#003300;
+}
+#nav {
+	font-size:		70%;
+}
+div.sectionHeader {
+	background-color:	#339900;
+	color:			white;
+	padding:		3px;
+	border:			solid 2px #003300;
+	border-bottom:		solid 1px #003300;
+}
+div.sectionNav {
+	border-right:		solid 2px #003300;
+	border-left:		solid 2px #003300;
+	padding:		2px;
+	text-align:		right;
+	font-size:		75%;
+	background-color:	#006600;
+	color:			white;
+}
+div.sectionBody {
+	border:			solid 2px #003300;
+	border-top:		solid 1px #003300;
+	padding:		5px;
+	margin-bottom:		.5em;
+}
+#content {
+	background-color:	white;
+	border-right:		dashed 1px #aaaaaa;
+}
+#footer {
+	background-color:	#cccccc;
+	border-top:		solid 2px black;
+	text-align:		center;
+	padding:		5px;
+}
+.linenumber {
+	font-size:		.7em;
+	color:			gray;
+	padding:		0px;
+	margin:			0px;
+}
+table {
+	background-color:       #006600;
+}
+table td {
+	background-color:	#f0f0f0;
+}
+code {
+	font-family: 		Courier, "Courier New", monospace;
+}
+
+div.sectionNav a {
+	color:			white;
+}
+div.sectionNav a:visited {
+	color:			white;
+}

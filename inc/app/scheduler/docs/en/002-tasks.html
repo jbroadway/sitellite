@@ -1,0 +1,42 @@
+<h1>Task Scripts</h1>
+
+A script that is run by Scheduler is called a task.&nbsp; Tasks are
+simply PHP files, with only one required element, that live in the
+inc/app/scheduler/tasks folder.&nbsp; Each task is given its own
+sub-folder of the tasks folder, for example:<br />
+<br />
+bash$ ls -al inc/app/scheduler/tasks<br />
+total 3<br />
+drwxrwxrwx&nbsp;&nbsp; 2 lux&nbsp; staff&nbsp; 1024 Nov&nbsp; 3 12:23 documents<br />
+drwxrwxrwx&nbsp;&nbsp; 2 lux&nbsp; staff&nbsp; 1024 Nov&nbsp; 3 12:23 jabbercheck<br />
+drwxrwxrwx&nbsp;&nbsp; 2 lux&nbsp; staff&nbsp; 1024 Nov&nbsp; 3 12:23 mailcheck<br />
+<br />
+Inside each folder, the task script is always named index.php<br />
+<br />
+The one required element that must be present in all tasks, for security reasons, is as follows:<br />
+<br />
+&lt;?php<br />
+<br />
+// BEGIN CLI KEEPOUT CHECKING<br />
+if (php_sapi_name () !== 'cli') {<br />
+&nbsp;&nbsp;&nbsp; // Add these lines to the very top of any file you don't want people to<br />
+&nbsp;&nbsp;&nbsp; // be able to access directly.<br />
+&nbsp;&nbsp;&nbsp; header ('HTTP/1.1 404 Not Found');<br />
+&nbsp;&nbsp;&nbsp; echo "&lt;!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"&gt;\n"<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .
+"&lt;html&gt;&lt;head&gt;\n&lt;title&gt;404 Not
+Found&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h1&gt;Not
+Found&lt;/h1&gt;\n"<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . "The requested URL " .
+$PHP_SELF . " was not found on this server.&lt;p&gt;\n&lt;hr&gt;\n"<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . $_SERVER['SERVER_SIGNATURE'] . "&lt;/body&gt;&lt;/html&gt;";<br />
+&nbsp;&nbsp;&nbsp; exit;<br />
+}<br />
+// END CLI KEEPOUT CHECKING<br />
+<br />
+?&gt;<br />
+<br />
+This block ensures that if your task is called by any source but the
+command-line PHP interpreter, that it should fake a "404 Not Found"
+error and exit.&nbsp; All of your task code then follows that block in
+your task file.<br />

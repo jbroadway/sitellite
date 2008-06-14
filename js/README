@@ -1,0 +1,3 @@
+Compression is done with the YUI Compression utility.
+Just add -compressed to the name of any script to
+save bandwidth/load time.

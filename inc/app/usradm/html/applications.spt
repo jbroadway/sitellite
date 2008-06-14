@@ -1,0 +1,9 @@
+<p><a href="{site/prefix}/index/cms-cpanel-action">{intl Back}</a></p>
+
+<p>{intl Please choose an application:}</p>
+
+<ul>
+	{loop obj}
+		<li><a href="{site/prefix}/index/usradm-applications-edit-action?appname={loop/_key}">{loop/_value}</a></li>
+	{end loop}
+</ul>

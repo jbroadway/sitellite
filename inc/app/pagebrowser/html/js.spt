@@ -1,0 +1,101 @@
+var rpc = new rpc ();
+
+var pagebrowser = {
+	url: '{site/prefix}/index/pagebrowser-rpc-action',
+	action: rpc.action,
+
+	// Limit pages shown to pages the user can write to
+	limit: false,
+
+	// Reset the section select box
+	updateSections: function () {
+		document.getElementById ('jump').selectedIndex = 0;
+		return false;
+	},
+
+	// Update the page trail
+	updateTrail: function (trail) {
+		html = '';
+		for (i = 0; i < trail.length; i++) {
+			html += '<a href="#" onclick="return pagebrowser.setCurrent (\'' + trail[i].id + '\')">' + trail[i].title + '</a> / ';
+		}
+		document.getElementById ('trail').innerHTML = html;
+		return false;
+	},
+
+	// Update the title of the currently open page
+	updateTitle: function (title) {
+		document.getElementById ('title').innerHTML = title;
+		return false;
+	},
+
+	// Update the list of pages shown
+	updateChildren: function (childs, curr_id, curr_title) {
+		if (document.all) {
+			table = document.getElementById ('pages');
+			for (i = table.rows.length - 1; i >= 0; i--) {
+				//table.deleteRow (-1);
+				table.deleteRow (table.rows[i].rowIndex);
+			}
+			row = table.insertRow ();
+			c1 = row.insertCell ();
+			c1.style.width = '20';
+			c1.innerHTML = '<img src="{site/prefix}/inc/app/pagebrowser/pix/greyed.gif" border="0" alt="{intl Currently Open}" title="{intl Currently Open}" />';
+			c2 = row.insertCell ();
+			c2.innerHTML = '<a href="#" onclick="return pagebrowser.select (\'' + curr_id + '\')" title="{intl Select this Page}">' + curr_title + '</a>';
+			for (i = 0; i < childs.length; i++) {
+				row = table.insertRow ();
+				c1 = row.insertCell ();
+				c1.style.width = '20';
+				if (childs[i].children == 0) {
+					c1.innerHTML = '<img src="{site/prefix}/inc/app/pagebrowser/pix/greyed.gif" border="0" alt="{intl No Children}" title="{intl No Children}" />';
+				} else {
+					c1.innerHTML = '<a href="#" onclick="return pagebrowser.setCurrent (\'' + childs[i].id + '\')" title="{intl Open}"><img src="{site/prefix}/inc/app/pagebrowser/pix/add.gif" border="0" alt="{intl Open}" title="{intl Open}" /></a>';
+				}
+				c2 = row.insertCell ();
+				c2.innerHTML = '<a href="#" onclick="return pagebrowser.select (\'' + childs[i].id + '\')" title="{intl Select this Page}">' + childs[i].title + ' (' + childs[i].children + ')</a>';
+			}
+			return false;
+		}
+		html = '<tr><td width="20"><img src="{site/prefix}/inc/app/pagebrowser/pix/greyed.gif" border="0" alt="{intl Currently Open}" title="{intl Currently Open}" /></td><a href="#" onclick="return pagebrowser.select (\'' + curr_id + '\')" title="{intl Select this Page}">' + curr_title + '</a><td></td></tr>';
+		for (i = 0; i < childs.length; i++) {
+			html += '<tr><td width="20">';
+			if (childs[i].children == 0) {
+				html += '<img src="{site/prefix}/inc/app/pagebrowser/pix/greyed.gif" border="0" alt="{intl No Children}" title="{intl No Children}" /></td>';
+			} else {
+				html += '<a href="#" onclick="return pagebrowser.setCurrent (\'' + childs[i].id + '\')" title="{intl Open}"><img src="{site/prefix}/inc/app/pagebrowser/pix/add.gif" border="0" alt="{intl Open}" title="{intl Open}" /></a></td>';
+			}
+			html += '<td><a href="#" onclick="return pagebrowser.select (\'' + childs[i].id + '\')" title="{intl Select this Page}">' + childs[i].title + ' (' + childs[i].children + ')</a></td></tr>';
+		}
+		document.getElementById ('pages').innerHTML = html;
+		return false;
+	},
+
+	// Get new data from the server based on a new currently open page
+	setCurrent: function (id) {
+		this._id = id;
+		rpc.call (
+			this.action ('setCurrent', [id, pagebrowser.limit]),
+			function (request) {
+				o = eval (request.responseText);
+				pagebrowser.updateSections ();
+				pagebrowser.updateTrail (o[2]);
+				pagebrowser.updateTitle (o[0]);
+				pagebrowser.updateChildren (o[1], pagebrowser._id, o[0]);
+			}
+		);
+		return false;
+	},
+
+	// Return the selected page to the form that called the page browser
+	select: function (id) {
+		if (opener && ! opener.closed) {
+			opener.dialogWin.returnedValue = id;
+			opener.dialogWin.returnFunc ();
+		} else {
+			alert ('Hey, where did my parent go?');
+		}
+		window.close ();
+		return false;
+	}
+}

@@ -1,0 +1,10 @@
+{eval loader_import ('saf.Date')}
+
+{loop obj[files]}
+	
+	<p style="background-color: {php obj[users][ loop.name ]}; padding: 5px" class="files-app">
+		{if session_admin ()}<span style="float: right"><a href="{site/prefix}/index/devfiles-delete-action?appname={appname}&id={loop/id}&file={loop/file}"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete File}" title="{intl Delete File}" border="0" /></a></span>{end if}
+		<a href="{loop/path}"><img src="{site/prefix}/inc/app/devfiles/pix/icons/{loop/type}.gif" alt="{loop/file}" title="{loop/file}" border="0" /> <strong>{loop/file}</strong></a> ({filter format_filesize}{loop/size}{end filter})
+		{if obj[showFileInfo] ne 'no'}<br />{loop/name} - {php Date::timestamp (loop.ts, 'g:ia - M j, Y')}{end if}
+	</p>
+{end loop}

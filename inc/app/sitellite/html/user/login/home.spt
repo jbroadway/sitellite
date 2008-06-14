@@ -1,0 +1,3 @@
+<p>{intl Welcome, you are now logged in as the user} <strong>{username}</strong></p>
+
+<p><a href="{site/url}">{intl Click here to continue}</a></p>

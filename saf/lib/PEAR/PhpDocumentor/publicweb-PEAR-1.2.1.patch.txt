@@ -1,0 +1,84 @@
+Index: pear/package.dtd
+===================================================================
+RCS file: /repository/php-src/pear/package.dtd,v
+retrieving revision 1.27.4.7
+diff -u -r1.27.4.7 package.dtd
+--- pear/package.dtd	8 Jul 2003 20:39:45 -0000	1.27.4.7
++++ pear/package.dtd	19 Aug 2003 16:05:17 -0000
+@@ -62,7 +62,7 @@
+               baseinstalldir CDATA #IMPLIED>
+ 
+ <!ELEMENT file (replace*)>
+-<!ATTLIST file role           (php|ext|src|test|doc|data|script) 'php'
++<!ATTLIST file role           (php|ext|src|test|doc|data|script|publicweb) 'php'
+                debug          (na|on|off)        'na'
+                zts            (na|on|off)        'na'
+                phpapi         NUMBER             #IMPLIED
+Index: pear/PEAR/Common.php
+===================================================================
+RCS file: /repository/php-src/pear/PEAR/Common.php,v
+retrieving revision 1.81.2.11
+diff -u -r1.81.2.11 Common.php
+--- pear/PEAR/Common.php	6 Aug 2003 01:58:30 -0000	1.81.2.11
++++ pear/PEAR/Common.php	19 Aug 2003 16:05:18 -0000
+@@ -63,7 +63,7 @@
+  * Valid file roles
+  * @var array
+  */
+-$GLOBALS['_PEAR_Common_file_roles'] = array('php','ext','test','doc','data','src','script');
++$GLOBALS['_PEAR_Common_file_roles'] = array('php','ext','test','doc','data','src','script','publicweb');
+ 
+ /**
+  * Valid replacement types
+Index: pear/PEAR/Config.php
+===================================================================
+RCS file: /repository/php-src/pear/PEAR/Config.php,v
+retrieving revision 1.35.2.11
+diff -u -r1.35.2.11 Config.php
+--- pear/PEAR/Config.php	14 Aug 2003 20:12:51 -0000	1.35.2.11
++++ pear/PEAR/Config.php	19 Aug 2003 16:05:19 -0000
+@@ -112,6 +112,15 @@
+            $PEAR_INSTALL_DIR.DIRECTORY_SEPARATOR.'data');
+ }
+ 
++// Default for publicweb dir
++if (getenv('PHP_PEAR_PUBLICWEB_DIR')) {
++    define('PEAR_CONFIG_DEFAULT_PUBLICWEB_DIR', getenv('PHP_PEAR_PUBLICWEB_DIR'));
++} else {
++    // use the data directory if no publicweb option is defined
++    define('PEAR_CONFIG_DEFAULT_PUBLICWEB_DIR',
++           PEAR_CONFIG_DEFAULT_DATA_DIR);
++}
++
+ // Default for test_dir
+ if (getenv('PHP_PEAR_TEST_DIR')) {
+     define('PEAR_CONFIG_DEFAULT_TEST_DIR', getenv('PHP_PEAR_TEST_DIR'));
+@@ -277,6 +286,13 @@
+             'default' => PEAR_CONFIG_DEFAULT_BIN_DIR,
+             'doc' => 'directory where executables are installed',
+             'prompt' => 'PEAR executables directory',
++            'group' => 'File Locations',
++            ),
++        'publicweb_dir' => array(
++            'type' => 'directory',
++            'default' => PEAR_CONFIG_DEFAULT_PUBLICWEB_DIR,
++            'doc' => 'sub-directory of http doc root where public html-related files are installed',
++            'prompt' => 'PEAR html-files directory',
+             'group' => 'File Locations',
+             ),
+         'data_dir' => array(
+Index: pear/PEAR/Installer.php
+===================================================================
+RCS file: /repository/php-src/pear/PEAR/Installer.php,v
+retrieving revision 1.81.2.11
+diff -u -r1.81.2.11 Installer.php
+--- pear/PEAR/Installer.php	6 Aug 2003 01:58:30 -0000	1.81.2.11
++++ pear/PEAR/Installer.php	19 Aug 2003 16:05:19 -0000
+@@ -180,6 +180,7 @@
+                 break;
+             case 'ext':
+             case 'php':
++            case 'publicweb':
+                 $dest_dir = $this->config->get($atts['role'] . '_dir');
+                 break;
+             case 'script':

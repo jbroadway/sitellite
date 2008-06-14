@@ -1,0 +1,51 @@
+{filter none}
+{CMS_JS_DELETE_CONFIRM}
+{end filter}
+
+{box cms/nav}
+
+<h1>{intl Message Folders}</h1>
+
+<p>
+	<a href="{site/prefix}/index/cms-cpanel-action">{intl Home}</a> &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/cms-messages-compose-action">{intl Compose Message}</a> &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/cms-messages-category-add-form">{intl Add Folder}</a><!-- &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/cms-messages-settings-action">{intl Preferences}</a> &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=cms">{intl Help}</a -->
+</p>
+
+{alt #fff #eee}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="20%">{intl Options}</th>
+		<th>{intl Folder Name}</th>
+		<th width="15%">{intl Messages}</th>
+	</tr>
+	{loop obj[folders]}
+		<tr style="background-color: {alt/next}">
+			<td align="center">
+				{if loop.name ne 'Inbox' and loop.name ne 'Sent' and loop.name ne 'Trash'}
+					<a href="{site/prefix}/index/cms-messages-category-edit-form?category={loop/name}">{intl Edit}</a>
+				{end if}
+				{if else}
+					<span style="color: #aaa">{intl Edit}</span>
+				{end if}
+				{if loop.name ne 'Inbox' and loop.name ne 'Sent' and loop.name ne 'Trash' and loop.count eq 0}
+					&nbsp;
+					<a href="{site/prefix}/index/cms-messages-category-delete-action?category={loop/name}" onclick="return cms_delete_confirm ()">{intl Delete}</a>
+				{end if}
+				{if else}
+					&nbsp;
+					<span style="color: #aaa">{intl Delete}</span>
+				{end if}
+			</td>
+			<td>
+				<a href="{site/prefix}/index/cms-messages-category-action?category={loop/name}">{loop/name}</a>
+			</td>
+			<td align="right">{loop/count}</td>
+		</tr>
+	{end loop}
+</table>
+</p>

@@ -1,0 +1,84 @@
+<h1>{intl Message Preferences}</h1>
+
+<form method="post">
+<table border="0" cellpadding="3" cellspacing="1" align="center">
+	<tr>
+		<td class="section-header" colspan="2">
+			<strong>{intl Message Forwarding}</strong>
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			<label for="default">{intl Default (All Messages)}</label>
+		</td>
+		<td class="field">
+			<table border="0" cellpadding="0" cellspacing="0"><tr><td valign="top">
+				<select name="all_location">
+					<option value="email"{if obj[all_location] eq 'email'} selected="selected"{end if}>{intl Email Address}</option>
+					<option value="jabber"{if obj[all_location] eq 'jabber'} selected="selected"{end if}>{intl Jabber ID}</option>
+					<!-- option value="sms"{if obj[all_location] eq 'sms'} selected="selected"{end if}>{intl SMS Address}</option -->
+				</select>
+			</td><td valign="top">
+				&nbsp;<input type="text" name="all_info" value="{all_info}" />
+			</td></tr></table>
+		</td>
+	</tr>
+	<!-- tr>
+		<td class="label">
+			<label for="normal">{intl Normal Messages}</label>
+		</td>
+		<td class="field">
+			<table border="0" cellpadding="0" cellspacing="0"><tr><td valign="top">
+				<select name="normal_location">
+					<option value="email">{intl Email Address}</option>
+					<option value="jabber">{intl Jabber ID}</option>
+					<option value="sms">{intl SMS Address}</option>
+				</select>
+			</td><td valign="top">
+				&nbsp;<input type="text" name="normal_info" value="" />
+			</td></tr></table>
+		</td>
+	</tr -->
+	<tr>
+		<td class="label">
+			<label for="high">{intl Important Messages}</label>
+		</td>
+		<td class="field">
+			<table border="0" cellpadding="0" cellspacing="0"><tr><td valign="top">
+				<select name="high_location">
+					<option value="email"{if obj[high_location] eq 'email'} selected="selected"{end if}>{intl Email Address}</option>
+					<option value="jabber"{if obj[high_location] eq 'jabber'} selected="selected"{end if}>{intl Jabber ID}</option>
+					<!-- option value="sms"{if obj[high_location] eq 'sms'} selected="selected"{end if}>{intl SMS Address}</option -->
+				</select>
+			</td><td valign="top">
+				&nbsp;<input type="text" name="high_info" value="{high_info}" />
+			</td></tr></table>
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			<label for="urgent">{intl Urgent Messages}</label>
+		</td>
+		<td class="field">
+			<table border="0" cellpadding="0" cellspacing="0"><tr><td valign="top">
+				<select name="urgent_location">
+					<option value="email"{if obj[urgent_location] eq 'email'} selected="selected"{end if}>{intl Email Address}</option>
+					<option value="jabber"{if obj[urgent_location] eq 'jabber'} selected="selected"{end if}>{intl Jabber ID}</option>
+					<!-- option value="sms"{if obj[urgent_location] eq 'sms'} selected="selected"{end if}>{intl SMS Address}</option -->
+				</select>
+			</td><td valign="top">
+				&nbsp;<input type="text" name="urgent_info" value="{urgent_info}" />
+			</td></tr></table>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2">
+			<table border="0" cellpadding="0" cellspacing="0"><tr><td valign="top">
+				<input type="submit" name="submit_button" value="{intl Save}" />&nbsp;&nbsp;
+			</td><td valign="top">
+				&nbsp;&nbsp;<input type="submit" name="submit_button" value="{intl Cancel}" onclick="window.location.href = 'cms-messages-action'; return false" />
+			</td></tr></table>
+		</td>
+	</tr>
+</table>
+</form>

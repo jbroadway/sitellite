@@ -1,0 +1,74 @@
+<h1>Programming-level components</h1>
+
+In addition to the extensive and polished user-interface, Sitellite
+features the most advanced and effective development frameworks and
+APIs available to PHP programmers.&nbsp; However, advanced systems
+often come with a steep learning curve, and Sitellite is no exception
+to that.&nbsp; We do, however, take steps to try to ensure that your
+Sitellite programming experience is both enjoyable and productive,
+fast.&nbsp; For starters, there's the whole <a href="http://www.sitellite.org/">sitellite.org community</a> web site, where you'll find lots of good information, including manuals, articles/tutorials, forums, discussion lists, etc.<br />
+<br />
+However, the topic at hand is Sitellite's components -- so on to
+it!&nbsp; Sitellite's application structure can be broken down into the
+following pieces:<br />
+<br />
+<h2>Sitellite Application Framework (SAF)</h2>
+SAF is a collection of over 100 high-quality PHP classes that can be
+used to help you express your coding ideas faster.&nbsp; SAF features
+packages ranging from database access, form handling and validation,
+XML processing, and mail handling, to GUI classes, template processing,
+and session handling.&nbsp; SAF is also PEAR-compatible, and actually
+comes with a dozen or so PEAR classes pre-installed.<br />
+<br />
+<h2>Sitellite Content Server (SCS)</h2>
+SCS is what is called a "Controller", as defined by the
+Model-View-Controller (MVC) application design pattern.&nbsp; What this
+means is that SCS controls the way visitor or user requests are mapped
+to your data, application logic, and output templates.&nbsp; SCS is
+both the glue that binds these together, and the parent who keeps them
+out of each others' rooms.&nbsp; SCS also features some convenience
+functions such as request caching, automatic database access, and
+search engine friendly URL rewriting.<br />
+<br />
+SCS actually uses the SAF Loader package for much of its functionality,
+which is where its real power comes in.&nbsp; Loader defines an
+application structure for writing add-ons that are flexible, robust,
+highly reusable, and completely independent from the rest of
+Sitellite's code -- no mingling!&nbsp; This structure is so robust, in
+fact, that the Sitellite Content Manager itself is merely a collection
+of pre-installed add-ons (called "apps" in Sitellite-speak).<br />
+<br />
+SCS's app model standardizes the way you write screen-based UIs (called
+"actions"), forms, libraries, templates, translations, configurations,
+installations, and multi-lingual documentation for each app.&nbsp; No
+other PHP-based framework considers this many aspects of an
+application's design and lifecycle.<br />
+<h2>Sitellite Content Manager (SCM)</h2>
+SCM is the Sitellite user interface, which is discussed elsewhere
+already.&nbsp; SCM also provides extended APIs specific to content
+management, such as the Rex revision control system, workflow and
+messaging capabilities, and more.<br />
+<br />
+<h2>Sitellite Task Scheduler</h2>
+The Scheduler lives in the inc/app/scheduler folder, and provides
+automation capabilities to rest of Sitellite.&nbsp; This includes
+automatic publishing and archival of content, automated indexing of the
+web site for searching, and more.<br />
+<br />
+<h2>SiteSearch</h2>
+SiteSearch is actually a separately-distributed add-on, which is based
+on the Apache Lucene project.&nbsp; However, since searching is often
+an integral part of a web site infrastructure, it has been included
+here for the sake of completeness.&nbsp; SiteSearch is a custom
+integrated web site search solution that maps directly onto Sitellite's
+versioning system and collections API, as well as Sitellite's user
+access control and privileges, and can be installed into an existing
+Sitellite web site in minutes.&nbsp; SiteSearch features built-in
+search statistics as well, making it the ultimate web site search
+solution, available only for the Sitellite platform.<br />
+<br />
+Please note thate Apache Lucene is a Java project, however, due to some
+cleverness on our part (small self-pat-on-back), it integrates with the
+PHP-based Sitellite without requiring ANY special PHP extensions or
+recompiling (ie. installing the experimental Java extension).&nbsp;
+This is a huge leg up over other PHP searching solutions as well.<br />

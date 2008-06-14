@@ -1,0 +1,226 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>inline {@}source}</refname>
+  <refpurpose>Display source code of a function or method in the long description</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    Gregory Beaver
+    <authorblurb>Tag Documentation written by {@link mailto:cellog@users.sourceforge.net cellog@users.sourceforge.net}</authorblurb>
+   </author>
+   <copyright>Copyright 2002, Gregory Beaver</copyright>
+   <releaseinfo>phpDocumentor 1.1+ (undocumented in 1.1)</releaseinfo>
+  </refsynopsisdivinfo>
+  <cmdsynopsis>
+    <command>{@}source</command>
+    <arg choice="opt">
+     <option>startline <arg choice="opt"><option>number of lines</option></arg></option>
+    </arg>
+	<arg choice="plain">
+	 <option>}</option>
+	</arg>
+   </cmdsynopsis>
+ </refsynopsisdiv>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The {@}source} inline tag is used in the DocBlock of functions or methods to extract source code of the function/method for display in generated documentation.  This tag is designed to allow detailed line-by-line description of how a function works without having to cut and paste from the source.  This allows modification to the source and automatic update of documentation so that it remains current.</para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>The inline {@}source} differs from all ordinary tags.  Inline tags parse and display their output directly in the documentation.  In other words, this DocBlock:</para>
+  <para>
+   <programlisting role="php">
+   <![CDATA[
+/**
+ * Text with a normal tag, @copyright
+ * @copyright Copyright 2002, Greg Beaver
+ */
+function element()
+{
+}
+   ]]>
+   </programlisting>
+  </para>
+  <para>Parses as (with -o HTML:default:default):</para>
+  <para>
+   <example role="html">
+   <![CDATA[
+<H3>element</H3>
+<P><B>element ( )</B></P>
+<!-- ========== Info from phpDoc block ========= -->
+<b></b>
+<pre>
+Text with a normal tag, @copyright
+</pre>
+<DL>
+	<DT>Function Parameters:</DT>
+	
+
+	<DT>Function Info:</DT>
+	<DD><b>Copyright</b> - <CODE>Copyright 2002, Greg Beaver</CODE></DD>
+	
+</DL>
+
+<HR>
+  ]]>
+   </example>
+  <para>
+  <para>This DocBlock:
+  </para>
+  <para>
+   <programlisting role="php">
+   <![CDATA[
+/**
+ * Text with an inline source tag:
+ * {@}source}
+ * displays without a break in the flow
+ */
+function element($pages)
+{
+    if (empty($pages))
+    {
+        die("<b>ERROR</b>: nothing parsed");
+    }
+}
+   ]]>
+   </programlisting>
+  </para>
+  <para>Parses as (with -o HTML:default:default):</para>
+  <para>
+   <example role="html">
+   <![CDATA[
+<H3>element</H3>
+<P><B>void element ( $pages )</B></P>
+<P></P>
+<!-- ========== Info from phpDoc block ========= -->
+<b>Text with an inline source tag:</b>
+<pre>
+<pre><font color="#006600">function </font><font color="#0000CC">element</font><font color="#006600">(</font><font color="#0000CC">$pages</font><font color="#006600">)
+{
+    if (empty(</font><font color="#0000CC">$pages</font><font color="#006600">))
+    {
+        die(</font><font color="#CC0000">&quot;<b>ERROR</b>: nothing parsed&quot;</font><font color="#006600">);
+    }
+}</font></pre>
+</font>
+</pre>
+displays without a break in the flow
+</pre>
+<DL>
+	<DT>Function Parameters:</DT>
+	
+
+	<DT>Function Info:</DT>
+	
+</DL>
+
+<HR>
+   ]]>
+   </example>
+  </para>
+  <para>The {@}source tag has two optional parameters, the starting line number to display and the ending line number to display.  If only the first parameter is present, {@}source} will print the source code starting on that line number to the end of the function source code.  If both parameters are present, {@}source} will print an excerpt of the source code beginning on the starting line number, and concluding with the ending line number.</para>
+   <programlisting role="php">
+   <![CDATA[
+/**
+ * Text with an inline source tag:
+ * {@}source 3}
+ * displays without a break in the flow
+ */
+function element($pages)
+{
+    if (empty($pages))
+    {
+        die("<b>ERROR</b>: nothing parsed");
+    }
+    foreach($test as $hello)
+    {
+        echo "I love $hello";
+    }
+}
+   ]]>
+   </programlisting>
+  </para>
+  <para>
+   <para>Parses as (with -o HTML:default:default):</para>
+   <example role="html">
+   <![CDATA[
+<H3>element</H3>
+<P><B>void element ( $pages )</B></P>
+<P></P>
+<!-- ========== Info from phpDoc block ========= -->
+<b>Text with an inline source tag:</b>
+<pre>
+<pre>    <font color="#006600">{
+        die(</font><font color="#CC0000">&quot;<b>ERROR</b>: nothing parsed&quot;</font><font color="#006600">);
+    }
+    foreach(</font><font color="#0000CC">$test </font><font color="#006600">as </font><font color="#0000CC">$hello</font><font color="#006600">)
+    {
+        echo </font><font color="#CC0000">&quot;I love $hello&quot;</font><font color="#006600">;
+    }
+}</font></pre>
+</font>
+</pre>
+displays without a break in the flow
+</pre>
+<DL>
+	<DT>Function Parameters:</DT>
+	
+
+	<DT>Function Info:</DT>
+	
+</DL>
+
+<HR>
+   ]]>
+   </example>
+  </para>
+   <programlisting role="php">
+   <![CDATA[
+/**
+ * Text with an inline source tag:
+ * {@}source 3 1}
+ * displays without a break in the flow
+ */
+function element($pages)
+{
+    if (empty($pages))
+    {
+        die("<b>ERROR</b>: nothing parsed");
+    }
+    foreach($test as $hello)
+    {
+        echo "I love $hello";
+    }
+}
+   ]]>
+   </programlisting>
+  </para>
+  <para>Parses as (with -o HTML:frames:default):</para>
+  <para>
+   <example role="html">
+   <![CDATA[
+<H3>element</H3>
+<P><B>void element ( $pages )</B></P>
+<P></P>
+<!-- ========== Info from phpDoc block ========= -->
+<b>Text with an inline source tag:</b>
+<pre>
+<pre>    <font color="#006600">if (empty(</font><font color="#0000CC">$pages</font><font color="#006600">))
+</pre>
+displays without a break in the flow
+</pre>
+<DL>
+	<DT>Function Parameters:</DT>
+	
+
+	<DT>Function Info:</DT>
+	
+</DL>
+
+<HR>
+   ]]>
+   </example>
+  </para>
+ </refsect1>
+</refentry>

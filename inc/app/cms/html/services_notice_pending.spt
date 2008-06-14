@@ -1,0 +1,11 @@
+<p>{intl This is an automatic notice that you have a document pending your approval at the following link}:</p>
+
+<p><a href="{site/url}{site/prefix}/index/cms-app?forward={filter rawurlencode}{url}{end filter}" target="_top">{site/url}{site/prefix}/index/cms-app?forward={filter rawurlencode}{url}{end filter}</a></p>
+
+<p><strong>{intl Collection}:</strong> {collection}</p>
+
+<p><strong>{intl Document ID}:</strong> {key}</p>
+
+<p><strong>{intl Changelog}:</strong></p>
+
+<p>{filter nl2br}{changelog}{end filter}</p>

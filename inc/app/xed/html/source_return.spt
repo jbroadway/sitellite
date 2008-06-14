@@ -1,0 +1,14 @@
+<script language="javascript" type="text/javascript">
+
+i = '{ifname}';
+h = '{html}';
+
+if (opener && ! opener.closed) {
+	opener.document.getElementById (i).xed_set_source (i, h);
+} else {
+	alert ('Hey, where did my parent go?');
+}
+
+window.close ();
+
+</script>

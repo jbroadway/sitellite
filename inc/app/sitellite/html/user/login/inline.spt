@@ -1,0 +1,25 @@
+<form
+	name="login"
+	action="{site/prefix}/index/sitellite-user-login-action"
+	method="post">
+
+<table cellpadding="3" border="0">
+	<tr>
+		<td>{intl Username}</td>
+		<td><input type="text" name="username" size="20" /></td>
+	</tr>
+	<tr>
+		<td>{intl Password}</td>
+		<td><input type="password" name="password" size="20" /></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" value="{intl Enter}" /></td>
+	</tr>
+</table>
+
+<input type="hidden" name="goto" value="{goto}" />
+<input type="hidden" name="template" value="{template}" />
+<input type="hidden" name="invalid" value="{invalid}" />
+
+</form>

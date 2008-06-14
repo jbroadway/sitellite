@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Tables</TITLE>
+<LINK TYPE="text/css" REL="stylesheet" HREF="../fpdf.css">
+</HEAD>
+<BODY>
+<H2>Tables</H2>
+This tutorial shows how to make tables easily.
+<BR>
+<BR>
+<TABLE WIDTH="100%" BGCOLOR="#E0E0E0"><TR><TD>
+<TT>
+&lt;?php<BR>
+require('fpdf.php');<BR>
+<BR>
+class PDF extends FPDF<BR>
+{<BR>
+//Load data<BR>
+function LoadData($file)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Read file lines<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$lines=file($file);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$data=array();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($lines as $line)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[]=explode(';',chop($line));<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;return $data;<BR>
+}<BR>
+<BR>
+//Simple table<BR>
+function BasicTable($header,$data)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Header<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($header as $col)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(40,7,$col,1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Data<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($data as $row)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach($row as $col)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(40,6,$col,1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+}<BR>
+<BR>
+//Better table<BR>
+function ImprovedTable($header,$data)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Column widths<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$w=array(40,35,40,45);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Header<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;for($i=0;$i&lt;count($header);$i++)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[$i],7,$header[$i],1,0,'C');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Data<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($data as $row)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[0],6,$row[0],'LR');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[1],6,$row[1],'LR');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[2],6,number_format($row[2]),'LR',0,'R');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[3],6,number_format($row[3]),'LR',0,'R');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Closure line<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(array_sum($w),0,'','T');<BR>
+}<BR>
+<BR>
+//Colored table<BR>
+function FancyTable($header,$data)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Colors, line width and bold font<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFillColor(255,0,0);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetTextColor(255);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetDrawColor(128,0,0);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetLineWidth(.3);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('','B');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Header<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$w=array(40,35,40,45);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;for($i=0;$i&lt;count($header);$i++)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[$i],7,$header[$i],1,0,'C',1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Color and font restoration<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFillColor(224,235,255);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetTextColor(0);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Data<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$fill=0;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($data as $row)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[0],6,$row[0],'LR',0,'L',$fill);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[1],6,$row[1],'LR',0,'L',$fill);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[2],6,number_format($row[2]),'LR',0,'R',$fill);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w[3],6,number_format($row[3]),'LR',0,'R',$fill);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fill=!$fill;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(array_sum($w),0,'','T');<BR>
+}<BR>
+}<BR>
+<BR>
+$pdf=new PDF();<BR>
+$pdf-&gt;Open();<BR>
+//Column titles<BR>
+$header=array('Country','Capital','Area (sq km)','Pop. (thousands)');<BR>
+//Data loading<BR>
+$data=$pdf-&gt;LoadData('countries.txt');<BR>
+$pdf-&gt;SetFont('Arial','',14);<BR>
+$pdf-&gt;AddPage();<BR>
+$pdf-&gt;BasicTable($header,$data);<BR>
+$pdf-&gt;AddPage();<BR>
+$pdf-&gt;ImprovedTable($header,$data);<BR>
+$pdf-&gt;AddPage();<BR>
+$pdf-&gt;FancyTable($header,$data);<BR>
+$pdf-&gt;Output();<BR>
+?&gt;
+</TT>
+</TD></TR></TABLE><BR>
+<SCRIPT>
+<!--
+if(document.location.href.indexOf('http:')==0)
+{
+document.write("<A HREF='tuto5.php' TARGET='_blank' CLASS='demo'>[Demo]</A><BR><BR>");
+}
+//-->
+</SCRIPT>
+A table being just a collection of cells, it is natural to build one from them. The first
+example is achieved in the most basic way possible: simple framed cells, all of the same size
+and left aligned. The result is rudimentary but very quick to obtain.
+<BR>
+<BR>
+The second table brings some improvements: each column has its own width, titles are centered
+and figures right aligned. Moreover, horizontal lines have been removed. This is done by means
+of the <TT>border</TT> parameter of the <A HREF='../doc/cell.htm'>Cell()</A> method, which specifies which sides of the
+cell must be drawn. Here we want the left (<TT>L</TT>) and right (<TT>R</TT>) ones. It remains
+the problem of the horizontal line to finish the table. There are two possibilities: either
+check for the last line in the loop, in which case we use <TT>LRB</TT> for the <TT>border</TT>
+parameter; or, as done here, add the line once the loop is over.
+<BR>
+<BR>
+The third table is similar to the second one but uses colors. Fill, text and line colors are
+simply specified. Alternate coloring for rows is obtained by using alternatively transparent
+and filled cells.
+</BODY>
+</HTML>

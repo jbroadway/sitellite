@@ -1,0 +1,7 @@
+<ul>
+	<li><a href="{site/prefix}/index/news-my-submissions-action">{intl Approved} ({stories})</a></li>
+	<li><a href="{site/prefix}/index/news-my-submissions-action?status=pending">{intl Pending} ({pending})</a></li>
+	<li><a href="{site/prefix}/index/news-my-submissions-action?status=rejected">{intl Rejected} ({rejected})</a></li>
+</ul>
+
+<p><a href="{site/prefix}/index/news-submissions-form">{intl Submit A Story}</a></p>

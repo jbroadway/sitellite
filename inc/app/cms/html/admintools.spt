@@ -1,0 +1,5 @@
+<ul>
+	{loop obj[apps]}
+		<li><a href="{site/prefix}/index/{loop/_value}">{loop/_key}</a></li>
+	{end loop}
+</ul>

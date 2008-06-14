@@ -1,0 +1,163 @@
+body
+{
+  color:              #000000;
+  background-color:   #ffffff;
+  background-image:   url("background.png");
+  background-repeat:  repeat-y;
+  font-family:        tahoma, verdana, arial, sans-serif;
+  font-size:          10pt;
+  margin:             0;
+  padding:            0;
+}
+
+a
+{
+  color:              #4477aa;
+  background-color:   transparent;
+  text-decoration:    none;
+}
+
+a:hover
+{
+  text-decoration:    underline;
+}
+
+a.menu
+{
+  color:              #47a;
+  background-color:   transparent;
+}
+
+td
+{
+  font-size:          10pt;
+}
+
+td.header_top
+{
+  background-image:   url("top-bg.gif");
+  background-repeat:  no-repeat;
+  background-position: 300px 0px;
+  color:              #ffffff;
+  background-color:   #58b;
+  font-size:          16pt;
+  font-weight:        bold;
+  text-align:         right;
+  padding:            0px;
+  padding-right:      10px;
+  margin:             0px;
+  height:             55px;
+}
+
+span.header_logo
+{
+  background-color:   #47a;
+  width:              300px;
+  float:              left;
+  text-align:         left;
+  margin:             0px;
+  padding:            0px;
+  height:             55px;
+  vertical-align:     middle;
+}
+
+span.header_logo img
+{
+  padding:            5px;
+  padding-left:       10px;
+}
+
+td.header_line
+{
+  color:              #cde;
+  background-color:   #cde;
+}
+
+td.header_menu
+{
+  color:              #333;
+  background-color:   #ccddee;
+  font-size:          8pt;
+  text-align:         right;
+  padding:            2px;
+  padding-right:      5px;
+}
+
+td.menu
+{
+  padding:            2px;
+  padding-left:       5px;
+}
+
+td.code_border
+{
+  color:              #000000;
+  background-color:   #c0c0c0;
+}
+
+td.code
+{
+  color:              #000000;
+  background-color:   #f0f0f0;
+}
+
+td.type
+{
+  font-style:         italic;
+}
+
+div.credit
+{
+  font-size:          8pt;
+  text-align:         center;
+}
+
+div.package
+{
+  padding-left:       5px;
+}
+
+div.tags
+{
+  padding-left:       15px;
+}
+
+div.function
+{
+  padding-left:       15px;
+}
+
+div.top
+{
+  font-size:          8pt;
+}
+
+div.warning
+{
+  color:              #ff0000;
+  background-color:   transparent;
+}
+
+div.description
+{
+  padding-left:       15px;
+}
+
+hr
+{
+  height:             1px;
+  border-style:       solid;
+  border-color:       #c0c0c0;
+  margin-top:         10px;
+  margin-bottom:      10px;
+}
+
+span.smalllinenumber
+{
+  font-size:          8pt;
+}
+
+ul {
+	margin-left:		0px;
+	padding-left:		8px;
+}

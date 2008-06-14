@@ -1,0 +1,9 @@
+A comment has been made on the news story:
+
+{site/url}/index/news-app/story.{story_id}#news-comments
+
+User ID: {user_id}
+Subject: {subject}
+Message:
+
+{filter news_comment_body_email}{body}{end filter}

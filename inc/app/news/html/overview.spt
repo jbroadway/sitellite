@@ -1,0 +1,53 @@
+{if session_admin ()}
+	{box cms/buttons/add?collection=sitellite_news}
+{end if}
+
+<table border="0" cellpadding="5" cellspacing="1" width="100%">
+{loop obj[list]}
+	{if (loop._index mod 2) gt 1}
+		<tr>
+	{end if}
+	<td width="50%" valign="top">
+
+		<h2 class="news-subhead"><a href="{site/prefix}/index/news-app/section.{loop/category}">{loop/category}</a></h2>
+
+		<p class="news-story-summary">
+			{if session_admin ()}
+				{box cms/buttons?collection=sitellite_news&object=[loop]&add=false&float=true}
+			{end if}
+			<strong>
+				<a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{if obj[date] ne 'no'}{filter news_shortdate}{loop/date}{end filter} - {end if}{loop/title}</a>
+			</strong>
+			{if empty (loop.summary)}
+				</p>{filter template_parse_body}{loop/body}{end filter}
+			{end if}
+			{if else}
+				{if not empty (loop.thumb)}
+					<img src="{loop/thumb}" alt="{loop/title}" border="0" style="float: {appconf/align_thumbnails}; margin: 0px 5px 5px 5px" />
+				{end if}
+				<br />{loop/summary}</p>
+			{end if}
+		</p>
+
+		{loop obj[sub][ loop._key ]}
+		<p class="news-story-summary-short">
+			{if session_admin ()}
+				{box cms/buttons?collection=sitellite_news&object=[loop]&add=false&float=true}
+			{end if}
+			<strong>
+				<a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{if obj[date] ne 'no'}{filter news_shortdate}{loop/date}{end filter} - {end if}{loop/title}</a>
+			</strong>
+		</p>
+		{end loop}
+
+	</td>
+	{if (loop._index mod 2) eq 0}
+		</tr>
+	{end if}
+{end loop}
+</table>
+
+<h2>{intl All Sections}</h2>
+
+{box news/sections?menu=no}
+

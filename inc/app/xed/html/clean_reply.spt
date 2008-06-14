@@ -1,0 +1,12 @@
+<script language="javascript" type="text/javascript">
+
+if (opener && ! opener.closed) {
+	opener.document.getElementById ('{ifname}').xed_cleaner ('{ifname}', '{filter none}{data}{end filter}');
+} else {
+	alert ('Hey, where did my parent go?');
+}
+
+var t = setTimeout ('window.close ();', 5000);
+//window.close ();
+
+</script>

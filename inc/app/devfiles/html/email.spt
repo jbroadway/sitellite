@@ -1,0 +1,14 @@
+{intl Hello},
+
+{intl A new file has been added at}:
+
+http://{site/domain}{site/prefix}/index/devfiles-page-action?appname={filter urlencode}{appname}{end filter}&files=yes
+
+Posted By : {name}
+Type      : {type}
+Size      : {size}
+Download  : http://{site/domain}{site/prefix}/inc/app/devfiles/data{filter urlencode}{_filename}{end filter}
+
+{intl Cheers},
+
+{intl Files}

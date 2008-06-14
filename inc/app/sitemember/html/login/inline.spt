@@ -1,0 +1,33 @@
+<form
+	name="login"
+	action="{site/prefix}/index/sitemember-app"
+	method="post">
+
+{if not empty (obj[goto])}
+<input type="hidden" name="goto" value="{goto}" />
+{end if}
+
+<table cellpadding="3" border="0">
+	<tr>
+		<td>{intl Username}</td>
+		<td><input type="text" name="username" size="20" /></td>
+	</tr>
+	<tr>
+		<td>{intl Password}</td>
+		<td><input type="password" name="password" size="20" /></td>
+	</tr>
+{if appconf ('remember_login')}
+	<tr>
+		<td colspan="2">
+			<input type="checkbox" name="remember_me" value="yes" />
+			{intl Remember Login}
+		</td>
+	</tr>
+{end if}
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" value="{intl Enter}" /></td>
+	</tr>
+</table>
+
+</form>

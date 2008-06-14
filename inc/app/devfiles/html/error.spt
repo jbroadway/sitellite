@@ -1,0 +1,13 @@
+{if not empty (obj.error)}
+	<h2 style="color: #900">{intl Error}: {error}</h2>
+	<p>{intl Possible causes}:</p>
+	<ul>
+		<li>{intl Files is not installed.}</li>
+		<li>{intl Database tables not installed.}</li>
+		<li>{intl Database unavailable.}</li>
+	</ul>
+{end if}
+
+{if empty (obj.error)}
+	<h2>{intl No files}</h2>
+{end if}

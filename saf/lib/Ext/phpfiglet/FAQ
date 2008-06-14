@@ -1,0 +1,116 @@
+
+=============================================================================
+          _         _____  _       _       _      _____  _____  _____ 
+     ___ | |_  ___ |   __||_| ___ | | ___ | |_   |   __||  _  ||     |
+    | . ||   || . ||   __|| || . || || -_||  _|  |   __||     ||  |  |
+    |  _||_|_||  _||__|   |_||_  ||_||___||_|    |__|   |__|__||__  _|
+    |_|       |_|            |___|                                |__|
+
+    http://www.thebobo.com/                                Version 1.0
+
+=============================================================================
+
+
+=============================================================================
+
+ 1. What is it?
+ 2. What does it do?
+ 3. Why did you make this?
+ 4. What can I use it for?
+ 5. How do I install it?
+ 6. How do I use it?
+ 7. Why does my output look all messed up?
+ 8. How do I make my own fonts?
+ 9. License, copyright and legalese?
+
+=============================================================================
+
+1. What is it?
+
+     phpFiglet is a PHP class file that can be called from your own programs
+     to display text in an unusual manner.
+
+
+2. What does it do?
+
+     It creates text that can look like this:
+
+       _ _       _  _        _ _ _            _    _ 
+      | | | ___ | || | ___  | | | | ___  _ _ | | _| |
+      |   |/ ._>| || |/ . \ | | | |/ . \| '_>| |/ . |
+      |_|_|\___.|_||_|\___/ |__/_/ \___/|_|  |_|\___|
+
+
+3. Why did you make this?
+
+     At the risk of sounding like an old man, back in the old days a lot of 
+     people used asci art to create email signatures that looked a bit more 
+     interesting than a standard name and adres. Three guys, Frank, Ian and 
+     Glen made a program called Figlet that lets someone input some text and 
+     printed it like the above example. As far as I know there was no way to 
+     do something similar from PHP, so I wrote this class.
+
+
+4. What can I use it for?
+
+     You name it. Displaying errors, printing messages to users, drawing
+     attention. Whatever you can think of.
+
+
+5. How do I install it?
+
+     Very simple, extract the provided file with tar and gunzip as follows
+     into its destination directory. 
+     
+       tar -xvf phpfiglet.tar.gz
+       gunzip phpfiglet.tar
+       
+     This will create a directory named phpfiglet containing all the files.
+
+
+6. How do I use it?
+
+     Very simple:
+
+       require("phpfiglet_class.php");
+       $phpFiglet = new phpFiglet();
+       if ($phpFiglet->loadFont("fonts/standard.flf")) {
+          $phpFiglet->display("Hello World");
+       } else {
+          trigger_error("Could not load font file");
+       }
+
+
+7. Why does my output look all messed up?
+
+     phpFiglet relies on the fact that you display it's generated text in a
+     nonproportional font. For webpages this usually means that you have to
+     put <pre>tags</pre> around your figletized text. Also some fonts are
+     more readable than others and some don't support the entire character
+     set.
+
+
+8. How do I make my own fonts?
+
+     That's actually pretty easy. Go to the original figlet site, download
+     there program, and read the file figfont.txt contained in their 
+     archive.
+
+
+9. License, copyright and legalese?
+
+     phpFiglet is released under the GPL, and copyright by Lucas Baltes.
+     The original Figlet program is covered by the Artistic License, so
+     its terms might apply to phpFiglet too. I'm not a lawyer, go ask one
+     if you need to know. The included fonts are copyright by their creators 
+     whos names are usually in the first few lines of the font file. See
+     the following urls for more information:
+
+       http://www.gnu.org/licenses/
+       http://www.opensource.org/licenses/
+       http://www.figlet.org/
+
+
+=============================================================================
+Lucas Baltes                 lucas@thebobo.com                     2003/03/16
+=============================================================================

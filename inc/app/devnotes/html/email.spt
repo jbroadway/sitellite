@@ -1,0 +1,14 @@
+{intl Hello},
+
+{intl You have received a DevNote message}:
+
+Posted By : {name}
+Message   : {body}
+
+{intl The message is also attached to the following page}:
+
+http://{site/domain}{site/prefix}/index/devnotes-page-action?appname={filter urlencode}{appname}{end filter}&devnotes=yes
+
+{intl Cheers},
+
+{intl DevNotes}

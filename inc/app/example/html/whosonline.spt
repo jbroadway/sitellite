@@ -1,0 +1,11 @@
+{if obj[numvisitors] == 0}
+<p>There are currently no visitors online.</p>
+{end if}
+
+{if obj[numvisitors] == 1}
+<p>There is currently {numvisitors} visitor online.</p>
+{end if}
+
+{if obj[numvisitors] gt 1}
+<p>There are currently {numvisitors} visitors online.</p>
+{end if}

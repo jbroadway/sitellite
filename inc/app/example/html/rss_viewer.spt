@@ -1,0 +1,9 @@
+<h2><a href="{link}">{intl Visit the Site}</a></h2>
+
+<p>{description}</p>
+
+<ul>
+	{loop obj.items}
+		<li><a href="{loop/link}">{loop/title}</a></li>
+	{end loop}
+</ul>

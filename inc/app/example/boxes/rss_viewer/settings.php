@@ -1,0 +1,3 @@
+[Meta]
+
+name = RSS Viewer

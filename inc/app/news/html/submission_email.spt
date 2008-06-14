@@ -1,0 +1,24 @@
+Story Submission
+
+- User Info -
+
+{if session_valid ()}
+User:        {session/username}
+{end if}IP Address:  {_SERVER/REMOTE_ADDR}
+
+- Story Info -
+
+ID:          {id}
+Title:       {title}
+Author:      {author}
+Category:    {category}
+
+- Summary -
+
+{summary}
+
+- Body -
+
+{filter htmlentities_compat}{body}{end filter}
+
+--

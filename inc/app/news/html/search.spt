@@ -1,0 +1,40 @@
+<form method="GET" class="news-search-box">
+<table border="0" cellpadding="3" cellspacing="0" style="width: auto">
+	<tr>
+		<td valign="top"><input type="text" name="query" value='{query}' /></td>
+		<td valign="top"><input type="submit" value="{intl Search}" /></td>
+	</tr>
+</table>
+</form>
+
+{if is_array (obj[results]) && count (obj[results]) eq 0}
+	<p>{intl No stories found.  Please try again.}</p>
+{end if}
+
+{if count (obj[results]) gt 0}
+	<p>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+			<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+		</tr>
+	</table>
+	</p>
+
+	{loop obj[results]}
+		<p class="news-story-summary">
+			{if session_admin ()}
+				{box cms/buttons?collection=sitellite_news&object=[loop]&add=false&float=true}
+			{end if}
+			<strong>
+				<a href="{site/prefix}/index/news-app?story={loop/id}&highlight={filter urlencode}{query}{end filter}">{filter news_shortdate}{loop/date}{end filter} - {loop/title}</a>
+			</strong><br />
+			{if not empty (loop.thumb)}
+				<img src="{loop/thumb}" alt="{loop/title}" border="0" style="float: {appconf/align_thumbnails}; margin: 0px 5px 5px 5px" />
+			{end if}
+			{filter news_highlight}{loop/summary}{end filter}
+		</p>
+	{end loop}
+{end if}
+
+<p class="news-links"><a href="{site/prefix}/index/news-app">{intl Home}</a></p>

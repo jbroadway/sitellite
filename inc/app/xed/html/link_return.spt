@@ -1,0 +1,23 @@
+<script language="javascript" type="text/javascript">
+
+i = '{ifname}';
+d = [];
+
+{loop obj[vals]}
+d.push (
+	{
+		name: '{loop/_key}',
+		value: '{loop/_value}'
+	}
+);
+{end loop}
+
+if (opener && ! opener.closed) {
+	opener.document.getElementById (i).xed_add_link (i, d);
+} else {
+	alert ('Hey, where did my parent go?');
+}
+
+window.close ();
+
+</script>

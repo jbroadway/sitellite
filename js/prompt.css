@@ -1,0 +1,55 @@
+/**
+
+CSS for prompt.js prompt and alert replacements.  To override,
+copy these into your CSS and use !important after each statement
+you change.
+
+*/
+
+div.prompt-window {
+	position: absolute;
+	z-index: 101;
+	top: 30%;
+	left: 50%;
+	height: 110px;
+	width: 300px;
+	margin-top: -60px;
+	margin-left: -155px;
+	background: #eee;
+	border: 1px solid #09f;
+	border-top: 5px solid #09f;
+	border-bottom: 5px solid #09f;
+	padding: 5px 5px 5px 10px;
+}
+
+div.prompt-window-textarea {
+	position: absolute;
+	z-index: 101;
+	top: 30%;
+	left: 50%;
+	height: 140px;
+	width: 300px;
+	margin-top: -75px;
+	margin-left: -155px;
+	background: #eee;
+	border: 1px solid #09f;
+	border-top: 5px solid #09f;
+	border-bottom: 5px solid #09f;
+	padding: 5px 5px 5px 10px;
+}
+
+div.alert-window {
+	position: absolute;
+	z-index: 101;
+	top: 30%;
+	left: 50%;
+	height: 100px;
+	width: 300px;
+	margin-top: -55px;
+	margin-left: -155px;
+	background: #eee;
+	border: 1px solid #09f;
+	border-top: 5px solid #09f;
+	border-bottom: 5px solid #09f;
+	padding: 5px 5px 5px 10px;
+}

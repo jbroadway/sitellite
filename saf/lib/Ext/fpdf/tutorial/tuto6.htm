@@ -1,0 +1,190 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Links and flowing text</TITLE>
+<LINK TYPE="text/css" REL="stylesheet" HREF="../fpdf.css">
+</HEAD>
+<BODY>
+<H2>Links and flowing text</H2>
+This tutorial explains how to insert links (internal and external) and shows a new text writing
+mode. It also contains a rudimentary HTML parser.
+<BR>
+<BR>
+<TABLE WIDTH="100%" BGCOLOR="#E0E0E0"><TR><TD>
+<TT>
+&lt;?php<BR>
+require('fpdf.php');<BR>
+<BR>
+class PDF extends FPDF<BR>
+{<BR>
+var $B;<BR>
+var $I;<BR>
+var $U;<BR>
+var $HREF;<BR>
+<BR>
+function PDF($orientation='P',$unit='mm',$format='A4')<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Call parent constructor<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;FPDF($orientation,$unit,$format);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Initialization<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;B=0;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;I=0;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;U=0;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;HREF='';<BR>
+}<BR>
+<BR>
+function WriteHTML($html)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//HTML parser<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$html=str_replace(&quot;\n&quot;,' ',$html);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$a=preg_split('/&lt;(.*)&gt;/U',$html,-1,PREG_SPLIT_DELIM_CAPTURE);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($a as $i=&gt;$e)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($i%2==0)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Text<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($this-&gt;HREF)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;PutLink($this-&gt;HREF,$e);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Write(5,$e);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Tag<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($e{0}=='/')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;CloseTag(strtoupper(substr($e,1)));<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Extract properties<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$a2=split(' ',$e);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tag=strtoupper(array_shift($a2));<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$prop=array();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach($a2 as $v)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ereg('^([^=]*)=[&quot;\']?([^&quot;\']*)[&quot;\']?$',$v,$a3))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$prop[strtoupper($a3[1])]=$a3[2];<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;OpenTag($tag,$prop);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+}<BR>
+<BR>
+function OpenTag($tag,$prop)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Opening tag<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;if($tag=='B' or $tag=='I' or $tag=='U')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetStyle($tag,true);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;if($tag=='A')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;HREF=$prop['HREF'];<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;if($tag=='BR')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln(5);<BR>
+}<BR>
+<BR>
+function CloseTag($tag)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Closing tag<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;if($tag=='B' or $tag=='I' or $tag=='U')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetStyle($tag,false);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;if($tag=='A')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;HREF='';<BR>
+}<BR>
+<BR>
+function SetStyle($tag,$enable)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Modify style and select corresponding font<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;$tag+=($enable ? 1 : -1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$style='';<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;foreach(array('B','I','U') as $s)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($this-&gt;$s&gt;0)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$style.=$s;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('',$style);<BR>
+}<BR>
+<BR>
+function PutLink($URL,$txt)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Put a hyperlink<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetTextColor(0,0,255);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetStyle('U',true);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Write(5,$txt,$URL);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetStyle('U',false);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetTextColor(0);<BR>
+}<BR>
+}<BR>
+<BR>
+$html='You can now easily print text mixing different<BR>
+styles : &lt;B&gt;bold&lt;/B&gt;, &lt;I&gt;italic&lt;/I&gt;, &lt;U&gt;underlined&lt;/U&gt;, or<BR>
+&lt;B&gt;&lt;I&gt;&lt;U&gt;all at once&lt;/U&gt;&lt;/I&gt;&lt;/B&gt;!&lt;BR&gt;You can also insert links<BR>
+on text, such as &lt;A HREF=&quot;http://www.fpdf.org&quot;&gt;www.fpdf.org&lt;/A&gt;,<BR>
+or on an image: click on the logo.';<BR>
+<BR>
+$pdf=new PDF();<BR>
+$pdf-&gt;Open();<BR>
+//First page<BR>
+$pdf-&gt;AddPage();<BR>
+$pdf-&gt;SetFont('Arial','',20);<BR>
+$pdf-&gt;Write(5,'To discover what\'s new in this tutorial, click ');<BR>
+$pdf-&gt;SetFont('','U');<BR>
+$link=$pdf-&gt;AddLink();<BR>
+$pdf-&gt;Write(5,'here',$link);<BR>
+$pdf-&gt;SetFont('');<BR>
+//Second page<BR>
+$pdf-&gt;AddPage();<BR>
+$pdf-&gt;SetLink($link);<BR>
+$pdf-&gt;Image('logo.png',10,10,30,0,'','http://www.fpdf.org');<BR>
+$pdf-&gt;SetLeftMargin(45);<BR>
+$pdf-&gt;SetFontSize(14);<BR>
+$pdf-&gt;WriteHTML($html);<BR>
+$pdf-&gt;Output();<BR>
+?&gt;
+</TT>
+</TD></TR></TABLE><BR>
+<SCRIPT>
+<!--
+if(document.location.href.indexOf('http:')==0)
+{
+document.write("<A HREF='tuto6.php' TARGET='_blank' CLASS='demo'>[Demo]</A><BR><BR>");
+}
+//-->
+</SCRIPT>
+The new method to print text is <A HREF='../doc/write.htm'>Write()</A>. It is very close to <A HREF='../doc/multicell.htm'>MultiCell()</A>; the differences
+are:
+<UL>
+<LI>The end of line is at the right margin and the next line begins at the left one
+<LI>The current position moves at the end of the text
+</UL>
+So it allows to write a chunk of text, alter the font style, then continue from the exact
+place we left it. On the other hand, you cannot full justify it.
+<BR>
+<BR>
+The method is used on the first page to put a link pointing to the second one. The beginning of
+the sentence is written in regular style, then we switch to underline and finish it. The link
+is created with <A HREF='../doc/addlink.htm'>AddLink()</A>, which returns a link identifier. The identifier is
+passed as third parameter of Write(). Once the second page is created, we use <A HREF='../doc/setlink.htm'>SetLink()</A> to
+make the link point to the beginning of the current page.
+<BR>
+<BR>
+Then we put an image with a link on it. An external link points to an URL (HTTP, mailto...).
+The URL is simply passed as last parameter of <A HREF='../doc/image.htm'>Image()</A>.
+Note that external links do not work when the PDF is displayed inside Netscape's plug-in.
+<BR>
+<BR>
+Finally, the left margin is moved after the image with <A HREF='../doc/setleftmargin.htm'>SetLeftMargin()</A> and some text in
+HTML format is output. An HTML parser is used for this, based on the regular expression splitting
+function preg_split() and the option PREG_SPLIT_DELIM_CAPTURE (introduced in PHP 4.0.5) which
+allows to fetch the separators as well (in this case the tags). If you use an older version of
+PHP, replace the line with this one:
+<BR>
+<BR>
+<TABLE WIDTH="100%" BGCOLOR="#E0E0E0"><TR><TD>
+<TT>
+$a=preg_split('/[&lt;&gt;]/',$html);
+</TT>
+</TD></TR></TABLE><BR>
+which is less strict but gives the same results with valid HTML.
+<BR>
+Recognized tags are &lt;B&gt;, &lt;I&gt;, &lt;U&gt;, &lt;A&gt; and &lt;BR&gt;; the others are
+ignored. The parser also makes use of the Write() method. An external link is put the same way as
+an internal one (third parameter of Write()).
+<BR>
+Note that <A HREF='../doc/cell.htm'>Cell()</A> also allows to put links.
+</BODY>
+</HTML>

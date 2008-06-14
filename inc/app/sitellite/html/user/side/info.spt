@@ -1,0 +1,9 @@
+<ul>
+
+	<?php if ($obj->pref) { ?>
+	<li><a href="{site/url}/index/{pref}">{intl Preferences}</a></li>
+	<?php } ?>
+
+	<li><a href="{site/url}/index/sitellite-user-logout-action" target="_top">{intl Log out}</a></li>
+
+</ul>

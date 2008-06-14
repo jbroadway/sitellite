@@ -1,0 +1,25 @@
+CREDITS
+
+Various icons used in Sitellite come from or are modifications of the icons of
+the Gnome desktop environment.  The Gnome project lives at:
+http://www.gnome.org/
+
+This project also includes PHP libraries from the following sources:
+
+	The PEAR Project, http://pear.php.net/
+	BiffWriter by Christian Novak, http://www.cnovak.com/
+	FPDF by Olivier Plathey, http://www.fpdf.org/
+	Functional by Ian B Kjos, http://functional-php.sourceforge.net/
+	IXR by Incutio Ltd, http://scripts.incutio.com/xmlrpc/
+	Class.Jabber.PHP by Carlo "Gossip" Zottmann, http://phpjabber.g-blog.net/
+	Mp3 id3v1 Class by Luca, http://www.phpclasses.org/
+	Mp3 id3v2 by Daniel Martinez-Morales, http://www.phpclasses.org/
+	NuSOAP by Dietrich Ayala, http://dietrich.ganx4.com/nusoap/
+	phpApplication by nathan@0x00.org, http://0x00.org/php/phpApplication/
+	PHPlot by Afan Ottenheimer, http://www.phplot.com/
+	PHPMailer by Brent R. Matzelle, http://phpmailer.sourceforge.net/
+	phpSniff by Roger Raymond, http://phpsniff.sourceforge.net/
+	TAR File Manager by Josh Barger, http://www.phpclasses.org/
+	Textile by Dean Allen, http://www.textism.com/
+	Midi Class by Valentin Schmidt, http://www.phpclasses.org/
+	The Zend Framework, http://framework.zend.com/

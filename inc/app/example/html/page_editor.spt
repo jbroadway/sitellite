@@ -1,0 +1,16 @@
+<script language="javascript">
+
+function page_preview (f) {
+	a = f.action;
+	t = f.target;
+
+	f.action = '{site/prefix}/index/mode.preview'
+	f.target = '_blank';
+	f.submit ();
+
+	f.action = a;
+	f.target = t;
+	return false;
+}
+
+</script>

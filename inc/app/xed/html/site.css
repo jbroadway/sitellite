@@ -1,0 +1,62 @@
+body {
+	font: 13px Arial, sans-serif;
+}
+
+td {
+	font: 13px Arial, sans-serif;
+	padding: 5px;
+	margin: 2px;
+	border: #ccc 1px solid;
+}
+
+table {
+	border: #ccc 1px solid;
+}
+
+img {
+	margin: 5px;
+}
+
+xt-box {
+	display: list-item;
+	list-style-type: none;
+	border: 1px solid black;
+	width: 90%;
+	height: 50px;
+	font-weight: bold;
+	padding: 5px;
+	margin: 5px;
+}
+
+XT-BOX {
+	display: list-item;
+	list-style-type: none;
+	border: 1px solid black;
+	width: 90%;
+	height: 50px;
+	font-weight: bold;
+	padding: 5px;
+	margin: 5px;
+}
+
+xt-form {
+	display: list-item;
+	list-style-type: none;
+	border: 1px solid black;
+	width: 90%;
+	height: 50px;
+	font-weight: bold;
+	padding: 5px;
+	margin: 5px;
+}
+
+XT-FORM {
+	display: list-item;
+	list-style-type: none;
+	border: 1px solid black;
+	width: 90%;
+	height: 50px;
+	font-weight: bold;
+	padding: 5px;
+	margin: 5px;
+}

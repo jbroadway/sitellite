@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Multi-columns</TITLE>
+<LINK TYPE="text/css" REL="stylesheet" HREF="../fpdf.css">
+</HEAD>
+<BODY>
+<H2>Multi-columns</H2>
+This example is a variant of the previous one showing how to lay the text across multiple
+columns.
+<BR>
+<BR>
+<TABLE WIDTH="100%" BGCOLOR="#E0E0E0"><TR><TD>
+<TT>
+&lt;?php<BR>
+require('fpdf.php');<BR>
+<BR>
+class PDF extends FPDF<BR>
+{<BR>
+//Current column<BR>
+var $col=0;<BR>
+//Ordinate of column start<BR>
+var $y0;<BR>
+<BR>
+function Header()<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Page header<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;global $title;<BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('Arial','B',15);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$w=$this-&gt;GetStringWidth($title)+6;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetX((210-$w)/2);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetDrawColor(0,80,180);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFillColor(230,230,0);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetTextColor(220,50,50);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetLineWidth(1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell($w,9,$title,1,1,'C',1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln(10);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Save ordinate<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;y0=$this-&gt;GetY();<BR>
+}<BR>
+<BR>
+function Footer()<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Page footer<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetY(-15);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('Arial','I',8);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetTextColor(128);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(0,10,'Page '.$this-&gt;PageNo(),0,0,'C');<BR>
+}<BR>
+<BR>
+function SetCol($col)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set position at a given column<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;col=$col;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$x=10+$col*65;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetLeftMargin($x);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetX($x);<BR>
+}<BR>
+<BR>
+function AcceptPageBreak()<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Method accepting or not automatic page break<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;if($this-&gt;col&lt;2)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Go to next column<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetCol($this-&gt;col+1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Set ordinate to top<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetY($this-&gt;y0);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Keep on page<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;else<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Go back to first column<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetCol(0);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Page break<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;}<BR>
+}<BR>
+<BR>
+function ChapterTitle($num,$label)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Title<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('Arial','',12);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFillColor(200,220,255);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(0,6,&quot;Chapter  $num : $label&quot;,0,1,'L',1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln(4);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Save ordinate<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;y0=$this-&gt;GetY();<BR>
+}<BR>
+<BR>
+function ChapterBody($fichier)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Read text file<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$f=fopen($fichier,'r');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$txt=fread($f,filesize($fichier));<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;fclose($f);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Font<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('Times','',12);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Output text in a 6 cm width column<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;MultiCell(60,5,$txt);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Mention<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('','I');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(0,5,'(end of excerpt)');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Go back to first column<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetCol(0);<BR>
+}<BR>
+<BR>
+function PrintChapter($num,$title,$file)<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Add chapter<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;AddPage();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;ChapterTitle($num,$title);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;ChapterBody($file);<BR>
+}<BR>
+}<BR>
+<BR>
+$pdf=new PDF();<BR>
+$pdf-&gt;Open();<BR>
+$title='20000 Leagues Under the Seas';<BR>
+$pdf-&gt;SetTitle($title);<BR>
+$pdf-&gt;SetAuthor('Jules Verne');<BR>
+$pdf-&gt;PrintChapter(1,'A RUNAWAY REEF','20k_c1.txt');<BR>
+$pdf-&gt;PrintChapter(2,'THE PROS AND CONS','20k_c2.txt');<BR>
+$pdf-&gt;Output();<BR>
+?&gt;
+</TT>
+</TD></TR></TABLE><BR>
+<SCRIPT>
+<!--
+if(document.location.href.indexOf('http:')==0)
+{
+document.write("<A HREF='tuto4.php' TARGET='_blank' CLASS='demo'>[Demo]</A><BR><BR>");
+}
+//-->
+</SCRIPT>
+The key method used is <A HREF='../doc/acceptpagebreak.htm'>AcceptPageBreak()</A>. It allows to accept or not an automatic page
+break. By refusing it and altering the margin and current position, the desired column layout
+is achieved.
+<BR>
+For the rest, not much change; two properties have been added to the class to save the current
+column number and the position where columns begin, and the MultiCell() call specifies a
+6 centimeter width.
+</BODY>
+</HTML>

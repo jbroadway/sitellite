@@ -1,0 +1,17 @@
+<p align="center">
+	{loop range ('A', 'Z')}
+		<a href="#{loop/_value}">{loop/_value}</a>&nbsp;
+	{end loop}
+</p>
+
+{loop obj[list]}
+	{if count (loop[list]) gt 0}
+		<a name="{loop/_key}"></a><h2>{loop/_key}</h2>
+
+		<ul>
+			{loop loop[list]}
+				<li><a href="{site/prefix}/index/sitemember-profile-action?user={loop/username}">{loop/lastname}, {loop/firstname} ({loop/username})</a></li>
+			{end loop}
+		</ul>
+	{end if}
+{end loop}

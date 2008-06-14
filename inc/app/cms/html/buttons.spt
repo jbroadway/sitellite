@@ -1,0 +1,97 @@
+<div id="scm-toolbar" class="scm-status-{status}"
+{if obj[float]}style="float: right"{end if}
+{if obj[align]}align="{align}"{end if}
+{if obj[inline]}style="display: inline"{end if}
+>
+	<table{if obj[inline]} style="display: inline"{end if}>
+		<tr>
+		{if obj[add]}
+			<td align="center"><a href="{site/prefix}/index/cms-add-form?collection={collection}{if obj[collection] ne 'sitellite_page'}&_return={return}{end if}{if else}{if conf ('Site', 'new_pages_under_current') and obj[below]}&below_page={page/id}{end if}{if conf ('Site', 'new_pages_under_current') eq -1 and obj[below]}&below_page={page/below_page}{end if}{end if}{extra}"><img src="{site/prefix}/inc/app/cms/pix/icons/add.gif" alt="{intl Add New} {type}" title="{intl Add New} {type}" border="0" /></a></td>
+		{end if}
+		{if obj[editable]}
+			<td align="center"><a href="{site/prefix}/index/cms-edit-form?_key={id}&_collection={collection}&_return={return}{extra}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" alt="{intl Edit} {type}" title="{intl Edit} {type}" border="0" /></a></td>
+		{if obj[extras]}
+			<td align="center"><a href="{site/prefix}/index/cms-extras-form?_key={id}&_collection={collection}&_return={return}{extra}"><img src="{site/prefix}/inc/app/cms/pix/icons/extras.gif" alt="{intl Edit Extras}" title="{intl Edit Extras}" border="0" /></a></td>
+		{end if}
+		{if obj[up]}
+			<td align="center"><a href="{site/prefix}/index/cms-sidebar-up-action?_key={id}&_upkey={upkey}&_return={return}{extra}"><img src="{site/prefix}/inc/app/cms/pix/icons/up.gif" alt="{intl Move} {type} {intl Up}" title="{intl Move} {type} {intl Up}" border="0" /></a></td>
+		{end if}
+		{if obj[down]}
+			<td align="center"><a href="{site/prefix}/index/cms-sidebar-down-action?_key={id}&_downkey={downkey}&_return={return}{extra}"><img src="{site/prefix}/inc/app/cms/pix/icons/down.gif" alt="{intl Move} {type} {intl Down}" title="{intl Move} {type} {intl Down}" border="0" /></a></td>
+		{end if}
+		{if obj[collection] eq 'sitellite_page' and obj[add]}
+			<td align="center"><a href="{site/prefix}/index/cms-add-form?_dupe={id}&collection={collection}{if obj[collection] ne 'sitellite_page'}&_return={return}{end if}{extra}"><img src="{site/prefix}/inc/app/cms/pix/icons/duplicate.gif" alt="{intl Duplicate This Page}" title="{intl Duplicate This Page}" border="0" /></a></td>
+		{end if}
+		{if obj[history]}
+			<td align="center"><a href="{site/prefix}/index/cms-history-action?_key={id}&_collection={collection}&_return={return_v1}{extra}"><img src="{site/prefix}/inc/app/cms/pix/icons/history.gif" alt="{intl Change History}" title="{intl Change History}" border="0" /></a></td>
+		{end if}
+		{if obj[deletable]}
+			<td align="center"><a href="{site/prefix}/index/cms-delete-action?_key={id}&_collection={collection}&_return={return}{extra}" onclick="return confirm ('{intl Are you sure you want to delete this} {type}?')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete} {type}" title="{intl Delete} {type}" border="0" /></a></td>
+		{end if}
+		{end if}
+		{if not obj[editable]}
+			<td align="center"><a href="#" class="lock-info"><img src="{site/prefix}/inc/app/cms/pix/icons/locked.gif" alt="{intl Item Not Editable}" title="{type} {intl Not Editable}" border="0" />{if not empty (obj[lock_owner])}<span>{intl Lock Owner}: {lock_owner}<br />{intl Expires}: {filter cms_filter_ts_time}{lock_expires}{end filter}</span>{end if}</a></td>
+		{end if}
+		</tr>
+	</table>
+		{if obj[draft] and obj[collection] eq 'sitellite_page'}
+			<div id="scm-viewing" class="scm-viewing">{intl Viewing}:
+				<a href="#" onclick="return scm_view ('approved')" id="scm-viewing-approved" style="font-weight: bold">{intl Approved}</a> |
+				<a href="#" onclick="return scm_view ('draft')" id="scm-viewing-draft">{intl Draft}</a>&nbsp;
+			</div>
+
+			<script language="javascript">
+
+				function scm_view (n) {
+					if (n == 'approved') {
+						document.getElementById ('scm-approved').style.display = 'block';
+						document.getElementById ('scm-draft').style.display = 'none';
+						document.getElementById ('scm-viewing-approved').style.fontWeight = 'bold';
+						document.getElementById ('scm-viewing-draft').style.fontWeight = 'normal';
+						document.getElementById ('scm-viewing-approved').blur ();
+					} else if (n == 'draft') {
+						document.getElementById ('scm-draft').style.display = 'block';
+						document.getElementById ('scm-approved').style.display = 'none';
+						document.getElementById ('scm-viewing-draft').style.fontWeight = 'bold';
+						document.getElementById ('scm-viewing-approved').style.fontWeight = 'normal';
+						document.getElementById ('scm-viewing-draft').blur ();
+					}
+					return false;
+				}
+
+			</script>
+		{end if}
+		{if obj[draft] and obj[collection] eq 'sitellite_sidebar'}
+			<div id="scm-{sidebar_id}-viewing" class="scm-viewing">{intl Viewing}:
+				<a href="#" onclick="return scm_{sidebar_id}_view ('approved')" id="scm-{sidebar_id}-viewing-approved" style="font-weight: bold">{intl Approved}</a> |
+				<a href="#" onclick="return scm_{sidebar_id}_view ('draft')" id="scm-{sidebar_id}-viewing-draft">{intl Draft}</a>&nbsp;
+			</div>
+
+			<script language="javascript">
+
+				function scm_{sidebar_id}_view (n) {
+					if (n == 'approved') {
+						document.getElementById ('scm-{sidebar_id}-approved').style.display = 'block';
+						document.getElementById ('scm-{sidebar_id}-draft').style.display = 'none';
+						document.getElementById ('scm-{sidebar_id}-viewing-approved').style.fontWeight = 'bold';
+						document.getElementById ('scm-{sidebar_id}-viewing-draft').style.fontWeight = 'normal';
+						document.getElementById ('scm-{sidebar_id}-viewing-approved').blur ();
+					} else if (n == 'draft') {
+						document.getElementById ('scm-{sidebar_id}-draft').style.display = 'block';
+						document.getElementById ('scm-{sidebar_id}-approved').style.display = 'none';
+						document.getElementById ('scm-{sidebar_id}-viewing-draft').style.fontWeight = 'bold';
+						document.getElementById ('scm-{sidebar_id}-viewing-approved').style.fontWeight = 'normal';
+						document.getElementById ('scm-{sidebar_id}-viewing-draft').blur ();
+					}
+					return false;
+				}
+
+			</script>
+		{end if}
+		{if obj[collection] eq 'sitellite_page' and obj[status] eq 'parallel'}
+			<div class="scm-status">{intl Parallel}:&nbsp;<strong><a href="{site/prefix}/index/cms-parallel-action?id={id}">{filter cms_filter_parallel}{id}{end filter}</a></strong></div>
+		{end if}
+		{if not empty (obj[status]) and obj[status] ne 'approved' and obj[status] ne 'parallel'}
+			<div class="scm-status">{intl Status}:&nbsp;{filter ucwords}{status}{end filter}</div>
+		{end if}
+</div>

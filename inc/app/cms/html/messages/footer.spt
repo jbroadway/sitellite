@@ -1,0 +1,31 @@
+<script language="javascript" type="text/javascript">
+
+function cms_messages_move (f) {
+	f.action = '{site/prefix}/index/cms-messages-category-set-action';
+	f.submit ();
+}
+
+</script>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>{intl Move Selected To}:</td>
+		<td>
+			&nbsp;<select name="new_folder">
+				{if obj.current ne 'Inbox'}
+					<option name="Inbox">Inbox</option>
+				{end if}
+				{loop obj.list}
+					{if obj.current ne loop.name}
+						<option name="{loop/name}">{loop/name}</option>
+					{end if}
+				{end loop}
+			</select>&nbsp;
+		</td>
+		<td>
+			<input type="submit" value="{intl Go}" onclick="return cms_messages_move (this.form)" />
+		</td>
+	</tr>
+</table>
+</p>

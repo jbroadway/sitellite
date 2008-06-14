@@ -1,0 +1,49 @@
+<h1>Calling DevFiles from a Template</h1>
+
+<p>To insert DevFiles into your web site, open your main XT templates (in the inc/html folder, usually called html.tpl) and add the following line:</p>
+
+<pre><code>
+&lt;xt:box name="devfiles/index" /&gt;
+</code></pre>
+
+<p>Additionally, you can use the following optional attributes to further configure the way DevFiles displays:</p>
+	
+<table cellpadding="3" cellspacing="1">
+	<tr>
+		<th>Attribute</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td valign="top">highlight="no"</td>
+		<td valign="top">Turns off the alternating colour highlighting.</td>
+	</tr>
+	<tr style="background-color: #eee">
+		<td valign="top">posting="private"</td>
+		<td valign="top">Turns posting privileges off for users who can't write to the specified access level.  You can use this to privide downloads to public or semi-public sites where users can't add their own files.</td>
+	</tr>
+	<tr>
+		<td valign="top">title="Related Downloads"</td>
+		<td valign="top">Changes the displayed title from "DevFiles" to anything you want.  Note that this string is passed through intl_get(), so that your title can appear in any language you want.</td>
+	</tr>
+	<tr style="background-color: #eee">
+		<td valign="top">showFileInfo="no"</td>
+		<td valign="top">Hides the second line of information (user name and date/time posted).  Handy for public web sites.</td>
+	</tr>
+	<tr>
+		<td valign="top">hideIfEmpty="yes"</td>
+		<td valign="top">Hides DevFiles altogether if there are no files for the current page.  Note: DevFiles still displays for admin-level users, so you can still add files if you're an administrator and this setting is used.</td>
+	</tr>
+</table>
+
+<p>An example of using these options might be:</p>
+
+<pre><code>
+&lt;xt:box
+	name="devfiles/index"
+	highlight="no"
+	posting="private"
+	title="Related Downloads"
+	showFileInfo="no"
+	hideIfEmpty="yes"
+/&gt;
+</code></pre>

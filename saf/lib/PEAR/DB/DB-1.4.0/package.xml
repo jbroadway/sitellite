@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<package version="1.0">
+  <name>DB</name>
+  <summary>Database Abstraction Layer</summary>
+  <description>DB is a database abstraction layer providing:
+* an OO-style query API
+* a DSN (data source name) format for specifying database servers
+* prepare/execute (bind) emulation for databases that don't support
+  it natively
+* a result object for each query response
+* portable error codes
+* sequence emulation
+* sequential and non sequential row fetching as well as bulk fetching
+* ordered array, associative array and object formats supported for
+  the fetched rows
+* row limit support
+* transactions support
+* table information interface
+* DocBook and PHPDoc API documentation
+
+DB layers itself on top of PHP's existing database extensions.  The
+currently supported extensions are: dbase, fbsql, interbase, informix,
+msql, mssql, mysql, oci8, odbc, pgsql and sybase (DB style interfaces
+to LDAP servers and MS ADO (using COM) are also avaible from a separate package).</description>
+  <maintainers>
+    <maintainer>
+      <user>ssb</user>
+      <name>Stig Sæther Bakken</name>
+      <email>stig@php.net</email>
+      <role>lead</role>
+    </maintainer>
+    <maintainer>
+      <user>cox</user>
+      <name>Tomas V.V.Cox</name>
+      <email>cox@idecnet.com</email>
+      <role>developer</role>
+    </maintainer>
+  </maintainers>
+  <release>
+    <version>1.4.0</version>
+    <date>2003-05-12</date>
+    <license>PHP License</license>
+    <state>stable</state>
+    <notes>New Features:
+- params support in limitQuery()
+- sybase: error mapping implemented (floripa)
+- sybase: numRows() errorNative() errorCode() implemented
+
+Bugs fixed:
+- use rawurldecode() instead of urldecode() for
+  DSN usernames and passwords
+- ibase: misc bugfixes
+- ifx: results were not freed
+- mssql: fix DB_FETCHMODE_ASSOC row fetches
+- mysql: prefer mysql_real_escape_string if available
+- pgsql: don't specify host on connect if empty
+- pgsql: quote() did not support booleans
+- pgsql: modifyLimitQuery() generated wrong LIMIT clause</notes>
+    <provides type="function" name="array_change_key_case" />
+    <provides type="class" name="DB" />
+    <provides type="class" name="DB_Error" />
+    <provides type="class" name="DB_result" />
+    <provides type="class" name="DB_row" />
+    <provides type="function" name="DB::factory" />
+    <provides type="function" name="DB::connect" />
+    <provides type="function" name="DB::apiVersion" />
+    <provides type="function" name="DB::isError" />
+    <provides type="function" name="DB::isConnection" />
+    <provides type="function" name="DB::isManip" />
+    <provides type="function" name="DB::errorMessage" />
+    <provides type="function" name="DB::parseDSN" />
+    <provides type="function" name="DB::assertExtension" />
+    <provides type="function" name="DB_result::fetchRow" />
+    <provides type="function" name="DB_result::fetchInto" />
+    <provides type="function" name="DB_result::numCols" />
+    <provides type="function" name="DB_result::numRows" />
+    <provides type="function" name="DB_result::nextResult" />
+    <provides type="function" name="DB_result::free" />
+    <provides type="function" name="DB_result::tableInfo" />
+    <provides type="function" name="DB_result::getRowCounter" />
+    <provides type="class" name="DB_common" />
+    <provides type="function" name="DB_common::toString" />
+    <provides type="function" name="DB_common::quoteString" />
+    <provides type="function" name="DB_common::quote" />
+    <provides type="function" name="DB_common::provides" />
+    <provides type="function" name="DB_common::errorCode" />
+    <provides type="function" name="DB_common::errorMessage" />
+    <provides type="function" name="DB_common::raiseError" />
+    <provides type="function" name="DB_common::setFetchMode" />
+    <provides type="function" name="DB_common::setOption" />
+    <provides type="function" name="DB_common::getOption" />
+    <provides type="function" name="DB_common::prepare" />
+    <provides type="function" name="DB_common::autoPrepare" />
+    <provides type="function" name="DB_common::autoExecute" />
+    <provides type="function" name="DB_common::buildManipSQL" />
+    <provides type="function" name="DB_common::execute" />
+    <provides type="function" name="DB_common::executeEmulateQuery" />
+    <provides type="function" name="DB_common::executeMultiple" />
+    <provides type="function" name="DB_common::modifyQuery" />
+    <provides type="function" name="DB_common::modifyLimitQuery" />
+    <provides type="function" name="DB_common::query" />
+    <provides type="function" name="DB_common::limitQuery" />
+    <provides type="function" name="DB_common::getOne" />
+    <provides type="function" name="DB_common::getRow" />
+    <provides type="function" name="DB_common::getCol" />
+    <provides type="function" name="DB_common::getAssoc" />
+    <provides type="function" name="DB_common::getAll" />
+    <provides type="function" name="DB_common::autoCommit" />
+    <provides type="function" name="DB_common::commit" />
+    <provides type="function" name="DB_common::rollback" />
+    <provides type="function" name="DB_common::numRows" />
+    <provides type="function" name="DB_common::affectedRows" />
+    <provides type="function" name="DB_common::errorNative" />
+    <provides type="function" name="DB_common::nextId" />
+    <provides type="function" name="DB_common::createSequence" />
+    <provides type="function" name="DB_common::dropSequence" />
+    <provides type="function" name="DB_common::tableInfo" />
+    <provides type="function" name="DB_common::getTables" />
+    <provides type="function" name="DB_common::getListOf" />
+    <provides type="function" name="DB_common::getSequenceName" />
+    <provides type="class" name="DB_dbase" />
+    <provides type="function" name="DB_dbase::connect" />
+    <provides type="function" name="DB_dbase::disconnect" />
+    <provides type="function" name="DB_dbase::query" />
+    <provides type="function" name="DB_dbase::fetchInto" />
+    <provides type="function" name="DB_dbase::numCols" />
+    <provides type="function" name="DB_dbase::numRows" />
+    <provides type="class" name="DB_fbsql" />
+    <provides type="function" name="DB_fbsql::connect" />
+    <provides type="function" name="DB_fbsql::disconnect" />
+    <provides type="function" name="DB_fbsql::simpleQuery" />
+    <provides type="function" name="DB_fbsql::nextResult" />
+    <provides type="function" name="DB_fbsql::fetchRow" />
+    <provides type="function" name="DB_fbsql::fetchInto" />
+    <provides type="function" name="DB_fbsql::freeResult" />
+    <provides type="function" name="DB_fbsql::autoCommit" />
+    <provides type="function" name="DB_fbsql::commit" />
+    <provides type="function" name="DB_fbsql::rollback" />
+    <provides type="function" name="DB_fbsql::numCols" />
+    <provides type="function" name="DB_fbsql::numRows" />
+    <provides type="function" name="DB_fbsql::affectedRows" />
+    <provides type="function" name="DB_fbsql::errorNative" />
+    <provides type="function" name="DB_fbsql::nextId" />
+    <provides type="function" name="DB_fbsql::createSequence" />
+    <provides type="function" name="DB_fbsql::dropSequence" />
+    <provides type="function" name="DB_fbsql::modifyQuery" />
+    <provides type="function" name="DB_fbsql::fbsqlRaiseError" />
+    <provides type="function" name="DB_fbsql::tableInfo" />
+    <provides type="function" name="DB_fbsql::getSpecialQuery" />
+    <provides type="class" name="DB_ibase" />
+    <provides type="function" name="DB_ibase::connect" />
+    <provides type="function" name="DB_ibase::disconnect" />
+    <provides type="function" name="DB_ibase::simpleQuery" />
+    <provides type="function" name="DB_ibase::modifyLimitQuery" />
+    <provides type="function" name="DB_ibase::nextResult" />
+    <provides type="function" name="DB_ibase::fetchInto" />
+    <provides type="function" name="DB_ibase::freeResult" />
+    <provides type="function" name="DB_ibase::freeQuery" />
+    <provides type="function" name="DB_ibase::numCols" />
+    <provides type="function" name="DB_ibase::prepare" />
+    <provides type="function" name="DB_ibase::execute" />
+    <provides type="function" name="DB_ibase::autoCommit" />
+    <provides type="function" name="DB_ibase::commit" />
+    <provides type="function" name="DB_ibase::rollback" />
+    <provides type="function" name="DB_ibase::transactionInit" />
+    <provides type="function" name="DB_ibase::nextId" />
+    <provides type="function" name="DB_ibase::createSequence" />
+    <provides type="function" name="DB_ibase::dropSequence" />
+    <provides type="function" name="DB_ibase::tableInfo" />
+    <provides type="function" name="DB_ibase::getSpecialQuery" />
+    <provides type="function" name="DB_ibase::ibaseRaiseError" />
+    <provides type="class" name="DB_ifx" />
+    <provides type="function" name="DB_ifx::connect" />
+    <provides type="function" name="DB_ifx::disconnect" />
+    <provides type="function" name="DB_ifx::simpleQuery" />
+    <provides type="function" name="DB_ifx::nextResult" />
+    <provides type="function" name="DB_ifx::affectedRows" />
+    <provides type="function" name="DB_ifx::fetchRow" />
+    <provides type="function" name="DB_ifx::fetchInto" />
+    <provides type="function" name="DB_ifx::numRows" />
+    <provides type="function" name="DB_ifx::numCols" />
+    <provides type="function" name="DB_ifx::freeResult" />
+    <provides type="function" name="DB_ifx::ifxraiseError" />
+    <provides type="function" name="DB_ifx::errorCode" />
+    <provides type="function" name="DB_ifx::errorNative" />
+    <provides type="function" name="DB_ifx::getSpecialQuery" />
+    <provides type="class" name="DB_msql" />
+    <provides type="function" name="DB_msql::connect" />
+    <provides type="function" name="DB_msql::disconnect" />
+    <provides type="function" name="DB_msql::simpleQuery" />
+    <provides type="function" name="DB_msql::nextResult" />
+    <provides type="function" name="DB_msql::fetchRow" />
+    <provides type="function" name="DB_msql::fetchInto" />
+    <provides type="function" name="DB_msql::freeResult" />
+    <provides type="function" name="DB_msql::numCols" />
+    <provides type="function" name="DB_msql::numRows" />
+    <provides type="function" name="DB_msql::affectedRows" />
+    <provides type="function" name="DB_msql::getSpecialQuery" />
+    <provides type="class" name="DB_mssql" />
+    <provides type="function" name="DB_mssql::connect" />
+    <provides type="function" name="DB_mssql::disconnect" />
+    <provides type="function" name="DB_mssql::simpleQuery" />
+    <provides type="function" name="DB_mssql::nextResult" />
+    <provides type="function" name="DB_mssql::fetchRow" />
+    <provides type="function" name="DB_mssql::fetchInto" />
+    <provides type="function" name="DB_mssql::freeResult" />
+    <provides type="function" name="DB_mssql::numCols" />
+    <provides type="function" name="DB_mssql::numRows" />
+    <provides type="function" name="DB_mssql::autoCommit" />
+    <provides type="function" name="DB_mssql::commit" />
+    <provides type="function" name="DB_mssql::rollback" />
+    <provides type="function" name="DB_mssql::affectedRows" />
+    <provides type="function" name="DB_mssql::nextId" />
+    <provides type="function" name="DB_mssql::createSequence" />
+    <provides type="function" name="DB_mssql::dropSequence" />
+    <provides type="function" name="DB_mssql::errorCode" />
+    <provides type="function" name="DB_mssql::mssqlRaiseError" />
+    <provides type="function" name="DB_mssql::tableInfo" />
+    <provides type="function" name="DB_mssql::getSpecialQuery" />
+    <provides type="class" name="DB_mysql" />
+    <provides type="function" name="DB_mysql::connect" />
+    <provides type="function" name="DB_mysql::disconnect" />
+    <provides type="function" name="DB_mysql::simpleQuery" />
+    <provides type="function" name="DB_mysql::nextResult" />
+    <provides type="function" name="DB_mysql::fetchRow" />
+    <provides type="function" name="DB_mysql::fetchInto" />
+    <provides type="function" name="DB_mysql::freeResult" />
+    <provides type="function" name="DB_mysql::numCols" />
+    <provides type="function" name="DB_mysql::numRows" />
+    <provides type="function" name="DB_mysql::autoCommit" />
+    <provides type="function" name="DB_mysql::commit" />
+    <provides type="function" name="DB_mysql::rollback" />
+    <provides type="function" name="DB_mysql::affectedRows" />
+    <provides type="function" name="DB_mysql::errorNative" />
+    <provides type="function" name="DB_mysql::nextId" />
+    <provides type="function" name="DB_mysql::createSequence" />
+    <provides type="function" name="DB_mysql::dropSequence" />
+    <provides type="function" name="DB_mysql::quote" />
+    <provides type="function" name="DB_mysql::modifyQuery" />
+    <provides type="function" name="DB_mysql::modifyLimitQuery" />
+    <provides type="function" name="DB_mysql::mysqlRaiseError" />
+    <provides type="function" name="DB_mysql::tableInfo" />
+    <provides type="function" name="DB_mysql::getSpecialQuery" />
+    <provides type="class" name="DB_oci8" />
+    <provides type="function" name="DB_oci8::connect" />
+    <provides type="function" name="DB_oci8::disconnect" />
+    <provides type="function" name="DB_oci8::simpleQuery" />
+    <provides type="function" name="DB_oci8::nextResult" />
+    <provides type="function" name="DB_oci8::fetchRow" />
+    <provides type="function" name="DB_oci8::fetchInto" />
+    <provides type="function" name="DB_oci8::freeResult" />
+    <provides type="function" name="DB_oci8::numRows" />
+    <provides type="function" name="DB_oci8::numCols" />
+    <provides type="function" name="DB_oci8::errorNative" />
+    <provides type="function" name="DB_oci8::prepare" />
+    <provides type="function" name="DB_oci8::execute" />
+    <provides type="function" name="DB_oci8::autoCommit" />
+    <provides type="function" name="DB_oci8::commit" />
+    <provides type="function" name="DB_oci8::rollback" />
+    <provides type="function" name="DB_oci8::affectedRows" />
+    <provides type="function" name="DB_oci8::modifyQuery" />
+    <provides type="function" name="DB_oci8::modifyLimitQuery" />
+    <provides type="function" name="DB_oci8::nextId" />
+    <provides type="function" name="DB_oci8::createSequence" />
+    <provides type="function" name="DB_oci8::dropSequence" />
+    <provides type="function" name="DB_oci8::oci8RaiseError" />
+    <provides type="function" name="DB_oci8::getSpecialQuery" />
+    <provides type="function" name="DB_oci8::tableInfo" />
+    <provides type="class" name="DB_odbc" />
+    <provides type="function" name="DB_odbc::connect" />
+    <provides type="function" name="DB_odbc::disconnect" />
+    <provides type="function" name="DB_odbc::simpleQuery" />
+    <provides type="function" name="DB_odbc::nextResult" />
+    <provides type="function" name="DB_odbc::fetchRow" />
+    <provides type="function" name="DB_odbc::fetchInto" />
+    <provides type="function" name="DB_odbc::freeResult" />
+    <provides type="function" name="DB_odbc::numCols" />
+    <provides type="function" name="DB_odbc::affectedRows" />
+    <provides type="function" name="DB_odbc::numRows" />
+    <provides type="function" name="DB_odbc::errorNative" />
+    <provides type="function" name="DB_odbc::nextId" />
+    <provides type="function" name="DB_odbc::createSequence" />
+    <provides type="function" name="DB_odbc::dropSequence" />
+    <provides type="function" name="DB_odbc::autoCommit" />
+    <provides type="function" name="DB_odbc::commit" />
+    <provides type="function" name="DB_odbc::rollback" />
+    <provides type="function" name="DB_odbc::odbcRaiseError" />
+    <provides type="function" name="DB_odbc::getSpecialQuery" />
+    <provides type="class" name="DB_pgsql" />
+    <provides type="function" name="DB_pgsql::connect" />
+    <provides type="function" name="DB_pgsql::disconnect" />
+    <provides type="function" name="DB_pgsql::simpleQuery" />
+    <provides type="function" name="DB_pgsql::nextResult" />
+    <provides type="function" name="DB_pgsql::errorCode" />
+    <provides type="function" name="DB_pgsql::fetchRow" />
+    <provides type="function" name="DB_pgsql::fetchInto" />
+    <provides type="function" name="DB_pgsql::freeResult" />
+    <provides type="function" name="DB_pgsql::quote" />
+    <provides type="function" name="DB_pgsql::numCols" />
+    <provides type="function" name="DB_pgsql::numRows" />
+    <provides type="function" name="DB_pgsql::errorNative" />
+    <provides type="function" name="DB_pgsql::autoCommit" />
+    <provides type="function" name="DB_pgsql::commit" />
+    <provides type="function" name="DB_pgsql::rollback" />
+    <provides type="function" name="DB_pgsql::affectedRows" />
+    <provides type="function" name="DB_pgsql::nextId" />
+    <provides type="function" name="DB_pgsql::createSequence" />
+    <provides type="function" name="DB_pgsql::dropSequence" />
+    <provides type="function" name="DB_pgsql::modifyLimitQuery" />
+    <provides type="function" name="DB_pgsql::pgsqlRaiseError" />
+    <provides type="function" name="DB_pgsql::tableInfo" />
+    <provides type="function" name="DB_pgsql::getSpecialQuery" />
+    <provides type="class" name="DB_sybase" />
+    <provides type="function" name="DB_sybase::connect" />
+    <provides type="function" name="DB_sybase::disconnect" />
+    <provides type="function" name="DB_sybase::errorNative" />
+    <provides type="function" name="DB_sybase::errorCode" />
+    <provides type="function" name="DB_sybase::sybaseRaiseError" />
+    <provides type="function" name="DB_sybase::simpleQuery" />
+    <provides type="function" name="DB_sybase::nextResult" />
+    <provides type="function" name="DB_sybase::fetchRow" />
+    <provides type="function" name="DB_sybase::fetchInto" />
+    <provides type="function" name="DB_sybase::freeResult" />
+    <provides type="function" name="DB_sybase::numCols" />
+    <provides type="function" name="DB_sybase::numRows" />
+    <provides type="function" name="DB_sybase::affectedRows" />
+    <provides type="function" name="DB_sybase::getSpecialQuery" />
+    <provides type="class" name="DB_storage" />
+    <provides type="function" name="DB_storage::setup" />
+    <provides type="function" name="DB_storage::insert" />
+    <provides type="function" name="DB_storage::toString" />
+    <provides type="function" name="DB_storage::dump" />
+    <provides type="function" name="DB_storage::create" />
+    <provides type="function" name="DB_storage::set" />
+    <provides type="function" name="DB_storage::get" />
+    <provides type="function" name="DB_storage::store" />
+    <provides type="function" name="DB_storage::remove" />
+    <filelist>
+      <file role="php" baseinstalldir="/" md5sum="7f43ab94a3bbb0419244e209612bfbad" name="DB.php"/>
+      <file role="php" md5sum="23cb9d7840891e254416ad0f554ba616" name="DB/common.php"/>
+      <file role="php" md5sum="79fdc45c2dd9681848b8a3995875b927" name="DB/dbase.php"/>
+      <file role="php" md5sum="09ef1e68ae159ee17ca3ccb246557dc1" name="DB/fbsql.php"/>
+      <file role="php" md5sum="459b9fbb248727a6b230610effaeb0e0" name="DB/ibase.php"/>
+      <file role="php" md5sum="f7e0ac337658748375903856027f075f" name="DB/ifx.php"/>
+      <file role="php" md5sum="e2109828b1bc9a3b4d1f67ccfd38ed17" name="DB/msql.php"/>
+      <file role="php" md5sum="cd1d0e5a0266ea5c4fa5a95e55041138" name="DB/mssql.php"/>
+      <file role="php" md5sum="b009ce8fc9e0c109a23e7d65b67767f5" name="DB/mysql.php"/>
+      <file role="php" md5sum="faf809949d54dbfcf442cf0cb6810778" name="DB/oci8.php"/>
+      <file role="php" md5sum="a509d560870cf94f66baa5b00ba87320" name="DB/odbc.php"/>
+      <file role="php" md5sum="82fedc16140df4154064454b7d1b3045" name="DB/pgsql.php"/>
+      <file role="php" md5sum="41a79555ab0907710491eb703f9d2fdf" name="DB/sybase.php"/>
+      <file role="php" md5sum="2737dfc709344a2e70eadae79592a97b" name="DB/storage.php"/>
+      <file role="doc" md5sum="651a644b6f3495fc39279d75b8099372" name="doc/IDEAS"/>
+      <file role="doc" md5sum="68ad1e1cd594ad2c3c6ad6b6007a1c53" name="doc/MAINTAINERS"/>
+      <file role="doc" md5sum="c04864c1b1cc86b9b3d04863655bacb9" name="doc/STATUS"/>
+      <file role="doc" md5sum="34a911b9a1e2269077adcf3edf4bfa59" name="doc/TESTERS"/>
+      <file role="test" md5sum="f21c86cc9c2648f6a52b7ccd90cc8ec3" name="tests/db_error.phpt"/>
+      <file role="test" md5sum="86b28d2201985251794cb20eee03841a" name="tests/db_parsedsn.phpt"/>
+      <file role="test" md5sum="dd4de27d95e872f63e0054a240a88fa1" name="tests/db_factory.phpt"/>
+      <file role="test" md5sum="9de926bf5668e1910a95f999d2cbeee6" name="tests/db_ismanip.phpt"/>
+      <file role="test" md5sum="ddcfe9197a88790b33a3ccda957ec1d1" name="tests/db_error2.phpt"/>
+      <file role="test" md5sum="b56345d3608704ef42cd885a979e82f2" name="tests/oci8/01connect.phpt"/>
+      <file role="test" md5sum="65b92503518a047b56d26fc77a522488" name="tests/oci8/02fetch.phpt"/>
+      <file role="test" md5sum="b354a0930147f13bd17c918cb08e08a6" name="tests/oci8/03simplequery.phpt"/>
+      <file role="test" md5sum="48aaa908d08482a41a094948bb6a65c4" name="tests/oci8/04numcols.phpt"/>
+      <file role="test" md5sum="af61f1e99161b879d41a2a12aa79d41f" name="tests/oci8/05sequences.phpt"/>
+      <file role="test" md5sum="3688670de154cd807fd33d63a6e0d50c" name="tests/oci8/06prepexec.phpt"/>
+      <file role="test" md5sum="60aa3ca06e928121e85065dfe30cad16" name="tests/oci8/07errornative.phpt"/>
+      <file role="test" md5sum="5f4f6f8051972344df6ec296f0ba41e7" name="tests/oci8/08affectedrows.phpt"/>
+      <file role="test" md5sum="5ccaa73b3fccabbbdda04479e42cc30f" name="tests/oci8/09numrows.phpt"/>
+      <file role="test" md5sum="b89aaaf1624a00e89b81070fead9a1ed" name="tests/oci8/10errormap.phpt"/>
+      <file role="test" md5sum="927bc77a9fc826cdc376c685aa9a2f98" name="tests/oci8/13limit.phpt"/>
+      <file role="test" md5sum="3e5b85738339fba3fc7b80d6a99637da" name="tests/odbc/01connect.phpt"/>
+      <file role="test" md5sum="cb549567a528b0e9e18e23d86e9e77d6" name="tests/odbc/02fetch.phpt"/>
+      <file role="test" md5sum="10c938bb9bbb84f9c883e4b53fe834b3" name="tests/odbc/03simplequery.phpt"/>
+      <file role="test" md5sum="0edff94bb81f80cdca5265867e7a0b79" name="tests/odbc/04numcols.phpt"/>
+      <file role="test" md5sum="575073a741cb9b1e189ab29255720f41" name="tests/odbc/06prepexec.phpt"/>
+      <file role="test" md5sum="248e2a07b05faee94745f91d5bca5069" name="tests/odbc/07errornative.phpt"/>
+      <file role="test" md5sum="b730dcba22355f9ddae198440dc952f1" name="tests/odbc/09numrows.phpt"/>
+      <file role="test" md5sum="17a387497df8cd6c81475e24dbd002a6" name="tests/odbc/10errormap.phpt"/>
+      <file role="test" md5sum="59df7fe45248137904273ac321e1b0d8" name="tests/ibase/01connect.phpt"/>
+      <file role="test" md5sum="315647b95665ffce25a5a67c44ab2935" name="tests/ibase/02fetch.phpt"/>
+      <file role="test" md5sum="85bb4e85468e088ae866add3039dc0e3" name="tests/ibase/03simplequery.phpt"/>
+      <file role="test" md5sum="ffb4a94f3a3ccbd3bc5f36da8c89ba29" name="tests/ibase/04numcols.phpt"/>
+      <file role="test" md5sum="e08de573eb5904f5fba560fdff43a1ed" name="tests/ibase/05sequences.phpt"/>
+      <file role="test" md5sum="5182ecb195e44221fe7cc618da5fb653" name="tests/ibase/06prepexec.phpt"/>
+      <file role="test" md5sum="25db1104e4d7faecfe003696cb320b54" name="tests/ibase/10errormap.phpt"/>
+      <file role="test" md5sum="ca7eefedbefbcf1b122c8c930f501e2a" name="tests/mysql/01connect.phpt"/>
+      <file role="test" md5sum="afd16c74c156a093569e5f4b1ec8e42d" name="tests/mysql/02fetch.phpt"/>
+      <file role="test" md5sum="2dc41155852e81ce6b756c851c8c939c" name="tests/mysql/03simplequery.phpt"/>
+      <file role="test" md5sum="dce61d397e8ec1648b711c18f82f24e5" name="tests/mysql/04numcols.phpt"/>
+      <file role="test" md5sum="f3c9a44e208cd4d5ad31e13abd22fbba" name="tests/mysql/05sequences.phpt"/>
+      <file role="test" md5sum="cb19f9190dce0e477a5fc8c4d8dea62b" name="tests/mysql/06prepexec.phpt"/>
+      <file role="test" md5sum="e879ab45f8f963c81ffdc8c493307a1d" name="tests/mysql/07errornative.phpt"/>
+      <file role="test" md5sum="c61c36bdfa3c6bc9346062dbc0ba4ffe" name="tests/mysql/08affectedrows.phpt"/>
+      <file role="test" md5sum="208107a78d4f98a07f6117da58221bbc" name="tests/mysql/09numrows.phpt"/>
+      <file role="test" md5sum="81c68e7eea73947e22edbd57728562c0" name="tests/mysql/10errormap.phpt"/>
+      <file role="test" md5sum="1e7ac1ce854c5bff3ce0d98f24d94cb5" name="tests/mysql/12tableinfo.phpt"/>
+      <file role="test" md5sum="6e97cbcc47ff277bb21c404ebd3b1540" name="tests/mysql/13limit.phpt"/>
+      <file role="test" md5sum="db098d5c54f57468d90f95db78e1ba2f" name="tests/mysql/14fetchmode_object.phpt"/>
+      <file role="test" md5sum="11260a57667daecd63374466f0b4be77" name="tests/pgsql/01connect.phpt"/>
+      <file role="test" md5sum="a55fc3e209c49dab0e0f8c4233226b2b" name="tests/pgsql/02fetch.phpt"/>
+      <file role="test" md5sum="0f7e2e43f5ab030dde0397c4f31f0d10" name="tests/pgsql/03simplequery.phpt"/>
+      <file role="test" md5sum="5a632eef2fc98371a3c29487f8e78983" name="tests/pgsql/04numcols.phpt"/>
+      <file role="test" md5sum="c8c6f8c1a800de24c24e33766371c2e5" name="tests/pgsql/05sequences.phpt"/>
+      <file role="test" md5sum="d8bb03b67fcf59202df54b90d53dffc5" name="tests/pgsql/06prepexec.phpt"/>
+      <file role="test" md5sum="0d0e7ded6ee0ab57242b952d6c444496" name="tests/pgsql/07errornative.phpt"/>
+      <file role="test" md5sum="481c4bf8b2d842ac6092cc4e384a5365" name="tests/pgsql/08affectedrows.phpt"/>
+      <file role="test" md5sum="675596eab8459a7ea105f0f59a9050a8" name="tests/pgsql/09numrows.phpt"/>
+      <file role="test" md5sum="ed626dce540d3e460de4f310c71cbb72" name="tests/pgsql/10errormap.phpt"/>
+      <file role="test" md5sum="d4977be30a1f8bb309429b1fe192f388" name="tests/pgsql/11transact.phpt"/>
+      <file role="test" md5sum="5e796793c0f048117fe0af815fd74990" name="tests/pgsql/13limit.phpt"/>
+      <file role="test" md5sum="9a1b2b3de7db3cd1d60003de626507fc" name="tests/pgsql/14fetchmode_object.phpt"/>
+      <file role="test" md5sum="3e9db7e275c43c15214b3e64f8e9496f" name="tests/driver/01connect.phpt"/>
+      <file role="test" md5sum="a921e61f3de520abca73bae2f9c79c11" name="tests/driver/02fetch.phpt"/>
+      <file role="test" md5sum="56294c3b143da861d63cd00a1b6bff44" name="tests/driver/03simplequery.phpt"/>
+      <file role="test" md5sum="d42b1cf8fa76e96fa19bbabe41dcdc7a" name="tests/driver/04numcols.phpt"/>
+      <file role="test" md5sum="72ff91ae2a3eb94e03ff0f19aafb8200" name="tests/driver/05sequences.phpt"/>
+      <file role="test" md5sum="7af83e2c13a4a1e8d04d2bac3eea0ec0" name="tests/driver/06prepexec.phpt"/>
+      <file role="test" md5sum="c2d83322323a1c2b6182f1c327090a73" name="tests/driver/08affectedrows.phpt"/>
+      <file role="test" md5sum="9f537a1950a7f8136d2bd04236fe13e5" name="tests/driver/09numrows.phpt"/>
+      <file role="test" md5sum="1df3dfc8fdc479ff5f50f10053972e2e" name="tests/driver/10errormap.phpt"/>
+      <file role="test" md5sum="243481a5224e78a4dac1e096c8957c28" name="tests/driver/13limit.phpt"/>
+      <file role="test" md5sum="7887b0d4796fd58879a6281d49afa681" name="tests/driver/14fetchmode_object.phpt"/>
+      <file role="test" md5sum="ea0d932571a6c21a2bec9183983fd7ba" name="tests/driver/15quote.phpt"/>
+    </filelist>
+  </release>
+</package>

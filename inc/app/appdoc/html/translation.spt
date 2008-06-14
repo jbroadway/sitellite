@@ -1,0 +1,63 @@
+{filter none}
+{HELPDOC_JS_DELETE_CONFIRM}
+{HELPDOC_JS_SELECT_ALL}
+{end filter}
+
+<form method="get" action="{site/prefix}/index/appdoc-translation-build-action">
+	<p align="right">
+		<input type="hidden" name="appname" value="{appname}" />
+		{if count (obj[langs]) gt 0}
+		<input
+			type="submit"
+			value="{intl Re-build index}"
+			onclick="return confirm ('{filter addslashes}{intl Are you sure you want to re-build the translation index?  It is a memory-intensive process that may briefly slow your web site down.}{end filter}')"
+		/>
+		{end if}
+		{if else}
+		<input
+			type="submit"
+			value="{intl Build index}"
+			onclick="return confirm ('{filter addslashes}{intl Are you sure you want to build the translation index?  It is a memory-intensive process that may briefly slow your web site down.}{end filter}')"
+		/>
+		{end if}
+	</p>
+</form>
+
+<p>
+	<a href="{site/prefix}/index/appdoc-appinfo-action?appname={appname}">{intl Back}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/appdoc-translation-add-form?appname={appname}">{intl Add Language}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=appdoc">{intl Help}</a>
+</p>
+
+<form method="post" action="{site/prefix}/index/appdoc-translation-delete-action">
+	<input type="hidden" name="appname" value="{appname}" />
+<p>
+	<table border="0" width="100%" cellpadding="3" cellspacing="1">
+		<tr>
+			<th align="center" width="10%">
+				<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return helpdoc_select_all (this.form)" />&nbsp;
+				<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return helpdoc_delete_confirm ()" />
+			</th>
+			<th align="left">{intl Name}</th>
+			<th align="left" width="10%">{intl Code}</th>
+			<th align="left" width="10%">{intl Locale}</th>
+			<th align="left" width="20%">{intl Character Set}</th>
+			<th align="left" width="10%">{intl Fallback}</th>
+			<th align="left" width="10%">{intl Default}</th>
+		</tr>
+		{loop obj[langs]}
+		<tr>
+			<td align="center" width="10%">
+				<input type="checkbox" name="_key[]" value="{loop/_key}" />
+			</td>
+			<td><a href="{site/prefix}/index/appdoc-translation-edit-form?appname={appname}&lang={loop/_key}">{loop/name}</a></td>
+			<td>{loop/code}</td>
+			<td>{loop/locale}</td>
+			<td>{loop/charset}</td>
+			<td>{loop/fallback}</td>
+			<td>{filter filter_translation_default}{loop/default}{end filter}</td>
+		</tr>
+		{end loop}
+	</table>
+</p>
+</form>

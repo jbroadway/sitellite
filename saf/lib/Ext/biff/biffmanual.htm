@@ -1,0 +1,1417 @@
+<html>
+<head>
+<title>BiffWriter PHP Class</title>
+<meta name="keywords" content="BIFF; EXCEL; PHP; PHP TO EXCEL CONVERSION; PHP CLASS; EXCEL 2.1">
+<meta name="keywords" content="CNovak">
+<meta name="description" content="PHP Excel library">
+
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body>
+<!-- DHTML Menu Builder Loader Code START -->
+<script language="JavaScript" type="text/javascript">
+var navVer = navigator.appVersion;
+if(navVer.substr(0,3) >= 4)
+if((navigator.appName=="Netscape") && (parseInt(navigator.appVersion)==4))
+document.write('<'+'script language="JavaScript" type="text/javascript" src="file:///D:/Inetpub/BIFF/nsmenu.js"><\/script\>');
+else
+document.write('<'+'script language="JavaScript" type="text/javascript" src="file:///D:/Inetpub/BIFF/iemenu.js"><\/script\>');
+</script>
+<!-- DHTML Menu Builder Loader Code END -->
+<a name="top"></a>
+<h1>BiffWriter</h1>
+<h2>BiffWriter, a class to create Excel compatible files from within PHP</h2>
+<p>The purpose of <b><font face="Verdana, Arial, Helvetica, sans-serif">BiffWriter</font></b> 
+   is to create BIFF 2.1 compatible streams straight from PHP with a minimum amount 
+   of code writing. Using a widely accepted spread sheet format, compatible with 
+   Microsoft Excel allows sharing of information for a wide range of users. Excel 
+   compatible formats are accepted by all Windows versions, Microsoft Excel and 
+   associated viewers. In addition most of the UNIX derivatives include Excel 
+   compatible spread sheet programs. The application range of BiffWriter is almost 
+   unlimited: Customized price lists via the web, product catalogs, web logs and 
+   last but not least a complete hard copy of database tables.</p>
+<p><b>BiffWriter</b> supports the following features:</p>
+<dir> 
+   <li>Writing of text and floating point numbers</li>
+   <li>Formatting of cells with borders, shading and various pictures</li>
+   <li>Four different font sets - user configurable</li>
+   <li>Protecting cells against changes or protecting the whole spreadsheet</li>
+   <li>Setting of individual column width</li>
+   <li>User defined format pictures</li>
+   <li>Conversion from UNIX dates to Excel dates</li>
+</dir>
+<p>BIFF aka <b>B</b>inary <b>F</b>ile <b>F</b>ormat is the common denominator 
+   across spreadsheet programs. A BIFF file is a stream of records describing 
+   an Excel compatible spreadsheet. Such records contain for instance font information, 
+   cell data and password information. The BIFF format expects the individual 
+   records in a particular order to recognize the stream as a valid, Excel compatible 
+   file. <b>BiffWriter</b> takes care of assembling the various records into the 
+   expected order without having the user to remember that for instance formats 
+   come before cells, etc. This is accomplished by a unique parser putting the 
+   stream into correct order of records. All the user (programmer) needs to remember 
+   is that the stream must be closed at the end of the script. All other function 
+   can be called as desired.</p>
+<p>BiffWriter consists currently of 2 classes:</p>
+<ol>
+   <li><i>BiffWriter</i> alias biff.php -- this is the <b>extended</b> class of 
+      BiffBase with bound and error checking and assures that each function has 
+      default parameters. This class provides either row/column based notation 
+      or traditional A1..IV##### notation. It also sets the PHP error reporting 
+      level to the maximum to find for instance uninitialized variables or constants. 
+      This is the class to be <b>used</b>. <br>
+      <br>
+   </li>
+   <li><i>BiffBase</i> alias biffbase.php -- this is the <b>base</b> class and 
+      contains generic functionality. This class is optimized for speed and does 
+      no, or very little error checking. This class should be used only if speed 
+      really matters at above &gt; 500,000 cells. Again, there is no error checking 
+      and there are no default parameters set in this class. This class provides 
+      only row, column notation.</li>
+</ol>
+<p>The shortest simple example, writing text into Row 1 and Column A contains 
+   only 4 lines of PHP code:<br>
+</p>
+<blockquote>
+   <p>&lt;?php<br>
+      <font color="#FF0000">include</font> &quot;<font color="#0000FF">biff.php</font>&quot;;<br>
+      $myxls <font color="#FF0000">=</font> <font color="#FF0000">new</font> BiffWriter();<br>
+      $myxls-&gt;xlsWriteText(0,0,&quot;<font color="#0000FF">BiffWriter speeds 
+      up information exchange</font>&quot;);<br>
+      $myxls-&gt;xlsParse(); <br>
+      ?&gt; </p>
+</blockquote>
+<p>BiffWriter currently supports writing of text and floating point numbers. Date/Time 
+   formats can be written as text or converted to a numerical value depending 
+   on the clients use. Date and time values need to be converted to a numerical 
+   value if the client wants to perform math or sorting on these values.</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<p><b>Acknowledgments and Disclaimer:</b></p>
+<p><em>This library is distributed in the hope that it will be useful, but WITHOUT 
+   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+   FOR A PARTICULAR PURPOSE. The use of this library is free for non commercial 
+   purposes. This class is copyright of Christian Novak.</em></p>
+<p>You can reach the author of this library, Christian Novak at <a href="mailto:cnovak@gmx.net">cnovak@gmx.net</a>. 
+   This class is a further development of a simple library (&quot;_excel.php&quot;) 
+   developed by the author in 2000 and published at <a href="http://px.sklar.com" target="_blank">PX: 
+   PHP Code Exchange</a> in November 2000.</p>
+<p>The information about the BIFF specification was taken from a document called 
+   <cite>&quot;Excel.txt&quot; written by Mark O'Brien from Microsoft Corporation, 
+   dated February 18, 1988</cite>. This is an excellent start to understand the 
+   most common and simple spreadsheet format. I developed the first class for 
+   writing Excel binary files in 1995 using Delphi. This was further translated 
+   into a C library for use on non Windows platforms.</p>
+<p>I would also like to acknowledge the work of <a href="mailto:eozcan@superonline.com">Erol 
+   Ozcan</a> who further developed my first simple Excel library into a real usable 
+   PHP class available at <a href="http://psxlsgen.sourceforge.net" target="_blank">http://psxlsgen.sourceforge.net</a>. 
+   I believe it is important too, to mention the continuous support of my patient 
+   partner Laura who always understands my desire about code writing and always 
+   encourages me to explore new areas in my professional life.</p>
+<p>Your feedback, comments and help is greatly appreciated. Please drop me a <a href="mailto:cnovak@gmx.net">note</a> 
+   via mail or via the <a href="http://www.cnovak.com">web site</a> dedicated 
+   to this project.</p>
+<blockquote> 
+   <blockquote>
+      <p><em>Christian Novak<br>
+         Wilhelm-Hertz-Str. 20<br>
+         80805 Germany</em></p>
+      <p><em>phone +49 89 71998127<br>
+         e-mail <a href="mailto:cnovak@gmx.net">cnovak@gmx.net</a></em></p>
+   </blockquote>
+</blockquote>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<p><b>What is next?</b></p>
+<p>I am considering to implement the following features providing that there is 
+   enough interest in the PHP community. Additional functionality will be implemented 
+   as time permits and votes are provided.</p>
+<table border="1" width="100%">
+   <tr> 
+      <th width="12%" valign="top" align="left">Ref</th>
+      <th width="41%" valign="top" align="left">Function</th>
+      <th width="62%" valign="top" align="left">Notes</th>
+      <th width="19%" valign="top" align="left">Req. votes</th>
+   </tr>
+   <tr> 
+      <td width="12%" valign="top" align="left">1</td>
+      <td width="41%" valign="top" align="left">Horizontal page breaks</td>
+      <td width="62%" valign="top" align="left">Set horizontal page breaks for 
+         printing</td>
+      <td width="19%" valign="top" align="right"><b>complete</b></td>
+   </tr>
+   <tr> 
+      <td width="12%" valign="top" align="left">2</td>
+      <td width="41%" valign="top" align="left">Vertical page breaks</td>
+      <td width="62%" valign="top" align="left">Set vertical page breaks for printing</td>
+      <td width="19%" valign="top" align="right"><b>complete</b></td>
+   </tr>
+   <tr> 
+      <td width="12%" valign="top" align="left">3</td>
+      <td width="41%" valign="top" align="left">Default row height</td>
+      <td width="62%" valign="top" align="left">Set sheet wide row height</td>
+      <td width="19%" valign="top" align="right"><b>complete</b></td>
+   </tr>
+   <tr> 
+      <td width="12%" valign="top" align="left">4</td>
+      <td width="41%" valign="top" align="left">Cell notes</td>
+      <td width="62%" valign="top" align="left">Apply notes to individual cells</td>
+      <td width="19%" valign="top" align="right"><b>complete</b></td>
+   </tr>
+   <tr> 
+      <td width="12%" valign="top" align="left">5</td>
+      <td width="41%" valign="top" align="left">Pane</td>
+      <td width="62%" valign="top" align="left">Freeze top and left pane</td>
+      <td width="19%" valign="top" align="right">50</td>
+   </tr>
+   <tr> 
+      <td width="12%" valign="top" align="left">6</td>
+      <td width="41%" valign="top" align="left">Formula parser</td>
+      <td width="62%" valign="top" align="left">Parse formulas as per the Excel 
+         notation. Note: Excel stores formulas in RPN (reverse polish notation)</td>
+      <td width="19%" valign="top" align="right">200</td>
+   </tr>
+   <tr> 
+      <td width="12%" valign="top" align="left">7</td>
+      <td width="41%" valign="top" align="left">Work book capability</td>
+      <td width="62%" valign="top" align="left">Multiple work sheets per work 
+         book with internal and external links</td>
+      <td width="19%" valign="top" align="right">500</td>
+   </tr>
+</table>
+<p>You can vote for for adding additional functionality at <a href="http://www.cnovak.com">http://www.cnovak.com</a>. 
+   This greatly helps me in setting further development priorities. Please note 
+   that you need to provide a real e-mail address for your vote to be taken into 
+   consideration. Please no &quot;nospam@somehere.com&quot;, I am verifying all 
+   e-mail addresses to focus on the work the community is really interested in.</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2>Conventions used in this manual</h2>
+<p>I have used a number of of different styles and layout in this manual to help 
+   to differentiate between different kind of information. Some examples are:</p>
+<ul>
+   <li>Purpose of a function:<br>
+      <br>
+      &quot;xlsAddFormat -- add a format/picture string&quot; <br>
+      <br>
+      This describes very generic the purpose of a function/method.<br>
+      <br>
+      <br>
+   </li>
+   <li>Method arguments and return values:<br>
+      <br>
+      <span class="source">int xlsAddFormat(string <b>picture</b>)<br>
+      <br>
+      </span>This explains the parameters of a method and the return value if 
+      any. Optional parameters are denoted in <i>Italics</i>.<br>
+      <br>
+      <br>
+   </li>
+   <li> Details of a method:<br>
+      <br>
+   </li>
+   <table border="1" width="86%" align="left">
+      <tr bgcolor="#CCCCCC"> 
+         <th colspan="3" valign="top" align="left">Parameters:</th>
+      </tr>
+      <tr> 
+         <td width="13%" valign="top" align="left"><b>picture</b></td>
+         <td width="5%" align="center" valign="top">string</td>
+         <td width="82%"> 
+            <p>Any Excel valid formatting picture. Taking into account differences 
+               in regional settings.</p>
+         </td>
+      </tr>
+   </table>
+   <p>&nbsp; </p>
+   <p><br>
+      <br>
+      This describes in more detail the parameters used for a method. Optional 
+      parameters are in <i>Italics</i>, default parameters are highlighted in 
+      <font color="#FF0000">red</font>.<br>
+      <br>
+   </p>
+   <li>Source code examples:<br>
+      <br>
+      <p class="sourcecode">// Sample 1:<br>
+         // write 12345.6789 into row 1, column B using default settings<br>
+         xlsWriteNumber(0, 1, 12345.6789);<br>
+         // same using A1 notation<br>
+         xlsWriteNumber('B1', 0, 12345.6789);<br>
+         // Sample 2:<br>
+         // write 12345.6789 into row 1, column by using font 0, picture 12 (short 
+         day,<br>
+         // short month and long year), align center and flag the cell locked.<br>
+         xlsWriteNumber(0, 1, 12345.6789, 0, 12, IDX_FONT0, ALIGN_CENTER, CELL_LOCKED 
+         + CELL_HIDDEN);</p>
+   </li>
+   <li>Cell notation:<br>
+      <br>
+      You will find comments referring to &quot;A1&quot; notation or &quot;row/column&quot; 
+      based notation.<br>
+      <br>
+      <ul>
+         <li>&quot;A1&quot; notation -- this is the traditional spread sheet syntax 
+            many users are accustomed. Some functions can take this notation instead 
+            of the row integer syntax. This makes it somewhat easier to write 
+            the source code for the output. Where applicable, the column argument 
+            must be zero for this notation to work.<br>
+            <br>
+         </li>
+         <li>&quot;Row/Column&quot; notation -- this is the notation internally 
+            used for all functions referring to cells. This notation is easier 
+            to be used in loops while filling cells with data base originated 
+            data.</li>
+      </ul>
+   </li>
+</ul>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+   </span>
+<hr>
+
+<h2><a name="TOC">BiffWriter Functions, Constants and Public variables</a></h2>
+<p>All public functions are prefixed with &quot;xls&quot;.</p>
+<table width="100%" border="1">
+   <tr> 
+      <th colspan="2" align="left" valign="top">Public Functions:</th>
+   </tr>
+   <tr> 
+      <td width="27%" height="20" align="left" valign="top"><a href="#xlsAddFormat">xlsAddFormat</a></td>
+      <td width="73%" height="20" align="left" valign="top">add a customized picture 
+         format</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsaddhpagebreak">xlsAddHPageBreak</a></td>
+      <td width="73%" align="left" valign="top">add a horizontal page break</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsaddvpagebreak">xlsAddVPageBreak</a></td>
+      <td width="73%" align="left" valign="top">add a vertical page break</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlscellnote">xlsCellNote</a></td>
+      <td width="73%" align="left" valign="top">add a note to a cell</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsDate">xlsDate</a></td>
+      <td width="73%" align="left" valign="top">convert a UNIX date into an Excel 
+         compatible integer</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsFooter">xlsFooter</a></td>
+      <td width="73%" align="left" valign="top">add a print footer to the spreadsheet</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsHeader">xlsHeader</a></td>
+      <td width="73%" align="left" valign="top">add a print header to the spreadsheet</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsParse">xlsParse</a></td>
+      <td width="73%" align="left" valign="top">close the spreadsheet and parse 
+         it to the browser</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsPrintMargins">xlsPrintMargins</a></td>
+      <td width="73%" align="left" valign="top">set print margins</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsProtectSheet">xlsProtectSheet</a></td>
+      <td width="73%" align="left" valign="top">protect the sheet or cells</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsSetBackup">xlsSetBackup</a></td>
+      <td width="73%" align="left" valign="top">set backup flag</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsSetColWidth">xlsSetColWidth</a></td>
+      <td width="73%" align="left" valign="top">set the column width for a range 
+         of columns manually</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsSetDefFonts">xlsSetDefFonts</a></td>
+      <td width="73%" align="left" valign="top">create default fonts</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlssetdefrowheight">xlsSetDefRowHeight</a></td>
+      <td width="73%" align="left" valign="top">set the default row height for 
+         the entire spread sheet</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsSetFont">xlsSetFont</a></td>
+      <td width="73%" align="left" valign="top">set a customized font</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsSetPrintGridLines">xlsSetPrintGridLines</a></td>
+      <td width="73%" align="left" valign="top">print gridlines</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsSetPrintHeaders">xlsSetPrintHeaders</a></td>
+      <td width="73%" align="left" valign="top">print row and column references</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsWriteNumber">xlsWriteNumber</a></td>
+      <td width="73%" align="left" valign="top">write a number into a cell</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#xlsWriteText">xlsWriteText</a></td>
+      <td width="73%" align="left" valign="top">write a string into a cell</td>
+   </tr>
+   <tr> 
+      <th colspan="2" align="left" valign="top">Public Constants:</th>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#fonts">Font index</a> 
+         - integer</td>
+      <td width="73%" align="left" valign="top">• FONT_0, FONT_1, FONT_2, FONT_3</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top" height="31"><a href="#fonts">Font 
+         styles</a> - integer</td>
+      <td width="73%" align="left" valign="top" height="31">• FONT_NORMAL, FONT_BOLD, 
+         FONT_ITALIC, FONT_UNDERLINE, FONT_STRIKEOUT</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#attributes">Cell attributes</a> 
+         - integer</td>
+      <td width="73%" align="left" valign="top">• ALIGN_GENERAL, ALIGN_LEFT, ALIGN_CENTER, 
+         ALIGN_RIGHT<br>
+         • CELL_FILL, CELL_LEFT_BORDER, CELL_RIGHT_BORDER, CELL_TOP_BORDER, CELL_BOTTOM_BORDER, 
+         CELL_BOX_BORDER<br>
+         • CELL_SHADED<br>
+         • CELL_FILL</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><a href="#status">Cell status</a> 
+         - integer</td>
+      <td width="73%" align="left" valign="top">• CELL_LOCKED,<br>
+         • CELL_HIDDEN</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top">Other - integer</td>
+      <td width="73%" align="left" valign="top">• XLS_DATE</td>
+   </tr>
+   <tr> 
+      <th colspan="2" align="left" valign="top">Public variables and arrays:</th>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top"><i>err_level</i> - integer</td>
+      <td width="73%" align="left" valign="top">err_level defines the error/warning 
+         levels. By defaults no errors are trapped unless PHP stops the script 
+         itself. Set err_level to 1 to stop the script at all Biff2.1 specification 
+         errors. The <font color="#ff0000">default</font> is <font color="#ff0000">0</font>.</td>
+   </tr>
+   <tr> 
+      <td width="27%" align="left" valign="top">outfile - string</td>
+      <td width="73%" align="left" valign="top">this is the name of the file that 
+         the browser will suggest to the user when opening or saving the stream. 
+         The <font color="#ff0000">default</font> is <font color="#ff0000">sample.xls</font>. 
+         This can be omitted if the file is saved by specifying the name in xlsParse().</td>
+   </tr>
+</table>
+<br>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsAddFormat"></a>xlsAddFormat</h2>
+<p>xlsAddFormat -- add a format/picture string</p>
+<p class="funcref">int xlsAddFormat(string <b>picture</b>)</p>
+<p>xlsAddFormat adds a picture string to the internally formatting table and returns 
+   a pointer to the newly created entry. By default there are 21 pictures defined 
+   in Excel. See the table below showing more details. There is no known limitation 
+   on the number of picture strings to be possible added.</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="13%" valign="top" align="left"><b>picture</b></td>
+      <td width="5%" align="center" valign="top">string</td>
+      <td width="82%"> 
+         <p>Any Excel valid formatting picture. Taking into account differences 
+            in regional settings.</p>
+      </td>
+   </tr>
+</table>
+<p>Excel in the simplest file format comes with 21 formats also called pictures 
+   built in. The format index is referenced by an zero based pointer.</p>
+<p>The following tables shows the internal defined picture formats. The sample 
+   number used for illustrating purposes is 33333.33. This number evaluates to 
+   April 5, 1991 at 7:59:57 AM using a date/time format. Otherwise it is treated 
+   as standard IEEE floating point number.</p>
+<p class="sourcecode">// example 1, adding an additional format pattern and returning 
+   a pointer to this pattern<br>
+   $idx_fmt = $myxls-&gt;xlsAddFormat('[Blue] 0 &quot;US$&quot;');</p>
+<p>Internal formats:</p>
+<table border="1" width="100%">
+   <tr align="left" valign="top"> 
+      <th width="7%">Index</th>
+      <th width="27%"> 
+         <div align="left"> Display </div>
+      </th>
+      <th width="66%"> 
+         <div align="left"> Excel compatible picture string </div>
+      </th>
+   </tr>
+   <tr> 
+      <td align="right" width="7%">0</td>
+      <td width="27%"> 
+         <div align="left"> 33333.3333 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> General </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>1</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 33333 </div>
+      </td>
+      <td width="66%"> 
+         <p align="left">0</p>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>2</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 33333.33 </div>
+      </td>
+      <td width="66%"> 
+         <p align="left">0.00</p>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>3</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 33,333 </div>
+      </td>
+      <td width="66%"> 
+         <p align="left">#,##0</p>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>4</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 33,333.33 </div>
+      </td>
+      <td width="66%"> 
+         <p align="left">#,##0.00</p>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>5</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> $33,333 </div>
+      </td>
+      <td width="66%"> 
+         <p align="left">$#,##0_);($#,##0)</p>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>6</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> $33,333 </div>
+      </td>
+      <td width="66%"> 
+         <p align="left">$#,##0_);[Red]($#,##0)</p>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>7</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> $33,333.33 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> $#,##0.00_);($#,##0.00) </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>8</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> $33,333.33 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> $#,##0.00_);[Red]($#,##0.00) </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>9</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 3333333% </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> 0% </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>10</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 3333333.33% </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> 0.00% </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>11</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 3.33E+04 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> 0.00E+00 </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>12</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 4/5/1991 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> m/d/yyyy </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>13</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 5-Apr-91 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> d-mmm-yy </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>14</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 5-Apr </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> d-mmm </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>15</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> Apr-91 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> mmm-yy </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>16</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 7:59 AM </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> h:mm AM/PM </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>17</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 7:59:57 AM </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> h:mm:ss AM/PM </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>18</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 7:59 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> h:mm </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>19</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 7:59:57 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> h:mm:Ss </div>
+      </td>
+   </tr>
+   <tr> 
+      <td align="right" width="7%"> 
+         <p>20</p>
+      </td>
+      <td width="27%"> 
+         <div align="left"> 4/5/1991 7:59 </div>
+      </td>
+      <td width="66%"> 
+         <div align="left"> m/d/yyyy h:mm </div>
+      </td>
+   </tr>
+</table>
+<p>Care must be taken while defining picture strings for date and time formats. 
+   The above table assumes that the users system is set to English regional settings. 
+   However, other languages use different codes for naming days, month, years, 
+   hours, minutes and seconds. For instance to display 05-Apr-91 on a German system, 
+   the picture string #13 would read &quot;t-mmm-jj&quot;.</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsaddhpagebreak"></a>xlsAddHPageBreak</h2>
+<p>xlsAddHPageBreak -- add a horizontal page break for printing</p>
+<p class="source">void xlsAddHPageBreak(int <b>row</b>)</p>
+<p>xlsAddHPageBreak adds a page break after the row specified.</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsaddvpagebreak"></a>xlsAddVPageBreak</h2>
+<p>xlsAddVPageBreak -- add a vertical page break for printing</p>
+<p class="source">void xlsAddVPageBreak(mixed <b>column</b>)</p>
+<p>xlsAddVPageBreak adds a page break after the column specified. Column is in 
+   mixed notation, integer, zero based or string 'A' to 'IV'.</p>
+<p class="sourcecode">// example 1, numeric notation:<br>
+   xlsAddVPageBreak(10); <br>
+   // example 2, A1 notation:<br>
+   xlsAddVPageBreak('J');</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2></h2>
+<h2><a name="xlscellnote"></a>xlsCellNote</h2>
+<p>xlsCellNote -- Add a note to a cell</p>
+<p class="funcref">void xlsCellNote(mixed <b>row</b>, int <b>col, </b>string<b> 
+   note</b>) 
+<p>This function adds a cell note. Notes can be up to 2048 characters in length. 
+   Row is in mixed notation, integer 0 based or string 'A' to 'IV'. </p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th width="100%" colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>row</b></td>
+      <td width="6%" align="center" valign="top">mixed</td>
+      <td width="80%">Cell rows are zero based. Valid ranges are from 0 to 65535. 
+         Row is in mixed notation, integer 0 based or string 'A1' to 'IV16384'. 
+      </td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>col</b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Cell column zero based. Valid ranges are from 0 to 255. 
+         This must be set to zero if the A1 notation is used as a row parameter.</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>note</b></td>
+      <td width="6%" align="center" valign="top">string</td>
+      <td width="80%">String of characters to assign to a note</td>
+   </tr>
+</table>
+<br>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsDate"></a>xlsDate</h2>
+<p>xlsDate -- Convert a UNIX time stamp into Excels &quot;1900&quot; format&nbsp;</p>
+<p class="funcref">int xlsDate(int <b>month</b>,int <b>day</b>, int <b>year</b>) 
+<p>The Excel date starts on January 1st, 1900 while UNIX dates start on January 
+   1st, 1970. This function converts a UNIX date into the corresponding Excel 
+   date returning an integer based on the 1900 format. This function is useful 
+   together with <a href="#xlsWriteNumber">xlsWriteNumber</a>() applying a date/time 
+   format picture.</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th width="100%" colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>month</b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Month value, valid range is 1-12</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>day</b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Day value, valid range is 1-31</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>year</b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Year value, valid range is not determined</td>
+   </tr>
+</table>
+<p class="sourcecode">ExcelDate = xlsDate(4, 26, 1962)<br>
+   // returns the Excel date serial number for April 26, 1962.</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsFooter"></a>xlsFooter, <a name="xlsHeader"></a>xlsHeader</h2>
+<p>xlsFooter -- Specify a print footer<br>
+   xlsHeader -- Specify a print header</p>
+<p class="funcref">void xlsFooter(string <b>footer</b>)<br>
+   void xlsHeader(string <b>header</b>)</p>
+Use xlsFooter or xlsHeader to specify the footer or header printed on every page. 
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="13%" valign="top" align="left"><b>footer, header</b></td>
+      <td width="5%" align="center" valign="top">string</td>
+      <td width="82%"> 
+         <p>Text to be printed on every page. In addition to regular text, the 
+            footer/header accepts the following macro expressions:<br>
+            <br>
+            • &amp;L -- left align text following this code,<br>
+            • &amp;C -- center align text following this code (default),<br>
+            • &amp;R -- right align text following this code,<br>
+            • &amp;P -- insert current page #,<br>
+            • &amp;N -- insert total page #,<br>
+            • &amp;D -- insert current date,<br>
+            • &amp;T -- insert current time,<br>
+            • &amp;F -- insert file name,<br>
+            • &amp;# -- specify a font size, i.e. &amp;12 size 12, font set 0</p>
+      </td>
+   </tr>
+</table>
+<p class="sourcecode">// Sample 1:<br>
+   // print a centered header using font size 12<br>
+   xlsHeader('&amp;12BiffWriter Demo (c) C. Novak - cnovak@gmx.net');<br>
+   <br>
+   // Sample 2:<br>
+   // print a left, center and right aligned section<br>
+   // left: Page x of y using font size 12<br>
+   // center: Date and time<br>
+   // right: Filename and line feed<br>
+   xlsFooter('&amp;L&amp;12Page &amp;P of &amp;N &amp;C&amp;D &amp;T &amp;R&amp;F/&amp;A');</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsParse"></a>xlsParse</h2>
+<p>xlsParse -- Assembles the BIFF data and sends the stream or saves the content.</p>
+<p class="funcref">string xlsParse(string <i><b>filename</b></i>); 
+<p>xlsParse assembles all the calls to the previous BIFF functions and writes 
+   the stream to the browser or a local file. This command concludes all BIFF 
+   actions and exits the class.</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr align="left" valign="top"> 
+      <td width="13%"><b><i>filename</i></b></td>
+      <td width="5%">string</td>
+      <td width="82%">Fully qualified file name, default is <font color="#FF0000">NULL</font>. 
+         If omitted, a header specifying an attachment and the output is sent, 
+         otherwise the file <i><b>filename</b></i> is created locally.</td>
+   </tr>
+</table>
+<br>
+<p class="sourcecode"> // Sample 1:<br>
+   // stream the contents straight to the browser<br>
+   xlsParse();<br>
+   <br>
+   // Sample 2:<br>
+   // save the file locally and offer a download link<br>
+   $link = xlsParse('YourFile.xls');<br>
+   print '&lt;A HREF=&quot;' .$link. '&quot;&gt;'.$link.'&lt;/A&gt;';</p>
+<br>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsPrintMargins"></a>xlsPrintMargins</h2>
+<p>xlsPrintMargins -- Set left, right, top and bottom print margins</p>
+<p class="source">void xlsPrintMargins(float <b><i>left</i></b>[, float <b><i>right</i></b>[, 
+   float <b><i>top</i></b>[, float <b><i>bottom</i></b>]]])</p>
+<p>Specify the print margins in INCHES using xlsPrintMargins. The defaults values 
+   are 0.5 inches.</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr align="left" valign="top"> 
+      <td width="13%"><b><i>left, right, top, bottom</i></b></td>
+      <td width="5%">float</td>
+      <td width="82%">Margin in inches. The <font color="#ff0000">default</font> 
+         margin calling xlsPrintMargins is <font color="#ff0000">0.5 inches</font></td>
+   </tr>
+</table>
+<br>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsProtectSheet"></a>xlsProtectSheet</h2>
+<p>xlsProtectSheet -- set worksheet protection.</p>
+<p class="funcref">void xlsProtectSheet(string <b>password</b>[, bool <b><i>protect_cells</i></b>])</p>
+<p>xlsProtectSheet protects the worksheet against changes.<br>
+</p>
+<p>There are 2 levels of protection:<br>
+   - For the entire worksheet except for cells <b>not</b> flagged &quot;locked&quot;. 
+   and<br>
+   - For cells flagged &quot;locked&quot;.</p>
+<p>The default value for both parameters is FALSE.</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="13%" valign="top" align="left"><b>protect_sheet</b></td>
+      <td width="6%" align="center" valign="top">string</td>
+      <td width="81%"> 
+         <p>Password to protect changes flagged with CELL_LOCKED or any empty 
+            cell. <font color="#ff0000"></font></p>
+      </td>
+   </tr>
+   <tr> 
+      <td width="13%" valign="top" align="left"><b><i>protect_cells</i></b></td>
+      <td width="6%" align="center" valign="top">bool</td>
+      <td width="81%">TRUE = enables protection of individual cells. The <font color="#ff0000">default</font> 
+         is <font color="#ff0000">FALSE</font>.</td>
+   </tr>
+</table>
+<p class="sourcecode">// Sample 1:<br>
+   // turn on cell protection for all cells where the locked flag is set<br>
+   xlsProtectSheet(FALSE, TRUE);<br>
+   <br>
+   // Sample 2:<br>
+   // protect sheet properties AND cells where the locked flag is set<br>
+   xlsProtectSheet(TRUE, TRUE);</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsSetBackup"></a>xlsSetBackup</h2>
+<p>xlsSetBackup -- turn on backup option</p>
+<p class="source">void xlsSetBackup();</p>
+<p>Call xlsSetBackup to turn on the creation of backup files while changes are 
+   applied to the spread sheet. Excel saves the backup file prepending &quot;Backup 
+   of &quot; and with the extension &quot;XLK&quot;.</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsSetColWidth"></a>xlsSetColWidth&nbsp;</h2>
+<p>xlsSetColWidth -- Set column width</p>
+<p class="funcref">void xlsSetColWidth(mixed <b>colstart</b>, mixed <b>colend</b>, 
+   int <b>width</b>) 
+<p>Sets the width for a range of columns. The column width is internally calculated 
+   as 1/256 of a point. Since the required column width to display data is based 
+   on the used font, you won't necessarily make cell contents fit into a cell 
+   by only taking the length of the data.</p>
+<table border="1" width="100%" height="95">
+   <tr bgcolor="#CCCCCC"> 
+      <th width="100%" colspan="3" valign="top" align="left" height="18">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left" height="18"><b>colstart</b></td>
+      <td width="6%" align="center" valign="top" height="18">mixed</td>
+      <td width="80%" height="18">First column to set the width. This is in mixed 
+         notation, either integer, zero based or 'A' to 'IV'.</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left" height="18"><b>colend</b></td>
+      <td width="6%" align="center" valign="top" height="18">mixed</td>
+      <td width="80%" height="18">Last column to set the width. This is in mixed 
+         notation, either integer, zero based or 'A' to 'IV'.</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left" height="17"><b>width</b></td>
+      <td width="6%" align="center" valign="top" height="17">int</td>
+      <td width="80%" height="17">Width in characters based on &quot;Courier New&quot; 
+         10px.</td>
+   </tr>
+</table>
+<p class="sourcecode">// Sample:<br>
+   // set the width of column A, B, C, D &amp; E to 10 characters<br>
+   xlsSetColWidth(0, 4, 10);<br>
+   // this is the same using A1 notation<br>
+   xlsSetColWidth('A', 'E', 10);</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsSetDefFonts"></a>xlsSetDefFonts</h2>
+<p>xlsSetDefFonts -- Creates 4 default fonts</p>
+<p class="funcref">void xlsSetDefFonts(); 
+<p>This function creates 4 default fonts for the use with cell format. The font 
+   index is zero based from 0 to 3. Fonts can be referred to by the constants 
+   FONT_0, FONT_1, FONT_2, FONT_3. The default fonts are:</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th width="15%">Font name</th>
+      <th width="35%">Font style</th>
+      <th width="50%">Index</th>
+   </tr>
+   <tr> 
+      <td width="15%">Arial</td>
+      <td width="35%">Arial 10 normal</td>
+      <td width="50%">FONT_0</td>
+   </tr>
+   <tr> 
+      <td width="15%">Courier</td>
+      <td width="35%">Courier New 10 normal</td>
+      <td width="50%">FONT_1</td>
+   </tr>
+   <tr> 
+      <td width="15%">Times</td>
+      <td width="35%">Times New Roman 10 normal</td>
+      <td width="50%">FONT_2</td>
+   </tr>
+   <tr> 
+      <td width="15%">System</td>
+      <td width="35%">System</td>
+      <td width="50%">FONT_3</td>
+   </tr>
+</table>
+<br>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlssetdefrowheight"></a>xlsSetDefRowHeight</h2>
+<p>xlsSetDefRowHeigth -- set the default row height for the entire spreadsheet</p>
+<p class="source">void xlsSetDefRowHeight(int <b>points</b>);</p>
+<p>This function sets the default row height for all rows in the entire spread 
+   sheet. The unit of the value passed to this function is points.</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th width="100%" colspan="3" valign="top" align="left" height="18">Parameters:</th>
+   </tr>
+   <tr align="left" valign="top"> 
+      <td width="14%" height="18"><b>points</b></td>
+      <td width="6%" height="18">int</td>
+      <td width="80%" height="18">row height in points</td>
+   </tr>
+</table>
+<br>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsSetFont"></a>xlsSetFont</h2>
+<p>xlsSetFont -- create a new font entry</p>
+<p class="source">void xlsSetFont(string <b>name[</b>, int <b><i>size</i></b>[, 
+   int <b><i>format</i></b>]]);</p>
+<p>The Excel or BIFF 2.1 allows for 4 fonts per spreadsheet. Fonts can be added 
+   to the internal font table by calling xlsSetFont specifying the font name, 
+   font size and attributes such as bold, underline etc. The first font added 
+   becomes FONT_0, the second FONT_1 and so on.</p>
+<table border="1" width="100%" height="95">
+   <tr bgcolor="#CCCCCC"> 
+      <th width="100%" colspan="3" valign="top" align="left" height="18">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left" height="18"><b>name</b></td>
+      <td width="6%" align="center" valign="top" height="18">string</td>
+      <td width="80%" height="18">Font name as specified by the operating system. 
+         Exact spelling matters.</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left" height="18"><b>size</b></td>
+      <td width="6%" align="center" valign="top" height="18">int</td>
+      <td width="80%" height="18">Font size in points, the <font color="#ff0000">default</font> 
+         is <font color="#ff0000">10 points</font>.</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left" height="17"><b>format</b></td>
+      <td width="6%" align="center" valign="top" height="17">int</td>
+      <td width="80%" height="17"> 
+         <p>One or more of the following font attributes in any combination:<br>
+            FONT_NORMAL, FONT_BOLD, FONT_ITALIC, FONT_UNDERLINE, FONT_STRIKEOUT.<br>
+            The <font color="#ff0000">default</font> is FONT_NORMAL:</p>
+      </td>
+   </tr>
+</table>
+<p class="sourcecode">// Sample:<br>
+   // create font 0 Arial 10, font 1 Arial 10 bold + underlined<br>
+   xlsSetFont('Arial');<br>
+   xlsSetFont('Arial', 10, FONT_BOLD + FONT_UNDERLINE);</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsSetPrintGridLines"></a>xlsSetPrintGridLines</h2>
+<p>xlsSetPrintGridLines -- turn printing of Gridlines on</p>
+<p class="source">void xlsSetPrintGridLines();</p>
+<p>Call xlsSetPrintGridLines to turn the printing of grid lines on.</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsSetPrintHeaders"></a>xlsSetPrintHeaders</h2>
+<p>xlsSetPrintHeaders -- turn printing of row and column headers on.</p>
+<p class="source">void xlsSetPrintHeaders();</p>
+<p>Call xlsSetPrintHeaders to turn on printing of row and column headers.</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsWriteNumber"></a>xlsWriteNumber</h2>
+<p>xlsWriteNumber -- Writes a number into a cell</p>
+<p class="funcref">void xlsWriteNumber(mixed <b>row</b>, int <b>col</b>, double 
+   <b>value</b> [, int <b><i>width</i></b> [, int <b><i>picture</i></b> [, int 
+   <b><i>font</i></b> [, int <b><i>attribute</i></b> [, int <b><i>status</i></b>]]]]]) 
+<p>Writes a floating point value (double)&nbsp;value into a cell at a given row 
+   and column.&nbsp;</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th width="100%" colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>row</b></td>
+      <td width="6%" align="center" valign="top">mixed</td>
+      <td width="80%">Cell row zero based or absolute cell position in A1 to IV 
+         65536 notation. </td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>col</b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Cell column zero based. Valid ranges are from 0 to 255. 
+         Must be set to zero if A1 notation is used.</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b>value</b></td>
+      <td width="6%" align="center" valign="top">double</td>
+      <td width="80%">Cell content as double value</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>width</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Cell width, for details please see chapter <a href="#CellFormatting">Cell 
+         Formatting</a></td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>picture</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Index to picture format, for details please see chapter 
+         <a href="#CellFormatting">Cell Formatting</a></td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>font</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Index to FONT_0 to FONT_3, for details please see chapter 
+         <a href="#CellFormatting">Cell Formatting</a></td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>attribute</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Cell attributes, for details please see chapter <a href="#CellFormatting">Cell 
+         Formatting</a></td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>status</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Cell protection, for details please see chapter <a href="#CellFormatting">Cell 
+         Formatting</a></td>
+   </tr>
+</table>
+<p class="sourcecode">// Sample 1:<br>
+   // write 12345.6789 into row 1, column B using default settings<br>
+   xlsWriteNumber(0, 1, 12345.6789);<br>
+   // same using A1 notation<br>
+   xlsWriteNumber('B1', 0, 12345.6789);<br>
+   // Sample 2:<br>
+   // write 12345.6789 into row 1, column by using font 0, picture 12 (short day,<br>
+   // short month and long year), align center and flag the cell locked.<br>
+   xlsWriteNumber(0, 1, 12345.6789, 0, 12, IDX_FONT0, ALIGN_CENTER, CELL_LOCKED 
+   + CELL_HIDDEN);</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="xlsWriteText"></a>xlsWriteText</h2>
+xlsWriteText -- Writes text into a cell 
+<p class="funcref">void xlsWriteText(int <b>row</b>, int <b>col</b>, string <b>text</b> 
+   [, int <b><i>width</i></b> [, int <b><i>picture</i></b> [, int <b><i>font</i></b> 
+   [, int <b><i>attribute</i></b> [, int <b><i>status</i></b>]]]]])</p>
+<p>This function writes text into a cell positioned at row and column. The length 
+   of text can be up to 256 characters per cell.</p>
+<table border="1" width="100%">
+   <tr bgcolor="#CCCCCC"> 
+      <th width="100%" colspan="3" valign="top" align="left">Parameters:</th>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"> 
+         <p><b>row</b></p>
+      </td>
+      <td width="6%" align="center" valign="top"> 
+         <p>int</p>
+      </td>
+      <td width="80%"> 
+         <p>Cell row zero based or absolute cell position in A1 to IV 65536 notation. 
+         </p>
+      </td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"> 
+         <p><b>col</b></p>
+      </td>
+      <td width="6%" align="center" valign="top"> 
+         <p>int</p>
+      </td>
+      <td width="80%"> 
+         <p>Cell column zero based. Valid ranges are from 0 to 255. Must be set 
+            to zero if A1 notation is used.</p>
+      </td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"> 
+         <p><b>text</b></p>
+      </td>
+      <td width="6%" align="center" valign="top"> 
+         <p>string</p>
+      </td>
+      <td width="80%"> 
+         <p>Cell contents as string, up to 256 characters.</p>
+      </td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>width</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Cell width, for details please see chapter <a href="#CellFormatting">Cell 
+         Formatting</a></td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>picture</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Index to picture format, for details please see chapter 
+         <a href="#CellFormatting">Cell Formatting</a></td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>font</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Index to FONT_0 to FONT_3, for details please see chapter 
+         <a href="#CellFormatting">Cell Formatting</a></td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>attribute</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Cell attributes, for details please see chapter <a href="#CellFormatting">Cell 
+         Formatting</a></td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"><b><i>status</i></b></td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Cell protection, for details please see chapter <a href="#CellFormatting">Cell 
+         Formatting</a></td>
+   </tr>
+</table>
+<p class="sourcecode">// Sample 1:<br>
+   // write &quot;Hello World&quot; into row 2, column B using default settings<br>
+   xlsWriteText(1, 1, &quot;Hello World);<br>
+   // Sample 2:<br>
+   // write &quot;Hello World&quot; into row 2, column B using auto width, second 
+   defined font,<br>
+   // general picture, align center and flag the cell locked.<br>
+   xlsWriteText(1, 1, &quot;Hello World&quot;, 0, 0, FONT_1, ALIGN_CENTER, CELL_LOCKED);</p>
+<span><a href="#top"><img src="images/arrow_black_up.gif" width="16" height="16" border="0" align="left" alt="top"></a> 
+<hr>
+</span> 
+<h2><a name="CellFormatting"></a>Cell Formatting</h2>
+<p>The formatting of cells is accomplished by specifying the attributes<b> width</b>, 
+   <b>picture</b>, <b>font, alignment</b> and <b>status</b>.</p>
+<h5><a name="width"></a>Width:</h5>
+<p>The cell width is an optional parameter. The width of a cell is calculated 
+   by taking the length of the string (&quot;auto width&quot;) or by using an 
+   explicit setting. The actual width required to display all characters in a 
+   cell varies by font and by the width of each individual character within the 
+   cell. On Windows based systems Arial 10 seems to lead the most consistent results. 
+   Explicitly setting the width allows for closer control of each column and is 
+   the preferred method to create &quot;ready to go&quot; Excel files.<br>
+</p>
+<p>The sample picture below illustrates the issue with the required cell width 
+   versus the calculated cell width based on 4 sample fonts:</p>
+<p><img border="0" src="images/widthexplained.gif" width="603" height="71"></p>
+<p>The sample below explains how column width are derived:</p>
+<p><img border="0" src="images/widthsample.gif" width="417" height="69"></p>
+<p>Here is a another example including the source code:</p>
+<p class="sourcecode" align="left">&lt;?php<br>
+   /* The first 3 rows are set to &quot;auto width&quot; since the 3 argument 
+   (col_width) has been omitted. <br>
+   ** So the largest in size wins, this is &quot;A2&quot; with a width of 15 characters.<br>
+   ** &quot;A4&quot; is set to -1, &quot;don't care&quot; and is not taken into 
+   consideration.<br>
+   */<br>
+   include('biff.php');<img src="images/widthexplained_2.gif" width="267" height="84" align="right"><br>
+   $xls = new BiffWriter();<br>
+   $xls-&gt;xlsWriteText('A1', 0, str_repeat('X' ,10));<br>
+   $xls-&gt;xlsWriteText('A2', 0, str_repeat('X', 15));<br>
+   $xls-&gt;xlsWriteText('A3', 0, str_repeat('X', 5));<br>
+   $xls-&gt;xlsWriteText('A4', 0, str_repeat('X', 30), -1);<br>
+   $link = $xls-&gt;xlsParse(&quot;width.xls&quot;);<br>
+   print '&lt;A HREF=&quot;' .$link. '&quot;&gt;'.$link.'&lt;/A&gt;';<br>
+   ?&gt; </p>
+<p>&nbsp;</p>
+<div align="left"> 
+   <table width="100%" border="0" cellpadding="2" name="Sample 1">
+      <tr> 
+         <td align="left" valign="top" nowrap>Column A:</td>
+         <td> 
+            <p>All cell entries are set to 0, &quot;auto width&quot;. BiffWriter 
+               takes the longest cell within all cells in column A to determine 
+               the maximum required width.</p>
+         </td>
+      </tr>
+      <tr> 
+         <td align="left" valign="top" nowrap> 
+            <p>Column C:</p>
+         </td>
+         <td> 
+            <p>All cell entries are set to -1, &quot;don't care&quot;, then a 
+               width of 10 characters has been applied using <a href="#xlsSetColWidth">xlsSetColWidth</a>.</p>
+         </td>
+      </tr>
+      <tr> 
+         <td align="left" valign="top" nowrap> 
+            <p>Column E:</p>
+         </td>
+         <td> 
+            <p>All cell entries are set to -1, &quot;dont' care&quot;. Excel uses 
+               the default width which is 8.43 characters</p>
+         </td>
+      </tr>
+   </table>
+</div>
+<p>While <a href="#xlsParse">parsing</a> the stream, BiffWriter takes the largest 
+   width of a cell set via &quot;auto width&quot; or a explicit set cell width 
+   and applies this setting to the whole column. The <font color="#ff0000">default</font> 
+   value is <font color="#ff0000">0</font>, &quot;auto width&quot;.</p>
+<h5><a name="pictures"></a>Picture:</h5>
+<p>Cell pictures aka display formats are set with the help of an optional picture 
+   parameter. Pictures are referred by an zero based index. The <font color="#ff0000">default</font> 
+   value is <font color="#ff0000">0</font>, &quot;General&quot; format.</p>
+<h5><a name="fonts">Font</a>:</h5>
+<p>The BIFF 2.1 specification supports only 4 default fonts in a spread sheet. 
+   By default, Excel assumes the font set in the configuration page. In most cases 
+   this is Arial 10. BiffWriter allows setting of four individual fonts by calling 
+   <a href="#xlsSetFont">xlsSetFont</a>. As as shortcut, calling <a href="#xlsSetDefFonts">xlsSetDefFonts</a> 
+   creates four default fonts, namely Arial 10, Courier New 10, Times New Roman 
+   10 and System right away. Fonts are referred to with the public constants FONT_0 
+   to FONT_3 respectively. Attributes such as bold, underlined, italics and or 
+   strikeout can be applied to each of the four fonts in any combination. The 
+   <font color="#ff0000">default</font> font is <font color="#ff0000">FONT_0</font>.<br>
+</p>
+<h5><a name="Borders">Attributes for Borders</a> and <a name="attributes"></a>Cells:</h5>
+<p>Borders are set by using the optional attribute parameter. Border values can 
+   be applied in any possible combination. Border values are combined with the 
+   cell alignment attributes. The <font color="#ff0000">default</font> values 
+   are <font color="#ff0000">ALIGN_GENERAL</font> and <font color="#ff0000">no 
+   border</font>.</p>
+<h5><a name="status"></a>Status:</h5>
+<p>The cell status (hidden or protection) is determined by the optional status 
+   parameter. The <font color="#ff0000">default</font> values are <font color="#ff0000">unlocked</font> 
+   and <font color="#ff0000">non-hidden</font>.</p>
+<p>&nbsp;</p>
+<h5>Formatting parameter table:</h5>
+<table border="1" width="100%">
+   <tr> 
+      <th width="14%" valign="top" align="left">Parameter</th>
+      <th width="6%" align="center" valign="top">Type</th>
+      <th width="80%">Description</th>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"> 
+         <p><b><i>width</i></b></p>
+      </td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%"> 
+         <p>Determines the width of the cell, the width of the whole column.<br>
+            Accepted values are:<br>
+            • -1 = don't care, use default column width or any other column width,<br>
+            • 0 = auto width, determine width by calculating the length of the 
+            cell content,<br>
+            • 1 - 255 set the column width explicitly</p>
+         <p>The <font color="#ff0000">default</font> is <font color="#ff0000">0</font>, 
+            auto width.</p>
+      </td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left" height="19"> 
+         <p><b><i>picture</i></b></p>
+      </td>
+      <td width="6%" align="center" valign="top" height="19">int</td>
+      <td width="80%" height="19">Formatting picture as defined by the first 21 
+         internal formats or formats added by <a href="#xlsAddFormat">xlsAddFormat</a>. 
+         The <font color="#ff0000">default</font> is 0, &quot;<font color="#ff0000">General</font>&quot;</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"> 
+         <p><b><i>font</i></b></p>
+      </td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%">Pointer to font 0 to font 3, referenced as FONT_0....FONT_3 
+         respectively. The <font color="#ff0000">default</font> is <font color="#ff0000">FONT_0</font>.</td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"> 
+         <p><b><i>attribute</i></b></p>
+      </td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%"> 
+         <p>Cell alignment -- specifies the alignment of the cell content:<br>
+            • ALIGN_GENERAL,<br>
+            • ALIGN_LEFT<br>
+            • ALIGN_CENTER<br>
+            • ALIGN_RIGHT<br>
+            Only one value is valid.</p>
+         <p>Borders -- specifies cell borders:<br>
+            • CELL_RIGHT_BORDER<br>
+            • CELL_LEFT_BORDER<br>
+            • CELL_TOP_BORDER<br>
+            • CELL_BOTTOM_BORDER<br>
+            • CELL_BOX_BORDER<br>
+            These values can be combined by adding each value.</p>
+         <p>Other:<br>
+            • CELL_SHADED -- shades the cell with a gray pattern<br>
+            • CELL_FILL -- fills the cell up to the current column width by repeating 
+            the cell content<br>
+            These values can be combined by adding each value.</p>
+         <p>The <font color="#ff0000">default</font> is <font color="#ff0000">ALIGN_GENERAL</font>, 
+            <font color="#ff0000">no</font> <font color="#ff0000">border</font>, 
+            <font color="#ff0000">no shading </font>and <font color="#ff0000">no 
+            fill</font>.</p>
+      </td>
+   </tr>
+   <tr> 
+      <td width="14%" valign="top" align="left"> 
+         <p><b><i>status</i></b></p>
+      </td>
+      <td width="6%" align="center" valign="top">int</td>
+      <td width="80%"> 
+         <p>Cell protection -- protects or hides a cell:<br>
+            • CELL_LOCKED, flags a cell &quot;locked&quot; against changes. Please 
+            note that you need to call xlsProtectSheet() to lock any cells flagged 
+            as &quot;locked&quot;.<br>
+            • CELL_HIDDEN (not supported currently)</p>
+         <p>The <font color="#ff0000">default</font> is cell <font color="#ff0000">unlocked</font> 
+            and <font color="#ff0000">not hidden</font>.</p>
+      </td>
+   </tr>
+</table>
+<br>
+</body>
+</html>
+

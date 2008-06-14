@@ -1,0 +1,46 @@
+{if not empty (obj[account_number])}{intl Account} #: {account_number}{end if}
+
+{if not empty (obj[pass_phrase])}{intl Pass Phrase}: {pass_phrase}{end if}
+
+{intl Name}: {salutation} {first_name} {last_name}
+
+{intl Email}: {email_address}
+
+{if not empty (obj[birthday])}{intl Birthday}: {birthday}{end if}
+
+{if not empty (obj[gender])}{intl Gender}: {gender}{end if}
+
+{if not empty (obj[address_line1])}
+{intl Address}:
+
+{address_line1}
+{address_line2}
+{city}, {state}
+{country} {zip}
+{end if}
+
+{if not empty (obj[company])}{intl Company}: {company}{end if}
+
+{if not empty (obj[job_title])}{intl Job Title}: {job_title}{end if}
+
+{if not empty (obj[phone_number])}{intl Phone Number}: {phone_number}{end if}
+
+{if not empty (obj[daytime_phone])}{intl Daytime Phone}: {daytime_phone}{end if}
+
+{if not empty (obj[evening_phone])}{intl Evening Phone}: {evening_phone}{end if}
+
+{if not empty (obj[mobile_phone])}{intl Mobile Phone}: {mobile_phone}{end if}
+
+{if not empty (obj[fax_number])}{intl Fax Number}: {fax_number}{end if}
+
+{if not empty (obj[preferred_method_of_contact])}{intl Preferred method of contact}: {preferred_method_of_contact}{end if}
+
+{if not empty (obj[best_time])}{intl Best time to reach you}: {best_time}{end if}
+
+{if not empty (obj[may_we_contact_you])}{intl May we contact you}: {may_we_contact_you}{end if}
+
+{if not empty (obj[comments])}
+{intl Comments}:
+
+{comments}
+{end if}

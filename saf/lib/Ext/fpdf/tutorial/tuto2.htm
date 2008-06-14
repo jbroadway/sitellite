@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Header, footer, page break and image</TITLE>
+<LINK TYPE="text/css" REL="stylesheet" HREF="../fpdf.css">
+</HEAD>
+<BODY>
+<H2>Header, footer, page break and image</H2>
+Here is a two page example with header, footer and logo:
+<BR>
+<BR>
+<TABLE WIDTH="100%" BGCOLOR="#E0E0E0"><TR><TD>
+<TT>
+&lt;?php<BR>
+require('fpdf.php');<BR>
+<BR>
+class PDF extends FPDF<BR>
+{<BR>
+//Page header<BR>
+function Header()<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Logo<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Image('logo_pb.png',10,8,33);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Arial bold 15<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('Arial','B',15);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Move to the right<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(80);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Title<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(30,10,'Title',1,0,'C');<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Line break<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Ln(20);<BR>
+}<BR>
+<BR>
+//Page footer<BR>
+function Footer()<BR>
+{<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Position at 1.5 cm from bottom<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetY(-15);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Arial italic 8<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;SetFont('Arial','I',8);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;//Page number<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;Cell(0,10,'Page '.$this-&gt;PageNo().'/{nb}',0,0,'C');<BR>
+}<BR>
+}<BR>
+<BR>
+//Instanciation of inherited class<BR>
+$pdf=new PDF();<BR>
+$pdf-&gt;Open();<BR>
+$pdf-&gt;AliasNbPages();<BR>
+$pdf-&gt;AddPage();<BR>
+$pdf-&gt;SetFont('Times','',12);<BR>
+for($i=1;$i&lt;=40;$i++)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;$pdf-&gt;Cell(0,10,'Printing line number '.$i,0,1);<BR>
+$pdf-&gt;Output();<BR>
+?&gt;
+</TT>
+</TD></TR></TABLE><BR>
+<SCRIPT>
+<!--
+if(document.location.href.indexOf('http:')==0)
+{
+document.write("<A HREF='tuto2.php' TARGET='_blank' CLASS='demo'>[Demo]</A><BR><BR>");
+}
+//-->
+</SCRIPT>
+This example makes use of the <A HREF='../doc/header.htm'>Header()</A> and <A HREF='../doc/footer.htm'>Footer()</A> methods to process page headers and
+footers. They are called automatically. They already exist in the FPDF class but do nothing,
+therefore we have to extend the class and override them.
+<BR>
+<BR>
+The logo is printed with the <A HREF='../doc/image.htm'>Image()</A> method by specifying its upper-left corner and
+its width. The height is calculated automatically to respect the image proportions.
+<BR>
+<BR>
+To print the page number, a null value is passed as the cell width. It means that the cell
+should extend up to the right margin of the page; it is handy to center text. The current page
+number is returned by the <A HREF='../doc/pageno.htm'>PageNo()</A> method; as for the total number of pages, it is obtained
+by means of the special value <TT>{nb}</TT> which will be substituted on document closure
+(provided you first called <A HREF='../doc/aliasnbpages.htm'>AliasNbPages()</A>).
+<BR>
+Note the use of the <A HREF='../doc/sety.htm'>SetY()</A> method which allows to set position at an absolute location in
+the page, starting from the top or the bottom.
+<BR>
+<BR>
+Another interesting feature is used here: the automatic page breaking. As soon as a cell would
+cross a limit in the page (at 2 centimeters from the bottom by default), a break is performed
+and the font restored. Although the header and footer select their own font (Arial), the body
+continues with Times. This mechanism of automatic restoration also applies to colors and line
+width. The limit which triggers page breaks can be set with <A HREF='../doc/setautopagebreak.htm'>SetAutoPageBreak()</A>.
+</BODY>
+</HTML>

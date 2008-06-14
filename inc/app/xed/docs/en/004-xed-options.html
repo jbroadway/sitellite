@@ -1,0 +1,38 @@
+<h1>Xed Options</h1>
+
+<p>The Xed widget has a few options that can be used to enhance your usage results.  They are listed below:</p>
+
+<table>
+	<tr>
+		<th style="width: 125px;">Option Name</th>
+		<th style="width: 125px;">Default Value</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td class="even">clean</td>
+		<td class="even">true</td>
+		<td class="even">Determines whether or not to use the xed.Cleaners package to clean up Xed&#8217;s output.  The xed.Cleaners package uses either <span class="caps">HTML</span>-Tidy (preferred) or saf.HTML.Messy (default, always available) to try to ensure that the output of Xed is always <span class="caps">XML</span>-compliant.  This is especially important if you wish to use Xed&#8217;s box and form capabilities.</td>
+	</tr>
+	<tr>
+		<td class="odd">tidy_path</td>
+		<td class="odd">false</td>
+		<td class="odd">This specifies the path to the <span class="caps">HTML</span>-Tidy command line utility, so that the xed.Cleaners package can use a more reliable utility than saf.HTML.Messy for its cleaning work.  Note: <span class="caps">HTML</span>-Tidy is <em>highly</em> recommended over saf.HTML.Messy</td>
+	</tr>
+	<tr>
+		<td class="even">images</td>
+		<td class="even">true</td>
+		<td class="even">Specifies whether or not to expose the imagechooser button to Xed users in the <span class="caps">GUI</span>.  This allows you to disallow the inclusion of images by your users or even by certain user roles.</td>
+	</tr>
+	<tr>
+		<td class="odd">forms</td>
+		<td class="odd">false</td>
+		<td class="odd">Specifies whether or not to expose the formmaker button to Xed users in the <span class="caps">GUI</span>.  Note: The formmaker actions are currently under development.</td>
+	</tr>
+	<tr>
+		<td class="even">boxes</td>
+		<td class="even">false</td>
+		<td class="even">Specifies whether or not to expose the boxmaker button to Xed users in the <span class="caps">GUI</span>.  Note: The boxmaker actions are currently under development.</td>
+	</tr>
+</table>
+
+<p>These options can be specified as line-items in your settings.php file, or as properties of your xed.Widget.Xed $widget object.</p>

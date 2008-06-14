@@ -1,0 +1,16 @@
+TO DO LIST
+
+SAF 4.0
+
+- Database.NestedSet class finished
+- More testing
+- More docs/examples
+
+SAF 4.2
+
+- XT Dreamweaver extension
+- XT cache improvements or compilation
+- Session driver for LDAP
+- Database drivers for PostgreSQL, SQLite, and others
+- SimpleTemplate caching
+- DataGrid-like wrapper for GUI.Pager and Misc.TableHeader

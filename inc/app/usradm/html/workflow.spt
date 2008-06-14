@@ -1,0 +1,30 @@
+{alt #eee #fff}
+
+<form method="POST" style="display: block; margin-left: 100px; margin-right: 100px; padding-top: 5px">
+
+{loop obj}
+<h2>{loop/_key}</h2>
+
+<ul style="list-style-type: none; margin-left: 0px; padding-left: 0px">
+{loop loop}
+	<li style="list-style-type: none; margin-left: 0px; padding: 3px; padding-left: 0px; background: {alt/next}">
+		<span style="display: block; width: 25px; height: 100%; text-align: center; float: left">
+		<input type="checkbox" name="{loop/name}"{if loop[active]} checked="checked"{end if} />
+		</span>
+		<strong>{loop/title}</strong><br />
+		{loop/summary}
+	</li>
+{end loop}
+</ul>
+
+{alt/reset}
+
+{end loop}
+
+<p align="center" style="padding-top: 10px">
+	<input type="submit" name="submit_button" value="{intl Save}" />
+	&nbsp; &nbsp;
+	<input type="submit" value="{intl Cancel}" onclick="window.location.href = '{site/prefix}/index/cms-cpanel-action'; return false" />
+</p>
+
+</form>

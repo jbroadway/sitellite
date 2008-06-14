@@ -1,0 +1,9 @@
+<?php
+
+$prefix = $_SERVER['REQUEST_URI'];
+
+$prefix = preg_replace ('|sitellite/?$|', '', $prefix);
+
+header ('Location: ' . $prefix . 'index/cms-app');
+
+?>

@@ -1,0 +1,5 @@
+<ul>
+	{loop obj[list]}
+	<li><a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{if obj[thumbs] eq 'yes'}<img src="{loop/thumb}" alt="{loop/title}" border="0" class="news-thumbnail" />{end if}<span class="news-headline">{if obj[dates] ne 'no'}{filter news_shortdate}{loop/date}{end filter} - {end if}{loop/title}</span></a></li>
+	{end loop}
+</ul>

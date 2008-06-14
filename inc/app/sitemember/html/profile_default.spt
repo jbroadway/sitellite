@@ -1,0 +1,40 @@
+<ul>
+	<li>{intl Username}: {username}</li>
+	<li>{intl Real Name}: {firstname} {lastname}</li>
+	{if not empty (obj.company)}
+		<li>{intl Company}: {company}</li>
+	{end if}
+	{if not empty (obj.website)}
+		<li>{intl Web Site}: <a href="{website}" target="_blank">{website}</a></li>
+	{end if}
+	{if not empty (obj.city) or not empty (obj.province) or not empty (obj.country)}
+		<li>
+			{intl Location}:
+			{if not empty (obj.city)}
+				{city}
+			{end if}
+			{if not empty (obj.province)}
+				{province}
+			{end if}
+			{if not empty (obj.country)}
+				{country}
+			{end if}
+		</li>
+	{end if}
+</ul>
+
+{if not empty (obj.profile)}
+<h3>{intl About This Member}</h3>
+
+<p>{profile}</p>
+{end if}
+
+<p>
+	{if appconf ('list')}
+		<a href="{site/prefix}/index/sitemember-list-action">{intl View All Members}</a>
+		&nbsp; &nbsp;
+	{end if}
+	{if appconf ('contact')}
+		<a href="{site/prefix}/index/sitemember-contact-form?user={username}">{intl Contact This Member}</a>
+	{end if}
+</p>
