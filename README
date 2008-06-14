@@ -1,5 +1,7 @@
 README
 
+Sitellite is a mature, open source, PHP-based web content management system (CMS).
+
 Requirements
 
 Please refer to the file docs/REQUIREMENTS for a complete list of client and server
@@ -15,7 +17,7 @@ For troubleshooting information, please refer to http://www.sitellite.org/
 
 Known Issues
 
-Please see the file docs/KNOWN ISSUES for a complete and current list.
+Please see the file docs/KNOWN ISSUES.
 
 License
 
@@ -27,7 +29,3 @@ Documentation
 
 Documentation for the Sitellite Content Server can be found at
 http://www.sitellite.org/
-
-Documentation for the Sitellite Application Framework can be accessed by
-pointing your browser to:
-http://www.yourTestInstallation.com/index/docreader-app
