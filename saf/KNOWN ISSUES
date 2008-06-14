@@ -1,5 +1,7 @@
 KNOWN ISSUES
 
+Please see http://www.sitellite.org/ for a current bug tracking list.
+
 - The Sitellite Application Framework (specifically the XML packages) rely on
   a deprecated way of passing references in PHP.  This causes warning if
   allow_call_time_pass_reference is set to Off in php.ini.  Until a better
