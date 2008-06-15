@@ -92,8 +92,6 @@
 		xt:content="title"
 		xt:condition="php: not empty (object.title)">Page Title</h1>
 
-	<xt:var name="toc" />
-
 	<!--
 		This span tag and its contents will all be replaced with the page body.
 		This is done with the xt:replace attribute.

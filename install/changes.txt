@@ -1,6 +1,9 @@
 Changes in 4.3.5-rc
 
 - Improved the column name output in the Change History view.
+- Removed PHPDocumentor in favour of new 'docs' app, reducing code size.
+- Removed extra pages from default site install.
+- Removed 'toc' box from default site templates.
 
 Changes in 4.3.4-beta
 
