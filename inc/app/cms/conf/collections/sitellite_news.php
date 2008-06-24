@@ -3,6 +3,7 @@
 [Collection]
 
 name			= sitellite_news
+app				= news
 display			= News Stories
 singular		= Story
 icon			= inc/app/cms/pix/icons/sitellite_news.gif

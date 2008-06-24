@@ -12,6 +12,10 @@ td {
 	background-color: #eee;
 }
 
+.disabled {
+	color: #888;
+}
+
 </style>
 
 <p><a href="{site/prefix}/index/cms-cpanel-action">{intl Back}</a></p>
@@ -43,7 +47,7 @@ td {
 <p>
 <table cellspacing="0" width="40%">
 	{loop obj}
-		<tr class="{alt/next}">
+		<tr class="{alt/next}{if not loop[active]} disabled{end if}">
 			<td>{loop/name}</td>
 			<td align="center" width="40%">
 				{if loop[active]}

@@ -3,6 +3,7 @@
 [Collection]
 
 name			= siteglossary_term
+app				= siteglossary
 display			= Glossary
 singular		= Term
 key_field		= word

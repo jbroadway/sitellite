@@ -3,6 +3,7 @@
 [Collection]
 
 name			= siteevent_event
+app				= siteevent
 display			= Events
 singular		= Event
 

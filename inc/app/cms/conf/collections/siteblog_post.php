@@ -3,6 +3,7 @@
 [Collection]
 
 name			        = siteblog_post
+app					= siteblog
 display			    = Blog Posts
 singular		        = Blog Post
 is_versioned		    = yes

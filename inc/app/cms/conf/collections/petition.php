@@ -3,6 +3,7 @@
 [Collection]
 
 name = petition
+app = petition
 display = Petitions
 singular = Petition
 

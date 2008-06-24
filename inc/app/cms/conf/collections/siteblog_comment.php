@@ -3,6 +3,7 @@
 [Collection]
 
 name			        = siteblog_comment
+app					= siteblog
 display			    = Blog Comments
 singular		        = Blog Comment
 

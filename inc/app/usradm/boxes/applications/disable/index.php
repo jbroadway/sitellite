@@ -1,7 +1,7 @@
 <?php
 
 $info = parse_ini_file ('inc/conf/auth/applications/index.php');
-if (! empty ($parameters['appname']) && isset ($info[$parameters['appname']]) && $info[$parameters['appname']] != 'core') {
+if (! empty ($parameters['appname'])) {
 	$info[$parameters['appname']] = false;
 	loader_import ('saf.File');
 	loader_import ('saf.Misc.Ini');

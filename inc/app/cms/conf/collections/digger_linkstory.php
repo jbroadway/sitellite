@@ -2,6 +2,7 @@
 
 [Collection]
 name = digger_linkstory
+app = digger
 display = Digger Stories
 singular = Digger Story
 key_field = id

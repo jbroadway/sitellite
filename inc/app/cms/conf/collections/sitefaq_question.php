@@ -3,6 +3,7 @@
 [Collection]
 
 name			= sitefaq_question
+app				= sitefaq
 display			= FAQs
 singular		= Question
 key_field		= id

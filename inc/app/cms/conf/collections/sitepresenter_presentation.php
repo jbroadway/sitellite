@@ -3,6 +3,7 @@
 [Collection]
 
 name			= sitepresenter_presentation
+app				= sitepresenter
 display			= Presentations
 singular		= Presentation
 

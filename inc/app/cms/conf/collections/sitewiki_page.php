@@ -3,6 +3,7 @@
 [Collection]
 
 name = sitewiki_page
+app = sitewiki
 display = Wiki Pages
 singular = Wiki Page
 key_field = id

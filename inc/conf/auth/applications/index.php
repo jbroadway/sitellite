@@ -42,15 +42,65 @@ appdoc                  = On
 
 myadm                   = On
 
-devfiles                = On
+devfiles                = Off
 
-devnotes                = On
+devnotes                = Off
 
 examples                = On
 
 news                    = On
 
 webapp                  = On
+
+ysearch                 = Off
+
+webfiles                = Off
+
+todo                    = Off
+
+timetracker             = Off
+
+slideshowpro            = Off
+
+docs                    = Off
+
+sitewiki                = Off
+
+sitestudy               = Off
+
+sitesearch              = Off
+
+sitequotes              = Off
+
+sitepresenter           = Off
+
+sitepoll                = Off
+
+siteinvoice             = Off
+
+siteglossary            = Off
+
+sitegallery             = Off
+
+siteforum               = Off
+
+sitefaq                 = Off
+
+siteevent               = Off
+
+siteblog                = Off
+
+shoutbox                = Off
+
+petition                = Off
+
+monoslideshow           = Off
+
+example                 = Off
+
+digger                  = Off
+
+deadlines               = Off
 
 ;
 ; THE END

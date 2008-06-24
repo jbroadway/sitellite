@@ -3,6 +3,7 @@
 [Collection]
 
 name = sitestudy_item
+app = sitestudy
 display = Case Studies
 singular = Case Study
 

@@ -3,6 +3,7 @@
 [Collection]
 
 name = sitepoll_poll
+app = sitepoll
 display = Polls
 singular = Poll
 key_field = id

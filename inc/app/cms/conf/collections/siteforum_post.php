@@ -3,6 +3,7 @@
 [Collection]
 
 name			= siteforum_post
+app				= siteforum
 display			= Forum
 singular		= Post
 

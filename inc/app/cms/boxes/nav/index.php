@@ -7,6 +7,8 @@ $data = array ();
 $content_types = array ();
 $GLOBALS['_content_weights'] = array ();
 
+$applications = parse_ini_file ('inc/conf/auth/applications/index.php');
+
 loader_import ('saf.File.Directory');
 
 $files = Dir::find ('*.php', 'inc/app/cms/conf/collections', false);
@@ -19,6 +21,9 @@ foreach ($files as $file) {
 	$GLOBALS['_content_weights'][$data['Collection']['name']] = $data['Collection']['list_weight'];
 	if (! isset ($data['Collection']['visible']) || $data['Collection']['visible'] != false) {
 		if (session_is_resource ($data['Collection']['name']) && ! session_allowed ($data['Collection']['name'], 'rw', 'resource')) {
+			continue;
+		}
+		if (isset ($data['Collection']['app']) && isset ($applications[$data['Collection']['app']]) && ! $applications[$data['Collection']['app']]) {
 			continue;
 		}
 		$content_types[$data['Collection']['name']] = intl_get ($data['Collection']['display']);

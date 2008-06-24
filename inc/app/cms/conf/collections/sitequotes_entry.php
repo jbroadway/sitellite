@@ -3,6 +3,7 @@
 [Collection]
 
 name = sitequotes_entry
+app = sitequotes
 display = Quotes
 singular = Quote
 
