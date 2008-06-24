@@ -102,6 +102,8 @@ digger                  = Off
 
 deadlines               = Off
 
+realty					= Off
+
 ;
 ; THE END
 ;

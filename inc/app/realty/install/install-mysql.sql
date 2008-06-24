@@ -1,0 +1,23 @@
+create table realty_listing (
+	id int not null auto_increment primary key,
+	headline char(72) not null,
+	property_type enum('residential','commercial') not null default 'residential',
+	price int not null,
+	house_size char(48) not null,
+	lot_size char(48) not null,
+	gross_taxes char(48) not null,
+	net_taxes char(48) not null,
+	summary text not null,
+	photo1 char(128) not null default '',
+	photo2 char(128) not null default '',
+	photo3 char(128) not null default '',
+	photo4 char(128) not null default '',
+	photo5 char(128) not null default '',
+	photo6 char(128) not null default '',
+	photo7 char(128) not null default '',
+	photo8 char(128) not null default '',
+	ts date not null,
+	status enum('active','sold','archived') not null default 'active',
+	description text not null,
+	index (ts, price, status)
+);
