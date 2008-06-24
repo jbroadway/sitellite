@@ -5,6 +5,7 @@ Changes in 4.3.5-rc
 - Removed extra pages from default site install.
 - Removed 'toc' box from default site templates.
 - Added the ability to enable/disable non-core apps in the admin menu.
+- Added new Sitellite 5 logo and colours.
 
 Changes in 4.3.4-beta
 
