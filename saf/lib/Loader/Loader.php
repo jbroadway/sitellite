@@ -158,6 +158,16 @@ class Loader {
 	var $prefix = 'inc/app';
 
 	/**
+	 * This contains an array of the applications from inc/conf/auth/applications
+	 * specifying which are core, enabled, and disabled.  If an application is
+	 * disabled, the box() and form() calls will fail.
+	 *
+	 * @access	public
+	 *
+	 */
+	var $applications = array ();
+
+	/**
 	 * Constructor method.  If $path is a string, it specifies the 'default'
 	 * path location.  If $path is an associative array, it specifies a list of libraries
 	 * and their locations, and 'default' is set to the current directory (unless overridden
@@ -176,6 +186,7 @@ class Loader {
 				$this->paths[$n] = $p;
 			}
 		}
+		$this->applications = parse_ini_file ('inc/conf/auth/applications/index.php');
 	}
 
 	/**
@@ -867,6 +878,11 @@ class Loader {
 			return false;
 		}
 
+		if (isset ($this->applications[$app]) && ! $this->applications[$app]) {
+			// app is disabled
+			return false;
+		}
+
 		$dir = $this->prefix . '/' . $app . '/' . $this->boxPath . '/' . $name;
 		while ($dir != $this->prefix . '/' . $app . '/' . $this->boxPath) {
 			if (@file_exists ($dir . '/access.php')) {
@@ -1005,6 +1021,11 @@ class Loader {
 		$name = $this->removeApp ($name, $app);
 
 		if (session_admin () && session_is_resource ('app_' . $app) && ! session_allowed ('app_' . $app, 'rw', 'resource')) {
+			return false;
+		}
+
+		if (isset ($this->applications[$app]) && ! $this->applications[$app]) {
+			// app is disabled
 			return false;
 		}
 

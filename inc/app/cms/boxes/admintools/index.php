@@ -4,6 +4,8 @@ if (! session_admin ()) {
 	return;
 }
 
+$applications = parse_ini_file ('inc/conf/auth/applications/index.php');
+
 loader_import ('saf.File.Directory');
 $d = new Dir ('inc/app');
 
@@ -20,6 +22,10 @@ foreach ($d->read_all () as $file) {
 	}
 
 	if (session_is_resource ('app_' . $file) && ! session_allowed ('app_' . $file, 'rw', 'resource')) {
+		continue;
+	}
+
+	if (isset ($applications[$file]) && ! $applications[$file]) {
 		continue;
 	}
 

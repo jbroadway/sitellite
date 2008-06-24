@@ -34,34 +34,38 @@ if (! $path) {
 	$path = $root;
 	$data['base_nice_url'] = "Standard Forms";
 } else { 
-	$data['base_nice_url'] = $path; }
+	$data['base_nice_url'] = $path;
+}
 
+$applications = parse_ini_file ('inc/conf/auth/applications/index.php');
 
 // get all the data
 page_title (intl_get ('Folder') . ': ' . $data['location']);
 
 $dir = new Dir($path);
 
-foreach($dir->readAll() as $file)
-{
-	if( $file != 'CVS' && strpos ($file, '.') !== 0 )
-	{
-		if(file_exists($path . '/' . $file . '/conf/config.ini.php'))
-		{	$config_file = parse_ini_file($path . '/' . $file . '/conf/config.ini.php');
+foreach ($dir->readAll () as $file) {
+	if ($file != 'CVS' && strpos ($file, '.') !== 0) {
+		if (file_exists ($path . '/' . $file . '/conf/config.ini.php')) {
+			$config_file = parse_ini_file($path . '/' . $file . '/conf/config.ini.php');
 			if (! $config_file['formchooser']) {
 				continue;
 			}
-			if($config_file['app_name'])
-			{	//add data to the boxes array
+			if (isset ($applications[$file]) && ! $applications[$file]) {
+				continue;
+			}
+			if ($config_file['app_name']) {
+				//add data to the boxes array
 				$temp = $config_file['description'];
 				$desc = $file;
-				if($temp != ''){
-					$desc=$temp;
+				if ($temp != '') {
+					$desc = $temp;
 				}
-				$data['forms'][] = array('folder' => $file, 
-							 'name' => $config_file['app_name'],
-							 'description' => $desc);
-							 
+				$data['forms'][] = array (
+					'folder' => $file, 
+					'name' => $config_file['app_name'],
+					'description' => $desc
+				);		 
 			}
 		//there is no app_name to specify, use folder name
 		/*} else {
@@ -70,7 +74,6 @@ foreach($dir->readAll() as $file)
 						 'name' => $file,
 						 'description' => $file);*/
 		}
-
 	}
 }
 
