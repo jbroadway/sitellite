@@ -1,0 +1,40 @@
+Event Submission
+
+- User Info -
+
+{if session_valid ()}
+User:        {session/username}
+{end if}IP Address:  {_SERVER/REMOTE_ADDR}
+
+- Event Info -
+
+ID:          {id}
+Title:       {title}
+Category:    {category}
+
+Date:        {date}
+End Date:    {end_date}
+Time:        {time}
+End Time:    {end_time}
+
+- Contact Info -
+
+Name:        {contact}
+Email:       {contact_email}
+Phone:       {contact_phone}
+Web Site:    {contact_url}
+
+- Location Info -
+
+Name:        {loc_name}
+Address:     {loc_address}
+City:        {loc_city}
+Province:    {loc_province}
+Country:     {loc_country}
+Map Link:    {loc_map}
+
+- Details -
+
+{filter strip_tags}{details}{end filter}
+
+--

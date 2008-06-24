@@ -1,0 +1,13 @@
+<p>Comments are automatically deleted after 30 days, but you can improve the service by reviewing the messages below and marking them as Spam or Not Spam.  This helps improve the filtering provided by <a href="http://akismet.com/">akismet.com</a></p>
+
+<h2>Latest Comments ({total})</h2>
+
+{loop obj[list]}
+
+    <div style="padding-bottom: 20px">
+    <p><strong>{if not empty (loop.website)}<a href="{loop/website}">{loop/author}</a>{end if}{if else}{loop/author}{end if}</strong> | <a href="mailto:{loop/email}">{loop/email}</a> | IP: <a href="http://ws.arin.net/cgi-bin/whois.pl?queryinput={loop/user_ip}">{loop/user_ip}</a></p>
+	<div class="siteblog-comment-body">{filter siteblog_filter_comment}{loop/body}{end filter}</div>
+	<p style="color: #777">[ <a href="{site/prefix}/index/siteblog-akismet-flag-action?id={loop/id}&spam=yes">Spam</a> | <a href="{site/prefix}/index/siteblog-akismet-flag-action?id={loop/id}&spam=no">Not Spam</a> ] &mdash; {filter siteblog_filter_datetime}{loop/ts}{end filter} &mdash; <a href="{site/prefix}/index/siteblog-post-action/id.{loop/post_id}">View Post</a></p>
+    </div>
+
+{end loop}

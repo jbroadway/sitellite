@@ -1,0 +1,28 @@
+1.0.5
+
+- Fixed potential layout problems in gallery templates.
+- Added ability to edit the title, date and description of galleries in
+  the new index page view.
+
+1.0.4
+
+- Integrated the Lightbox Slideshow script by Justin Barkhuff into the
+  galleries automatically
+- Added index page that lists multiple galleries
+- Added new settings for title, template, page_below_and page_alias.
+
+1.0.3
+
+- Thumbnails and slideshow from Web Files now sort by name explicitly
+
+1.0.2
+
+- Thumbnails now crop edges if the image is not proportioned to the width
+  and height specified in conf/properties.php
+
+1.0.1
+
+- Added optional thumbnail generation if gd and jpeg PHP extensions are
+  available.
+- Thumbnail width and height are now specified in the conf/properties.php
+  file.

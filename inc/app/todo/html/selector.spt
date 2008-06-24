@@ -1,0 +1,37 @@
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr style="background: #eee">
+		<td width="30%">
+			<form style="display: inline">
+				<input type="hidden" name="proj" value="{cgi/proj}" />
+				Person: &nbsp; <select name="pp" onchange="this.form.submit ()">
+					<option value="">- SELECT -</option>
+			{loop obj[ppl]}
+				<option value="{loop/_value}" {if loop._value eq cgi.pp}selected="selected"{end if}>{loop/_value}</option>
+			{end loop}
+				</select>
+			</form>
+		</td>
+		<td width="40%" align="center">
+			<form style="display: inline">
+				<input type="hidden" name="proj" value="{cgi/proj}" />
+				<input type="hidden" name="pp" value="{cgi/pp}" />
+				Search &nbsp; <input type="text" name="qq" value="{cgi/qq}" />
+				<input type="submit" value="" style="display: none" />
+				<input type="submit" value="All" onclick="this.form.elements.qq.value = ''" />
+			</form>
+		</td>
+		<td width="30%" align="right">
+			<form style="display: inline">
+				<input type="hidden" name="pp" value="{cgi/pp}" />
+				Project: &nbsp; <select name="proj" onchange="this.form.submit ()">
+					<option value="">- SELECT -</option>
+			{loop obj[projs]}
+				<option value="{loop/_value}" {if loop._value eq cgi.proj}selected="selected"{end if}>{loop/_value}</option>
+			{end loop}
+				</select>
+			</form>
+		</td>
+	</tr>
+</table>
+</p>

@@ -1,0 +1,9 @@
+A message has been posted to your forum in the thread:
+
+{site/url}/index/siteforum-list-action/post.{post}/topic.{topic}
+
+User ID: {session/username}
+Subject: {subject}
+Message:
+
+{filter siteforum_filter_body_email}{body}{end filter}

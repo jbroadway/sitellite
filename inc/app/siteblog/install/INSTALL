@@ -1,0 +1,37 @@
+SITEBLOG INSTALL INSTRUCTIONS
+
+1. Enter the sitellite installation directory
+
+$ cd /path/to/sitellite
+
+2. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/siteblog/install/install-mysql.sql
+(enter password when prompted)
+
+3. Copy the event collection definition into the cms app:
+
+$ cp -R inc/app/siteblog/install/*.php inc/app/cms/conf/collections/
+
+4. Link to SiteBlog somewhere on your web site.  SiteBlog can be
+accessed from the following URL (change www.yourWebSite.com to YOUR
+WEB SITE, of course):
+
+http://www.yourWebSite.com/index/siteblog-app
+
+5. (Optional) Create sidebars related to your blog.  This can be done
+using the Professional Edition box chooser, or via the following XT tags
+which you can paste into your global design templates in SiteTemplate or
+directly in inc/html.
+
+<xt:box name="siteblog/archives" />
+
+<xt:box name="siteblog/blogroll" />
+
+<xt:box name="siteblog/calendar" />
+
+<xt:box name="siteblog/categories" />
+
+<xt:box name="siteblog/latest" limit="5" />
+
+That's all there is to it!

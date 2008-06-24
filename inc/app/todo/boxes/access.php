@@ -1,0 +1,5 @@
+sitellite_status=private
+sitellite_access=public
+sitellite_action=on
+sitellite_goto=todo-app
+sitellite_template_set=admin

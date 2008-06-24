@@ -1,0 +1,15 @@
+{if session_admin ()}
+	{box cms/buttons/add?collection=siteglossary_term}
+{end if}
+
+{loop obj[list]}
+	{if session_admin ()}
+		{box cms/buttons?collection=siteglossary_term&id=[loop/word]&access=public&status=approved&team=none&add=false&float=true}
+	{end if}
+
+<a name="{loop/word}"></a>
+<h2>{loop/word}</h2>
+
+{filter none}{loop/body}{end filter}
+
+{end loop}

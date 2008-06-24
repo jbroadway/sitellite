@@ -1,0 +1,33 @@
+<table border="0" width="100%">
+	<tr>
+		<td width="33%" style="padding-right: 10px">
+
+<h3>{intl Stories}</h3>
+<ul>
+{loop obj[stories]}
+	<li><a href="{site/prefix}/index/digger-comments-action/id.{loop/id}/title.{filter digger_filter_title}{loop/title}{end filter}">{loop/title}</a> ({loop/score})</li>
+{end loop}
+</ul>
+
+		</td>
+                <td width="33%" style="padding-right: 10px">
+
+<h3>{intl Votes}</h3>
+<ul>
+{loop obj[votes]}
+        <li><a href="{site/prefix}/index/digger-comments-action/id.{loop/id}/title.{filter digger_filter_title}{loop/title}{end filter}">{loop/title}</a> ({loop/score}, {filter digger_filter_my_vote}{loop/my_vote}{end filter})</li>
+{end loop}
+</ul>
+
+                </td>
+                <td width="33%">
+
+<h3>{intl Comments}</h3>
+<ul>
+{loop obj[comments]}
+        <li><a href="{site/prefix}/index/digger-comments-action/id.{loop/id}/title.{filter digger_filter_title}{loop/title}{end filter}#digger-comments-{loop/comment_id}">{loop/title}</a> ({loop/score})</li>
+{end loop}
+</ul>
+                </td>
+	</tr>
+</table>

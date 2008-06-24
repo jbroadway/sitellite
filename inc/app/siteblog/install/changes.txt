@@ -1,0 +1,41 @@
+New in 2.0.2:
+
+- Compatible with Sitellite's new multilingual capabilities.
+
+New in 2.0.1:
+
+- Added a box chooser option for the full blog.
+- Added the ability to use the box chooser in the blog post editor.
+
+New in 2.0.0:
+
+- Revamped admin interface with new search parameters, clearer form fields and
+  tighter Web View integration.
+- Revamped front-end user interface with more control via CSS and an all-around
+  more intuitive layout.
+- Added CAPTCHA-like security measure to comments to prevent automated spam.
+- Improved comment management with easy IP address banning.
+- New boxes for Latest Posts, Archives, Categories and Calendar in sidebars.
+- New blogroll collection and sidebar box.
+- Automatic pinging of blog directories via pingomatic.com
+- Optional integration with Akismet.com comment spam filtering.
+
+New in 1.0.4:
+
+- Database schema update to comply with Sitellite 4.2.7 -- see the file
+  install/upgrade-1.0.3-1.0.4.sql
+
+New in 1.0.3:
+
+- Added SiteSearch configuration to the siteblog_post collection.
+
+New in 1.0.2:
+
+- Security fixes in editing features preventing members from posting to blogs.
+
+New in 1.0.1:
+
+- Added titles of categories and posts to URLs to improve SEO compatibility
+  out-of-the-box
+- Fixed various other 1.0 quirks
+- See install/upgrade-1.0.0-1.0.1.sql for database schema changes

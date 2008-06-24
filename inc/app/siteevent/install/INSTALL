@@ -1,0 +1,19 @@
+SITEEVENT INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/siteevent/install/install-mysql.sql
+(enter password when prompted)
+
+2. Copy the event collection definition into the cms app:
+
+$ cd /PATH/TO/SITELLITE
+$ cp -R inc/app/siteevent/install/siteevent_event.php inc/app/cms/conf/collections/
+
+3. Link to SiteEvent somewhere on your web site.  SiteEvent can be
+accessed from the following URL (change www.yourWebSite.com to YOUR
+WEB SITE, of course):
+
+http://www.yourWebSite.com/index/siteevent-app
+
+That's all there is to it!

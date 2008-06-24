@@ -1,0 +1,116 @@
+1.0.7
+
+- Fixed broken RSS feeds in PHP5.
+
+1.0.6
+
+- Fixed missing permissions in SiteForum_Post::getLatest() method.
+
+1.0.5
+
+- Long urls posted now automatically wrap after 70 characters.
+
+1.0.4
+
+- Fixed RSS feed links which were causing posts not to appear in threads.
+
+1.0.3
+
+- Re-fixed any references to Org app to point to SiteMember.  Somehow these
+  got overridden with their former values.
+
+1.0.2
+
+- Fixed error-causing default properties.
+
+1.0.1
+
+- Added subject summaries to URLs for improved SEO positioning.
+- Modified sorting so threads with new posts bump up in the listings.  This
+  should improve the useability of SiteForum by encouraging the promotion
+  of active discussions.
+- Fixed any references to Org app to point to SiteMember.
+
+1.0.0
+
+- Added RSS alternate link so browsers can discover SiteForum feeds.
+- Updated properties to use SiteMember for member services.
+- Fixed bug in topic edit form.
+
+0.9.9
+
+- Added sitellite_owner and sitellite_team columns to the siteforum_topic and
+  siteforum_post table.
+
+0.9.8
+
+- Added proper indentation to the <code></code> filter.
+- Made the allowed HTML tags click-able from within the list, which inserts
+  the selected tag into the textarea below.
+
+0.9.7-rc
+
+- Added siteforum/sidebar box, which enables you to add a sidebar to your
+  site displaying the latest forum postings.
+- Fixed the login form when clicking "Quote and reply" (it was dropping
+  the "quote" parameter.
+- Added the ability to go back and edit your own posts.
+- SiteSearch checking now looks for pid file, not just the sitesearch
+  directory.
+- Changed the default name from SiteForum to just Forum.
+- Added forum statistics to the bottom of the siteforum index screen.
+- Added a "Log In" link to the menu (which previously only had "Search" in
+  it) on the index screen ("Start new thread" and "Reply" are adequate on
+  subsequent screens).
+- Added RSS news feeds of the latest posts, or the latest posts within a
+  given topic.
+- Added the ability for non-posters to subscribe to discussion threads.
+- Fixed the page title on thread screens, which was showing the topic
+  name instead of the thread name.  Also removed the "Topic:" from the
+  thread list screens.
+
+0.9.6-rc
+
+- Added HTML highlighting (not just PHP highlighting) by wrapping blocks in
+  <code></code> tags.
+- Added search engine friendly URLs.
+- Many UI improvements.
+- Made the Org app functionality automatically enabled/disabled based on
+  a) whether Org is installed, and b) the user preferences from Org.
+
+0.9.5-rc
+
+- Fixed a bug where the last post date was sometimes missing on the thread
+  list page.
+- Fixed a bug where the thread creator wouldn't be correctly subscribed
+  to their own thread.
+
+0.9.4-beta
+
+- Added permissions to control access based on topics.
+- Permissions are made to work seamlessly with SiteSearch.
+- Added # of posts and date/time of last post to topic index.
+- Adding date/time of last post to thread list screen.
+- Added a configuration option to specify a template to be used by the
+  whole app.  This allows you to more easily provide a separate template
+  for your forums, which often require a wider amount of screen space
+  than usual.
+- Added support for PHP code examples in messages, with proper source
+  highlighting.  Also strips script and onclick-style event attributes
+  to the allowed tags.
+- Adding ability for posters to subscribe to the threads they've posted to,
+  and receive emails on response postings.
+- Post preview function now implemented.
+
+0.9.3-beta
+
+- Added the ability for an administrator to be emailed when posts are made.
+- Added the ability for an administrator to designate posts as "notices".
+
+0.9.2-alpha
+
+- Minor fixes.
+
+0.9.1-alpha
+
+- Initial public release.

@@ -1,0 +1,99 @@
+ABOUT
+
+SiteStreamer lets you create podcasts and m3u playlists in Sitellite.
+Podcasts are audio or video broadcasts sent out in the form of RSS feeds.
+Playlists are the format used by music software such as Winamp or iTunes to
+play a series of files in a row.
+
+CREDITS
+
+SiteStreamer uses the osflv.com Flash video player for playing .flv files.
+
+INSTALLATION
+
+To install SiteStreamer, simply unzip it to a folder named inc/app/sitestreamer
+in your Sitellite installation.  There is no additional setup required, as
+SiteStreamer is just a wrapper around the Web Files content collection in
+Sitellite.
+
+The commands on Unix systems to unzip the file would be:
+
+# Unzip the file
+tar -zxf sitestreamer-1.0.0-stable.tar.gz
+
+# Rename the resulting folder
+mv sitestreamer-1.0.0-stable sitestreamer
+
+# Delete the downloaded file
+rm sitestreamer-1.0.0-stable.tar.gz
+
+USAGE
+
+To create a podcast or playlist, log into Sitellite and go to the Control
+Panel.  From there, under the Content menu choose "Web Files", then click the
+"Add File" link on the next screen.
+
+Click "Browse..." and upload the audio or video file that contains your first
+podcast show.  Next, click "Add" next to the Folder field and create a new
+folder for your podcast files.  Make sure to select the new folder after
+creating it; it will appear in the select box once it's been created.
+
+To ensure that visitors will be able to access the files, click on the "State"
+tab and set the status to "Approved".  Click "Create" at the bottom of the
+form and repeat for any additional files you wish to add to your podcast or
+playlist.  This is also how you will add new shows to your podcast later on.
+
+The next step is to link your podcast or playlist into your website.  The
+easiest way to do this is to use the Xed 2 box chooser.  After installing
+SiteStreamer, Sitellite Pro users will see a new "SiteStreamer" option in
+that dialogue window.  Simply select "SiteStreamer" from the list, then
+either "Podcast" or "Playlist", then fill out any information requested, such
+as the title and folder of the podcast or playlist.  This will create a link
+to the podcast or playlist where the box was inserted into the page.
+
+For users of Sitellite GPL Edition, there are 3 ways to call SiteStreamer
+without Xed 2's box chooser.  These are:
+
+1. Linking directly to the podcast or playlist URLs
+
+The link format to link directly to a podcast is:
+
+http://www.example.com/index/sitestreamer-podcast-action/path.foldername/title.Podcast Name
+
+2. Making a sidebar box an alias of the sitestreamer/podcast box
+
+To do this, create a new sidebar and under the "Properties" tab enter the
+following value into the "Alias" field:
+
+sitestreamer/podcast?title=Podcast Name&path=foldername
+
+3. Linking to the podcast or playlist boxes in an XT template
+
+The format of the XT box inclusion would look like this:
+
+<xt:box name="sitestreamer/podcast" title="Podcast Name" path="foldername" />
+
+That should be all you have to do to get up and running with a new podcast
+or audio stream for your website.
+
+DEVELOPERS
+
+For developers, you can also use the loader_box() function or the {box} tag
+in .spt files to include SiteStreamer capabilities into your custom web
+applications.  For example:
+
+<?php
+
+echo loader_box (
+	'sitestreamer/podcast',
+	array (
+		'title' => 'Podcast Name',
+		'path' => 'foldername',
+	)
+);
+
+?>
+
+And in an .spt file:
+
+{box sitestreamer/podcast?title=Podcast Name&path=foldername}

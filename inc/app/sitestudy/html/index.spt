@@ -1,0 +1,9 @@
+{box cms/buttons/add?collection=sitestudy_item}
+
+{loop obj}
+<div class="sitestudy-item">
+	{box cms/buttons?collection=sitestudy_item&object=[loop]&add=false&float=true}
+	<h2><a href="{site/prefix}/index/sitestudy-app/case.{loop/id}">{loop/client}</a></h2>
+	<p>{loop/description}</p>
+</div>
+{end loop}

@@ -1,0 +1,11 @@
+<dl class="items">
+{loop obj[post]}
+    {box cms/buttons?collection=siteblog_post&add=false&id=[loop/id]&status=approved&access=public&team=none}
+      <dt><a href="{site/prefix}/index/siteblog-view-action/id.{loop/id}/title.{filter siteblog_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a></dt>
+      <dd>{filter none}{loop/body}{end filter}<br /><a href="/index/siteblog-view-action/id.{loop/id}/title.{filter siteblog_filter_link_title}{loop/subject}{end filter}">Read More</a>&nbsp;&nbsp;     {if loop.comments_on eq true}
+    
+  <a href="{site/prefix}/index/siteblog-comment-form/post.{loop/id}">Add comment</a> &nbsp;&nbsp;<a href="{site/prefix}/index/siteblog-view-action/id.{loop/id}/title.{filter siteblog_filter_link_title}{loop/subject}{end filter}">Read Comments ({loop/comments})</a>
+    
+    {end if}</dd>
+{end loop}
+</dl>

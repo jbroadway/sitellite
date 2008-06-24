@@ -1,0 +1,15 @@
+New in 1.0.3:
+
+- Compatible with Sitellite's new multilingual capabilities.
+- Compatible with Sitellite's new lazy-loading menus.
+
+New in 1.0.2:
+
+- Database schema update to comply with Sitellite 4.2.7 -- see the file
+  install/upgrade-1.0.1-1.0.2.sql
+
+New in 1.0.1:
+
+- Added versioning of polls.
+- Enabled polls to work properly with document queueing.
+- For upgrade info, see upgrade-1.0.0-1.0.1.sql in the install folder.

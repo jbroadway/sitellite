@@ -1,0 +1,83 @@
+CREATE TABLE sitepoll_poll (
+	id int not null auto_increment primary key,
+	title char(255) not null,
+	option_1 char(255) not null,
+	option_2 char(255) not null,
+	option_3 char(255) not null,
+	option_4 char(255) not null,
+	option_5 char(255) not null,
+	option_6 char(255) not null,
+	option_7 char(255) not null,
+	option_8 char(255) not null,
+	option_9 char(255) not null,
+	option_10 char(255) not null,
+	option_11 char(255) not null,
+	option_12 char(255) not null,
+	sections char(200) not null,
+	date_added datetime not null,
+	enable_comments enum('yes','no') not null default 'no',
+	sitellite_status varchar(16) NOT NULL default '',
+	sitellite_access varchar(16) NOT NULL default '',
+	sitellite_startdate datetime default NULL,
+	sitellite_expirydate datetime default NULL,
+	sitellite_owner varchar(48) NOT NULL default '',
+	sitellite_team varchar(48) NOT NULL default '',
+	index (date_added, sections, sitellite_status, sitellite_access, sitellite_team)
+);
+
+CREATE TABLE sitepoll_poll_sv (
+	sv_autoid int not null auto_increment primary key,
+	sv_author char(48) not null,
+	sv_action enum('created','modified','republished','replaced','restored','deleted','updated') not null default 'created',
+	sv_revision datetime not null,
+	sv_changelog text not null,
+	sv_deleted enum('yes','no') default 'no',
+	sv_current enum('yes','no') default 'yes',
+	id int not null,
+	title char(255) not null,
+	option_1 char(255) not null,
+	option_2 char(255) not null,
+	option_3 char(255) not null,
+	option_4 char(255) not null,
+	option_5 char(255) not null,
+	option_6 char(255) not null,
+	option_7 char(255) not null,
+	option_8 char(255) not null,
+	option_9 char(255) not null,
+	option_10 char(255) not null,
+	option_11 char(255) not null,
+	option_12 char(255) not null,
+	sections char(200) not null,
+	date_added datetime not null,
+	enable_comments enum('yes','no') not null default 'no',
+	sitellite_status varchar(16) NOT NULL default '',
+	sitellite_access varchar(16) NOT NULL default '',
+	sitellite_startdate datetime default NULL,
+	sitellite_expirydate datetime default NULL,
+	sitellite_owner varchar(48) NOT NULL default '',
+	sitellite_team varchar(48) NOT NULL default '',
+	index (sv_author, sv_action, sv_revision, sv_deleted, sv_current),
+	index (id)
+);
+
+CREATE TABLE sitepoll_vote (
+	id int not null auto_increment primary key,
+	poll int not null,
+	choice int not null,
+	ts datetime not null,
+	ua char(128) not null,
+	ip char(24) not null,
+	index (poll, choice, ts, ua, ip)
+);
+
+CREATE TABLE sitepoll_comment (
+	id int not null auto_increment primary key,
+	poll int not null,
+	user_id char(48) not null,
+	ts datetime not null,
+	ua char(128) not null,
+	ip char(24) not null,
+	subject char(128) not null,
+	body text not null,
+	index (poll, user_id, ts)
+);

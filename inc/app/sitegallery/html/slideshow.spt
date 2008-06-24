@@ -1,0 +1,39 @@
+<script language="javascript" type="text/javascript">
+
+preload (
+	'sitegallery-slide'
+{loop results}
+	,'{site/prefix}/index/cms-filesystem-action?nomenu=1&file={path}/{loop/name}.{loop/extension}'
+{end loop}
+);
+
+var descriptions = new Array ();
+{loop results}
+	descriptions.push ('{loop/description}');
+{end loop}
+
+var num = 1;
+var total = {total};
+
+function sitegallery_rotate () {
+	num++;
+	if (num > total) {
+		num = 1;
+	}
+	document.getElementById ('sitegallery-cutline').innerHTML = descriptions[num - 1];
+	on ('sitegallery-slide', num);
+}
+
+{if obj[delay] gt 1}
+var interval_id = setInterval ('sitegallery_rotate ()', {delay}000);
+{end if}
+
+</script>
+
+<p>
+	<a href="#" onclick="sitegallery_rotate (); return false" title="{intl Click for next image}"><img src="{site/prefix}/index/cms-filesystem-action?file={path}/{first/name}.{first/extension}" alt="" border="0" id="sitegallery-slide" /></a>
+</p>
+
+<p id="sitegallery-cutline" style="clear: both{if obj[desc] eq 'no'}; display: none{end if}">
+	{first/description}
+</p>

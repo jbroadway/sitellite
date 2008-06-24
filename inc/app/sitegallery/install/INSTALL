@@ -1,0 +1,105 @@
+ABOUT
+
+SiteGallery lets you create photo galleries and slideshows in Sitellite.
+SiteGallery uses Web Files or the Image Chooser for storage of the images
+and is simply used for displaying the galleries.
+
+INSTALLATION
+
+To install SiteGallery, simply unzip it to a folder named inc/app/sitegallery
+in your Sitellite installation and run the following command:
+
+chmod -R 777 /path/to/sitellite/inc/app/sitegallery/pix/thumbnails
+
+There is no additional setup required, as SiteGallery is just a wrapper around
+the Web Files content collection in Sitellite.
+
+The commands on Unix systems to unzip the file would be:
+
+# Unzip the file
+tar -zxf sitegallery-1.0.0-stable.tar.gz
+
+# Rename the resulting folder
+mv sitegallery-1.0.0-stable sitegallery
+
+# Delete the downloaded file
+rm sitegallery-1.0.0-stable.tar.gz
+
+USAGE
+
+To create a photo gallery, log into Sitellite and go to the Control
+Panel.  From there, under the Content menu choose "Web Files", then click the
+"Add File" link on the next screen.
+
+Click "Browse..." and upload the first image file.  Next, click "Add" next
+to the Folder field and create a new folder for your photo gallery files.
+Make sure to select the new folder after creating it; it will appear in the
+select box once it's been created.
+
+To ensure that visitors will be able to access the files, click on the "State"
+tab and set the status to "Approved".  Click "Create" at the bottom of the
+form and repeat for any additional files you wish to add to your photo
+gallery.  This is also how you will add new images to your gallery later on.
+
+The next step is to link your photo gallery into your website.  The
+easiest way to do this is to use the Xed 2 box chooser.  After installing
+SiteGallery, Sitellite Pro users will see a new "SiteGallery" option in
+that dialogue window.  Simply select "SiteGallery" from the list, then one of
+the following:
+
+- Gallery from Web Files
+- Gallery from Image Chooser
+- Slideshow from Image Chooser
+- Protected Image
+- Slideshow from Web Files
+
+From here, fill out any information requested by the box you've selected, such
+as the title and folder containing the images.  This will create a box that
+will render your photo gallery or slideshow into the current page.
+
+For users of Sitellite GPL Edition, there are 3 ways to call SiteGallery
+without Xed 2's box chooser.  These are:
+
+1. Linking directly to the podcast or playlist URLs
+
+The link format to link directly to a gallery is:
+
+http://www.example.com/index/sitegallery-pixgallery-action/path.foldername/title.Gallery Name
+
+2. Making a sidebar box an alias of the sitegallery/pixgallery box
+
+To do this, create a new sidebar and under the "Properties" tab enter the
+following value into the "Alias" field:
+
+sitegallery/pixgallery?title=Gallery Name&path=foldername
+
+3. Linking to the photo gallery boxes in an XT template
+
+The format of the XT box inclusion would look like this:
+
+<xt:box name="sitegallery/pixgallery" title="Gallery Name" path="foldername" />
+
+That should be all you have to do to get up and running with a new photo
+gallery or slideshow for your website.
+
+DEVELOPERS
+
+For developers, you can also use the loader_box() function or the {box} tag
+in .spt files to include SiteGallery capabilities into your custom web
+applications.  For example:
+
+<?php
+
+echo loader_box (
+	'sitegallery/pixgallery',
+	array (
+		'title' => 'Gallery Name',
+		'path' => 'foldername',
+	)
+);
+
+?>
+
+And in an .spt file:
+
+{box sitegallery/pixgallery?title=Gallery Name&path=foldername}

@@ -1,0 +1,3 @@
+<p>{intl Error message:} {msg}</p>
+
+<p><a href="{site/prefix}/index/devtools-app">{intl Click here to continue.}</a></p>

@@ -1,0 +1,22 @@
+<h1>Usage</h1>
+
+The scripts provided by devtools live in the inc/app/devtools/bin
+directory, which is inaccessible from the browser window via an
+.htaccess file.&nbsp; These scripts can be called from the
+command-line, or by other programs (including Sitellite apps) through
+system calls.<br />
+<br />
+Executing the tools themselves will return usage information about each tool.&nbsp; For example:<br />
+<br />
+<pre>$ app.sh<br />Usage: app.sh APPNAME</pre>
+<br />
+This tells you that app.sh requires an app name in order to
+run.&nbsp; Running it again, this time giving it an app name, will
+yield the following result instead:<br />
+<br />
+<pre>$ app.sh myapp<br />Your app is ready, sir.</pre>
+<br />
+It will also have created your new app structure in the current working directory, which you can explore via these commands:<br />
+<br />
+<pre>$ ls<br />myapp<br />$ ls myapp/<br />boxes&nbsp; conf&nbsp; data&nbsp; docs&nbsp; forms&nbsp; html&nbsp; install&nbsp; lib&nbsp; pix</pre>
+<br />

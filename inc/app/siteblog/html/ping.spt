@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<methodCall>
+	<methodName>weblogUpdates.ping</methodName>
+		<params>
+			<param><value>{appconf/blog_name}</value></param>
+			<param><value>http://{site/domain}{site/prefix}/index/siteblog-app</value></param>
+		</params>
+</methodCall>

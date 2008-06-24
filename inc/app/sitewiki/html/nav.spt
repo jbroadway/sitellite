@@ -1,0 +1,35 @@
+<form style="display: inline" action="{site/prefix}/index/sitewiki-search-action" method="GET">
+<p class="sitewiki-nav-top">
+	{if obj.id eq 'HomePage'}
+		<span class="home-link-inactive">{intl Home Page}</span> |
+	{end if}
+	{if else}
+		<a href="{site/prefix}/index/sitewiki-app">{intl Home Page}</a> |
+	{end if}
+	{if obj.screen eq 'all'}
+		<span class="home-link-inactive">{intl All Pages}</span> |
+	{end if}
+	{if else}
+		<a href="{site/prefix}/index/sitewiki-all-action" title="{intl Alphabetically sorted list of pages}">{intl All Pages}</a> |
+	{end if}
+	{if obj.screen eq 'revised'}
+		<span class="home-link-inactive">{intl Recently Revised}</span> |
+	{end if}
+	{if else}
+		<a href="{site/prefix}/index/sitewiki-revised-action" title="{intl Pages sorted by when they were last changed}">{intl Recently Revised}</a> |
+	{end if}
+	{if obj.screen eq 'authors'}
+		<span class="home-link-inactive">{intl Authors}</span> |
+	{end if}
+	{if else}
+		<a href="{site/prefix}/index/sitewiki-authors-action" title="{intl Who wrote what}">{intl Authors}</a> |
+	{end if}
+	{if obj.screen eq 'feeds'}
+		<span class="home-link-inactive">{intl Feeds}</span> |
+	{end if}
+	{if else}
+		<a href="{site/prefix}/index/sitewiki-feeds-action" title="{intl Subscribe to changes by RSS}">{intl Feeds}</a> |
+	{end if}
+	<input type="text" name="query" value="Search" style="width: 150px; font-size: 10px" onfocus="if (this.value == 'Search') this.value = ''" onblur="if (this.value == '') this.value = 'Search'" />
+</p>
+</form>

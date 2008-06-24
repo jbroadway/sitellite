@@ -1,0 +1,65 @@
+Usage:
+
+Install into inc/app/webfiles folder.  Access via:
+
+http://www.example.com/index/webfiles-app
+
+Requires a valid Sitellite login.
+
+Status:
+
+Development has been halted, although it is very close to working.
+WebDAV does not seem to be a stable solution for remote file access,
+so we're focusing instead on the Sitellite Desktop and integrating
+that with our own custom REST API for Web Files that supports all
+of the same operations as WebDAV, but which we control at the API
+and design level.  The Web Files REST API will also be easier to
+support and extend with future ideas like versioning, whereas
+the WebDAV versioning extension is ill-supported by the majority
+of popular clients and servers.
+
+Litmus tests:
+
+- basic 15/15 passed
+- copymove 13/13 passed
+- props 22/30 passed (not officially supporting custom properties)
+- locks 20/30 passed (they do seem to be working correctly via cadaver)
+- http 4/4 passed
+
+Clients:
+
+Cadaver
+
+- No known issues
+
+Transmit
+
+- No known issues
+
+OSX
+
+- "File already exists" error on PUT for any uppercase file names.
+  Results in a zero-byte file uploaded.  In Web Files, names are
+  changed to lowercase because MySQL select is case-insensitive
+  and Web Files depends on that for versioning and other features.
+- Stores dot-files outside of Web Files collection, just in the
+  filesystem, so they don't pollute the file list for other users.
+
+Windows
+
+- Not thoroughly tested, but the only known issue is direct editing
+  fails (edit through a program or right-click to open).  Download,
+  drag 'n' drop, upload, etc. all work fine.
+- Make sure to connect using dav@ to specify username or Windows will
+  revert to an unsupported authentication scheme.  Still had to go
+  through the username/password prompt 3 times before it took (same
+  creds each time, *sigh*).
+
+Webdrive (3rd party Windows client)
+
+- No known issues
+
+Misc:
+
+- Not yet tested with https
+- Copy/move folders only goes 2 levels, not recursive

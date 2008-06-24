@@ -1,0 +1,35 @@
+<style type="text/css">
+
+div#sitegallery-image {
+	width: {php appconf ('thumbnail_width') plus 30}px;
+	float: left;
+}
+
+div#sitegallery-image img {
+	padding-bottom: 30px;
+}
+
+{if obj[desc] eq 'no'}
+div#sitegallery-image p {
+	display: none;
+}
+{end if}
+
+</style>
+
+{loop results}
+	<div id="sitegallery-image">
+		<a href="{site/prefix}/index/cms-filesystem-action?nomenu=1&file={path}/{loop/name}.{loop/extension}" target="_blank"
+			rel="lightbox[{path}]"
+			{if obj[desc] ne 'no'} title="{loop/display_title}"{end if}>
+		<img src="{loop/src}" alt="" border="0"
+			width="{appconf/thumbnail_width}"
+			height="{appconf/thumbnail_height}"
+		/></a>
+		<p>
+			{loop/display_title}
+		</p>
+	</div>
+{end loop}
+
+<br clear="all" />

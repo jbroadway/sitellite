@@ -1,0 +1,24 @@
+Installing Ysearch
+
+1. Unpack the Ysearch download into your inc/app folder.  On Unix you would
+use the following commands:
+
+cp ysearch-1.0.0-stable.tar.gz /PATH/TO/SITELLITE/inc/app
+tar -zxf ysearch-1.0.0-stable.tar.gz
+mv ysearch-1.0.0-stable ysearch
+
+2. Open the file inc/app/ysearch/conf/properties.php and enter the website
+domain to be searched.  You can search up to 10 sites.  If you just have one
+site to search, enter it in like the following example:
+
+appconf_set ('site', 'www.example.com');
+
+If you have multiple sites, you can specify them as an array like this:
+
+appconf_set ('site', array ('www.site1.com', 'www.site2.com', 'www.site3.com'));
+
+When you're done, save the properties.php file and close it.
+
+3. Somewhere on your website, you will now need to link to the address
+/index/ysearch-app  Alternately, you can use the box chooser in Sitellite
+Professional Edition to embed Ysearch into an existing page.

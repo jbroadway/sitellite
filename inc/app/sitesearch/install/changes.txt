@@ -1,0 +1,116 @@
+Changes in 2.0.1
+
+- Fixed a database schema issue with newer versions of MySQL.
+- Fixed a minor bug in search term highlighting.
+
+Changes in 2.0.0
+
+- Removed Java requirement and replaced the server daemon with Zend_Search.
+- Added team permissions to search results.
+
+Changes in 1.4.1
+
+- Skips unknown extensions in folder parsing.
+- Fixed bug causing folder parsing to fail.
+
+Changes in 1.4.0
+
+- Rewrote the document extraction package to make it easier to add new content
+  types to the system.
+- Fixed several issues with the extraction of binary character data.
+- Improved the PDF importer by using the fpdf and fpdi libraries.
+- Improved the extraction code for Microsoft Office documents.
+- Improved the error messages in the indexer for easier debugging.
+- Fixed a bug causing a 'couldn't delete CVS' error on the initial startup.
+
+Changes in 1.2.1
+
+- Fixed problem running java/restart.sh via cron
+
+Changes in 1.2.0
+
+- Fixed Java path in java/compile.sh
+- Fixed permissions on java/restart.sh
+- Fixed a bug causing the deletion of records from the index not to be
+  reflected in the search results until the SiteSearch daemon was restarted.
+- Added workflow services to automatically add, update, and delete records
+  from the SiteSearch index when documents are added or modified in
+  Sitellite.  This keeps the SiteSearch index 100% in sync with the
+  live web site at all times.
+
+Changes in 1.0.0
+
+- Added support for the OpenSearch RSS extension.
+
+Changes in 0.9.6-rc
+
+- Patched Conf.java to allow SiteSearch to work with Java 1.3, since
+  String.split() is new to 1.4 -- thanks to Oliver for the patch!
+- Fixed an invalid object request in the IXR code that caused blank
+  pages when the server is stopped.
+- Updated several of the PEAR packages used, including Net/Socket,
+  Net/URL, and HTTP/Request.
+
+Changes in 0.9.5-rc
+
+- Moved importing filters to a global location.  This was causing the
+  descriptions to disappear.
+- Added script, running.sh, that can be called by cron to check the status
+  of the SiteSearch daemon, and auto-restart it if necessary.
+- Fixed missing methods in the new IXR 2.0 package.
+- Fixed a bug causing the pager to break the search results.
+- Added the following characters to the escape list: +-^~.
+
+Changes in 0.9.4-rc
+
+- Upgraded the XML-RPC client to the new "Unofficial" IXR 2.0 from
+  phppatterns.com, which solved an error I was occasionally getting
+  on my development copy (although I'd never seen in on the live sites,
+  but better safe than sorry).
+- Added a new domains field to the server, allowing you to potentially
+  hook up multiple Sitellite sites to the same server by using the same
+  settings for each of them.
+- Added domain and content type to the logger, and added both of them
+  also to the admin stats UI.
+- Added a syntax field in the search result metadata, so that you can
+  inspect the actual query used by the server.
+- Added the syntax to the search accessor in the admin UI.
+- Server now properly handles special characters: ![](){}:
+
+Changes in 0.9.3-rc
+
+- Fixed a "division by zero" error when viewing the stats page after the
+  indexer has been run, but before any searches have been performed.
+- Added a built-in mime type list, so that you're not dependent on the
+  new mime_content_type() function, or the workaround to it using
+  `file -bi $filename`, which is flaky.
+- Added link for administrators to view the results of a given search from
+  the stats page, without it altering the stats by performing the search.
+
+Changes in 0.9.2-rc
+
+- Added content extractor for files.  Handles the following types out of the
+  box: Word, Excel, Powerpoint, PDF, vCard, iCal, RTF, HTML, XML, MP3, and
+  Photoshop (PSD) files.
+- Added bold-ing of search terms in search results.
+- Added new documentation:
+  - A note to explain how to make highlighting display (CSS for
+    span.highlighted)
+  - An explanation of the extractor.
+  - An overview of the XML-RPC API.
+  - FAQ for common problems.
+- Improved the security of the server by requiring the keyCode in all
+  proper places.
+- Added a new script, restart.sh, for restarting the server.
+- Added total and average at the bottom of the "Total Searches" stats.
+- Changed date formats to display full month names instead of abbreviations.
+- Added checking for a sitesearch_access setting in collection config files,
+  allowing collections to be restricted from public access.
+- Added RSS syndication of search results.  This, plus news/rss/viewer,
+  or some custom code based on news/rss/viewer, could make for a powerful
+  "Related Forum Posts" or "Related News Stories" feature, or just a new
+  way of syndicating your web site content.
+- Added checking for a sitesearch_highlight setting in collection config
+  files, allowing collections to determine whether they provide highlighting
+  support or not.  Default is that they DO.
+- Added ctype to the search result property list.

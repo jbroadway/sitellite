@@ -1,0 +1,16 @@
+A message has been posted to the {site/domain} forum in the thread:
+
+{site/url}/index/siteforum-list-action/post.{post}/topic.{topic}
+
+User ID: {session/username}
+Subject: {subject}
+Message:
+
+{filter siteforum_filter_body_email}{body}{end filter}
+
+--
+
+If you wish to unsubscribe to this forum thread, please click on
+the following link:
+
+{site/url}/index/siteforum-unsub-action?post={post}&user={user_id}

@@ -1,0 +1,14 @@
+TIME TRACKER INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/timetracker/install/install-mysql.sql
+(enter password when prompted)
+
+You can now access Time Tracker under Control Panel > Tools > Time Tracker
+or directly via the following URL (change www.yourWebSite.com to YOUR
+WEB SITE, of course):
+
+http://www.yourWebSite.com/index/timetracker-app
+
+That's all there is to it!

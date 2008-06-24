@@ -1,0 +1,9 @@
+A comment has been made on the poll:
+
+{site/url}/index/sitepoll-results-action/poll.{poll}
+
+User ID: {user_id}
+Subject: {subject}
+Message:
+
+{body}

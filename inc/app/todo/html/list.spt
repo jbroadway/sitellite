@@ -1,0 +1,74 @@
+<style type="text/css">
+
+.priority-normal {}
+
+.priority-high {
+	font-weight: bold;
+}
+
+.priority-urgent {
+	font-weight: bold;
+	color: #900;
+}
+
+.todo-info {
+	color: #666;
+}
+
+.todo-even {
+	background: #e9e9e9;
+}
+
+.todo-odd {
+	background: #fff;
+}
+
+td {
+	line-height: 13px;
+}
+
+</style>
+
+<p><a href="/index/todo-add-form?pp={cgi/pp}&proj={cgi/proj}">Add Items</a></p>
+
+{alt even odd}
+
+{if count (obj[todo]) gt 0}
+<form method="post" action="/index/todo-done-action">
+<input type="hidden" name="pp" value="{cgi/pp}" />
+<input type="hidden" name="proj" value="{cgi/proj}" />
+<input type="hidden" name="qq" value="{cgi/qq}" />
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+{loop obj[todo]}
+	<tr class="todo-{alt/next}">
+		<td width="20" align="center" valign="top"><input type="checkbox" name="done[]" value="{loop/id}" /></td>
+		<td width="40" align="center" valign="top"><a href="/index/todo-edit-form?id={loop/id}&pp={cgi/pp}&proj={cgi/proj}">Edit</a></td>
+		<td valign="top">&nbsp;<span class="priority-{loop/priority}">{loop/todo}</span>
+	{if empty (obj[proj]) or empty (obj[pp])}
+		<br />&nbsp;<span class="todo-info"><a href="/index/todo-app?proj={cgi/proj}&pp={loop/person}">{loop/person}</a>, <a href="/index/todo-app?pp={cgi/pp}&proj={loop/project}">{loop/project}</a></span>
+	{end if}</td>
+	</tr>
+{end loop}
+</table>
+
+<p><input type="submit" name="do" value="All" onclick="return confirm ('Mark all as done -- are you sure?')" /> &nbsp; <input type="submit" name="do" value="Done" onclick="return confirm ('Mark selected as done -- are you sure?')" /></p>
+</form>
+{end if}
+
+{if count (obj[done]) gt 0}
+<h2>Done</h2>
+
+{alt even odd}
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+{loop obj[done]}
+	<tr class="todo-{alt/next}">
+		<td valign="top" width="150" align="center">&nbsp;{filter todo_filter_done}{loop/done}{end filter}&nbsp;</td>
+		<td valign="top" align="center">&nbsp;{loop/person}&nbsp;</td>
+		<td valign="top" align="center">&nbsp;{loop/project}&nbsp;</td>
+		<td valign="top">&nbsp;{loop/todo}&nbsp;</td>
+	</tr>
+{end loop}
+</table>
+{end if}

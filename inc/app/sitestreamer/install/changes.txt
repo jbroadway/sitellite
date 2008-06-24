@@ -1,0 +1,8 @@
+New in 1.0.2
+
+- Added the osflv.com video player for .flv files
+
+New in 1.0.1
+
+- Added width/height to video embed box
+- Added separate audio embed box

@@ -1,0 +1,14 @@
+DEADLINES INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/deadlines/install/install-mysql.sql
+(enter password when prompted)
+
+You can now access Deadlines under Control Panel > Tools > Deadlines or
+directly via the following URL (change www.yourWebSite.com to YOUR
+WEB SITE, of course):
+
+http://www.yourWebSite.com/index/sitestudy-app
+
+That's all there is to it!

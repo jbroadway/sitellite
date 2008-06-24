@@ -1,0 +1,23 @@
+0. Requirements:
+
+SiteForum relies on the Org app, which is currently available via anonymous CVS
+access from sitellite.org.  Additionally, for search capabilities, SiteForum
+relies entirely on SiteSearch, which is used automatically if it is found
+installed on your web site.  If not, your SiteForum will have no search
+capabilities.
+
+1. Create the necessary database tables with the following commands:
+
+$ cd /PATH/TO/SITELLITE
+$ mysql -p -u USER DBNAME < inc/app/siteforum/install/install-mysql.sql
+(enter password when prompted)
+
+2. Install siteforum_post collection into the CMS, enabling SiteSearch
+to index your forum.
+
+$ cp inc/app/siteforum/install/siteforum_post.php inc/app/cms/conf/collections/
+
+3. You are now ready to load your new forum by linking to:
+
+http://www.yourWebSite.com/index/siteforum-app
+

@@ -1,0 +1,5 @@
+<!-- $Id: xml_parser_simple2.xml,v 1.1 2005/07/02 21:12:31 lux Exp $ -->
+<package>
+    <category>XML</category>
+    <name>XML_Parser</name>
+</package>

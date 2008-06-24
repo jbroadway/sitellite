@@ -1,0 +1,5 @@
+<p>{intl Your comment has been deleted.}</p>
+
+<p>
+	<a href="{site/prefix}/index/sitepoll-results-action/poll.{poll}">{intl Back to the Poll}</a>
+</p>

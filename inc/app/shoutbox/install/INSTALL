@@ -1,0 +1,23 @@
+SHOUTBOX INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/shoutbox/install/install-mysql.sql
+(enter password when prompted)
+
+2. Include the Shoutbox somewhere on your web site.  There are three ways of
+doing this:
+
+a) Create a new sidebar, click the Properties tab and enter "shoutbox/display"
+under the Alias field.
+
+b) Link to the following URL (change www.yourWebSite.com to YOUR WEB SITE,
+of course):
+
+http://www.yourWebSite.com/index/shoutbox-app
+
+c) For Sitellite Professional users, create a new sidebar or web page and
+click the Box Chooser in Xed.  Select "Shoutbox" then "Display Shoutbox".
+Save your page or sidebar and you will see the Shoutbox in it.
+
+That's all there is to it!

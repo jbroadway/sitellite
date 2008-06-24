@@ -1,0 +1,17 @@
+TODO INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/todo/install/install-mysql.sql
+(enter password when prompted)
+
+2. Configure the To Do app by modifying the settings in the
+conf/properties.php file.
+
+3. You can use To Do either from within the Sitellite Control Panel
+or by accessing it directly at the following URL (change www.yourWebSite.com
+to YOUR WEB SITE, of course):
+
+http://www.yourWebSite.com/index/todo-app
+
+That's all there is to it!

@@ -1,0 +1,41 @@
+CREATE TABLE sitestudy_item (
+	id int not null auto_increment primary key,
+	client char(72) not null,
+	problem text not null,
+	solution text not null,
+	sort_weight int not null,
+	keywords  text not null,
+	description text not null,
+	sitellite_status char(16) not null,
+	sitellite_access char(16) not null,
+	sitellite_startdate datetime,
+	sitellite_expirydate datetime,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (sort_weight, client, sitellite_status, sitellite_access, sitellite_owner, sitellite_team)
+);
+
+CREATE TABLE sitestudy_item_sv (
+	sv_autoid int not null auto_increment primary key,
+	sv_author char(48) not null,
+	sv_action enum('created','modified','republished','replaced','restored','deleted') not null default 'created',
+	sv_revision datetime not null,
+	sv_changelog text not null,
+	sv_deleted enum('yes','no') default 'no',
+	sv_current enum('yes','no') default 'yes',
+	id int not null,
+	client char(72) not null,
+	problem text not null,
+	solution text not null,
+	sort_weight int not null,
+	keywords  text not null,
+	description text not null,
+	sitellite_status char(16) not null,
+	sitellite_access char(16) not null,
+	sitellite_startdate datetime,
+	sitellite_expirydate datetime,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (sv_author, sv_action, sv_revision, sv_deleted, sv_current),
+	index (id, sitellite_status, sitellite_access, sitellite_owner, sitellite_team)
+);

@@ -1,0 +1,67 @@
+{alt #ffffff #eeeeee}
+
+<p>
+	<a href="{site/prefix}/index/timetracker-entry-add-form/project.{project}">{intl Add Entry}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/timetracker-app">{intl Back}</a>
+</p>
+
+<h2>{intl Project Description}</h2>
+
+<p>{project_description}</p>
+
+<h2>{intl Monthly Summary}</h2>
+
+<!-- display last/next year links -->
+<p>
+	<table border="0" width="100%">
+		<tr>
+			<td width="33%">&lt;&lt;&nbsp;
+				<a href="{site/prefix}/index/timetracker-project-action/project.{project}/month.{prevMonth}/year.{prevYear}">{prevMonthShow}</a>
+			</td>
+			<td width="34%" align="center">
+				<strong>{currMonth}</strong>
+			</td>
+			<td width="33%" align="right">
+{if obj[nextMonth] le date ('m')}
+				<a href="{site/prefix}/index/timetracker-project-action/project.{project}/month.{nextMonth}/year.{nextYear}">{nextMonthShow}</a>
+				&nbsp;&gt;&gt;
+{end if}
+			</td>
+		</tr>
+	</table>
+</p>
+
+<p>
+<table cellpadding="3" width="100%">
+	<tr class="topheader">
+		<th rowspan="2" width="20%">{intl Employee}</th>
+		<th colspan="{php count (obj[weeks])}" width="50%">{intl Weeks}</th>
+		<th rowspan="2" width="15%">{intl Month}</th>
+		<th rowspan="2" width="15%">{intl Total}</th>
+	</tr>
+	<tr>
+		{loop obj[weeks]}
+			<th class="subheader" width="10%">{loop/_index}</th>
+		{end loop}
+	</tr>
+	{loop obj[employees]}
+		<tr bgcolor="{alt/next}">
+			<td><strong>{filter timetracker_filter_username}{loop/username}{end filter}</strong></td>
+			{loop loop.weeks}
+				<td align="right">{loop/_value}</td>
+			{end loop}
+			<td align="right">{loop/month}</td>
+			<td align="right">{loop/total}</td>
+		</tr>
+	{end loop}
+	<tr class="topheader">
+		<th>{intl Total Hours}</th>
+		{loop obj[weeks]}
+			<th align="right" class="subheader">{loop/total}</th>
+		{end loop}
+		<th align="right" class="subheader">{month_total}</th>
+		<th align="right" class="subheader">{grand_total}</th>
+	</tr>
+</table>
+</p>

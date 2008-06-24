@@ -1,0 +1,230 @@
+/* General style */
+
+table.siteevent-details tr td p {
+	margin: 0px !important;
+	padding: 0px !important;
+	padding-bottom: 15px !important;
+}
+
+p.siteevent-categories {
+	background-color: #eee;
+	border: 1px solid #ddd;
+	padding: 5px;
+}
+
+p.siteevent-views {
+}
+
+/* SimpleCal calendar style */
+
+table.simplecal td.full {
+	border-top: 1px solid #ddd;
+}
+
+table.simplecal {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	table-layout: fixed;
+}
+
+table.simplecal a:hover {
+	text-decoration: underline;
+}
+
+table.simplecal td.previous-month {
+	border: 1px solid #fff;
+	text-align: left;
+	margin: 0px;
+	padding: 0px;
+	padding-left: 3px;
+	font-size: 13px;
+}
+
+table.simplecal td.previous-month:hover {
+}
+
+
+table.simplecal td.next-month {
+	border: 1px solid #fff;
+	text-align: right;
+	margin: 0px;
+	padding: 0px;
+	padding-right: 3px;
+	font-size: 13px;
+}
+
+table.simplecal td.next-month:hover {
+}
+
+table.simplecal td.current-month {
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px;
+	color: #444;
+	font-size: 16px;
+	height: 40px;
+	vertical-align: middle;
+}
+
+table.simplecal tr.day-headings td {
+	color: #fff;
+	background-color: #444;
+	font-weight: normal;
+	width: 20px;
+	padding: 3px;
+	padding-bottom: 0px;
+}
+
+table.simplecal td.day {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	color: #000;
+	padding-bottom: 0px;
+	min-height: 75px;
+	width: 14%;
+}
+
+table.simplecal td.weekend-day {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	color: #000;
+	padding-bottom: 0px;
+	min-height: 75px;
+	width: 14%;
+}
+
+table.simplecal td.inactive {
+	border: 1px solid #ddd;
+	background: #eee;
+	padding-bottom: 0px;
+	width: 14%;
+	height: 75px;
+}
+
+table.simplecal td.current-day {
+	color: #000;
+	border: 1px solid #ddd;
+	background-color: #ffd;
+	padding-bottom: 0px;
+	width: 14%;
+	height: 75px;
+}
+
+table.simplecal span.day-date {
+	min-height: 75px;
+	height: 100%;
+	width: 20%;
+	vertical-align: top;
+	display: block;
+	float: left;
+	font-weight: bold;
+}
+
+table.simplecal span.day-links {
+	min-height: 75px;
+	height: 100%;
+	width: 80%;
+	vertical-align: top;
+	display: block;
+	float: right;
+}
+
+table.simplecal a.link {
+	font-weight: normal;
+}
+
+table.simplecal a.link:hover {
+	text-decoration: underline;
+}
+
+table.simplecal a.link-important {
+	font-weight: bold;
+}
+
+table.simplecal a.link-important:hover {
+	text-decoration: underline;
+}
+
+/* MiniCal calendar style */
+
+table.minical {
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+
+table.minical a:hover {
+	text-decoration: none;
+}
+
+table.minical td.previous-month {
+	font-size: 14px;
+	border: 1px solid #fff;
+}
+
+table.minical td.previous-month:hover {
+	border: 1px solid #ccc;
+}
+
+table.minical td.next-month {
+	font-size: 14px;
+	border: 1px solid #fff;
+}
+
+table.minical td.next-month:hover {
+	border: 1px solid #ccc;
+}
+
+table.minical td.current-month {
+	font-weight: normal;
+	color: #444;
+}
+
+table.minical tr.day-headings td {
+	color: #fff;
+	background-color: #444;
+	font-weight: normal;
+	width: 20px;
+	padding-bottom: 0px;
+}
+
+table.minical td.day {
+	text-align: center;
+	color: #000;
+	border: 1px solid #ccc;
+	padding-bottom: 0px;
+}
+
+table.minical td.weekend-day {
+	text-align: center;
+	color: #000;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	padding-bottom: 0px;
+}
+
+table.minical td.weekend-day:hover {
+	border: 1px solid #777;
+}
+
+table.minical td.inactive {
+	text-align: center;
+	border: 1px solid #ddd;
+	background: #eee;
+	padding-bottom: 0px;
+}
+
+table.minical td.day:hover {
+	border: 1px solid #777;
+}
+
+table.minical td.current-day {
+	text-align: center;
+	color: #000;
+	border: 1px solid #ccc;
+	background-color: #ddd;
+	padding-bottom: 0px;
+}
+
+table.minical td.current-day:hover {
+	border: 1px solid #777;
+}

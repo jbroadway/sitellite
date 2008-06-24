@@ -1,0 +1,1 @@
+<img src="/inc/app/deadlines/pix/icons/{type}.gif" border="0" alt="{filter ucfirst}{type}" title="{type}{end filter}" /> <a href="/index/deadlines-edit-form?id={id}" class="link-{class}" alt="{project} - {details}" title="{project} - {details}">{title}</a><br />

@@ -1,0 +1,20 @@
+PETITION INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/petition/install/install-mysql.sql
+(enter password when prompted)
+
+2. Copy the petition collection definition into the cms app:
+
+$ cd /PATH/TO/SITELLITE
+$ cp -R inc/app/petition/install/petition.php inc/app/cms/conf/collections/
+
+3. Configure the application settings in the file
+inc/app/petition/conf/properties.php
+
+4. Create a new petition by logging into Sitellite and going to
+Control Panel > Content > Petitions
+
+5. Link to /index/petition-app or use the box chooser to embed the petition
+into a web page.

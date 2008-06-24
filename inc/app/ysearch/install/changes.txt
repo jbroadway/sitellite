@@ -1,0 +1,15 @@
+1.0.3
+
+- Added the ability to filter result titles for repeating prefixes such as
+  website names
+
+1.0.2
+
+- Fixed a problem with embedding Ysearch into pages
+
+1.0.1
+
+- Minor output changes
+- Fixed missing urlencode call
+- Highlighting terms in results
+- Added attribution link to Yahoo

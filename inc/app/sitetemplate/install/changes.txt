@@ -1,0 +1,20 @@
+New in 1.0.4:
+
+- Switched from using hermish.com to 'Cynthia Says' from contentquality.com
+  for accessibility testing.
+- Added installation instructions.
+
+New in 1.0.3:
+
+- Fixed compatiblity with the new Imagechooser changes in Sitellite 4.2.3,
+  which allow Imagechooser to be used multiple times on a single screen.
+
+New in 1.0.2:
+
+- Misc bug fixes
+
+New in 1.0.1:
+
+- Added wizards for selecting boxes, variables, special characters, images,
+  and links (if Xed 2 is available).
+- Miscellaneous blank template set fixes.

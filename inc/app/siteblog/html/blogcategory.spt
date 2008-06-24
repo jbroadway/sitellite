@@ -1,0 +1,1 @@
+<h2><a href="/index/siteblog-view-action/category.{id}/head.on/title.{filter siteblog_filter_link_title}{category}{end filter}">{category}:</a></h2>

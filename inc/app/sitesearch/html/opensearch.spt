@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearchdescription/1.0/">
+  <Url>http://{site/domain}{site/prefix}/index/sitesearch-rss-action?query={searchTerms}&amp;osoffset={startPage}</Url>
+  <Format>http://a9.com/-/spec/opensearchrss/1.0/</Format>
+  <ShortName>{site/domain}</ShortName>
+  <LongName>{site/domain}</LongName>
+  <Description>Search {site/domain}.</Description>
+  <Tags> </Tags>
+  <Developer>Simian Systems Inc.</Developer>
+  <Contact>webmaster@{site/domain}</Contact>
+  <Attribution>Search data &amp;copy; 2005, {site/domain},
+   All Rights Reserved</Attribution>
+  <SyndicationRight>limited</SyndicationRight>
+  <AdultContent>false</AdultContent>
+</OpenSearchDescription>

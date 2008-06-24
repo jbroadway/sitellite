@@ -1,0 +1,27 @@
+<p>
+	<a href="javascript: window.location.href = '{site/prefix}/index/sitetemplate-templateselect-action?set_name={location}'">{intl Back}</a>
+</p>
+
+{if obj[err]}
+	<p class="err">{err}</p>
+{end if}
+
+<form method="post" action="{site/prefix}/index/sitetemplate-newimage-action" enctype="multipart/form-data">
+<table cellspacing="0">
+	<tr>
+		<td>{intl Find the file}</td>
+		<td><input type="file" name="file" /></td>
+	</tr>
+	<tr>
+		<td>{intl Save as}<br />({intl leave blank for current name})</td>
+		<td valign="top"><input type="text" name="filename" value="{cgi/filename}" /></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" value="{intl Add File}" /></td>
+	</tr>
+</table>
+<input type="hidden" name="format" value="{cgi/format}" />
+<input type="hidden" name="location" value="{location}" />
+<input type="hidden" name="attrs" value="{cgi/attrs}" />
+</form>

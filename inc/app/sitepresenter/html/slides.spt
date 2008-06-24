@@ -1,0 +1,65 @@
+{alt #eee #fff}
+
+<style type="text/css">
+
+div.slide {
+	float: left;
+	border: 1px solid #aaa;
+	font-size: 8px;
+	overflow: hidden;
+	height: 200px;
+	width: 200px;
+	margin: 5px;
+	margin-left: 0px;
+	margin-right: 10px;
+	padding: 5px;
+	padding-left: 10px;
+	background: #eee;
+}
+
+div.slide img {
+	width: 100px !important;
+	height: 100px !important;
+}
+
+div.slide div.toolbar img {
+	width: 18px !important;
+	height: 18px !important;
+}
+
+</style>
+
+<p>
+	<a href="{site/prefix}/index/cms-browse-action?collection=sitepresenter_presentation">{intl Back}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitepresenter-add-slide-form?presentation={id}">{intl Add Slide}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitepresenter-presentation-action?id={id}" target="_blank">{intl Run Presentation}</a>
+</p>
+
+<p>
+{loop obj.slides}
+		<div class="slide">
+			<div style="float: right" class="toolbar">
+				<a href="{site/prefix}/index/sitepresenter-edit-slide-form?id={loop/id}"><img
+					src="{site/prefix}/inc/app/cms/pix/icons/edit.gif"
+					alt="{intl Edit Slide}"
+					title="{intl Edit Slide}"
+					border="0"
+				/></a>
+				&nbsp;
+				<a href="{site/prefix}/index/sitepresenter-delete-slide-action?slide={loop/id}&presentation={id}"
+					onclick="return confirm ('{intl Are you sure you want to delete this slide?}')"><img
+					src="{site/prefix}/inc/app/cms/pix/icons/delete.gif"
+					alt="{intl Delete Slide}"
+					title="{intl Delete Slide}"
+					border="0"
+				/></a>
+			</div>
+			<h2>{loop/number}. {loop/title}</h2>
+			{filter none}{loop/body}{end filter}
+		</div>
+{end loop}
+</p>
+
+<br clear="both" />

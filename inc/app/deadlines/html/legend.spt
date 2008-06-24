@@ -1,0 +1,37 @@
+<style type="text/css">
+
+{loop obj}
+table.simplecal a.link-{loop/_key} {
+	color: {loop/_value} ! important;
+	font-weight: normal ! important;
+	text-decoration: none;
+}
+{end loop}
+
+</style>
+
+<div style="float: right; width: 40%">
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top" width="40%">
+			<strong>Types</strong><br /><br />
+			<img src="/inc/app/deadlines/pix/icons/beta.gif" border="0" alt="Beta" /> Beta<br /><br />
+			<img src="/inc/app/deadlines/pix/icons/deadline.gif" border="0" alt="Deadline" /> Deadline<br /><br />
+			<img src="/inc/app/deadlines/pix/icons/meeting.gif" border="0" alt="Meeting" /> Meeting<br /><br />
+			<img src="/inc/app/deadlines/pix/icons/milestone.gif" border="0" alt="Milestone" /> Milestone<br /><br />
+			<img src="/inc/app/deadlines/pix/icons/report.gif" border="0" alt="Report" /> Report<br /><br />
+		</td>
+		<td valign="top">
+			<strong>Projects</strong><br /><br />
+{loop obj}
+<div style="color: {loop/_value}; font-weight: normal; padding-bottom: 15px; float: left; width: 49%">{filter deadlines_filter_class_name}{loop/_key}{end filter}</div>
+{end loop}
+
+		</td>
+	</tr>
+</table>
+</div>
+
+<p><a href="/index/deadlines-add-form">Add Item</a></p>
+
+<br style="clear: both" />

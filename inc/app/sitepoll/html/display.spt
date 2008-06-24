@@ -1,0 +1,56 @@
+{if not obj.action}
+<p>
+	<strong>{title}</strong>
+</p>
+{end if}
+
+<form method="post" action="{site/prefix}/index/sitepoll-vote-action">
+<input type="hidden" name="poll" value="{id}" />
+
+<p>
+	{if not empty (obj.option_1)}
+	<input type="radio" name="option" value="1" /> {option_1}<br />
+	{end if}
+	{if not empty (obj.option_2)}
+	<input type="radio" name="option" value="2" /> {option_2}<br />
+	{end if}
+	{if not empty (obj.option_3)}
+	<input type="radio" name="option" value="3" /> {option_3}<br />
+	{end if}
+	{if not empty (obj.option_4)}
+	<input type="radio" name="option" value="4" /> {option_4}<br />
+	{end if}
+	{if not empty (obj.option_5)}
+	<input type="radio" name="option" value="5" /> {option_5}<br />
+	{end if}
+	{if not empty (obj.option_6)}
+	<input type="radio" name="option" value="6" /> {option_6}<br />
+	{end if}
+	{if not empty (obj.option_7)}
+	<input type="radio" name="option" value="7" /> {option_7}<br />
+	{end if}
+	{if not empty (obj.option_8)}
+	<input type="radio" name="option" value="8" /> {option_8}<br />
+	{end if}
+	{if not empty (obj.option_9)}
+	<input type="radio" name="option" value="9" /> {option_9}<br />
+	{end if}
+	{if not empty (obj.option_10)}
+	<input type="radio" name="option" value="10" /> {option_10}<br />
+	{end if}
+	{if not empty (obj.option_11)}
+	<input type="radio" name="option" value="11" /> {option_11}<br />
+	{end if}
+	{if not empty (obj.option_12)}
+	<input type="radio" name="option" value="12" /> {option_12}<br />
+	{end if}
+</p>
+
+<p align="center">
+	{if obj.voted eq 0}
+		<input type="submit" value="{intl Vote}" /> &nbsp; &nbsp;
+	{end if}
+	<input type="submit" value="{intl Results}" onclick="this.form.action = '{site/prefix}/index/sitepoll-results-action'" />
+</p>
+
+</form>

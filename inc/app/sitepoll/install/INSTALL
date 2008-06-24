@@ -1,0 +1,16 @@
+SITEPOLL INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/sitepoll/install/install-mysql.sql
+(enter password when prompted)
+
+2. Copy the poll collection definition into the cms app:
+
+$ cd /PATH/TO/SITELLITE
+$ cp -R inc/app/sitepoll/install/sitepoll_poll.php inc/app/cms/conf/collections/
+
+3. Call sitepoll/display in your templates and/or sidebars, and create some
+polls.
+
+That's all there is to it!

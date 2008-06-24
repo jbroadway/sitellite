@@ -1,0 +1,72 @@
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc.js"> </script>
+<script language="javascript" type="text/javascript">
+
+var rpc = new rpc ();
+
+var digger = {
+        url: '{site/prefix}/index/digger-rpc-action',
+
+        vote: function(score, id) {
+                var hscore = score;
+                var hid = id;
+                rpc.call (
+                        this.url + '?method=vote&score=' + score + '&id=' + id,
+                        function (request) {
+                                id = hid;
+                                if (hscore == 'yes') {
+                                        score = 1;
+                                } else {
+                                        score = -1;
+                                }
+                                document.getElementById('digger-votebox-' + id).style.display = 'none';
+                                document.getElementById('digger-score-' + id).childNodes[0].nodeValue = parseInt(document.getElementById('digger-score-' + id).childNodes[0].nodeValue) + score;
+                                if (parseInt(document.getElementById('digger-score-' + id).childNodes[0].nodeValue) <= {banned_score}) {
+                                        document.getElementById('digger-item-' + id).style.display = 'none';
+                                }
+                        }
+                );
+
+                return false;
+        }
+}
+
+</script>
+
+{loop obj[story]}
+<div class="digger-item" id="digger-item-{loop/id}">
+	{box cms/buttons?collection=digger_linkstory&status=approved&access=public&team=none&float=true&id=[loop/id]}
+        <p class="digger-story-link"><a href="{loop/link}">{intl Story Link}</a></p>
+        <p>{loop/description}</p>
+	<p class="digger-item-info">
+                Category: {filter digger_filter_category}{loop/category}{end filter},
+                By: {filter digger_filter_user}{loop/user}{end filter},
+                Date: {filter digger_filter_date}{loop/posted_on}{end filter},
+                Score: <span id="digger-score-{loop/id}">{loop/score}</span><span id="digger-votebox-{loop/id}" {loop/voted}>
+                [ <a href="#" onclick="return digger.vote('yes', {loop/id})" rel="nofollow"><span style="font-size: 125%">+</span></a> / <a href="#" onclick="return digger.vote('no', {loop/id})" rel="nofollow"><span style="font-size: 125%">&ndash;</span></a> ]</span>,
+                <a href="{site/prefix}/index/digger-comments-action/id.{loop/id}/title.{filter digger_filter_title}{loop/title}{end filter}">Comments</a></p>
+</div>
+{end loop}
+
+<hr />
+
+<h2>{intl Comments}</h2>
+
+{loop obj[comments]}
+<div class="digger-comments" id="digger-comments-{loop/id}">
+	{if session_admin()}
+		<div style="float: right">
+			<a href="{site/prefix}/index/digger-comments-edit-form?id={loop/id}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" alt="{intl Edit Comment}" title="{intl Edit Comment}" border="0" /></a> &nbsp;
+			<a href="{site/prefix}/index/digger-comments-delete-action?id={loop/id}&story={loop/story}" onclick="return confirm ('Are you sure you want to delete this comment?')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Comment}" title="{intl Delete Comment}" border="0" /></a>
+		</div>
+	{end if}
+	<p class="digger-comment-info">By:&nbsp;{filter digger_filter_user}{loop/user}{end filter}, Date: {filter digger_filter_date}{loop/comment_date}{end filter}</p>
+	<p>Comment:&nbsp;{loop/comments}</p>
+</div>
+{end loop}
+
+{if session_valid()}
+	{form digger/comments}
+{end if}
+{if else}
+	<p><a href="{site/prefix}/index/sitemember-app">{intl Login to Post a Comment}</a></p>
+{end if}

@@ -1,0 +1,17 @@
+Hi {contact_name},
+
+This is our automated invoicing system.  Please find the invoice #{invoice_no}
+attached to this email message.
+
+{if appconf ('paypal_id')}To pay this invoice using Paypal, please use the link below:
+
+https://www.paypal.com/xclick/business={appconf/paypal_id}&item_name=Invoice+No+{invoice_no}&item_number={invoice_no}&amount={total}&no_shipping=1&no_note=1&currency_code={currency}&lc=US&quantity=1
+
+{end if}If you have any questions regarding this invoice, please let us know.  You may
+reply to this email to reach our billing manager.
+
+Thank you for your business.
+
+Sincerely,
+
+{appconf/company_email_name}

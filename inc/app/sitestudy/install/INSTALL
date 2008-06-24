@@ -1,0 +1,19 @@
+SITESTUDY INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/sitestudy/install/install-mysql.sql
+(enter password when prompted)
+
+2. Copy the case study collection definition into the cms app:
+
+$ cd /PATH/TO/SITELLITE
+$ cp -R inc/app/sitestudy/install/sitestudy_item.php inc/app/cms/conf/collections/
+
+3. Link to SiteStudy somewhere on your web site.  SiteStudy can be
+accessed from the following URL (change www.yourWebSite.com to YOUR
+WEB SITE, of course):
+
+http://www.yourWebSite.com/index/sitestudy-app
+
+That's all there is to it!

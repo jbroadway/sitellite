@@ -1,0 +1,23 @@
+New in 1.0.5:
+
+- Added sitefaq/category box.
+- Added boxchooser options.
+
+New in 1.0.4:
+
+- Fixed another bug in the question submission form.
+
+New in 1.0.3:
+
+- Added Xed to the answers so you can use HTML to format them.
+- Added a summary of the questions themselves at the top of the FAQ screen.
+- Fixed a bug in the question submission form.
+
+New in 1.0.2:
+
+- Added the ability to set the template, page_alias, and page_below.
+- Fixed a 404 error on saving FAQ changes in the Web View.
+
+New in 1.0.1:
+
+- Set the edit buttons' team value to 'none' in the display templates.

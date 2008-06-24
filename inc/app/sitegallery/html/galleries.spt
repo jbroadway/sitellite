@@ -1,0 +1,11 @@
+{loop obj}
+<div class="sitegallery-summary" style="padding-bottom: 25px; clear: both">
+{if session_admin ()}
+<div style="float: right"><a href="{site/prefix}/index/sitegallery-edit-form?album={loop/path}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" alt="{intl Edit Album Description}" title="{intl Edit Album Description}" border="0" /></a></div>
+{end if}
+<a href="{site/prefix}/index/sitegallery-pixgallery-action?path={loop/path}&title={loop/name}&descriptions=no"><img src="{loop/thumb}" border="0" alt="{loop/name}" width="{appconf/thumbnail_width}" height="{appconf/thumbnail_height}" style="float: left; margin-right: 15px" /></a>
+<p><strong><a href="{site/prefix}/index/sitegallery-pixgallery-action?path={loop/path}&title={loop/name}&descriptions=no">{loop/name}</a> ({loop/count} {intl photos})</strong></p>
+<p>{filter sitegallery_filter_date}{loop/ts}{end filter}</p>
+<p>{filter none}{loop/desc}{end filter}</p>
+</div>
+{end loop}

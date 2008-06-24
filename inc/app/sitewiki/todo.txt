@@ -1,0 +1,6 @@
+SiteWiki 2.0:
+- Changelog entries by editors (currently unused)
+- File attachments to pages
+- Annotations?
+- Banned IP addresses in settings
+- Interwiki link configuration in settings

@@ -1,0 +1,62 @@
+2.0.3
+
+- Added paypal integration so customers can pay through paypal
+
+2.0.2
+
+- Added 'cancelled' status for invoices - see install/upgrade-2.0.1-2.0.2.sql
+
+2.0.1
+
+- Changed default settings and header graphic to be fictional, not
+  the Simian info.
+- Fixed a missing site_prefix() in the invoice box -- thanks ulfnyman!
+
+2.0.0
+
+- Email "invoice paid" notice to internal email and a thank you to
+  the client
+- Option not to send first notice (import of previous invoices)
+- Invoice subtotals and totals saved to database and shown
+- Basic reporting based on subtotals and totals
+- Settings form
+- Invoice names displayed on listing page to identify them
+- Ability to differentiate between currencies
+- Currencies setting now features a popup currency selector
+- Paging on invoices and clients
+
+1.1.5
+
+- Fixed tax calculation for display purposes
+- Fixed tax/exchange display for paid invoices
+- Added BCC option to emails other than the billing email address
+
+1.1.4
+
+- Currencies setting now features a popup currency selector
+- Paging on invoices and clients
+
+1.1.3
+
+- Invoice names added to better identify them
+- Added the ability to differentiate between currencies
+
+1.1.2
+
+- Added settings form to manage the conf/properties.php settings
+- Added help link with an intro page to start
+
+1.1.1
+
+- Invoice subtotals and totals saved to database and shown
+- Basic reporting based on subtotals and totals
+
+1.1.0
+
+- Email "invoice paid" notice to internal email and a thank you to
+  the client
+- Option not to send first notice (import of previous invoices)
+
+1.0.1
+
+- Added customizable subject lines and the ability to disable reminders.

@@ -1,0 +1,29 @@
+DIGGER INSTALLATION INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/digger/install/install-mysql.sql
+(enter password when prompted)
+
+2. Copy the digger collection definition into the cms app:
+
+$ cd /PATH/TO/SITELLITE
+$ cp -R inc/app/digger/install/digger_linkstory.php inc/app/cms/conf/collections/
+
+3. Create your Digger categories by going to Control Panel > Digger > Add
+Digger Story and clicking the Add button next to the Category select box.
+
+4. To integrate Digger into your member homepages, add the following lines
+to your member home and profile services in inc/app/sitemember/conf/properties.php:
+
+intl_get ('Digger') => 'box:digger/my/home',
+
+intl_get ('Digger') => 'box:digger/my/profile',
+
+5. Link to Digger somewhere on your web site.  Digger can be
+accessed from the following URL (change www.yourWebSite.com to YOUR
+WEB SITE, of course):
+
+http://www.yourWebSite.com/index/digger-app
+
+That's all there is to it!

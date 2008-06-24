@@ -1,0 +1,6 @@
+<p>{intl Your submission has been received and will be reviewed shortly.}</p>
+
+<p><a href="/index/siteevent-submissions-form">{intl Submit another event.}</a></p>
+
+<p><a href="/index/siteevent-app">{intl Back to Events Calendar.}</a></p>
+

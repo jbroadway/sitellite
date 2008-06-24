@@ -1,0 +1,5 @@
+The following tasks have been marked completed:
+
+{loop obj[list]}- {loop/person}, {loop/project}: {loop/todo}
+{end loop}
+

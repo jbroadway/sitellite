@@ -865,3 +865,736 @@ create table sitellite_translation_sv (
 	index (sv_author, sv_action, sv_revision, sv_deleted, sv_current),
 	index (id)
 );
+create table deadlines (
+	id int not null auto_increment primary key,
+	title char(72) not null,
+	project char(32) not null,
+	type enum('deadline','beta','report','milestone','meeting') not null,
+	ts datetime not null,
+	details text not null,
+	index (ts,type,project)
+);
+
+create table deadlines_project (
+	name char(32) not null primary key
+);
+
+CREATE TABLE digger_linkstory (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	link CHAR(128) NOT NULL,
+	user CHAR(48) NOT NULL,
+	posted_on DATETIME NOT NULL,
+	score INT NOT NULL,
+	title CHAR(128) NOT NULL,
+	category INT NOT NULL,
+	description TEXT NOT NULL,
+	status ENUM('enabled','disabled') NOT NULL,
+	INDEX (user, posted_on, category, status, score)
+);
+
+CREATE TABLE digger_category (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	category CHAR(128) NOT NULL,
+	INDEX (category)
+);
+
+CREATE TABLE digger_comments (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	story INT NOT NULL, 
+	user CHAR(48) NOT NULL,
+	comment_date DATETIME NOT NULL,
+	comments TEXT NOT NULL,
+	INDEX (story, user, comment_date)
+);
+
+CREATE TABLE digger_vote (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	story INT NOT NULL,
+	score TINYINT NOT NULL,
+	user CHAR(48) NOT NULL,
+	ip CHAR(15) NOT NULL,
+	votetime DATETIME NOT NULL,
+	INDEX (story, user)
+);
+create table petition (
+	id int not null auto_increment primary key,
+	name char(72) not null,
+	ts datetime not null,
+	description text not null,
+	body text not null,
+	sitellite_status varchar(32) NOT NULL default '',
+	sitellite_access varchar(32) NOT NULL default '',
+	sitellite_owner varchar(48) NOT NULL default '',
+	sitellite_team varchar(48) NOT NULL default '',
+	index (name, ts, sitellite_status, sitellite_access, sitellite_team)
+);
+
+create table petition_signature (
+	id int not null auto_increment primary key,
+	petition_id int not null,
+	firstname char(48) not null,
+	lastname char(48) not null,
+	email char(72) not null,
+	address char(72) not null,
+	city char(48) not null,
+	province char(48) not null,
+	postal_code char(8) not null,
+	ts datetime not null,
+	index (petition_id, ts)
+);
+CREATE TABLE shoutbox (
+  id int not null auto_increment primary key,
+  name char(48) not null,
+  url char(128) not null,
+  ip_address char(15) not null,
+  posted_on datetime not null,
+  message char(255) not null,
+  index (posted_on)
+);
+# Your database schema goes here
+
+create table siteblog_category (
+    id int not null auto_increment primary key,
+    poster_visible enum ('yes', 'no') not null,
+    comments enum ('on', 'off') not null,
+    display_rss enum ('yes', 'no') not null,
+    title char(128) not null,
+    status enum ('on', 'off') not null
+);
+
+insert into siteblog_category (id, poster_visible, comments, display_rss, title, status) values (1, 'yes', 'on', 'yes', 'Uncategorized', 'on');
+
+create table siteblog_post (
+    id int not null auto_increment primary key,
+    status enum ('visible', 'not visible'),
+    created datetime not null,
+    appear datetime not null,
+    disappear datetime not null,
+    category int not null,
+    author char(32) not null, 
+    subject char(128) not null,
+    body text not null,
+    comments enum ('on', 'off'),
+    poster_visible enum ('yes', 'no'),
+    index (category, author)
+);
+
+create table siteblog_post_sv (
+    sv_autoid int not null auto_increment primary key,
+    sv_author char(48) not null,
+    sv_action enum('created','modified','republished','replaced','restored','deleted','updated') not null default 'created',
+    sv_revision datetime not null,
+    sv_changelog text not null,
+    sv_deleted enum('yes','no') default 'no',
+    sv_current enum('yes','no') default 'yes',
+    id int not null,
+    status enum ('visible', 'not visible'),
+    created datetime not null,
+    appear datetime not null,
+    disappear datetime not null,
+    category int not null,
+    author char(32) not null, 
+    subject char(128) not null,
+    body text not null,
+    comments enum ('on', 'off'),
+    poster_visible enum ('yes', 'no'),
+    KEY sv_author (sv_author,sv_action,sv_revision,sv_deleted,sv_current),
+    KEY id (id)
+) TYPE=MyISAM;
+
+create table siteblog_comment (
+    id int not null auto_increment primary key,
+    date datetime not null,
+    author char(32) not null,
+    email char(72) not null,
+    url char(72) not null,
+    ip char(15) not null,
+    child_of_post int not null,
+    child_of_comment int not null,
+    body text not null,
+    index (child_of_post, child_of_comment)
+);
+
+create table siteblog_banned (
+	ip char(15) not null primary key
+);
+
+create table siteblog_blogroll (
+	id int not null auto_increment primary key,
+	title char(72) not null,
+	url char(128) not null,
+	weight int not null default 0,
+	index (title, weight)
+);
+
+create table siteblog_akismet (
+	id int not null auto_increment primary key,
+	post_id int not null,
+    ts datetime not null,
+    author char(32) not null,
+    email char(72) not null,
+    website char(72) not null,
+    user_ip char(15) not null,
+    user_agent char(72) not null,
+    body text not null,
+    index (ts)
+);
+# Your database schema goes here
+
+CREATE TABLE siteevent_event (
+	id int not null auto_increment primary key,
+	title char(128) not null,
+	short_title char(32) not null,
+	date date not null,
+	time time not null,
+	until_date date not null,
+	until_time time not null,
+	`priority` enum('normal','high') not null default 'normal',
+	category char(72) not null,
+	audience char(32) not null,
+	loc_name char(72) not null,
+	loc_address char(72) not null,
+	loc_city char(48) not null,
+	loc_province char(48) not null,
+	loc_country char(48) not null,
+	loc_map char(128) not null,
+	contact char(72) not null,
+	contact_email char(72) not null,
+	contact_phone char(72) not null,
+	contact_url char(128) not null,
+	sponsor char(72) not null,
+	rsvp char(72) not null,
+	public enum('yes','no') not null default 'no',
+	media enum('yes','no') not null default 'no',
+	details text not null,
+	recurring enum('no','daily','weekly','monthly','yearly') not null default 'no',
+	sitellite_status char(16) not null,
+	sitellite_access char(16) not null,
+	sitellite_startdate datetime,
+	sitellite_expirydate datetime,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (date, time, until_date, until_time, category, audience, recurring, sitellite_status, sitellite_access, sitellite_owner, sitellite_team)
+);
+
+CREATE TABLE siteevent_event_sv (
+	sv_autoid int not null auto_increment primary key,
+	sv_author char(48) not null,
+	sv_action enum('created','modified','republished','replaced','restored','deleted','updated') not null default 'created',
+	sv_revision datetime not null,
+	sv_changelog text not null,
+	sv_deleted enum('yes','no') default 'no',
+	sv_current enum('yes','no') default 'yes',
+	id int not null,
+	title char(128) not null,
+	short_title char(32) not null,
+	date date not null,
+	time time not null,
+	until_date date not null,
+	until_time time not null,
+	`priority` enum('normal','high') not null default 'normal',
+	category char(72) not null,
+	audience char(32) not null,
+	loc_name char(72) not null,
+	loc_address char(72) not null,
+	loc_city char(48) not null,
+	loc_province char(48) not null,
+	loc_country char(48) not null,
+	loc_map char(128) not null,
+	contact char(72) not null,
+	contact_email char(72) not null,
+	contact_phone char(72) not null,
+	contact_url char(128) not null,
+	sponsor char(72) not null,
+	rsvp char(72) not null,
+	public enum('yes','no') not null default 'no',
+	media enum('yes','no') not null default 'no',
+	details text not null,
+	recurring enum('no','daily','weekly','monthly','yearly') not null default 'no',
+	sitellite_status char(16) not null,
+	sitellite_access char(16) not null,
+	sitellite_startdate datetime,
+	sitellite_expirydate datetime,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (sv_author, sv_action, sv_revision, sv_deleted, sv_current),
+	index (id)
+);
+
+CREATE TABLE siteevent_category (
+	name char(72) not null primary key
+);
+
+CREATE TABLE siteevent_audience (
+	id int not null auto_increment primary key,
+	name char(72) not null
+);
+
+# Your database schema goes here
+
+CREATE TABLE sitefaq_question (
+	id int not null auto_increment primary key,
+	question char(255) not null,
+	category char(48) not null,
+	answer text not null,
+	index (category)
+);
+
+CREATE TABLE sitefaq_category (
+	name char(48) not null primary key
+);
+
+CREATE TABLE sitefaq_submission (
+	id int not null auto_increment primary key,
+	question char(255) not null,
+	answer text not null,
+	ts datetime not null,
+	assigned_to char(48) not null,
+	email char(72) not null,
+	member_id char(48) not null,
+	ip char(15) not null,
+	name char(72) not null,
+	age char(12) not null,
+	url char(128) not null,
+	sitellite_status char(16) not null,
+	sitellite_access char(16) not null,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (ts, assigned_to, member_id, ip, age, sitellite_status, sitellite_access, sitellite_owner, sitellite_team)
+);
+# Your database schema goes here
+
+create table siteforum_topic (
+	id int not null auto_increment primary key,
+	name char(128) not null,
+	description text not null,
+	sitellite_access char(16) not null,
+	sitellite_status char(16) not null,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (sitellite_access, sitellite_status, sitellite_owner, sitellite_team)
+);
+
+create table siteforum_post (
+	id int not null auto_increment primary key,
+	topic_id int not null,
+	user_id char(48) not null,
+	post_id int not null,
+	ts datetime not null,
+	mtime timestamp not null,
+	subject char(128) not null,
+	body text not null,
+	sig text not null,
+	notice enum('no','yes') not null default 'no',
+	sitellite_access char(16) not null,
+	sitellite_status char(16) not null,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (topic_id, ts, mtime, user_id, post_id, notice, sitellite_access, sitellite_status, sitellite_owner, sitellite_team)
+);
+
+create table siteforum_subscribe (
+	id int not null auto_increment primary key,
+	post_id int not null,
+	user_id char(48),
+	index (post_id,user_id)
+);
+# Your database schema goes here
+
+CREATE TABLE siteglossary_term (
+  word varchar(48) NOT NULL default '',
+  category char(48) not null,
+  description varchar(80) NOT NULL default '',
+  body text NOT NULL,
+  PRIMARY KEY  (word),
+  index (category)
+) TYPE=MyISAM;
+
+CREATE TABLE siteglossary_category (
+	name char(48) not null primary key
+);
+CREATE TABLE siteinvoice_invoice (
+	id int not null auto_increment primary key,
+	client_id int not null,
+	name char(72) not null,
+	sent_on datetime not null,
+	status enum('unpaid','paid','cancelled') not null,
+	notice int not null,
+	subtotal decimal(9,2) not null,
+	taxes decimal(9,2) not null,
+	total decimal(9,2) not null,
+	currency char(3) not null,
+	index (client_id, sent_on, status, notice, subtotal, taxes, total)
+);
+
+CREATE TABLE siteinvoice_client (
+	id int not null auto_increment primary key,
+	code char(5) not null,
+	name char(72) not null,
+	contact_name char(72) not null,
+	contact_email char(72) not null,
+	contact_phone char(72) not null,
+	address text not null,
+	index (name)
+);
+CREATE TABLE sitepoll_poll (
+	id int not null auto_increment primary key,
+	title char(255) not null,
+	option_1 char(255) not null,
+	option_2 char(255) not null,
+	option_3 char(255) not null,
+	option_4 char(255) not null,
+	option_5 char(255) not null,
+	option_6 char(255) not null,
+	option_7 char(255) not null,
+	option_8 char(255) not null,
+	option_9 char(255) not null,
+	option_10 char(255) not null,
+	option_11 char(255) not null,
+	option_12 char(255) not null,
+	sections char(200) not null,
+	date_added datetime not null,
+	enable_comments enum('yes','no') not null default 'no',
+	sitellite_status varchar(16) NOT NULL default '',
+	sitellite_access varchar(16) NOT NULL default '',
+	sitellite_startdate datetime default NULL,
+	sitellite_expirydate datetime default NULL,
+	sitellite_owner varchar(48) NOT NULL default '',
+	sitellite_team varchar(48) NOT NULL default '',
+	index (date_added, sections, sitellite_status, sitellite_access, sitellite_team)
+);
+
+CREATE TABLE sitepoll_poll_sv (
+	sv_autoid int not null auto_increment primary key,
+	sv_author char(48) not null,
+	sv_action enum('created','modified','republished','replaced','restored','deleted','updated') not null default 'created',
+	sv_revision datetime not null,
+	sv_changelog text not null,
+	sv_deleted enum('yes','no') default 'no',
+	sv_current enum('yes','no') default 'yes',
+	id int not null,
+	title char(255) not null,
+	option_1 char(255) not null,
+	option_2 char(255) not null,
+	option_3 char(255) not null,
+	option_4 char(255) not null,
+	option_5 char(255) not null,
+	option_6 char(255) not null,
+	option_7 char(255) not null,
+	option_8 char(255) not null,
+	option_9 char(255) not null,
+	option_10 char(255) not null,
+	option_11 char(255) not null,
+	option_12 char(255) not null,
+	sections char(200) not null,
+	date_added datetime not null,
+	enable_comments enum('yes','no') not null default 'no',
+	sitellite_status varchar(16) NOT NULL default '',
+	sitellite_access varchar(16) NOT NULL default '',
+	sitellite_startdate datetime default NULL,
+	sitellite_expirydate datetime default NULL,
+	sitellite_owner varchar(48) NOT NULL default '',
+	sitellite_team varchar(48) NOT NULL default '',
+	index (sv_author, sv_action, sv_revision, sv_deleted, sv_current),
+	index (id)
+);
+
+CREATE TABLE sitepoll_vote (
+	id int not null auto_increment primary key,
+	poll int not null,
+	choice int not null,
+	ts datetime not null,
+	ua char(128) not null,
+	ip char(24) not null,
+	index (poll, choice, ts, ua, ip)
+);
+
+CREATE TABLE sitepoll_comment (
+	id int not null auto_increment primary key,
+	poll int not null,
+	user_id char(48) not null,
+	ts datetime not null,
+	ua char(128) not null,
+	ip char(24) not null,
+	subject char(128) not null,
+	body text not null,
+	index (poll, user_id, ts)
+);
+# Your database schema goes here
+
+CREATE TABLE sitepresenter_presentation (
+	id int not null auto_increment primary key,
+	title char(128) not null,
+	ts datetime not null,
+	theme char(32) not null,
+	category char(32) not null,
+	keywords text not null,
+	description text not null,
+	cover text not null,
+	sitellite_status char(16) not null,
+	sitellite_access char(16) not null,
+	sitellite_startdate datetime,
+	sitellite_expirydate datetime,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (ts, category, sitellite_status, sitellite_access, sitellite_owner, sitellite_team)
+);
+
+CREATE TABLE sitepresenter_slide (
+	id int not null auto_increment primary key,
+	title char(128) not null,
+	presentation int not null,
+	number int not null,
+	body text not null,
+	index (presentation, number)
+);
+
+CREATE TABLE sitepresenter_view (
+	presentation int not null,
+	ts datetime not null,
+	ip char(15) not null,
+	index (presentation, ts)
+);
+
+CREATE TABLE sitepresenter_category (
+	name char(32) not null primary key
+);
+CREATE TABLE sitequotes_entry (
+	id int not null auto_increment primary key,
+	person char(72) not null,
+	company char(72) not null,
+	website char(128) not null,
+	quote text not null
+);
+# database tables for sitesearch usage tracking
+
+create table sitesearch_index (
+	id int not null auto_increment primary key,
+	mtime int not null,
+	duration int not null,
+	counts text not null,
+	index (mtime, duration)
+);
+
+create table sitesearch_log (
+	id int not null auto_increment primary key,
+	query char(255) not null,
+	results int not null,
+	ts datetime not null,
+	ip char(15) not null,
+	ctype char(72) not null,
+	domain char(72) not null,
+	index (ts, results, query),
+	index (ctype, domain)
+);
+CREATE TABLE sitestudy_item (
+	id int not null auto_increment primary key,
+	client char(72) not null,
+	problem text not null,
+	solution text not null,
+	sort_weight int not null,
+	keywords  text not null,
+	description text not null,
+	sitellite_status char(16) not null,
+	sitellite_access char(16) not null,
+	sitellite_startdate datetime,
+	sitellite_expirydate datetime,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (sort_weight, client, sitellite_status, sitellite_access, sitellite_owner, sitellite_team)
+);
+
+CREATE TABLE sitestudy_item_sv (
+	sv_autoid int not null auto_increment primary key,
+	sv_author char(48) not null,
+	sv_action enum('created','modified','republished','replaced','restored','deleted') not null default 'created',
+	sv_revision datetime not null,
+	sv_changelog text not null,
+	sv_deleted enum('yes','no') default 'no',
+	sv_current enum('yes','no') default 'yes',
+	id int not null,
+	client char(72) not null,
+	problem text not null,
+	solution text not null,
+	sort_weight int not null,
+	keywords  text not null,
+	description text not null,
+	sitellite_status char(16) not null,
+	sitellite_access char(16) not null,
+	sitellite_startdate datetime,
+	sitellite_expirydate datetime,
+	sitellite_owner char(48) not null,
+	sitellite_team char(48) not null,
+	index (sv_author, sv_action, sv_revision, sv_deleted, sv_current),
+	index (id, sitellite_status, sitellite_access, sitellite_owner, sitellite_team)
+);
+# Your database schema goes here
+
+CREATE TABLE sitetemplate_to_be_validated (
+   id int not null auto_increment primary key,
+   body text not null
+);
+create table sitewiki_file (
+	id int not null auto_increment primary key,
+	page_id char(48) not null,
+	name char(128) not null,
+	ts datetime not null,
+	owner char(48) not null,
+	index (page_id, name)
+);
+
+create table sitewiki_page (
+	id char(48) not null primary key,
+	created_on datetime not null,
+	updated_on datetime not null,
+	view_level int not null,
+	edit_level int not null,
+	owner char(48) not null,
+	body mediumtext not null,
+	index (view_level, owner, created_on, updated_on)
+);
+
+create table sitewiki_page_sv (
+	sv_autoid int not null auto_increment primary key,
+	sv_author char(48) not null,
+	sv_action enum('created','modified','republished','replaced','restored','deleted','updated') not null default 'created',
+	sv_revision timestamp,
+	sv_changelog text not null,
+	sv_deleted enum('yes','no') default 'no',
+	sv_current enum('yes','no') default 'yes',
+	id char(48) not null,
+	created_on datetime not null,
+	updated_on datetime not null,
+	view_level int not null,
+	edit_level int not null,
+	owner char(48) not null,
+	body mediumtext not null,
+	index (sv_author, sv_action, sv_revision, sv_deleted, sv_current),
+	index (id, view_level, owner, created_on, updated_on)
+);
+
+insert into sitewiki_page
+	(id, created_on, updated_on, view_level, edit_level, owner, body)
+values
+	('HomePage', now(), now(), 0, 0, 'admin', 'Welcome to SiteWiki.
+
+SiteWiki is a Wiki implementation as an add-on for the SitelliteCms.
+
+SiteWiki features content versioning and revision control, page locking to prevent data corruption, read and write permission levels, and a built-in search.  The SiteWiki layout is CSS-controlled, and SiteWiki is fully integrated with the SitelliteCms.
+
+SiteWiki was modeled closely after David Hansson\'s [http://rubyforge.org/projects/instiki/ Instiki], which is a very elegant and intuitive Wiki implementation.  SiteWiki differs primarily from Instiki in three ways:
+
+* Finer-grained access control - control visibility and editability separately, with page-level access restricted to anonymous visitors, members only, admins only, or page owners only.
+* Uses Paul Jones\' [http://pear.php.net/package/Text_Wiki Text_Wiki] PEAR package instead of the Textile markup syntax.
+* SiteWiki integrates within your complete Sitellite-powered web site, which means that design elements from your global design are inherited by SiteWiki automatically.  This centralization of design control is at the core of any good ContentManagementSystem, like Sitellite.
+
+++ What is a Wiki?
+
+Wiki, also known as a WikiWikiWeb, is an innovative new way of collaborating over the web.  Wiki was invented by Ward Cunningham all the way back in 1995.  Wiki\'s work by making all pages editable by anyone, which encourages contributions by lowering the barrier to participation, and by making internal links incredibly easy to create (simply join two or more capitalized words together to form a link to a new page, called CamelCase because of the "bumps" in the middle of the compound word, suggesting the humps of a camel.  Wiki\'s however (and it should be noted) are //**insecure by design**//, since anyone can edit anything.  However, Wiki\'s deter would-be malicious visitors in two ways:
+
+* By removing the challenge, Wiki removes the appeal of web site vandalism.
+* By saving a history of the changes made to each page, Wiki\'s make it easy to undo any malicious changes that //are// made, nullifying the risk of permanent damage.
+
+Wiki\'s are found to be most useful for the following types of web sites:
+
+* Centralized and/or user-driven documentation repositories
+* Information sharing within a project
+* Planning and brainstorming
+* Other tasks like this
+
+However, Wiki\'s are generally found to be unsuitable for:
+
+* Corporate web sites
+* Sales-oriented web sites
+* Any web site requiring strict control over publication rights
+* Any web site requiring workflow approval processes
+
+For these types of web sites, a general web-based ContentManagementSystem, such as the SitelliteCms, is a better solution.
+');
+
+insert into sitewiki_page_sv
+	(sv_autoid, sv_author, sv_action, sv_revision, sv_changelog, sv_deleted, sv_current, id, created_on, updated_on, view_level, edit_level, owner, body)
+values
+	(null, 'admin', 'created', now(), 'Page added.', 'no', 'yes', 'HomePage', now(), now(), 0, 0, 'admin', 'Welcome to SiteWiki.
+
+SiteWiki is a Wiki implementation as an add-on for the SitelliteCms.
+
+SiteWiki features content versioning and revision control, page locking to prevent data corruption, read and write permission levels, and a built-in search.  The SiteWiki layout is CSS-controlled, and SiteWiki is fully integrated with the SitelliteCms.
+
+SiteWiki was modeled closely after David Hansson\'s [http://rubyforge.org/projects/instiki/ Instiki], which is a very elegant and intuitive Wiki implementation.  SiteWiki differs primarily from Instiki in three ways:
+
+* Finer-grained access control - control visibility and editability separately, with page-level access restricted to anonymous visitors, members only, admins only, or page owners only.
+* Uses Paul Jones\' [http://pear.php.net/package/Text_Wiki Text_Wiki] PEAR package instead of the Textile markup syntax.
+* SiteWiki integrates within your complete Sitellite-powered web site, which means that design elements from your global design are inherited by SiteWiki automatically.  This centralization of design control is at the core of any good ContentManagementSystem, like Sitellite.
+
+++ What is a Wiki?
+
+Wiki, also known as a WikiWikiWeb, is an innovative new way of collaborating over the web.  Wiki was invented by Ward Cunningham all the way back in 1995.  Wiki\'s work by making all pages editable by anyone, which encourages contributions by lowering the barrier to participation, and by making internal links incredibly easy to create (simply join two or more capitalized words together to form a link to a new page, called CamelCase because of the "bumps" in the middle of the compound word, suggesting the humps of a camel.  Wiki\'s however (and it should be noted) are //**insecure by design**//, since anyone can edit anything.  However, Wiki\'s deter would-be malicious visitors in two ways:
+
+* By removing the challenge, Wiki removes the appeal of web site vandalism.
+* By saving a history of the changes made to each page, Wiki\'s make it easy to undo any malicious changes that //are// made, nullifying the risk of permanent damage.
+
+Wiki\'s are found to be most useful for the following types of web sites:
+
+* Centralized and/or user-driven documentation repositories
+* Information sharing within a project
+* Planning and brainstorming
+* Other tasks like this
+
+However, Wiki\'s are generally found to be unsuitable for:
+
+* Corporate web sites
+* Sales-oriented web sites
+* Any web site requiring strict control over publication rights
+* Any web site requiring workflow approval processes
+
+For these types of web sites, a general web-based ContentManagementSystem, such as the SitelliteCms, is a better solution.
+');
+# TimeTracker Database Schema
+
+create table timetracker_entry (
+	id int not null auto_increment primary key,
+	project_id int not null,
+	task_description text not null,
+	started datetime not null,
+	duration decimal(10,2),
+	index (project_id, started, duration)
+);
+
+create table timetracker_project (
+	id int not null auto_increment primary key,
+	name char(72) not null,
+	description text not null
+);
+
+create table timetracker_user_entry (
+	id int not null auto_increment primary key,
+	user_id char(16) not null,
+	entry_id int not null,
+	index (user_id, entry_id)
+);
+CREATE TABLE todo_list (
+  id int NOT NULL auto_increment primary key,
+  todo char(255) NOT NULL default '',
+  priority enum('normal','high','urgent') NOT NULL default 'normal',
+  project char(72) NOT NULL default '',
+  person char(72) NOT NULL default '',
+  done datetime not null,
+  index (person, project, priority, done)
+);
+
+CREATE TABLE todo_person (
+	name char(72) not null primary key
+);
+
+CREATE TABLE todo_project (
+	name char(72) not null primary key
+);
+create table webfiles_log (
+	id int not null auto_increment primary key,
+	line int not null,
+	http_status int not null,
+	info char(255) not null,
+	ts datetime not null,
+	index (ts)
+);

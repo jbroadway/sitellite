@@ -1,0 +1,20 @@
+<h1>Running the SiteSearch Indexer</h1>
+
+<p>Before you can run the SiteSearch indexer, you need to add it as a
+task to Scheduler app's task list.&nbsp; To do this, copy the task from
+the SiteSearch install folder into the proper place, like this:<br />
+</p>
+<pre>$ cd /PATH/TO/SITELLITE<br />$ cp -R inc/app/sitesearch/install/sitesearch inc/app/scheduler/tasks/<br /></pre>
+<p>The SiteSearch indexer will then be run as part of the Scheduler's
+task list.&nbsp; To execute it separately, you can use the following
+commands:<br />
+</p>
+
+
+<pre>$ cd /PATH/TO/SITELLITE
+$ php -f index scheduler-app sitesearch</pre>
+
+<p>This will automatically index all of the collections defined in your web
+site that specify a "sitesearch_url" property in their definition files
+(see inc/app/cms/conf/collections for examples).<br />
+</p>

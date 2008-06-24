@@ -1,0 +1,28 @@
+<form method="get" action="{site/prefix}/index/sitesearch-app">
+<p class="sitesearch-form">
+	{intl Search for}:<br />
+	<input type="text" name="query" value="{filter htmlentities}{cgi/query}{end filter}" /><br /><br />
+
+	{if obj[show_types]}
+		{intl Search section}:<br />
+		<select name="ctype{if obj[multiple]}[]" multiple="multiple{end if}">
+			<option value="all">{intl All Sections}</option>
+			{loop obj[types]}
+				<option value="{loop/_key}"{if parameters[ctype] eq loop._key} selected="selected"{end if}>{loop/_value}</option>
+			{end loop}
+		</select><br /><br />
+
+		<input type="hidden" name="show_types" value="{parameters/show_types}" />
+		<input type="hidden" name="multiple" value="{parameters/multiple}" />
+	{end if}
+
+	{if not obj[show_types]}
+		<input type="hidden" name="ctype" value="{parameters/ctype}" />
+		<input type="hidden" name="show_types" value="{parameters/show_types}" />
+		<input type="hidden" name="multiple" value="{parameters/multiple}" />
+	{end if}
+
+	<input type="submit" value="{intl Go}" />
+</p>
+
+</form>

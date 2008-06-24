@@ -1,0 +1,5 @@
+sitellite_status=approved
+sitellite_access=private
+sitellite_action=on
+sitellite_goto=siteinvoice-app
+sitellite_template_set=admin

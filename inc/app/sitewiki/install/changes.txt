@@ -1,0 +1,16 @@
+New in 1.2.1:
+
+- Fixed a double-quote issue breaking the rollback feature
+
+New in 1.2.0:
+
+- Fixed an issue with a change to Sitellite's versioning system -- now
+  requires Sitellite 4.2.13 or greater
+- Added file upload support for registered users
+- Added security widget (ie. CAPTCHA) to edit form to prevent automated
+  spam abuse
+
+New in 1.0.1:
+
+- Database schema update to comply with Sitellite 4.2.7 -- see the file
+  install/upgrade-1.0.0-1.0.1.sql

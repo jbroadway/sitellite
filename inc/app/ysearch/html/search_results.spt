@@ -1,0 +1,58 @@
+<div id="ysearch">
+
+<form method="get">
+	<p>{intl Search for}:<br />
+	<input type="text" name="query" value="{query}" /></p>
+
+	{if is_array (appconf ('site'))}
+		<p>{intl Search site}:<br />
+		<select name="site">
+		<option value="">{intl All Sites}</option>
+		{loop appconf ('site')}
+			<option value="{loop/_value}"{if obj[site] eq loop._value} selected="selected"{end if}>{loop/_value}</option>
+		{end loop}
+		</select></p>
+	{end if}
+
+	<p><input type="submit" value="{intl Go}" />
+&nbsp;
+<!-- Begin Yahoo Web Services HTML Attribution Snippet -->
+<a href="http://developer.yahoo.net/about/">
+Web Services by Yahoo!
+</a>
+<!-- End Yahoo Web Services HTML Attribution Snippet -->
+</p>
+</form>
+
+{if count (obj[results]) gt 0}
+<p>
+<table border="0" cellpadding="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+{loop obj[results]}
+<p><a href="{loop/ClickUrl}">{filter none}{loop/Title}{end filter}</a><br />
+{filter none}{loop/Summary}{end filter}<br />
+<small>{loop/DisplayUrl} - {loop/CacheSize} - <a href="{loop/CacheUrl}">{intl Cached}</a></small>
+</p>
+{end loop}
+
+<p>
+<table border="0" cellpadding="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+{end if}
+
+{if count (obj[results]) eq 0}
+<p>{intl No matches found.}</p>
+{end if}
+
+</div>

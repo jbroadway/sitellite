@@ -1,0 +1,13 @@
+Original question:
+
+"{question}"
+
+Our response:
+
+"{filter strip_tags}{answer}{end filter}"
+
+We hope this answers your question satisfactorily.
+
+Sincerely,
+
+The {site/domain} Team

@@ -1,0 +1,28 @@
+1. Unpack the downloaded file into Sitellite's inc/app folder and
+rename the newly created folder 'sitetemplate':
+
+cp sitetemplate-1.0.x-stable.tar.gz /PATH/TO/SITELLITE/inc/app
+
+cd /PATH/TO/SITELLITE/inc/app
+
+tar -zxf sitetemplate-1.0.x-stable.tar.gz
+
+rm sitetemplate-1.0.x-stable.tar.gz
+
+mv sitetemplate-1.0.x-stable sitetemplate
+
+2. Create the database tables:
+
+cd /PATH/TO/SITELLITE
+
+mysql -p -u USER DBNAME < inc/app/sitetemplate/install/install-mysql.sql
+
+(enter password when prompted)
+
+3. Make sure your templates are writeable by Sitellite:
+
+cd /PATH/TO/SITELLITE
+chmod -R 777 inc/html
+
+You should now be able to access SiteTemplate through Sitellite under
+Control Panel > Tools.

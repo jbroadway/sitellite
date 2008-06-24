@@ -1,0 +1,16 @@
+1.2.0
+
+- Added categories -- see install/upgrade-1.0.2-1.2.0.sql for database schema
+  changes.
+- Added SiteGlossary to the box chooser.
+
+1.0.2
+
+- Added the ability to set the template, page_alias, and page_below.
+
+1.0.1
+
+- Improved term highlighting to not clash with HTML tags (ie. terms in links).
+- Definitions can now include HTML.
+- Definitions use Xed for WYSIWYG editing.
+- Updated install docs to refer to modes.php.

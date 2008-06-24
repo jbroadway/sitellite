@@ -1,0 +1,10 @@
+3.0
+
+- More statuses (disputed, viewed, etc.)
+- PO Number field
+- Recurring invoices (weekly, monthly, etc.) w/ "Ends After"
+- Product management
+- Online payment processing
+- Reporting on paid invoices based on a given time range
+- Custom message per invoice (ie. a text box)
+- Mass export of zipped invoices for a given time range

@@ -1,0 +1,97 @@
+New in 2.0.2:
+
+- Added date range and repeats to columns in the control panel.
+- Sorts by date in control panel.
+- Fixed issues with missing events on split-month weeks in weekly view.
+- Fixed issues with daily-repeating events in the list/rss/ical views.
+- Fixed issues related to newer versions of PHP.
+- New fields: sponsor, rsvp, public, media.
+- You can now specify multiple audience values -- see
+  install/upgrade-2.0.1-2.0.2.sql
+- Submission form now has a link to submit another.
+- Improved the control panel view of the event list.
+- Fixed daily-repeating listings in the sidebar event listings.
+
+New in 2.0.1:
+
+- Compatible with Sitellite's new multilingual capabilities.
+- Added date_format and short_date settings so you can localize more easily.
+- Added a settings file compatible with Sitellite's new app settings editor.
+- Added a list view in addition to the day/week/month views.
+
+New in 2.0.0:
+
+- Improved user interface with day/week/month views
+- Audience and category breakdown for larger calendars
+- Cleaner presentation for details view
+- Security features added to submission form
+- Submission form simplified
+- Custom location for CSS calendar style
+- Fixed RSS feeds in PHP5
+
+New in 1.0.11:
+
+- Fixed a bug with future recurring events in the sidebar event list.
+
+New in 1.0.10:
+
+- Fixed a bug causing the day name to display incorrectly on the details screen.
+
+New in 1.0.9:
+
+- Fixed an issue that caused events not to appear at all for some sites.
+
+New in 1.0.8:
+
+- Database schema update to comply with Sitellite 4.2.7 -- see the file
+  install/upgrade-1.0.7-1.0.8.sql
+
+New in 1.0.7:
+
+- Added code to prevent search engines from indexing past and future dates
+  indefinitely.  It now tells them to stop after one year in either direction.
+- Fixed RSS feeds so they don't force links to be under SSL when SSL is enabled.
+
+New in 1.0.6:
+
+- Further sidebar fixes.
+- Added automatic links to google maps.
+
+New in 1.0.5:
+
+- Fixed a bug causing previous/next links to fail when the index box was
+  called as a box within a page.
+- Added page_below, page_alias, and template properties to conf/properties.php,
+  allowing more control over how SiteEvent fits into your site.
+- Fixed a bug causing a null end date to appear as Jan 1, 2006.
+- Fixed the event selection logic, which fixes some issues with which events
+  showed on the calendar and in the sidebar listing.
+- Fixed the output of daily recurring events in the sidebar box.
+
+New in 1.0.4:
+
+- Fixed a bug where events that repeated for several days, but which began
+  in the previous month, wouldn't be shown in the current month.
+- Fixed a bug where the date in the page title was occasionally incorrect on
+  the day list screen.
+- Added daily, weekly, monthly, and yearly recurring events.  Simply specify
+  the recurring frequency and an optional end date and events will recur as
+  of the start date specified.  If the end date is unspecified, events will
+  recur indefinitely.
+
+New in 1.0.3:
+
+- Fixed xml entity bug in RSS feeds.
+
+New in 1.0.2:
+
+- Made use of new MailForm Owner and Team widgets.
+- Added title attributes to event links in the main calendar, displaying
+  the full title and the time of the event.
+
+New in 1.0.1:
+
+- Added minical floating calendar to details screen.
+- Added user selection for admin-level users, which allows users to see
+  which events have been added by whom, and can serve as a basic
+  scheduling utility as well (coupled with the privileges, of course).

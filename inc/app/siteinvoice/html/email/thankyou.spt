@@ -1,0 +1,10 @@
+Hi {contact_name},
+
+This is our automated invoicing system.  We have received your payment for the
+invoice #{invoice_no}.
+
+Thank you for your business.
+
+Sincerely,
+
+{appconf/company_email_name}
