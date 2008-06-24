@@ -60,7 +60,7 @@ driver			= MySQL
 hostname		= localhost
 
 ; This is the name of your database on the database server.
-database		= DBNAME
+database		= sitellite_4_3_5_rc
 
 ; The username you must supply to the database server in order to
 ; connect and send queries.

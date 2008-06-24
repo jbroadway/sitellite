@@ -4,6 +4,7 @@ Changes in 4.3.5-rc
 - Removed PHPDocumentor in favour of new 'docs' app, reducing code size.
 - Removed extra pages from default site install.
 - Removed 'toc' box from default site templates.
+- Added the ability to enable/disable non-core apps in the admin menu.
 
 Changes in 4.3.4-beta
 
