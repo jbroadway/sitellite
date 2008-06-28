@@ -1156,7 +1156,7 @@ class Generic {
 			return true;
 		}
 
-		$spt_header = '{import}class {class_name} extends {extends} {
+		$spt_header = '{filter none}{import}{end filter}class {class_name} extends {extends} {
 	function {class_name} ($id = false) {
 		parent::{extends} (\'{table}\', \'{pkey}\');
 		{if obj[permissions]}$this->usePermissions = true;{end if}

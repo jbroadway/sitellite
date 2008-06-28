@@ -8,6 +8,8 @@ Changes in 4.3.5-rc
 - Added new Sitellite 5 logo and colours.
 - Added all GPL add-ons into the inc/app folder.  You can now enable/disable each
   as needed.
+- Fixed a conflict between a new filter change in SimpleTemplate and the Generic
+  object generation.
 
 Changes in 4.3.4-beta
 
