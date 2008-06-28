@@ -65,6 +65,9 @@ class MF_Widget_text extends MF_Widget {
 	 */
 	var $type = 'text';
 
+	var $prepend = '';
+	var $append = '';
+
 	/**
 	 * Returns the display HTML for this widget.  The optional
 	 * parameter determines whether or not to automatically display the widget
@@ -95,8 +98,8 @@ class MF_Widget_text extends MF_Widget {
 
 		if ($generate_html) {
 			return "\t" . '<tr' . $adv . '>' . "\n\t\t" . '<td class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td>' . "\n\t\t" .
-				'<td class="field"><input type="text" ' . $attrstr . ' value="' . str_replace ('"', '&quot;', htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset)) .
-				'" ' . $len . $this->extra . ' /></td>' . $ref . "\n\t" . '</tr>' . "\n";
+				'<td class="field">' . $this->prepend . '<input type="text" ' . $attrstr . ' value="' . str_replace ('"', '&quot;', htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset)) .
+				'" ' . $len . $this->extra . ' />' . $this->append . '</td>' . $ref . "\n\t" . '</tr>' . "\n";
 		} else {
 			return '<input type="text" ' . $attrstr . ' value="' . htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '" ' . $this->extra . ' />';
 		}

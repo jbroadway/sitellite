@@ -10,6 +10,7 @@ Changes in 4.3.5-rc
   as needed.
 - Fixed a conflict between a new filter change in SimpleTemplate and the Generic
   object generation.
+- Added prepend and append properties to the Text MailForm widget.
 
 Changes in 4.3.4-beta
 
