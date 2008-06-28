@@ -117,7 +117,7 @@ class MF_Widget_textarea extends MF_Widget {
 			$refalt = '<td class="label">&nbsp;</td>';
 		} else {
 			$ref = '';
-			$refalt = '<td class="label">&nbsp;</td>';
+			$refalt = '';
 		}
 
 		$attrstr = $this->getAttrs ();
