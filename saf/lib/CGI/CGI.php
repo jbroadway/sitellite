@@ -300,6 +300,12 @@ class CGI {
 				$value = substr ($item, $pos + 1);
 				$this->{$key} = $value;
 				array_push ($this->param, $key);
+				if ($value == 'html') {
+					$this->page = $key;
+					$_GET['page'] = $key;
+					$this->mode = 'html';
+					array_push ($extra_vars, $key);
+				}
 			} else {
 				array_push ($extra_vars, $item);
 			}

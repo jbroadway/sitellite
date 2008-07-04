@@ -12,6 +12,7 @@ Changes in 4.3.5-rc
   object generation.
 - Added prepend and append properties to the Text MailForm widget.
 - Fixed a small table rendering issue with the Textarea MailForm widget.
+- Fixed CGI::parseUri() mapping of /foo.html to the page ID 'foo'.
 
 Changes in 4.3.4-beta
 
