@@ -276,7 +276,7 @@ class MF_Widget_xeditor extends MF_Widget {
 
 			loader_import ('saf.GUI.Prompt');
 
-			$template = join ('', file (site_docroot () . '/inc/app/xed/html/xed.spt'));
+			$template = join ('', file ('inc/app/xed/html/xed.spt'));
 			return template_simple ($template, $this);
 		} else {
 			// return a textarea

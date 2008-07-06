@@ -13,6 +13,7 @@ Changes in 4.3.5-rc
 - Added prepend and append properties to the Text MailForm widget.
 - Fixed a small table rendering issue with the Textarea MailForm widget.
 - Fixed CGI::parseUri() mapping of /foo.html to the page ID 'foo'.
+- Fixed a potential path issue in xed.
 
 Changes in 4.3.4-beta
 
