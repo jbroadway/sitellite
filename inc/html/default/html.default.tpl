@@ -139,7 +139,7 @@
 	</p>
 
 	<p align="right" class="footer-links">
-		<a href="/about-sitellite"><xt:intl>About Sitellite</xt:intl></a> // <a href="http://www.sitellite.org/index/community"><xt:intl>Sitellite Community</xt:intl></a> // <a href="http://www.sitellite.org/index/docs"><xt:intl>Documentation</xt:intl></a> // <a href="http://www.sitellite.org/index/support"><xt:intl>Support</xt:intl></a>
+		<a href="http://www.sitellite.org/"><xt:intl>About Sitellite</xt:intl></a> // <a href="http://www.sitellite.org/index/community"><xt:intl>Sitellite Community</xt:intl></a> // <a href="http://www.sitellite.org/index/docs"><xt:intl>Documentation</xt:intl></a> // <a href="http://www.sitellite.org/index/support"><xt:intl>Support</xt:intl></a>
 	</p>
 
 </div>
