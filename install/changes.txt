@@ -15,6 +15,7 @@ Changes in 4.3.5-rc
 - Fixed CGI::parseUri() mapping of /foo.html to the page ID 'foo'.
 - Fixed a potential path issue in xed.
 - Updated the default site contents.
+- Added the manuals to the install and updated the built in docs.
 
 Changes in 4.3.4-beta
 
