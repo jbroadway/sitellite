@@ -186,7 +186,7 @@ class Loader {
 				$this->paths[$n] = $p;
 			}
 		}
-		$this->applications = parse_ini_file ('inc/conf/auth/applications/index.php');
+		$this->applications = @parse_ini_file ('inc/conf/auth/applications/index.php');
 	}
 
 	/**
