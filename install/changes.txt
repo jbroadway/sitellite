@@ -16,6 +16,7 @@ Changes in 4.3.5-rc
 - Fixed a potential path issue in xed.
 - Updated the default site contents.
 - Added the manuals to the install and updated the built in docs.
+- Fixed page template inheritance conflicts with the new menu loading.
 
 Changes in 4.3.4-beta
 

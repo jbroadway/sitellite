@@ -414,6 +414,7 @@ class Document {
 			$_t = $cgi->mode . '.' . $this->template . '.tpl';
 		} elseif (! empty ($this->below_page)) {
 			// inherit section template
+			loader_box ('sitellite/nav/init');
 
 			$useTemplate = false;
 			$parent = $this->below_page;
@@ -471,6 +472,7 @@ class Document {
 	 * @return string
 	 */
 	function getSection () {
+		loader_box ('sitellite/nav/init');
 		global $menu;
 		if ($menu->{'items_' . $this->id}->is_section) {
 			return $this->id;
