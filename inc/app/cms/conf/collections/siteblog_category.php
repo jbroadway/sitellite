@@ -3,7 +3,6 @@
 [Collection]
 
 name			        = siteblog_category
-app					= siteblog
 display			    = Blog Categories
 singular		        = Blog Category
 
@@ -31,17 +30,21 @@ alt = Category Name
 [hint:poster_visible]
 
 type = hidden
+setDefault = yes
 
 [hint:comments]
 
 type = hidden
+setDefault = yes
 
 [hint:display_rss]
 
 type = hidden
+setDefault = yes
 
 [hint:status]
 
 type = hidden
+setDefault = yes
 
 ; */ ?>

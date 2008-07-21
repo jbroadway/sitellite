@@ -1,3 +1,7 @@
+New in 2.0.3:
+
+- Fixed an issue with adding categories.
+
 New in 2.0.2:
 
 - Compatible with Sitellite's new multilingual capabilities.
