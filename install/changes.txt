@@ -1,3 +1,8 @@
+Changes in 5.0.0-stable
+
+- Fixed a double-quote escaping issue in Xed.
+- Fixed a bug detecting external vs local links in the Xed link editor.
+
 Changes in 4.3.5-rc
 
 - Improved the column name output in the Change History view.

@@ -185,6 +185,9 @@ class MF_Widget_linker extends MF_Widget {
 		}
 		$parts = parse_url ($link);
 		$page = basename ($parts['path']);
+		if (! empty ($parts['host']) && $parts['host'] != site_domain ()) {
+			return false;
+		}
 		if (empty ($page)) {
 			return 'index';
 		}
