@@ -7,7 +7,11 @@
 $conf = ini_parse ('inc/app/sitewiki/conf/settings.php', false);
 
 foreach ($conf as $k => $v) {
-	appconf_set ($k, $v);
+	if ($k == 'template' && $context == 'action') {
+		page_template ($v);
+	} else {
+		appconf_set ($k, $v);
+	}
 }
 
 appconf_set ('default_page', 'HomePage');

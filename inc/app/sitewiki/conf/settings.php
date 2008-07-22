@@ -14,6 +14,8 @@ wiki_description        = A SiteWiki Wiki
 
 language                = en-us
 
+template                = wide
+
 security_test           = On
 
 default_view_level      = Off

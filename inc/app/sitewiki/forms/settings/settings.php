@@ -21,6 +21,11 @@ type = text
 alt = Language
 extra = "size=`10`"
 
+[template]
+
+type = cms.Widget.Templates
+alt = Display with Template
+
 [security_test]
 
 type = select
