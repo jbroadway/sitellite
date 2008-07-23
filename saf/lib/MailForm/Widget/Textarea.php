@@ -87,6 +87,9 @@ class MF_Widget_textarea extends MF_Widget {
 	 */
 	var $labelPosition = 'top';
 
+	var $prepend = '';
+	var $append = '';
+
 	/**
 	 * Returns the display HTML for this widget.  The optional
 	 * parameter determines whether or not to automatically display the widget
@@ -120,20 +123,27 @@ class MF_Widget_textarea extends MF_Widget {
 			$refalt = '';
 		}
 
+		if (! empty ($this->prepend)) {
+			$this->prepend = $this->prepend . '<br />';
+		}
+		if (! empty ($this->append)) {
+			$this->append = '<br />' . $this->append;
+		}
+
 		$attrstr = $this->getAttrs ();
 		if ($generate_html) {
 			if ($this->labelPosition == 'left') {
 				return "\t" . '<tr>' . "\n\t\t" . '<td class="label" valign="top"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td>'
-					. "\n\t\t" . '<td class="field"><textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
-					htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea></td>' . $ref . "\n\t" . '</tr>' . "\n";
+					. "\n\t\t" . '<td class="field">' . $this->prepend . '<textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
+					htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea>' . $this->append . '</td>' . $ref . "\n\t" . '</tr>' . "\n";
 			} else {
 				if (empty ($this->alt)) {
-					return "\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="field"><textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
-						htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea></td>' . $ref . "\n\t" . '</tr>' . "\n";
+					return "\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="field">' . $this->prepend . '<textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
+						htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea>' . $this->append . '</td>' . $ref . "\n\t" . '</tr>' . "\n";
 				} else {
 					return "\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td>' . "\n\t" .
-						$refalt . '</tr>' . "\n\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="field"><textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
-						htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea></td>' . $ref . "\n\t" . '</tr>' . "\n";
+						$refalt . '</tr>' . "\n\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="field">' . $this->prepend . '<textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
+						htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea>' . $this->append . '</td>' . $ref . "\n\t" . '</tr>' . "\n";
 				}
 			}
 		} else {
