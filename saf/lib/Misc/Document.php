@@ -47,7 +47,9 @@ class Document {
 	function Document ($data = array ()) {
 		$this->error = false;
 		$this->headers = array ();
-		$this->addMeta ('generator', 'Sitellite Content Server ' . SITELLITE_VERSION);
+		if (conf ('Server', 'send_version_header')) {
+			$this->addMeta ('generator', 'Sitellite Content Server ' . SITELLITE_VERSION);
+		}
 		$this->set ($data);
 	}
 

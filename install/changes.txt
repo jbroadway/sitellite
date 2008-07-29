@@ -2,6 +2,7 @@ Changes in 5.0.0-stable
 
 - Fixed a double-quote escaping issue in Xed.
 - Fixed a bug detecting external vs local links in the Xed link editor.
+- Sitellite meta tag now obeys the send_version_header setting too.
 
 Changes in 4.3.5-rc
 
