@@ -250,7 +250,7 @@ CREATE TABLE sitellite_user_session (
 # Dumping data for table 'sitellite_user'
 #
 
-INSERT INTO sitellite_user VALUES ('admin','gVCJufyO4/SPs','','','lux@simian.ca','master','development','no','off','en','04c59bba46f041a01cc5ca0e81daff32',20030707123530,'','','','','','','','','','','','','','','', 'a:1:{s:3:"all";s:2:"rw";}', 'no', '', '', now(), now());
+INSERT INTO sitellite_user VALUES ('admin','gVCJufyO4/SPs','','','','master','development','no','off','en','04c59bba46f041a01cc5ca0e81daff32',20030707123530,'','','','','','','','','','','','','','','', 'a:1:{s:3:"all";s:2:"rw";}', 'no', '', '', now(), now());
 
 #
 # Table structure for table 'sitellite_prefs'

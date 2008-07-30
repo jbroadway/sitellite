@@ -5,7 +5,7 @@
 // global $menu object for custom menu boxes.
 
 if (! isset ($GLOBALS['menu'])) {
-	global $cgi;
+	global $cgi, $conf;
 
 	loader_import ('saf.GUI.Menu');
 

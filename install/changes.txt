@@ -2,7 +2,10 @@ Changes in 5.0.0-stable
 
 - Fixed a double-quote escaping issue in Xed.
 - Fixed a bug detecting external vs local links in the Xed link editor.
+- Added prepend/append options to textarea widget.
 - Sitellite meta tag now obeys the send_version_header setting too.
+- Fixed a bug causing the menu cache to fail to save.
+- Updated default settings and db schema.
 
 Changes in 4.3.5-rc
 
