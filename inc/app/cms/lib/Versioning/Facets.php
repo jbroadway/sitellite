@@ -287,6 +287,99 @@ class rSelectFacet extends rFacet {
 	}
 }
 
+class rJoinFacet extends rFacet {
+	/**
+	 * Primary key of the main table.
+	 */
+	var $pkey = false;
+
+	/**
+	 * Join table.
+	 */
+	var $join_table = false;
+
+	/**
+	 * Join table main key.
+	 */
+	var $join_main_key = false;
+
+	/**
+	 * Join table foreign key.
+	 */
+	var $join_foreign_key = false;
+	
+	function getCondition () {
+		global $cgi;
+		if (! $cgi->{'_' . $this->field}) {
+			return false;
+		}
+		$ids = db_shift_array (
+			sprintf (
+				'select %s from %s where %s = ?',
+				$this->join_main_key,
+				$this->join_table,
+				$this->join_foreign_key
+			),
+			$cgi->{'_' . $this->field}
+		);
+		return new rList ($this->pkey, $ids);
+	}
+
+	function render () {
+		$this->evalOptions ();
+
+	    global $cgi;
+
+		$out = '<form id="facet-' . $this->field . '">' . NEWLINE;
+
+		foreach ($this->preserve as $name) {
+			$out .= '<input type="hidden" name="' . $name . '" value="' . $cgi->{$name} . '" />' . NEWLINE;
+		}
+
+		foreach ($cgi->param as $k) {
+			if ($k != $this->field && strpos ($k, '_') === 0 && ! in_array ($k, $this->ignore)) {
+				// assume it's a facet
+				$out .= '<input type="hidden" name="' . $k . '" value="' . $cgi->{$k} . '" />' . NEWLINE;
+			}
+		}
+
+		$out .= '<strong>' . intl_get ($this->display) . ':</strong>' . NEWLINE
+			. TAB . '<select name="_' . $this->field . '" onchange="this.form.submit ()">' . NEWLINE;
+		if ($this->all !== false) {
+			$out .= TABx2 . '<option value="" selected="selected">- ' . intl_get ('ALL') . ' -</option>' . NEWLINE;
+		}
+
+		foreach ($this->options as $option => $name) {
+			if ($cgi->{'_' . $this->field} == $option) {
+				$selected = ' selected="selected"';
+			} else {
+				$selected = '';
+			}
+
+			if ($this->count) {
+				$func = ($this->rex->isVersioned) ? 'getStoreList' : 'getList';
+				if ($this->fuzzy) {
+					$c = $this->rex->{$func} (array ($this->field => new rLike ($this->field, '%' . $this->escape ($option) . '%')), 0, 0, false, false, true);
+				} else {
+					$c = $this->rex->{$func} (array ($this->field => new rEqual ($this->field, $option)), 0, 0, false, false, true);
+				}
+				if ($c === false) {
+					$c = '0';
+				}
+				$total = ' (' . $c . ')';
+			} else {
+				$total = '';
+			}
+
+			$out .= TABx2 . '<option value="' . $option . '"' . $selected . '>' . intl_get ($name) . $total . '</option>' . NEWLINE;
+		}
+
+		$out .= TAB . '</select>' . NEWLINE . '</form>' . NEWLINE;
+
+		return $out;
+	}
+}
+
 class rListFacet extends rFacet {
 	function render () {
 		$this->evalOptions ();

@@ -7,6 +7,7 @@ Changes in 5.0.0-stable
 - Fixed a bug causing the menu cache to fail to save.
 - Updated default settings and db schema.
 - Added basic many-to-many table join widget, called Joiner.
+- Added basic many-to-many table join facet for collections.
 
 Changes in 4.3.5-rc
 
