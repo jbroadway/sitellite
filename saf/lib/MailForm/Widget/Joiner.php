@@ -222,7 +222,7 @@ var {name}joiner = {
 {end if}
 {end loop}
 {if obj.addAction}<br /><br />
-<a href="{site/prefix}/index/cms-joiner-manage-action?table={table}" target="_blank">{intl Manage Items}</a>
+<a href="{site/prefix}/index/cms-joiner-manage-action?table={table}" target="_blank">{intl Add/Remove Items}</a>
 		</td>
 	</tr>
 ';
