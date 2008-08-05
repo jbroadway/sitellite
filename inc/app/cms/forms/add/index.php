@@ -74,6 +74,15 @@ class CmsAddForm extends MailForm {
 			}
 		}
 
+		foreach ($rex->info as $k => $v) {
+			if (preg_match ('/^hint:(.*)$/', $k, $regs)) {
+				if (! isset ($this->widgets[$regs[1]])) {
+					$w =& $this->createWidget ($regs[1], $v);
+					$w->id = $cgi->_key;
+				}
+			}
+		}
+
 		if (isset ($rex->info['Collection']['singular'])) {
 			page_title (intl_get ('Adding') . ' ' . $rex->info['Collection']['singular']);
 		} else {
@@ -105,6 +114,12 @@ class CmsAddForm extends MailForm {
 
 		unset ($vals['submit_button']);
 
+		foreach ($this->widgets as $k => $w) {
+			if ($w->type == 'joiner') {
+				unset ($vals[$k]);
+			}
+		}
+
 		$res = $rex->create ($vals);
 
 		if (isset ($vals[$rex->key]) && $vals[$rex->key] != false) {
@@ -118,6 +133,12 @@ class CmsAddForm extends MailForm {
 		if (! $res) {
 			die ($rex->error);
 		} else {
+			foreach ($this->widgets as $k => $w) {
+				if ($w->type == 'joiner') {
+					$w->saveSelected ($key);
+				}
+			}
+
 			loader_import ('cms.Workflow');
 			echo Workflow::trigger (
 				'add',

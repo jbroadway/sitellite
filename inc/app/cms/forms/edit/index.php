@@ -75,6 +75,15 @@ class CmsEditForm extends MailForm { // default to a simple edit screen, much li
 			}
 		}
 
+		foreach ($rex->info as $k => $v) {
+			if (preg_match ('/^hint:(.*)$/', $k, $regs)) {
+				if (! isset ($this->widgets[$regs[1]])) {
+					$w =& $this->createWidget ($regs[1], $v);
+					$w->id = $cgi->_key;
+				}
+			}
+		}
+
 		$w =& $this->addWidget ('hidden', '_key');
 		$w =& $this->addWidget ('hidden', '_collection');
 		$w =& $this->addWidget ('hidden', '_return');
