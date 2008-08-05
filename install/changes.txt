@@ -6,6 +6,7 @@ Changes in 5.0.0-stable
 - Sitellite meta tag now obeys the send_version_header setting too.
 - Fixed a bug causing the menu cache to fail to save.
 - Updated default settings and db schema.
+- Added basic many-to-many table join widget, called Joiner.
 
 Changes in 4.3.5-rc
 
