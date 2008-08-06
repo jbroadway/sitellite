@@ -336,12 +336,12 @@ thanks for your interest in Sitellite and welcome to the neighbourhood!</p>';
 			// save info to config.ini.php
 			$conf = @join ('', @file ('../inc/conf/config.ini.php'));
 			if (($cgi->dbhost != 'localhost') || ($cgi->dbport != 3306)) {
-				$conf = str_replace ("hostname\t\t= localhost", "hostname\t\t= \"" . $cgi->dbhost . ':' . $cgi->dbport . '"', $conf);
+				$conf = preg_replace ('/hostname[ \t]*= localhost/', "hostname\t\t= \"" . $cgi->dbhost . ':' . $cgi->dbport . '"', $conf);
 			}
-			$conf = str_replace ("database\t\t= DBNAME", "database\t\t= \"" . $cgi->database . '"', $conf);
-			$conf = str_replace ("username\t\t= USER", "username\t\t= \"" . $cgi->dbuser . '"', $conf);
-			$conf = str_replace ("password\t\t= PASS", "password\t\t= \"" . $cgi->dbpass . '"', $conf);
-			$conf = str_replace ("domain\t\t\t= DOMAIN", "domain\t\t\t= \"" . $_SERVER['HTTP_HOST'] . '"', $conf);
+			$conf = preg_replace ('/database[ \t]*= DBNAME/', "database\t\t= \"" . $cgi->database . '"', $conf);
+			$conf = preg_replace ('/username[ \t]*= USER/', "username\t\t= \"" . $cgi->dbuser . '"', $conf);
+			$conf = preg_replace ('/password[ \t]*= PASS/', "password\t\t= \"" . $cgi->dbpass . '"', $conf);
+			$conf = preg_replace ('/domain[ \t]*= DOMAIN/', "domain\t\t\t= \"" . $_SERVER['HTTP_HOST'] . '"', $conf);
 
 			loader_import ('saf.File');
 

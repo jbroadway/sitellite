@@ -8,6 +8,7 @@ Changes in 5.0.0-stable
 - Updated default settings and db schema.
 - Added basic many-to-many table join widget, called Joiner.
 - Added basic many-to-many table join facet for collections.
+- Updated installer to be more flexible with updating the config files.
 
 Changes in 4.3.5-rc
 
