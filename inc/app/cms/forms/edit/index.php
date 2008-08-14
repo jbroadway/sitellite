@@ -58,7 +58,17 @@ class CmsEditForm extends MailForm { // default to a simple edit screen, much li
 		// get copy from repository
 		loader_import ('cms.Versioning.Rex');
 		$rex = new Rex ($cgi->_collection); // default: database, database
-		$_document = $rex->getCurrent ($cgi->_key);
+		if (strpos ($rex->key, ',') !== false) {
+			$pkeys = preg_split ('/, ?/', $rex->key);
+			$pvals = explode ('|', $cgi->_key);
+			$key = array ();
+			for ($i = 0; $i < count ($pkeys); $i++) {
+				$key[$pkeys[$i]] = $pvals[$i];
+			}
+		} else {
+			$key = $cgi->_key;
+		}
+		$_document = $rex->getCurrent ($key);
 		$widgets = $rex->getStruct ();
 		if (! $widgets) {
 			$widgets = array ();
@@ -154,6 +164,15 @@ class CmsEditForm extends MailForm { // default to a simple edit screen, much li
 		foreach ($vals as $k => $v) {
 			if ($this->widgets[$k]->ignoreEmpty && empty ($v)) {
 				unset ($vals[$k]);
+			}
+		}
+
+		if (strpos ($rex->key, ',') !== false) {
+			$pkeys = preg_split ('/, ?/', $rex->key);
+			$pvals = explode ('|', $key);
+			$key = array ();
+			for ($i = 0; $i < count ($pkeys); $i++) {
+				$key[$pkeys[$i]] = $pvals[$i];
 			}
 		}
 

@@ -93,12 +93,25 @@ class RevSource_Database extends RevSource {
 		list ($set, $bind) = $this->_makeSet ($data);
 		$bind[] = $id;
 
-		$res = $db->execute (
-			'update ' . $collection . ' set ' .
-			$set .
-			' where ' . $key . ' = ?',
-			$bind
-		);
+		if (is_array ($id)) {
+			array_pop ($bind);
+			foreach ($id as $b) {
+				$bind[] = $b;
+			}
+			$res = $db->execute (
+				'update ' . $collection . ' set ' .
+				$set .
+				' where ' . join (' = ? and ', array_keys ($id)) . ' = ?',
+				$bind
+			);
+		} else {
+			$res = $db->execute (
+				'update ' . $collection . ' set ' .
+				$set .
+				' where ' . $key . ' = ?',
+				$bind
+			);
+		}
 		if (! $res) {
 			$this->error = $db->error;
 			return false;
@@ -108,10 +121,17 @@ class RevSource_Database extends RevSource {
 
 	function delete ($collection, $key, $id) {
 		global $db;
-		$res = $db->execute (
-			'delete from ' . $collection . ' where ' . $key . ' = ?',
-			$id
-		);
+		if (is_array ($id)) {
+			$res = $db->execute (
+				'delete from ' . $collection . ' where ' . join (' = ? and ', array_keys ($id)) . ' = ?',
+				array_values ($id)
+			);
+		} else {
+			$res = $db->execute (
+				'delete from ' . $collection . ' where ' . $key . ' = ?',
+				$id
+			);
+		}
 		if (! $res) {
 			$this->error = $db->error;
 			return false;
@@ -121,10 +141,17 @@ class RevSource_Database extends RevSource {
 
 	function getCurrent ($collection, $key, $id) {
 		global $db;
-		$res = $db->fetch (
-			'select * from ' . $collection . ' where ' . $key . ' = ?',
-			$id
-		);
+		if (is_array ($id)) {
+			$res = $db->fetch (
+				'select * from ' . $collection . ' where ' . join (' = ? and ', array_keys ($id)) . ' = ?',
+				array_values ($id)
+			);
+		} else {
+			$res = $db->fetch (
+				'select * from ' . $collection . ' where ' . $key . ' = ?',
+				$id
+			);
+		}
 		if (! $res) {
 			$this->error = $db->error;
 			return false;

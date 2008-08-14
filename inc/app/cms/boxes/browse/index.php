@@ -174,6 +174,14 @@ $editable = array ();
 $align = array ();
 $width = array ();
 foreach ($res as $key => $row) {
+	if (strpos ($rex->key, ',') !== false) {
+		// multiple column primary key
+		$pkeys = preg_split ('/, ?/', $rex->key);
+		$row->{$rex->key} = array ();
+		foreach ($pkeys as $pk) {
+			$row->{$rex->key}[$pk] = $row->{$pk};
+		}
+	}
 	$row = $rex->getCurrent ($row->{$rex->key});
 	if (empty ($row->{$rex->info['Collection']['title_field']})) {
 		$row->{$rex->info['Collection']['title_field']} = $row->{$rex->key};
@@ -194,6 +202,15 @@ foreach ($res as $key => $row) {
 		$width[$field->name] = ($data['fields'][$field->name]['width']) ? $data['fields'][$field->name]['width'] : 'auto';
 		if (isset ($rex->info['browse:' . $field->name]['length']) && strlen ($tmp->{$field->name}) > $rex->info['browse:' . $field->name]['length']) {
 			$tmp->{$field->name} = rtrim (substr ($tmp->{$field->name}, 0, $rex->info['browse:' . $field->name]['length'] - 3)) . '...';
+		}
+	}
+	if (! isset ($row->{$rex->key})) {
+		$pkeys = preg_split ('/, ?/', $rex->key);
+		$row->{$rex->key} = '';
+		$sep = '';
+		foreach ($pkeys as $pk) {
+			$row->{$rex->key} .= $sep . $row->{$pk};
+			$sep = '|';
 		}
 	}
 	$res2[$row->{$rex->key}] = $tmp;

@@ -201,10 +201,17 @@ class RevStore_Database extends RevStore {
 
 	function getCurrent ($collection, $key, $id, $all = false) {
 		global $db;
-		$res = $db->fetch (
-			'select * from ' . $collection . '_sv where ' . $key . ' = ? order by sv_autoid desc limit 1',
-			$id
-		);
+		if (is_array ($id)) {
+			$res = $db->fetch (
+				'select * from ' . $collection . '_sv where ' . join (' = ? and ', array_keys ($id)) . ' = ? order by sv_autoid desc limit 1',
+				array_values ($id)
+			);
+		} else {
+			$res = $db->fetch (
+				'select * from ' . $collection . '_sv where ' . $key . ' = ? order by sv_autoid desc limit 1',
+				$id
+			);
+		}
 		if (! $res) {
 			$this->error = $db->error;
 			return false;

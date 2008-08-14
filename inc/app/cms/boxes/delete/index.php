@@ -38,6 +38,14 @@ if (! $parameters['_key']) {
 }
 
 if (! is_array ($parameters['_key'])) {
+	if (strpos ($rex->key, ',') !== false) {
+		$pkeys = preg_split ('/, ?/', $rex->key);
+		$pvals = explode ('|', $parameters['_key']);
+		$parameters['_key'] = array ();
+		for ($i = 0; $i < count ($pkeys); $i++) {
+			$parameters['_key'][$pkeys[$i]] = $pvals[$i];
+		}
+	}
 	if (! $rex->delete ($parameters['_key'])) {
 		page_title (intl_get ('An Error Occurred'));
 		echo '<p>' . $rex->error . '</p>';
@@ -47,6 +55,14 @@ if (! is_array ($parameters['_key'])) {
 } else {
 	$failed = array ();
 	foreach ($parameters['_key'] as $id) {
+		if (strpos ($rex->key, ',') !== false) {
+			$pkeys = preg_split ('/, ?/', $rex->key);
+			$pvals = explode ('|', $id);
+			$id = array ();
+			for ($i = 0; $i < count ($pkeys); $i++) {
+				$id[$pkeys[$i]] = $pvals[$i];
+			}
+		}
 		if (! $rex->delete ($id)) {
 			$failed[] = $id;
 		}
