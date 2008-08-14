@@ -1,3 +1,7 @@
+Changes in 5.0.1-stable
+
+- Added basic support for multi-column primary keys to Rex editing.
+
 Changes in 5.0.0-stable
 
 - Fixed a double-quote escaping issue in Xed.
