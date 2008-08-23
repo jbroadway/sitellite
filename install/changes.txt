@@ -1,6 +1,7 @@
 Changes in 5.0.1-stable
 
 - Added basic support for multi-column primary keys to Rex editing.
+- Fixed ampersand issue in Xed editor.
 
 Changes in 5.0.0-stable
 

@@ -1336,6 +1336,11 @@ function xed_insert_element (ifname, name, attrs) {
 	e = document.getElementById (ifname);
 	d = e.contentWindow.document;
 
+	// fix ampersands
+	for (i = 0; i < attrs.length; i++) {
+		attrs[i].value = attrs[i].value.replace (/&amp;/g, '&');
+	}
+
 	if (document.all) {
 		tag = '<' + name;
 		for (i = 0; i < attrs.length; i++) {
@@ -1625,6 +1630,7 @@ function xed_set_properties (ifname, data) {
 		sep = ' (';
 
 		for (i = 0; i < data.length; i++) {
+			data[i].value = data[i].value.replace (/&amp;/g, '&');
 			element.setAttribute (data[i].name, data[i].value);
 			if (data[i].name == 'name') {
 				inner += data[i].value;
@@ -1639,6 +1645,7 @@ function xed_set_properties (ifname, data) {
 		element.innerHTML = inner;
 	} else {
 		for (i = 0; i < data.length; i++) {
+			data[i].value = data[i].value.replace (/&amp;/g, '&');
 			element.setAttribute (data[i].name, data[i].value);
 		}
 	}
