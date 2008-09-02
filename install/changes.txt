@@ -3,6 +3,7 @@ Changes in 5.0.1-stable
 - Added basic support for multi-column primary keys to Rex editing.
 - Fixed ampersand issue in Xed editor.
 - Fixed case of Session::getUser() failing when simulating logins.
+- Updated user manual after testing Sitellite in Google Chrome.
 
 Changes in 5.0.0-stable
 
