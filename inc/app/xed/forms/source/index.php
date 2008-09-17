@@ -1,5 +1,9 @@
 <?php
 
+loader_import ('xed.Cleaners');
+global $cgi;
+$cgi->html = the_cleaners ($cgi->html);
+
 page_add_style (site_prefix () . '/js/prompt.css');
 page_add_script (site_prefix () . '/js/prototype.js');
 page_add_script (site_prefix () . '/js/scriptaculous/scriptaculous.js');
