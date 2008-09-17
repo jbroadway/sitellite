@@ -1,3 +1,7 @@
+Changes in 5.0.2-stable
+
+- Fixed <br> tags being added to <pre> content in Xed in Firefox.
+
 Changes in 5.0.1-stable
 
 - Added basic support for multi-column primary keys to Rex editing.

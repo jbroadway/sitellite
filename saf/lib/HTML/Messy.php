@@ -291,6 +291,9 @@ class Messy extends XML_HTMLSax3 {
 		if (strpos ($data, '<span class="Apple-style-span"') !== false) {
 			$data = preg_replace ('/<span class="Apple-style-span"([^>]*?)>(.*?)><\/span>/', '\2', $data);
 		}
+		while (preg_match ('|<pre>([^<]*)<br />|s', $data)) {
+			$data = preg_replace ('|<pre>([^<]*)<br />|s', '<pre>\1', $data);
+		}
 
 		parent::parse ($data);
 
