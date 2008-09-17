@@ -158,20 +158,25 @@ function rpc_handle (&$obj, $parameters) {
 	unset ($parameters['_rewrite_sticky']);
 
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-		return rpc_serialize (
+		$res = rpc_serialize (
 			call_user_func_array (
 				array (&$obj, $method),
 				$parameters
 			)
 		);
 	} else {
-		return rpc_serialize (
+		$res = rpc_serialize (
 			call_user_func_array (
 				array (&$obj, $method),
 				$_POST
 			)
 		);
 	}
+	if (strstr ($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false && extension_loaded ('zlib')) {
+		header ('Content-Encoding: gzip');
+		$res = gzencode ($res, 9);
+	}
+	return $res;
 }
 
 ?>
