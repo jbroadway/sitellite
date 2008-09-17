@@ -3262,12 +3262,12 @@ function xed_html_entities_decode (text) {
 	orig = text;
 	re = /&quot;/g;
 	text = text.replace (re, '"');
-	re = /&amp;/g;
-	text = text.replace (re, '&');
 	re = /&lt;/g;
 	text = text.replace (re, '<');
 	re = /&gt;/g;
 	text = text.replace (re, '>');
+	re = /&amp;/g;
+	text = text.replace (re, '&');
 	return text;
 }
 
