@@ -66,7 +66,7 @@ class MF_Widget_templates extends MF_Widget {
 
 	function getTemplates ($path = false) {
 		if (! $path) {
-			$path = site_docroot () . '/inc/html/' . conf ('Server', 'default_template_set');
+			$path = 'inc/html/' . conf ('Server', 'default_template_set');
 		}
 
 		$templates = array ('' => 'Inherit', 'default' => 'Default');

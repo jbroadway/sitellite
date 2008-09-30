@@ -3,6 +3,7 @@ Changes in 5.0.2-stable
 - Fixed <br> tags being added to <pre> content in Xed in Firefox.
 - Fixed an issue with Xed's htmlentities decoding.
 - Added automatic support for gzip compression of AJAX responses.
+- Fixed potential issue with template selector missing templates.
 
 Changes in 5.0.1-stable
 
