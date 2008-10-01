@@ -42,7 +42,7 @@ function sitetemplate_validate (f) {
 					<td width="50%">
 						<input type="submit" name="submit_button" value="{intl Save}" />
 						&nbsp;
-						<input type="submit" value="{intl Cancel}" onclick="window.location.href = '{site/prefix}/index/sitetemplate-templateselect-action?set_name={set}'; return false" />
+						<input type="submit" value="{intl Cancel}" onclick="window.location.href = '{site/prefix}/index/sitetemplate-templateselect-action?set_name={cgi/set_name}'; return false" />
 					</td>
 					<td width="50%" align="right">
 						<strong>{intl Validate:}</strong>

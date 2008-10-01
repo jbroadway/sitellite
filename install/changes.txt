@@ -4,6 +4,7 @@ Changes in 5.0.2-stable
 - Fixed an issue with Xed's htmlentities decoding.
 - Added automatic support for gzip compression of AJAX responses.
 - Fixed potential issue with template selector missing templates.
+- Fixed an error on cancelling new css files in SiteTemplate.
 
 Changes in 5.0.1-stable
 
