@@ -223,7 +223,7 @@ CREATE TABLE sitellite_user (
   province varchar(48) NOT NULL default '',
   postal_code varchar(16) NOT NULL default '',
   country varchar(48) NOT NULL default '',
-  teams char(255) NOT NULL default '',
+  teams text NOT NULL default '',
   public enum('yes','no') not null default 'no',
   profile text not null,
   sig text not null,
