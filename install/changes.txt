@@ -6,6 +6,7 @@ Changes in 5.0.2-stable
 - Fixed potential issue with template selector missing templates.
 - Fixed an error on cancelling new css files in SiteTemplate.
 - Fixed issue with many team permissions - NOTE: Requires upgrade utility run.
+- Removed change history from browse if page is locked/not editable.
 
 Changes in 5.0.1-stable
 
