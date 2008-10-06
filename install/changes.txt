@@ -7,6 +7,7 @@ Changes in 5.0.2-stable
 - Fixed an error on cancelling new css files in SiteTemplate.
 - Fixed issue with many team permissions - NOTE: Requires upgrade utility run.
 - Removed change history from browse if page is locked/not editable.
+- All related collections can now be disabled with their apps.
 
 Changes in 5.0.1-stable
 
