@@ -8,6 +8,7 @@ Changes in 5.0.2-stable
 - Fixed issue with many team permissions - NOTE: Requires upgrade utility run.
 - Removed change history from browse if page is locked/not editable.
 - All related collections can now be disabled with their apps.
+- Fixed an encoding issue with international characters in Xed.
 
 Changes in 5.0.1-stable
 

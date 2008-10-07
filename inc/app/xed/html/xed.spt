@@ -482,7 +482,7 @@ function formchooser_handler () {
 
 	xed_templates = new Array ();
 {loop obj.templates}
-	xed_templates['{loop/id}'] = '{loop/body}';
+	xed_templates['{loop/id}'] = '{filter none}{loop/body}{end filter}';
 {end loop}
 
 var rpc_handler = new Function (

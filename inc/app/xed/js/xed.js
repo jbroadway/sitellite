@@ -118,6 +118,13 @@ function xed_do_nothing (n) {}
 // call this in the onload attribute of the body
 // ie. onload="xed_init ('editor')"
 function xed_init (ifname) {
+	// decode initial values
+	xed_initial_value[ifname] = decodeURIComponent (xed_initial_value[ifname]);
+	xed_scroller_data = decodeURIComponent (xed_scroller_data);
+	for (var i = 0; i < xed_templates.length; i++) {
+		xed_templates[i] = decodeURIComponent (xed_templates[i]);
+	}
+
 	e = document.getElementById (ifname);
 	e.contentWindow.document.designMode = 'on';
 	if (xed_safari) {
