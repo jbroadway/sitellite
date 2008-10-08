@@ -2538,6 +2538,40 @@ class XT {
 	// <xt:val name="foo" />
 	// name is expression
 
+
+
+	// <xt:date format="format">My date here</xt:date>
+
+	/**
+	 * Date tag handler.
+	 * 
+	 * @access	private
+	 * @param	associative array	$node
+	 * @return	string
+	 * 
+	 */
+	function _date ($node) {
+		if ($this->open) {
+			return $this->_default ($node);
+		}
+
+		global $intl;
+		if (is_object ($intl)) {
+			$node['value'] = $this->reverseEntities ($node['value']);
+			if (empty( $node['value'] )) {
+				$node['value'] = date('r');
+			}
+			if ($this->isHtml) {
+				// add <span lang=""></span> tags around the value
+				return $intl->date ($node['attributes']['format'],
+					$node['value'], $this->exp->register['object'], true);
+			} else {
+				return $intl->date ($node['attributes']['format'],
+					$node['value'], $this->exp->register['object']);
+			}
+		}
+		return $node['value'];
+	}
 	/**
 	 * Var tag handler.
 	 * 
