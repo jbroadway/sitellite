@@ -10,6 +10,7 @@ Changes in 5.0.2-stable
 - All related collections can now be disabled with their apps.
 - Fixed an encoding issue with international characters in Xed.
 - Added the ability to browse the docs of any app, not just SAF.
+- Added the ability to include custom CSS styles Xed.
 
 Changes in 5.0.1-stable
 

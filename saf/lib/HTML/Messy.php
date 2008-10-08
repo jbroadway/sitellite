@@ -402,9 +402,9 @@ class Messy extends XML_HTMLSax3 {
 				if ($new_key == 'class' && strpos ($val, 'Mso') === 0) {
 		    		unset ($attrs[$key]);
 		    		continue;
-		    	} elseif ($tag != 'box' && $tag != 'form' && $tag != 'xt:box' && $tag != 'xt:form' && $new_key == 'style') {
-		    		unset ($attrs[$key]);
-		    		continue;
+		    	//} elseif ($tag != 'box' && $tag != 'form' && $tag != 'xt:box' && $tag != 'xt:form' && $new_key == 'style') {
+		    	//	unset ($attrs[$key]);
+		    	//	continue;
 		    	} elseif (in_array ($new_key, $this->stripAttrs)) {
 		    		unset ($attrs[$key]);
 		    		continue;

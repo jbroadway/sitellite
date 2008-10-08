@@ -704,6 +704,7 @@ CREATE TABLE xed_attributes (
 
 INSERT INTO xed_attributes VALUES (null, 'default', 'id', "type=select\nalt=ID");
 INSERT INTO xed_attributes VALUES (null, 'default', 'class', "type=select\nalt=Class");
+INSERT INTO xed_attributes VALUES (null, 'default', 'style', "type=text\nalt=Style");
 INSERT INTO xed_attributes VALUES (null, 'a', 'href', "type=xed.Widget.Linker\nalt=Link\nextra=\"size='35'\"");
 INSERT INTO xed_attributes VALUES (null, 'a', 'target', "type=select\nsetValues=\"eval: array ('' => intl_get ('None'), '_blank' => intl_get ('New Window'), '_top' => intl_get ('Top Frame'))\"");
 INSERT INTO xed_attributes VALUES (null, 'img', 'src', "type=imagechooser\nalt=File");
