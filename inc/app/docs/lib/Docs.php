@@ -11,20 +11,52 @@ loader_import ('saf.File.Directory');
  */
 class Docs {
 	/**
+	 * List all apps.
+	 */
+	function apps () {
+		$apps = array ();
+		$files = Dir::fetch ('inc/app');
+		foreach ($files as $k => $v) {
+			if ($v == 'CVS' || $v == '.' || $v == '..' || ! @is_dir ('inc/app/' . $v)) {
+				continue;
+			}
+			if (@file_exists ('inc/app/' . $v . '/conf/config.ini.php')) {
+				$info = parse_ini_file ('inc/app/' . $v . '/conf/config.ini.php');
+				$apps[$v] = $info['app_name'];
+			} else {
+				$apps[$v] = ucfirst ($v);
+			}
+		}
+		asort ($apps);
+		return $apps;
+	}
+
+	/**
 	 * List all packages (aka folders).
 	 */
-	function packages () {
+	function packages ($app = 'saf') {
+		if ($app == 'saf') {
+			$dir = 'saf/lib';
+		} else {
+			$dir = 'inc/app/' . $app . '/lib';
+		}
 		$packages = array ();
-		$files = Dir::fetch ('saf/lib');
+		$files = Dir::fetch ($dir);
 		foreach ($files as $k => $v) {
-			if ($v == 'CVS' || $v == '.' || $v == '..' || $v == 'PEAR' || $v == 'Ext') {
+			if ($v == 'CVS' || $v == '.' || $v == '..' || $v == 'PEAR' || $v == 'Ext' || $v == 'Zend') {
+				unset ($files[$k]);
+				continue;
+			} elseif (strpos ($v, '_') === 0) {
 				unset ($files[$k]);
 				continue;
 			}
-			if ($files[$k] == 'Functions.php') {
-				$packages[] = 'saf.Functions';
+			if (strpos ($files[$k], '.php') !== false) {
+				$pkg = $app . '.' . array_shift (explode ('.', $files[$k]));
 			} else {
-				$packages[] = 'saf.' . $v;
+				$pkg = $app . '.' . $v;
+			}
+			if (! in_array ($pkg, $packages)) {
+				$packages[] = $pkg;
 			}
 		}
 		return $packages;
@@ -40,11 +72,23 @@ class Docs {
 	 * class at the top level.  Can always fix that later :)
 	 */
 	function classes ($package) {
-		if ($package == 'saf.Functions') {
-			return array ();
+		$app = array_shift (explode ('.', $package));
+		if ($app == 'saf') {
+			$prefix = 'saf/lib/';
+		} else {
+			$prefix = 'inc/app/' . $app . '/lib/';
 		}
+
+		if (@is_dir ($prefix . str_replace ($app . '.', '', $package))) {
+			$files = Dir::find ('*.php', $prefix . str_replace ($app . '.', '', $package), true);
+		} else {
+			$files = array ();
+		}
+		if (@file_exists ($prefix . str_replace ($app . '.', '', $package) . '.php')) {
+			$files[] = $prefix . str_replace ($app . '.', '', $package) . '.php';
+		}
+
 		$classes = array ();
-		$files = Dir::find ('*.php', 'saf/lib/' . str_replace ('saf.', '', $package), true);
 		foreach ($files as $file) {
 			$src = file_get_contents ($file);
 			$tokens = token_get_all ($src);
@@ -68,11 +112,22 @@ class Docs {
 	 * List all functions for a given package.
 	 */
 	function functions ($package) {
-		if ($package == 'saf.Functions') {
-			$files = array ('saf/lib/Functions.php');
+		$app = array_shift (explode ('.', $package));
+		if ($app == 'saf') {
+			$prefix = 'saf/lib/';
 		} else {
-			$files = Dir::find ('*.php', 'saf/lib/' . str_replace ('saf.', '', $package), true);
+			$prefix = 'inc/app/' . $app . '/lib/';
 		}
+
+		if (@is_dir ($prefix . str_replace ($app . '.', '', $package))) {
+			$files = Dir::find ('*.php', $prefix . str_replace ($app . '.', '', $package), true);
+		} else {
+			$files = array ();
+		}
+		if (@file_exists ($prefix . str_replace ($app . '.', '', $package) . '.php')) {
+			$files[] = $prefix . str_replace ($app . '.', '', $package) . '.php';
+		}
+
 		$functions = array ();
 		$class = false;
 		$class_count = 0;
@@ -208,11 +263,22 @@ class Docs {
 	 * Compiles all the data for all the functions in a package.
 	 */
 	function getFunctions ($package) {
-		if ($package == 'saf.Functions') {
-			$files = array ('saf/lib/Functions.php');
+		$app = array_shift (explode ('.', $package));
+		if ($app == 'saf') {
+			$prefix = 'saf/lib/';
 		} else {
-			$files = Dir::find ('*.php', 'saf/lib/' . str_replace ('saf.', '', $package), true);
+			$prefix = 'inc/app/' . $app . '/lib/';
 		}
+
+		if (@is_dir ($prefix . str_replace ($app . '.', '', $package))) {
+			$files = Dir::find ('*.php', $prefix . str_replace ($app . '.', '', $package), true);
+		} else {
+			$files = array ();
+		}
+		if (@file_exists ($prefix . str_replace ($app . '.', '', $package) . '.php')) {
+			$files[] = $prefix . str_replace ($app . '.', '', $package) . '.php';
+		}
+
 		$functions = array ();
 		$class = false;
 		$class_count = 0;
@@ -323,10 +389,20 @@ class Docs {
 	 * Compiles all the data for a given class and its properties and methods.
 	 */
 	function getClass ($package, $cls) {
-		if ($package == 'saf.Functions') {
-			$files = array ('saf/lib/Functions.php');
+		$app = array_shift (explode ('.', $package));
+		if ($app == 'saf') {
+			$prefix = 'saf/lib/';
 		} else {
-			$files = Dir::find ('*.php', 'saf/lib/' . str_replace ('saf.', '', $package), true);
+			$prefix = 'inc/app/' . $app . '/lib/';
+		}
+
+		if (@is_dir ($prefix . str_replace ($app . '.', '', $package))) {
+			$files = Dir::find ('*.php', $prefix . str_replace ($app . '.', '', $package), true);
+		} else {
+			$files = array ();
+		}
+		if (@file_exists ($prefix . str_replace ($app . '.', '', $package) . '.php')) {
+			$files[] = $prefix . str_replace ($app . '.', '', $package) . '.php';
 		}
 
 		$out = array (

@@ -1,5 +1,14 @@
 <?php
 
+if (! $parameters['package'] || empty ($parameters['package'])) {
+	$parameters['package'] = 'saf';
+}
+if (strpos ($parameters['package'], '.') === false) {
+	$parameters['current'] = $parameters['package'];
+} else {
+	$parameters['current'] = array_shift (explode ('.', $parameters['package']));
+}
+
 // this block will forward requests based on rules defined in conf/properties.php
 $forward_rules = appconf ('forward_rules');
 if (isset ($forward_rules[$parameters['package'] . ':' . $parameters['class']])) {
@@ -14,6 +23,9 @@ if (isset ($forward_rules[$parameters['package'] . ':' . $parameters['class']]))
 		header ('Location: ' . site_prefix () . '/index/docs-app/package.' . $pkg . '/class.' . $cls);
 		exit;
 	}
+} elseif ($parameters['class'] == 'Generic' && $parameters['package'] != 'saf.Database') {
+	header ('Location: ' . site_prefix () . '/index/docs-app/package.saf.Database/class.Generic');
+	exit;
 }
 
 loader_import ('docs.Docs');
@@ -24,11 +36,11 @@ $data = array ();
 
 $data['packages'] = docs_cache ('packages');
 if (! is_array ($data['packages'])) {
-	$data['packages'] = docs_cache_store (Docs::packages (), 'packages');
+	$data['packages'] = docs_cache_store (Docs::packages ($parameters['current']), 'packages');
 }
 
-if ($parameters['package']) {
-	if (! in_array ($parameters['package'], $data['packages'])) {
+if (strpos ($parameters['package'], '.') !== false) {
+	if (! in_array ($parameters['package'], $data['packages']) && $data['package'] != $data['current']) {
 		die ('Invalid package!');
 	}
 	$data['package'] = $parameters['package'];
@@ -65,6 +77,13 @@ if ($parameters['package']) {
 } else {
 	$data['package'] = false;
 	$data['class'] = false;
+}
+
+$data['apps'] = Docs::apps ();
+$data['current'] = $parameters['current'];
+$data['current_name'] = $data['apps'][$data['current']];
+if (empty ($data['current_name'])) {
+	$data['current_name'] = appconf ('title');
 }
 
 page_add_style (site_prefix () . '/inc/app/docs/html/docs.css');
