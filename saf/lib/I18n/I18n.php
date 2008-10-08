@@ -481,6 +481,80 @@ class I18n {
 	}
 
 	/**
+	 * Translate a date or time to a localized date string.
+	 *
+	 * This function is similar to PHP date function.
+	 * It accepts the same input as strtotime
+	 * Actually, doesn't translate timezone names.
+	 *
+	 * @access public
+	 * @param  string $format
+	 * @param  string $datestr
+	 * @return string
+	 */
+	function date ($format, $datestr = NULL) {
+		
+		if (is_null ($datestr)) {
+			$timestamp = time();
+		}
+		else {
+			$timestamp = strtotime($datestr);
+		}
+
+		// 1. read translations
+		$date_hash = ini_parse('inc/lang/dates.php');
+		if (file_exists('inc/lang/'.$this->default.'.dates.php'))
+			$date_hash = array_merge($date_hash, ini_parse('inc/lang/'.$this->default.'.dates.php'));
+		if (file_exists('inc/lang/'.$this->language.'.dates.php'))
+			$date_hash = array_merge($date_hash, ini_parse('inc/lang/'.$this->language.'.dates.php'));
+
+		$days = ini_filter_split_commas($date_hash["translations"]["days"]);
+		$shortdays = ini_filter_split_commas($date_hash["translations"]["shortdays"]);
+		$suffixes = ini_filter_split_commas($date_hash["translations"]["suffixes"]);
+		$months = ini_filter_split_commas($date_hash["translations"]["months"]);
+		$shortmonths = ini_filter_split_commas($date_hash["translations"]["shortmonths"]);
+		$antepost = ini_filter_split_commas($date_hash["translations"]["antepost"]);
+
+		// 2. build translation array
+		$trans = array();
+		$a = str_split("dNWmtLoyBghHisuIOpZcr");
+		foreach ($a as $c) {
+			$trans[$c] = date($c, $timestamp);
+		}
+		$d = getdate($timestamp);
+		$trans["D"] = $shortdays[$d["wday"]];
+		$trans["j"] = $d["mday"];
+		$trans["l"] = $days[$indice["wday"]];
+		$trans["N"] = ($d["wday"] == 0) ? 7 : $d["wday"];
+		$trans["S"] = ($indice["mday"] <= 4) ? $suffixes[$indice["mday"]+1] : "";
+		$trans["w"] = $d["wday"];
+		$trans["z"] = $d["yday"];
+		$trans["F"] = $months[$indice["mon"]+1];
+		$trans["M"] = $shortmonths[$indice["mon"]+1];
+		$trans["n"] = $d["mday"];
+		$trans["Y"] = $d["year"];
+		$trans["a"] = ($indice["hours"] >= 12) ? $antepost[1] : $antepost[0];
+		$trans["A"] = strtoupper($trans["a"]);
+		$trans["G"] = $d["hours"];
+		$trans["U"] = $d[0];
+
+		// 3. Look for format
+		if (array_key_exists($format, $date_hash["formats"])) {
+			$format = $date_hash["formats"][$format];
+		}
+
+		// 4. replace tokens
+		$i = array_keys($trans);
+		foreach ($i as $v) {
+			$trans['\\'.$v] = $v;
+		}
+		$trans['\\\\'] = '\\';
+		$format = strtr($format, $trans);
+
+		return $format;
+	}
+
+	/**
 	 * Generates a key for use in a key/value lookup on the $lang_hash
 	 * array.  Uses the metaphone () of the first few words in the string, as
 	 * well as the length of the string to generate the key.
@@ -804,6 +878,10 @@ function intl_locale () {
 
 function intl_charset () {
 	return $GLOBALS['intl']->charset;
+}
+
+function intl_date ($format, $timestamp = NULL) {
+	return $GLOBALS['intl']->date ($format, $timestamp);
 }
 
 function intl_get_langs () {
