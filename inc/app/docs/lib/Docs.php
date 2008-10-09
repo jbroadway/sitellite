@@ -86,6 +86,8 @@ class Docs {
 		}
 		if (@file_exists ($prefix . str_replace ($app . '.', '', $package) . '.php')) {
 			$files[] = $prefix . str_replace ($app . '.', '', $package) . '.php';
+		} elseif (@file_exists ($prefix . '_' . str_replace ($app . '.', '', $package) . '.php')) {
+			$files[] = $prefix . '_' . str_replace ($app . '.', '', $package) . '.php';
 		}
 
 		$classes = array ();
@@ -403,6 +405,8 @@ class Docs {
 		}
 		if (@file_exists ($prefix . str_replace ($app . '.', '', $package) . '.php')) {
 			$files[] = $prefix . str_replace ($app . '.', '', $package) . '.php';
+		} elseif (@file_exists ($prefix . '_' . str_replace ($app . '.', '', $package) . '.php')) {
+			$files[] = $prefix . '_' . str_replace ($app . '.', '', $package) . '.php';
 		}
 
 		$out = array (

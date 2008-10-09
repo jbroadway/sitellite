@@ -32,3 +32,8 @@ form#docs-apps {
 	float: right;
 	text-align: right;
 }
+
+h3 {
+	font-size: 13px;
+	margin-top: 0px;
+}
