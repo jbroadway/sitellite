@@ -18,7 +18,7 @@ longdate = F d, Y
 daydate = D, M d, Y
 longdaydate = l, F d, Y
 datetime = m-d-y h:i:s a
-longdatetime = l, F d, Y h:i:s a
+longdatetime = l, F jS, Y h:i:s a
 
 ;
 ; THE END

@@ -502,45 +502,45 @@ class I18n {
 		}
 
 		// 1. read translations
-		$date_hash = ini_parse('inc/lang/dates.php');
-		if (file_exists('inc/lang/'.$this->default.'.dates.php'))
-			$date_hash = array_merge($date_hash, ini_parse('inc/lang/'.$this->default.'.dates.php'));
-		if (file_exists('inc/lang/'.$this->language.'.dates.php'))
-			$date_hash = array_merge($date_hash, ini_parse('inc/lang/'.$this->language.'.dates.php'));
+		$dateini = array();
+		if (file_exists($this->directory.'/'.$this->default.'.dates.php')) {
+			$dateini = ini_parse($this->directory.'/'.$this->default.'.dates.php');
+		} elseif (file_exists($this->directory.'/en.dates.php')) {
+			$dateini = ini_parse($this->directory.'/en.dates.php');
+		}
 
-		$days = ini_filter_split_commas($date_hash["translations"]["days"]);
-		$shortdays = ini_filter_split_commas($date_hash["translations"]["shortdays"]);
-		$suffixes = ini_filter_split_commas($date_hash["translations"]["suffixes"]);
-		$months = ini_filter_split_commas($date_hash["translations"]["months"]);
-		$shortmonths = ini_filter_split_commas($date_hash["translations"]["shortmonths"]);
-		$antepost = ini_filter_split_commas($date_hash["translations"]["antepost"]);
+		if ($this->language != $this->default) {
+			if (file_exists($this->directory.'/'.$this->language.'.dates.php')) {
+				$locini = ini_parse($this->directory.'/'.$this->language.'.dates.php');
+				$dateini = array_merge($dateini, $locini);
+			}
+		}
+
+		$days = ini_filter_split_commas($dateini["translations"]["days"]);
+		$shortdays = ini_filter_split_commas($dateini["translations"]["shortdays"]);
+		$suffixes = ini_filter_split_commas($dateini["translations"]["suffixes"]);
+		$months = ini_filter_split_commas($dateini["translations"]["months"]);
+		$shortmonths = ini_filter_split_commas($dateini["translations"]["shortmonths"]);
+		$antepost = ini_filter_split_commas($dateini["translations"]["antepost"]);
 
 		// 2. build translation array
 		$trans = array();
-		$a = str_split("dNWmtLoyBghHisueIOpTZcr");
+		$a = str_split("djNwzWmnyYtLoyBgGhHisueIOpTZcrU");
 		foreach ($a as $c) {
 			$trans[$c] = date($c, $timestamp);
 		}
-		$d = getdate($timestamp);
-		$trans["D"] = $shortdays[$d["wday"]];
-		$trans["j"] = $d["mday"];
-		$trans["l"] = $days[$d["wday"]];
-		$trans["N"] = ($d["wday"] == 0) ? 7 : $d["wday"];
-		$trans["S"] = ($d["mday"] <= 4) ? $suffixes[$d["mday"]+1] : "";
-		$trans["w"] = $d["wday"];
-		$trans["z"] = $d["yday"];
-		$trans["F"] = $months[$d["mon"]+1];
-		$trans["M"] = $shortmonths[$d["mon"]+1];
-		$trans["n"] = $d["mday"];
-		$trans["Y"] = $d["year"];
-		$trans["a"] = ($d["hours"] >= 12) ? $antepost[1] : $antepost[0];
+		$trans["D"] = $shortdays[$trans["w"]];
+		$trans["l"] = $days[$trans["w"]];
+		$trans["N"] = ($trans["w"] == 0) ? 7 : $trans["w"];
+		$trans["S"] = ($trans["j"] < 4) ? $suffixes[$trans["j"]-1] : $suffixes[3];
+		$trans["F"] = $months[$trans["m"]-1];
+		$trans["M"] = $shortmonths[$trans["m"]-1];
+		$trans["a"] = ($trans["G"] >= 12) ? $antepost[1] : $antepost[0];
 		$trans["A"] = strtoupper($trans["a"]);
-		$trans["G"] = $d["hours"];
-		$trans["U"] = $d[0];
 
 		// 3. Look for format
-		if (array_key_exists($format, $date_hash["formats"])) {
-			$format = $date_hash["formats"][$format];
+		if (array_key_exists($format, $dateini["formats"])) {
+			$format = $dateini["formats"][$format];
 		}
 
 		// 4. replace tokens

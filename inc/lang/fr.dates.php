@@ -18,11 +18,7 @@ longdate = n F Y
 daydate = D n M. Y
 longdaydate = l n F Y
 datetime = y/m/d H:i:s
-longdatetime = l n F Y H:i:s
-custom1 =
-custom2 =
-custom3 =
-custom4 =
+longdatetime = l jS F Y H:i:s
 
 ;
 ; THE END
