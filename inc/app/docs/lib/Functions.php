@@ -34,7 +34,7 @@ function docs_cache ($type, $pkg = false, $cls = false) {
  * data, so you can simply say:
  * $data = docs_cache_store (get_data (), 'type', 'package', 'class');
  */
-function docs_cache_store ($data, $type, $pkg, $cls = false) {
+function docs_cache_store ($data, $type, $pkg = false, $cls = false) {
 	$path = docs_cache_name ($type, $pkg, $cls);
 	@file_put_contents ($path, serialize ($data));
 	return $data;
