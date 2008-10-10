@@ -402,7 +402,8 @@ class Menu {
 		// link the children to their parents
 		foreach ($tree as $k => $v) {
 			if ($v->{$this->refcolumn}) {
-				$ref = $this->findParent ($v->{$this->refcolumn});
+				$ref = $v->{$this->refcolumn};
+
 				// link the parent attr to the parent object
 				$this->{'items_' . $v->{$this->idcolumn}}->parent =& $this->{'items_' . $ref};
 
