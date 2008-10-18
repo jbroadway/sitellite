@@ -244,6 +244,11 @@ class I18n {
      */
     var $error;
 
+	/**
+	 * Array of date related strings
+	 */
+	var $_datestr;
+
     /**
      * Constructor Method.  Includes the appropriate language file
      * in the provided $directory.  This file is intended to fill out the
@@ -476,12 +481,15 @@ class I18n {
      *
      * @access public
      * @param  string $format
-     * @param  string $datestr
+     * @param  mixed  $datestr string|DateTime
      * @return string
      */
     function date ($format, $datestr = NULL) {
         
-        if (is_null ($datestr)) {
+		if ($datestr instanceof DateTime) {
+			$datetime = $datestr;
+		}
+        elseif (is_null ($datestr)) {
             $datetime = new DateTime('now');
         }
         else {
@@ -489,67 +497,80 @@ class I18n {
         }
 
         // 1. read translations
-		static $init = false;
-		static $days, $shortdays, $suffixes, $months, $shortmonths, $antepost;
-		if (!$init) {
-
-			$directory = 'inc/lang';
-			$this->dateini = array();
+		$directory = 'inc/lang';
+		if (!isset ($this->_datestr[$this->default])) {
+			$this->_datestr[$this->default] = array();
 			if (file_exists($directory.'/'.$this->default.'.dates.php')) {
-				$this->dateini = ini_parse($directory.'/'.$this->default.'.dates.php');
+				$this->_datestr[$this->default] = ini_parse($directory.'/'.$this->default.'.dates.php');
 			} elseif (file_exists($directory.'/en.dates.php')) {
-				$this->dateini = ini_parse($directory.'/en.dates.php');
+				$this->_datestr[$this->default] = ini_parse($directory.'/en.dates.php');
+				$this->_datestr['en'] = $this->_datestr[$this->default];
 			}
-
-			if ($this->language != $this->default) {
-				if (file_exists($directory.'/'.$this->language.'.dates.php')) {
-					$locini = ini_parse($directory.'/'.$this->language.'.dates.php');
-					$this->dateini = array_merge($this->dateini, $locini);
+			foreach ($this->_datestr[$this->default]['translations'] as $k=>$s) {
+				$this->_datestr[$this->default]['translations'][$k] = ini_filter_split_commas ($s);
+			}
+		}
+		if (!isset ($this->_datestr[$this->language])) {
+			$this->_datestr[$this->language] = array();
+			$locini = array();
+			if (file_exists($directory.'/'.$this->language.'.dates.php')) {
+				$locini = ini_parse($directory.'/'.$this->language.'.dates.php');
+				foreach ($locini['translations'] as $k=>$s) {
+					$locini['translations'][$k] = ini_filter_split_commas ($s);
 				}
 			}
-
-			$days = ini_filter_split_commas($this->dateini["translations"]["days"]);
-			$shortdays = ini_filter_split_commas($this->dateini["translations"]["shortdays"]);
-			$suffixes = ini_filter_split_commas($this->dateini["translations"]["suffixes"]);
-			$months = ini_filter_split_commas($this->dateini["translations"]["months"]);
-			$shortmonths = ini_filter_split_commas($this->dateini["translations"]["shortmonths"]);
-			$antepost = ini_filter_split_commas($this->dateini["translations"]["antepost"]);
-			$init = true;
+			$this->_datestr[$this->language] = array_merge($this->_datestr[$this->default], $locini);
 		}
 
         // 2. Look for format
-        if (array_key_exists($format, $this->dateini["formats"])) {
-            $format = $this->dateini["formats"][$format];
+        if (array_key_exists($format, $this->_datestr[$this->language]["formats"])) {
+            $format = $this->_datestr[$this->language]["formats"][$format];
         }
 
         // 3. build translation array
         $trans = array();
-        $a = str_split("djNwzWmnyYtLoyBgGhHisueIOpTZcrU");
+        $a = str_split("djNwzWmnyYtLoyBgGhHisueIOpTZcrUDlSFMaA");
 		$b = array_intersect(str_split($format),$a);
         foreach ($b as $c) {
-            $trans[$c] = $datetime->format($c);
+			switch ($c) {
+			case "D":
+				$trans["D"] = $this->_datestr[$this->language]['translations']['shortdays'][$datetime->format("w")];
+				break;
+			case "l":
+				$trans["l"] = $this->_datestr[$this->language]['translations']['days'][$datetime->format("w")];
+				break;
+			case "S":
+				$trans["S"] = ($datetime->format("j") < 4) ?
+					$this->_datestr[$this->language]['translations']['suffixes'][$datetime->format("j")-1] :
+					$this->_datestr[$this->language]['translations']['suffixes'][3];
+				break;
+			case "F":
+				$trans["F"] = $this->_datestr[$this->language]['translations']['months'][$datetime->format("m")-1];
+				break;
+			case "M":
+				$trans["M"] = $this->_datestr[$this->language]['translations']['shortmonths'][$datetime->format("m")-1];
+				break;
+			case "a":
+				$trans["a"] = ($datetime->format("G") >= 12) ?
+					$this->_datestr[$this->language]['translations']['antepost'][1] :
+					$this->_datestr[$this->language]['translations']['antepost'][0];
+				break;
+			case "A":
+				$trans["A"] = strtoupper(($datetime->format("G") >= 12) ?
+					$this->_datestr[$this->language]['translations']['antepost'][1] :
+					$this->_datestr[$this->language]['translations']['antepost'][0]);
+				break;
+			default:
+				$trans[$c] = $datetime->format($c);
+			}
         }
-        $trans["D"] = $shortdays[$datetime->format("w")];
-        $trans["l"] = $days[$datetime->format("w")];
-        $trans["S"] = ($datetime->format("j") < 4) ? $suffixes[$datetime->format("j")-1] :
-                                          $suffixes[3];
-        $trans["F"] = $months[$datetime->format("m")-1];
-        $trans["M"] = $shortmonths[$datetime->format("m")-1];
-        $trans["a"] = ($datetime->format("G") >= 12) ? $antepost[1] : $antepost[0];
-        $trans["A"] = strtoupper(($datetime->format("G") >= 12) ? $antepost[1] : $antepost[0]);
 
         // 4. replace tokens
         $i = array_keys($trans);
         foreach ($i as $v) {
             $trans['\\'.$v] = $v;
         }
-        foreach ($i as $v) {
-            $trans['!'.$v] = $v;
-        }
         $trans['\\\\'] = '\\';
-        $trans['!\\'] = '\\';
-        $trans['\\!'] = '!';
-        $trans['!!'] = '!';
         $format = strtr($format, $trans);
 
         return $format;
