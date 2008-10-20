@@ -13,6 +13,7 @@ Changes in 5.0.2-stable
 - Added the ability to include custom CSS styles Xed.
 - Reworked the logic behind building the menu tree, much simpler now.
 - Changed all instances of access/status fields to 32 chars, role/team to 48.
+- Output compression is off by default, due to occasional incompatibilities.
 
 Changes in 5.0.1-stable
 

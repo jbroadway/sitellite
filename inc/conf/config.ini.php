@@ -62,7 +62,7 @@ default_app             = webapp
 
 debug                   = Off
 
-compress_output         = On
+compress_output         = Off
 
 error_reporting         = "E_ALL ^ E_NOTICE"
 
