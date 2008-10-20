@@ -30,14 +30,14 @@ switch ($cgi->step) {
 installer will guide you through the process of installing and configuring
 the Sitellite CMS on your web site.</p>
 
-<p>Should you encounter any issues during the installation process, you may
-use the official community forum to ask your questions, located at:</p>
+<p>Should you encounter any issues during the installation process, please post your
+questions to the official community discussion group, located at:</p>
 
-<p><a href="http://www.sitellite.org/index/siteforum-app" target="_blank">http://www.sitellite.org/index/siteforum-app</a></p>
+<p><a href="http://groups.google.com/group/sitellite" target="_blank">http://groups.google.com/group/sitellite</a></p>
 
-<p>Or you can see our commercial support options here:</p>
+<p>You can also view our commercial support options here:</p>
 
-<p><a href="http://www.sitellite.org/index/support" target="_blank">http://www.sitellite.org/index/support</a></p>
+<p><a href="http://www.simian.ca/" target="_blank">http://www.simian.ca/</a></p>
 
 <p>Please click "Next" to continue whenever you are ready, and on behalf of
 <a href="http://www.simian.ca/" target="_blank">Simian Systems</a> and the entire <a href="http://www.sitellite.org/" target="_blank">Sitellite community</a>,
