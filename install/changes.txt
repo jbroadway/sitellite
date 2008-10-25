@@ -15,6 +15,8 @@ Changes in 5.0.2-stable
 - Changed all instances of access/status fields to 32 chars, role/team to 48.
 - Output compression is off by default, due to occasional incompatibilities.
 - Updated support links in the installer.
+- Added new 'preg' validation rule for better regular expression handling.
+- Added 2nd parameter with field name to custom validation rule functions.
 
 Changes in 5.0.1-stable
 
