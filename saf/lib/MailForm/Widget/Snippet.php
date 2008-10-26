@@ -90,6 +90,24 @@ class MF_Widget_snippet extends MF_Widget {
 	var $labelPosition = 'top';
 
 	/**
+	 * Sets the actual value for this widget.
+	 * 
+	 * @access	public
+	 * @param	string	$value
+	 * 
+	 */
+	function setValue ($value = '') {
+		loader_import ('saf.Database.PropertySet');
+		$ps = new PropertySet ('mailform', 'snippet');
+		$val = $ps->get ($value);
+		if ($val) {
+			$this->data_value = $val;
+		} else {
+			$this->data_value = $value;
+		}
+	}
+
+	/**
 	 * Fetches the actual value for this widget.
 	 * 
 	 * @access	public

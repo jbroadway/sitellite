@@ -18,6 +18,7 @@ Changes in 5.0.2-stable
 - Added new 'preg' validation rule for better regular expression handling.
 - Added 2nd parameter with field name to custom validation rule functions.
 - Added 'requires resource = resource_name' to [link:name] collection blocks.
+- Fixed the ability to edit html snippets in Xed's property editor.
 
 Changes in 5.0.1-stable
 
