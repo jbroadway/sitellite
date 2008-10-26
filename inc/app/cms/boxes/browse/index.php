@@ -264,6 +264,11 @@ foreach ($rex->info as $key => $vals) {
 				}
 				break;
 		}
+		if (isset ($vals['requires resource'])) {
+			if (session_is_resource ($vals['requires resource']) && ! session_allowed ($vals['requires resource'], 'rw', 'resource')) {
+				continue;
+			}
+		}
 		$vals['text'] = intl_get ($vals['text']);
 		if (strpos ($vals['url'], '/index/') === 0) {
 			$vals['url'] = site_prefix () . $vals['url'];
