@@ -519,7 +519,10 @@ class I18n {
 					$locini['translations'][$k] = ini_filter_split_commas ($s);
 				}
 			}
-			$this->_datestr[$this->language] = array_merge($this->_datestr[$this->default], $locini);
+			$this->_datestr[$this->language]['formats'] = array_merge($this->_datestr[$this->default]['formats'],
+				$locini['formats']);
+			$this->_datestr[$this->language]['translations'] = array_merge (
+				$this->_datestr[$this->default]['translations'], $locini['translations']);
 		}
 
         // 2. Look for format
