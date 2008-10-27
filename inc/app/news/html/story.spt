@@ -16,7 +16,7 @@
 <p class="news-byline">{intl By} <a href="{site/prefix}/index/news-app/author.{author}">{author}</a></p>
 {end if}
 
-<p class="news-dateline">{filter news_date}{date}{end filter}</p>
+<p class="news-dateline">{filter intl_date}{date}{end filter}</p>
 
 {end if}
 
@@ -65,7 +65,7 @@
 			<a name="news-comments-{loop/id}"></a>
 			<p>
 				<strong>{loop/subject}</strong><br />
-				<em>{loop/user_id} - {filter news_date_comments}{loop/ts}{end filter}</em><br /><br />
+				<em>{loop/user_id} - {filter intl_datetime}{loop/ts}{end filter}</em><br /><br />
 				{filter news_comment_body}{loop/body}{end filter}
 			</p>
 		{end loop}

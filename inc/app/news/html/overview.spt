@@ -16,7 +16,7 @@
 				{box cms/buttons?collection=sitellite_news&object=[loop]&add=false&float=true}
 			{end if}
 			<strong>
-				<a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{if obj[date] ne 'no'}{filter news_shortdate}{loop/date}{end filter} - {end if}{loop/title}</a>
+				<a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{if obj[date] ne 'no'}{filter intl_shortdate}{loop/date}{end filter} - {end if}{loop/title}</a>
 			</strong>
 			{if empty (loop.summary)}
 				</p>{filter template_parse_body}{loop/body}{end filter}
@@ -35,7 +35,7 @@
 				{box cms/buttons?collection=sitellite_news&object=[loop]&add=false&float=true}
 			{end if}
 			<strong>
-				<a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{if obj[date] ne 'no'}{filter news_shortdate}{loop/date}{end filter} - {end if}{loop/title}</a>
+				<a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{if obj[date] ne 'no'}{filter intl_shortdate}{loop/date}{end filter} - {end if}{loop/title}</a>
 			</strong>
 		</p>
 		{end loop}

@@ -16,7 +16,7 @@
 {loop obj[list]}
 	{if loop._type eq 'date'}
 		<h2 class="news-date-subhead">
-			{filter news_date}{loop/date}{end filter}
+			{filter intl_date}{loop/date}{end filter}
 		</h2>
 	{end if}
 	{if else}

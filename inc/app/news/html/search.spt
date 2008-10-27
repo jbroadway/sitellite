@@ -27,7 +27,7 @@
 				{box cms/buttons?collection=sitellite_news&object=[loop]&add=false&float=true}
 			{end if}
 			<strong>
-				<a href="{site/prefix}/index/news-app?story={loop/id}&highlight={filter urlencode}{query}{end filter}">{filter news_shortdate}{loop/date}{end filter} - {loop/title}</a>
+				<a href="{site/prefix}/index/news-app?story={loop/id}&highlight={filter urlencode}{query}{end filter}">{filter intl_shortdate}{loop/date}{end filter} - {loop/title}</a>
 			</strong><br />
 			{if not empty (loop.thumb)}
 				<img src="{loop/thumb}" alt="{loop/title}" border="0" style="float: {appconf/align_thumbnails}; margin: 0px 5px 5px 5px" />
