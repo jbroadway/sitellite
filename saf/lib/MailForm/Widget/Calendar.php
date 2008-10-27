@@ -85,7 +85,7 @@ class MF_Widget_calendar extends MF_Widget {
 	 * @access	public
 	 *
 	 */
-	var $displayFormat = '%a, %e %b, %Y';
+	var $displayFormat = 'date';
 
 	/**
 	 * This determines the language file to load for the calendar
@@ -134,8 +134,10 @@ class MF_Widget_calendar extends MF_Widget {
 	 * 
 	 */
 	function MF_Widget_calendar ($name) {
+		global $intl;
 		// initialize core Widget settings
 		parent::MF_Widget ($name);
+		$this->lang = $intl->language;
 	}
 
 	function displayValue () {
@@ -143,8 +145,7 @@ class MF_Widget_calendar extends MF_Widget {
 		if (empty ($out)) {
 			return intl_get ('No date selected.');
 		}
-		loader_import ('saf.Date');
-		 return Date::format ($out, $this->js2phpFormat ($this->displayFormat));
+		return intl_date ($out, $this->displayFormat);
 	}
 
 	function js2phpFormat ($date) {
