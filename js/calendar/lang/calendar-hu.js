@@ -1,45 +1,45 @@
 // ** I18N
 Calendar._DN = new Array
-("Vas·rnap",
- "HÈtfı",
+("Vas√°rnap",
+ "H√©tf√µ",
  "Kedd",
  "Szerda",
- "Cs¸tˆrtˆk",
- "PÈntek",
+ "Cs√ºt√∂rt√∂k",
+ "P√©ntek",
  "Szombat",
- "Vas·rnap");
+ "Vas√°rnap");
 Calendar._MN = new Array
-("janu·r",
- "febru·r",
- "m·rcius",
- "·prilis",
- "m·jus",
- "j˙nius",
- "j˙lius",
+("janu√°r",
+ "febru√°r",
+ "m√°rcius",
+ "√°prilis",
+ "m√°jus",
+ "j√∫nius",
+ "j√∫lius",
  "augusztus",
  "szeptember",
- "oktÛber",
+ "okt√≥ber",
  "november",
  "december");
 
 // tooltips
 Calendar._TT = {};
 Calendar._TT["TOGGLE"] = "Toggle first day of week";
-Calendar._TT["PREV_YEAR"] = "Elızı Èv (hold for menu)";
-Calendar._TT["PREV_MONTH"] = "Elızı hÛnap (hold for menu)";
-Calendar._TT["GO_TODAY"] = "Mai napra ugr·s";
-Calendar._TT["NEXT_MONTH"] = "Kˆv. hÛnap (hold for menu)";
-Calendar._TT["NEXT_YEAR"] = "Kˆv. Èv (hold for menu)";
-Calendar._TT["SEL_DATE"] = "V·lasszon d·tumot";
+Calendar._TT["PREV_YEAR"] = "El√µz√µ √©v (hold for menu)";
+Calendar._TT["PREV_MONTH"] = "El√µz√µ h√≥nap (hold for menu)";
+Calendar._TT["GO_TODAY"] = "Mai napra ugr√°s";
+Calendar._TT["NEXT_MONTH"] = "K√∂v. h√≥nap (hold for menu)";
+Calendar._TT["NEXT_YEAR"] = "K√∂v. √©v (hold for menu)";
+Calendar._TT["SEL_DATE"] = "V√°lasszon d√°tumot";
 Calendar._TT["DRAG_TO_MOVE"] = "Drag to move";
 Calendar._TT["PART_TODAY"] = " (ma)";
-Calendar._TT["MON_FIRST"] = "HÈtfı legyen a hÈt elsı napja";
-Calendar._TT["SUN_FIRST"] = "Vas·rnap legyen a hÈt elsı napja";
-Calendar._TT["CLOSE"] = "Bez·r";
+Calendar._TT["MON_FIRST"] = "H√©tf√µ legyen a h√©t els√µ napja";
+Calendar._TT["SUN_FIRST"] = "Vas√°rnap legyen a h√©t els√µ napja";
+Calendar._TT["CLOSE"] = "Bez√°r";
 Calendar._TT["TODAY"] = "Ma";
 
 // date formats
 Calendar._TT["DEF_DATE_FORMAT"] = "y-mm-dd";
 Calendar._TT["TT_DATE_FORMAT"] = "M d, D";
 
-Calendar._TT["WK"] = "hÈt";
+Calendar._TT["WK"] = "h√©t";

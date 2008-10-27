@@ -6,25 +6,25 @@
 */
 
 // ** I18N
-Calendar._DN = new Array('Nedìle','Pondìlí','Úterı','Støeda','Ètvrtek','Pátek','Sobota','Nedìle');
-Calendar._DN3 = new Array('Ne','Po','Út','St','Èt','Pá','So','Ne');
-Calendar._MN = new Array('Leden','Únor','Bøezen','Duben','Kvìten','Èerven','Èervenec','Srpen','Záøí','Øíjen','Listopad','Prosinec');
-Calendar._MN3 = new Array('Led','Úno','Bøe','Dub','Kvì','Èrv','Èvc','Srp','Záø','Øíj','Lis','Pro');
+Calendar._DN = new Array('NedÃ¬le','PondÃ¬lÃ­','ÃšterÃ½','StÃ¸eda','Ãˆtvrtek','PÃ¡tek','Sobota','NedÃ¬le');
+Calendar._DN3 = new Array('Ne','Po','Ãšt','St','Ãˆt','PÃ¡','So','Ne');
+Calendar._MN = new Array('Leden','Ãšnor','BÃ¸ezen','Duben','KvÃ¬ten','Ãˆerven','Ãˆervenec','Srpen','ZÃ¡Ã¸Ã­','Ã˜Ã­jen','Listopad','Prosinec');
+Calendar._MN3 = new Array('Led','Ãšno','BÃ¸e','Dub','KvÃ¬','Ãˆrv','Ãˆvc','Srp','ZÃ¡Ã¸','Ã˜Ã­j','Lis','Pro');
 
 // tooltips
 Calendar._TT = {};
-Calendar._TT["TOGGLE"] = "Zmìna prvního dne v tıdnu";
-Calendar._TT["PREV_YEAR"] = "Pøedchozí rok (pøidr pro menu)";
-Calendar._TT["PREV_MONTH"] = "Pøedchozí mìsíc (pøidr pro menu)";
-Calendar._TT["GO_TODAY"] = "Dnešní datum";
-Calendar._TT["NEXT_MONTH"] = "Další mìsíc (pøidr pro menu)";
-Calendar._TT["NEXT_YEAR"] = "Další rok (pøidr pro menu)";
+Calendar._TT["TOGGLE"] = "ZmÃ¬na prvnÃ­ho dne v tÃ½dnu";
+Calendar._TT["PREV_YEAR"] = "PÃ¸edchozÃ­ rok (pÃ¸idrÂ pro menu)";
+Calendar._TT["PREV_MONTH"] = "PÃ¸edchozÃ­ mÃ¬sÃ­c (pÃ¸idrÂ pro menu)";
+Calendar._TT["GO_TODAY"] = "DneÂšnÃ­ datum";
+Calendar._TT["NEXT_MONTH"] = "DalÂšÃ­ mÃ¬sÃ­c (pÃ¸idrÂ pro menu)";
+Calendar._TT["NEXT_YEAR"] = "DalÂšÃ­ rok (pÃ¸idrÂ pro menu)";
 Calendar._TT["SEL_DATE"] = "Vyber datum";
-Calendar._TT["DRAG_TO_MOVE"] = "Chy a táhni, pro pøesun";
+Calendar._TT["DRAG_TO_MOVE"] = "ChyÂ a tÃ¡hni, pro pÃ¸esun";
 Calendar._TT["PART_TODAY"] = " (dnes)";
-Calendar._TT["MON_FIRST"] = "Uka jako první Pondìlí";
-Calendar._TT["SUN_FIRST"] = "Uka jako první Nedìli";
-Calendar._TT["CLOSE"] = "Zavøít";
+Calendar._TT["MON_FIRST"] = "UkaÂ jako prvnÃ­ PondÃ¬lÃ­";
+Calendar._TT["SUN_FIRST"] = "UkaÂ jako prvnÃ­ NedÃ¬li";
+Calendar._TT["CLOSE"] = "ZavÃ¸Ã­t";
 Calendar._TT["TODAY"] = "Dnes";
 
 // date formats

@@ -2,16 +2,16 @@
 Calendar._DN = new Array
 ("Domingo",
  "Segunda",
- "Terça",
+ "TerÃ§a",
  "Quarta",
  "Quinta",
  "Sexta",
- "Sábado",
+ "SÃ¡bado",
  "Domingo");
 Calendar._MN = new Array
 ("Janeiro",
  "Fevereiro",
- "Março",
+ "MarÃ§o",
  "Abril",
  "Maio",
  "Junho",
@@ -26,10 +26,10 @@ Calendar._MN = new Array
 Calendar._TT = {};
 Calendar._TT["TOGGLE"] = "Trocar o primeiro dia da semana";
 Calendar._TT["PREV_YEAR"] = "Ano Anterior (mantenha para menu)";
-Calendar._TT["PREV_MONTH"] = "Mês Anterior (mantenha para menu)";
+Calendar._TT["PREV_MONTH"] = "MÃªs Anterior (mantenha para menu)";
 Calendar._TT["GO_TODAY"] = "Ir para hoje";
-Calendar._TT["NEXT_MONTH"] = "Próximo Mês (mantenha para menu)";
-Calendar._TT["NEXT_YEAR"] = "Próximo Ano (mantenha para menu)";
+Calendar._TT["NEXT_MONTH"] = "PrÃ³ximo MÃªs (mantenha para menu)";
+Calendar._TT["NEXT_YEAR"] = "PrÃ³ximo Ano (mantenha para menu)";
 Calendar._TT["SEL_DATE"] = "Escolha Data";
 Calendar._TT["DRAG_TO_MOVE"] = "Arraste para mover";
 Calendar._TT["PART_TODAY"] = " (hoje)";

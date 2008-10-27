@@ -1,13 +1,13 @@
 // ** I18N
 Calendar._DN = new Array
-("Søndag",
+("SÃ¸ndag",
  "Mandag",
  "Tirsdag",
  "Onsdag",
  "Torsdag",
  "Fredag",
- "Lørdag",
- "Søndag");
+ "LÃ¸rdag",
+ "SÃ¸ndag");
 Calendar._MN = new Array
 ("Januar",
  "Februar",
@@ -24,17 +24,17 @@ Calendar._MN = new Array
 
 // tooltips
 Calendar._TT = {};
-Calendar._TT["TOGGLE"] = "Skift første ukedag";
-Calendar._TT["PREV_YEAR"] = "Et år tilbake (hold for meny)";
-Calendar._TT["PREV_MONTH"] = "En måned tilbake (hold for meny)";
-Calendar._TT["GO_TODAY"] = "Gå til i dag";
-Calendar._TT["NEXT_MONTH"] = "En måned fram (hold for meny)";
-Calendar._TT["NEXT_YEAR"] = "Et år fram (hold for meny)";
+Calendar._TT["TOGGLE"] = "Skift fÃ¸rste ukedag";
+Calendar._TT["PREV_YEAR"] = "Et Ã¥r tilbake (hold for meny)";
+Calendar._TT["PREV_MONTH"] = "En mÃ¥ned tilbake (hold for meny)";
+Calendar._TT["GO_TODAY"] = "GÃ¥ til i dag";
+Calendar._TT["NEXT_MONTH"] = "En mÃ¥ned fram (hold for meny)";
+Calendar._TT["NEXT_YEAR"] = "Et Ã¥r fram (hold for meny)";
 Calendar._TT["SEL_DATE"] = "Velg dag";
 Calendar._TT["DRAG_TO_MOVE"] = "Dra vinduet";
 Calendar._TT["PART_TODAY"] = " (i dag)";
-Calendar._TT["MON_FIRST"] = "Vis mandag først";
-Calendar._TT["SUN_FIRST"] = "Vis søndag først";
+Calendar._TT["MON_FIRST"] = "Vis mandag fÃ¸rst";
+Calendar._TT["SUN_FIRST"] = "Vis sÃ¸ndag fÃ¸rst";
 Calendar._TT["CLOSE"] = "Lukk vinduet";
 Calendar._TT["TODAY"] = "I dag";
 
