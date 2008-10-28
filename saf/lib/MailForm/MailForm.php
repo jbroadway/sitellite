@@ -565,6 +565,9 @@ class MailForm {
 			}
 			$this->_attrs['action'] =& $this->action;
 			$app = loader_app ();
+			if (strpos ($action, ':') === 1) {
+				$action = str_replace ('\\', '/', $action);
+			}
 			list ($misc, $path) = explode ($app . '/forms/', $action);
 			$box = dirname ($path);
 			if (@file_exists ('inc/app/' . $app . '/forms/' . $box . '/settings.php')) {

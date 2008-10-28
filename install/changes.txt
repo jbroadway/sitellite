@@ -19,6 +19,7 @@ Changes in 5.0.2-stable
 - Added 2nd parameter with field name to custom validation rule functions.
 - Added 'requires resource = resource_name' to [link:name] collection blocks.
 - Fixed the ability to edit html snippets in Xed's property editor.
+- Fixed an issue in saf.MailForm causing form settings parsing to fail on Windows.
 
 Changes in 5.0.1-stable
 
