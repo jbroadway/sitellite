@@ -26,7 +26,7 @@ if (file_exists ($lang_path . '/' . $intl->default . '.dates.php')) {
 	$dateini = ini_parse ($lang_path . '/' . $intl->default . '.dates.php');
 }
 if ($intl->default != $cgi->lang) {
-	$ldateini = array ();
+	$ldateini = array ('translations'=>array(), 'formats'=>array());
 	if (file_exists ($lang_path . '/' . $cgi->lang . '.dates.php')) {
 		$ldateini = ini_parse ($lang_path . '/' . $cgi->lang . '.dates.php');
 	}

@@ -512,7 +512,7 @@ class I18n {
 		}
 		if (!isset ($this->_datestr[$this->language])) {
 			$this->_datestr[$this->language] = array();
-			$locini = array();
+			$locini = array('translations'=>array(), 'formats'=>array());
 			if (file_exists($directory.'/'.$this->language.'.dates.php')) {
 				$locini = ini_parse($directory.'/'.$this->language.'.dates.php');
 				foreach ($locini['translations'] as $k=>$s) {

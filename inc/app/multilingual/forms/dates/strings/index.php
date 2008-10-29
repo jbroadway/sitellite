@@ -55,10 +55,12 @@ class MultilingualDatesStringsForm extends MailForm {
 		$this->widgets['lang']->setValue ($cgi->lang);
 		$this->widgets['charset']->setValue ($cgi->charset);
 
-		$info = ini_parse ($this->_file);
+		if (file_exists ($this->_file)) {
+			$info = ini_parse ($this->_file);
 
-		foreach ($info['translations'] as $k => $v) {
-			$this->widgets[$k]->setValue ($v);
+			foreach ($info['translations'] as $k => $v) {
+				$this->widgets[$k]->setValue ($v);
+			}
 		}
 
 		page_title (intl_get ('Editing Date Strings') . ': ' . $cgi->lang);
