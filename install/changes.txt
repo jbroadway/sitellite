@@ -21,6 +21,7 @@ Changes in 5.0.2-stable
 - Fixed the ability to edit html snippets in Xed's property editor.
 - Fixed an issue in saf.MailForm causing form settings parsing to fail on Windows.
 - Added onbeforeunload handler to Xed, warning of accidentally browsing away.
+- SiteEvent: _eventsInRange() can have no end date set, fixes issues with getUpcoming().
 
 Changes in 5.0.1-stable
 
