@@ -21,6 +21,7 @@ class XedSourceForm extends MailForm {
 		$html = str_replace (array ("'", "\r", "\n"), array ('\\\'', '\\r', '\\n'), $vals['html']);
 		unset ($vals['ifname']);
 		unset ($vals['submit_button']);
+		header ('Content-Type: text/html; charset=' . intl_charset ());
 		echo template_simple ('source_return.spt', array ('ifname' => $i, 'html' => $html));
 		exit;
 	}
