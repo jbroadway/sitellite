@@ -24,8 +24,12 @@ alt = "Name"
 [format_string]
 
 type = text
-alt = "Format string"
+alt = "Format String"
 rule 1 = "func 'dates_rule_format_string', Format string cannot be empty for default language"
+
+[format_options]
+type = template
+template = format_options.stp
 
 [submit_button]
 

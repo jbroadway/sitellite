@@ -26,8 +26,12 @@ rule 2 = "func 'dates_rule_unique_name', This format name already exists"
 [format_string]
 
 type = text
-alt = "Format string"
+alt = "Format String"
 rule 1 = not empty, Format string cannot be empty
+
+[format_options]
+type = template
+template = format_options.stp
 
 [submit_button]
 

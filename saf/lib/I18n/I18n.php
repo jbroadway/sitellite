@@ -247,7 +247,7 @@ class I18n {
 	/**
 	 * Array of date related strings
 	 */
-	var $_datestr;
+	var $_datestr = NULL;
 
     /**
      * Constructor Method.  Includes the appropriate language file
@@ -579,6 +579,53 @@ class I18n {
         return $format;
     }
 
+	/**
+	 * Return the localized name of a week day or a month
+	 * 
+	 * @param string $what either 'day', 'shortday', 'month' or 'shortmonth'
+	 * @param integer $number 
+	 * @access public
+	 * @return string Or false if bad arguments
+	 */
+	function dateName ($what, $number) {
+		// Fill the _datestr array
+		if (!isset ($this->_datestr[$this->language])) {
+			$this->date('');
+		}
+
+		switch ($what) {
+			case 'day':
+				if ($number == 7) {
+					$number = 0;
+				}
+				if ($number >= 0 && $number <= 6) {
+					return $this->_datestr[$this->language]['translations']['days'][$number];
+				}
+				break;
+			case 'shortday':
+				if ($number == 7) {
+					$number = 0;
+				}
+				if ($number >= 0 && $number <= 6) {
+					return $this->_datestr[$this->language]['translations']['shortdays'][$number];
+				}
+				break;
+			case 'month':
+				if ($number >= 1 && $number <= 12) {
+					--$number;
+					return $this->_datestr[$this->language]['translations']['months'][$number];
+				}
+				break;
+			case 'shortmonth':
+				if ($number >= 1 && $number <= 12) {
+					--$number;
+					return $this->_datestr[$this->language]['translations']['shortmonths'][$number];
+				}
+				break;
+		}
+		return false;
+	}
+
     /**
      * Generates a key for use in a key/value lookup on the $lang_hash
      * array.  Uses the metaphone () of the first few words in the string, as
@@ -905,20 +952,36 @@ function intl_charset () {
 	return $GLOBALS['intl']->charset;
 }
 
-function intl_date ($datestring, $format="date") {
+function intl_date ($datestring=NULL, $format="date") {
     return $GLOBALS['intl']->date ($format, $datestring);
 }
 
-function intl_datetime ($datestring, $format="datetime") {
+function intl_datetime ($datestring=NULL, $format="datetime") {
     return $GLOBALS['intl']->date ($format, $datestring);
 }
 
-function intl_time ($datestring, $format="time") {
+function intl_time ($datestring=NULL, $format="time") {
     return $GLOBALS['intl']->date ($format, $datestring);
 }
 
-function intl_shortdate ($datestring, $format="shortdate") {
+function intl_shortdate ($datestring=NULL, $format="shortdate") {
     return $GLOBALS['intl']->date ($format, $datestring);
+}
+
+function intl_day_name ($n) {
+	return $GLOBALS['intl']->dateName ('day', $n);
+}
+
+function intl_shortday_name ($n) {
+	return $GLOBALS['intl']->dateName ('shortday', $n);
+}
+
+function intl_month_name ($n) {
+	return $GLOBALS['intl']->dateName ('month', $n);
+}
+
+function intl_shortmonth_name ($n) {
+	return $GLOBALS['intl']->dateName ('shortmonth', $n);
 }
 
 function intl_get_langs () {
