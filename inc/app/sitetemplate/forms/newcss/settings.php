@@ -26,6 +26,7 @@ type			= hidden
 
 type			= text
 alt			= Style Name
+append = " .css"
 rule 1			= not empty, You must enter a template name.
 rule 2			= "func `sitetemplate_rule_name`, The template name you have chosen already exists for the specified output mode."
 

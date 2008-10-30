@@ -22,6 +22,7 @@ Changes in 5.0.2-stable
 - Fixed an issue in saf.MailForm causing form settings parsing to fail on Windows.
 - Added onbeforeunload handler to Xed, warning of accidentally browsing away.
 - SiteEvent: _eventsInRange() can have no end date set, fixes issues with getUpcoming().
+- SiteTemplate: Set new template names to lowercase, added examples in the forms.
 
 Changes in 5.0.1-stable
 
