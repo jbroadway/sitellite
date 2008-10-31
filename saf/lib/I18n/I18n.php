@@ -486,16 +486,6 @@ class I18n {
      */
     function date ($format, $datestr = NULL) {
         
-		if ($datestr instanceof DateTime) {
-			$datetime = $datestr;
-		}
-        elseif (is_null ($datestr)) {
-            $datetime = new DateTime('now');
-        }
-        else {
-            $datetime = new DateTime($datestr);
-        }
-
         // 1. read translations
 		$directory = 'inc/lang';
 		if (!isset ($this->_datestr[$this->default])) {
@@ -532,41 +522,107 @@ class I18n {
 
         // 3. build translation array
         $trans = array();
-        $a = str_split("djNwzWmnyYtLoyBgGhHisueIOpTZcrUDlSFMaA");
-		$b = array_intersect(str_split($format),$a);
-        foreach ($b as $c) {
-			switch ($c) {
-			case "D":
-				$trans["D"] = $this->_datestr[$this->language]['translations']['shortdays'][$datetime->format("w")];
-				break;
-			case "l":
-				$trans["l"] = $this->_datestr[$this->language]['translations']['days'][$datetime->format("w")];
-				break;
-			case "S":
-				$trans["S"] = ($datetime->format("j") < 4) ?
-					$this->_datestr[$this->language]['translations']['suffixes'][$datetime->format("j")-1] :
-					$this->_datestr[$this->language]['translations']['suffixes'][3];
-				break;
-			case "F":
-				$trans["F"] = $this->_datestr[$this->language]['translations']['months'][$datetime->format("m")-1];
-				break;
-			case "M":
-				$trans["M"] = $this->_datestr[$this->language]['translations']['shortmonths'][$datetime->format("m")-1];
-				break;
-			case "a":
-				$trans["a"] = ($datetime->format("G") >= 12) ?
-					$this->_datestr[$this->language]['translations']['antepost'][1] :
-					$this->_datestr[$this->language]['translations']['antepost'][0];
-				break;
-			case "A":
-				$trans["A"] = strtoupper(($datetime->format("G") >= 12) ?
-					$this->_datestr[$this->language]['translations']['antepost'][1] :
-					$this->_datestr[$this->language]['translations']['antepost'][0]);
-				break;
-			default:
-				$trans[$c] = $datetime->format($c);
+        $a = array("d","j","N","w","z","W","m","n","y","Y","t","L","o","y","B","g","G","h","H",
+				   "i","s","u","e","I","O","p","T","Z","c","r","U","D","l","S","F","M","a","A");
+		if (function_exists('str_split')) {
+			$b = array_intersect(str_split($format),$a);
+		}
+		else {
+			$b = array_intersect(preg_split('//',$format,-1,PREG_SPLIT_NO_EMPTY),$a);
+		}
+
+		if (function_exists('date_create')) {
+			if ($datestr instanceof DateTime) {
+				$datetime = $datestr;
 			}
-        }
+			elseif (is_null ($datestr)) {
+				$datetime = new DateTime('now');
+			}
+			else {
+				$datetime = new DateTime($datestr);
+			}
+
+			foreach ($b as $c) {
+				switch ($c) {
+				case "D":
+					$trans["D"] = $this->_datestr[$this->language]['translations']['shortdays'][$datetime->format("w")];
+					break;
+				case "l":
+					$trans["l"] = $this->_datestr[$this->language]['translations']['days'][$datetime->format("w")];
+					break;
+				case "S":
+					$trans["S"] = ($datetime->format("j") < 4) ?
+						$this->_datestr[$this->language]['translations']['suffixes'][$datetime->format("j")-1] :
+						$this->_datestr[$this->language]['translations']['suffixes'][3];
+					break;
+				case "F":
+					$trans["F"] = $this->_datestr[$this->language]['translations']['months'][$datetime->format("m")-1];
+					break;
+				case "M":
+					$trans["M"] = $this->_datestr[$this->language]['translations']['shortmonths'][$datetime->format("m")-1];
+					break;
+				case "a":
+					$trans["a"] = ($datetime->format("G") >= 12) ?
+						$this->_datestr[$this->language]['translations']['antepost'][1] :
+						$this->_datestr[$this->language]['translations']['antepost'][0];
+					break;
+				case "A":
+					$trans["A"] = strtoupper(($datetime->format("G") >= 12) ?
+						$this->_datestr[$this->language]['translations']['antepost'][1] :
+						$this->_datestr[$this->language]['translations']['antepost'][0]);
+					break;
+				default:
+					$trans[$c] = $datetime->format($c);
+				}
+			}
+		}
+		else {
+			if (is_null ($datestr)) {
+				$datetime = time();
+			}
+			else {
+				$datetime = strtotime($datestr);
+			}
+
+			foreach ($b as $c) {
+				switch ($c) {
+				case "D":
+					$i = date("w", $datetime);
+					$trans["D"] = $this->_datestr[$this->language]['translations']['shortdays'][$i];
+					break;
+				case "l":
+					$i = date("w", $datetime);
+					$trans["l"] = $this->_datestr[$this->language]['translations']['days'][$i];
+					break;
+				case "S":
+					$i = date("j", $datetime);
+					$trans["S"] = ($i < 4) ?
+						$this->_datestr[$this->language]['translations']['suffixes'][$i-1] :
+						$this->_datestr[$this->language]['translations']['suffixes'][3];
+					break;
+				case "F":
+					$i = date("m", $datetime);
+					$trans["F"] = $this->_datestr[$this->language]['translations']['months'][$i-1];
+					break;
+				case "M":
+					$i = date("m", $datetime);
+					$trans["M"] = $this->_datestr[$this->language]['translations']['shortmonths'][$i-1];
+					break;
+				case "a":
+					$trans["a"] = (date("G", $datetime) >= 12) ?
+						$this->_datestr[$this->language]['translations']['antepost'][1] :
+						$this->_datestr[$this->language]['translations']['antepost'][0];
+					break;
+				case "A":
+					$trans["A"] = strtoupper((date("G", $datetime) >= 12) ?
+						$this->_datestr[$this->language]['translations']['antepost'][1] :
+						$this->_datestr[$this->language]['translations']['antepost'][0]);
+					break;
+				default:
+					$trans[$c] = date($c, $datetime);
+				}
+			}
+		}
 
         // 4. replace tokens
         $i = array_keys($trans);
