@@ -24,6 +24,7 @@ Changes in 5.0.2-stable
 - SiteEvent: _eventsInRange() can have no end date set, fixes issues with getUpcoming().
 - SiteTemplate: Set new template names to lowercase, added examples in the forms.
 - Fixed source view character encoding for sending edited source back to Xed.
+- Fixed an issue with the new joiner mailform widget.
 
 Changes in 5.0.1-stable
 
