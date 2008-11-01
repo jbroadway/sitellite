@@ -53,7 +53,6 @@ class SiteEvent_Event extends Generic {
 			$sql .= sprintf ('(until_date >= %s)', $start); // ends after $start
 		}
 		$sql .= ') ' . $usr . $cat . $aud . ' and ' . $append . ' order by date asc, time asc, until_date asc, until_time asc' . $lim;
-
 		return db_fetch_array ($sql);
 	}
 
@@ -101,114 +100,50 @@ class SiteEvent_Event extends Generic {
 			'*',
 			$limit
 		);
-		//dump_items ($list);
-		$items = array ();
-		$month = date ('m');
-		$year = date ('Y');
-		$cur = 0;
 
-		while (count ($items) < $limit && count ($list) > 0) {
-			list ($year, $month, $day) = explode ('-', date ('Y-m-d', time () + $cur));
-
-			for ($k = 0; $k < count ($list); $k++) {
-				if (count ($items) >= $limit) {
-					break;
-				}
-
-				$item = clone ($list[$k]);
-	
+		$today = date ('Y-m-d');
+		list ($year, $month, $day) = explode ('-', $today);
+		// Replace dates of recuring items
+		foreach ($list as $k=>$item) {
+			if ($item->date < $today) {
 				list ($y, $m, $d) = explode ('-', $item->date);
-				list ($yy, $mm, $dd) = explode ('-', $item->until_date);
-	
-				if ($year . '-' . $month . '-' . $day < $item->date) {
-					continue;
-				}
-	
-				if ($yy != '0000' && $year . '-' . $month . '-' . $day > $item->until_date) {
-					//unset ($list[$k]);
-					array_splice ($list, $k, 1);
-					$k--;
-					continue;
-				}
-	
 				switch ($item->recurring) {
 					case 'yearly':
-						if ($m == $month && $d == $day) {
-							$item->date = $year . '-' . $month . '-' . $day;
-							$items[] = $item;
-						}
+						$list[$k]->date = $year . '-' . $m . '-' . $d;
 						break;
 					case 'monthly':
-						if ($d == $day) {
-							$item->date = $year . '-' . $month . '-' . $day;
-							$items[] = $item;
-						}
+						$list[$k]->date = $year . '-' . $month. '-' . $d;
 						break;
 					case 'weekly':
-						$cwd = date ('w', mktime (5, 0, 0, $month, $day, $year));
-						$wd = date ('w', mktime (5, 0, 0, $m, $d, $y));
-
-						if ($cwd == $wd) {
-							$item->date = $year . '-' . $month . '-' . $day;
-							$items[] = $item;
+						$w = date ('w', strtotime($item->date));
+						$cw = date ('w');
+						if ($cw < $w) {
+							$cw += 7;
 						}
+						$diff = '+' . $cw-$w . ' days';
+						$list[$k]->date = date ('Y-m-d',
+							strtotime ($diff));
 						break;
 					case 'daily':
-						//$item->date = $year . '-' . $month . '-' . $day;
-						$items[] = $item;
-						//unset ($list[$k]);
-						//array_splice ($list, $k, 1);
-						//$k--;
-						$next = Date::add ($item->date, '1 day');
-						if ($next > $item->until_date) {
-							array_splice ($list, $k, 1);
-							$k--;
-						} else {
-							$list[$k]->date = $next;
-						}
+						$list[$k]->date = $today;
 						break;
-					case 'no':
-						if ($item->until_date > $item->date) {
-							$items[] = $item;
-							$next = Date::add ($item->date, '1 day');
-							if ($next > $item->until_date) {
-								array_splice ($list, $k, 1);
-								$k--;
-							} else {
-								$list[$k]->date = $next;
-							}
-							break;
-						}
-						if ($item->date == $year . '-' . $month . '-' . $day) {
-							$items[] = $item;
-							//unset ($list[$k]);
-							array_splice ($list, $k, 1);
-							$k--;
-						}
-						break;
-					default:
-						die ('recurring value invalid!');
-						/*
-						if ($yy == '0000' && $item->recurring == 'daily') {
-							//$item->date = $year . '-' . $month . '-' . $day;
-							$items[] = $item;
-							unset ($list[$k]);
-						} elseif ($yy != '0000') {
-							//$item->date = $year . '-' . $month . '-' . $day;
-							$items[] = $item;
-							unset ($list[$k]);
-						} elseif ($item->date == $year . '-' . $month . '-' . $day) {
-							$items[] = $item;
-						}
-						break;
-						*/
 				}
 			}
-			$cur += 86400;
-		}
+		} // foreach ($list)
+
+		// sort dates
+		usort ($list, create_function ( '$a,$b',
+			'$r = strcmp ($a->date, $b->date);
+			 if ($r == 0) {
+				$r = strcmp ($a->time, $b->time);
+			 }
+			 if ($r == 0) {
+				$r = strcmp ($a->until_date, $b->until_date);
+			 }
+			 return $r;' ));
 
 		//dump_items ($items);
-		return $items;
+		return $list;
 	}
 
 	function getDay ($date) {
