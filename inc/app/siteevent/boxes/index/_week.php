@@ -34,10 +34,10 @@ foreach (array_keys ($list) as $k) {
 	$priority = ($item->priority == 'high') ? true : false;
 	$alt = $item->title;
 	if ($item->time > '00:00:00') {
-		$alt .= ' - ' . Date::time ($item->time, 'g:i A');
+		$alt .= ' - ' . intl_time ($item->time);
 	}
 	if ($item->end_time > '00:00:00') {
-		$alt .= ' - ' . Date::time ($item->end_time, 'g:i A');
+		$alt .= ' - ' . intl_time ($item->end_time);
 	}
 
 	$item->_time = $item->time;
@@ -45,21 +45,12 @@ foreach (array_keys ($list) as $k) {
 	if ($item->time == '00:00:00') {
 		$item->time = '';
 	} else {
-		list ($h, $m, $s) = split (':', $item->time);
 		$t = $item->time;
-		$item->time = ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
+		$item->time = intl_time ($item->time);
 		if ($item->until_time > $t) {
 			$item->time .= ' - ';
-			list ($h, $m, $s) = split (':', $item->until_time);
-			$item->time .= ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
+			$item->time .= intl_time ($item->until_time);
 		}
-	}
-	$item->time = str_replace (':00', '', $item->time);
-	if (substr_count ($item->time, 'AM') > 1) {
-		$item->time = str_replace (' AM ', ' ', $item->time);
-	}
-	if (substr_count ($item->time, 'PM') > 1) {
-		$item->time = str_replace (' PM ', ' ', $item->time);
 	}
 
 	list ($y, $m, $d) = explode ('-', $item->date);
@@ -210,7 +201,7 @@ echo template_simple (
 	array (
 		'list' => $items,
 		'date' => date ('Y-m-d'),
-		'dateName' => intl_get ('Week of') . ' ' . strftime (appconf ('date_format'), strtotime ($week_of)),
+		'dateName' => intl_get ('Week of') . ' ' . intl_date ($week_of, 'cevdate'),
 		'prev' => Date::subtract ($week_of, '7 day'),
 		'next' => Date::add ($week_of, '7 day'),
 	)
@@ -236,7 +227,7 @@ if (appconf ('rss_links')) {
 }
 echo '</p>';
 
-page_title (appconf ('siteevent_title'));
+page_title (intl_get (appconf ('siteevent_title')));
 if (appconf ('template_calendar')) {
 	page_template (appconf ('template_calendar'));
 } elseif (appconf ('template')) {

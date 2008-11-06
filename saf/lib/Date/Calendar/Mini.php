@@ -55,6 +55,14 @@ class MiniCal {
 				$r++;
 			}
 		}
+
+		$this->abbrSun = strtoupper(substr (intl_day_name (0), 0, 1));
+		$this->abbrMon = strtoupper(substr (intl_day_name (1), 0, 1));
+		$this->abbrTue = strtoupper(substr (intl_day_name (2), 0, 1));
+		$this->abbrWed = strtoupper(substr (intl_day_name (3), 0, 1));
+		$this->abbrThu = strtoupper(substr (intl_day_name (4), 0, 1));
+		$this->abbrFri = strtoupper(substr (intl_day_name (5), 0, 1));
+		$this->abbrSat = strtoupper(substr (intl_day_name (6), 0, 1));
 	}
 
 	/**
@@ -100,7 +108,7 @@ class MiniCal {
 	 * @return string
 	 */
 	function monthName () {
-		return strftime ('%B', mktime (5, 0, 0, $this->month, 1, $this->year));
+		return intl_date ( '2000-'.$this->month.'-01', 'F');
 	}
 
 	/**
@@ -182,13 +190,13 @@ class MiniCal {
 					</td>
 				</tr>
 				<tr class="day-headings">
-					<td align="center">S</td>
-					<td align="center">M</td>
-					<td align="center">T</td>
-					<td align="center">W</td>
-					<td align="center">T</td>
-					<td align="center">F</td>
-					<td align="center">S</td>
+					<td align="center">{abbrSun}</td>
+					<td align="center">{abbrMon}</td>
+					<td align="center">{abbrThu}</td>
+					<td align="center">{abbrWed}</td>
+					<td align="center">{abbrTue}</td>
+					<td align="center">{abbrFri}</td>
+					<td align="center">{abbrSat}</td>
 				</tr>
 			',
 			$this

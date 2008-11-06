@@ -24,13 +24,23 @@ antepost                = "am, pm"
 
 [formats]
 
-time                    = "H:i"
+time                    = "G:i"
 
-shortdate               = d M.
+shortdate               = j M.
 
 date                    = j F Y
 
-datetime                = "d M. Y - H:i"
+datetime                = "j M. Y - H:i"
+
+shortevdate             = j M.
+
+evdate                  = j M. Y
+
+shortcevdate            = j F
+
+cevdate                 = j F Y
+
+longevdate              = l jS F Y
 
 ;
 ; THE END

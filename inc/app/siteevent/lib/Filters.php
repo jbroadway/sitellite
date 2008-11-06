@@ -60,21 +60,22 @@ function siteevent_virtual_date ($vals) {
 	if ($vals->until_date > $vals->date) {
 		if (substr ($vals->date, 0, 4) != substr ($vals->until_date, 0, 4)) {
 			// separate year
-			$out = localdate ('M j, Y', strtotime ($vals->date));
+			$out = intl_date ($vals->date, 'evdate');
 			$out .= ' &ndash; ';
-			$out .= localdate ('M j, Y', strtotime ($vals->until_date));
+			$out .= intl_date ($vals->until_date, 'evdate');
 		} else {
 			// same year
-			$out = localdate ('M j', strtotime ($vals->date));
+			$out = intl_date ($vals->date, 'shortevdate');
 			$out .= ' &ndash; ';
-			$out .= localdate ('M j, Y', strtotime ($vals->until_date));
+			$out .= intl_date ($vals->until_date, 'evdate');
 		}
 		return $out;
 	}
-	return localdate ('M j, Y', strtotime ($vals->date));
+	return intl_date ($vals->date);
 }
 
 function siteevent_virtual_recurring ($vals) {
+	/*
 	if ($vals->until_date > $vals->date) {
 		if ($vals->recurring == 'no') {
 			return intl_get ('Daily');
@@ -82,6 +83,8 @@ function siteevent_virtual_recurring ($vals) {
 		return ucfirst ($vals->recurring);
 	}
 	return intl_get ('No');
+	*/
+	return intl_get (ucfirst ($vals->recurring));
 }
 
 ?>

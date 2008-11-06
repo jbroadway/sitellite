@@ -30,27 +30,17 @@ foreach (array_keys ($events) as $k) {
 	if ($event->time == '00:00:00') {
 		$event->time = '';
 	} else {
-		list ($h, $m, $s) = split (':', $event->time);
 		$t = $event->time;
-		$event->time = ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
+		$event->time = intl_time ($event->time);
 		if ($event->until_time > $t) {
 			$event->time .= ' - ';
-			list ($h, $m, $s) = split (':', $event->until_time);
-			$event->time .= ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
+			$event->time .= intl_time ($event->until_time);
 		}
-	}
-	$event->time = str_replace (':00', '', $event->time);
-	if (substr_count ($event->time, 'AM') > 1) {
-		$event->time = str_replace (' AM ', ' ', $event->time);
-	}
-	if (substr_count ($event->time, 'PM') > 1) {
-		$event->time = str_replace (' PM ', ' ', $event->time);
 	}
 }
 
-list ($y, $m, $d) = split ('-', $parameters['day']);
-page_title (intl_get ('Events For') . ' ' . strftime ('%B %e, %Y', mktime (5, 0, 0, $m, $d, $y)));
-page_title (appconf ('siteevent_title'));
+//page_title (intl_get ('Events For') . ' ' . intl_date ($parameters['day']));
+page_title (intl_get (appconf ('siteevent_title')));
 echo template_simple (
 	'categories.spt',
 	array (
@@ -66,11 +56,11 @@ echo template_simple (
 	'day.spt',
 	array (
 		'list' => $events,
-		'date' => strftime (appconf ('date_format'), strtotime ($parameters['day'])),
+		'date' => intl_date ($parameters['day'], 'cevdate'),
 		'prevDate' => Date::subtract ($parameters['day'], '1 day'),
-		'prevDay' => strftime (appconf ('date_format'), strtotime (Date::subtract ($parameters['day'], '1 day'))),
+		'prevDay' => intl_date (Date::subtract ($parameters['day'], '1 day'), 'cevdate'),
 		'nextDate' => Date::add ($parameters['day'], '1 day'),
-		'nextDay' => strftime (appconf ('date_format'), strtotime (Date::add ($parameters['day'], '1 day'))),
+		'nextDay' => intl_date (Date::add ($parameters['day'], '1 day'), 'cevdate'),
 	)
 );
 

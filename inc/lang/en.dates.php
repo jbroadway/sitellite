@@ -32,6 +32,16 @@ date                    = "F j, Y"
 
 datetime                = "M d, Y g:i A"
 
+shortevdate             = M j
+
+evdate                  = "M j, Y"
+
+shortcevdate            = F j
+
+cevdate                 = "F j, Y"
+
+longevdate              = "l, F jS, Y"
+
 ;
 ; THE END
 ;

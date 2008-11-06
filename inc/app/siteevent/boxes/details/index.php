@@ -14,25 +14,14 @@ $event->_date = $event->date;
 
 $evemt =& siteevent_translate ($event);
 
-if ($event->until_date > $event->date) {
-	list ($y, $m, $d) = split ('-', $event->date);
-	list ($yy, $mm, $dd) = split ('-', $event->until_date);
-	$event->date = strftime (appconf ('short_date'), mktime (5, 0, 0, $m, $d, $y)) . ' - ' . strftime (appconf ('date_format'), mktime (5, 0, 0, $mm, $dd, $yy));
-} else {
-	list ($y, $m, $d) = split ('-', $event->date);
-	$event->date = strftime (appconf ('date_format'), mktime (5, 0, 0, $m, $d, $y));
-}
-
 if ($event->time == '00:00:00') {
 	$event->time = false;
 } else {
-	list ($h, $m, $s) = split (':', $event->time);
 	$t = $event->time;
-	$event->time = ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $m, $y)), '0');
+	$event->time = intl_time ($event->time);
 	if ($event->until_time > $t) {
 		$event->time .= ' - ';
-		list ($h, $m, $s) = split (':', $event->until_time);
-		$event->time .= ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $m, $y)), '0');
+		$event->time .= intl_time ($event->until_time);
 	}
 }
 
@@ -86,17 +75,7 @@ switch ($event->recurring) {
 		$event->recur = intl_get ('Monthly');
 		break;
 	case 'weekly':
-		$days = array (
-			intl_get ('Sundays'),
-			intl_get ('Mondays'),
-			intl_get ('Tuesdays'),
-			intl_get ('Wednesdays'),
-			intl_get ('Thursdays'),
-			intl_get ('Fridays'),
-			intl_get ('Saturdays'),
-		);
-		list ($y, $m, $d) = explode ('-', $event->_date);
-		$event->recur = $days[date ('w', mktime (5, 0, 0, $m, $d, $y))];
+		$event->recur = intl_date ($event->date, 'l');
 		break;
 	case 'daily':
 	case 'no':
@@ -107,6 +86,13 @@ switch ($event->recurring) {
 			$event->recur = false;
 		}
 		break;
+}
+
+if ($event->until_date > $event->date) {
+	$event->date = intl_date ($event->date, 'shortcevdate') . ' - ' .
+		intl_date ($event->until_date, 'cevdate');
+} else {
+	$event->date = intl_date ($event->date, 'cevdate');
 }
 
 if (appconf ('google_maps') && ! empty ($event->loc_address) && empty ($event->loc_map)) {
@@ -122,7 +108,7 @@ if (appconf ('google_maps') && ! empty ($event->loc_address) && empty ($event->l
 	$event->loc_google = false;
 }
 
-page_title (appconf ('siteevent_title'));
+page_title (intl_get (appconf ('siteevent_title')));
 echo template_simple (
 	'details.spt',
 	$event

@@ -1,5 +1,11 @@
 <?php
 
+if (version_compare (phpversion(), '5.0') < 0) {
+	eval ('function clone($object) {
+		return $object;
+	}');
+}
+
 loader_import ('saf.Database.Generic');
 
 class SiteEvent_Event extends Generic {
@@ -103,6 +109,12 @@ class SiteEvent_Event extends Generic {
 
 		$today = date ('Y-m-d');
 		list ($year, $month, $day) = explode ('-', $today);
+		if (count($list) == $limit) {
+			$lastday = $list[count($list)-1]->date;
+		}
+		else {
+			$lastday = '2069-01-01';
+		}
 		// Replace dates of recuring items
 		foreach ($list as $k=>$item) {
 			if ($item->date < $today) {
@@ -129,6 +141,46 @@ class SiteEvent_Event extends Generic {
 						break;
 				}
 			}
+
+			if ($item->recurring == 'no') {
+				continue;
+			}
+			// add recurring events
+			switch ($item->recurring) {
+				case 'yearly':
+					$inc = '+1 year';
+					break;
+				case 'monthly':
+					$inc = '+1 month';
+					break;
+				case 'weekly':
+					$inc = '+7 days';
+					break;
+				case 'daily':
+					$inc = '+1 day';
+					break;
+			}
+			if ($item->until_date == '0000-00-00') {
+				$end = $lastday;
+			}
+			elseif ($item->until_date < $lastday) {
+				$end = $item->until_date;
+			}
+			else {
+				$end = $lastday;
+			}
+			$n = strtotime ($inc, strtotime ($item->date));
+			$next = date('Y-m-d', $n);
+			$c = 0;
+			while ($next < $end && $c < $limit) {
+				++$c;
+				$i = clone($item);
+				$i->date = $next;
+				$list[] = $i;
+				$n = strtotime ($inc, $n);
+				$next = date('Y-m-d', $n);
+			}
+
 		} // foreach ($list)
 
 		// sort dates
@@ -141,6 +193,10 @@ class SiteEvent_Event extends Generic {
 				$r = strcmp ($a->until_date, $b->until_date);
 			 }
 			 return $r;' ));
+
+
+		// truncate list
+		$list = array_slice ($list, 0, $limit);
 
 		//dump_items ($items);
 		return $list;

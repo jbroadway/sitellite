@@ -139,7 +139,7 @@ class SimpleCal {
 	 * @return string
 	 */
 	function monthName () {
-		return strftime ('%B', mktime (5, 0, 0, $this->month, 1, $this->year));
+		return intl_month_name ($this->month);
 	}
 
 	/**
@@ -150,7 +150,7 @@ class SimpleCal {
 	 */
 	function prevMonth () {
 		list ($y, $m) = split ('-', $this->prevDate ());
-		return strftime ('%B', mktime (5, 0, 0, $m, 1, $y));
+		return intl_month_name ($m);
 	}
 
 	/**
@@ -161,7 +161,7 @@ class SimpleCal {
 	 */
 	function nextMonth () {
 		list ($y, $m) = split ('-', $this->nextDate ());
-		return strftime ('%B', mktime (5, 0, 0, $m, 1, $y));
+		return intl_month_name ($m);
 	}
 
 	/**
@@ -232,17 +232,6 @@ class SimpleCal {
 	 * @return string
 	 */
 	function weekday ($day) {
-		if (! $this->_weekdays) {
-			$d = 1;
-			while (date ('w', mktime (5, 0, 0, $this->month, $d, $this->year)) != 0) {
-				$d++;
-			}
-			$this->_weekdays = array ();
-			for ($i = 0; $i < 7; $i++) {
-				$this->_weekdays[$i] = $d;
-				$d++;
-			}
-		}
 		$list = array (
 			'sun' => 0,
 			'mon' => 1,
@@ -252,7 +241,7 @@ class SimpleCal {
 			'fri' => 5,
 			'sat' => 6,
 		);
-		return strftime ('%a', mktime (5, 0, 0, $this->month, $this->_weekdays[$list[$day]], $this->year));
+		return intl_shortday_name ($list[$day]);
 	}
 
 	/**

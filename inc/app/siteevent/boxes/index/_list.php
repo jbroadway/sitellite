@@ -19,7 +19,7 @@ $parameters['limit'] = 20;
 
 $list = $e->getUpcoming ($parameters['limit'], $parameters['category'], $parameters['audience']);
 
-page_title (appconf ('siteevent_title'));
+page_title (intl_get (appconf ('siteevent_title')));
 if (appconf ('template_calendar')) {
 	page_template (appconf ('template_calendar'));
 } elseif (appconf ('template')) {
@@ -41,21 +41,19 @@ echo template_simple (
 $dates = array ();
 foreach ($list as $k => $event) {
 	$day = $event->date;
-	$dd = strftime ('%A, %B %e', strtotime ($event->date));
+	$dd = intl_date ($event->date, 'longevdate');
 
 	if ($event->time == '00:00:00') {
 		$event->time = false;
 	} else {
-		list ($h, $m, $s) = split (':', $event->time);
 		$t = $event->time;
-		$event->ftime = ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $m, $y)), '0');
+		$event->ftime = intl_time ($event->time);
 		if ($event->until_time > $t) {
 			$event->ftime .= ' - ';
-			list ($h, $m, $s) = split (':', $event->until_time);
-			$event->ftime .= ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $m, $y)), '0');
+			$event->ftime .= intl_time ($event->until_time);
 		}
 	}
-	$dates[strftime ('%A, %B %e', strtotime ($event->date))][] = $event;
+	$dates[$dd][] = $event;
 }
 
 // sort and limit $dates
