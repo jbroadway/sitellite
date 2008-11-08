@@ -18,7 +18,7 @@
 
 <ul>
 	{loop obj[langs]}
-	{if loop[_key] ne intl_default_lang ()}
+	{if loop[_key] ne obj[app_lang] }
 	<li><a href="{site/prefix}/index/multilingual-translation-strings-action?appname={appname}&lang={loop/_key}&charset={loop/charset}">{loop/name}</a></li>
 	{end if}
 	{end loop}

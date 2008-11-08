@@ -85,9 +85,14 @@ if (! @is_dir ($lang_path)) {
 
 global $intl;
 
+if (!isset ($info['language'])) {
+	$info['language'] = 'en';
+}
+
 $data = array (
 	'appname' => $cgi->appname,
 	'langs' => $intl->getLanguages ($lang_path . '/languages.php'),
+	'app_lang' => $info['language'],
 );
 
 if (! is_array ($data['langs'])) {
