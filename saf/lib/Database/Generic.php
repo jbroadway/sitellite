@@ -612,6 +612,9 @@ class Generic {
 
 		if (is_array ($fid)) {
 			list ($where, $bind) = $this->_join ($fid);
+			if (empty ($where)) {
+				$where = '1=1';
+			}
 			$res = db_shift (
 				'SELECT count(*) FROM ' . $this->table . ' WHERE ' . $where . $this->_end (),
 				$bind

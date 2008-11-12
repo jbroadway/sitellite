@@ -1,150 +1,144 @@
 --TEST--
 saf.Database.Generic
+--INI--
+error_reporting = E_ALL & ~E_NOTICE
 --FILE--
 <?php
 
 // test setup
 
-// remove this when test is ready to be run
-return;
-
 include_once ('../init.php');
 
-// include library
-
+loader_import ('saf.Database');
 loader_import ('saf.Database.Generic');
 
-// constructor method
+$db = new Database ('MySQL:localhost:DBNAME', 'USER', 'PASS');
 
-$generic = new Generic ('$table', '$pkey', '$fkey', '$listFields', '$isAuto');
+db_execute ('create table test_generic_one (
+	id int not null auto_increment primary key,
+	name char(10) not null
+)');
 
-// _join() method
+class GenericOne extends Generic {
+	function GenericOne () {
+		parent::Generic ('test_generic_one', 'id');
+	}
+}
 
-var_dump ($generic->_join ('$list', '$op'));
+// testing...
 
-// _end() method
+// create a basic object and give it a name
 
-var_dump ($generic->_end ());
+$g = new GenericOne;
+$g->set ('name', 'Test 1');
+$g->save ();
 
-// translate() method
+// let's see if save() got us an id for our object
 
-var_dump ($generic->translate ('$obj'));
+$id = $g->val ('id');
+var_dump ($id);
 
-// listFields() method
+// let's modify the name and get a fresh copy
 
-var_dump ($generic->listFields ('$listFields'));
+$g->modify ($id, array ('name' => 'Test 2'));
+print_r ($g->get ($id));
 
-// foreignKey() method
+$g->remove ($id);
+var_dump ($g->get ($id));
 
-var_dump ($generic->foreignKey ('$fkey'));
+$g->add (array ('name' => 'Test 1'));
+$g->add (array ('name' => 'Test 2'));
+$g->add (array ('name' => 'Test 3'));
+$g->add (array ('name' => 'Test 4'));
+$g->add (array ('name' => 'Test 5'));
 
-// orderBy() method
+// return 2 items, offset by 1
 
-var_dump ($generic->orderBy ('$orderBy'));
+$g->limit (2);
+$g->offset (1);
+$res = $g->find (array ());
+var_dump ($res[0]->name);
+var_dump (count ($res));
+var_dump ($g->total);
 
-// groupBy() method
+$g->clear ();
 
-var_dump ($generic->groupBy ('$groupBy'));
+// return all items, no offset
 
-// limit() method
+$res = $g->find (array ());
+var_dump ($res[0]->name);
+var_dump (count ($res));
+var_dump ($g->total);
 
-var_dump ($generic->limit ('$limit'));
+// get a single item
 
-// offset() method
+print_r ($g->single (array ()));
 
-var_dump ($generic->offset ('$offset'));
+// get the id of the first item
 
-// clear() method
+var_dump ($g->shift (array ()));
 
-var_dump ($generic->clear ());
+// get just the count of a search
 
-// find() method
+var_dump ($g->count (array ()));
 
-var_dump ($generic->find ('$fid'));
+// export an object from the class
 
-// getList() method
+print_r ($g->makeObj ());
 
-var_dump ($generic->getList ('$fid'));
+// set a new current item
 
-// single() method
+$res = $g->single (array ('name' => 'Test 2'));
+$g->setCurrent ($res);
+var_dump ($g->val ('name'));
 
-var_dump ($generic->single ());
+// testing exists()
 
-// shift() method
+var_dump ($g->exists ($g->val ('id')));
+var_dump ($g->exists (-1));
 
-var_dump ($generic->shift ());
+// testing validation
 
-// count() method
+$g->addRule ('name', 'not empty', 'Name must not be empty');
+$g->addRule ('name', 'length "10-"', 'Name must be 6 chars or less');
+var_dump ($g->validate (array ('name' => ''))); // fail
+var_dump ($g->validate (array ('name' => 'Pass'))); // pass
+var_dump ($g->validate (array ('name' => 'Toooooooo Looooooong'))); // fail
 
-var_dump ($generic->count ('$fid'));
+// test cleanup
 
-// query() method
-
-var_dump ($generic->query ('$sql', '$bind'));
-
-// get() method
-
-var_dump ($generic->get ('$id'));
-
-// add() method
-
-var_dump ($generic->add ('$struct'));
-
-// modify() method
-
-var_dump ($generic->modify ('$id', '$struct'));
-
-// remove() method
-
-var_dump ($generic->remove ('$id'));
-
-// makeStruct() method
-
-var_dump ($generic->makeStruct ('$vals'));
-
-// addRule() method
-
-var_dump ($generic->addRule ('$name', '$rule', '$msg'));
-
-// validate() method
-
-var_dump ($generic->validate ('$vals'));
-
-// setCurrent() method
-
-var_dump ($generic->setCurrent ('$obj'));
-
-// makeObj() method
-
-var_dump ($generic->makeObj ());
-
-// set() method
-
-var_dump ($generic->set ('$name', '$value'));
-
-// val() method
-
-var_dump ($generic->val ('$name'));
-
-// pkey() method
-
-var_dump ($generic->pkey ());
-
-// exists() method
-
-var_dump ($generic->exists ('$id'));
-
-// save() method
-
-var_dump ($generic->save ());
-
-// cascade() method
-
-var_dump ($generic->cascade ('$id'));
-
-// load() method
-
-var_dump ($generic->load ('$app', '$pkg'));
+db_execute ('drop table test_generic_one');
 
 ?>
---EXPECT--
+--EXPECTF--
+int(%d)
+stdClass Object
+(
+    [id] => %d
+    [name] => Test 2
+)
+bool(false)
+string(6) "Test 2"
+int(2)
+int(5)
+string(6) "Test 1"
+int(5)
+int(5)
+stdClass Object
+(
+    [id] => %d
+    [name] => Test 1
+)
+string(%d) "%d"
+string(1) "5"
+stdClass Object
+(
+    [name] => Test 1
+    [id] => %d
+)
+string(6) "Test 2"
+string(1) "1"
+string(1) "0"
+bool(false)
+bool(true)
+bool(false)
