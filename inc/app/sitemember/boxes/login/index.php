@@ -28,6 +28,8 @@ if (! empty ($parameters['username'])) {
 	sleep (2);
 }
 
+$parameters['context'] = $box['context'];
+
 switch ($box['context']) {
 	case 'inline':
 		echo template_simple ('login/inline.spt', $parameters);

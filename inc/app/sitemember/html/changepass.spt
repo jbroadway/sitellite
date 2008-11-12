@@ -8,18 +8,18 @@
 {end if}
 
 <p>
-	{intl Current Password}<br />
-	<input type="password" name="current" />
+	<label for="current">{intl Current Password}</label><br />
+	<input type="password" name="current" id="current" />
 </p>
 
 <p>
-	{intl New Password}<br />
-	<input type="password" name="newpass" />
+	<label for="newpass">{intl New Password}</label><br />
+	<input type="password" name="newpass" id="newpass" />
 </p>
 
 <p>
-	{intl Verify New Password}<br />
-	<input type="password" name="verify" />
+	<label for="verify">{intl Verify New Password}</label><br />
+	<input type="password" name="verify" id="verify" />
 </p>
 
 <p>

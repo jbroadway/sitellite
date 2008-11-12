@@ -4,8 +4,8 @@
 	method="post">
 
 <p>
-	{intl Please enter your email address}<br />
-	<input type="text" name="email" />
+	<label for="email">{intl Please enter your email address}</label><br />
+	<input type="text" name="email" id="email" />
 </p>
 
 <p>

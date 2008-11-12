@@ -65,7 +65,7 @@ class SitememberPreferencesForm extends MailForm {
 
 		// 2. respond
 		page_title (intl_get ('Preferences Saved'));
-		echo template_simple ('<p>Your account information been updated.  <a href="{site/prefix}/index/sitemember-app">{intl Click here to continue.}</a></p>');
+		echo template_simple ('<p>{intl Your account information been updated.} <a href="{site/prefix}/index/sitemember-app">{intl Click here to continue.}</a></p>');
 	}
 }
 

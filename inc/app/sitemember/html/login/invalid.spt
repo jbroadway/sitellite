@@ -5,18 +5,18 @@
 
 <table cellpadding="3" border="0">
 	<tr>
-		<td>{intl Username}</td>
-		<td><input type="text" name="username" size="20" /></td>
+		<td><label for="username_i">{intl Username}</label></td>
+		<td><input type="text" name="username" size="20" id="username_i" /></td>
 	</tr>
 	<tr>
-		<td>{intl Password}</td>
-		<td><input type="password" name="password" size="20" /></td>
+		<td><label for="password_i">{intl Password}</label></td>
+		<td><input type="password" name="password" size="20" id="password_i" /></td>
 	</tr>
 {if appconf ('remember_login')}
 	<tr>
 		<td colspan="2">
-			<input type="checkbox" name="remember_me" value="yes" />
-			{intl Remember Login}
+			<input type="checkbox" name="remember_me" value="yes" id="remember_me_i" />
+			<label for="remember_me_i">{intl Remember Login}</label>
 		</td>
 	</tr>
 {end if}

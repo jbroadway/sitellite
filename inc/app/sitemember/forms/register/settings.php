@@ -46,15 +46,18 @@ rule 1          = "not empty, You must enter your last name."
 [company]
 
 type			= text
+alt				= Company
 
 [website]
 
 type			= text
+alt				= Website
 default_value	= "http://"
 
 [country]
 
 type			= text
+alt				= Country
 
 [province]
 

@@ -12,19 +12,19 @@
 {end if}
 
 <p>
-	{intl Username}<br />
-	<input type="text" name="username" size="20" />
+	<label for="username_{context}">{intl Username}</label><br />
+	<input type="text" name="username" size="20" id="username_{context}" />
 </p>
 
 <p>
-	{intl Password}<br />
-	<input type="password" name="password" size="20" />
+	<label for="password_{context}">{intl Password}</label><br />
+	<input type="password" name="password" size="20" id="password_{context}" />
 </p>
 
 {if appconf ('remember_login')}
 <p>
-	<input type="checkbox" name="remember_me" value="yes" />
-	{intl Remember Login}
+	<input type="checkbox" name="remember_me" value="yes" id="remember_me_{context}" />
+	<label for="remember_me_{context}">{intl Remember Login}</label>
 </p>
 {end if}
 
