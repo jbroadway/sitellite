@@ -52,6 +52,13 @@ class MultilingualLanguagesAddForm extends MailForm {
 		$file = $this->_file;
 		$info = ini_parse ($file);
 
+		// Keep only one default lang
+		if ($vals['default'] == 'yes') {
+			foreach ($info as $l=>$v) {
+				$info[$l]['default'] = 'no';
+			}
+		}
+
 		$code = $vals['code'];
 		if (! empty ($vals['locale'])) {
 			$code .= '-' . $vals['locale'];

@@ -15,11 +15,19 @@ class MultilingualLanguagesEditForm extends MailForm {
 		$list = array ('no' => 'None');
 		$info = ini_parse ($this->_file);
 		foreach ($info as $k => $v) {
-			$list[$k] = $v['name'];
+			// Cannot fallback to itself...
+			if ($k != $cgi->lang) {
+				$list[$k] = $v['name'];
+			}
 		}
 		$this->widgets['fallback']->setValues ($list);
 
-		$this->widgets['default']->setValues (array ('yes' => 'Yes', 'no' => 'No'));
+		if ($info[$cgi->lang]['default'] == 1) {
+			$this->widgets['default']->setValues (array ('yes' => 'Yes'));
+		}
+		else {
+			$this->widgets['default']->setValues (array ('yes' => 'Yes', 'no' => 'No'));
+		}	
 
 		foreach ($info[$cgi->lang] as $k => $v) {
 			if ($k == 'default') {
@@ -47,6 +55,12 @@ class MultilingualLanguagesEditForm extends MailForm {
 	function onSubmit ($vals) {
 		$file = $this->_file;
 		$info = ini_parse ($file);
+
+		if ($vals['default'] == 'yes') {
+			foreach ($info as $l=>$v) {
+				$info[$l]['default'] = 'no';
+			}
+		}
 
 		$code = $vals['code'];
 		if (! empty ($vals['locale'])) {
