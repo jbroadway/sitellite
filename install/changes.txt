@@ -26,6 +26,7 @@ Changes in 5.0.2-stable
 - Fixed source view character encoding for sending edited source back to Xed.
 - Fixed an issue with the new joiner mailform widget.
 - SiteStreamer: Added optional integration with the JW Flash Player.
+- Added phpt test for saf.Database.Generic and fixed count() method bug.
 
 Changes in 5.0.1-stable
 
