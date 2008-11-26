@@ -17,6 +17,12 @@ if (! is_writeable (getcwd () . '/inc/app/' . $parameters['appname'] . '/conf/se
 	return;
 }
 
+global $intl;
+$old_intl_path = $intl->directory;
+$intl->directory = 'inc/app/' . $parameters['appname'] . '/lang';
+$intl->getIndex ();
+$intl->directory = $old_intl_path;
+
 $settings = ini_parse (getcwd () . '/inc/app/' . $parameters['appname'] . '/conf/settings.ini.php', true);
 
 global $cgi;
