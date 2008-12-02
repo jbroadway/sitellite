@@ -29,6 +29,7 @@ Changes in 5.0.2-stable
 - Added phpt test for saf.Database.Generic and fixed count() method bug.
 - Fixed a date addition/subtraction bug for multiple months and years.
 - Added ability to translate settings names for application settings form.
+- Fixed a malformed URI error that could occur in decodeURIComponent().
 
 Changes in 5.0.1-stable
 

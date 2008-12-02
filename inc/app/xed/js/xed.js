@@ -119,10 +119,22 @@ function xed_do_nothing (n) {}
 // ie. onload="xed_init ('editor')"
 function xed_init (ifname) {
 	// decode initial values
-	xed_initial_value[ifname] = decodeURIComponent (xed_initial_value[ifname]);
-	xed_scroller_data = decodeURIComponent (xed_scroller_data);
+	try {
+		xed_initial_value[ifname] = decodeURIComponent (xed_initial_value[ifname]);
+	} catch (e) {
+		xed_initial_value[ifname] = unescape (xed_initial_value[ifname]);
+	}
+	try {
+		xed_scroller_data = decodeURIComponent (xed_scroller_data);
+	} catch (e) {
+		xed_scroller_data = unescape (xed_scroller_data);
+	}
 	for (var i = 0; i < xed_templates.length; i++) {
-		xed_templates[i] = decodeURIComponent (xed_templates[i]);
+		try {
+			xed_templates[i] = decodeURIComponent (xed_templates[i]);
+		} catch (e) {
+			xed_templates[i] = unescape (xed_templates[i]);
+		}
 	}
 
 	e = document.getElementById (ifname);
