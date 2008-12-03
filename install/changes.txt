@@ -30,6 +30,7 @@ Changes in 5.0.2-stable
 - Fixed a date addition/subtraction bug for multiple months and years.
 - Added ability to translate settings names for application settings form.
 - Fixed a malformed URI error that could occur in decodeURIComponent().
+- Fixed a Javascript warning in IE in the top frame when not logged in.
 
 Changes in 5.0.1-stable
 
