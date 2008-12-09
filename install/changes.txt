@@ -33,6 +33,7 @@ Changes in 5.0.2-stable
 - Fixed a Javascript warning in IE in the top frame when not logged in.
 - Improved display of checkbox and radio fields.
 - saf.MailForm now sets page_title() if context=action for a form.
+- Customizable form now doesn't show its title, leaving the page to set it.
 
 Changes in 5.0.1-stable
 

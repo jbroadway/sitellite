@@ -13,9 +13,9 @@ title = name
 
 [title]
 
-alt = Title/Subject
+alt = Subject
 type = text
-rule 1 = "not empty, You must enter a title/subject for your form"
+rule 1 = "not empty, You must enter a subject for your form"
 
 [email]
 
