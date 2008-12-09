@@ -34,6 +34,8 @@ Changes in 5.0.2-stable
 - Improved display of checkbox and radio fields.
 - saf.MailForm now sets page_title() if context=action for a form.
 - Customizable form now doesn't show its title, leaving the page to set it.
+- Added referrer and improved email validation to example email-a-friend form,
+  and limited it to one email at a time.
 
 Changes in 5.0.1-stable
 
