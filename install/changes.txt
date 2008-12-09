@@ -31,7 +31,8 @@ Changes in 5.0.2-stable
 - Added ability to translate settings names for application settings form.
 - Fixed a malformed URI error that could occur in decodeURIComponent().
 - Fixed a Javascript warning in IE in the top frame when not logged in.
-- Improved display of checkbox fields.
+- Improved display of checkbox and radio fields.
+- saf.MailForm now sets page_title() if context=action for a form.
 
 Changes in 5.0.1-stable
 

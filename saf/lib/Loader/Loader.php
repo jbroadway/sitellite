@@ -759,6 +759,7 @@ class Loader {
 					ob_start ();
 
 					$form = new $class;
+					$form->context = $context;
 					echo $form->run ();
 
 					$contents .= ob_get_contents ();

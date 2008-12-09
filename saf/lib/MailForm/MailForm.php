@@ -521,6 +521,13 @@ class MailForm {
 	var $autosave = false;
 
 	/**
+	 * The context of the form. If this is set to 'action' then the title of
+	 * the form will be set by calling page_title() instead of outputting an
+	 * <h1> tag.
+	 */
+	var $context = false;
+
+	/**
 	 * Constructor Method.  Action will be set to $PHP_SELF if it
 	 * is empty, unless a global $site object is defined in which case the
 	 * action with be $site->url . $PHP_SELF.
@@ -908,7 +915,11 @@ class MailForm {
 			}
 
 			if (! empty ($this->title)) {
-				$data .= '<h1>' . $this->title . '</h1>';
+				if ($this->context == 'action') {
+					page_title ($this->title);
+				} else {
+					$data .= '<h1>' . $this->title . '</h1>';
+				}
 			}
 
 			$data .= $_message;
