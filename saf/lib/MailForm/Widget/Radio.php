@@ -86,12 +86,13 @@ class MF_Widget_radio extends MF_Widget {
 	 */
 	var $columns = 1;
 
-	var $_vertical_template = '	<tr>
+	var $_vertical_template = '{if obj.fieldset}	<tr>
+		<td colspan="2" class="label">
+			<label for="{name}" id="{name}-label"{filter none}{invalid}{end filter}>{display_value}</label>
+		</td>
+	</tr>{end if}
+	<tr>
 		<td colspan="2">
-			{if obj.fieldset}
-			<fieldset>
-				<legend{filter none}{invalid}{end filter}>{display_value}</legend>
-			{end if}
 
 			{loop obj.value}
 	<input
@@ -105,19 +106,17 @@ class MF_Widget_radio extends MF_Widget {
 				<label for="{name}_{loop/_key}">{loop/_value}</label><br />
 
 			{end loop}
-			{if obj.fieldset}
-			</fieldset>
-			{end if}
 		</td>
 	</tr>
 ';
 
-	var $_vertical_template2 = '	<tr>
+	var $_vertical_template2 = '{if obj.fieldset}	<tr>
+		<td colspan="2" class="label">
+			<label for="{name}" id="{name}-label"{filter none}{invalid}{end filter}>{display_value}</label>
+		</td>
+	</tr>{end if}
+	<tr>
 		<td colspan="2">
-			{if obj.fieldset}
-			<fieldset>
-				<legend{filter none}{invalid}{end filter}>{display_value}</legend>
-			{end if}
 
 			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tr>
@@ -151,20 +150,17 @@ class MF_Widget_radio extends MF_Widget {
 					</td>
 				</tr>
 			</table>
-
-			{if obj.fieldset}
-			</fieldset>
-			{end if}
 		</td>
 	</tr>
 ';
 
-	var $_vertical_template3 = '	<tr>
+	var $_vertical_template3 = '{if obj.fieldset}	<tr>
+		<td colspan="2" class="label">
+			<label for="{name}" id="{name}-label"{filter none}{invalid}{end filter}>{display_value}</label>
+		</td>
+	</tr>{end if}
+	<tr>
 		<td colspan="2">
-			{if obj.fieldset}
-			<fieldset>
-				<legend{filter none}{invalid}{end filter}>{display_value}</legend>
-			{end if}
 
 			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tr>
@@ -212,20 +208,17 @@ class MF_Widget_radio extends MF_Widget {
 					</td>
 				</tr>
 			</table>
-
-			{if obj.fieldset}
-			</fieldset>
-			{end if}
 		</td>
 	</tr>
 ';
 
-	var $_vertical_template4 = '	<tr>
+	var $_vertical_template4 = '{if obj.fieldset}	<tr>
+		<td colspan="2" class="label">
+			<label for="{name}" id="{name}-label"{filter none}{invalid}{end filter}>{display_value}</label>
+		</td>
+	</tr>{end if}
+	<tr>
 		<td colspan="2">
-			{if obj.fieldset}
-			<fieldset>
-				<legend{filter none}{invalid}{end filter}>{display_value}</legend>
-			{end if}
 
 			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tr>
@@ -287,10 +280,6 @@ class MF_Widget_radio extends MF_Widget {
 					</td>
 				</tr>
 			</table>
-
-			{if obj.fieldset}
-			</fieldset>
-			{end if}
 		</td>
 	</tr>
 ';
