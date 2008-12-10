@@ -36,6 +36,7 @@ Changes in 5.0.2-stable
 - Customizable form now doesn't show its title, leaving the page to set it.
 - Added referrer and improved email validation to example email-a-friend form,
   and limited it to one email at a time.
+- Added From email setting to SiteMember properties.
 
 Changes in 5.0.1-stable
 
