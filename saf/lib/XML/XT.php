@@ -618,6 +618,7 @@ class XT {
 
 		if (is_array ($data)) { // use nodeCache instead of new xml parser
 			foreach ($data as $node) {
+				$node = $this->reverseEntities ($node);
 				$tpl->_output ($tpl->{$tpl->makeMethod ($node['tag'], $node['type'], $node['level'])} ($node));
 			}
 
@@ -630,7 +631,7 @@ class XT {
 
 			$this->rows = $tpl->rows;
 			$this->toc = $tpl->toc;
-			$tpl->output = $this->reverseEntities ($tpl->output);
+			//$tpl->output = $this->reverseEntities ($tpl->output);
 			return $tpl->output;
 		}
 
@@ -689,6 +690,7 @@ class XT {
 */
 				// mainloop
 				foreach ($tpl->vals as $node) {
+					$node = $this->reverseEntities ($node);
 					$norm_tag = str_replace (':', '-', $node['tag']);
 					if ($node['type'] == 'cdata' || strpos ($norm_tag, 'ch-') === 0 || strpos ($norm_tag, 'xt-') === 0 || ! in_array ($norm_tag, $tpl->_bind_parts)) {
 						$tpl->_output ($tpl->{$tpl->makeMethod ($node['tag'], $node['type'], $node['level'])} ($node));
@@ -777,7 +779,7 @@ class XT {
 
 				$this->rows = $tpl->rows;
 				$this->toc = $tpl->toc;
-				$tpl->output = $this->reverseEntities ($tpl->output);
+				//$tpl->output = $this->reverseEntities ($tpl->output);
 				return $tpl->output;
 
 			} else {
@@ -1069,6 +1071,15 @@ class XT {
 	 * 
 	 */
     function reverseEntities ($data) {
+    	if (is_array ($data)) {
+    		$data['value'] = $this->reverseEntities ($data['value']);
+    		if (isset ($data['attributes'])) {
+    			foreach ($data['attributes'] as $key => $value) {
+    				$data['attributes'][$key] = $this->reverseEntities ($value);
+    			}
+    		}
+    		return $data;
+    	}
     	$data = preg_replace (
     		'/\[ch:n([0-9]+)\]/',
     		'&#\1;',

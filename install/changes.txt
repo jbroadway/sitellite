@@ -37,6 +37,8 @@ Changes in 5.0.2-stable
 - Added referrer and improved email validation to example email-a-friend form,
   and limited it to one email at a time.
 - Added From email setting to SiteMember properties and updated confirmation email.
+- Fixed over-zealous unencoding of [ch:nbsp] characters in XT which caused template
+  editing issues in SiteTemplate.
 
 Changes in 5.0.1-stable
 
