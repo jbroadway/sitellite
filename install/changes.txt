@@ -39,6 +39,7 @@ Changes in 5.0.2-stable
 - Added From email setting to SiteMember properties and updated confirmation email.
 - Fixed over-zealous unencoding of [ch:nbsp] characters in XT which caused template
   editing issues in SiteTemplate.
+- Fixed an issue with the sitellite/intl/setLang box when the negotiate setting is 'url'.
 
 Changes in 5.0.1-stable
 
