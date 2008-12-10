@@ -96,7 +96,7 @@ petition                = Off
 
 monoslideshow           = Off
 
-example                 = Off
+example                 = On
 
 digger                  = Off
 
