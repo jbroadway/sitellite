@@ -70,6 +70,8 @@ class I18nBuilder {
 					$regs[1] = 'collection';
 				} elseif ($file == 'config.ini.php') {
 					$regs[1] = 'config';
+				} elseif ($file == 'settings.ini.php') {
+					$regs[1] = 'settings';
 				}
 				if (! $this->{$this->extensions[$regs[1]]} ($path . '/' . $file, $this->getContents ($path . '/' . $file))) {
 					$dir->close ();
