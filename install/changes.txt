@@ -41,6 +41,7 @@ Changes in 5.0.2-stable
   editing issues in SiteTemplate.
 - Fixed an issue with the sitellite/intl/setLang box when the negotiate setting is 'url'.
 - Fixed a change that caused hidden pages to show in the site navigation.
+- Fixed an exception to the URL filter not adding /lang/ to certain links.
 
 Changes in 5.0.1-stable
 

@@ -605,9 +605,11 @@ function cgi_rewrite_filter ($out) {
 		global $intl;
 		if ($intl->url_increase_level) {
 			$out = str_replace ('"/index/', '"/' . $intl->language . '/', $out);
+			$out = str_replace ('"/index"', '"/' . $intl->language . '/"', $out);
 			return str_replace (site_domain () . site_prefix () . '/index/', site_domain () . site_prefix () . '/' . $intl->language . '/', $out);
 		}
 		$out = str_replace ('"/index/', '"/', $out);
+		$out = str_replace ("/index", '"/"', $out);
 		return str_replace (site_domain () . site_prefix () . '/index/', site_domain () . site_prefix () . '/', $out);
 	}
 	return $out;
