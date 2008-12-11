@@ -1072,7 +1072,9 @@ class XT {
 	 */
     function reverseEntities ($data) {
     	if (is_array ($data)) {
-    		$data['value'] = $this->reverseEntities ($data['value']);
+    		if (isset ($data['value'])) {
+	    		$data['value'] = $this->reverseEntities ($data['value']);
+	    	}
     		if (isset ($data['attributes'])) {
     			foreach ($data['attributes'] as $key => $value) {
     				$data['attributes'][$key] = $this->reverseEntities ($value);
