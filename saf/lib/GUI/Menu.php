@@ -389,7 +389,23 @@ class Menu {
 
 	function initTree ($tree) {
 		// add the items to the list
+		$parents = array ();
 		foreach ($tree as $k => $v) {
+			if ($v->{$this->listcolumn} == 'no') {
+				$parents[$v->{$this->idcolumn}] = $v->{$this->refcolumn};
+			}
+		}
+
+		foreach ($tree as $k => $v) {
+			if ($v->{$this->listcolumn} == 'no') {
+				continue;
+			} elseif (in_array ($v->{$this->refcolumn}, array_keys ($parents))) {
+				while (in_array ($v->{$this->refcolumn}, array_keys ($parents))) {
+					$new_parent = $parents[$v->{$this->refcolumn}];
+					$tree[$k]->{$this->refcolumn} = $new_parent;
+					$v->{$this->refcolumn} = $new_parent;
+				}
+			}
 			$this->addItem (
 				$v->{$this->idcolumn},
 				$v->{$this->showcolumn},
@@ -401,6 +417,9 @@ class Menu {
 
 		// link the children to their parents
 		foreach ($tree as $k => $v) {
+			if ($v->{$this->listcolumn} == 'no') {
+				continue;
+			}
 			if ($v->{$this->refcolumn}) {
 				$ref = $v->{$this->refcolumn};
 
