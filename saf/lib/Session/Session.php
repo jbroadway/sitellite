@@ -739,7 +739,10 @@ class Session {
 	 */
 	function getUser ($username = false) {
 		if (! $username) {
-			return $this->sources[$this->_source]->resultObj;
+			if (isset ($this->sources[$this->_source]->resultObj)) {
+				return $this->sources[$this->_source]->resultObj;
+			}
+			return $this->sources[$this->_source]->getUser ($this->username);
 		} else {
 			return $this->sources[$this->_source]->getUser ($username);
 		}

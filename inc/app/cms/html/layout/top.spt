@@ -89,16 +89,22 @@
 			var active_link = false;
 
 			function on (id) {
-				document.getElementById (id + '-link').style.color = '#fff';
-				document.getElementById (id).style.backgroundColor = '#0081d6';
-				document.getElementById (id).style.borderTop = '2px solid #c7e9ff';
+				try {
+					document.getElementById (id + '-link').style.color = '#fff';
+					document.getElementById (id).style.backgroundColor = '#0081d6';
+					document.getElementById (id).style.borderTop = '2px solid #c7e9ff';
+				} catch (e) {
+				}
 				return false;
 			}
 
 			function active (id) {
 				if (document.all) {
 					for (i = 0; i < links.length; i++) {
-						document.getElementById (links[i] + '-link').style.paddingTop = '1px';
+						try {
+							document.getElementById (links[i] + '-link').style.paddingTop = '1px';
+						} catch (e) {
+						}
 					}
 				}
 				active_link = id;

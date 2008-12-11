@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title xt:content="php: intl_get ('Sitellite Example Website') . ' - ' . object.head_title">Site Name</title>
+		<title xt:content="php: intl_get ('Sitellite 5.0 Example Website') . ' - ' . object.head_title">Site Name</title>
 		<link rel="stylesheet" type="text/css" href="/inc/html/default/site.css"
 			xt:attributes="href string: ${site/prefix}/inc/html/default/site.css"
 		/>
@@ -11,6 +11,10 @@
 body {
 	background-image: none;
 	margin: 10px;
+}
+
+table {
+	width: 99% !important;
 }
 
 		</style>

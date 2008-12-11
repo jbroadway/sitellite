@@ -363,66 +363,7 @@ class Menu {
 			$tree = array ($tree);
 		}
 
-		$waiting = array ();
-		$waiting_id = array ();
-		$ignore = array ();
-		$parents = array ();
-		foreach ($tree as $item) {
-			if ($item->{$listcol} == $hidevalue) {
-				$ignore[] = $item->{$idcol};
-				if (! empty ($item->{$refcol})) {
-					$parents[$item->{$idcol}] = $item->{$refcol};
-				}
-				continue;
-			} elseif (in_array ($item->{$refcol}, $ignore)) {
-				if (! empty ($item->{$refcol})) {
-					$parents[$item->{$idcol}] = $item->{$refcol};
-				}
-				$ignore[] = $item->{$idcol};
-				continue;
-			}
-			if (! $item->{$refcol} || $item->{$refcol} == $item->{$idcol}) {
-				$this->addItem ($item->{$idcol}, $item->{$showcol}, '', $item->{$this->sectioncolumn}, $item->{$this->templatecolumn});
-			} elseif (! is_object ($this->{'items_' . $item->{$refcol}})) {
-				$waiting[] = $item;
-				$waiting_id[] = $item->{$idcol};
-			} else {
-				$this->addItem ($item->{$idcol}, $item->{$showcol}, $item->{$refcol}, $item->{$this->sectioncolumn}, $item->{$this->templatecolumn});
-			}
-		}
-
-		//info ($parents);
-
-//		$tried = array ();
-		while (count ($waiting) > 0) {
-			for ($i = 0; $i < count ($waiting); $i++) {
-
-				// we now have the parent so add entry
-				if (is_object ($this->{'items_' . $waiting[$i]->{$refcol}})) {
-					$this->addItem ($waiting[$i]->{$idcol}, $waiting[$i]->{$showcol}, $waiting[$i]->{$refcol}, $waiting[$i]->{$this->sectioncolumn}, $item->{$this->templatecolumn});
-					//echo 'Adding item with parent ' . $waiting[$i]->{$refcol} . ' (' . $waiting[$i]->{$idcol} . ')<br />';
-					array_splice ($waiting, $i, 1);
-					array_splice ($waiting_id, $i, 1);
-					$i--;
-					continue;
-
-				} elseif (isset ($parents[$waiting[$i]->{$refcol}])) {
-					//echo 'Setting parent ' . $waiting[$i]->{$refcol} . ' to ' . $parents[$waiting[$i]->{$refcol}] . ' (' . $waiting[$i]->{$idcol} . ')<br />';
-					$waiting[$i]->{$refcol} = $parents[$waiting[$i]->{$refcol}];
-					continue;
-
-				// we don't have parent yet and we never will since
-				// it doesn't exist in the waiting_id array
-				// remove it and move on
-				} elseif (! in_array ($waiting[$i]->{$refcol}, $waiting_id)) {
-					//echo 'Removing ' . $waiting[$i]->{$refcol} . ' (' . $waiting[$i]->{$idcol} . ')<br />';
-					array_splice ($waiting, $i, 1);
-					array_splice ($waiting_id, $i, 1);
-					$i--;
-					continue;
-				} 
-			}
-		}
+		$this->initTree ($tree);
 
 		if (intl_lang () != intl_default_lang ()) {
 			loader_import ('multilingual.Translation');
@@ -437,12 +378,39 @@ class Menu {
 			if (@is_writeable ($this->cacheLocation) || (! @file_exists ($this->cacheLocation) && @is_writeable (dirname ($this->cacheLocation)))) {
 				$fp = fopen ($this->cacheLocation, 'w');
 				if ($fp) {
-					fwrite ($fp, $this->makeConfig ());
+					fwrite ($fp, $this->makeConfig ($tree));
 					fclose ($fp);
 				}
 			}
 		}
 
+		return true;
+	}
+
+	function initTree ($tree) {
+		// add the items to the list
+		foreach ($tree as $k => $v) {
+			$this->addItem (
+				$v->{$this->idcolumn},
+				$v->{$this->showcolumn},
+				$v->{$this->refcolumn},
+				$v->{$this->sectioncolumn},
+				$v->{$this->templatecolumn}
+			);
+		}
+
+		// link the children to their parents
+		foreach ($tree as $k => $v) {
+			if ($v->{$this->refcolumn}) {
+				$ref = $v->{$this->refcolumn};
+
+				// link the parent attr to the parent object
+				$this->{'items_' . $v->{$this->idcolumn}}->parent =& $this->{'items_' . $ref};
+
+				// link the children list to the child object
+				$this->{'items_' . $ref}->children[] =& $this->{'items_' . $v->{$this->idcolumn}};
+			}
+		}
 		return true;
 	}
 
@@ -465,21 +433,13 @@ class Menu {
 	 * 
 	 */
 	function &addItem ($id, $title, $ref = '', $sect = '', $template = '') {
+		$this->{'items_' . $id} =& new MenuItem ($id, $title);
 		if (empty ($ref)) {
-			// top level
-			$this->tree[] = new MenuItem ($id, $title);
-			$this->{'items_' . $id} =& $this->tree[count ($this->tree) - 1];
-		} else {
-			$ref = $this->findParent ($ref);
-			$this->{'items_' . $id} =& $this->{'items_' . $ref}->addChild ($id, $title);
-			$this->{'items_' . $id}->parent =& $this->{'items_' . $ref};
+			$this->tree[] =& $this->{'items_' . $id};
 		}
+
 		$this->{'items_' . $id}->colours = $this->colours;
-		if ($sect == 'yes') {
-			$this->{'items_' . $id}->is_section = true;
-		} else {
-			$this->{'items_' . $id}->is_section = false;
-		}
+		$this->{'items_' . $id}->is_section = ($sect == 'yes') ? true : false;
 		if (! empty ($template)) {
 			$this->{'items_' . $id}->template = $template;
 		}
@@ -523,9 +483,13 @@ class Menu {
 	 * @return	string
 	 * 
 	 */
-	function makeConfig () {
+	function makeConfig ($tree) {
 		// makes a config file of the current $tree, which can be saved and reused
 		$conf = OPEN_TAG . "\n\n";
+		$conf .= '$tree = unserialize ("' . str_replace ('"', '\\"', serialize ($tree)) . "\");\n";
+		$conf .= '$this->initTree ($tree);' . "\n\n";
+
+/*
 		foreach (get_object_vars ($this) as $key => $value) {
 			if (is_object ($value) && preg_match ('/^items_.*$/', $key)) {
 				$id = str_replace ('"', '\\"', $value->id);
@@ -547,6 +511,8 @@ class Menu {
 				}
 			}
 		}
+*/
+
 		$conf .= CLOSE_TAG;
 		return $conf;
 	}

@@ -135,9 +135,9 @@ class MF_Widget_xeditor extends MF_Widget {
 	}
 
 	function formatValue ($value) {
-		$value = preg_replace ("/(\r\n|\n\r|\r|\n)/", "'\n\t\t+ '\\n", addslashes ($value));
-		$value = str_replace ('</script>', '</\' + \'script>', $value);
-		return $value;
+		//$value = preg_replace ("/(\r\n|\n\r|\r|\n)/", "'\n\t\t+ '\\n", addslashes ($value));
+		//$value = str_replace ('</script>', '</\' + \'script>', $value);
+		return rawurlencode ($value);
 	}
 
 	/*! <method name="display" access="public">

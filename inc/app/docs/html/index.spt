@@ -44,6 +44,16 @@
 </div>
 
 <div id="docs-content">
+
+<form method="get" action="{site/prefix}/index/docs-app" id="docs-apps">
+Application: <select name="package" onchange="this.form.submit ()">
+	<option value="saf"{if obj[current] eq 'saf'} selected="selected"{end if}>Sitellite Core</option>
+{loop obj[apps]}
+	<option value="{loop/_key}"{if loop._key eq obj[current]} selected="selected"{end if}>{loop/_value}</option>
+{end loop}
+</select>
+</form>
+
 {if obj[class]}
 
 	{if obj[class] eq '_functions_'}
@@ -157,19 +167,14 @@
 	<strong>Functions</strong>
 	<ul>
 	{loop obj[functions]}
-		<li><a href="?package={package}&class=_functions_#{loop/_value}">{loop/_value}</a></li>
+		<li><a href="{site/prefix}/index/docs-app/package.{package}/class._functions_#{loop/_value}">{loop/_value}</a></li>
 	{end loop}
 	</ul>
 	</div>
 {end if}
 
 {if not obj[package]}
-	<h1>{appconf/title}</h1>
-	<h2>Choose a package:</h2>
-	<ul>
-	{loop obj[packages]}
-		<li><a href="?package={loop/_value}">{loop/_value}</a></li>
-	{end loop}
-	</ul>
+	<h1>{current_name}</h1>
+	<p>Choose a package from the left to view its documentation, or select another application from the dropdown list.</p>
 {end if}
 </div>

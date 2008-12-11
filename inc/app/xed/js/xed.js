@@ -118,6 +118,25 @@ function xed_do_nothing (n) {}
 // call this in the onload attribute of the body
 // ie. onload="xed_init ('editor')"
 function xed_init (ifname) {
+	// decode initial values
+	try {
+		xed_initial_value[ifname] = decodeURIComponent (xed_initial_value[ifname]);
+	} catch (e) {
+		xed_initial_value[ifname] = unescape (xed_initial_value[ifname]);
+	}
+	try {
+		xed_scroller_data = decodeURIComponent (xed_scroller_data);
+	} catch (e) {
+		xed_scroller_data = unescape (xed_scroller_data);
+	}
+	for (var i = 0; i < xed_templates.length; i++) {
+		try {
+			xed_templates[i] = decodeURIComponent (xed_templates[i]);
+		} catch (e) {
+			xed_templates[i] = unescape (xed_templates[i]);
+		}
+	}
+
 	e = document.getElementById (ifname);
 	e.contentWindow.document.designMode = 'on';
 	if (xed_safari) {
@@ -1336,6 +1355,11 @@ function xed_insert_element (ifname, name, attrs) {
 	e = document.getElementById (ifname);
 	d = e.contentWindow.document;
 
+	// fix ampersands
+	for (i = 0; i < attrs.length; i++) {
+		attrs[i].value = attrs[i].value.replace (/&amp;/g, '&');
+	}
+
 	if (document.all) {
 		tag = '<' + name;
 		for (i = 0; i < attrs.length; i++) {
@@ -1625,6 +1649,7 @@ function xed_set_properties (ifname, data) {
 		sep = ' (';
 
 		for (i = 0; i < data.length; i++) {
+			data[i].value = data[i].value.replace (/&amp;/g, '&');
 			element.setAttribute (data[i].name, data[i].value);
 			if (data[i].name == 'name') {
 				inner += data[i].value;
@@ -1639,6 +1664,7 @@ function xed_set_properties (ifname, data) {
 		element.innerHTML = inner;
 	} else {
 		for (i = 0; i < data.length; i++) {
+			data[i].value = data[i].value.replace (/&amp;/g, '&');
 			element.setAttribute (data[i].name, data[i].value);
 		}
 	}
@@ -3255,12 +3281,12 @@ function xed_html_entities_decode (text) {
 	orig = text;
 	re = /&quot;/g;
 	text = text.replace (re, '"');
-	re = /&amp;/g;
-	text = text.replace (re, '&');
 	re = /&lt;/g;
 	text = text.replace (re, '<');
 	re = /&gt;/g;
 	text = text.replace (re, '>');
+	re = /&amp;/g;
+	text = text.replace (re, '&');
 	return text;
 }
 

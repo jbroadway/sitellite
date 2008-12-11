@@ -833,7 +833,7 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 		$w =& $form->addWidget ('text', 'name');
 		$w->alt = intl_get ('Name');
 		$w->addRule ('not empty', intl_get ('Role name must not be empty.'));
-		$w->extra = 'maxlength="32"';
+		$w->extra = 'maxlength="48"';
 
 
 
@@ -971,7 +971,7 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 		$w->alt = intl_get ('Name');
 		$w->addRule ('not empty', intl_get ('Role name must not be empty.'));
 		$w->setValue ($item);
-		$w->extra = 'maxlength="32"';
+		$w->extra = 'maxlength="48"';
 
 
 

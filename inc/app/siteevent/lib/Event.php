@@ -8,7 +8,7 @@ class SiteEvent_Event extends Generic {
 		$this->usePermissions = true;
 	}
 
-	function _eventsInRange ($start, $end, $cat = '', $aud = '', $user = '', $fields = '*', $limit = false) {
+	function _eventsInRange ($start, $end = false, $cat = '', $aud = '', $user = '', $fields = '*', $limit = false) {
 		if (session_admin ()) {
 			$append = session_allowed_sql ();
 		} else {
@@ -40,13 +40,19 @@ class SiteEvent_Event extends Generic {
 		}
 
 		$start = db_quote ($start);
-		$end = db_quote ($end);
 
 		$sql = 'select ' . $fields . ' from siteevent_event where (';
-		$sql .= sprintf ('(recurring = "no" and date >= %s and date <= %s and until_date = "0000-00-00") or ', $start, $end);
-		$sql .= sprintf ('(recurring != "no" and date <= %s and until_date = "0000-00-00") or ', $end);
-		$sql .= sprintf ('(date <= %s and until_date >= %s)', $end, $start);
-		$sql .= ') ' . $usr . $cat . $aud . ' and ' . $append . ' order by priority desc, date asc, time asc, until_date asc, until_time asc' . $lim;
+		if ($end) {
+			$end = db_quote ($end);
+			$sql .= sprintf ('(recurring = "no" and date >= %s and date <= %s and until_date = "0000-00-00") or ', $start, $end);
+			$sql .= sprintf ('(recurring != "no" and date <= %s and until_date = "0000-00-00") or ', $end);
+			$sql .= sprintf ('(date <= %s and until_date >= %s)', $end, $start);
+		} else {
+			$sql .= sprintf ('(recurring = "no" and date >= %s and until_date = "0000-00-00") or ', $start); // not recurring, starts after $start
+			$sql .= sprintf ('(recurring != "no" and until_date = "0000-00-00") or '); // no end recurring date
+			$sql .= sprintf ('(until_date >= %s)', $start); // ends after $start
+		}
+		$sql .= ') ' . $usr . $cat . $aud . ' and ' . $append . ' order by date asc, time asc, until_date asc, until_time asc' . $lim;
 
 		return db_fetch_array ($sql);
 	}
@@ -88,7 +94,7 @@ class SiteEvent_Event extends Generic {
 	function getUpcoming ($limit = 10, $cat, $aud = '') {
 		$list = $this->_eventsInRange (
 			date ('Y-m-d'),
-			date ('Y-m-d', time () + 31536000),
+			false, // no end date
 			$cat,
 			$aud,
 			'',

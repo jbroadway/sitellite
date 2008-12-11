@@ -51,6 +51,8 @@ class SitetemplateNewtplForm extends MailForm {
 	}
 
 	function onSubmit ($vals) {
+		$vals['output_mode'] = strtolower ($vals['output_mode']);
+		$vals['name'] = strtolower ($vals['name']);
 		
 		//make sure that file doesnt exit
 		if ( file_exists ('inc/html/' . $vals['set_name'] . '/' . $vals['output_mode'] . '.' . $vals['name'] . '.tpl') ) {

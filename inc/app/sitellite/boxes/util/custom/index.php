@@ -17,7 +17,7 @@ class SitelliteUtilCustomForm extends MailForm {
 
 		$this->parameters = $parameters;
 
-		$this->title = $parameters['title'];
+		//$this->title = $parameters['title'];
 
 		foreach (explode (',', $parameters['fields']) as $field) {
 			switch ($field) {

@@ -4,6 +4,10 @@
 // automatically included when the first call to your app is made.  Use the
 // appconf_set ('name', 'value'); function to add values here.
 
+// This is the email address to send email from in this app.
+// The default is webmaster@yourdomain.com
+appconf_set ('email', 'webmaster@' . str_replace ('www.', '', site_domain ()));
+
 // This is the default user log-in handler.
 appconf_set ('login', 'box:sitemember/login');
 

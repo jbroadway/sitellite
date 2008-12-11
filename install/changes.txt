@@ -1,6 +1,52 @@
+Changes in 5.0.2-stable
+
+- Fixed <br> tags being added to <pre> content in Xed in Firefox.
+- Fixed an issue with Xed's htmlentities decoding.
+- Added automatic support for gzip compression of AJAX responses.
+- Fixed potential issue with template selector missing templates.
+- Fixed an error on cancelling new css files in SiteTemplate.
+- Fixed issue with many team permissions - NOTE: Requires upgrade utility run.
+- Removed change history from browse if page is locked/not editable.
+- All related collections can now be disabled with their apps.
+- Fixed an encoding issue with international characters in Xed.
+- Added the ability to browse the docs of any app, not just SAF.
+- Added the ability to include custom CSS styles Xed.
+- Reworked the logic behind building the menu tree, much simpler now.
+- Changed all instances of access/status fields to 32 chars, role/team to 48.
+- Output compression is off by default, due to occasional incompatibilities.
+- Updated support links in the installer.
+- Added new 'preg' validation rule for better regular expression handling.
+- Added 2nd parameter with field name to custom validation rule functions.
+- Added 'requires resource = resource_name' to [link:name] collection blocks.
+- Fixed the ability to edit html snippets in Xed's property editor.
+- Fixed an issue in saf.MailForm causing form settings parsing to fail on Windows.
+- Added onbeforeunload handler to Xed, warning of accidentally browsing away.
+- SiteEvent: _eventsInRange() can have no end date set, fixes issues with getUpcoming().
+- SiteTemplate: Set new template names to lowercase, added examples in the forms.
+- Fixed source view character encoding for sending edited source back to Xed.
+- Fixed an issue with the new joiner mailform widget.
+- SiteStreamer: Added optional integration with the JW Flash Player.
+- Added phpt test for saf.Database.Generic and fixed count() method bug.
+- Fixed a date addition/subtraction bug for multiple months and years.
+- Added ability to translate settings names for application settings form.
+- Fixed a malformed URI error that could occur in decodeURIComponent().
+- Fixed a Javascript warning in IE in the top frame when not logged in.
+- Improved display of checkbox and radio fields.
+- saf.MailForm now sets page_title() if context=action for a form.
+- Customizable form now doesn't show its title, leaving the page to set it.
+- Added referrer and improved email validation to example email-a-friend form,
+  and limited it to one email at a time.
+- Added From email setting to SiteMember properties and updated confirmation email.
+- Fixed over-zealous unencoding of [ch:nbsp] characters in XT which caused template
+  editing issues in SiteTemplate.
+- Fixed an issue with the sitellite/intl/setLang box when the negotiate setting is 'url'.
+
 Changes in 5.0.1-stable
 
 - Added basic support for multi-column primary keys to Rex editing.
+- Fixed ampersand issue in Xed editor.
+- Fixed case of Session::getUser() failing when simulating logins.
+- Updated user manual after testing Sitellite in Google Chrome.
 
 Changes in 5.0.0-stable
 

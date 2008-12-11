@@ -3,6 +3,10 @@ div#docs-sidebar {
 	width: 25%;
 }
 
+div#docs-sidebar ul, div#docs-sidebar ul li {
+	list-style-image: none;
+}
+
 div#docs-content {
 	float: right;
 	width: 70%;
@@ -20,4 +24,16 @@ div#docs-functions {
 
 a.selected {
 	font-weight: bold;
+}
+
+form#docs-apps {
+	display: block;
+	width: 300px;
+	float: right;
+	text-align: right;
+}
+
+h3 {
+	font-size: 13px;
+	margin-top: 0px;
 }

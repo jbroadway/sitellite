@@ -46,6 +46,7 @@ class SitetemplateNewcssForm extends MailForm {
 	}
 
 	function onSubmit ($vals) {
+		$vals['name'] = strtolower ($vals['name']);
 		
 		//make sure that file doesnt exit
 		if (file_exists ('inc/html/' . $vals['set_name'] . '/' . $vals['name'] . '.css')) {	

@@ -339,6 +339,7 @@
 <script language="javascript" type="text/javascript" src="{site/prefix}/js/jquery.bgiframe.js"></script>
 <script language="javascript" type="text/javascript" src="{site/prefix}/js/jquery.tooltip.min.js"></script>
 <script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog-compressed.js"></script>
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/onbeforeunload.js"></script>
 <script language="javascript" type="text/javascript" src="{site/prefix}/inc/app/xed/js/md5-compressed.js"></script>
 <script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc-compressed.js"></script>
 <!-- script language="javascript" type="text/javascript" src="{site/prefix}/js/debug.js"></script -->
@@ -482,7 +483,7 @@ function formchooser_handler () {
 
 	xed_templates = new Array ();
 {loop obj.templates}
-	xed_templates['{loop/id}'] = '{loop/body}';
+	xed_templates['{loop/id}'] = '{filter none}{loop/body}{end filter}';
 {end loop}
 
 var rpc_handler = new Function (

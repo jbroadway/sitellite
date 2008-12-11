@@ -298,7 +298,8 @@ class Date {
 				$year = date ('Y', $stamp);
 				$month = date ('m', $stamp);
 				$day = date ('d', $stamp);
-				$month++;
+				$month += $regs[1];
+				//$month++;
 				$stamp = mktime ($hour, $minute, $second, $month, $day, $year);
 				return date ('Y-m-d', $stamp);
 			} elseif ($regs[2] == 'year') {
@@ -308,7 +309,8 @@ class Date {
 				$year = date ('Y', $stamp);
 				$month = date ('m', $stamp);
 				$day = date ('d', $stamp);
-				$year++;
+				$year += $regs[1];
+				//$year++;
 				$stamp = mktime ($hour, $minute, $second, $month, $day, $year);
 				return date ('Y-m-d', $stamp);
 			} else {
@@ -353,7 +355,8 @@ class Date {
 				$year = date ('Y', $stamp);
 				$month = date ('m', $stamp);
 				$day = date ('d', $stamp);
-				$month--;
+				$month -= $regs[1];
+				//$month--;
 				$stamp = mktime ($hour, $minute, $second, $month, $day, $year);
 				return date ('Y-m-d', $stamp);
 			} elseif ($regs[2] == 'year') {
@@ -363,7 +366,8 @@ class Date {
 				$year = date ('Y', $stamp);
 				$month = date ('m', $stamp);
 				$day = date ('d', $stamp);
-				$year--;
+				$year -= $regs[1];
+				//$year--;
 				$stamp = mktime ($hour, $minute, $second, $month, $day, $year);
 				return date ('Y-m-d', $stamp);
 			} else {

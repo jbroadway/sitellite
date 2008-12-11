@@ -30,7 +30,8 @@
 	 * Validation Rules:
 	 * - is "value"
 	 * - contains "some value"
-	 * - regex "some regex"
+	 * - regex "some regex" -- uses ereg()
+	 * - preg "/some regex/" -- uses preg_match()
 	 * - equals "anotherfield"
 	 * - empty
 	 * - length "6+" (eg: 6, 6+, 6-12, 12-)
@@ -75,6 +76,12 @@
 	 *   are no newlines in the field so that it can't pass extra headers to your
 	 *   mail() function.
 	 *
+	 * New in 2.2:
+	 * - New rule 'preg' uses preg_match() instead of ereg(). Be sure to include
+	 *   slashes in the regular expression now.
+	 * - Custom validation functions can receive the field name as a second parameter.
+	 *   e.g. function custom_validation_rule ($values, $field) {}
+	 *
 	 * <code>
 	 * <?php
 	 * 
@@ -90,7 +97,7 @@
 	 * @author	John Luxford <lux@simian.ca>
 	 * @copyright	Copyright (C) 2001-2003, Simian Systems Inc.
 	 * @license	http://www.sitellite.org/index/license	Simian Open Software License
-	 * @version	2.0, 2002-10-12, $Id: Rule.php,v 1.5 2007/10/06 00:06:30 lux Exp $
+	 * @version	2.2, 2008-10-25, $Id: Rule.php,v 1.5 2007/10/06 00:06:30 lux Exp $
 	 * @access	public
 	 * 
 	 */
@@ -175,7 +182,7 @@ class MailFormRule {
 	 * 
 	 */
 	function parseRuleStatement ($rule) {
-		if (preg_match ('/^(not )?(empty|length|unique|contains|func|function|regex|equals|is|gt|lt|ge|le|exists|numeric|email|header)( ("|\')(.*)\4)?$/', $rule, $regs)) {
+		if (preg_match ('/^(not )?(empty|length|unique|contains|func|function|regex|preg|equals|is|gt|lt|ge|le|exists|numeric|email|header)( ("|\')(.*)\4)?$/', $rule, $regs)) {
 			if ($regs[2] == 'function') {
 				$this->type = 'func';
 			} else {
@@ -263,11 +270,15 @@ class MailFormRule {
 		} elseif ($this->type == 'func') {
 			$GLOBALS['mailform_current_form'] =& $form;
 			$func = $this->value;
-			if (! $func ($form->getValues ($cgi))) {
+			if (! $func ($form->getValues ($cgi), $this->name)) {
 				return false;
 			}
 		} elseif ($this->type == 'regex') {
 			if (! ereg ($this->value, $value)) {
+				return false;
+			}
+		} elseif ($this->type == 'preg') {
+			if (! preg_match ($this->value, $value)) {
 				return false;
 			}
 		} elseif ($this->type == 'equals') {
@@ -363,11 +374,15 @@ class MailFormRule {
 			}
 		} elseif ($this->type == 'func') {
 			$func = $this->value;
-			if ($func ($form->getValues ($cgi))) {
+			if ($func ($form->getValues ($cgi), $this->name)) {
 				return false;
 			}
 		} elseif ($this->type == 'regex') {
 			if (ereg ($this->value, $value)) {
+				return false;
+			}
+		} elseif ($this->type == 'preg') {
+			if (preg_match ($this->value, $value)) {
 				return false;
 			}
 		} elseif ($this->type == 'equals') {

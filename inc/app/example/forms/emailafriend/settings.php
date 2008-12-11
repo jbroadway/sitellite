@@ -4,8 +4,11 @@
 
 name		= emailafriend
 method		= post
-title		= Email A Friend
-message		= Use this form to email the selected page to a friend or associate.  To send to more than one person, separate each email address with a comma.  The email will automatically include the url for the selected page in the text.
+title		= Email a Friend
+message		= Use this form to email this page to a friend. The email will automatically include the link to the current page.
+verify_session = On
+verify_sender = On
+error_mode = all
 
 [url]
 
@@ -14,24 +17,28 @@ type		= hidden
 [email]
 
 type		= text
-alt			= "Send To:"
+alt			= "Send to:"
+rule 1		= not empty, You must enter an email address to send to.
+rule 2		= email, The email address you entered appears to be invalid.
 
 [yourEmail]
 
 type		= text
-alt			= "Your Email:"
+alt			= "Your email:"
+rule 1		= not empty, You must enter your email address.
+rule 2		= email, The email address you entered appears to be invalid.
 
 [msg]
 
 type		= textarea
-alt			= "Brief Message:"
+alt			= "Brief message (optional):"
 rows		= 4
 cols		= 30
 
 [submitButton]
 
 type		= submit
-setValues	= 'Send Link'
+setValues	= 'Send'
 extra		= "class='submit'"
 
 ; */ ?>

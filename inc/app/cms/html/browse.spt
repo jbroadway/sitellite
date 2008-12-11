@@ -76,7 +76,12 @@
 			</td>
 			{if obj[is_versioned]}
 				<td align="center">
+					{if not locks[ loop._key ] and editable[ loop._key ]}
 					<a href="{site/prefix}/index/cms-history-action?_key={loop/_key}&_collection={collection}&_return={filter urlencode}{return}{end filter}"><img src="{site/prefix}/inc/app/cms/pix/icons/history.gif" alt="{intl Change History}" title="{intl Change History}" border="0" /></a>
+					{end if}
+					{if else}
+					&nbsp;
+					{end if}
 				</td>
 			{end if}
 			{loop loop._properties}

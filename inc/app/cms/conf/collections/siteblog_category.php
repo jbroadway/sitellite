@@ -3,6 +3,7 @@
 [Collection]
 
 name			        = siteblog_category
+app = siteblog
 display			    = Blog Categories
 singular		        = Blog Category
 
