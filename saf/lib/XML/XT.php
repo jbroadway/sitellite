@@ -2496,7 +2496,9 @@ class XT {
 		}
 		global $intl;
 		if (is_object ($intl)) {
-			$node['value'] = $this->reverseEntities ($node['value']);
+			if (isset ($node['value'])) {
+				$node['value'] = $this->reverseEntities ($node['value']);
+			}
 			if ($this->isHtml) {
 				// add <span lang=""></span> tags around the value
 				return $intl->get ($node['value'], $this->exp->register['object'], true);
