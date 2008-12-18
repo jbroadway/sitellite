@@ -16,8 +16,10 @@ foreach (array_keys ($list) as $k) {
 }
 */
 
+global $intl;
+
 header ('Content-Type: text/xml');
-echo '<?xml version="1.0" encoding="iso-8859-1"?' . ">\n";
+echo '<?xml version="1.0" encoding="' . $intl->charset . '"?' . ">\n";
 echo template_simple (
 	'rss.spt',
 	array (
