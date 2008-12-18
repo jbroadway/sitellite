@@ -42,6 +42,8 @@ Changes in 5.0.2-stable
 - Fixed an issue with the sitellite/intl/setLang box when the negotiate setting is 'url'.
 - Fixed a change that caused hidden pages to show in the site navigation.
 - Fixed an exception to the URL filter not adding /lang/ to certain links.
+- Fixed hard-coded RSS character encoding in siteevent [#86].
+- Fixed missing stylesheet when siteevent calendar is embedded [#89].
 
 Changes in 5.0.1-stable
 

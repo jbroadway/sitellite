@@ -31,6 +31,11 @@ if (! isset ($parameters['view'])) {
 	$parameters['view'] = appconf ('default_view');
 }
 
+if (appconf ('css_location') && $box['context'] != 'action') {
+	$css = join ('', file (preg_replace ('|^' . site_prefix () . '/|', '', appconf ('css_location'))));
+	echo '<style type="text/css">' . $css . '</style>';
+}
+
 if ($parameters['view'] == 'day') {
 	include_once ('inc/app/siteevent/boxes/index/_day.php');
 	return;
