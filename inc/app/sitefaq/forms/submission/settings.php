@@ -12,6 +12,7 @@ version         = 0.1
 ; your form definition goes here
 
 error_mode		= all
+verify_sender	= yes
 
 [name]
 
@@ -39,6 +40,10 @@ setValues		= "eval: appconf ('user_age_list')"
 
 type			= textarea
 rule 1			= not empty, You forgot to enter your question.
+
+[security_test]
+
+type			= security
 
 [submit_button]
 
