@@ -44,6 +44,7 @@ Changes in 5.0.2-stable
 - Fixed an exception to the URL filter not adding /lang/ to certain links.
 - Fixed hard-coded RSS character encoding in siteevent [#86].
 - Fixed missing stylesheet when siteevent calendar is embedded [#89].
+- Partial fix for the SiteEvent list view confusing SimpleTemplate [#87].
 
 Changes in 5.0.1-stable
 
