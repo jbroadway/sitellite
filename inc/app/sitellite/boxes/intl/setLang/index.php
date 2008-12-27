@@ -24,21 +24,22 @@ if ($intl->negotiation == 'cookie') {
 		header ('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 } elseif ($intl->negotiation == 'url') {
+    $curLang = $parameters['curlang'];
 	if ($parameters['goHome']) {
-		if (strpos (site_prefix (), '/' . intl_lang () . '/') !== false) {
-			$prefix = str_replace ('/' . intl_lang () . '/', '/' . $parameters['choice'] . '/', site_prefix ());
+		if (strpos (site_prefix (), '/' . $curLang . '/') !== false) {
+			$prefix = str_replace ('/' . $curLang . '/', '/' . $parameters['choice'] . '/', site_prefix ());
 		} else {
 			$prefix = site_prefix () . '/' . $parameters['choice'];
 		}
 		header ('Location: ' . $prefix . '/index');
 	}  else {
-		if (strpos ($_SERVER['HTTP_REFERER'], '/' . intl_lang () . '/') !== false) {
-			$referrer = str_replace ('/' . intl_lang () . '/', '/' . $parameters['choice'] . '/', $_SERVER['HTTP_REFERER']);
+		if (strpos ($_SERVER['HTTP_REFERER'], '/' . $curLang . '/') !== false) {
+			$referrer = str_replace ('/' . $curLang . '/', '/' . $parameters['choice'] . '/', $_SERVER['HTTP_REFERER']);
 		} elseif (strpos ($_SERVER['HTTP_REFERER'], '/index') !== false) {
 			$referrer = str_replace ('/index', '/' . $parameters['choice'] . '/index', $_SERVER['HTTP_REFERER']);
 		} else {
 			$info = parse_url ($_SERVER['HTTP_REFERER']);
-			if ($info['path'] == '/' || $info['path'] == '/' . intl_lang ()) {
+			if ($info['path'] == '/' || $info['path'] == '/' . $curLang) {
 				$referrer = '/' . $parameters['choice'];
 			} else {
 				$referrer = str_replace ($info['path'], '/' . $parameters['choice'] . $info['path'], $_SERVER['HTTP_REFERER']);
