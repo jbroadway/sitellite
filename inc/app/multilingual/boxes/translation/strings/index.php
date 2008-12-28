@@ -35,10 +35,10 @@ if (! isset ($cgi->offset)) {
 $limit = 20;
 
 if (@file_exists ($file_lang)) {
-	include ($file_lang);
 	if (! isset ($this->lang_hash[$cgi->lang])) {
 		$this->lang_hash[$cgi->lang] = array ();
 	}
+	include ($file_lang);
 } else {
 	$this->lang_hash[$cgi->lang] = array ();
 }
