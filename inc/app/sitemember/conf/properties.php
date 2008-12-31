@@ -88,7 +88,7 @@ appconf_set ('contact', 'form:sitemember/contact');
 
 // Set this to the template you wish to use to display the app, otherwise
 // the default is used.
-appconf_set ('template', 'wide');
+appconf_set ('template', false);
 
 // Set this to the template you wish to use to display the member homepages.
 appconf_set ('homepage_template', false);

@@ -87,7 +87,7 @@ if (empty ($cgi->email)) {
 	);
 	$cgi->key = substr ($cgi->key, 8);
 
-	if (! @mail ($cgi->email, intl_get ('Password Recovery Info'), template_simple ('passrecover/message.spt', $cgi), 'From: ' . $parameters['from'])) {
+	if (! @mail ($cgi->email, intl_get ('Password Recovery Info'), template_simple ('passrecover/message.spt', $cgi), 'From: ' . appconf ('email'))) {
 		echo '<p class="error">Error: Unknown mail transfer failure!</p>';
 		return;
 	}
