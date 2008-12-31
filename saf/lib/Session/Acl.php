@@ -305,8 +305,10 @@ class SessionAcl {
 		$sql = '';
 		$op = '';
 
-		$sql .= ' sitellite_status in ("' . join ('", "', array_keys ($role['allow']['status'])) . '") ';
-		$op = 'and';
+		if (! isset ($role['allow']['status']['all'])) {
+			$sql .= ' sitellite_status in ("' . join ('", "', array_keys ($role['allow']['status'])) . '") ';
+			$op = 'and';
+		}
 
 		if (! isset ($role['allow']['access']['all'])) {
 			$sql .= $op . ' sitellite_access in("' . join ('", "', array_keys ($role['allow']['access'])) . '") ';

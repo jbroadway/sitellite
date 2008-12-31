@@ -46,6 +46,7 @@ Changes in 5.0.2-stable
 - Fixed missing stylesheet when siteevent calendar is embedded [#89].
 - Partial fix for the SiteEvent list view confusing SimpleTemplate [#87].
 - Improved security of SiteFAQ submission form to prevent abuse.
+- Fixed an issue causing false negatives in session_approved_sql().
 
 Changes in 5.0.1-stable
 
