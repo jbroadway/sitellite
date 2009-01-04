@@ -49,6 +49,7 @@ Changes in 5.0.2-stable
 - Fixed an issue causing false negatives in session_approved_sql().
 - Fixed an IE warning in autosave.js
 - Improved the onbeforeunload warning so it doesn't show on cancel.
+- Fixed error in SiteSearch RSS feed.
 
 Changes in 5.0.1-stable
 

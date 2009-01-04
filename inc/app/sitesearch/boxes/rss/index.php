@@ -16,7 +16,7 @@ if (! isset ($cgi->offset)) {
 	}
 }
 
-$settings = parse_ini_file ('inc/app/sitesearch/conf/server.ini.php');
+$settings = @parse_ini_file ('inc/app/sitesearch/conf/server.ini.php');
 
 $sitesearch_allowed = array ();
 
