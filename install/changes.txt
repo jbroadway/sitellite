@@ -52,6 +52,7 @@ Changes in 5.0.2-stable
 - Fixed error in SiteSearch RSS feed.
 - Changed SiteSearch indexer to try to reduce memory usage.
 - Changed browse_level preference wording to match edit mode in add/edit forms.
+- Change history pager limit now matches your preferences.
 
 Changes in 5.0.1-stable
 

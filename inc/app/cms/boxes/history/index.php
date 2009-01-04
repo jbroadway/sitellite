@@ -13,7 +13,7 @@ if (! isset ($cgi->_return)) {
 	}
 }
 
-$limit = 10;
+$limit = session_pref ('browse_limit');
 
 if (! isset ($cgi->offset)) {
 	$cgi->offset = 0;
