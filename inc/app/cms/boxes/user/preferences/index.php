@@ -68,7 +68,16 @@ class PreferencesForm extends MailForm {
 					$this->widgets[$key]->extra = 'onfocus="formhelp_show (this, \'' . addslashes ($v) . '\')" onblur="formhelp_hide ()"';
 				}
 			}
-			$this->widgets[$key]->setValue (session_pref ($key));
+			if ($key == 'browse_level') {
+				$p = session_pref ($key);
+				if ($p == 'normal') {
+					$this->widgets[$key]->setValue ('easy');
+				} else {
+					$this->widgets[$key]->setValue ($p);
+				}
+			} else {
+				$this->widgets[$key]->setValue (session_pref ($key));
+			}
 		}
 
 		$w =& $this->addWidget ('msubmit', 'submit_button');
@@ -109,7 +118,11 @@ class PreferencesForm extends MailForm {
 		}
 
 		foreach ($vals as $key => $value) {
-			session_pref_set ($key, $value);
+			if ($key == 'browse_level' && $value == 'easy') {
+				session_pref_set ('browse_level', 'normal');
+			} else {
+				session_pref_set ($key, $value);
+			}
 		}
 
 		page_title (intl_get ('Preferences Saved'));

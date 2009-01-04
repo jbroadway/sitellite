@@ -24,17 +24,17 @@ default_value           = web view
 
 [browse_level]
 
-alt                     = Browse Level
+alt                     = Edit Mode
 
-instructions            = "Which level of functionality do you want to be shown when browsing for content in the control panel?"
+instructions            = "Which level of functionality do you want to be shown when editing content in the control panel?"
 
 type                    = select
 
 value 1                 = advanced
 
-value 2                 = normal
+value 2                 = easy
 
-default_value           = normal
+default_value           = easy
 
 [lang]
 
