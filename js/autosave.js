@@ -18,10 +18,12 @@ var autosave = {
 
 		// handle xed fields so they're not empty
 		for (i = 0; i < f.elements.length; i++) {
-			e = document.getElementById (f.elements[i].name);
-			if (e && e.tagName.toLowerCase () == 'iframe') {
-				xed_copy_value (f, f.elements[i].name);
-			}
+			try {
+				e = document.getElementById (f.elements[i].name);
+				if (e && e.tagName.toLowerCase () == 'iframe') {
+					xed_copy_value (f, f.elements[i].name);
+				}
+			} catch (ex) {}
 		}
 
 		asrpc.parse_form (f);
