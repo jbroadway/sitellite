@@ -50,6 +50,7 @@ Changes in 5.0.2-stable
 - Fixed an IE warning in autosave.js
 - Improved the onbeforeunload warning so it doesn't show on cancel.
 - Fixed error in SiteSearch RSS feed.
+- Changed SiteSearch indexer to try to reduce memory usage.
 
 Changes in 5.0.1-stable
 

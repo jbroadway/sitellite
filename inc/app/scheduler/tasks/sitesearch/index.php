@@ -38,8 +38,13 @@ foreach ($collections as $collection) {
 
 	$counts[$collection] = 0;
 
-	foreach ($rex->getList (array ()) as $item) {
+	$item_list = $rex->getList (array ());
+	if (! is_array ($item_list)) {
+		continue;
+	}
+	while (count ($item_list) > 0) {
 		// index item
+		$item = array_shift ($item_list);
 		$item = $rex->getCurrent ($item->{$rex->key});
 		if (! $item) {
 			continue;
