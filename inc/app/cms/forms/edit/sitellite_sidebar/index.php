@@ -232,6 +232,7 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 
 		$b =& $w->getButton ();
 		$b->setValues ('Save');
+		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
 
 		//$b =& $w->addButton ('submit_button', 'Preview');
 		//$b->extra = 'onclick="return cms_preview (this.form)"';

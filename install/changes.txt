@@ -48,6 +48,7 @@ Changes in 5.0.2-stable
 - Improved security of SiteFAQ submission form to prevent abuse.
 - Fixed an issue causing false negatives in session_approved_sql().
 - Fixed an IE warning in autosave.js
+- Improved the onbeforeunload warning so it doesn't show on cancel.
 
 Changes in 5.0.1-stable
 

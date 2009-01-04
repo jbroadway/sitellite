@@ -299,6 +299,7 @@ class CmsEditSitellite_pageForm extends MailForm {
 
 		$b =& $w->getButton ();
 		$b->setValues (intl_get ('Save'));
+		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
 
 		$b =& $w->addButton ('submit_button', intl_get ('Preview'));
 		$b->extra = 'onclick="return cms_preview (this.form)"';

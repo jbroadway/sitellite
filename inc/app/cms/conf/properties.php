@@ -18,6 +18,7 @@ define ('CMS_JS_CANCEL', '<script language="javascript" type="text/javascript">
 <!--
 
 function cms_cancel (f) {
+	onbeforeunload_form_submitted = true;
 	if (arguments.length == 0) {
 		window.location.href = "' . site_prefix () . '/index/cms-app";
 	} else {
@@ -48,6 +49,7 @@ define ('CMS_JS_CANCEL_UNLOCK', '<script language="javascript" type="text/javasc
 <!--
 
 function cms_cancel_unlock (f, collection, key) {
+	onbeforeunload_form_submitted = true;
 	if (arguments.length == 0) {
 		window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/cms-app";
 	} else {
@@ -84,6 +86,7 @@ function cms_preview (f) {
 	f.target = t;
 	f.action = a;
 
+	onbeforeunload_form_submitted = false;
 	return false;
 }
 

@@ -87,6 +87,7 @@ class CmsEditSitellite_filesystemForm extends MailForm {
 		page_add_script (CMS_JS_FORMHELP_INIT);
 		page_add_script ('
 			function cms_cancel_unlock (f, collection, key) {
+				onbeforeunload_form_submitted = true;
 				if (arguments.length == 0) {
 					window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/cms-app";
 				} else {

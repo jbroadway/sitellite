@@ -63,6 +63,7 @@ class CmsAddSitellite_filesystemForm extends MailForm {
 		page_add_script (CMS_JS_FORMHELP_INIT);
 		page_add_script ('
 			function cms_cancel (f) {
+				onbeforeunload_form_submitted = true;
 				if (arguments.length == 0) {
 					window.location.href = "/index/cms-browse-action?collection=sitellite_filesystem";
 				} else {

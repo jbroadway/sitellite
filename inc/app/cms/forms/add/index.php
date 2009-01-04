@@ -93,6 +93,7 @@ class CmsAddForm extends MailForm {
 
 		$b =& $w->getButton ();
 		$b->setValues (intl_get ('Create'));
+		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
 
 		$b =& $w->addButton ('submit_button', intl_get ('Cancel'));
 		$b->extra = 'onclick="return cms_cancel (this.form)"';
