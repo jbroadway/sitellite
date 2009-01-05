@@ -42,6 +42,11 @@ $parameters['collections'] = array ();
 foreach ($collections as $collection) {
 	$r = new Rex ($collection);
 	if (isset ($r->info['Collection']['translate']) && $r->info['Collection']['translate'] == false) {
+		// don't translate this collection
+		continue;
+	}
+	if (isset ($r->info['Collection']['app']) && ! loader_app_enabled ($r->info['Collection']['app'])) {
+		// app is disabled
 		continue;
 	}
 	$parameters['collections'][$collection] = $r->info['Collection']['display'];

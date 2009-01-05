@@ -55,6 +55,7 @@ Changes in 5.0.2-stable
 - Change history pager limit now matches your preferences.
 - Added back button to Deleted items screen in control panel.
 - Added loader_app_enabled() for checking if an app is enabled or disabled.
+- Added a check to limit the translations to only collections from enabled apps.
 
 Changes in 5.0.1-stable
 
