@@ -53,6 +53,7 @@ Changes in 5.0.2-stable
 - Changed SiteSearch indexer to try to reduce memory usage.
 - Changed browse_level preference wording to match edit mode in add/edit forms.
 - Change history pager limit now matches your preferences.
+- Added back button to Deleted items screen in control panel.
 
 Changes in 5.0.1-stable
 

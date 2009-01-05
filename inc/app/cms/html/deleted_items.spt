@@ -4,6 +4,8 @@
 
 <h1>{intl Deleted} {collection_name}</h1>
 
+<p><a href="{site/prefix}/index/cms-browse-action?collection={collection}">{intl Back to} {collection_name}</a></p>
+
 <p>
 <table border="0" cellpadding="3" width="100%">
 	<tr>
