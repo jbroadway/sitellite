@@ -1169,6 +1169,22 @@ class Loader {
 	function app () {
 		return $this->apps[count ($this->apps) - 1];
 	}
+
+	/**
+	 * Determines whether the specified app is enabled or disabled.
+	 *
+	 * @access	public
+	 * @param	string $app
+	 * @return	boolean
+	 *
+	 */
+	function isEnabled ($app) {
+		if (isset ($this->applications[$app]) && ! $this->applications[$app]) {
+			// app is disabled
+			return false;
+		}
+		return true;
+	}
 }
 
 /**
@@ -1360,6 +1376,14 @@ function appconf_default_settings () {
  */
 function loader_app () {
 	return $GLOBALS['loader']->app ();
+}
+
+/**
+ * Determines whether the specified app is enabled or disabled. Alias of
+ * Loader::isEnabled().
+ */
+function loader_app_enabled ($app) {
+	return $GLOBALS['loader']->isEnabled ($app);
 }
 
 /**

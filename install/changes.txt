@@ -54,6 +54,7 @@ Changes in 5.0.2-stable
 - Changed browse_level preference wording to match edit mode in add/edit forms.
 - Change history pager limit now matches your preferences.
 - Added back button to Deleted items screen in control panel.
+- Added loader_app_enabled() for checking if an app is enabled or disabled.
 
 Changes in 5.0.1-stable
 
