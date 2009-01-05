@@ -214,7 +214,7 @@ class I18nBuilder {
 						'file' => $file,
 						'line' => false,
 					));
-				} elseif ($k == 'alt' || $k == 'display_value') {
+				} elseif ($k == 'alt' || $k == 'display_value' || $k == 'title') {
 					$this->buffer->set ($this->intl->serialize ($v), array (
 						'string' => $v,
 						'params' => false,

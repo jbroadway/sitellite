@@ -56,6 +56,7 @@ Changes in 5.0.2-stable
 - Added back button to Deleted items screen in control panel.
 - Added loader_app_enabled() for checking if an app is enabled or disabled.
 - Added a check to limit the translations to only collections from enabled apps.
+- Titles of section widgets in MailForm should now be translatable.
 
 Changes in 5.0.1-stable
 
