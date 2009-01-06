@@ -83,7 +83,7 @@
 		<th colspan="2" align="left">{intl Forum Statistics}</th>
 	</tr>
 	<tr style="background-color: {alt/next}">
-		<td><abbr title="{intl Users who are currently logged into the forum.}">{intl Active Users}</abbr></td>
+		<td><abbr title="{intl Users who are currently logged into the website.}">{intl Active Users}</abbr></td>
 		<td align="right">{active}</td>
 	</tr>
 	{if obj[guests] neq false}

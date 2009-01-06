@@ -89,12 +89,12 @@ class SiteForum_Post extends Generic {
 		}
 
 		if ($topic) {
-			$list = db_fetch (
+			$list = db_fetch_array (
 				'select id, topic_id, user_id, ts, subject from siteforum_post where topic_id = ? and ' . $perms . ' order by ts desc limit ' . $limit,
 				$topic
 			);
 		} else {
-			$list = db_fetch (
+			$list = db_fetch_array (
 				'select id, topic_id, user_id, ts, subject from siteforum_post where ' . $perms . ' order by ts desc limit ' . $limit
 			);
 		}

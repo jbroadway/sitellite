@@ -57,6 +57,7 @@ Changes in 5.0.2-stable
 - Added loader_app_enabled() for checking if an app is enabled or disabled.
 - Added a check to limit the translations to only collections from enabled apps.
 - Titles of section widgets in MailForm should now be translatable.
+- Fixed potential warning notices in SiteForum and removed reference to SiteTracker.
 
 Changes in 5.0.1-stable
 

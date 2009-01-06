@@ -10,16 +10,16 @@ $t = new SiteForum_Topic;
 $t->orderBy ('name asc');
 $list = $t->getTopics ();
 
-if (loader_import ('sitetracker.SiteTracker')) {
+/*if (loader_import ('sitetracker.SiteTracker')) {
 	$guests = SiteTracker::get (
 		array (
 			'api_call' => 'num_visitors_online',
 			'session_lifetime' => 15,
 		)
 	);
-} else {
+} else {*/
 	$guests = false;
-}
+//}
 
 page_title (appconf ('forum_name'));
 echo template_simple (
