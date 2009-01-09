@@ -36,7 +36,7 @@ $template = <<<EOL
 	<tr>
 		<td>
 			<table cellspacing="1" cellpadding="1" width="{menuWidth}" class="sdmtable">
-{itemList}
+{itemList|none}
 			</table>
 		</td>
 	</tr>
@@ -49,7 +49,7 @@ EOL;
 // causes sdmSetBgcolor() not to work in Mozilla as of 1.3
 $itemTemplate = <<<EOL2
 				{filter none}<tr>
-					<td bgcolor="{bgcolor}" id="_td_{name}" class="sdmcell"><a href="{link}" class="sdmitem" {mouseover}{mouseout}>{text}</a></td>
+					<td bgcolor="{bgcolor}" id="_td_{name}" class="sdmcell"><a href="{link}" class="sdmitem" {mouseover|none}{mouseout|none}>{text}</a></td>
 				</tr>{end filter}
 
 EOL2;

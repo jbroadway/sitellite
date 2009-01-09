@@ -49,9 +49,9 @@ if ($parameters['dropmenus'] == 'yes') {
 		return str_replace ('_', '-', $id);
 	}
 
-	$template = '<a href="{site/prefix}/index/{id}"{active} onmouseover="sdmShowAndHide(\'{filter sdm_filter_underscore}{id}{end filter}\')">{title}</a>';
+	$template = '<a href="{site/prefix}/index/{id}"{active|none} onmouseover="sdmShowAndHide(\'{filter sdm_filter_underscore}{id}{end filter}\')">{title}</a>';
 } else {
-	$template = '<a href="{site/prefix}/index/{id}"{active}>{title}</a>';
+	$template = '<a href="{site/prefix}/index/{id}"{active|none}>{title}</a>';
 }
 
 if ($parameters['sort'] == 'reverse') {
