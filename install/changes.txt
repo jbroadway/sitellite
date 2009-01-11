@@ -59,6 +59,7 @@ Changes in 5.0.2-stable
 - Titles of section widgets in MailForm should now be translatable.
 - Fixed potential warning notices in SiteForum and removed reference to SiteTracker.
 - Fixed html attribute output in sitellite/nav boxes for SimpleTemplate changes.
+- 404 handler now logs url and referrer to the activity log.
 
 Changes in 5.0.1-stable
 

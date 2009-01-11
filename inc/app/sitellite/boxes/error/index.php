@@ -29,7 +29,7 @@ loader_import ('cms.Workflow');
 echo Workflow::trigger (
 	'error',
 	array (
-		'message' => $errno . ' ' . $errors[$errno]['title'],
+		'message' => $errno . ' ' . $errors[$errno]['title'] . ': ' . site_current () . ', referrer: ' . $_SERVER['HTTP_REFERER'],
 	)
 );
 
