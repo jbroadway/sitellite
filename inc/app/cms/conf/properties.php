@@ -180,7 +180,7 @@ function cms_init_edit_panels () {
 define ('CMS_JS_ALERT_MESSAGE', '<script language="javascript" type="text/javascript">
 <!--
 
-{if not empty (obj._msg)}
+{if false and not empty (obj._msg)}
 	alert_onload = function () {
 		alert (\'{php cms_msg (obj._msg)}\');
 	}

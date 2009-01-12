@@ -56,5 +56,7 @@
 	<a href="${php: PRODUCT_LICENSE}" target="_blank"><xt:intl>Click here to read the software license agreement.</xt:intl></a>
 </p>
 
+<xt:box name="cms/alert" />
+
 </body>
 </html>

@@ -277,4 +277,6 @@ if ($parameters['collection'] == 'sitellite_page') {
 
 echo template_simple ('buttons.spt', $parameters);
 
+echo loader_box ('cms/alert');
+
 ?>

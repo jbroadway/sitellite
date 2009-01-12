@@ -61,6 +61,7 @@ Changes in 5.0.2-stable
 - Fixed html attribute output in sitellite/nav boxes for SimpleTemplate changes.
 - 404 handler now logs url and referrer to the activity log.
 - Added cms/error box for displaying errors and logging them as well.
+- Added cms/alert box for more consistent alert messages on completed actions.
 
 Changes in 5.0.1-stable
 
