@@ -89,6 +89,8 @@ echo Workflow::trigger (
 	)
 );
 
+session_set ('sitellite_alert', intl_get ('The items have been deleted.'));
+
 if (! empty ($parameters['_return']) && $parameters['_return'] != site_prefix () . '/index/' . $parameters['_key'][0] && ! strpos ($parameters['_return'], $parameters['_key'][0])) {
 	header ('Location: ' . $parameters['_return']);
 	exit;

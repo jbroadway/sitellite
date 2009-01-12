@@ -63,6 +63,8 @@ class ComposeForm extends MailForm {
 			echo '<p>Error: ' . $msg->error . '</p>';
 		}
 
+		session_set ('sitellite_alert', intl_get ('Your message has been sent.'));
+
 		header ('Location: ' . site_prefix () . '/index/cms-cpanel-action?_msg=sent');
 		exit;
 	}

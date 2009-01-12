@@ -125,17 +125,19 @@ class PreferencesForm extends MailForm {
 			}
 		}
 
-		page_title (intl_get ('Preferences Saved'));
-		echo '<p>' . intl_get ('Your preferences have been saved.') . '</p>';
-		echo '<p><a href="' . site_prefix () . '/index/cms-app">' . intl_get ('Continue') . '</a></p>';
+		//page_title (intl_get ('Preferences Saved'));
+		//echo '<p>' . intl_get ('Your preferences have been saved.') . '</p>';
+		//echo '<p><a href="' . site_prefix () . '/index/cms-app">' . intl_get ('Continue') . '</a></p>';
 
-		//if (session_pref ('start_page') == 'web view') {
-			//header ('Location: ' . site_prefix () . '/index');
-		//} else {
-			//header ('Location: ' . site_prefix () . '/index/cms-cpanel-action?_msg=prefs');
-		//}
+		session_set ('sitellite_alert', intl_get ('Your preferences have been saved.'));
 
-		//exit;
+		if (session_pref ('start_page') == 'web view') {
+			header ('Location: ' . site_prefix () . '/index');
+		} else {
+			header ('Location: ' . site_prefix () . '/index/cms-cpanel-action');
+		}
+
+		exit;
 	}
 }
 
