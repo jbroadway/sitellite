@@ -60,6 +60,7 @@ Changes in 5.0.2-stable
 - Fixed potential warning notices in SiteForum and removed reference to SiteTracker.
 - Fixed html attribute output in sitellite/nav boxes for SimpleTemplate changes.
 - 404 handler now logs url and referrer to the activity log.
+- Added cms/error box for displaying errors and logging them as well.
 
 Changes in 5.0.1-stable
 
