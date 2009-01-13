@@ -111,6 +111,7 @@ foreach ($collections as $collection) {
 			} else {
 				$data['body'] = $new;
 			}
+			unset ($new);
 		}
 
 		$counts[$collection]++;
@@ -122,6 +123,8 @@ foreach ($collections as $collection) {
 			echo 'Document URL: ' . $data['url'] . NEWLINE;
 			return;
 		}
+
+		unset ($data);
 	}
 }
 
