@@ -421,8 +421,14 @@ class Messy extends XML_HTMLSax3 {
 			if (in_array ($tag, $this->stripTagsSafe)) {
 				return;
 			}
+			if (strpos ($tag, 'w:') === 0) {
+				return;
+			}
 		} else {
 			if (in_array ($tag, $this->stripTags)) {
+				return;
+			}
+			if (strpos ($tag, 'w:') === 0) {
 				return;
 			}
 		}
@@ -474,8 +480,14 @@ class Messy extends XML_HTMLSax3 {
 			if (in_array ($tag, $this->stripTagsSafe) || in_array ($tag, $this->selfClosing)) {
 				return;
 			}
+			if (strpos ($tag, 'w:') === 0) {
+				return;
+			}
 		} else {
 			if (in_array ($tag, $this->stripTags) || in_array ($tag, $this->selfClosing)) {
+				return;
+			}
+			if (strpos ($tag, 'w:') === 0) {
 				return;
 			}
 		}
