@@ -12,7 +12,7 @@ loader_import ('saf.GUI.Pager');
 //loader_import ('saf.Misc.TableHeader');
 //loader_import ('cms.Versioning.Facets');
 
-$limit = 10;
+$limit = session_pref ('browse_limit');
 
 if (! isset ($cgi->offset)) {
 	$cgi->offset = 0;

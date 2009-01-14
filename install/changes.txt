@@ -65,6 +65,7 @@ Changes in 5.0.2-stable
 - Added filter for any w:* tags in saf.HTML.Messy to clean out more Word tags.
 - Added error message display for image chooser delete errors that weren't showing.
 - Added a notice when images are deleted successfully.
+- Deleted items limit is now the preferences default.
 
 Changes in 5.0.1-stable
 
