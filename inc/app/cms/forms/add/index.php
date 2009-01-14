@@ -132,7 +132,18 @@ class CmsAddForm extends MailForm {
 		}
 
 		if (! $res) {
-			die ($rex->error);
+			if (! $return) {
+				$return = site_prefix () . '/index/cms-browse-action?collection=' . urlencode ($collection);
+			}
+			echo loader_box ('cms/error', array (
+				'message' => $rex->error,
+				'collection' => $collection,
+				'key' => $key,
+				'action' => $method,
+				'data' => $vals,
+				'changelog' => $changelog,
+				'return' => $return,
+			));
 		} else {
 			foreach ($this->widgets as $k => $w) {
 				if ($w->type == 'joiner') {
@@ -151,6 +162,8 @@ class CmsAddForm extends MailForm {
 					'message' => 'Collection: ' . $collection . ', Item: ' . $key,
 				)
 			);
+
+			session_set ('sitellite_alert', intl_get ('Your item has been created.'));
 
 			header ('Location: ' . site_prefix () . '/index/cms-browse-action?collection=' . urlencode ($collection));
 			exit;

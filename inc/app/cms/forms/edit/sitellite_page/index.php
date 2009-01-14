@@ -359,8 +359,25 @@ class CmsEditSitellite_pageForm extends MailForm {
 		// remove lock when editing is finished
 		lock_remove ($collection, $key);
 
+		if ($key != $vals[$rex->key]) {
+			if ($return == site_prefix () . '/index/' . $key || $return == site_prefix () . '/' . $key) {
+				$return = '';
+			}
+		}
+
 		if (! $res) {
-			die ($rex->error);
+			if (empty ($return)) {
+				$return = site_prefix () . '/index/' . $key;
+			}
+			echo loader_box ('cms/error', array (
+				'message' => $rex->error,
+				'collection' => $collection,
+				'key' => $key,
+				'action' => $method,
+				'data' => $vals,
+				'changelog' => $changelog,
+				'return' => $return,
+			));
 		} else {
 			foreach (db_shift_array ('select id from sitellite_page where below_page = ?', $key) as $child) {
 				$method = $rex->determineAction ($key);
@@ -382,6 +399,8 @@ class CmsEditSitellite_pageForm extends MailForm {
 					'message' => 'Collection: ' . $collection . ', Item: ' . $key,
 				)
 			);
+
+			session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
 
 			if ($key != $vals[$rex->key]) {
 				if ($return == site_prefix () . '/index/' . $key || $return == site_prefix () . '/' . $key) {

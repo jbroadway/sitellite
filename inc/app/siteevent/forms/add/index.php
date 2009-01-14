@@ -84,7 +84,18 @@ class SiteeventAddForm extends MailForm {
 		}
 
 		if (! $res) {
-			die ($rex->error);
+			if (! $return) {
+				$return = site_prefix () . '/index/cms-browse-action?collection=siteevent_event';
+			}
+			echo loader_box ('cms/error', array (
+				'message' => $rex->error,
+				'collection' => $collection,
+				'key' => $key,
+				'action' => $method,
+				'data' => $vals,
+				'changelog' => $changelog,
+				'return' => $return,
+			));
 		} else {
 			loader_import ('cms.Workflow');
 			echo Workflow::trigger (
@@ -97,6 +108,8 @@ class SiteeventAddForm extends MailForm {
 					'message' => 'Collection: ' . $collection . ', Item: ' . $key,
 				)
 			);
+
+			session_set ('sitellite_alert', intl_get ('Your item has been created.'));
 
 			if ($return) {
 				header ('Location: ' . $return);

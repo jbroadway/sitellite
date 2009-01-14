@@ -100,6 +100,8 @@ class SiteblogEditForm extends MailForm {
             $id = $rex->create ($data);
         }
 
+		session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
+
         // view post
         if (! empty ($vals['_return'])) {
         	header ('Location: ' . $vals['_return']);

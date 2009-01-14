@@ -119,7 +119,18 @@ class SitefaqEditForm extends MailForm { // default to a simple edit screen, muc
 		$res = $rex->{$method} ($key, $vals, $changelog);
 
 		if (! $res) {
-			die ($rex->error);
+			if (empty ($return)) {
+				$return = site_prefix () . '/index/sitefaq-app';
+			}
+			echo loader_box ('cms/error', array (
+				'message' => $rex->error,
+				'collection' => $collection,
+				'key' => $key,
+				'action' => $method,
+				'data' => $vals,
+				'changelog' => $changelog,
+				'return' => $return,
+			));
 		} else {
 			loader_import ('cms.Workflow');
 			echo Workflow::trigger (
@@ -133,6 +144,8 @@ class SitefaqEditForm extends MailForm { // default to a simple edit screen, muc
 					'message' => 'Collection: ' . $collection . ', Item: ' . $key,
 				)
 			);
+
+			session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

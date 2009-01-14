@@ -64,7 +64,18 @@ class SiteglossaryEditForm extends MailForm {
 		$res = $rex->{$method} ($key, $vals, $changelog);
 
 		if (! $res) {
-			die ($rex->error);
+			if (empty ($return)) {
+				$return = site_prefix () . '/index/siteglossary-app#' . $vals['word'];
+			}
+			echo loader_box ('cms/error', array (
+				'message' => $rex->error,
+				'collection' => $collection,
+				'key' => $key,
+				'action' => $method,
+				'data' => $vals,
+				'changelog' => $changelog,
+				'return' => $return,
+			));
 		} else {
 			loader_import ('cms.Workflow');
 			echo Workflow::trigger (
@@ -78,6 +89,8 @@ class SiteglossaryEditForm extends MailForm {
 					'message' => 'Collection: ' . $collection . ', Item: ' . $key,
 				)
 			);
+
+			session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
 
 			if ($return) {
 				header ('Location: ' . $return);

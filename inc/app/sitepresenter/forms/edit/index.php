@@ -103,7 +103,18 @@ class SitepresenterEditForm extends MailForm {
 		lock_remove ($collection, $key);
 
 		if (! $res) {
-			die ($rex->error);
+			if (! empty ($return)) {
+				$return = site_prefix () . '/index/sitepresenter-slides-action/id.' . $key;
+			}
+			echo loader_box ('cms/error', array (
+				'message' => $rex->error,
+				'collection' => $collection,
+				'key' => $key,
+				'action' => $method,
+				'data' => $vals,
+				'changelog' => $changelog,
+				'return' => $return,
+			));
 		} else {
 			loader_import ('cms.Workflow');
 			echo Workflow::trigger (
@@ -117,6 +128,8 @@ class SitepresenterEditForm extends MailForm {
 					'message' => 'Collection: ' . $collection . ', Item: ' . $key,
 				)
 			);
+
+			session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

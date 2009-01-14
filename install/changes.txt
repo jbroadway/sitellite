@@ -66,6 +66,7 @@ Changes in 5.0.2-stable
 - Added error message display for image chooser delete errors that weren't showing.
 - Added a notice when images are deleted successfully.
 - Deleted items limit is now the preferences default.
+- Updated all collections to use the new cms/error and cms/alert boxes.
 
 Changes in 5.0.1-stable
 
