@@ -118,6 +118,8 @@
 	{end if}
 {end if}
 
+{box cms/alert}
+
 {alt even odd}
 
 <table cellspacing="0">

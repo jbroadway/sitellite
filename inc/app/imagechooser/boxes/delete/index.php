@@ -32,6 +32,8 @@ global $cgi;
 if ($parameters['err']) {
 	session_set ('imagechooser_err', $parameters['err']);
 	session_set ('imagechooser_pagelist', $parameters['list']);
+} else {
+	session_set ('sitellite_alert', intl_get ('The image has been deleted.'));
 }
 
 header ('Location: ' . site_prefix () . '/index/imagechooser' . $app . '?name=' . $cgi->name . '&format=' . urlencode ($cgi->format) . '&location=' . urlencode ($cgi->location) . '&attrs=' . urlencode ($cgi->attrs));
