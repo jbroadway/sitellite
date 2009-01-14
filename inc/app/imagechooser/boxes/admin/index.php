@@ -119,12 +119,22 @@ if (! session_allowed ('imagechooser_delete', 'rw', 'resource')) {
 	$data['delete'] = true;
 }
 
+if (session_get ('imagechooser_err')) {
+	$data['err'] = session_get ('imagechooser_err');
+	session_set ('imagechooser_err', null);
+}
+
+if (session_get ('imagechooser_pagelist')) {
+	$data['pagelist'] = session_get ('imagechooser_pagelist');
+	session_set ('imagechooser_pagelist', null);
+}
+
 page_add_script (site_prefix () . '/js/dialog.js');
 page_add_script (template_simple ('js.spt'));
 
 function output_options ($name) {
 	$info = pathinfo ($name);
-	return '{&quot;filetype&quot;: &quot;' . strtolower ($info['extension']) . '&quot}';
+	return '{&quot;filetype&quot;: &quot;' . strtolower ($info['extension']) . '&quot;}';
 }
 
 // show me the money

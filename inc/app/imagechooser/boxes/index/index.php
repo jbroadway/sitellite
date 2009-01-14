@@ -97,6 +97,16 @@ if (! session_allowed ('imagechooser_delete', 'rw', 'resource')) {
 	$data['delete'] = true;
 }
 
+if (session_get ('imagechooser_err')) {
+	$data['err'] = session_get ('imagechooser_err');
+	session_set ('imagechooser_err', null);
+}
+
+if (session_get ('imagechooser_pagelist')) {
+	$data['pagelist'] = session_get ('imagechooser_pagelist');
+	session_set ('imagechooser_pagelist', null);
+}
+
 // show me the money
 template_simple_register ('cgi', $cgi);
 echo template_simple ('index.spt', $data);

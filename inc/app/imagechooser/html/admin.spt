@@ -33,6 +33,17 @@ td {
 	<p class="err">{intl Please Note: You do not have permission to add new images to this folder.}</p>
 {end if}
 
+{if obj[err]}
+	<p class="err">{err}</p>
+	{if obj[pagelist]}
+		<ul>
+		{loop obj[pagelist]}
+			<li><a href="{site/prefix}/index/{loop/_value}" target="_blank">{loop/_value}</a></li>
+		{end loop}
+		</ul>
+	{end if}
+{end if}
+
 {alt even odd}
 
 <table cellspacing="0" width="50%">

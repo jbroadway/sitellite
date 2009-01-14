@@ -29,6 +29,11 @@ if ($parameters['admin']) {
 
 global $cgi;
 
+if ($parameters['err']) {
+	session_set ('imagechooser_err', $parameters['err']);
+	session_set ('imagechooser_pagelist', $parameters['list']);
+}
+
 header ('Location: ' . site_prefix () . '/index/imagechooser' . $app . '?name=' . $cgi->name . '&format=' . urlencode ($cgi->format) . '&location=' . urlencode ($cgi->location) . '&attrs=' . urlencode ($cgi->attrs));
 
 //echo template_simple ('delete.spt', $parameters);
