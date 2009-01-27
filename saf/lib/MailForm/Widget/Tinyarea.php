@@ -97,7 +97,7 @@ class MF_Widget_tinyarea extends MF_Widget {
 				<label for="{name}" id="{name}-label" {invalid}>{label}</label>
 			</td>
 			<td class="field">
-				<textarea {attrstr} rows="{rows}" cols="{cols}" {extra} class="tinyarea">{data_value}</textarea>
+				<textarea {attrstr|none} rows="{rows}" cols="{cols}" {extra|none} class="tinyarea">{data_value}</textarea>
 			</td>
 		</tr>';
 
@@ -111,7 +111,7 @@ class MF_Widget_tinyarea extends MF_Widget {
 		{end if}
 		<tr>
 			<td class="field" colspan="2">
-				<textarea {attrstr} rows="{rows}" cols="{cols}" {extra} class="tinyarea">{data_value}</textarea>
+				<textarea {attrstr|none} rows="{rows}" cols="{cols}" {extra|none} class="tinyarea">{data_value}</textarea>
 			</td>
 		</tr>';
 
@@ -122,6 +122,7 @@ class MF_Widget_tinyarea extends MF_Widget {
 	var $tinyButtons3 = '';
 	var $tinyPlugins = 'emotions';
 	var $tinyValidElements = 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]';
+	var $tinyPathLocation = 'bottom';
 
 	/**
 	 * Returns the display HTML for this widget.  The optional
@@ -158,7 +159,7 @@ class MF_Widget_tinyarea extends MF_Widget {
 					theme_advanced_buttons3 : "{tinyButtons3}",
 					theme_advanced_toolbar_location : "top",
 					theme_advanced_toolbar_align : "left",
-					theme_advanced_path_location : "bottom",
+					theme_advanced_path_location : "{tinyPathLocation}",
 					extended_valid_elements : "{tinyValidElements}"
 				});
 			', $this));
