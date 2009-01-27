@@ -24,3 +24,12 @@ alter table sitefaq_submission change column sitellite_access sitellite_access c
 alter table sitefaq_submission change column sitellite_status sitellite_status char(32) not null default '';
 alter table siteforum_topic change column sitellite_access sitellite_access char(32) not null default '';
 alter table siteforum_topic change column sitellite_status sitellite_status char(32) not null default '';
+
+create table siteforum_attachment (
+	post_id int not null primary key,
+	name char(72) not null,
+	size int not null,
+	mime char(48) not null,
+	parent_post int not null,
+	index (parent_post)
+);
