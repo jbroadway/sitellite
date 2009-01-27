@@ -3,6 +3,7 @@
 [Form]
 
 error_mode	= all
+uploadFiles = no
 
 [topic]
 
@@ -26,6 +27,11 @@ cols		= 50
 alt		= "Message (allowed HTML tags: strong, em, a, blockquote, code)"
 rule 1		= not empty, You must enter a message.
 extra		= "id=`siteforum-body`"
+
+[attachment]
+
+type		= file
+alt			= Attach a file to your post.
 
 [subscribe]
 

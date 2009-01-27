@@ -1,3 +1,8 @@
+1.2.0
+
+- Added optional wysiwyg editing.
+- Added optional file uploads.
+
 1.0.7
 
 - Fixed broken RSS feeds in PHP5.

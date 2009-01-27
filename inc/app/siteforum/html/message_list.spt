@@ -81,8 +81,17 @@
 					</td>
 				</tr>
 			</table>
-			{filter siteforum_filter_body}{loop/body}<br /><br />
-			{loop/sig}{end filter}
+			{filter siteforum_filter_body}{loop/body}
+			{if not empty (loop.sig)}<br /><br />{loop/sig}{end if}
+			{end filter}
+			{if count (loop.attachments) gt 0}
+			<p><strong>{intl Attached file}:</strong></p>
+			<ul>
+			{loop loop.attachments}
+				<li><a href="{site/prefix}/index/siteforum-attachment-action/id.{loop/post_id}/{loop/name}">{loop/name} ({loop/size|format_filesize})</a></li>
+			{end loop}
+			</ul>
+			{end if}
 		</td>
 	</tr>
 	<tr style="background-color: {alt/current}">

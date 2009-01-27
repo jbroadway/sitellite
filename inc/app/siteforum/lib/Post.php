@@ -117,6 +117,42 @@ class SiteForum_Post extends Generic {
 	function touch ($id) {
 		return db_execute ('update siteforum_post set mtime = now() where id = ?', $id);
 	}
+
+	/**
+	 * Can they access a post?
+	 */
+	function allowed ($id) {
+		if (session_admin ()) {
+			$perms = session_allowed_sql ();
+		} else {
+			$perms = session_approved_sql ();
+		}
+		return db_shift (
+			'select count(*) from siteforum_post where id = ? and ' . $perms,
+			$id
+		);
+	}
+
+	/**
+	 * Get an individual post's attachment.
+	 */
+	function getAttachment ($id) {
+		return db_single (
+			'select * from siteforum_attachment where post_id = ?',
+			$id
+		);
+	}
+
+	/**
+	 * If a thread has attachments.
+	 */
+	function hasAttachments ($id) {
+		return db_shift (
+			'select count(*) from siteforum_attachment where post_id = ? or parent_post = ?',
+			$id,
+			$id
+		);
+	}
 }
 
 ?>

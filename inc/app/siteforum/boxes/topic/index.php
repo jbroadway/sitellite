@@ -28,6 +28,10 @@ $pg->getInfo ();
 $t = new SiteForum_Topic;
 $topic = $t->getTitle ($cgi->topic);
 
+foreach (array_keys ($list) as $key) {
+	$list[$key]->attachments = $p->hasAttachments ($list[$key]->id);
+}
+
 page_title ($topic);
 template_simple_register ('pager', $pg);
 echo template_simple (

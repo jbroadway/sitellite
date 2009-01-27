@@ -12,6 +12,15 @@ appconf_set ('forum_name', 'Forum');
 // multiple email addresses by separating them with commas.
 appconf_set ('admin_email', false);
 
+// Set this to true or false depending on whether you want to allow members
+// to upload files to your forum. Note that this requires write access to
+// the inc/app/siteforum/data folder.
+appconf_set ('allow_uploads', false);
+
+// Set this to false if you do not want to use a WYSIWYG editor for editing
+// posts in your forum.
+appconf_set ('use_wysiwyg_editor', true);
+
 // Set this to the member registration form, if you have one.
 appconf_set ('register', 'sitemember/register');
 
@@ -36,7 +45,7 @@ appconf_set ('rss_description', intl_get ('Postings from') . ' ' . site_domain (
 
 // Set this to the template you wish to use to display the app, otherwise
 // the default is used.
-appconf_set ('template', 'wide');
+appconf_set ('template', false);
 
 // Set this to the page ID of the page you would like to be the parent of
 // your forum.  This affects the web site navigation while within the

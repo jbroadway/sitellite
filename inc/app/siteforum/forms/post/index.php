@@ -62,7 +62,7 @@ class SiteforumPostForm extends MailForm {
 				. " said:</strong>\n"
 				. "<blockquote>"
 				. $obj->body
-				. "</blockquote>\n\n"
+				. "</blockquote>\n\n<p></p>"
 			);
 		}
 
@@ -70,6 +70,17 @@ class SiteforumPostForm extends MailForm {
 			$this->widgets['notice'] = new MF_Widget_hidden ('notice');
 			$this->widgets['notice']->form =& $this;
 			$this->widgets['notice']->setValue ('no');
+		}
+
+		if (! appconf ('allow_uploads')) {
+			$this->widgets['attachment'] =& $this->widgets['attachment']->changeType ('hidden');
+		}
+
+		if (appconf ('use_wysiwyg_editor')) {
+			$this->widgets['body'] =& $this->widgets['body']->changeType ('tinyarea');
+			$this->widgets['body']->tinyPathLocation = '';
+			$this->widgets['body']->tinyButtons1 = 'bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,link,unlink,emotions,undo,redo,formatselect';
+			$this->widgets['body']->alt = '';
 		}
 	}
 
@@ -114,6 +125,20 @@ class SiteforumPostForm extends MailForm {
 		}
 
 		$vals['id'] = $res;
+
+		if (is_object ($vals['attachment'])) {
+			if ($vals['attachment']->move ('inc/app/siteforum/data', $res)) {
+				$parent = (empty ($vals['post'])) ? 0 : $vals['post'];
+				db_execute (
+					'insert into siteforum_attachment values (?, ?, ?, ?, ?)',
+					$res,
+					$vals['attachment']->name,
+					$vals['attachment']->size,
+					$vals['attachment']->type,
+					$parent
+				);
+			}
+		}
 
 		if (! empty ($vals['post'])) {
 			$p->touch ($vals['post']);

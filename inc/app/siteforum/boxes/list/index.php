@@ -50,6 +50,14 @@ if (! empty ($cgi->highlight)) {
 	}
 }
 
+foreach (array_keys ($list) as $key) {
+	$list[$key]->attachments = array ();
+	$a = $p->getAttachment ($list[$key]->id);
+	if ($a) {
+		$list[$key]->attachments[] = $a;
+	}
+}
+
 page_title ($subject);
 template_simple_register ('pager', $pg);
 echo template_simple (

@@ -66,7 +66,7 @@ function siteforum_filter_strip_tags ($text) {
 	);
 
 	// now get rid of unwanted
-	$text = strip_tags ($text, '<a><blockquote><i><u><b><strong><em><span><code>');
+	$text = strip_tags ($text, '<a><blockquote><i><u><b><strong><em><span><code><p><ul><ol><li><img><pre><address><h1><h2><h3><h4><h5><h6>');
 
 	// now highlight your php code...
 	$text = preg_replace_callback (
@@ -89,6 +89,9 @@ function siteforum_filter_strip_tags ($text) {
 }
 
 function siteforum_filter_body ($body) {
+	if (appconf ('use_wysiwyg_editor')) {
+		return siteforum_filter_strip_tags ($body);
+	}
 	return preg_replace (
                 '|(http://[^\r\n\t ]+)|is',
                 "'<a href=\"\\1\" target=\"_blank\">' . wordwrap ('\\1', 70, '<br />', 1) . '</a>'",

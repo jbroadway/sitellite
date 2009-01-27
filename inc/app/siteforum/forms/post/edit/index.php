@@ -55,6 +55,13 @@ class SiteforumPostEditForm extends MailForm {
 		$post = $p->get ($cgi->id);
 		$this->widgets['subject']->setValue ($post->subject);
 		$this->widgets['body']->setValue ($post->body);
+
+		if (appconf ('use_wysiwyg_editor')) {
+			$this->widgets['body'] =& $this->widgets['body']->changeType ('tinyarea');
+			$this->widgets['body']->tinyPathLocation = '';
+			$this->widgets['body']->tinyButtons1 = 'bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,link,unlink,emotions,undo,redo,formatselect';
+			$this->widgets['body']->alt = '';
+		}
 	}
 
 	function onSubmit ($vals) {

@@ -36,10 +36,10 @@
 	<tr style="background-color: {alt/next}">
 		<td valign="top">
 			{if loop.notice eq 'yes'}
-				<strong>{intl Notice}: <a href="{site/prefix}/index/siteforum-list-action/post.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a></strong>
+				<strong>{intl Notice}: <a href="{site/prefix}/index/siteforum-list-action/post.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a>{if loop.attachments} <img src="{site/prefix}/inc/app/siteforum/pix/attach.png" alt="{intl Has attachments}" title="{intl Has attachments}" border="0" />{end if}</strong>
 			{end if}
 			{if else}
-				<a href="{site/prefix}/index/siteforum-list-action/post.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a>
+				<a href="{site/prefix}/index/siteforum-list-action/post.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a>{if loop.attachments} <img src="{site/prefix}/inc/app/siteforum/pix/attach.png" alt="{intl Has attachments}" title="{intl Has attachments}" border="0" />{end if}
 			{end if}
 		</td>
 		<td valign="top" align="right">

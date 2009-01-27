@@ -35,3 +35,12 @@ create table siteforum_subscribe (
 	user_id char(48),
 	index (post_id,user_id)
 );
+
+create table siteforum_attachment (
+	post_id int not null primary key,
+	name char(72) not null,
+	size int not null,
+	mime char(48) not null,
+	parent_post int not null,
+	index (parent_post)
+);
