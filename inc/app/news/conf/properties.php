@@ -9,7 +9,7 @@ appconf_set ('news_name', intl_get ('News Stories'));
 /**
  * Turns off section menus, creating a single-section news site.
  */
-appconf_set ('sections', true);
+appconf_set ('sections', false);
 
 /**
  * Sets the default number of stories on the section pages.

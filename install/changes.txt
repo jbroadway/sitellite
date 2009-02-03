@@ -69,6 +69,7 @@ Changes in 5.0.2-stable
 - Updated all collections to use the new cms/error and cms/alert boxes.
 - Fixed issue saving form data with Tinyarea widget.
 - Added some new features to the SiteForum module.
+- News pager now always shows for news/index regardless of sections setting.
 
 Changes in 5.0.1-stable
 

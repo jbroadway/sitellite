@@ -206,14 +206,14 @@ if (! empty ($parameters['story'])) { // view story
 		$menu = '';
 	}
 
-	if (! appconf ('sections')) {
+	//if (! appconf ('sections')) {
 		loader_import ('saf.GUI.Pager');
 
 		$pg = new Pager ($parameters['offset'], $parameters['limit'], $total);
 		$pg->setUrl (site_prefix () . '/index/news-app?menu=no&limit=' . $parameters['limit']);
 		$pg->getInfo ();
 		template_simple_register ('pager', $pg);
-	}
+	//}
 
 	if ($context == 'action') {
 		page_title (appconf ('news_name'));
