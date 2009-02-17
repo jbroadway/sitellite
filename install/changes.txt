@@ -70,6 +70,7 @@ Changes in 5.0.2-stable
 - Fixed issue saving form data with Tinyarea widget.
 - Added some new features to the SiteForum module.
 - News pager now always shows for news/index regardless of sections setting.
+- Fixed a bug with length validation on the file upload widget.
 
 Changes in 5.0.1-stable
 

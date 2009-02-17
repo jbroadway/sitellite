@@ -157,6 +157,21 @@ class MF_Widget_file extends MF_Widget {
 	}
 
 	/**
+	 * Override to eliminate validating length of UploadedFile object.
+	 *
+	 * @access	public
+	 * @param	string	$value
+	 * @param	object	$form
+	 * @param	object	$cgi
+	 * @return	boolean
+	 * 
+	 */
+	function validate ($value, $form, $cgi) {
+		$this->length = 0;
+		return parent::validate ($value, $form, $cgi);
+	}
+
+	/**
 	 * Returns the display HTML for this widget.  The optional
 	 * parameter determines whether or not to automatically display the widget
 	 * nicely, or whether to simply return the widget (for use in a template).
