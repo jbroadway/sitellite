@@ -1,6 +1,6 @@
 {alt #fff #eee}
 
-<p>{intl The following drafts have been found from a previously interrupted editing session. Would you like to continue from your previous drafts or clear them from your edit history?}</p>
+<p>{intl The following auto-saved edits have been found from a previously interrupted editing session. Would you like to continue from your previous editing session or clear them from your edit history?}</p>
 
 <p>
 <table border="0" cellpadding="3" cellspacing="1" width="70%">
@@ -22,6 +22,6 @@
 <h2>{intl Actions}</h2>
 
 <ul>
-	<li><a href="{_SERVER/REQUEST_URI}&skip_drafts=true">{intl Return to Drafts later}</a></li>
-	<li><a href="{site/prefix}/index/cms-autosave-clear-action?forward={filter rawurlencode}{_SERVER/REQUEST_URI}{end filter}" onclick="return confirm ('{intl Are you sure?}')">{intl Clear all Drafts now}</a></li>
+	<li><a href="{_SERVER/REQUEST_URI}&skip_drafts=true">{intl Return to the auto-saved list later}</a></li>
+	<li><a href="{site/prefix}/index/cms-autosave-clear-action?forward={filter rawurlencode}{_SERVER/REQUEST_URI}{end filter}" onclick="return confirm ('{intl Are you sure?}')">{intl Clear all auto-saved edits now}</a></li>
 </ul>

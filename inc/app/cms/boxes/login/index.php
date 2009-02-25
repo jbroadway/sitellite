@@ -107,7 +107,7 @@ if (! session_admin ()) {
 		$list = $a->retrieve_all ();
 		if (count ($list) > 0) {
 			loader_import ('cms.Filters');
-			page_title (intl_get ('Previous Drafts Found'));
+			page_title (intl_get ('Auto-Saved Edits Found'));
 			echo template_simple ('autosave_login.spt', $list);
 			return;
 		}

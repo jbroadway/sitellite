@@ -1,7 +1,7 @@
 {alt #fff #eee}
 
 <p>
-	<a href="{site/prefix}/index/cms-autosave-clear-action?forward={site/prefix}/index/cms-cpanel-action" onclick="return confirm ('{intl Are you sure?}')">{intl Clear All Drafts}</a>
+	<a href="{site/prefix}/index/cms-autosave-clear-action?forward={site/prefix}/index/cms-cpanel-action" onclick="return confirm ('{intl Are you sure?}')">{intl Clear All}</a>
 </p>
 
 <p>

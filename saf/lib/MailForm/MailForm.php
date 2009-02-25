@@ -804,9 +804,9 @@ class MailForm {
 					$a->clear ();
 				} else {
 					// has an existing autosave version, prompt for action
-					return '<p>' . intl_get ('A draft version of this form has been found from a previous editing session.  Would you like to continue from your previous draft or the current version?') . '</p>'
+					return '<p>' . intl_get ('An auto-saved edit of this form has been found from a previous editing session.  Would you like to continue from your previous editing session, or start from the currently saved version?') . '</p>'
 						. '<form method="post" action="' . $_SERVER['REQUEST_URI'] . '">'
-						. '<p><input type="submit" name="_autosave_start_from" value="' . intl_get ('Start from your previous draft') . '" /> &nbsp; &nbsp; '
+						. '<p><input type="submit" name="_autosave_start_from" value="' . intl_get ('Restore your previous editing session') . '" /> &nbsp; &nbsp; '
 						. '<input type="submit" name="_autosave_start_from" value="' . intl_get ('Start from the currently saved version') . '" /></p>'
 						. '</form>';
 				}

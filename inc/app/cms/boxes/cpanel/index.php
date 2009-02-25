@@ -40,7 +40,7 @@ echo html::table (
 
 			//html::hr () .
 
-			html::h1 (intl_get ('Drafts')) .
+			html::h1 (intl_get ('Auto-Saved Edits')) .
 			loader_box ('cms/autosave/drafts')
 
 		, array ('valign' => 'top', 'width' => '66%', 'style' => 'padding-right: 10px'))
