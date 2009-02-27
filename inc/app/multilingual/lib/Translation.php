@@ -223,7 +223,11 @@ class Translation {
 		if (! $id) {
 			return false;
 		}
-		$data = $this->rex->getCurrent ($id);
+		if ($approved) {
+			$data = $this->rex->getSource ($id);
+		} else {
+			$data = $this->rex->getCurrent ($id);
+		}
 		$data->data = unserialize ($data->data);
 		return $data;
 	}
