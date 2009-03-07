@@ -74,6 +74,7 @@ Changes in 5.0.2-stable
 - Made the auto-save language clearer so as to avoid confusion among users.
 - Fixed a bug causing draft edits of translations to show prematurely.
 - Fixed a possible type warning in Rex::getStruct().
+- Fixed invalid argument warning in googlesitemap scheduler task.
 
 Changes in 5.0.1-stable
 

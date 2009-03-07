@@ -48,7 +48,8 @@ foreach (Rex::getCollections () as $table) {
 		$find['sitellite_access'] = new rEqual ('sitellite_access', 'public');
 	}
 
-	foreach ($rex->getList ($find) as $obj) {
+	$res = $rex->getList ($find);
+	foreach ($res as $obj) {
 		$urls[] = 'http://' . conf ('Site', 'domain') . '/index/' . sprintf ($rex->info['Collection']['sitesearch_url'], $obj->{$rex->key});
 	}
 }
