@@ -73,6 +73,7 @@ Changes in 5.0.2-stable
 - Fixed a bug with length validation on the file upload widget.
 - Made the auto-save language clearer so as to avoid confusion among users.
 - Fixed a bug causing draft edits of translations to show prematurely.
+- Fixed a possible type warning in Rex::getStruct().
 
 Changes in 5.0.1-stable
 

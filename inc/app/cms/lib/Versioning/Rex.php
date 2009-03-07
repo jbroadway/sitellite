@@ -303,7 +303,7 @@ class Rex {
 
 	function getStruct () {
 		$res = $this->rev->getStruct ($this->collection);
-		if (! $res) {
+		if (! is_array ($res)) {
 			$this->error = $this->rev->error;
 		}
 
