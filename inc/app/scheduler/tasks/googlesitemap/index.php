@@ -49,6 +49,9 @@ foreach (Rex::getCollections () as $table) {
 	}
 
 	$res = $rex->getList ($find);
+	if (! is_array ($res)) {
+		$res = array ();
+	}
 	foreach ($res as $obj) {
 		$urls[] = 'http://' . conf ('Site', 'domain') . '/index/' . sprintf ($rex->info['Collection']['sitesearch_url'], $obj->{$rex->key});
 	}
