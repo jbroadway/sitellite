@@ -75,6 +75,7 @@ Changes in 5.0.2-stable
 - Fixed a bug causing draft edits of translations to show prematurely.
 - Fixed a possible type warning in Rex::getStruct().
 - Fixed invalid argument warning in googlesitemap scheduler task.
+- Added new MS Office mime types (docx, pptx, xlsx, etc) to mime().
 
 Changes in 5.0.1-stable
 
