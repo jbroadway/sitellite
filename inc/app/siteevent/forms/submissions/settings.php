@@ -49,7 +49,7 @@ setValues		= "eval: assocify (db_shift_array ('select * from siteevent_category'
 
 type			= checkbox 
 alt				= Audience
-setValues		= "eval: array_merge_keys (array ('' => 'For Everyone'), db_pairs ('select * from siteevent_audience'))"
+setValues		= "eval: (array ('' => 'For Everyone') + db_pairs ('select * from siteevent_audience'))"
 multiple = true
 
 [public]

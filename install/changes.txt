@@ -76,6 +76,7 @@ Changes in 5.0.2-stable
 - Fixed a possible type warning in Rex::getStruct().
 - Fixed invalid argument warning in googlesitemap scheduler task.
 - Added new MS Office mime types (docx, pptx, xlsx, etc) to mime().
+- Fixed a fatal error in the siteevent submissions form.
 
 Changes in 5.0.1-stable
 
