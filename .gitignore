@@ -1,2 +1,7 @@
 .DS_Store
 install/installed
+inc/data/*
+inc/app/cms/data/*
+cache/*
+pix/*
+inc/app/sitesearch/data/*
