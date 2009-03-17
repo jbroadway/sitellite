@@ -17,7 +17,7 @@ if (! empty ($parameters['story'])) { // view story
 
 	if (! empty ($parameters['highlight'])) {
 		loader_import ('saf.Misc.Search');
-		$obj->body = search_bar ($parameters['highlight'], '/index/news-search-action') . search_highlight ($obj->body, $parameters['highlight']);
+		//$obj->body = search_bar ($parameters['highlight'], '/index/news-search-action') . search_highlight ($obj->body, $parameters['highlight']);
 		$obj->highlight = $parameters['highlight'];
 	}
 
