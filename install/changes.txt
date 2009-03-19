@@ -78,6 +78,7 @@ Changes in 5.0.2-stable
 - Added new MS Office mime types (docx, pptx, xlsx, etc) to mime().
 - Fixed a fatal error in the siteevent submissions form.
 - Removed search term highlighting from news app; use modes.php technique instead.
+- Updated XT code so <xt:sql> tags work again.
 
 Changes in 5.0.1-stable
 

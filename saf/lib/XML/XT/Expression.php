@@ -146,6 +146,16 @@ class XTExpression extends Parser {
 	}
 
 	/**
+	 * Unsets the specified register entry.
+	 *
+	 * @param string
+	 *
+	 */
+	function unsetObject ($name = 'object') {
+		$this->register[$name] = false;
+	}
+
+	/**
 	 * Registers the specified name into the register, using a global object of the
 	 * same name as the register value.
 	 *

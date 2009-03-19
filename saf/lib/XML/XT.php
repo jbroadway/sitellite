@@ -2642,11 +2642,12 @@ class XT {
 			'pager' => false,
 			'limit' => 20,
 			'offsetvar' => 'offset',
+			'node' => $node,
 		);
 		if ($node['attributes']['pager'] == 'yes') {
 			$this->sql[count ($this->sql) - 1]['pager'] = true;
 			$this->sql[count ($this->sql) - 1]['limit'] = $node['attributes']['limit'];
-			$this->sql[count ($this->sql) - 1]['offsetvar'] = $node['attributes']['offsetvar'];
+			//$this->sql[count ($this->sql) - 1]['offsetvar'] = $node['attributes']['offsetvar'];
 		}
 		return '';
 	}
@@ -2662,7 +2663,7 @@ class XT {
 	 * 
 	 */
 	function _sql_end ($node) {
-		global $db;
+		global $db, $cgi;
 
 		$sql = array_shift ($this->sql);
 		$out = '';
@@ -2670,9 +2671,8 @@ class XT {
 		if ($sql['pager']) {
 			if (empty ($sql['totalquery'])) {
 				$sql['totalquery'] = preg_replace ('/^select .+ from /i', 'select count(*) as total from ', $sql['query']);
-//				$sql['totalquery'] = preg_replace ('/ limit .+$/i', '', $sql['totalquery']);
 			}
-			$sql['totalquery'] = $this->exp->evaluate ($sql['totalquery'], $this->exp->register['object'], 'string', true);
+			$sql['totalquery'] = $this->exp->evaluate ($sql['totalquery'], $sql['node'], 'string', true);
 			$tot = $db->fetch ($sql['totalquery'], $sql['bind']);
 			if (! $tot) {
 				$total = 0;
@@ -2685,24 +2685,23 @@ class XT {
 			if (! is_numeric ($limit)) {
 				$limit = 20;
 			}
-			$offset = $this->exp->evaluate ('cgi/' . $sql['offsetvar'] . ' | php: 0', $node, 'path', true);
+			$offset = $cgi->offset;
 			if (! is_numeric ($offset)) {
 				$offset = 0;
 			}
 
 			$sql['query'] .= ' limit ' . $offset . ', ' . $limit;
 
-			global $loader, $cgi, $_SERVER;
-			$loader->import ('saf.Database.Pager');
-			$cgi->{$sql['offsetvar']} = $offset;
-			$pager = new Pager ();
-			$out .= '<p>' . $pager->link (
-				$_SERVER['SCRIPT_NAME'] . $cgi->makeQuery ($sql['offsetvar']) . '&',
-				$limit, $offset, $total
-			) . '</p>';
+			global $loader, $_SERVER;
+			$loader->import ('saf.GUI.Pager');
+			$pager = new Pager ($offset, $limit, $total);
+			$pager->setUrl ($_SERVER['SCRIPT_NAME'] . $cgi->makeQuery (array ($sql['offsetvar'], 'page', 'mode')));
+			$pager->getInfo ();
+			template_simple_register ('pager', $pager);
+			$out .= template_simple ('<p>{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}</p>', array ());
 		}
 
-		$sql['query'] = $this->exp->evaluate ($sql['query'], $this->exp->register['object'], 'string', true);
+		$sql['query'] = $this->exp->evaluate ($sql['query'], $sql['node'], 'string', true);
 		$res = $db->fetch (
 			$sql['query'],
 			$sql['bind']
@@ -2710,16 +2709,16 @@ class XT {
 		if (! $res) {
 			//$this->error = $db->error;
 			$this->exp->setObject ($db, 'result');
-			return $this->fill ($this->wrap ($sql['else']), $this->exp->register['object'], true);
+			return $this->fill ($this->wrap ($sql['else']), $sql['node'], true);
 			$this->exp->setObject (false, 'result');
 		} elseif (is_object ($res)) {
 			$res = array ($res);
 		}
 		foreach ($res as $row) {
 			$this->exp->setObject ($row, 'result');
-			$out .= $this->fill ($this->wrap ($sql['sub']), $this->exp->register['object'], true);
+			$out .= $this->fill ($this->wrap ($sql['sub']), $sql['node'], true);
 		}
-		$this->exp->setObject (false, 'result');
+		$this->exp->unsetObject ('result');
 		$this->rows = $db->rows;
 		return $out;
 	}
