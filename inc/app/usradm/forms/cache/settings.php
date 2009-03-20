@@ -16,7 +16,7 @@ extra = "size='10'"
 
 type = text
 alt = Cache Location
-formhelp = "The location to store the page-level cache.  It may be a directory name (ie. cache/pages), mod:proxy, which will generates the proper HTTP headers for a proxy/cache server to provide the caching, or bdb:path/to/page_store.db, which uses the Berkeley DB software to store the cached pages.  Note: Berkeley DB stores require PHP's DBA extension."
+formhelp = "The location to store the page-level cache.  It may be a directory name (ie. cache/pages), mod:proxy, which will generates the proper HTTP headers for a proxy/cache server to provide the caching, bdb:path/to/page_store.db, which uses the Berkeley DB software to store the cached pages, or memcache:server:port, which uses Memcached to store the cached pages.  Note: Berkeley DB stores require PHP's DBA extension and Memcached requires PHP's Memcache extension."
 extra = "size='38'"
 
 [proxystore]

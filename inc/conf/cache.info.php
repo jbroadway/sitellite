@@ -59,11 +59,14 @@ duration		= 3600
 ; proxy/cache server or the visitors' browsers to cache the page for us,
 ; or bdb:path/to/page_store.db, which specifies the path to a Berkeley
 ; DB file which can contain the pages as key/value pairs in a single
-; file and use a BDB daemon to retrieve them.  BDB may prove faster than
-; the filesystem at performing lookups because it can keep the data
+; file and use a BDB daemon to retrieve them, or memcache:server:port,
+; which uses a Memcached server. Memcached and BDB may prove faster than
+; the filesystem at performing lookups because they can keep the data
 ; in memory between requests.  BDB stores require PHP to be configured
 ; with the DBA extension and linked against a Berkeley DB3 installation
-; (ie. --with-db3).  For more information, see php.net/dba.
+; (ie. --with-db3).  For more information, see php.net/dba. Memcached
+; stores require PHP's Memcache extension, and store the URI as the key
+; and the HTML as the value.
 location		= store:cache/pages:sitellite_cache_file_list
 
 ; This is the location to store proxy cache "tag" files, which are empty

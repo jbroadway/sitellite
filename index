@@ -137,7 +137,7 @@ if ($conf['Cache']['duration'] > 0) {
 
 	// Create a Cache object and tell it where to cache files (directory,
 	// berkeley database, or via proxy/caching)
-	$cache = new Cache ($conf['Cache']['location']);
+	$cache = new Cache ($conf['Cache']['location'], $conf['Cache']['duration']);
 
 	if (
 			// Make sure page is cacheable

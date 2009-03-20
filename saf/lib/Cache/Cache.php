@@ -36,6 +36,11 @@
 	 * New in 1.4:
 	 * - New logic in is_cacheable() allows subsequent rules to override previous ones.
 	 * 
+	 * New in 1.6:
+	 * - Added memcache support (requires PHP's memcache extension). Just set the dir
+	 *   to "memcache:servername:portnum". The memcached keys are the URI and the values
+	 *   are uncompressed HTML.
+	 *
 	 * <code>
 	 * <?php
 	 *
@@ -100,6 +105,14 @@ class Cache {
 	var $error;
 
 	/**
+	 * The length of time to store cached objects before expiring them.
+	 *
+	 * @access	public
+	 *
+	 */
+	var $duration = 3600;
+
+	/**
 	 * Constructor method.  Defines the directory Cache will use to store pages.
 	 * If the string 'mod:proxy' is given instead, Cache will know not to cache the data
 	 * locally, but rather to simply pass an HTTP Expires header for the proxy server to
@@ -111,11 +124,30 @@ class Cache {
 	 * 
 	 * @access	public
 	 * @param	string	$dir
+	 * @param	integer $duration
 	 * 
 	 */
-	function Cache ($dir = '') {
+	function Cache ($dir = '', $duration = 3600) {
 		$this->dir = $dir;
-		if (preg_match ('/^bdb:(.+)/', $dir, $regs)) {
+		$this->duration = $duration;
+		if (preg_match ('/^memcache:(.+)/', $dir, $regs)) {
+			if (! class_exists ('Memcache')) {
+				$this->set = false; // you need the php memcache extension
+				return;
+			}
+			if (preg_match ('/(.+):(.+)$/', $regs[1], $r2)) {
+				$server = $r2[1];
+				$port = $r2[2];
+			} else {
+				$server = $regs[1];
+				$port = 11211;
+			}
+			$this->memcache = new Memcache;
+			if (! $this->memcache->connect ($server, $port)) {
+				$this->set = false; // failed to connect
+				return;
+			}
+		} elseif (preg_match ('/^bdb:(.+)/', $dir, $regs)) {
 			if (preg_match ('/(.+):(.+)$/', $regs[1], $r2)) {
 				$db = $r2[2];
 				$regs[1] = $r2[1];
@@ -196,14 +228,20 @@ class Cache {
 	 * 
 	 */
 	function file ($file = '', $data = '') {
-		if ($this->dir == 'mod:proxy') {
+		if (is_object ($this->memcache)) {
+			if (! $this->memcache->replace ($file, $data, 0, $this->duration)) {
+				if (! $this->memcache->set ($file, $data, 0, $this->duration)) {
+					$this->error = 'Failed to set memcache for key: ' . $file;
+					return false;
+				}
+			}
+		} elseif ($this->dir == 'mod:proxy') {
 			// proxy caching, simply adds Expires header to data sent
 			// in this case, file may contain the expiry time instead
 			$mod_time = gmdate ('D, d M Y H:i:s', mktime () + SITELLITE_CACHE_DURATION) . ' GMT';
 			header ('Expires: ' . $mod_time);
 			header ('Last-Modified: ' . gmdate ('D, d M Y H:i:s', mktime ()) . ' GMT');
 			header ('Content-Length: ' . strlen ($data));
-
 		} elseif (is_object ($this->bdb)) {
 			// $regs[1] is the bdb name
 			if ($this->bdb->exists ($file)) {
@@ -267,7 +305,12 @@ class Cache {
 			$flushed = 0;
 		}
 
-		if ($this->dir == 'mod:proxy') {
+		if (is_object ($this->memcache)) {
+			if ($this->memcache->get ($file)) {
+				return false;
+			}
+			return true;
+		} elseif ($this->dir == 'mod:proxy') {
 			$file = SITELLITE_CACHE_PROXY_STORE . '/PROXY_' . $this->serialize ($file);
 			//echo "$file\n";
 			if (
@@ -375,7 +418,9 @@ class Cache {
 	 *
 	 */
 	function expire ($file) {
-		if (! is_object ($this->bdb) && $this->dir != 'mod:proxy') {
+		if (is_object ($this->memcache)) {
+			return $this->memcache->delete ($file);
+		} elseif (! is_object ($this->bdb) && $this->dir != 'mod:proxy') {
 			if (is_object ($this->fs)) {
 				$f = $this->serialize ($file);
 				$p = $this->fs->getPath ($f);
@@ -408,7 +453,9 @@ class Cache {
 		if (! empty ($charset)) {
 			header ('Content-Type: text/html; charset=' . intl_charset ());
 		}
-		if (is_object ($this->bdb)) {
+		if (is_object ($this->memcache)) {
+			return $this->memcache->get ($file);
+		} elseif (is_object ($this->bdb)) {
 			// use bdb
 			if ($this->bdb->exists ($file)) {
 				return $this->bdb->fetch ($file);
@@ -494,7 +541,9 @@ class Cache {
 	function shutdown () {
 		// The all important $bdb->close () call,
 		// just in case you're using BDB to handle caching
-		if (is_object ($this->bdb)) {
+		if (is_object ($this->memcache)) {
+			$this->memcache->close ();
+		} elseif (is_object ($this->bdb)) {
 			$this->bdb->close ();
 		}
 	}
@@ -507,6 +556,9 @@ class Cache {
 	 *
 	 */
 	function clear () {
+		if (is_object ($this->memcache)) {
+			return $this->memcache->flush ();
+		}
 		return @touch ('cache/.flushed');
 	}
 }
