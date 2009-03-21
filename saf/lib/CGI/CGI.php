@@ -275,7 +275,7 @@ class CGI {
 
 		//global $_SERVER; // just in case
 		if (conf ('Site', 'remove_index') && isset ($_GET['_rewrite_sticky'])) {
-			$_SERVER['REQUEST_URI'] = '/index' . $_SERVER['REQUEST_URI'];
+			$_SERVER['REQUEST_URI'] = '/index' . str_replace ('/index/', '/', $_SERVER['REQUEST_URI']);
 		}
 		if (strstr ($_SERVER['REQUEST_URI'], '?')) {
 			$uri = urldecode (substr ($_SERVER['REQUEST_URI'], 0, strpos ($_SERVER['REQUEST_URI'], '?')));

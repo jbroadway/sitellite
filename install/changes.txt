@@ -81,6 +81,7 @@ Changes in 5.0.2-stable
 - Updated XT code so <xt:sql> tags work again.
 - Added Memcache support to the saf.Cache package and Sitellite's page caching.
 - Changed default i18n mode to 'url' which is the more commonly desired setting.
+- Added a small fix to saf.CGI which improves support for FastCGI servers.
 
 Changes in 5.0.1-stable
 
