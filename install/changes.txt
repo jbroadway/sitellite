@@ -80,6 +80,7 @@ Changes in 5.0.2-stable
 - Removed search term highlighting from news app; use modes.php technique instead.
 - Updated XT code so <xt:sql> tags work again.
 - Added Memcache support to the saf.Cache package and Sitellite's page caching.
+- Changed default i18n mode to 'url' which is the more commonly desired setting.
 
 Changes in 5.0.1-stable
 
