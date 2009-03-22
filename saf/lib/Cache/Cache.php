@@ -498,6 +498,10 @@ class Cache {
 			return false;
 		}
 
+		if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+			return false;
+		}
+
 		$this->set = false;
 		foreach ($list as $page => $rule) {
 			//echo "Evaluating rule: " . $page . "<br />\n";
