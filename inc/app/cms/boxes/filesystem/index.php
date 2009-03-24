@@ -160,8 +160,6 @@ if (isset ($_SERVER['HTTP_RANGE'])) {
 		header ("Content-Length: $csize");
 		header ('Content-Type: application/force-download');
 		header ('Content-Type: ' . str_replace ('|[,;].*$|i', '', mime ('inc/data/' . $parameters['file'])));
-		//header ('Content-Disposition: inline; filename=' . $info['basename'] . '.' . $info['extension']);
-		//echo @join ('', @file ('inc/data/' . $parameters['file']));
 
 		if ($fh = fopen ('inc/data/' . $parameters['file'], 'rb')) {
 			fseek ($fh, $from);
@@ -187,12 +185,16 @@ if (isset ($_SERVER['HTTP_RANGE'])) {
 	header ('Cache-control: private');
 	header ('Content-Type: ' . str_replace ('|[,;].*$|i', '', mime ('inc/data/' . $parameters['file'])));
 	header ('Content-Disposition: inline; filename="' . basename ($parameters['file']) . '"');
-	header ('Content-Length: ' . filesize ('inc/data/' . $parameters['file']));
-	//echo @join ('', @file ('inc/data/' . $parameters['file']));
-	readfile ('inc/data/' . $parameters['file']);
+	if (conf ('Server', 'xsendfile') == 'lighttpd') {
+		header ('X-Sendfile: ' . site_docroot () . '/inc/data/' . $parameters['file']);
+	} elseif (conf ('Server', 'xsendfile') == 'nginx') {
+		header ('X-Accel-Redirect: ' . site_prefix () . '/inc/data/' . $parameters['file']);
+	} else {
+		header ('Content-Length: ' . filesize ('inc/data/' . $parameters['file']));
+		readfile ('inc/data/' . $parameters['file']);
+	}
 }
 
-//loader_import ('sitetracker.Bug');
 db_execute (
 	'insert into sitellite_filesystem_download values (?, now(), ?)',
 	$parameters['file'],

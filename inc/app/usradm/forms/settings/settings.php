@@ -171,6 +171,13 @@ formhelp = "This setting enables gzip encoding of pages sent to visitors should 
 
 type = hidden
 
+[Server_xsendfile]
+
+type = select
+alt = "X-SendFile Compatibility"
+setValues = "eval: array ('readfile' => 'Default (PHP)', 'lighttpd' => 'X-SendFile (Apache/Lighttpd)', 'nginx' => 'X-Accel-Redirect (nginx)')"
+formhelp = "This allows Web Files downloads to be served directly by the web server, which is more efficient than serving through PHP. Please note that some web server configuration changes may be required for this setting."
+
 [I18n]
 
 type = section

@@ -184,6 +184,14 @@ compress_output			= On
 ; http://www.php.net/error_reporting
 error_reporting			= "E_ALL ^ E_NOTICE"
 
+; This allows Web Files downloads to be served directly by the web
+; server, which is much more efficient than reading and passing on
+; file data through PHP. The default 'readfile' uses PHP's readfile()
+; function. Other options are 'lighttpd' which is compatible with
+; Lighttpd and Apache's mod_xsendfile, and 'nginx' which is compatible
+; with the nginx's XSendFile implementation.
+xsendfile				= readfile
+
 [I18n]
 
 ; Directory where language files live.

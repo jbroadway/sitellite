@@ -66,6 +66,8 @@ compress_output         = Off
 
 error_reporting         = "E_ALL ^ E_NOTICE"
 
+xsendfile				= readfile
+
 [I18n]
 
 directory               = inc/lang
