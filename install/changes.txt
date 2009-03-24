@@ -84,6 +84,7 @@ Changes in 5.0.2-stable
 - Added a small fix to saf.CGI which improves support for FastCGI servers.
 - Fixed possible overzealous caching in saf.Cache.
 - Added google suggested translations in the string translator UI.
+- Fixed an issue with autosave when urls were longer than 255 characters.
 
 Changes in 5.0.1-stable
 

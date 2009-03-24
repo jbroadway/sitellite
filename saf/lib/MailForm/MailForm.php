@@ -791,7 +791,7 @@ class MailForm {
 			loader_import ('saf.MailForm.Autosave');
 			$a = new Autosave ();
 			if ($a->has_draft ()) {
-				if ($cgi->_autosave_start_from == intl_get ('Start from your previous draft')) {
+				if ($cgi->_autosave_start_from == intl_get ('Restore your previous editing session')) {
 					$data = $a->retrieve ();
 					foreach ($data as $k => $v) {
 						if (is_object ($this->widgets[$k])) {

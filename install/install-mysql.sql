@@ -825,11 +825,13 @@ create table sitellite_parallel_click (
 
 create table sitellite_autosave (
   user_id char(48) not null,
+  md5 char(32) not null,
   url char(255) not null,
   page_title char(128) not null,
   ts datetime not null,
   vals mediumtext not null,
   index (user_id, ts),
+  index (user_id, md5),
   index (url)
 );
 

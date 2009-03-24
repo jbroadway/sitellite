@@ -10,6 +10,7 @@ class Autosave {
 		$url = $vals['autosave_url'];
 		unset ($vals['autosave_url']);
 		$url = str_replace ('#', '', $url);
+		$md5 = md5 ($url);
 
 		$title = $vals['autosave_title'];
 		unset ($vals['autosave_title']);
@@ -20,18 +21,19 @@ class Autosave {
 
 		$vals = serialize ($vals);
 
-		if (db_shift ('select count(*) from sitellite_autosave where user_id = ? and url = ?', session_username (), $url)) {
+		if (db_shift ('select count(*) from sitellite_autosave where user_id = ? and md5 = ?', session_username (), $md5)) {
 			db_execute (
-				'update sitellite_autosave set vals = ?, page_title = ?, ts = now() where user_id = ? and url = ?',
+				'update sitellite_autosave set vals = ?, page_title = ?, ts = now() where user_id = ? and md5 = ?',
 				$vals,
 				$title,
 				session_username (),
-				$url
+				$md5
 			);
 		} else {
 			db_execute (
-				'insert into sitellite_autosave values (?, ?, ?, now(), ?)',
+				'insert into sitellite_autosave values (?, ?, ?, ?, now(), ?)',
 				session_username (),
+				$md5,
 				$url,
 				$title,
 				$vals
@@ -47,11 +49,12 @@ class Autosave {
 				$url = str_replace ('/index/', '/', $url);
 			}
 		}
+		$md5 = md5 ($url);
 		return unserialize (
 			db_shift (
-				'select vals from sitellite_autosave where user_id = ? and url = ?',
+				'select vals from sitellite_autosave where user_id = ? and md5 = ?',
 				session_username (),
-				$url
+				$md5
 			)
 		);
 	}
@@ -71,10 +74,11 @@ class Autosave {
 				$url = str_replace ('/index/', '/', $url);
 			}
 		}
+		$md5 = md5 ($url);
 		return db_execute (
-			'delete from sitellite_autosave where user_id = ? and url = ?',
+			'delete from sitellite_autosave where user_id = ? and md5 = ?',
 			session_username (),
-			$url
+			$md5
 		);
 	}
 
