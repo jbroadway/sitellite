@@ -28,7 +28,9 @@
 			<textarea name="values[{loop/_index}]" style="width: 100%" rows="2">{if loop[current] ne null}{loop/current}{end if}</textarea>
 			{end if}
 			{if strlen (loop[_key]) lt 40}
-			<input name="values[{loop/_index}]" type="text" style="width: 100%" {if loop[current] ne null}value="{loop/current}"{end if} />
+			<input name="values[{loop/_index}]" id="trv-{loop/_index}" type="text" style="width: 100%" {if loop[current] ne null}value="{loop/current}"{end if} /><br />
+			{intl Google Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
 			{end if}
 		</td>
 	</tr>
@@ -50,3 +52,27 @@
 </p>
 
 </form>
+
+<script type="text/javascript">
+
+$(document).ready (function () {
+	$.translate (
+		[
+{loop show}
+			'{loop/_key}'{if loop[_index] lt loop[_total]},{end if}
+{end loop}
+		],
+		'en',
+		'{lang}',
+		{
+			complete: function (translations) {
+				for (i = 0; i < translations.length; i++) {
+					$('#tr-' + (i + 1)).html ($.trim (translations[i]));
+					$('#tru-' + (i + 1)).css ('display', 'inline');
+				}
+			}
+		}
+	);
+});
+
+</script>

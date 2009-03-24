@@ -83,6 +83,7 @@ Changes in 5.0.2-stable
 - Changed default i18n mode to 'url' which is the more commonly desired setting.
 - Added a small fix to saf.CGI which improves support for FastCGI servers.
 - Fixed possible overzealous caching in saf.Cache.
+- Added google suggested translations in the string translator UI.
 
 Changes in 5.0.1-stable
 

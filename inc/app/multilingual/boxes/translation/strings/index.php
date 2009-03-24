@@ -95,6 +95,9 @@ $langs = ini_parse ($file_langs);
 
 page_title (intl_get ('Editing Language') . ': ' . $langs[$cgi->lang]['name']);
 
+page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
+page_add_script (site_prefix () . '/js/jquery.translate-1.2.6.min.js');
+
 template_simple_register ('show', $show);
 echo template_simple ('translation_strings.spt', $parameters);
 
