@@ -62,7 +62,7 @@ $(document).ready (function () {
 			'{loop/_key}'{if loop[_index] lt loop[_total]},{end if}
 {end loop}
 		],
-		'en',
+		'{intl/default}',
 		'{lang}',
 		{
 			complete: function (translations) {
