@@ -88,6 +88,7 @@ Changes in 5.0.2-stable
 - Added optional X-SendFile/X-Accel-Redirect support to Web Files.
 - Fixed an output mode issue in the default error handler.
 - Added old_links.txt mapping to the default error handler.
+- Fixed an issue with non-padded date links in the SiteEvent mini calendar.
 
 Changes in 5.0.1-stable
 

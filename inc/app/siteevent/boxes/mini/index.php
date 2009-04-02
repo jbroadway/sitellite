@@ -50,14 +50,14 @@ foreach (array_keys ($list) as $k) {
 			if ($m == $cal->month) {
 				$cal->addLink (
 					$d,
-					site_prefix () . '/index/siteevent-app/view.day/day.' . $parameters['minical'] . '-' . $d
+					site_prefix () . '/index/siteevent-app/view.day/day.' . $parameters['minical'] . '-' . str_pad ($d, 2, '0', STR_PAD_LEFT)
 				);
 			}
 			break;
 		case 'monthly':
 			$cal->addLink (
 				$d,
-				site_prefix () . '/index/siteevent-app/view.day/day.' . $parameters['minical'] . '-' . $d
+				site_prefix () . '/index/siteevent-app/view.day/day.' . $parameters['minical'] . '-' . str_pad ($d, 2, '0', STR_PAD_LEFT)
 			);
 			break;
 		case 'weekly':
@@ -78,7 +78,7 @@ foreach (array_keys ($list) as $k) {
 			for ($i = $start; $i <= $end; $i += 7) {
 				$cal->addLink (
 					$i,
-					site_prefix () . '/index/siteevent-app/view.day/day.' . $parameters['minical'] . '-' . $i
+					site_prefix () . '/index/siteevent-app/view.day/day.' . $parameters['minical'] . '-' . str_pad ($i, 2, '0', STR_PAD_LEFT)
 				);
 			}
 			break;
@@ -110,7 +110,7 @@ foreach (array_keys ($list) as $k) {
 			for ($i = $start; $i <= $end; $i++) {
 				$cal->addLink (
 					$i,
-					site_prefix () . '/index/siteevent-app/view.day/day.' . $parameters['minical'] . '-' . $i
+					site_prefix () . '/index/siteevent-app/view.day/day.' . $parameters['minical'] . '-' . str_pad ($i, 2, '0', STR_PAD_LEFT)
 				);
 			}
 			break;
