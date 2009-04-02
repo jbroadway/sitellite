@@ -13,8 +13,30 @@ if (! defined ('SAF_VERSION')) {
 }
 // END KEEPOUT CHECKING
 
+// if there's an old_links.txt in the site root, it will map
+// 404 errors from an old site to new pages in Sitellite. the
+// format for the file is tab-delimited as follows:
+// /new-page-link	/old-page.html
+if (@file_exists ('old_links.txt')) {
+	$pages = file ('old_links.txt');
+	
+	foreach ($pages as $key => $value) {
+		list ($id, $old) = explode ("\t", $value);
+		$old = trim ($old);
+	
+		if ($_SERVER['REQUEST_URI'] == $old || $_SERVER['REQUEST_URI'] == '/index' . $old) {
+			header ('HTTP/1.1 301 Moved Permanently');
+			header ('Location: ' . $id);
+			exit;
+		}
+	}
+}
+
 // import any object we need from the global namespace
 global $errno, $cgi;
+
+// make sure we switch back to html output mode
+$cgi->mode = 'html';
 
 // box logic begins here
 

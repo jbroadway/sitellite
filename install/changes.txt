@@ -86,6 +86,8 @@ Changes in 5.0.2-stable
 - Added google suggested translations in the string translator UI.
 - Fixed an issue with autosave when urls were longer than 255 characters.
 - Added optional X-SendFile/X-Accel-Redirect support to Web Files.
+- Fixed an output mode issue in the default error handler.
+- Added old_links.txt mapping to the default error handler.
 
 Changes in 5.0.1-stable
 
