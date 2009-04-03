@@ -340,10 +340,12 @@ class SessionManager_User {
 		$b =& $w->addButton ('all', array ('r' => '', 'w' => ''));
 		$b->alt = '<strong>All</strong>';
 		$b->setValue (array ('r', 'w'));
+		$b->extra = 'class="teams" onclick="teams_select_all (this)"';
 
 		foreach (session_get_teams () as $value) {
 			$b =& $w->addButton ($value, array ('r' => '', 'w' => ''));
 			$b->alt = ucwords (str_replace ('_', ' ', $value));
+			$b->extra = 'class="teams"';
 		}
 
 
@@ -640,6 +642,7 @@ class SessionManager_User {
 
 		$b =& $w->addButton ('all', array ('r' => '', 'w' => ''));
 		$b->alt = '<strong>All</strong>';
+		$b->extra = 'class="teams" onclick="teams_select_all (this)"';
 
 		$teams = unserialize ($user->teams);
 		if (isset ($teams['all'])) {
@@ -649,6 +652,7 @@ class SessionManager_User {
 			$b =& $w->addButton ($value, array ('r' => '', 'w' => ''));
 			$b->alt = ucwords (str_replace ('_', ' ', $value));
 			$b->setValue (assocify (preg_split ('//', $teams[$value], -1, PREG_SPLIT_NO_EMPTY)));
+			$b->extra = 'class="teams"';
 		}
 
 
@@ -867,6 +871,7 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 
 		$b =& $w->addButton ('all', array ('r' => '', 'w' => ''));
 		$b->alt = '<strong>All</strong>';
+		$b->extra = 'class="resources" onclick="resources_select_all (this)"';
 
 		loader_import ('usradm.Functions');
 
@@ -881,6 +886,7 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 		foreach ($resources as $key => $value) {
 			$b =& $w->addButton ($key, array ('r' => '', 'w' => ''));
 			$b->alt = $value;
+			$b->extra = 'class="resources"';
 		}
 
 
@@ -897,10 +903,12 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 
 		$b =& $w->addButton ('all', array ('r' => '', 'w' => ''));
 		$b->alt = '<strong>All</strong>';
+		$b->extra = 'class="access" onclick="access_select_all (this)"';
 
 		foreach (session_get_access_levels () as $value) {
 			$b =& $w->addButton ($value, array ('r' => '', 'w' => ''));
 			$b->alt = ucwords (str_replace ('_', ' ', $value));
+			$b->extra = 'class="access"';
 		}
 
 
@@ -919,10 +927,12 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 
 		$b =& $w->addButton ('all', array ('r' => '', 'w' => ''));
 		$b->alt = '<strong>All</strong>';
+		$b->extra = 'class="status" onclick="status_select_all (this)"';
 
 		foreach (session_get_statuses () as $value) {
 			$b =& $w->addButton ($value, array ('r' => '', 'w' => ''));
 			$b->alt = ucwords (str_replace ('_', ' ', $value));
+			$b->extra = 'class="status"';
 		}
 
 
@@ -1015,6 +1025,7 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 		$b =& $w->addButton ('all', array ('r' => '', 'w' => ''));
 		$b->alt = '<strong>All</strong>';
 		$b->setValue (assocify (preg_split ('//', $this->data[$item]['allow:resources']['all'], -1, PREG_SPLIT_NO_EMPTY)));
+		$b->extra = 'class="resources" onclick="resources_select_all (this)"';
 
 		loader_import ('usradm.Functions');
 
@@ -1030,6 +1041,7 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 			$b =& $w->addButton ($key, array ('r' => '', 'w' => ''));
 			$b->alt = $value;
 			$b->setValue (assocify (preg_split ('//', $this->data[$item]['allow:resources'][$key], -1, PREG_SPLIT_NO_EMPTY)));
+			$b->extra = 'class="resources"';
 		}
 
 		//foreach (session_get_resources () as $value) {
@@ -1055,11 +1067,13 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 		$b =& $w->addButton ('all', array ('r' => '', 'w' => ''));
 		$b->alt = '<strong>All</strong>';
 		$b->setValue (assocify (preg_split ('//', $this->data[$item]['allow:access']['all'], -1, PREG_SPLIT_NO_EMPTY)));
+		$b->extra = 'class="access" onclick="access_select_all (this)"';
 
 		foreach (session_get_access_levels () as $value) {
 			$b =& $w->addButton ($value, array ('r' => '', 'w' => ''));
 			$b->alt = ucwords (str_replace ('_', ' ', $value));
 			$b->setValue (assocify (preg_split ('//', $this->data[$item]['allow:access'][$value], -1, PREG_SPLIT_NO_EMPTY)));
+			$b->extra = 'class="access"';
 		}
 
 
@@ -1079,11 +1093,13 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 		$b =& $w->addButton ('all', array ('r' => '', 'w' => ''));
 		$b->alt = '<strong>All</strong>';
 		$b->setValue (assocify (preg_split ('//', $this->data[$item]['allow:status']['all'], -1, PREG_SPLIT_NO_EMPTY)));
+		$b->extra = 'class="status" onclick="status_select_all (this)"';
 
 		foreach (session_get_statuses () as $value) {
 			$b =& $w->addButton ($value, array ('r' => '', 'w' => ''));
 			$b->alt = ucwords (str_replace ('_', ' ', $value));
 			$b->setValue (assocify (preg_split ('//', $this->data[$item]['allow:status'][$value], -1, PREG_SPLIT_NO_EMPTY)));
+			$b->extra = 'class="status"';
 		}
 
 
