@@ -90,6 +90,7 @@ Changes in 5.0.2-stable
 - Added old_links.txt mapping to the default error handler.
 - Fixed an issue with non-padded date links in the SiteEvent mini calendar.
 - Top checkbox in role/user add/edit forms now checks all dynamically.
+- Default templates in alternate output modes now change to html if not found.
 
 Changes in 5.0.1-stable
 

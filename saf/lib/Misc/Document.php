@@ -436,7 +436,11 @@ class Document {
 			} elseif (! empty ($conf['Server']['default_template']) && @file_exists (getcwd () . '/' . $tpl->path . '/' . $cgi->mode . '.' . $conf['Server']['default_template'] . '.tpl')) {
 				$response = $tpl->fill ($cgi->mode . '.' . $conf['Server']['default_template'] . '.tpl', $this);
 				$_t = $cgi->mode . '.' . $conf['Server']['default_template'] . '.tpl';
+			} elseif (@file_exists (getcwd () . '/' . $tpl->path . '/' . $cgi->mode . '.default.tpl')) {
+				$response = $tpl->fill ($cgi->mode . '.default.tpl', $this);
+				$_t = $cgi->mode . '.default.tpl';
 			} else {
+				$cgi->mode = 'html';
 				$response = $tpl->fill ($cgi->mode . '.default.tpl', $this);
 				$_t = $cgi->mode . '.default.tpl';
 			}
@@ -444,7 +448,11 @@ class Document {
 		} elseif (! empty ($conf['Server']['default_template']) && @file_exists (getcwd () . '/' . $tpl->path . '/' . $cgi->mode . '.' . $conf['Server']['default_template'] . '.tpl')) {
 			$response = $tpl->fill ($cgi->mode . '.' . $conf['Server']['default_template'] . '.tpl', $this);
 			$_t = $cgi->mode . '.' . $conf['Server']['default_template'] . '.tpl';
+		} elseif (@file_exists (getcwd () . '/' . $tpl->path . '/' . $cgi->mode . '.default.tpl')) {
+			$response = $tpl->fill ($cgi->mode . '.default.tpl', $this);
+			$_t = $cgi->mode . '.default.tpl';
 		} else {
+			$cgi->mode = 'html';
 			$response = $tpl->fill ($cgi->mode . '.default.tpl', $this);
 			$_t = $cgi->mode . '.default.tpl';
 		}
