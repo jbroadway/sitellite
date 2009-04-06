@@ -24,6 +24,7 @@ if (empty ($cgi->format)) {
 $data = array (
 	'location' => false,
 	'up' => false,
+	'add' => false,
 	'subfolders' => array (),
 	'files' => array (),
 	'slash' => '',
@@ -95,6 +96,15 @@ if (! empty ($data['folder_path'])) {
 $data['url_prefix'] = $data['url_prefix'] . $data['friendly_path'];
 // show me the money
 //info($data);
+
+// determine whether they can add files
+loader_import ('cms.Versioning.Rex');
+$rex = new Rex ('sitellite_filesystem');
+if (isset ($rex->info['Collection']['add']) && $rex->info['Collection']['add'] == false) {
+	// no add
+} elseif (session_allowed ('add', 'rw', 'resource')) {
+	$data['add'] = true;
+}
 
 template_simple_register ('cgi', $cgi);
 echo template_simple ('index.spt', $data);

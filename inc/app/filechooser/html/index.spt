@@ -89,10 +89,14 @@
 <h1>{base_nice_url}/{friendly_path}</h1>
 
 <p>
-	<a href="javascript: window.close ()">{intl Cancel}</a> &nbsp; &nbsp;
+	<a href="javascript: window.close ()">{intl Cancel}</a>
 
 	{if obj[up]}
-		<a href="{site/prefix}/index/filechooser-app{filter urlencode}?location={up}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl Up a Level}</a>
+		&nbsp; &nbsp; <a href="{site/prefix}/index/filechooser-app{filter urlencode}?location={up}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl Up a Level}</a>
+	{end if}
+
+	{if obj[add]}
+		&nbsp; &nbsp; <a href="{site/prefix}/index/filechooser-add-form{filter urlencode}?return={_SERVER/REQUEST_URI}&folder={friendly_path}{end filter}">{intl Quick Add}</a>
 	{end if}
 </p>
 
