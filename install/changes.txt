@@ -93,6 +93,7 @@ Changes in 5.0.2-stable
 - Default templates in alternate output modes now change to html if not found.
 - Added quick upload to Web Files file selector to streamline file links.
 - Added support for remove_index to googlesitemap scheduler task.
+- Added automatic pings to notify google of updated sitemaps.
 
 Changes in 5.0.1-stable
 

@@ -72,14 +72,35 @@ $out .= '</urlset>';
 
 umask (0000);
 
+// function based on example here: http://www.gidnetwork.com/b-54.html
+function googlesitemap_ping ($url) {
+	$status = 0;
+	if ($fp = @fsockopen ('www.google.com', 80)) {
+		$req = 'GET /webmasters/sitemaps/ping?sitemap=' . urlencode ($url)
+			. " HTTP/1.1\r\nHost: www.google.com\r\nUser-Agent: Mozilla/5.0 (compatible; "
+			. PHP_OS . ") PHP/" . PHP_VERSION . "\r\nConnection: Close\r\n\r\n";
+		fwrite ($fp, $req);
+		while (! feof ($fp)) {
+			if (@preg_match ('~^HTTP/\d\.\d (\d+)~i', fgets ($fp, 128), $m)) {
+				$status = intval ($m[1]);
+				break;
+			}
+		}
+		fclose ($fp);
+	}
+	return $status;
+}
+
 if (extension_loaded ('zlib')) {
 	$fp = gzopen ('googlesitemap.xml.gz', 'w');
 	gzwrite ($fp, $out);
 	gzclose ($fp);
+	googlesitemap_ping ('http://' . conf ('Site', 'domain') . '/googlesitemap.xml.gz');
 } else {
 	$fp = fopen ('googlesitemap.xml', 'w');
 	fwrite ($fp, $out);
 	fclose ($fp);
+	googlesitemap_ping ('http://' . conf ('Site', 'domain') . '/googlesitemap.xml');
 }
 
 ?>
