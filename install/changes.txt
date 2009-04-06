@@ -92,6 +92,7 @@ Changes in 5.0.2-stable
 - Top checkbox in role/user add/edit forms now checks all dynamically.
 - Default templates in alternate output modes now change to html if not found.
 - Added quick upload to Web Files file selector to streamline file links.
+- Added support for remove_index to googlesitemap scheduler task.
 
 Changes in 5.0.1-stable
 

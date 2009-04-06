@@ -53,7 +53,11 @@ foreach (Rex::getCollections () as $table) {
 		$res = array ();
 	}
 	foreach ($res as $obj) {
-		$urls[] = 'http://' . conf ('Site', 'domain') . '/index/' . sprintf ($rex->info['Collection']['sitesearch_url'], $obj->{$rex->key});
+		if (conf ('Site', 'remove_index')) {
+			$urls[] = 'http://' . conf ('Site', 'domain') . '/' . sprintf ($rex->info['Collection']['sitesearch_url'], $obj->{$rex->key});
+		} else {
+			$urls[] = 'http://' . conf ('Site', 'domain') . '/index/' . sprintf ($rex->info['Collection']['sitesearch_url'], $obj->{$rex->key});
+		}
 	}
 }
 
