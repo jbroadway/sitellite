@@ -57,11 +57,14 @@ function selectAll (f) {
 		<td width="10%" align="right">
 			{loop/count}
 		</td>
-		<td width="25%" align="center">
-			<a href="{site/prefix}/index/myadm-shell-action?sql=DESCRIBE+{filter urlencode}{loop/name}{end filter}#results">{intl Info}</a> &nbsp; &nbsp;
+		<td width="45%" align="left">
+			&nbsp; &nbsp; <a href="{site/prefix}/index/myadm-shell-action?sql=DESCRIBE+{filter urlencode}{loop/name}{end filter}#results">{intl Info}</a> &nbsp; &nbsp;
 			<a href="{site/prefix}/index/myadm-shell-action?sql=SHOW+INDEX+FROM+{filter urlencode}{loop/name}{end filter}#results">{intl Indexes}</a> &nbsp; &nbsp;
 			<a href="{site/prefix}/index/myadm-backup-action?table={filter urlencode}{loop/name}{end filter}&format=sql">{intl Backup}</a> &nbsp; &nbsp;
-			<a href="{site/prefix}/index/myadm-backup-action?table={filter urlencode}{loop/name}{end filter}&format=csv">{intl CSV}</a><!-- &nbsp; &nbsp;
+			<a href="{site/prefix}/index/myadm-backup-action?table={filter urlencode}{loop/name}{end filter}&format=csv">{intl CSV}</a>{if loop[is_collection]} &nbsp; &nbsp;
+			<a href="{site/prefix}/index/cms-browse-action?collection={loop/name}">{intl Browse Collection}</a>{end if}{if not loop[is_collection] and not loop[is_version_data]} &nbsp; &nbsp;
+			<a href="{site/prefix}/index/myadm-collection-action?table={loop/name}">{intl Create Collection}</a>{end if}{if loop[is_version_data]} &nbsp; &nbsp;
+			{intl Change History Table}{end if}<!-- &nbsp; &nbsp;
 			<a href="{site/prefix}/index/myadm-drop-action?table={filter urlencode}{loop/name}{end filter}" onclick="return confirmDrop ('{loop/name}')">{intl Drop}</a> -->
 		</td>
 	</tr>

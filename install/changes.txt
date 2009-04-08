@@ -94,6 +94,7 @@ Changes in 5.0.2-stable
 - Added quick upload to Web Files file selector to streamline file links.
 - Added support for remove_index to googlesitemap scheduler task.
 - Added automatic pings to notify google of updated sitemaps.
+- Added a form for creating collections from tables in the DB Manager.
 
 Changes in 5.0.1-stable
 

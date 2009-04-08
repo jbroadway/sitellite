@@ -50,6 +50,8 @@ foreach ($res as $row) {
 	$data['tables'][] = array (
 		'name' => $n,
 		'count' => db_shift ('select count(*) from ' . $n),
+		'is_collection' => @file_exists ('inc/app/cms/conf/collections/' . $n . '.php'),
+		'is_version_data' => preg_match ('/_sv$/', $n),
 	);
 }
 echo template_simple ('index.spt', $data);
