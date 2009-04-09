@@ -96,6 +96,7 @@ Changes in 5.0.2-stable
 - Added automatic pings to notify google of updated sitemaps.
 - Added a form for creating collections from tables in the DB Manager.
 - Added new {loop0/_value} tag to SimpleTemplate for referring to parent loops.
+- Added reporting to the DB Manager for saving useful SQL Shell queries.
 
 Changes in 5.0.1-stable
 

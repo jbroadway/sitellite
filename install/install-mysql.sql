@@ -1624,3 +1624,49 @@ create table realty_listing (
 	description text not null,
 	index (ts, price, status)
 );
+
+create table myadm_report (
+	id int not null auto_increment primary key,
+	name char(72) not null,
+	created datetime not null,
+	sql_query text not null,
+	sitellite_status varchar(32) NOT NULL default '',
+	sitellite_access varchar(32) NOT NULL default '',
+	sitellite_startdate datetime default NULL,
+	sitellite_expirydate datetime default NULL,
+	sitellite_owner varchar(48) NOT NULL default '',
+	sitellite_team varchar(48) NOT NULL default '',
+	index (name),
+	index (created),
+	index (sitellite_status,sitellite_access)
+);
+
+create table myadm_report_sv (
+	sv_autoid int(11) NOT NULL auto_increment primary key,
+	sv_author varchar(48) NOT NULL default '',
+	sv_action enum('created','modified','republished','replaced','restored','deleted','updated') NOT NULL default 'created',
+	sv_revision datetime NOT NULL,
+	sv_changelog text NOT NULL,
+	sv_deleted enum('yes','no') NOT NULL default 'no',
+	sv_current enum('yes','no') NOT NULL default 'yes',
+	id int not null,
+	name char(72) not null,
+	created datetime not null,
+	sql_query text not null,
+	sitellite_status varchar(32) NOT NULL default '',
+	sitellite_access varchar(32) NOT NULL default '',
+	sitellite_startdate datetime default NULL,
+	sitellite_expirydate datetime default NULL,
+	sitellite_owner varchar(48) NOT NULL default '',
+	sitellite_team varchar(48) NOT NULL default '',
+	index (sv_author, sv_action, sv_revision, sv_deleted, sv_current),
+	index (id)
+);
+
+create table myadm_report_results (
+	id int not null auto_increment primary key,
+	report_id int not null,
+	run datetime not null,
+	results mediumtext not null,
+	index (report_id, run)
+);

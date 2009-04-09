@@ -2,6 +2,12 @@
 
 global $cgi, $session;
 
+if (! empty ($cgi->sub2)) {
+	header ('Location: ' . site_prefix () . '/index/cms-add-form?collection=myadm_report&sql_query='
+		. urlencode ($cgi->sql));
+	exit;
+}
+
 if ($cgi->sql) {
 
 	$split = sql_split ($cgi->sql);
@@ -55,7 +61,8 @@ if (! empty ($cgi->sql)) {
 ?>
 </select><br />
 
-<input type="submit" value="Execute" />
+<input type="submit" name="sub1" value="Execute" />&nbsp;
+<input type="submit" name="sub2" value="Create Report" />
 
 </p>
 </form>
