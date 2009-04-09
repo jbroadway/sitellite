@@ -97,6 +97,7 @@ Changes in 5.0.2-stable
 - Added a form for creating collections from tables in the DB Manager.
 - Added new {loop0/_value} tag to SimpleTemplate for referring to parent loops.
 - Added reporting to the DB Manager for saving useful SQL Shell queries.
+- Added countries to petition app.
 
 Changes in 5.0.1-stable
 
