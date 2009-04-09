@@ -189,6 +189,10 @@ $GLOBALS['simple_template_register'] = array ();
 	 * 
 	 * New in 2.6:
 	 * - Specify filters like this: {varname|filter1|filter2}
+	 *
+	 * New in 2.8:
+	 * - Refer to parent loops via {loop0/_value}, {loop1/_value} etc.
+	 *   loop0 is the topmost loop's current element, and so on.
 	 * 
 	 * <code>
 	 * <?php
@@ -710,6 +714,11 @@ class SimpleTemplate {
 					$tmp = (isset ($simple_template_register['loop'])) ? $simple_template_register['loop'] : null;
 					$parent = (isset ($simple_template_register['parent'])) ? $simple_template_register['parent'] : null;
 					$simple_template_register['parent'] = $tmp;
+					$loopcount = 0;
+					while (isset ($simple_template_register['loop' . $loopcount])) {
+						$loopcount++;
+					}
+					$simple_template_register['loop' . $loopcount] = $tmp;
 
 					$index = 1;
 					$total = count ($this->_loopList);
@@ -739,6 +748,7 @@ class SimpleTemplate {
 
 					$simple_template_register['loop'] = $tmp;
 					$simple_template_register['parent'] = $parent;
+					unset ($simple_template_register['loop' . $loopcount]);
 
 				} else {
 					$this->_loopBuffer .= $tok;
