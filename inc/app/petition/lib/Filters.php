@@ -9,4 +9,9 @@ function petition_filter_province ($prov) {
 	return $list[$prov];
 }
 
+function petition_filter_country ($c) {
+	$list = appconf ('countries');
+	return $list[$c];
+}
+
 ?>

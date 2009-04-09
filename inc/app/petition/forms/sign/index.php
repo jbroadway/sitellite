@@ -10,7 +10,7 @@ class PetitionSignForm extends MailForm {
 	}
 	function onSubmit ($vals) {
 		db_execute (
-			'insert into petition_signature values (null, ?, ?, ?, ?, ?, ?, ?, ?, now())',
+			'insert into petition_signature values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())',
 			$vals['id'],
 			$vals['firstname'],
 			$vals['lastname'],
@@ -18,6 +18,7 @@ class PetitionSignForm extends MailForm {
 			$vals['address'],
 			$vals['city'],
 			$vals['province'],
+			$vals['country'],
 			$vals['postal_code']
 		);
 

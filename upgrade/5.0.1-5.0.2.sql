@@ -85,3 +85,7 @@ create table myadm_report_results (
 	results mediumtext not null,
 	index (report_id, run)
 );
+
+alter table petition_signature change column province province char(2) not null;
+alter table petition_signature add column country char(2) not null after province;
+alter table petition_signature change column postal_code postal_code char(10) not null;

@@ -24,7 +24,7 @@
 {loop obj[list]}
 	<tr class="{alt/next}">
 		<td>{loop/num}. {loop/firstname} {loop/lastname}</td>
-		<td>{loop/city}, {filter petition_filter_province}{loop/province}{end filter}</td>
+		<td>{loop/city}{if loop.province ne '--' and loop.province ne ''}, {filter petition_filter_province}{loop/province}{end filter}{end if}{if loop.country ne '--' and loop.country ne ''}, {filter petition_filter_country}{loop/country}{end filter}{end if}</td>
 	</tr>
 {end loop}
 </table>

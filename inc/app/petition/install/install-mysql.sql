@@ -19,8 +19,9 @@ create table petition_signature (
 	email char(72) not null,
 	address char(72) not null,
 	city char(48) not null,
-	province char(48) not null,
-	postal_code char(8) not null,
+	province char(2) not null,
+	country char(2) not null,
+	postal_code char(10) not null,
 	ts datetime not null,
 	index (petition_id, ts)
 );
