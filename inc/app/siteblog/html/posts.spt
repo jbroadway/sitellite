@@ -23,7 +23,12 @@ SHARETHIS.addEntry ({
        // {intl By} <a href="{site/prefix}/index/siteblog-author-action/author.{loop/author}">{loop/author}</a>
        </p>
      
-     <div class="siteblog-post-body">{filter template_parse_body}{loop/body}{end filter}</div>
+     <div class="siteblog-post-body">
+     {filter siteblog_filter_body_summary}{loop/body}{end filter}
+     {if appconf ('split_body')}
+     <p class="siteblog-continue-link"><a href="{site/prefix}/index/siteblog-post-action/id.{loop/id}/title.{filter siteblog_filter_link_title}{loop/subject}{end filter}">{intl Click to continue...}</a></p>
+     {end if}
+     </div>
 
     <p class="siteblog-post-footer">
      	<a href="/index/siteblog-topic-action/id.{loop/category}/title.{filter siteblog_filter_link_title}{loop/category_name}{end filter}">{filter intl_get}{loop/category_name}{end filter}</a>

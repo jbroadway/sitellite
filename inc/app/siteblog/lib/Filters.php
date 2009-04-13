@@ -77,6 +77,28 @@ function siteblog_filter_akismet ($cid) {
 	return '<br />[ <a href="' . site_prefix () . '/index/siteblog-akismet-spam-action?id=' . $cid . '">Spam?</a> ]';
 }
 
+function siteblog_filter_body ($b) {
+	if (! appconf ('split_body')) {
+		return template_parse_body ($b);
+	}
+
+	return template_parse_body (
+		preg_replace ('|<hr[^>]*>|is', '', $b)
+	);
+}
+
+function siteblog_filter_body_summary ($b) {
+	if (! appconf ('split_body')) {
+		return template_parse_body ($b);
+	}
+
+	return template_parse_body (
+		array_shift (
+			preg_split ('|<hr[^>]*>|is', $b)
+		)
+	);
+}
+
 function &siteblog_translate (&$obj) {
 	loader_import ('saf.Database.Generic');
 	$g = new Generic ('siteblog_post', 'id');

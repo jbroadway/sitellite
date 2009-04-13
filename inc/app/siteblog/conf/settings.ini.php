@@ -54,6 +54,16 @@ extra                   = "size=`10`"
 
 value                   = 10
 
+[split_body]
+
+type					= select
+
+alt						= "Mark post summary end by <hr /> tag"
+
+setValues               = "eval: array ('1' => 'Yes', '0' => 'No')"
+
+value                   = On
+
 [sharethis]
 
 alt                     = ShareThis.com embed code

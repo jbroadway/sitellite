@@ -100,6 +100,7 @@ Changes in 5.0.2-stable
 - Added countries to petition app.
 - Added SiteBlog to admin panel editable settings.
 - Added ShareThis.com widget integration to SiteBlog, simply paste code in settings.
+- Added blog post summary shortening to SiteBlog settings.
 
 Changes in 5.0.1-stable
 

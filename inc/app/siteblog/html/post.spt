@@ -37,7 +37,7 @@ SHARETHIS.addEntry ({
    // {intl By} <a href="{site/prefix}/index/siteblog-author-action/author.{author}">{author}</a>
    </p>
  
- <div class="siteblog-post-body">{filter template_parse_body}{body}{end filter}</div>
+ <div class="siteblog-post-body">{filter siteblog_filter_body}{body}{end filter}</div>
 
 <p class="siteblog-post-footer">
 {if obj.comments_on eq true}
