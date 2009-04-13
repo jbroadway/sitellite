@@ -48,6 +48,11 @@ page_title ($res->subject);
 
 page_add_style (site_prefix () . '/inc/app/siteblog/html/post.css');
 
+$res->sharethis = appconf ('sharethis');
+if (! empty ($res->sharethis)) {
+	page_add_script ($res->sharethis);
+}
+
 echo template_simple ('post.spt', $res);
 
 ?>

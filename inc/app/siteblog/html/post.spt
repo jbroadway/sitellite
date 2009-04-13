@@ -18,6 +18,20 @@
 </table>
 
 <div class="siteblog-post">
+
+{if not empty (obj.sharethis)}
+<div style="float: right">
+<script language="javascript" type="text/javascript">
+SHARETHIS.addEntry ({
+	title: "{subject|htmlentities}",
+	url: document.URL
+}, {
+	button: true
+});
+</script>
+</div>
+{end if}
+
   <p class="siteblog-post-info">
    {filter siteblog_filter_nicedate}{created}{end filter}
    // {intl By} <a href="{site/prefix}/index/siteblog-author-action/author.{author}">{author}</a>

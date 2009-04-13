@@ -99,6 +99,7 @@ Changes in 5.0.2-stable
 - Added reporting to the DB Manager for saving useful SQL Shell queries.
 - Added countries to petition app.
 - Added SiteBlog to admin panel editable settings.
+- Added ShareThis.com widget integration to SiteBlog, simply paste code in settings.
 
 Changes in 5.0.1-stable
 

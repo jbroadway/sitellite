@@ -57,6 +57,11 @@ foreach (array_keys ($res) as $k) {
 
 page_add_style (site_prefix () . '/inc/app/siteblog/html/post.css');
 
-echo template_simple ('posts.spt', array ('post' => $res));
+$sharethis = appconf ('sharethis');
+if (! empty ($sharethis)) {
+	page_add_script ($sharethis);
+}
+
+echo template_simple ('posts.spt', array ('post' => $res, 'sharethis' => $sharethis));
 
 ?>
