@@ -101,6 +101,7 @@ Changes in 5.0.2-stable
 - Added SiteBlog to admin panel editable settings.
 - Added ShareThis.com widget integration to SiteBlog, simply paste code in settings.
 - Added blog post summary shortening to SiteBlog settings.
+- Added Twitter posting to SiteBlog, just add your Twitter info in the settings.
 
 Changes in 5.0.1-stable
 

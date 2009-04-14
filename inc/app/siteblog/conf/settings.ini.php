@@ -56,9 +56,9 @@ value                   = 10
 
 [split_body]
 
-type					= select
+type                    = select
 
-alt						= "Mark post summary end by <hr /> tag"
+alt                     = Mark post summary end by <hr /> tag
 
 setValues               = "eval: array ('1' => 'Yes', '0' => 'No')"
 
@@ -71,6 +71,24 @@ alt                     = ShareThis.com embed code
 type                    = textarea
 
 labelPosition           = left
+
+value                   = Off
+
+[twitter]
+
+alt                     = "Twitter Username (auto-post to Twitter)"
+
+extra                   = "autocomplete=`off`"
+
+value                   = Off
+
+[twitter_pass]
+
+alt                     = Twitter Password
+
+type                    = password
+
+extra                   = "autocomplete=`off`"
 
 value                   = Off
 

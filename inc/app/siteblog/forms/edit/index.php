@@ -31,6 +31,12 @@ class SiteblogEditForm extends MailForm {
         }
 		$this->widgets['category']->setValues ($cats);
 
+		$twitter_u = appconf ('twitter');
+		$twitter_p = appconf ('twitter_pass');
+		if (! empty ($twitter_u) && ! empty ($twitter_p)) {
+			$this->widgets['twitter'] =& $this->widgets['twitter']->changeType ('text');
+		}
+
         if ($add) {
 
             page_title (intl_get ('Adding Blog Post'));
@@ -110,29 +116,48 @@ class SiteblogEditForm extends MailForm {
 	    }
 
 		// ping blog directories via pingomatic.com
-		$host = 'rpc.pingomatic.com';
-		$path = '';
-		
-		$out = template_simple ('ping.spt', $obj);
-		
-		$len = strlen ($out);
-		
-		$req = 'POST /' . $path . " HTTP/1.0\r\n";
-		$req .= 'User-Agent: Sitellite ' . SITELLITE_VERSION . "/SiteBlog\r\n";
-		$req .= 'Host: ' . $host . "\r\n";
-		$req .= "Content-Type: text/xml\r\n";
-		$req .= 'Content-Length: ' . $len . "\r\n\r\n";
-		$req .= $out . "\r\n";
-		
-		if ($ph = @fsockopen ($host, 80)) {
-			@fputs ($ph, $req);
-			//echo '<pre>';
-			//echo htmlentities ($req);
-			while (! @feof ($ph)) {
-				$res = @fgets ($ph, 128);
-				//echo htmlentities ($res);
+		if ($vals['status'] == 'visible') {
+			$host = 'rpc.pingomatic.com';
+			$path = '';
+			
+			$out = template_simple ('ping.spt', $obj);
+			
+			$len = strlen ($out);
+			
+			$req = 'POST /' . $path . " HTTP/1.0\r\n";
+			$req .= 'User-Agent: Sitellite ' . SITELLITE_VERSION . "/SiteBlog\r\n";
+			$req .= 'Host: ' . $host . "\r\n";
+			$req .= "Content-Type: text/xml\r\n";
+			$req .= 'Content-Length: ' . $len . "\r\n\r\n";
+			$req .= $out . "\r\n";
+			
+			if ($ph = @fsockopen ($host, 80)) {
+				@fputs ($ph, $req);
+				//echo '<pre>';
+				//echo htmlentities ($req);
+				while (! @feof ($ph)) {
+					$res = @fgets ($ph, 128);
+					//echo htmlentities ($res);
+				}
+				@fclose ($ph);
 			}
-			@fclose ($ph);
+		}
+
+		// post to twitter
+		if (! empty ($vals['twitter']) && $vals['status'] == 'visible') {
+			$twitter_u = appconf ('twitter');
+			$twitter_p = appconf ('twitter_pass');
+			if (! empty ($twitter_u) && ! empty ($twitter_p)) {
+				loader_import ('siteblog.Bitly');
+				$b = new Bitly;
+				$short_link = $b->shorten ('http://' . site_domain () . site_prefix () . '/index/siteblog-post-action/id.' . $id . '/title.' . siteblog_filter_link_title ($subject));
+
+				loader_import ('siteblog.Twitter');
+				$t = new twitter;
+				$t->username = $twitter_u;
+				$t->password = $twitter_p;
+				$t->update ($vals['twitter'] . ' ' . $short_link);
+			}
 		}
 
         exit;

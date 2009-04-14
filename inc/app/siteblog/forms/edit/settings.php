@@ -36,8 +36,15 @@ type = hidden
 [subject]
 
 type        = text
-extra       = "style='width: 575px'"
+extra       = "style='width: 565px'"
 alt			= Post Title
+
+[twitter]
+
+type		= hidden
+alt			= Post to Twitter
+extra		= "style='width: 565px' maxlength='125'"
+append		= "<br />(note: only sends if status is `published`, automatically adds a link to the post using <a href='http://bit.ly/' target='_blank'>bit.ly</a>)"
 
 [author]
 
