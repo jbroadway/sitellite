@@ -82,10 +82,10 @@ class CSS_Parser extends Parser {
 					list ($t, $class) = explode ('.', $name);
 					if ($tag) {
 						if (empty ($t) || $tag == $t) {
-							$classes[] = $class;
+							$classes[] = array_shift (explode (':', $class));
 						}
 					} else {
-						$classes[] = $class;
+						$classes[] = array_shift (explode (':', $class));
 					}
 				}
 			}

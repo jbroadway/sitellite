@@ -1,5 +1,9 @@
 Changes in 5.0.2-stable
 
+- Fixed pseudo-classes from showing up in Edit Properties CSS class list.
+
+Changes in 5.0.2-stable
+
 - Fixed <br> tags being added to <pre> content in Xed in Firefox.
 - Fixed an issue with Xed's htmlentities decoding.
 - Added automatic support for gzip compression of AJAX responses.
