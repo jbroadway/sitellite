@@ -11,13 +11,17 @@ if (empty ($parameters['newsfeed'])) {
 	$parameters['newsfeed'] = 'http://' . site_domain . site_prefix () . '/index/news-rss-action';
 }
 
-if (empty ($parameters['expires'])) {
-	$parameters['expires'] = 'auto';
-}
-
 loader_import ('news.simplepie');
 
 $feed = new SimplePie ($parameters['newsfeed']);
+
+if (! empty ($parameters['expires'])) {
+	$feed->set_cache_duration ($parameters['expires']);
+}
+
+if (! empty ($parameters['limit'])) {
+	$feed->set_item_limit ($parameters['limit']);
+}
 
 $feed->handle_content_type ();
 
