@@ -8,6 +8,26 @@
  */
 
 if (empty ($parameters['newsfeed'])) {
+	$parameters['newsfeed'] = 'http://' . site_domain . site_prefix () . '/index/news-rss-action';
+}
+
+if (empty ($parameters['expires'])) {
+	$parameters['expires'] = 'auto';
+}
+
+loader_import ('news.simplepie');
+
+$feed = new SimplePie ($parameters['newsfeed']);
+
+$feed->handle_content_type ();
+
+if ($box['context'] == 'action') {
+	page_title ($feed->get_title ());
+}
+
+echo template_simple ('rss_viewer2.spt', $feed);
+
+/*if (empty ($parameters['newsfeed'])) {
 	//echo 'no feed<br />';
 	$parameters['newsfeed'] = 'http://www.mainsite.lo/index/news-rss-action';
 }
@@ -52,6 +72,6 @@ if ($parameters['limit'] > 0) {
 	$channel->items = array_slice ($channel->items, 0, $parameters['limit']);
 }
 
-echo template_simple ('rss_viewer.spt', $channel);
+echo template_simple ('rss_viewer.spt', $channel);*/
 
 ?>

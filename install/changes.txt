@@ -3,6 +3,7 @@ Changes in 5.0.2-stable
 - Fixed pseudo-classes from showing up in Edit Properties CSS class list.
 - Fixed an issue with customized breadcrumb links for apps.
 - Fixed some time sorting issues in SiteEvent day lists.
+- Switched news/rss/viewer to use SimplePie for better i18n support.
 
 Changes in 5.0.2-stable
 

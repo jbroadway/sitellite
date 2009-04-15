@@ -37,7 +37,7 @@ if (! empty ($parameters['section'])) { // view section list
 	}
 	$list = $newlist;
 
-	header ('Content-Type: text/xml');
+	header ('Content-Type: text/xml; charset=' . intl_charset ());
 	echo template_simple (
 		'rss_section.spt',
 		array (
@@ -80,7 +80,7 @@ if (! empty ($parameters['section'])) { // view section list
 	}
 	$list = $newlist;
 
-	header ('Content-Type: text/xml');
+	header ('Content-Type: text/xml; charset=' . intl_charset ());
 	echo template_simple (
 		'rss_author.spt',
 		array (
@@ -110,7 +110,7 @@ if (! empty ($parameters['section'])) { // view section list
 		$list = array ();
 	}
 
-	header ('Content-Type: text/xml');
+	header ('Content-Type: text/xml; charset=' . intl_charset ());
 	echo template_simple (
 		'rss_frontpage.spt',
 		array (

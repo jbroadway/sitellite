@@ -684,7 +684,7 @@ class I18n {
 		} elseif ($method == 'url') {
 			// use /en/ or /fr/ to set language
 			global $conf;
-			$parts = parse_url ($_SERVER['REQUEST_URI']);
+			$parts = @parse_url ($_SERVER['REQUEST_URI']);
 			list ($root, $null) = explode ('/index', $parts['path']);
 			$root = trim ($root, '/');
 			if (! empty ($root)) {
