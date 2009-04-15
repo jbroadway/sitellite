@@ -19,6 +19,7 @@ foreach (array_keys ($list) as $k) {
 		$alt .= ' - ' . Date::time ($item->end_time, 'g:i A');
 	}
 
+	$item->_time = $item->time;
 	if ($item->time == '00:00:00') {
 		$item->time = '';
 	} else {
@@ -51,7 +52,8 @@ foreach (array_keys ($list) as $k) {
 					site_prefix () . '/index/siteevent-details-action/id.' . $item->id . '/title.' . siteevent_filter_link_title ($item->title),
 					$priority,
 					$alt,
-					$item->time
+					$item->time,
+					$item->_time
 				);
 			}
 			break;
@@ -62,7 +64,8 @@ foreach (array_keys ($list) as $k) {
 				site_prefix () . '/index/siteevent-details-action/id.' . $item->id . '/title.' . siteevent_filter_link_title ($item->title),
 				$priority,
 				$alt,
-				$item->time
+				$item->time,
+				$item->_time
 			);
 			break;
 		case 'weekly':
@@ -87,7 +90,8 @@ foreach (array_keys ($list) as $k) {
 					site_prefix () . '/index/siteevent-details-action/id.' . $item->id . '/title.' . siteevent_filter_link_title ($item->title),
 					$priority,
 					$alt,
-					$item->time
+					$item->time,
+					$item->_time
 				);
 			}
 			break;
@@ -114,7 +118,8 @@ foreach (array_keys ($list) as $k) {
 					site_prefix () . '/index/siteevent-details-action/id.' . $item->id . '/title.' . siteevent_filter_link_title ($item->title),
 					$priority,
 					$alt,
-					$item->time
+					$item->time,
+					$item->_time
 				);
 			}
 			break;
@@ -147,6 +152,10 @@ if (false && session_admin ()) {
 			'view' => $parameters['view'],
 		)
 	);
+}
+
+foreach ($cal->_links as $d => $links) {
+	usort ($cal->_links[$d], 'siteevent_time_sort');
 }
 
 echo $cal->render ();

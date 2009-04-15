@@ -72,7 +72,7 @@ class SimpleCal {
 	 * @param integer
 	 * @param string
 	 */
-	function addLink ($day, $text, $link, $important = false, $alt = '', $pre = '') {
+	function addLink ($day, $text, $link, $important = false, $alt = '', $pre = '', $time = false) {
 		if (strstr ($day, '-')) {
 			preg_match ('|[0-9]{4}-[0-9]{2}-([0-9]{2})|', $day, $regs);
 			$l = new StdClass;
@@ -81,6 +81,7 @@ class SimpleCal {
 			$l->important = $important;
 			$l->alt = $alt;
 			$l->pre = $pre;
+			$l->time = $time;
 			$this->_links[(int) $regs[1]][] = $l;
 		} else {
 			$l = new StdClass;
@@ -89,6 +90,7 @@ class SimpleCal {
 			$l->important = $important;
 			$l->alt = $alt;
 			$l->pre = $pre;
+			$l->time = $time;
 			$this->_links[(int) $day][] = $l;
 		}
 	}

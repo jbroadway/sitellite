@@ -266,7 +266,35 @@ class SiteEvent_Event extends Generic {
 			}
 		}
 
+		usort ($items, 'siteevent_time_sort');
+
 		return $items;
+	}
+}
+
+function siteevent_time_sort ($a, $b) {
+	if (is_object ($a)) {
+		if (! isset ($a->_time)) {
+			$a->_time = $a->time;
+		}
+		if (! isset ($b->_time)) {
+			$b->_time = $b->time;
+		}
+		if ($a->_time == $b->_time) {
+			return 0;
+		}
+		return ($a->_time < $b->_time) ? -1 : 1;
+	} else {
+		if (! isset ($a['_time'])) {
+			$a['_time'] = $a['time'];
+		}
+		if (! isset ($b['_time'])) {
+			$b['_time'] = $b['time'];
+		}
+		if ($a['_time'] == $b['_time']) {
+			return 0;
+		}
+		return ($a['_time'] < $b['_time']) ? -1 : 1;
 	}
 }
 

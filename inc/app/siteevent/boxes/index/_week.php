@@ -40,6 +40,8 @@ foreach (array_keys ($list) as $k) {
 		$alt .= ' - ' . Date::time ($item->end_time, 'g:i A');
 	}
 
+	$item->_time = $item->time;
+
 	if ($item->time == '00:00:00') {
 		$item->time = '';
 	} else {
@@ -169,6 +171,10 @@ foreach (array_keys ($list) as $k) {
 			}
 			break;
 	}
+}
+
+foreach ($items as $d => $links) {
+	usort ($items[$d], 'siteevent_time_sort');
 }
 
 if (false && session_admin ()) {
