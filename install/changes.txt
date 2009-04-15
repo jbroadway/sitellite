@@ -1,6 +1,7 @@
 Changes in 5.0.2-stable
 
 - Fixed pseudo-classes from showing up in Edit Properties CSS class list.
+- Fixed an issue with customized breadcrumb links for apps.
 
 Changes in 5.0.2-stable
 

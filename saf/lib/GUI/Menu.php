@@ -455,6 +455,9 @@ class Menu {
 		$this->{'items_' . $id} =& new MenuItem ($id, $title);
 		if (empty ($ref)) {
 			$this->tree[] =& $this->{'items_' . $id};
+		} else {
+			$this->{'items_' . $ref}->children[] =& $this->{'items_' . $id};
+			$this->{'items_' . $id}->parent =& $this->{'items_' . $ref};
 		}
 
 		$this->{'items_' . $id}->colours = $this->colours;
