@@ -1,4 +1,5 @@
 #scm-toolbar {
+	display: block;
 	margin: 0px;
 	padding: 0px;
 	width: auto;
@@ -57,7 +58,13 @@
 	color: #fff;
 }
 
+.scm-viewing a:visited {
+	color: #fff;
+}
+
 .scm-status {
+	display: block;
+	clear: both;
 	color: #fff;
 	padding-top: 2px;
 	padding-right: 7px;
