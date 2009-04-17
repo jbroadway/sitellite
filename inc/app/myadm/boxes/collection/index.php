@@ -659,9 +659,6 @@ class MyadmCollectionForm extends MailForm {
 		$collection['hints'] = $hints;
 
 		$conf = template_simple ('collection_template.spt', $collection);
-		header ('Content-Type: text/plain');
-		echo $conf;
-		exit;
 
 		// create version table if missing and is_versioned = true
 		if ($collection['is_versioned'] == '1') {
