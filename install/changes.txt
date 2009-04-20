@@ -5,6 +5,7 @@ Changes in 5.0.3-stable
 - Fixed some time sorting issues in SiteEvent day lists.
 - Switched news/rss/viewer to use SimplePie for better i18n support.
 - Improved CSS for Sitellite web view edit buttons.
+- Added URL parameter checking to cms/filesystem box.
 
 Changes in 5.0.2-stable
 

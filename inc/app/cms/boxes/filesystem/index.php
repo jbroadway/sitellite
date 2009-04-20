@@ -19,6 +19,9 @@ if (empty ($parameters['file'])) {
 	$exploded = explode ('/cms-filesystem-action/', $_SERVER['REQUEST_URI']);
 	if (count ($exploded) >= 2) {
 		$parameters['file'] = urldecode (array_pop ($exploded));
+		if (strpos ($parameters['file'], '?') !== false) {
+			list ($parameters['file'], $extra) = explode ('?', $parameters['file']);
+		}
 	}
 }
 
