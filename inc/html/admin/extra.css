@@ -43,6 +43,8 @@
 }
 
 .scm-viewing {
+	display: block;
+	clear: both;
 	color: #fff;
 	padding-top: 2px;
 	padding-right: 7px;
