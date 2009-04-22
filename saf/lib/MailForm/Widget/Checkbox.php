@@ -88,7 +88,9 @@ class MF_Widget_checkbox extends MF_Widget {
 
 	/**
 	 * This lets you change the number of columns used to display the checkboxes.
-	 * Default is 1 and up to 4 are supported.
+	 * Default is 1 and up to 4 are supported. Alternately, if you specify the
+	 * name of a .spt file in this value, the form will use that template to
+	 * display the widget.
 	 */
 	var $columns = 1;
 
@@ -399,6 +401,8 @@ class MF_Widget_checkbox extends MF_Widget {
 				} elseif ($this->columns == 4) {
 					list ($this->value1, $this->value2, $this->value3, $this->value4) = array_chunk ($this->value, ceil (count ($this->value) / 4), true);
 					return template_simple ($this->_vertical_template4, $this);
+				} elseif (is_string ($this->columns)) {
+					return template_simple ($this->columns, $this);
 				}
 			} else {
 				return template_simple ($this->_horizontal_template, $this);
