@@ -12,8 +12,10 @@ alt			= "Caption (Optional)"
 
 [home_link]
 
-type		= select
-alt			= "Include automatic `Home` link"
-setValues	= "eval: assocify (array ('yes', 'no'))"
+type		= pagebrowser.Widget.Pagebrowser
+alt			= "Include home link<br />(select page)"
+label_template = "{display_value|none}"
+;setValues	= "eval: assocify (array ('yes', 'no'))"
+setValue	= "index"
 
 ; */ ?>

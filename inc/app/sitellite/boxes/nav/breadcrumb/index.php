@@ -14,8 +14,10 @@ if ($page->id != 'index') {
 
 	if ($parameters['home_link'] == 'no') {
 		$home = false;
+	} elseif (! empty ($parameters['home_link'])) {
+		$home = $parameters['home_link'];
 	} else {
-		$home = true;
+		$home = false;
 	}
 
 	if ($page->below_page && ! isset ($menu->{'items_' . $page->id})) {
@@ -33,7 +35,7 @@ if ($page->id != 'index') {
 	} elseif (! empty ($page->title)) {
 		echo '<p class="breadcrumb">'
 			. '<span class="caption">' . $caption . '</span>'
-			. template_simple ('nav/breadcrumb/link_home.spt', array ('id' => 'index', 'title' => intl_get ('Home')))
+			. template_simple ('nav/breadcrumb/link_home.spt', array ('id' => $home, 'title' => intl_get ('Home')))
 			. ' / '
 			. $page->title
 			. '</p>' . NEWLINEx2;

@@ -7,6 +7,7 @@ Changes in 5.0.3-stable
 - Improved CSS for Sitellite web view edit buttons.
 - Added URL parameter checking to cms/filesystem box.
 - Added option to specify a custom template for the checkbox widget.
+- Added home link selector to breadcrumb box for better multi-site support.
 
 Changes in 5.0.2-stable
 

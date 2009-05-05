@@ -605,7 +605,7 @@ class Menu {
 	 * @return	array
 	 * 
 	 */
-	function trail ($id, $tplt = '', $home = true, $separator = ' &gt; ') {
+	function trail ($id, $tplt = '', $home = 'index', $separator = ' &gt; ') {
 		if (empty ($tplt)) {
 			if (! is_object ($this->{'items_' . $id})) {
 				return array ();
@@ -620,14 +620,16 @@ class Menu {
 			$t = array ();
 
 			if ($home) {
-				$t[] = $this->homeLink ($tplt);
+				$t[] = $this->homeLink ($tplt, $home);
 			}
 
 			$trail = $this->{'items_' . $id}->trail ();
 			$last = array_pop ($trail);
 
 			foreach ($trail as $item) {
-				$t[] = $simple->fill ($tplt, $item);
+				if ($item->id != $home) {
+					$t[] = $simple->fill ($tplt, $item);
+				}
 			}
 
 			array_push ($t, $last->title);
@@ -665,11 +667,15 @@ class Menu {
 	 * @return	string
 	 * 
 	 */
-	function homeLink ($tplt) {
+	function homeLink ($tplt, $home = 'index') {
 		global $intl, $simple;
 
+		if (is_bool ($home)) {
+			$home = 'index';
+		}
+
 		$item = array (
-			'id' => 'index',
+			'id' => $home,
 			'title' => 'Home',
 		);
 
