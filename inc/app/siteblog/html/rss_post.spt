@@ -14,7 +14,7 @@
 	<link>{site/url}/index/siteblog-app</link>
 	<description>{site/domain} {intl Blog RSS Feed}</description>
 
-	<dc:language>{if not empty (intl_locale ())}{intl/locale}-{end if}{intl/language}</dc:language>
+	<dc:language>{if intl_locale ()}{intl/locale}-{end if}{intl/language}</dc:language>
 	<dc:date>{rss_date}</dc:date>
 
 	<syn:updatePeriod>hourly</syn:updatePeriod>
