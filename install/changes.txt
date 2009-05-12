@@ -9,6 +9,7 @@ Changes in 5.0.3-stable
 - Added option to specify a custom template for the checkbox widget.
 - Added home link selector to breadcrumb box for better multi-site support.
 - Fixed rss error in siteblog.
+- Updated installer browser version warnings.
 
 Changes in 5.0.2-stable
 

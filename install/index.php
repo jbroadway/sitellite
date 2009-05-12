@@ -179,8 +179,17 @@ thanks for your interest in Sitellite and welcome to the neighbourhood!</p>';
 			)
 				||
 			(
-				$ua->property ('browser') == 'fb' &&
-				$ua->property ('version') >= '0.9'
+				$ua->property ('browser') == 'ca' &&
+				$ua->property ('version') >= '1.0'
+			)
+				||
+			(
+				$ua->property ('browser') == 'sf' &&
+				$ua->property ('version') >= '52'
+			)
+				||
+			(
+				$ua->property ('ua') == 'adobeair'
 			)
 		)) {
 			// browser check
