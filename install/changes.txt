@@ -10,6 +10,8 @@ Changes in 5.0.3-stable
 - Added home link selector to breadcrumb box for better multi-site support.
 - Fixed rss error in siteblog.
 - Updated installer browser version warnings.
+- Added 3rd-party services section to site settings form.
+- Added reCaptcha.net support to saf.MailForm.Security.
 
 Changes in 5.0.2-stable
 
