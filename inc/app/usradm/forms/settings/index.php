@@ -37,6 +37,7 @@ class UsradmSettingsForm extends MailForm {
 		unset ($vals['Server']);
 		unset ($vals['I18n']);
 		unset ($vals['Messaging']);
+		unset ($vals['Services']);
 		unset ($vals['submit_button']);
 
 		$config = array ();

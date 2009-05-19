@@ -251,6 +251,14 @@ jabber_username	= test
 ; The password to access the Jabber account designated to Sitellite.
 jabber_password	= test
 
+[Services]
+
+; reCaptcha.net public key, used by the MailForm security widget.
+recaptcha_public_key	= "6LdNfQYAAAAAAPS0z28jdEeiesWwZtNIxr3dobs4"
+
+; reCaptcha.net private key, used by the MailForm security widget.
+recaptcha_private_key	= "6LdNfQYAAAAAAMi6jcEWAUkDLWlmWt-Mbmj9ZiTN"
+
 ;
 ; THE END
 ;

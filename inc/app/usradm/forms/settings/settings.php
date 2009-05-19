@@ -266,6 +266,21 @@ type = text
 alt = Jabber Server Password
 formhelp = "The password to access the Jabber account designated to Sitellite."
 
+[Services]
+
+type = section
+title = "3rd-Party Services"
+
+[Services_recaptcha_public_key]
+
+type = text
+alt = "reCaptcha.net Public Key"
+
+[Services_recaptcha_private_key]
+
+type = text
+alt = "reCaptcha.net Private Key"
+
 [submit_button]
 
 type = msubmit

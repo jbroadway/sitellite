@@ -98,6 +98,12 @@ jabber_username         = ""
 
 jabber_password         = ""
 
+[Services]
+
+recaptcha_public_key	= ""
+
+recaptcha_private_key	= ""
+
 ;
 ; THE END
 ;
