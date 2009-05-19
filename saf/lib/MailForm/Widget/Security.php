@@ -76,6 +76,11 @@ class MF_Widget_security extends MF_Widget {
 	 * This requires PHP's GD extension however, which is not available on all
 	 * systems.  Check your phpinfo() output to determine compatibility.
 	 *
+	 * A third method is 'recaptcha' which uses the recaptcha.net service.
+	 * This requires the global conf('Services','recaptcha_public_key') and
+	 * conf('Services','recaptcha_private_key') settings to be set, in which
+	 * case this method will be used automatically as the default.
+	 *
 	 * Turing tests are also known as CAPTCHA tests.  Their purpose is to
 	 * verify that the user is human by having them perform a test that would
 	 * be difficult for a computer to pass.
@@ -86,6 +91,20 @@ class MF_Widget_security extends MF_Widget {
 	var $verify_method = 'figlet';
 
 	/**
+	 * Public key from recaptcha.net
+	 *
+	 * @access	public
+	 */
+	var $recaptcha_public_key = false;
+
+	/**
+	 * Private key from recaptcha.net
+	 *
+	 * @access	public
+	 */
+	var $recaptcha_private_key = false;
+
+	/**
 	 * Constructor Method.
 	 * 
 	 * @access	public
@@ -94,6 +113,13 @@ class MF_Widget_security extends MF_Widget {
 	 */
 	function MF_Widget_security ($name) {
 		parent::MF_Widget ($name);
+
+		$key = conf ('Services', 'recaptcha_public_key');
+		if (! empty ($key)) {
+			$this->verify_method = 'recaptcha';
+			$this->recaptcha_public_key = $key;
+			$this->recaptcha_private_key = conf ('Services', 'recaptcha_private_key');
+		}
 
 		$this->addRule (
 			'func "mailform_widget_security_verify"',
@@ -109,6 +135,15 @@ class MF_Widget_security extends MF_Widget {
 				die ('Your server does not have GD support, which is necessary to render the turing test for this form.');
 			}
 			$sec = new Security_Turing ();
+		} elseif ($this->verify_method == 'recaptcha') {
+			loader_import ('ext.recaptcha');
+			$res = recaptcha_check_answer (
+				conf ('Other', 'recaptcha_private_key'),
+				$_SERVER['REMOTE_ADDR'],
+				$_POST['recaptcha_challenge_field'],
+				$_POST['recaptcha_response_field']
+			);
+			return $res->is_valid;
 		} else {
 			loader_import ('saf.Security.Figlet');
 			$sec = new Security_Figlet ();
@@ -137,6 +172,22 @@ class MF_Widget_security extends MF_Widget {
 				die ('Your server does not have GD support, which is necessary to render the turing test for this form.');
 			}
 			$sec = new Security_Turing ();
+		} elseif ($this->verify_method == 'recaptcha') {
+			loader_import ('ext.recaptcha');
+			$html = recaptcha_get_html (conf ('Other', 'recaptcha_public_key'));
+			return sprintf (
+				"\t<tr>\n\t\t<td class='label' colspan='2'><label for='%s' id='%s-label'%s>%s</label></td></tr>
+				<tr><td class='field' colspan='2'>%s:<br />%s<input type='hidden' name='%s' id='%s' /><input type='hidden' name='%s_hash' /></td></tr>\n",
+				$this->name,
+				$this->name,
+				$this->invalid (),
+				$simple->fill ($this->label_template, $this, '', true),
+				intl_get ('Please enter the words you see below'),
+				$html,
+				$this->name,
+				$this->name,
+				$this->name
+			);
 		} else {
 			loader_import ('saf.Security.Figlet');
 			$sec = new Security_Figlet ();
