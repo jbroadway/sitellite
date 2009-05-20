@@ -12,6 +12,7 @@ Changes in 5.0.3-stable
 - Updated installer browser version warnings.
 - Added 3rd-party services section to site settings form.
 - Added reCaptcha.net support to saf.MailForm.Security.
+- Improved the audio embedding via SiteStreamer.
 
 Changes in 5.0.2-stable
 
