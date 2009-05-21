@@ -289,6 +289,9 @@ class Document {
 				return false;
 			}
 			if (! preg_match ('|^[a-zA-Z0-9]+://|', $this->external)) {
+				if (conf ('Site', 'remove_index')) {
+					$this->external = str_replace ('/index/', '/', $this->external);
+				}
 				if (strpos ($this->external, '/') === 0) {
 					if (site_secure () && cgi_is_https ()) {
 						header ('Location: https://' . site_domain () . $this->external);

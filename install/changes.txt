@@ -13,6 +13,7 @@ Changes in 5.0.3-stable
 - Added 3rd-party services section to site settings form.
 - Added reCaptcha.net support to saf.MailForm.Security.
 - Improved the audio embedding via SiteStreamer.
+- Internal page redirects fully obey the Site/remove_index setting.
 
 Changes in 5.0.2-stable
 
