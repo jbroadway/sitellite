@@ -34,7 +34,7 @@ loader_import ('docs.Functions');
 
 $data = array ();
 
-$data['packages'] = docs_cache ('packages');
+$data['packages'] = docs_cache ('packages', $parameters['current']);
 if (! is_array ($data['packages'])) {
 	$data['packages'] = docs_cache_store (Docs::packages ($parameters['current']), 'packages');
 }
