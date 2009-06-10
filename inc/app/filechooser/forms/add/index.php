@@ -32,6 +32,8 @@ function sitellite_filesystem_rule_unique ($vals) {
 		$new = $vals['folder'] . '/' . $new;
 	}
 
+	$new = preg_replace ('|/+|', '/', $new);
+
 	if (strpos ($new, '/') === 0) {
 		$new = substr ($new, 1);
 	}
@@ -66,6 +68,13 @@ class FilechooserAddForm extends MailForm {
 		$vals['sitellite_access'] = 'public';
 		$vals['sitellite_status'] = 'approved';
 		$vals['name'] = $folder . '/' . $vals['body']->name;
+
+		$vals['name'] = preg_replace ('|/+|', '/', $vals['name']);
+
+		if (strpos ($vals['name'], '/') === 0) {
+			$vals['name'] = substr ($vals['name'], 1);
+		}
+
 		$vals['display_title'] = '';
 		$vals['keywords'] = '';
 		$vals['description'] = '';
