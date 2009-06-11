@@ -15,6 +15,7 @@ Changes in 5.0.3-stable
 - Improved the audio embedding via SiteStreamer.
 - Internal page redirects fully obey the Site/remove_index setting.
 - Fixed a file path bug with the quick add in the file chooser.
+- Added news ticker box to the news app.
 
 Changes in 5.0.2-stable
 
