@@ -1,5 +1,5 @@
 <div id="languages">
-<form method="GET" action="{site/prefix}/index/sitellite-intl-setLang-action">
+<form method="get" action="{site/prefix}/index/sitellite-intl-setLang-action">
 <input type="hidden" name="curlang" value="{default}" />
 {intl Language}: <select name="choice" onchange="this.form.submit ()">
 {loop obj[langs]}
