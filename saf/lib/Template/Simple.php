@@ -500,7 +500,7 @@ class SimpleTemplate {
 				loader_import ('saf.Misc.Shorthand');
 				$sh = new PHPShorthand;
 				$sh->replaceGlobals ('simple_template_register');
-				$php = $sh->transform (str_replace ('if ', '', $var));
+				$php = $sh->transform (substr ($var, 3));
 
 				$simple_template_register['obj'] = $obj;
 				$simple_template_register['else'] = $php;
@@ -662,7 +662,8 @@ class SimpleTemplate {
 		ob_end_clean ();
 
 		//$out = preg_replace ("/" . $this->delim[$this->use_delim][0] . "([a-zA-Z0-9\.:\/_-]+)" . $this->delim[$this->use_delim][1] . "/e", "\$this->determine ('$1', \$obj)", $use);
-		$tokens = preg_split ('/(' . $this->delim[$this->use_delim][0] . '[\[\]\(\)a-zA-Z0-9\.,=<>\?&#$\'":;\!\=\/\| _-]+' . $this->delim[$this->use_delim][1] . ')/s', $use, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+		//$tokens = preg_split ('/(' . $this->delim[$this->use_delim][0] . '[\[\]\(\)a-zA-Z0-9\.,=<>\?&#$\'":;\!\=\/\| _-]+' . $this->delim[$this->use_delim][1] . ')/s', $use, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+		$tokens = preg_split ('/(' . $this->delim[$this->use_delim][0] . '[^\r\n' . $this->delim[$this->use_delim][1] . ']+' . $this->delim[$this->use_delim][1] . ')/s', $use, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
 		$out = '';
 
