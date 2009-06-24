@@ -115,7 +115,7 @@ class MF_Widget_tinyarea extends MF_Widget {
 			</td>
 		</tr>';
 
-	var $_template_no_table = '<textarea {attrstr} rows="{rows}" cols="{cols}" {extra} class="tinyarea">{data_value}</textarea>';
+	var $_template_no_table = '<textarea {attrstr|none} rows="{rows}" cols="{cols}" {extra|none} class="tinyarea">{data_value}</textarea>';
 
 	var $tinyButtons1 = 'bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,undo,redo,link,unlink,emotions,separator,formatselect';
 	var $tinyButtons2 = '';
