@@ -252,7 +252,7 @@ class rSelectFacet extends rFacet {
 
 		$out .= '<strong>' . intl_get ($this->display) . ':</strong>' . NEWLINE
 			. TAB . '<select name="_' . $this->field . '" onchange="this.form.submit ()">' . NEWLINE;
-		if ($this->all !== false) {
+		if ($this->all != false) {
 			$out .= TABx2 . '<option value="" selected="selected">- ' . intl_get ('ALL') . ' -</option>' . NEWLINE;
 		}
 
