@@ -178,3 +178,4 @@ Application: <select name="package" onchange="this.form.submit ()">
 	<p>Choose a package from the left to view its documentation, or select another application from the dropdown list.</p>
 {end if}
 </div>
+<br clear="all" />
