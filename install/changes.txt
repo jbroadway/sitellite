@@ -16,6 +16,7 @@ Changes in 5.0.3-stable
 - Internal page redirects fully obey the Site/remove_index setting.
 - Fixed a file path bug with the quick add in the file chooser.
 - Added news ticker box to the news app.
+- #139 Fixed a security issue with the activity log.
 
 Changes in 5.0.2-stable
 

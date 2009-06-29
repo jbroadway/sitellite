@@ -211,11 +211,11 @@
 	foreach ($res as $row) {
 		$uname = db_shift ('select concat(lastname, ", ", firstname) from sitellite_user where username = ?', $row->user);
 		if (! $uname) {
-			$uname = '<span title="' . intl_get ('Non-Existent') . '">' . $row->user . '</span>';
+			$uname = '<span title="' . intl_get ('Non-Existent') . '">' . htmlentities_compat ($row->user) . '</span>';
 		} elseif ($uname == ', ') {
-			$uname = '<a href="' . site_prefix () . '/index/cms-user-view-action?user=' . $row->user . '">' . $row->user . '</a>';
+			$uname = '<a href="' . site_prefix () . '/index/cms-user-view-action?user=' . urlencode ($row->user) . '">' . htmlentities_compat ($row->user) . '</a>';
 		} else {
-			$uname = '<a href="' . site_prefix () . '/index/cms-user-view-action?user=' . $row->user . '" title="' . $uname . '">' . $row->user . '</a>';
+			$uname = '<a href="' . site_prefix () . '/index/cms-user-view-action?user=' . urlencode ($row->user) . '" title="' . $uname . '">' . htmlentities_compat ($row->user) . '</a>';
 		}
 
 		if (strlen ($row->message) > 45) {
