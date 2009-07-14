@@ -75,21 +75,22 @@ echo template_simple (
 );
 
 echo '<p>';
+if (! empty ($parameters['category'])) {
+    $cat = '?category=' . $parameters['category'];
+} else {
+    $cat = '';
+}
+if (! empty ($parameters['audience'])) {
+    $aud = (empty ($cat)?'?':'&') .
+        'audience=' . $parameters['audience'];
+} else {
+    $aud = '';
+}
 if (appconf ('ical_links')) {
-	if (! empty ($parameters['category'])) {
-		$cat = '?category=' . $parameters['category'];
-	} else {
-		$cat = '';
-	}
-	echo '<a href="' . site_prefix () . '/index/siteevent-ical-action' . $cat . '">' . intl_get ('Subscribe (iCalendar)') . '</a> &nbsp; &nbsp; &nbsp; &nbsp;';
+    echo '<a href="' . site_prefix () . '/index/siteevent-ical-action' .                $cat . $aud . '">' . intl_get ('Subscribe (iCalendar)') . '</a> &nbsp; &nbsp; &nbsp; &nbsp;';
 }
 if (appconf ('rss_links')) {
-	if (! empty ($parameters['category'])) {
-		$cat = '?category=' . $parameters['category'];
-	} else {
-		$cat = '';
-	}
-	echo '<a href="' . site_prefix () . '/index/siteevent-rss-action' . $cat . '">' . intl_get ('Subscribe (RSS)') . '</a> &nbsp; &nbsp; &nbsp; &nbsp;';
+    echo '<a href="' . site_prefix () . '/index/siteevent-rss-action' .                 $cat . $aud . '">' . intl_get ('Subscribe (RSS)') . '</a> &nbsp; &nbsp; &nbsp; &nbsp;';
 }
 echo '</p>';
 
