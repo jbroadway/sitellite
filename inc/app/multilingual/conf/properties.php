@@ -6,6 +6,7 @@ define ('CMS_JS_CANCEL', '<script language="javascript" type="text/javascript">
 <!--
 
 function cms_cancel (f) {
+	onbeforeunload_form_submitted = true;
 	window.location.href = "' . site_prefix () . '/index/multilingual-app";
 	return false;
 }
