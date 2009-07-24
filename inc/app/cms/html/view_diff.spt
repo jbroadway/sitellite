@@ -31,6 +31,8 @@
 
 <p>
 	<a href="{site/prefix}/index/cms-history-action?_collection={cgi/_collection}&_key={cgi/_key}&_return={cgi/_return}&_current={cgi/_current}">{intl Back}</a>
+        &nbsp;&nbsp;
+        <a href="{site/prefix}/cms-history-restore-action?collection={cgi/_collection}&key={cgi/_key}&rid={cgi/_rid}&_return={cgi/_return}&_current={cgi/_current}">{intl Restore}</a>
 </p>
 
 <p>

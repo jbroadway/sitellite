@@ -33,6 +33,7 @@ Changes in 5.0.3-stable
 - Added missing audience selector in ical and rss feeds for SiteEvent.
 - Fixed an issue with onbeforeload in Multilingual.
 - Don't allow spaces in filenames of new templates and css inSiteTemplate [#25].
+- Added restore links to view current and view deleted pages [#28].
 
 Changes in 5.0.2-stable
 
