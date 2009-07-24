@@ -103,3 +103,5 @@
 	{end loop}
 </table>
 </form>
+
+<p align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</p>

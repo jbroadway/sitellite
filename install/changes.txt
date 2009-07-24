@@ -36,6 +36,7 @@ Changes in 5.0.3-stable
 - Added restore links to view current and view deleted pages [#28].
 - Fixed a bug about team permissions [#29].
 - Added a categories sidebar box to news-app [#31].
+- Added pager to the end of cms-browse page [#83].
 
 Changes in 5.0.2-stable
 
