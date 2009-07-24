@@ -38,6 +38,7 @@ Changes in 5.0.3-stable
 - Added a categories sidebar box to news-app [#31].
 - Added pager to the end of cms-browse page [#83].
 - Restrict access level, roles and status names to alnum chars [#94].
+- Prevent to set a page parent as itself [#105].
 
 Changes in 5.0.2-stable
 

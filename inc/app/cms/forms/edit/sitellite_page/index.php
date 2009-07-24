@@ -169,6 +169,7 @@ class CmsEditSitellite_pageForm extends MailForm {
 		$t =& $this->addWidget ('pagebrowser.Widget.Pagebrowser', 'below_page');
 		$t->alt = intl_get ('Location in Web Site');
 		$t->setValue ($_document->below_page);
+		$t->addRule ('not equals "_key"', 'Page cannot have itself as parent.');
 		$help = addslashes (intl_get ('Choose the page that this page should appear under in the hierarchy of the web site.'));
 		$t->extra = 'id="below_page" onfocus="formhelp_show (this, \''.$help.'\')" onblur="formhelp_hide ()"';
 
