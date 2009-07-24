@@ -374,7 +374,13 @@ class SessionAcl {
 	 */
 	function allowedTeamsList ($list = false) {
 		$team_list = array_keys ($this->teams);
-		$teams = array_keys ($this->user['teams']);
+		// $teams = array_keys ($this->user['teams']);
+		$teams = array ();
+		foreach ($this->user['teams'] as $k=>$v) {
+			if (! empty ($v)) {
+				$teams[] = $k;
+			}	
+		}	
 		if (! in_array ($this->user['team'], $teams)) {
 			$teams[] = $this->user['team'];
 		}
