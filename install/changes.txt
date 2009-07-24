@@ -17,6 +17,20 @@ Changes in 5.0.3-stable
 - Fixed a file path bug with the quick add in the file chooser.
 - Added news ticker box to the news app.
 - #139 Fixed a security issue with the activity log.
+- Fixed an issue with Tinyarea MF Widget.
+- Redid the algo for upcoming events in SiteEvent.
+- Added an parameter to specify base language of an app.
+- Only allow one default language in Multilingual [#3].
+- Allow better translation of SiteMember.
+- Added label tag to SiteMember forms.
+- Highlight current page in SiteMember sidebar
+- Fixed an issue with language selector when negociation method is url [#92].
+- Fixed a warning in Multilingual app.
+- Fixed an issue with rSelectFacet widget [#138].
+- Fixed an issue in docs-app about showing packages [#133].
+- Fixed an issue in SimpleTemplate with variable names in if conditions [#135].
+- Added missing audience selector in ical and rss feeds for SiteEvent.
+- Fixed an issue with onbeforeload in Multilingual.
 
 Changes in 5.0.2-stable
 
