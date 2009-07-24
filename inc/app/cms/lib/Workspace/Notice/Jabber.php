@@ -44,13 +44,15 @@ class WorkspaceNotice_jabber extends WorkspaceNotice {
 			}
 
 			if (defined ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_SUBJECT')) {
-				$subject = $intl->get (constant ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_SUBJECT'), $this);
+				$subject = constant ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_SUBJECT');
+				$subject = $intl->get ($subject, $this);
 			} else {
 				$subject = '[' . $this->id . '] ' . $this->subject;
 			}
 
 			if (defined ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_BODY')) {
-				$body = $intl->get (constant ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_BODY'), $this);
+				$body = constant ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_BODY');
+				$body = $intl->get ($body, $this);
 			} else {
 				$body = $this->body;
 			}
@@ -112,13 +114,15 @@ class WorkspaceNotice_jabber extends WorkspaceNotice {
 				}
 
 				if (defined ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_SUBJECT')) {
-					$subject = $intl->get (constant ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($item->name) . '_SUBJECT'), $item->struct);
+					$subject = constant ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($item->name) . '_SUBJECT');
+					$subject = $intl->get ($subject, $item->struct);
 				} else {
 					$subject = '[' . $id . '] ' . $item->subject;
 				}
 
 				if (defined ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_BODY')) {
-					$body = $intl->get (constant ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_BODY'), $item->struct);
+					$body = constant ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_BODY');
+					$body = $intl->get ($body, $item->struct);
 				} else {
 					$body = $item->body;
 				}

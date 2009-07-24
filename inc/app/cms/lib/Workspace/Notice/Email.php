@@ -33,13 +33,15 @@ class WorkspaceNotice_email extends WorkspaceNotice {
 		$mail->AddAddress ($this->address);
 
 		if (defined ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_SUBJECT')) {
-			$mail->Subject = $intl->get (constant ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_SUBJECT'), $this);
+			$subject = constant ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_SUBJECT');
+			$mail->Subject = $intl->get ($subject, $this);
 		} else {
 			$mail->Subject = '[' . $this->id . '] ' . $this->subject;
 		}
 
 		if (defined ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_BODY')) {
-			$mail->Body = $intl->get (constant ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_BODY'), $this);
+			$body = constant ('WORKSPACE_' . strtoupper ($this->type) . '_' . strtoupper ($this->name) . '_BODY');
+			$mail->Body = $intl->get ($body, $this);
 		} else {
 			$mail->Body = $this->body;
 		}
@@ -80,13 +82,15 @@ class WorkspaceNotice_email extends WorkspaceNotice {
 			$mail->AddAddress ($item->address);
 
 			if (defined ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_SUBJECT')) {
-				$mail->Subject = $intl->get (constant ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_SUBJECT'), $item->struct);
+				$subject = constant ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_SUBJECT');
+				$mail->Subject = $intl->get ($subject, $item->struct);
 			} else {
 				$mail->Subject = '[' . $id . '] ' . $item->subject;
 			}
 
 			if (defined ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_BODY')) {
-				$mail->Body = $intl->get (constant ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_BODY'), $item->struct);
+				$body = constant ('WORKSPACE_' . strtoupper ($item->type) . '_' . strtoupper ($this->name) . '_BODY');
+				$mail->Body = $intl->get ($body, $item->struct);
 			} else {
 				$mail->Body = $item->body;
 			}
