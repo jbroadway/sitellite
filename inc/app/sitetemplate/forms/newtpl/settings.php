@@ -36,6 +36,7 @@ alt				= Template Name
 append			= " examples: <em>products</em>, <em>homepage</em>, <em>memberarea</em>"
 rule 1			= not empty, You must enter a template name.
 rule 2			= "func `sitetemplate_rule_name`, The template name you have chosen already exists for the specified output mode."
+rule 3			= "regex `^[-a-zA-Z0-9_.]+$`, Template names only can contain alphanumeric values and cannot contain spaces."
 
 [edit_buttons]
 

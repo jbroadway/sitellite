@@ -19,6 +19,7 @@ type			= hidden
 
 type			= text
 extra			= "size=`50`"
+rule 1                  = "regex `^[-a-zA-Z0-9_. ]+$`, Set names only can contain alphanumeric values and spaces."
 
 [description]		
 

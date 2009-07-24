@@ -29,8 +29,10 @@ Changes in 5.0.3-stable
 - Fixed an issue with rSelectFacet widget [#138].
 - Fixed an issue in docs-app about showing packages [#133].
 - Fixed an issue in SimpleTemplate with variable names in if conditions [#135].
+- Allow non-ascii chars into SimpleTemplate tokens [#93].
 - Added missing audience selector in ical and rss feeds for SiteEvent.
 - Fixed an issue with onbeforeload in Multilingual.
+- Don't allow spaces in filenames of new templates and css inSiteTemplate [#25].
 
 Changes in 5.0.2-stable
 
