@@ -23,6 +23,10 @@
 				if (name == false || name == null || name.length == 0) {
 					return false;
 				}
+				if (/^[-a-zA-Z0-9_]+$/.test (name) == false) {
+					alert ("Error: this name can only contains alphanumeric characters and underscores");
+					return false;
+				}
 				window.location.href = '<?php echo site_prefix (); ?>/index/usradm-add-simple-action?_list=' + add_simple_list + '&_key=' + name;
 				return false;
 			}
