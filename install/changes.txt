@@ -39,6 +39,7 @@ Changes in 5.0.3-stable
 - Added pager to the end of cms-browse page [#83].
 - Restrict access level, roles and status names to alnum chars [#94].
 - Prevent to set a page parent as itself [#105].
+- Fixed bugs in activity log navigation [#111].
 
 Changes in 5.0.2-stable
 

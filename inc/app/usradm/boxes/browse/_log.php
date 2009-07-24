@@ -4,7 +4,7 @@
 		$cgi->offset = 0;
 	}
 
-	if (! in_array ($cgi->orderBy, array ('ts', 'type', 'user'))) {
+	if (! in_array ($cgi->orderBy, array ('ts', 'type', 'user', 'ip', 'message'))) {
 		$cgi->orderBy = 'ts';
 	}
 
@@ -121,7 +121,7 @@
 
 	loader_import ('saf.GUI.Pager');
 	$pg = new Pager ($cgi->offset, $limit, $total);
-	$pg->url = site_prefix () . '/index/usradm-browse-action?list=log&orderBy=' . urlencode ($cgi->orderBy) . '&sort=' . urlencode ($cgi->sort) . '&_type=' . urlencode ($cgi->_type) . '&_user=' . urlencode ($cgi->_user) . '&_range=' . urlencode ($cgi->_range);
+	$pg->url = site_prefix () . '/index/usradm-browse-action?list=log&orderBy=' . urlencode ($cgi->orderBy) . '&sort=' . urlencode ($cgi->sort) . '&_date=' . urlencode ($cgi->_date) . '&_type=' . urlencode ($cgi->_type) . '&_user=' . urlencode ($cgi->_user) . '&_range=' . urlencode ($cgi->_range);
 	$pg->setData ($res);
 	$pg->update ();
 
@@ -196,7 +196,7 @@
 	echo '<table border="0" cellpadding="3" cellspacing="1" width="100%">
 		<tr>' . NEWLINE;
 	foreach ($headers as $header) {
-		echo TABx3 . '<th><a href="' . site_prefix () . '/index/usradm-browse-action?list=log&orderBy=' . $header->name . '&sort=' . $header->getSort () . '&offset=' . urlencode ($cgi->offset) . '&_type=' . urlencode ($cgi->_type) . '&_user=' . urlencode ($cgi->_user) . '&_range=' . urlencode ($cgi->_range) . '">' . $header->fullname . '</a>';
+		echo TABx3 . '<th><a href="' . site_prefix () . '/index/usradm-browse-action?list=log&orderBy=' . $header->name . '&_date=' . urlencode ($cgi->_date) . '&sort=' . $header->getSort () . '&offset=' . urlencode ($cgi->offset) . '&_type=' . urlencode ($cgi->_type) . '&_user=' . urlencode ($cgi->_user) . '&_range=' . urlencode ($cgi->_range) . '">' . $header->fullname . '</a>';
 		if ($header->isCurrent ()) {
 			echo ' <img src="' . site_prefix () . '/inc/app/usradm/pix/arrow.' . $cgi->sort . '.gif" alt="' . $cgi->sort . '" border="0" />';
 		}
