@@ -102,7 +102,11 @@ if (! $struct) {
 foreach ($rex->info as $key => $vals) {
 	if (strpos ($key, 'browse:') === 0) {
 		$key = substr ($key, 7);
-		$data['headers'][] = new TableHeader ($key, $vals['header']);
+		$h = new TableHeader ($key, $vals['header']);
+		if (isset ($vals['virtual'])) {
+			$h->virtual = true;
+		}
+		$data['headers'][] = $h;
 		$data['fields'][$key] = $vals;
 		if (isset ($vals['filter_import'])) {
 			loader_import ($vals['filter_import']);

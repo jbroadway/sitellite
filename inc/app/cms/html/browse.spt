@@ -57,11 +57,16 @@
 			</th>
 		{end if}
 		{loop obj[headers]}
+			{if loop.virtual}
+			<th>{filter intl_get}{loop/fullname}{end filter}</th>
+			{end if}
+			{if else}
 			<th><a href="{site/prefix}/index/cms-browse-action?{filter urlencode}collection={cgi/collection}&offset={cgi/offset}&orderBy={loop/name}&sort={loop/getSort}{end filter}{facet_url}">{filter intl_get}{loop/fullname}{end filter}</a>
 			{if loop.isCurrent ()}
 				<img src="{site/prefix}/inc/app/cms/pix/arrow.{cgi/sort}.gif" alt="{cgi/sort}" border="0" />
 			{end if}
 			</th>
+			{end if}
 		{end loop}
 	</tr>
 	{loop pager.results}

@@ -40,6 +40,7 @@ Changes in 5.0.3-stable
 - Restrict access level, roles and status names to alnum chars [#94].
 - Prevent to set a page parent as itself [#105].
 - Fixed bugs in activity log navigation [#111].
+- Fixed sorting by virtual fields in the control panel [#116].
 
 Changes in 5.0.2-stable
 
