@@ -41,6 +41,7 @@ Changes in 5.0.3-stable
 - Prevent to set a page parent as itself [#105].
 - Fixed bugs in activity log navigation [#111].
 - Fixed sorting by virtual fields in the control panel [#116].
+- Added fakeemail box in sitellite utilities.
 
 Changes in 5.0.2-stable
 
