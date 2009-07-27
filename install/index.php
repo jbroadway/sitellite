@@ -68,6 +68,15 @@ thanks for your interest in Sitellite and welcome to the neighbourhood!</p>';
 		loader_import ('ext.phpsniff');
 		$ua = new phpSniff ();
 
+
+		loader_import ('pear.HTTP.Request');
+		$req1 =& new HTTP_request ($url . '/install/inc/apache/forcetype/index');
+		$req1->sendRequest ();
+		$req2 =& new HTTP_request ($url . '/install/inc/apache/directoryindex/');
+		$req2->sendRequest ();
+		$req3 =& new HTTP_request ($url . '/install/inc/apache/acceptpathinfo/index.php/test');
+		$req3->sendRequest ();
+
 		if (PHP_VERSION < '4.2') {
 			// requires php 4.2+
 			$data['error'] = true;
@@ -143,19 +152,19 @@ thanks for your interest in Sitellite and welcome to the neighbourhood!</p>';
 			$data['body'] = '<p class="notice">Standard DES-based encryption not found.</p>'
 				. '<h2>Solution:</h2>'
 				. '<ul><li>Ensure that the standard DES-based encryption libraries are available on your server and recompile PHP</li></ul>';
-		} elseif (ini_get ('allow_url_fopen') == '1' && @join ('', @file ($url . '/install/inc/apache/forcetype/index')) != 'pass') {
+		} elseif ($req1->getResponseBody () != 'pass') {
 			// apache forcetype check
 			$data['error'] = true;
 			$data['body'] = '<p class="notice">DirectoryIndex test failed.</p>'
 				. '<h2>Solution:</h2>'
 				. '<ul><li>Add the following setting to your httpd.conf configuration file: <a href="http://httpd.apache.org/docs/mod/core.html#allowoverride" target="_blank">AllowOverride All</a></li></ul>';
-		} elseif (ini_get ('allow_url_fopen') == '1' && @join ('', @file ($url . '/install/inc/apache/directoryindex/')) != 'pass') {
+		} elseif ($req2->getResponseBody () != 'pass') {
 			// apache directoryindex check
 			$data['error'] = true;
 			$data['body'] = '<p class="notice">DirectoryIndex test failed.</p>'
 				. '<h2>Solution:</h2>'
 				. '<ul><li>Add the following setting to your httpd.conf configuration file: <a href="http://httpd.apache.org/docs/mod/core.html#allowoverride" target="_blank">AllowOverride All</a></li></ul>';
-		} elseif (php_sapi_name () == 'apache2handler' && @join ('', @file ($url . '/install/inc/apache/acceptpathinfo/index.php/test')) != 'pass') {
+		} elseif (php_sapi_name () == 'apache2handler' && $req3->getResponseBody () != 'pass') {
 			// apache 2 acceptpathinfo check
 			$data['error'] = true;
 			$data['body'] = '<p class="notice">AcceptPathInfo test failed.</p>'
@@ -204,13 +213,13 @@ thanks for your interest in Sitellite and welcome to the neighbourhood!</p>';
 						. '<li><a href="http://www.microsoft.com/" target="_blank">Internet Explorer 6</a> or newer</li>'
 					. '</ul>'
 				. '</li></ul>';
-		} elseif (ini_get ('allow_url_fopen') != '1') {
-			$data['error'] = true;
-			$data['body'] = '<p class="notice">Failed to run the following test due to the <tt>allow_url_fopen</tt> setting being disabled in php.ini:</p>'
-				. '<ul><li>AllowOverride All</li></ul>'
-				. '<h2>Solutions:</h2>'
-				. '<ul><li>Ensure that your httpd.conf configuration file has the <tt>AllowOverride</tt> setting set to <tt>All</tt> then click "Continue installation anyway"</li>'
-				. '<li>Enable the <tt>allow_url_fopen</tt> setting in your php.ini configuration file and re-run these tests.  Note that this setting may be disabled for security reasons</li></ul>';
+//		} elseif (ini_get ('allow_url_fopen') != '1') {
+//			$data['error'] = true;
+//			$data['body'] = '<p class="notice">Failed to run the following test due to the <tt>allow_url_fopen</tt> setting being disabled in php.ini:</p>'
+//				. '<ul><li>AllowOverride All</li></ul>'
+//				. '<h2>Solutions:</h2>'
+//				. '<ul><li>Ensure that your httpd.conf configuration file has the <tt>AllowOverride</tt> setting set to <tt>All</tt> then click "Continue installation anyway"</li>'
+//				. '<li>Enable the <tt>allow_url_fopen</tt> setting in your php.ini configuration file and re-run these tests.  Note that this setting may be disabled for security reasons</li></ul>';
 		} else {
 			$data['body'] = '<p>The installer has verified that your server and browser meet the <a href="http://www.sitellite.org/index/requirements" target="_blank">minimum installation requirements</a>.  Please click "Next" to continue.</p>';
 		}
