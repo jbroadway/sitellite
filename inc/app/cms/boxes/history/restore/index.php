@@ -17,6 +17,15 @@ if (! $res) {
 	die ($rex->error);
 }
 
+echo Workflow::trigger (
+        'restore',
+        array (
+                'collection' => $cgi->collection,
+                'key'        => $cgi->key,
+                'message'    => 'Collection: ' . $cgi->collection . ', Item: ' .$cgi->key,
+        )
+);
+
 if (! empty ($cgi->_return)) {
 	header ('Location: ' . $cgi->_return);
 } else {
