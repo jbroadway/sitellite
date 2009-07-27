@@ -90,6 +90,22 @@ class MF_Widget_snippet extends MF_Widget {
 	var $labelPosition = 'top';
 
 	/**
+     * If set to true, the form contains an imput to choose the name of the snippet
+     *
+     * @access public
+     *
+     */
+     var $selectName = false;
+
+	/**
+     * The property key for this snippet. Unsed internally.
+	 *
+     * @access private
+     *
+     */
+     var $_key = null;
+
+	/**
 	 * Sets the actual value for this widget.
 	 * 
 	 * @access	public
@@ -101,6 +117,7 @@ class MF_Widget_snippet extends MF_Widget {
 		$ps = new PropertySet ('mailform', 'snippet');
 		$val = $ps->get ($value);
 		if ($val) {
+			$this->_key = $value;
 			$this->data_value = $val;
 		} else {
 			$this->data_value = $value;
@@ -116,6 +133,7 @@ class MF_Widget_snippet extends MF_Widget {
 	 * 
 	 */
 	function getValue ($cgi = '') {
+		$oldkey = null;
 		if (is_object ($cgi)) {
 			if (! isset ($cgi->{$this->name})) {
 				$value = '';
@@ -124,15 +142,32 @@ class MF_Widget_snippet extends MF_Widget {
 			} else {
 				$value = $cgi->{$this->name};
 			}
+			if (isset ($cgi->{$this->name.'_key'})) {
+				$this->_key = $cgi->{$this->name.'_key'};
+			}
+			if (isset ($cgi->{$this->name.'_oldkey'})) {
+				$oldkey = $cgi->{$this->name.'_oldkey'};
+			}
 		} else {
 			$value = $this->data_value;
 		}
 
 		loader_import ('saf.Database.PropertySet');
 		$ps = new PropertySet ('mailform', 'snippet');
-		$key = md5 ($value);
-		$ps->set ($key, $value);
-		return $key;
+		if (! $this->_key) {
+			$this->_key = md5 ($value);
+
+			// Don't overwrite an existing value
+			$i = 0;
+			while ($v = $ps->get ($this->_key)) {
+				$this->_key = md5 ($value . $i++);
+			} 
+		}
+		if ($oldkey && ($oldkey != $this->_key)) {
+			$ps->delete ($oldkey);
+		}
+		$ps->set ($this->_key, $value);
+		return $this->_key;
 	}
 
 	/**
@@ -158,23 +193,30 @@ class MF_Widget_snippet extends MF_Widget {
 		}
 
 		$attrstr = $this->getAttrs ();
+		if ($this->selectName) {
+			$keyfield = intl_get ('Snippet name') . ': <input type="hidden" name="' . $this->name . '_oldkey" value="' . $this->_key . '" />'
+				.'<input type="text" name="' . $this->name . '_key" value="' . $this->_key . '" /><br/>';
+		}
+		else {
+			$keyfield = '<input type="hidden" name="' . $this->name . '_key" value="' . $this->_key . '" />';
+		}
 		if ($generate_html) {
 			if ($this->labelPosition == 'left') {
 				return "\t" . '<tr>' . "\n\t\t" . '<td class="label" valign="top"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td>'
-					. "\n\t\t" . '<td class="field"><textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
+					. "\n\t\t" . '<td class="field">' . $keyfield . '<textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
 					htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea></td>' . "\n\t" . '</tr>' . "\n";
 			} else {
 				if (empty ($this->alt)) {
-					return "\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="field"><textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
+					return "\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="field">' . $keyfield . '<textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
 						htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea></td>' . "\n\t" . '</tr>' . "\n";
 				} else {
 					return "\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td>' . "\n\t" .
-						'</tr>' . "\n\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="field"><textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
+						'</tr>' . "\n\t" . '<tr>' . "\n\t\t" . '<td colspan="2" class="field">' . $keyfield . '<textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' .
 						htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea></td>' . "\n\t" . '</tr>' . "\n";
 				}
 			}
 		} else {
-			return '<textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' . htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea>';
+			return $keyfield . '<textarea ' . $attrstr . ' rows="' . $this->rows . '" cols="' . $this->cols . '" ' . $this->extra . ' >' . htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '</textarea>';
 		}
 	}
 }

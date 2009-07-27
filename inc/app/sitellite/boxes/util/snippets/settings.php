@@ -7,3 +7,4 @@ description = "Embed a snippet of HTML code into your page"
 
 type = snippet
 alt = HTML Snippet
+selectName = true

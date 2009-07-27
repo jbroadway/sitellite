@@ -45,6 +45,8 @@ Changes in 5.0.3-stable
 - Added ability to call page_add_*() functions from sidebars/includes.
 - Added title to message on activity log for news [#112].
 - Do not truncate messages in activity log (since they never are really long).
+- Allow to give names to snippets [#96].
+- Delete unused snippets [#113].
 
 Changes in 5.0.2-stable
 
