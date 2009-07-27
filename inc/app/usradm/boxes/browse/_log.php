@@ -218,11 +218,11 @@
 			$uname = '<a href="' . site_prefix () . '/index/cms-user-view-action?user=' . urlencode ($row->user) . '" title="' . $uname . '">' . htmlentities_compat ($row->user) . '</a>';
 		}
 
-		if (strlen ($row->message) > 45) {
-			$msg = '<span title="' . htmlentities ($row->message) . '">' . substr ($row->message, 0, 42) . '...</span>';
-		} else {
+//		if (strlen ($row->message) > 45) {
+//			$msg = '<span title="' . htmlentities ($row->message) . '">' . substr ($row->message, 0, 42) . '...</span>';
+//		} else {
 			$msg = $row->message;
-		}
+//		}
 
 		echo TAB . '<tr style="background-color: ' . $alt->next () . '">' . NEWLINE;
 		echo TABx2 . '<td width="25%">' . Date::format ($row->ts, 'F j, Y - g:i A') . '</td>' . NEWLINE;
