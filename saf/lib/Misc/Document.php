@@ -39,6 +39,16 @@ class Document {
 	var $template_set = false;
 
 	/**
+	 * Whether compile() is underway or not.
+	 */
+	var $compiling = false;
+
+	/**
+	 * Extra elements to load in the <head> after the page is rendered.
+	 */
+	var $extra_head_elements = array ();
+
+	/**
 	 * Constructor method.  If $data is passed to the constructor, it will pass the
 	 * $data on to the set() method.
 	 *
@@ -98,10 +108,14 @@ class Document {
 	 * @param string
 	 */
 	function addMeta ($key, $value, $name = 'name') {
-		template_bind (
-			'/html/head',
-			'<meta ' . $name . '="' . $key . '" content="' . str_replace ('"', '&quot;', $value) . '" />' . NEWLINE
-		);
+		if ($this->compiling) {
+			$this->extra_head_elements[] = '<meta ' . $name . '="' . $key . '" content="' . str_replace ('"', '&quot;', $value) . '" />' . NEWLINE;
+		} else {
+			template_bind (
+				'/html/head',
+				'<meta ' . $name . '="' . $key . '" content="' . str_replace ('"', '&quot;', $value) . '" />' . NEWLINE
+			);
+		}
 	}
 
 	/**
@@ -131,10 +145,14 @@ class Document {
 			$script = $new;
 		}
 		if (! in_array ($script, $this->scripts)) {
-			template_bind (
-				'/html/head',
-				$script
-			);
+			if ($this->compiling) {
+				$this->extra_head_elements[] = $script;
+			} else {
+				template_bind (
+					'/html/head',
+					$script
+				);
+			}
 			$this->scripts[] = $script;
 		}
 	}
@@ -154,10 +172,14 @@ class Document {
 			$style = $new;
 		}
 		if (! in_array ($style, $this->styles)) {
-			template_bind (
-				'/html/head',
-				$style
-			);
+			if ($this->compiling) {
+				$this->extra_head_elements[] = $style;
+			} else {
+				template_bind (
+					'/html/head',
+					$style
+				);
+			}
 			$this->styles[] = $style;
 		}
 	}
@@ -194,10 +216,14 @@ class Document {
 			$link .= ' title="' . $name . '"';
 		}
 		$link .= ' />' . NEWLINE;
-		template_bind (
-			'/html/head',
-			$link
-		);
+		if ($this->compiling) {
+			$this->extra_head_elements[] = $link;
+		} else {
+			template_bind (
+				'/html/head',
+				$link
+			);
+		}
 	}
 
 	/**
@@ -208,6 +234,9 @@ class Document {
 	 * @return string
 	 */
 	function compile () {
+		$this->compiling = true;
+		$this->extra_head_elements = array ();
+
 		if (isset ($this->onload)) {
 			template_bind_attr (
 				'/html/body',
@@ -245,7 +274,14 @@ class Document {
 		}
 		$this->sendHeaders ();
 		$this->isExternal ();
-		return $this->useTemplate ();
+		$res = $this->useTemplate ();
+
+		$this->compiling = false;
+		foreach ($this->extra_head_elements as $element) {
+			$res = str_replace ('</head>', TAB . $element . NEWLINE . '</head>', $res);
+		}
+
+		return $res;
 	}
 
 	/**
