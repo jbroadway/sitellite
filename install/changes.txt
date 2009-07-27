@@ -43,6 +43,7 @@ Changes in 5.0.3-stable
 - Fixed sorting by virtual fields in the control panel [#116].
 - Added fakeemail box in sitellite utilities.
 - Added ability to call page_add_*() functions from sidebars/includes.
+- Added title to message on activity log for news [#112].
 
 Changes in 5.0.2-stable
 

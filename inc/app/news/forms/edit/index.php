@@ -131,7 +131,7 @@ class NewsEditForm extends MailForm {
 					'action' => $method,
 					'data' => $vals,
 					'changelog' => $changelog,
-					'message' => 'Collection: ' . $collection . ', Item: ' . $key,
+					'message' => 'Collection: ' . $collection . ', Item: ' . $key . ' (' . $vals['title'] . ')',
 				)
 			);
 

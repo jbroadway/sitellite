@@ -101,7 +101,7 @@ class NewsAddForm extends MailForm {
 					'key' => $key,
 					'data' => $vals,
 					'changelog' => $changelog,
-					'message' => 'Collection: ' . $collection . ', Item: ' . $key,
+					'message' => 'Collection: ' . $collection . ', Item: ' . $key . ' (' . $vals['title'] . ')',
 				)
 			);
 
