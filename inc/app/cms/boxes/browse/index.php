@@ -204,8 +204,15 @@ foreach ($res as $key => $row) {
 		}
 		$align[$field->name] = ($data['fields'][$field->name]['align']) ? $data['fields'][$field->name]['align'] : 'left';
 		$width[$field->name] = ($data['fields'][$field->name]['width']) ? $data['fields'][$field->name]['width'] : 'auto';
-		if (isset ($rex->info['browse:' . $field->name]['length']) && strlen ($tmp->{$field->name}) > $rex->info['browse:' . $field->name]['length']) {
-			$tmp->{$field->name} = rtrim (substr ($tmp->{$field->name}, 0, $rex->info['browse:' . $field->name]['length'] - 3)) . '...';
+		if (extension_loaded ('mbstring')) {
+			if (isset ($rex->info['browse:' . $field->name]['length']) && mb_strlen ($tmp->{$field->name}) > $rex->info['browse:' . $field->name]['length']) {
+				$tmp->{$field->name} = rtrim (mb_substr ($tmp->{$field->name}, 0, $rex->info['browse:' . $field->name]['length'] - 3)) . '...';
+			}
+		}
+		else {
+			if (isset ($rex->info['browse:' . $field->name]['length']) && strlen ($tmp->{$field->name}) > $rex->info['browse:' . $field->name]['length']) {
+				$tmp->{$field->name} = rtrim (substr ($tmp->{$field->name}, 0, $rex->info['browse:' . $field->name]['length'] - 3)) . '...';
+			}
 		}
 	}
 	if (! isset ($row->{$rex->key})) {

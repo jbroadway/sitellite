@@ -49,6 +49,7 @@ Changes in 5.0.3-stable
 - Delete unused snippets [#113].
 - Added 'restore' workflow service [#131].
 - Removed 'session' option from language negotiation list [#140].
+- Use mbstring functions (when available) for browse length function [#76].
 
 Changes in 5.0.2-stable
 

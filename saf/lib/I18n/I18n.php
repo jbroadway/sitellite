@@ -293,6 +293,19 @@ class I18n {
 		$this->fullname = $this->languages[$this->language]['name'];
 		$this->setLocale ();
 		$this->getIndex ();
+
+		// Load and initialize mbstring if available
+		if (!extension_loaded('mbstring')) {
+			if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+				dl('php_mbstring.dll');
+			} else {
+				dl('mbstring.so');
+			}
+		}
+		if (extension_loaded('mbstring')) {
+			mb_internal_encoding ($this->charset);
+		}
+
 	}
 
 	function setLocale () {
