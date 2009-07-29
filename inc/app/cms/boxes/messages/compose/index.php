@@ -32,10 +32,10 @@ class ComposeForm extends MailForm {
 		$t =& $this->addWidget ('msubmit', 'submit_button');
 		$b =& $t->getButton ();
 		$b->setValues (intl_get ('Send'));
-		$b->extra = 'onclick="cms_recipient_select_all (this.form)"';
+		$b->extra = 'onclick="onbeforeunload_form_submitted=true; cms_recipient_select_all (this.form)"';
 		$b =& $t->addButton ('cancel_button');
 		$b->setValues (intl_get ('Cancel'));
-		$b->extra = 'onclick="window.location.href = \'' . site_prefix () . '/index/cms-cpanel-action\'; return false"';
+		$b->extra = 'onclick="onbeforeunload_form_submitted=true; window.location.href = \'' . site_prefix () . '/index/cms-cpanel-action\'; return false"';
 
 		$this->error_mode = 'all';
 	}
