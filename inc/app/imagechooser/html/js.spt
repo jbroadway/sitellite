@@ -40,6 +40,7 @@ function imagechooser_{name}_view (file, w, h) {
 	win.document.write ('<html><head><title>' + file + '</title></head>');
 	win.document.write ('<body><p align="center"><a href="javascript: window.close ()"><img src="' + file + '" alt="{intl Click to close}" title="{intl Click to close}" border="0" /></a></p>');
 	win.document.write ('<p align="center" style="font: 12px Verdana, Arial, sans-serif"><a href="javascript: window.close ()" style="text-decoration: none; color: #d60">{intl Close Window}</a></p></body></html>');
+	win.document.close ();
 	return false;
 }
 
