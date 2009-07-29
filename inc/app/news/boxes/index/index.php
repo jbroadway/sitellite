@@ -98,7 +98,7 @@ if (! empty ($parameters['story'])) { // view story
 	}
 	$list = $newlist;
 
-	if (appconf ('comments_blog_style')) {
+	if (appconf ('comments_blog_style') && appconf ('comments')) {
 		loader_import ('news.Comment');
 		$c = new NewsComment;
 
@@ -112,7 +112,8 @@ if (! empty ($parameters['story'])) { // view story
 		'section.spt',
 		array (
 			'list' => $list,
-			'comments' => appconf ('comments_blog_style'),
+			'comments' => appconf ('comments_blog_style') &&
+				      appconf ('comments'),
 			'rss' => appconf ('rss_links'),
 		)
 	);
@@ -191,7 +192,7 @@ if (! empty ($parameters['story'])) { // view story
 
 	$total = $story->total;
 
-	if (appconf ('comments_blog_style')) {
+	if (appconf ('comments_blog_style') && appconf ('comments')) {
 		loader_import ('news.Comment');
 		$c = new NewsComment;
 
@@ -227,7 +228,8 @@ if (! empty ($parameters['story'])) { // view story
 			'menu' => $menu,
 			'date' => $parameters['date'],
 			'context' => $box['context'],
-			'comments' => appconf ('comments_blog_style'),
+			'comments' => appconf ('comments_blog_style') &&
+                                      appconf ('comments'),
 			'rss' => appconf ('rss_links'),
 			'sec' => $parameters['sec'],
 			'home' => $parameters['home'],

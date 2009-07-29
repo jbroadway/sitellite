@@ -50,6 +50,7 @@ Changes in 5.0.3-stable
 - Added 'restore' workflow service [#131].
 - Removed 'session' option from language negotiation list [#140].
 - Use mbstring functions (when available) for browse length function [#76].
+- Disable blog style comments when disabling comments in news [#12].
 
 Changes in 5.0.2-stable
 
