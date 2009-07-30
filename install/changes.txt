@@ -53,6 +53,7 @@ Changes in 5.0.3-stable
 - Disable blog style comments when disabling comments in news [#12].
 - Added service to prune activity log and version tables [#48].
 - Fixed an issue with imagechooser in Firefox [#49].
+- Translation of append and prepend fields in text and textarea widgets [#129].
 
 Changes in 5.0.2-stable
 

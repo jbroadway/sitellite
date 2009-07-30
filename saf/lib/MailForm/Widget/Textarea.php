@@ -124,10 +124,10 @@ class MF_Widget_textarea extends MF_Widget {
 		}
 
 		if (! empty ($this->prepend)) {
-			$this->prepend = $this->prepend . '<br />';
+			$this->prepend = intl_get ($this->prepend) . '<br />';
 		}
 		if (! empty ($this->append)) {
-			$this->append = '<br />' . $this->append;
+			$this->append = '<br />' . intl_get ($this->append);
 		}
 
 		$attrstr = $this->getAttrs ();
