@@ -55,6 +55,7 @@ Changes in 5.0.3-stable
 - Fixed an issue with imagechooser in Firefox [#49].
 - Translation of append and prepend fields in text and textarea widgets [#129].
 - Fixed an issue with encoding of return url [#128].
+- Translation of formhelp [#8].
 
 Changes in 5.0.2-stable
 

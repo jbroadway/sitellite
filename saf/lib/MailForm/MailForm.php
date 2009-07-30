@@ -1340,7 +1340,7 @@ class MailForm {
 		}
 
 		if (! empty ($widget->formhelp) && session_pref ('form_help') == 'on') {
-			$widget->extra .= ' onfocus="formhelp_show (this, \'' . addslashes ($widget->formhelp) . '\')" onblur="formhelp_hide ()"';
+			$widget->extra .= ' onfocus="formhelp_show (this, \'' . addslashes (intl_get ($widget->formhelp)) . '\')" onblur="formhelp_hide ()"';
 		}
 
 		unset ($widget);
