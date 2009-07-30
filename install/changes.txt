@@ -54,6 +54,7 @@ Changes in 5.0.3-stable
 - Added service to prune activity log and version tables [#48].
 - Fixed an issue with imagechooser in Firefox [#49].
 - Translation of append and prepend fields in text and textarea widgets [#129].
+- Fixed an issue with encoding of return url [#128].
 
 Changes in 5.0.2-stable
 

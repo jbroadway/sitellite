@@ -42,7 +42,7 @@ class NewsEditForm extends MailForm {
 					window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/cms-app";
 				} else {
 					if (f.elements[\'_return\'] && f.elements[\'_return\'].value.length > 0) {
-						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=" + f.elements[\'_return\'].value;
+						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=" + EncodeURIComponent (f.elements[\'_return\'].value);
 					} else {
 						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/news-app";
 					}
