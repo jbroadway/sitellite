@@ -284,7 +284,7 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 		// remove lock when editing is finished
 		lock_remove ($collection, $key);
 
-		if (! empty ($return)) {
+		if (empty ($return)) {
 			$return = site_prefix () . '/index/cms-browse-action?collection=sitellite_sidebar';
 		}
 
