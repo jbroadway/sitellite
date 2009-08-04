@@ -54,8 +54,15 @@ td {
 			<td width="25" align="center">
 				<a href="{site/prefix}/index/imagechooser-admin-action{filter urlencode}?name={cgi/name}&location={location}/{loop/_value}&format={cgi/format}&attrs={cgi/attrs}{end filter}"><img src="{site/prefix}/inc/app/imagechooser/pix/folder.gif" alt="{loop/_value}" title="{loop/_value}" border="0" /></a>
 			</td>
-			<td colspan="2">
+			<td>
 				<a href="{site/prefix}/index/imagechooser-admin-action{filter urlencode}?name={cgi/name}&location={location}/{loop/_value}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{loop/_value}</a>
+			</td>
+			<td width="100" align="right">
+				{if obj[writeable]}
+					{if obj[delete]}
+					&nbsp; <a href="{site/prefix}/index/imagechooser-delete-folder-action{filter urlencode}?name={cgi/name}&src={loop/_value}&location={location}{end filter}&admin=1" onclick="return confirm ('{intl Are you sure you want to delete this folder?}')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete} {loop/_value}" title="{intl Delete} {loop/_value}" border="0" /></a>
+					{end if}
+				{end if}
 			</td>
 		</tr>
 	{end loop}

@@ -57,6 +57,7 @@ Changes in 5.0.3-stable
 - Fixed an issue with encoding of return url [#128].
 - Translation of formhelp [#8].
 - Fixed extra sub-menu items appearing [#141].
+- Added an option to delete folders in imagechooser [#120].
 
 Changes in 5.0.2-stable
 
