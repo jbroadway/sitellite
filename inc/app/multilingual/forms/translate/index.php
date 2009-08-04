@@ -136,8 +136,9 @@ class MultilingualTranslateForm extends MailForm {
 			$tr->save ($key, $status, $vals);
 		}
 
-		page_title (intl_get ('Translation Saved'));
-		echo '<p><a href="' . site_prefix () . '/index/multilingual-app">' . intl_get ('Continue') . '</a></p>';
+		session_set ('sitellite_alert', intl_get ('Translation Saved'));
+		header ('Location: ' . site_prefix () . '/index/multilingual-app');
+		exit;
 	}
 }
 
