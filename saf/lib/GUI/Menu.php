@@ -420,7 +420,7 @@ class Menu {
 			if ($v->{$this->listcolumn} == 'no') {
 				continue;
 			}
-			if ($v->{$this->refcolumn}) {
+			if ($v->{$this->refcolumn} && ! isset ($this->{'items_' . $v->{$this->idcolumn}}->parent)) {
 				$ref = $v->{$this->refcolumn};
 
 				// link the parent attr to the parent object

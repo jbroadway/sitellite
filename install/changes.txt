@@ -56,6 +56,7 @@ Changes in 5.0.3-stable
 - Translation of append and prepend fields in text and textarea widgets [#129].
 - Fixed an issue with encoding of return url [#128].
 - Translation of formhelp [#8].
+- Fixed extra sub-menu items appearing [#141].
 
 Changes in 5.0.2-stable
 
