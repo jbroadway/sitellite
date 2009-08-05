@@ -302,6 +302,9 @@ class CmsEditSitellite_pageForm extends MailForm {
 		$b->setValues (intl_get ('Save'));
 		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
 
+		$b =& $w->addButton ('submit_button', intl_get ('Save and continue'));
+		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
+
 		$b =& $w->addButton ('submit_button', intl_get ('Preview'));
 		$b->extra = 'onclick="return cms_preview (this.form)"';
 
@@ -334,6 +337,7 @@ class CmsEditSitellite_pageForm extends MailForm {
 
 		$rex = new Rex ($collection); // default: database, database
 
+		$continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -408,6 +412,12 @@ class CmsEditSitellite_pageForm extends MailForm {
 					$return = '';
 				}
 			}
+
+			if ($continue) {
+				header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+				exit;
+			}
+
 			if (! empty ($return)) {
 				header ('Location: ' . $return);
 				exit;

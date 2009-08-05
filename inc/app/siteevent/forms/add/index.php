@@ -37,7 +37,8 @@ class SiteeventAddForm extends MailForm {
 
 		// add cancel handler
                 $this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
-		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="return cms_cancel (this.form)"';
+                $this->widgets['submit_button']->buttons[1]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+		$this->widgets['submit_button']->buttons[2]->extra = 'onclick="return cms_cancel (this.form)"';
 	}
 
 	function onSubmit ($vals) {
@@ -59,6 +60,7 @@ class SiteeventAddForm extends MailForm {
 
 		//$vals['sitellite_owner'] = session_username ();
 		//$vals['sitellite_team'] = session_team ();
+                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -112,6 +114,11 @@ class SiteeventAddForm extends MailForm {
 			);
 
 			session_set ('sitellite_alert', intl_get ('Your item has been created.'));
+
+                        if ($continue) {
+                                header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+                                exit;
+                        }
 
 			if ($return) {
 				header ('Location: ' . $return);

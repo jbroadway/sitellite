@@ -64,6 +64,7 @@ Changes in 5.0.3-stable
 - Fixed an issue with template inheriting [#20].
 - Added GeSHi snippet box.
 - Added external field to news to allow redirection to another page [#70].
+- Added a save and continue feature [#30].
 
 Changes in 5.0.2-stable
 

@@ -128,6 +128,9 @@ class CmsEditForm extends MailForm { // default to a simple edit screen, much li
 		$b->setValues (intl_get ('Save'));
 		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
 
+		$b =& $w->addButton ('submit_button', intl_get ('Save and continue'));
+		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
+
 		$b =& $w->addButton ('submit_button', intl_get ('Cancel'));
 		$b->extra = 'onclick="return cms_cancel (this.form)"';
 
@@ -151,6 +154,7 @@ class CmsEditForm extends MailForm { // default to a simple edit screen, much li
 
 		$rex = new Rex ($collection); // default: database, database
 
+                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 
 		$key = $vals['_key'];
@@ -211,6 +215,11 @@ class CmsEditForm extends MailForm { // default to a simple edit screen, much li
 			);
 
 			session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
+
+                        if ($continue) {
+                                header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+                                exit;
+                        }
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

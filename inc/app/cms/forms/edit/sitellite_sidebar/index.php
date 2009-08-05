@@ -231,13 +231,16 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 		$w =& $this->addWidget ('msubmit', 'submit_button');
 
 		$b =& $w->getButton ();
-		$b->setValues ('Save');
+		$b->setValues ( intl_get ('Save'));
+		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
+
+		$b =& $w->addButton ('submit_button', intl_get ('Save and continue'));
 		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
 
 		//$b =& $w->addButton ('submit_button', 'Preview');
 		//$b->extra = 'onclick="return cms_preview (this.form)"';
 
-		$b =& $w->addButton ('submit_button', 'Cancel');
+		$b =& $w->addButton ('submit_button', intl_get ('Cancel'));
 		$b->extra = 'onclick="return cms_cancel_unlock (this.form, \'' . urlencode ($cgi->_collection) . '\', \'' . urlencode ($cgi->_key) . '\')"';
 
 		$this->error_mode = 'all';
@@ -254,6 +257,7 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 
 		$rex = new Rex ($collection); // default: database, database
 
+                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -313,6 +317,11 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 			);
 
 			session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
+
+                        if ($continue) {
+                                header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+                                exit;
+                        }
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

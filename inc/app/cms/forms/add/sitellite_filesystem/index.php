@@ -99,7 +99,7 @@ class CmsAddSitellite_filesystemForm extends MailForm {
 		$this->widgets['sitellite_team']->setValue (session_team ());
 
 		// add cancel handler
-		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="return cms_cancel (this.form)"';
+		$this->widgets['submit_button']->buttons[2]->extra = 'onclick="return cms_cancel (this.form)"';
 	}
 
 	function show () {
@@ -134,6 +134,7 @@ class CmsAddSitellite_filesystemForm extends MailForm {
 
 		//$vals['sitellite_owner'] = session_username ();
 		//$vals['sitellite_team'] = session_team ();
+                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -178,6 +179,11 @@ class CmsAddSitellite_filesystemForm extends MailForm {
 			);
 
 			session_set ('sitellite_alert', intl_get ('Your item has been created.'));
+
+                        if ($continue) {
+                                header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+                                exit;
+                        }
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

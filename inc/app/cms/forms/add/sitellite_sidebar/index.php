@@ -203,6 +203,9 @@ class CmsAddSitellite_sidebarForm extends MailForm {
 		$b->setValues (intl_get ('Create'));
 		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
 
+		$b =& $w->addButton ('submit_button', intl_get ('Save and continue'));
+		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
+
 		//$b =& $w->addButton ('submit_button', intl_get ('Preview'));
 		//$b->extra = 'onclick="return cms_preview (this.form)"';
 
@@ -231,6 +234,7 @@ class CmsAddSitellite_sidebarForm extends MailForm {
 
 		//$vals['sitellite_owner'] = session_username ();
 		//$vals['sitellite_team'] = session_team ();
+                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -281,6 +285,11 @@ class CmsAddSitellite_sidebarForm extends MailForm {
 			);
 
 			session_set ('sitellite_alert', intl_get ('Your item has been created.'));
+
+                        if ($continue) {
+                                header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+                                exit;
+                        }
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

@@ -95,6 +95,9 @@ class CmsAddForm extends MailForm {
 		$b->setValues (intl_get ('Create'));
 		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
 
+		$b =& $w->addButton ('submit_button', intl_get ('Save and continue'));
+		$b->extra = 'onclick="onbeforeunload_form_submitted = true"';
+
 		$b =& $w->addButton ('submit_button', intl_get ('Cancel'));
 		$b->extra = 'onclick="return cms_cancel (this.form)"';
 	}
@@ -113,6 +116,7 @@ class CmsAddForm extends MailForm {
 
 		$rex = new Rex ($collection); // default: database, database
 
+                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 
 		foreach ($this->widgets as $k => $w) {
@@ -164,6 +168,10 @@ class CmsAddForm extends MailForm {
 			);
 
 			session_set ('sitellite_alert', intl_get ('Your item has been created.'));
+                        if ($continue) {
+                                header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+                                exit;
+                        }
 
 			header ('Location: ' . site_prefix () . '/index/cms-browse-action?collection=' . urlencode ($collection));
 			exit;
