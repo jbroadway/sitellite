@@ -63,6 +63,7 @@ Changes in 5.0.3-stable
 - Fixed an issue that caused a wrong return url when editing sidebar or files.
 - Fixed an issue with template inheriting [#20].
 - Added GeSHi snippet box.
+- Added external field to news to allow redirection to another page [#70].
 
 Changes in 5.0.2-stable
 

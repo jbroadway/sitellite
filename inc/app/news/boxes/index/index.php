@@ -15,6 +15,12 @@ if (! empty ($parameters['story'])) { // view story
 		return;
 	}
 
+	if (! empty ($obj->external)) {
+		global $page;
+		$page->external = $obj->external;
+		return;
+	}
+
 	if (! empty ($parameters['highlight'])) {
 		loader_import ('saf.Misc.Search');
 		//$obj->body = search_bar ($parameters['highlight'], '/index/news-search-action') . search_highlight ($obj->body, $parameters['highlight']);

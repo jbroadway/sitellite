@@ -79,6 +79,15 @@ type			= text
 alt				= Rank
 setDefault		= "0"
 
+[external]
+type            = xed.Widget.Linker
+alt             = "Forward to (URL)"
+length          = 128
+advanced        = true
+files           = false
+anchors         = false
+email           = false
+
 [tab3]
 
 type			= tab

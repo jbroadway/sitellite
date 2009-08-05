@@ -133,4 +133,8 @@ type = xed.Widget.Xeditor
 
 type = hidden
 
+[hint:external]
+
+type = hidden
+
 ; */ ?>
