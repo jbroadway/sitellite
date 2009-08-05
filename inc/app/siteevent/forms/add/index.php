@@ -21,6 +21,7 @@ class SiteeventAddForm extends MailForm {
 		//page_onload ('cms_init_edit_panels ()');
 		page_add_script ('
 			function cms_cancel (f) {
+				onbeforeunload_form_submitted = true;
 				if (arguments.length == 0) {
 					window.location.href = "/index/cms-app";
 				} else {
@@ -35,6 +36,7 @@ class SiteeventAddForm extends MailForm {
 		');
 
 		// add cancel handler
+                $this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
 		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="return cms_cancel (this.form)"';
 	}
 

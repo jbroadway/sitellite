@@ -36,6 +36,7 @@ class SiteeventEditForm extends MailForm {
 		//page_onload ('cms_init_edit_panels ()');
 		page_add_script ('
 			function cms_cancel_unlock (f, collection, key) {
+				onbeforeunload_form_submitted = true;
 				if (arguments.length == 0) {
 					window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/cms-app";
 				} else {
@@ -50,6 +51,7 @@ class SiteeventEditForm extends MailForm {
 		');
 
 		// add cancel handler
+                $this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
 		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="return cms_cancel_unlock (this.form, \'' . $cgi->_collection . '\', \'' . $cgi->_key . '\')"';
 
 		// get copy from repository
