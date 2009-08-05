@@ -455,19 +455,15 @@ class Document {
 			$_t = $cgi->mode . '.' . $this->template . '.tpl';
 		} elseif (! empty ($this->below_page)) {
 			// inherit section template
-			loader_box ('sitellite/nav/init');
-
 			$useTemplate = false;
 			$parent = $this->below_page;
-			while (true) { // is_object ($menu->{'items_' . $parent})) {
-				if ($menu->{'items_' . $parent}->is_section && $menu->{'items_' . $parent}->template && @file_exists (getcwd () . '/' . $tpl->path . '/' . $cgi->mode . '.' . $menu->{'items_' . $parent}->template . '.tpl')) {
-					$useTemplate = $menu->{'items_' . $parent}->template;
-					break;
-				} elseif (is_object ($menu->{'items_' . $parent}->parent)) {
-					$parent = $menu->{'items_' . $parent}->parent->id;
-				} else {
+			while ($parent) {
+				$pp = db_single ('SELECT below_page, template FROM sitellite_page WHERE id=?', $parent);
+				if ($pp->template) {
+					$useTemplate = $pp->template;
 					break;
 				}
+				$parent = $pp->below_page;
 			}
 			if ($useTemplate) {
 				$response = $tpl->fill ($cgi->mode . '.' . $useTemplate . '.tpl', $this);

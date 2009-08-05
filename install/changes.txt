@@ -61,6 +61,7 @@ Changes in 5.0.3-stable
 - Rotation of log file in scheduler-app [#48].
 - Fixed extra sub-menu items appearing [#141].
 - Fixed an issue that caused a wrong return url when editing sidebar or files.
+- Fixed an issue with template inheriting [#20].
 
 Changes in 5.0.2-stable
 
