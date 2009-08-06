@@ -12,10 +12,10 @@ function linkmapper () {
 	for (i = 0; i < elements.length; i++) {
 		host = new RegExp ('^http:\/\/' + location.hostname.replace ('.', '\\.') + '\/', 'i');
 		if (elements[i].href.match (/^http:/) && ! elements[i].href.match (host)) {
-			elements[i].setAttribute ('class', 'external');
+			elements[i].className += ' external';
 		}
 		if (elements[i].href.match (/\/cms-filesystem-action/)) {
-			elements[i].setAttribute ('class', 'file');
+			elements[i].className += ' file';
 			elements[i].setAttribute ('target', '_blank');
 		}
 	}
