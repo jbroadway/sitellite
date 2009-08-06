@@ -38,6 +38,22 @@ class SiteForum_Post extends Generic {
 		return $res;
 	}
 
+	function find ($fid) {
+		$res = parent::find($fid);
+		
+		foreach (array_keys ($res) as $k) {
+			$res[$k]->public = db_shift ('select public from sitellite_user where username = ?', $res[$k]->user_id);
+			$res[$k]->count = db_shift ('SELECT count(*) FROM siteforum_post where post_id = ?', $res[$k]->id);
+			$obj = db_single ('SELECT ts, user_id, id FROM siteforum_post where id = ? or post_id = ? order by ts desc limit 1', $res[$k]->id, $res[$k]->id);
+			$res[$k]->last_post = $obj->ts;
+            $res[$k]->last_post_user = $obj->user_id;
+            $res[$k]->last_post_id = $obj->id;
+            $res[$k]->last_post_user_public = db_shift ('select public from sitellite_user where username = ?', $obj->user_id);
+		}
+
+		return $res;
+	}
+
 	function getThread ($post, $reverse = false) {
 		if (session_admin ()) {
 			$perms = session_allowed_sql ();

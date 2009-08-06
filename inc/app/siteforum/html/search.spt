@@ -1,0 +1,84 @@
+<form method="get" class="siteforum-search-box">
+<table border="0" cellpadding="3" cellspacing="0" style="width: auto">
+	<tr>
+		<td valign="top"><input type="text" name="query" value='{query}' />
+		{if obj[topic]}<br/><input type="checkbox" name="topic" value="{topic}" id="topic" checked="checked" /><label for="topic">{if obj[topic_name]}{intl Only search in} {topic_name}{end if}{if else}{intl Only search in this topic}{end if}</label>{end if}</td>
+		<td valign="top"><input type="submit" value="{intl Search}" /></td>
+	</tr>
+</table>
+</form>
+
+{if is_array (obj[results]) && count (obj[results]) eq 0}
+	<p>{intl No posts found. Please try again.}</p>
+{end if}
+
+{if count (obj[results]) gt 0}
+	<p>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+			<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+		</tr>
+	</table>
+	</p>
+
+	{alt #fff #eee}
+	<table border="0" cellpadding="3" cellspacing="1" width="100%">
+        <tr>
+                {if not obj[topic_name]}<th width="15%" align="left">{intl Topics}</th>{end if}
+                <th width="45%" align="left">{intl Threads}</th>
+                <th width="10%" align="left">{intl Replies}</th>
+                <th width="15%" align="left">{intl Author}</th>
+                <th width="15%" align="left">{intl Last Post}</th>
+        </tr>
+
+	{loop obj[results]}
+        <tr style="background-color: {alt/next}">
+{if not obj[topic_name]}
+		<td valign="top">
+			{loop/topic}
+		</td>
+{end if}
+                <td valign="top">
+                        {if loop.notice eq 'yes'}
+                                <strong>{intl Notice}: <a href="{site/prefix}/index/siteforum-list-action/post.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a>{if loop.attachments} <img src="{site/prefix}/inc/app/siteforum/pix/attach.png" alt="{intl Has attachments}" title="{intl Has attachments}" border="0" />{end if}</strong>
+                        {end if}
+                        {if else}
+                                <a href="{site/prefix}/index/siteforum-list-action/post.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a>{if loop.attachments} <img src="{site/prefix}/inc/app/siteforum/pix/attach.png" alt="{intl Has attachments}" title="{intl Has attachments}" border="0" />{end if}
+                        {end if}
+                </td>
+                <td valign="top" align="right">
+                        {loop/count}
+                </td>
+                <td valign="top">
+                        {if loop.public eq 'yes'}
+                                <a href="{site/prefix}/index/sitemember-profile-action/user.{loop/user_id}">{loop/user_id}</a>
+                        {end if}
+                        {if else}
+                                {loop/user_id}
+                        {end if}
+                </td>
+                <td valign="top">
+                        {filter siteforum_filter_shortdate}{loop/last_post}{endfilter}<br />
+                        {if loop.last_post_id gt 0}
+                                <a href="{site/prefix}/index/siteforum-post-action/id.{loop/last_post_id}">{intl Read}</a>
+                                {if loop.last_post_user_public eq 'yes'}
+                                        (<a href="{site/prefix}/index/sitemember-profile-action/user.{loop/last_post_user}">{loop/last_post_user}</a>)
+                                {end if}
+                                {if else}
+                                        ({loop/last_post_user})
+                                {end if}
+                        {end if}
+                </td>
+        </tr>
+        {end loop}
+</table>
+
+{end if}
+
+<p>
+{if obj[post]}<a href="{site/prefix}/index/siteforum-list-action/post.{post}">{end if}
+{if else}
+{if obj[topic]}<a href="{site/prefix}/index/siteforum-topic-action/topic.{topic}">{end if}
+{if else}<a href="{site/prefix}/index/siteforum-app">{end if}{end if}
+{intl Back}</a></p>

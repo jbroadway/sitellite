@@ -36,9 +36,9 @@ $params = array ();
 
 foreach (help_split_query ($parameters['query']) as $item) {
 	$q = db_quote ('%' . $item . '%');
-	$params[] = 'title like ' . $q . ' or
+	$params[] = '(title like ' . $q . ' or
 		summary like ' . $q . ' or
-		body like ' . $q;
+		body like ' . $q . ')';
 }
 
 $parameters['results'] = $story->find ($params);

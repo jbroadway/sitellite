@@ -1,4 +1,4 @@
-<form method="GET" class="news-search-box">
+<form method="get" class="news-search-box">
 <table border="0" cellpadding="3" cellspacing="0" style="width: auto">
 	<tr>
 		<td valign="top"><input type="text" name="query" value='{query}' /></td>

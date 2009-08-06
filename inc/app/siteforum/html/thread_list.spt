@@ -6,10 +6,8 @@
 <p>
 	<a href="{site/prefix}/index/siteforum-post-form?topic={cgi/topic}">{intl Start new thread}</a>
 	&nbsp; &nbsp; &nbsp; &nbsp;
-	{if obj[sitesearch]}
-		<a href="{site/prefix}/index/sitesearch-app?ctype=siteforum_post&show_types=yes">{intl Search}</a>
-		&nbsp; &nbsp; &nbsp; &nbsp;
-	{end if}
+	<a href="{site/prefix}/index/siteforum-search-action?topic={cgi/topic}">{intl Search}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
 	{if appconf ('rss_links')}
 		<a href="{site/prefix}/index/siteforum-rss-action/threads.{cgi/topic}">{intl Syndicated Feed (RSS)}</a>
 		&nbsp; &nbsp; &nbsp; &nbsp;

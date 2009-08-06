@@ -65,6 +65,8 @@ Changes in 5.0.3-stable
 - Added GeSHi snippet box.
 - Added external field to news to allow redirection to another page [#70].
 - Added a save and continue feature [#30].
+- Fixed an issue with permissions on news search.
+- Added a search box to siteforum [#22].
 
 Changes in 5.0.2-stable
 

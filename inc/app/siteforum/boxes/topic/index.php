@@ -40,7 +40,6 @@ echo template_simple (
 		'forum_name' => appconf ('forum_name'),
 		'topic' => $topic,
 		'list' => $list,
-		'sitesearch' => @file_exists ('inc/app/sitesearch/data/sitesearch.pid'),
 	)
 );
 

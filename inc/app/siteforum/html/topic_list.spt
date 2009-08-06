@@ -1,8 +1,6 @@
 <p>
-{if obj[sitesearch]}
-	<a href="{site/prefix}/index/sitesearch-app?ctype=siteforum_post&show_types=yes">{intl Search}</a>
-	&nbsp; &nbsp; &nbsp; &nbsp;
-{end if}
+<a href="{site/prefix}/index/siteforum-search-action">{intl Search}</a>
+&nbsp; &nbsp; &nbsp; &nbsp;
 {if not session_valid ()}
 	<a href="{site/prefix}/index/siteforum-post-form">{intl Log In}</a>
 	&nbsp; &nbsp; &nbsp; &nbsp;

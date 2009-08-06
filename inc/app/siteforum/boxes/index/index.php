@@ -26,7 +26,6 @@ echo template_simple (
 	'topic_list.spt',
 	array (
 		'list' => $list,
-		'sitesearch' => @file_exists ('inc/app/sitesearch/data/sitesearch.pid'),
 		'users' => db_shift ('select count(*) from sitellite_user'),
 		'active' => db_shift ('select count(*) from sitellite_user where session_id is not null and expires >= ?', date ('Y-m-d H:i:s', time() - 3600)),
 		'posts' => db_shift ('select count(*) from siteforum_post'),
