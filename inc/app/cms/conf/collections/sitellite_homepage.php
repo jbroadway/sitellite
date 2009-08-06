@@ -48,6 +48,7 @@ header = Body
 ;length = 40
 width = "40%"
 length = 50
+filter = strip_tags
 
 [hint:user]
 

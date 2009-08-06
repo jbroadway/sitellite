@@ -70,6 +70,7 @@ Changes in 5.0.3-stable
 - Added filtering capabilities to MailForm widgets [#132].
 - Linkmapper now append class names instead of replacing them.
 - siteforum now show statistics according to user permissions.
+- Strip html tags when browsing member pages.
 
 Changes in 5.0.2-stable
 
