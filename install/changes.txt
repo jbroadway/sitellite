@@ -67,6 +67,7 @@ Changes in 5.0.3-stable
 - Added a save and continue feature [#30].
 - Fixed an issue with permissions on news search.
 - Added a search box to siteforum [#22].
+- Added filtering capabilities to MailForm widgets [#132].
 
 Changes in 5.0.2-stable
 

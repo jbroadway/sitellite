@@ -197,6 +197,20 @@ class MF_Widget {
 	var $rules = array ();
 
 	/**
+         * Name of a filter function to apply on the widget value
+	 *
+         * @access public
+         */
+	var $filter;
+
+	/**
+         * Used to specify a lib to import for filter function
+	 *
+         * @access public
+         */
+	var $import_filter;
+
+	/**
 	 * This contains a list of attributes of the HTML tag.
 	 * 
 	 * @access	private
@@ -384,6 +398,24 @@ class MF_Widget {
 		} else {
 			$this->data_value = $value;
 		}
+		$this->data_value = $this->applyFilter ($this->data_value);
+	}
+
+	/**
+	 * Transform the given value with the widget filter
+	 *
+         * @access protected
+         */
+	function applyFilter ($value) {
+		if ($this->filter) {
+			if ($this->import_filter) {
+				loader_import ($this->import_filter);
+			}
+			return call_user_func ($this->filter, $value);
+		}
+		else {
+			return $value;
+		}
 	}
 
 	/**
@@ -410,7 +442,7 @@ class MF_Widget {
 				if ($this->nullable && empty ($cgi->{$this->name})) {
 					return null;
 				}
-				return $cgi->{$this->name};
+				return $this->applyFilter ($cgi->{$this->name});
 			} else {
 				return null;
 			}
