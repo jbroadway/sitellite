@@ -69,6 +69,7 @@ Changes in 5.0.3-stable
 - Added a search box to siteforum [#22].
 - Added filtering capabilities to MailForm widgets [#132].
 - Linkmapper now append class names instead of replacing them.
+- siteforum now show statistics according to user permissions.
 
 Changes in 5.0.2-stable
 
