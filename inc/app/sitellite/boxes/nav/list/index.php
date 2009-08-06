@@ -19,7 +19,8 @@ loader_box ('sitellite/nav/init');
 global $menu, $page;
 
 // the template to display a single menu link.
-$template = "<a href=\"{site/prefix}/index/{id}\">{title}</a>\n";
+template_simple_register ('page', $page);
+$template = "<a href=\"{site/prefix}/index/{id}\"{if obj.id eq page.id} class=\"current\"{end if}{if obj.id ne page.id and sitellite_nav_list_in_trail (obj.id)} class=\"parent\"{end if}>{title}</a>\n";
 
 // retrieve the breadcrumb trail to the currently active page.
 if ($page->below_page) {
@@ -46,6 +47,22 @@ if ($page->below_page) {
 function sitellite_nav_list_walker_tab ($level = 0) {
 	echo str_pad ('', $level, "\t");
 }
+
+$GLOBALS['_sitellite_nav_trail'] =& $trail;
+
+/**
+ * A function to test whether the current page is a parent of the current
+ * page.
+ *
+ * @param integer page id to test
+ */
+function sitellite_nav_list_in_trail ($id) {
+        if (in_array ($id, $GLOBALS['_sitellite_nav_trail'])) {
+                return true;
+        }
+        return false;
+}
+
 
 /**
  * A recursive function that renders the navigation as an unordered list.

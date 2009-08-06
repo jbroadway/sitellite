@@ -71,6 +71,7 @@ Changes in 5.0.3-stable
 - Linkmapper now append class names instead of replacing them.
 - siteforum now show statistics according to user permissions.
 - Strip html tags when browsing member pages.
+- Added 'current' and 'parent' classes to items in nav/list.
 
 Changes in 5.0.2-stable
 
