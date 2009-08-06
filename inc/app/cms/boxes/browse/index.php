@@ -36,20 +36,26 @@ if (session_is_resource ($cgi->collection) && ! session_allowed ($cgi->collectio
 }
 
 if (! isset ($cgi->orderBy)) {
-	if (isset ($rex->info['Collection']['order_by'])) {
+	if ($cgi->orderBy = session_get ($cgi->collection . '_orderBy')) {
+	}
+	else if (isset ($rex->info['Collection']['order_by'])) {
 		$cgi->orderBy = $rex->info['Collection']['order_by'];
 	} else {
 		$cgi->orderBy = $rex->info['Collection']['title_field'];
 	}
 }
+session_set ($cgi->collection . '_orderBy', $cgi->orderBy);
 
 if (! isset ($cgi->sort)) {
-	if (isset ($rex->info['Collection']['sorting_order'])) {
+	if ($cgi->sort = session_get ($cgi->collection . '_sort')) {
+	}
+	else if (isset ($rex->info['Collection']['sorting_order'])) {
 		$cgi->sort = $rex->info['Collection']['sorting_order'];
 	} else {
 		$cgi->sort = 'asc';
 	}
 }
+session_set ($cgi->collection . '_sort', $cgi->sort);
 
 $pg = new Pager ($cgi->offset, $limit);
 $pg->url = site_current () . '?collection=' . urlencode ($cgi->collection) . '&orderBy=' . urlencode ($cgi->orderBy) . '&sort=' . urlencode ($cgi->sort);
