@@ -27,6 +27,7 @@ if (! empty ($parameters['story'])) { // view story
 		$obj->highlight = $parameters['highlight'];
 	}
 
+	page_add_style ( site_prefix () . '/inc/app/news/html/news.css' );
 	$pages = news_page_split ($obj->body);
 	if (! $cgi->pagenum) {
 		$cgi->pagenum = 1;

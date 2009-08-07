@@ -140,9 +140,18 @@ function news_page_nav ($pages, $pagenum, $story, $highlight = '') {
 	}
 
 	// remove leading/trailing breaks from body
-	$body = $pages[$pagenum - 1];
-	$body = preg_replace ('/^([\r\n\t ]*<br[^>]*>[\r\n\t ]*)*/is', '', $body);
-	$body = preg_replace ('/([\r\n\t ]*<br[^>]*>[\r\n\t ]*)*$/is', '', $body);
+	$body = "";
+	foreach (array_keys ($pages) as $n) {
+		$pages[$n] = preg_replace ('/^([\r\n\t ]*<br[^>]*>[\r\n\t ]*)*/is', '', $pages[$n]);
+		$pages[$n] = preg_replace ('/([\r\n\t ]*<br[^>]*>[\r\n\t ]*)*$/is', '', $pages[$n]);
+		$body .= NEWLINE;
+		if ($n == $pagenum - 1) {
+			$body .= '<div class="news-split" id="page' . $pagenum . '">' . $pages[$n] . '</div>';
+		}
+		else {
+			$body .= '<div class="news-hidden news-split" id="page' . $pagenum . '">' . $pages[$n] . '</div>';
+		}
+	}
 
 	switch (appconf ('page_nav_location')) {
 		case 'top':
