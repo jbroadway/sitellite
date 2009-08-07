@@ -217,7 +217,7 @@ class MF_Widget_password extends MF_Widget {
 		global $intl;
 		$attrstr = $this->getAttrs ();
 		if ($generate_html) {
-			return "\t" . '<tr>' . "\n\t\t" . '<td class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $this->display_value . '</label></td>' . "\n\t\t" .
+			return "\t" . '<tr' . $this->getClasses () . '>' . "\n\t\t" . '<td class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $this->display_value . '</label></td>' . "\n\t\t" .
 				'<td class="field"><input type="password" ' . $attrstr . ' value="' . htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) .
 				'" ' . $this->extra . ' /></td>' . "\n\t" . '</tr>' . "\n";
 		} else {

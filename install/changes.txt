@@ -75,6 +75,7 @@ Changes in 5.0.3-stable
 - Remember last sort order in cms browsing [#103].
 - Added option to delete permanently a collection item [#50].
 - Fixed checkbox widget to generate valid xhtml and to be translatable [#72].
+- Added "required" class to required fields (not empty) in MailForm.
 
 Changes in 5.0.2-stable
 

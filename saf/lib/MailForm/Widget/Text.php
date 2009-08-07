@@ -85,8 +85,6 @@ class MF_Widget_text extends MF_Widget {
 
 		$len = ($this->length > 0) ? 'maxlength="' . $this->length . '" ' : '';
 
-		$adv = ($this->advanced) ? ' class="advanced"' : '';
-
 		if ($this->reference !== false) {
 			if (empty ($this->reference)) {
 				$this->reference = '&nbsp;';
@@ -97,7 +95,7 @@ class MF_Widget_text extends MF_Widget {
 		}
 
 		if ($generate_html) {
-			return "\t" . '<tr' . $adv . '>' . "\n\t\t" . '<td class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td>' . "\n\t\t" .
+			return "\t" . '<tr' . $this->getClasses () . '>' . "\n\t\t" . '<td class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td>' . "\n\t\t" .
 				'<td class="field">' . intl_get ($this->prepend) . '<input type="text" ' . $attrstr . ' value="' . str_replace ('"', '&quot;', htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset)) .
 				'" ' . $len . $this->extra . ' />' . intl_get ($this->append) . '</td>' . $ref . "\n\t" . '</tr>' . "\n";
 		} else {

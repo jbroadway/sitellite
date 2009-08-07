@@ -10,6 +10,7 @@ error_mode		= all
 type			= text
 alt				= "*Username"
 rule 1			= "unique `sitellite_user/username`, The username you have chosen is already in use."
+rule 2			= "not empty, You must enter a username."
 
 [password]
 

@@ -279,6 +279,14 @@ class MF_Widget {
 	var $reference = false;
 
 	/**
+	 * Indicate to the user this is a requiried field
+	 *
+	 * Automatically set is 'not empty' rule applied.
+	 * Each widget must take care of this attribute.
+	 */
+	var $required = false;
+
+	/**
 	 * Constructor Method.
 	 * 
 	 * @access	public
@@ -321,6 +329,9 @@ class MF_Widget {
 	 * 
 	 */
 	function addRule ($rule, $msg = '') {
+		if (in_array ($rule, array ('not empty', 'email'))) {
+			$this->required = true;
+		}
 		$this->rules[] = new MailFormRule ($rule, $this->name, $msg);
 	}
 
@@ -560,6 +571,29 @@ class MF_Widget {
 			return ' class="invalid"';
 		}
 		return '';
+	}
+
+	/**
+         * Returns names of classes to apply to the widget. For instance,
+	 * advanced and required.
+         *
+         * @access protected
+         * @return string
+         */
+	function getClasses () {
+		$c = array ();
+		if ($this->advanced) {
+			$c[] = "advanced";
+		}
+		if ($this->required) {
+			$c[] = "required";
+		}
+		if (empty ($c)) {
+			return '';
+		}
+		else {
+			return ' class="' . implode (" ", $c) . '"';
+		}
 	}
 
 	function changeType ($newType, $extra = array ()) {
