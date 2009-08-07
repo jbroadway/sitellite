@@ -76,6 +76,7 @@ Changes in 5.0.3-stable
 - Added option to delete permanently a collection item [#50].
 - Fixed checkbox widget to generate valid xhtml and to be translatable [#72].
 - Added "required" class to required fields (not empty) in MailForm.
+- Added option to replace an image file in imagechooser [#144].
 
 Changes in 5.0.2-stable
 
