@@ -1,5 +1,6 @@
 {filter none}
 {CMS_JS_RESTORE_CONFIRM}
+{CMS_JS_DELETE_CONFIRM}
 {end filter}
 
 <h1>{intl Deleted} {collection_name}</h1>
@@ -32,8 +33,9 @@
 			<td align="center">
 				<a href="{site/prefix}/index/cms-history-view-action?_collection={collection}&_key={loop/_key}&_rid={loop/sv_autoid}&_current={loop/sv_autoid}&_return={site/prefix}/index/cms-deleted-items-action?collection={cgi/collection}">{intl View}</a> &nbsp;
 				{if obj[restore]}
-					<a href="{site/prefix}/index/cms-deleted-restore-action?collection={collection}&key={loop/_key}&rid={loop/sv_autoid}" onclick="return cms_restore_confirm ()">{intl Restore}</a>
+					<a href="{site/prefix}/index/cms-deleted-restore-action?collection={collection}&key={loop/_key}&rid={loop/sv_autoid}" onclick="return cms_restore_confirm ()">{intl Restore}</a>&nbsp;
 				{end if}
+				<a href="{site/prefix}/index/cms-deleted-delete-action?collection={collection}&key={loop/_key}&rid={loop/sv_autoid}" onclick="return cms_delete_confirm ()">{intl Permanent Delete}</a>
 			</td>
 			<td>{loop/_key}</td>
 			<td>{loop/sv_autoid}</td>

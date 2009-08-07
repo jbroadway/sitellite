@@ -73,6 +73,7 @@ Changes in 5.0.3-stable
 - Strip html tags when browsing member pages.
 - Added 'current' and 'parent' classes to items in nav/list.
 - Remember last sort order in cms browsing [#103].
+- Added option to delete permanently a collection item [#50].
 
 Changes in 5.0.2-stable
 
