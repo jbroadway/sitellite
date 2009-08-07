@@ -383,11 +383,21 @@ class MF_Widget_checkbox extends MF_Widget {
 		if (! isset ($this->data_value)) {
 			$this->data_value = $this->default_value;
 		}
+		unset ($this->_attrs['id']);
 		$this->attrstr = $this->getAttrs ();
 		$this->invalid = $this->invalid ();
 		$this->attrstr = str_replace ('"' . $this->name . '"', '"' . $this->name . '[]"', $this->attrstr);
-		$this->values = split (',', $this->data_value);
+		if ($this->data_value === "") {
+			$this->values = array ();
+		}
+		else {
+			$this->values = explode (',', $this->data_value);
+		}
 		$vals = $this->values;
+		// Translate displayed value
+		foreach ($this->value as $k=>$v) {
+			$this->value[$k] = intl_get ($v);
+		}
 		if ($generate_html) {
 			if ($this->align == 'vertical') {
 				if ($this->columns == 1) {

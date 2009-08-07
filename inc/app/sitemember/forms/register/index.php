@@ -20,7 +20,7 @@ class SitememberRegisterForm extends MailForm {
 	}
 
 	function onSubmit ($vals) {
-		$vals['public'] = ($vals['public']) ? 'yes' : 'no';
+		$vals['public'] = ($vals['public'] == '0') ? 'yes' : 'no';
 
 		if ($vals['website'] == 'http://') {
 			$vals['website'] = '';

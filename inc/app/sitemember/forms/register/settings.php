@@ -80,8 +80,8 @@ rows			= 3
 
 type			= checkbox
 fieldset		= no
-value 1			= Add me to public member list
-default_value	= Add me to public member list
+value[]		= Add me to public member list
+default_value   = 0
 
 [submit_button]
 
