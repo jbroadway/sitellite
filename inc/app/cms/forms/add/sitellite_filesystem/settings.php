@@ -23,12 +23,12 @@ type			= hidden
 
 [file]
 
-type			= file
+type			= mfile
 alt				= File Upload
 rule 0			= not empty, You forgot to upload the file itself.
 ;rule 1			= "func `sitellite_filesystem_rule_extension`, Your file name must have an extension."
 rule 2			= "func `sitellite_filesystem_rule_unique`, A file by this name already exists.  Please edit that file to upload a new copy."
-extra			= "size=`30` id=`file`"
+extra			= "size=`30`"
 
 [name]
 

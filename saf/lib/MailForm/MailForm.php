@@ -949,15 +949,13 @@ class MailForm {
 
 		$return = array ();
 		foreach ($this->widgets as $key => $obj) {
-			if (is_object ($cgi)) {
-				if ($uploadFiles && strtolower (get_class ($obj)) == 'mf_widget_file') {
-					$return[$key] = $obj->move ();
-				} else {
-					$return[$key] = $obj->getValue ($cgi);
-				}
+			if ($uploadFiles && strtolower (get_class ($obj)) == 'mf_widget_file') {
+				$return[$key] = $obj->move ();
+			} else if ($uploadFiles && strtolower (get_class ($obj)) == 'mf_widget_mfile') {
+				$return[$key] = $obj->move ();
 			} else {
-				if ($uploadFiles && strtolower (get_class ($obj)) == 'mf_widget_file') {
-					$return[$key] = $obj->move ();
+				if (is_object ($cgi)) {
+					$return[$key] = $obj->getValue ($cgi);
 				} else {
 					$return[$key] = $obj->getValue ();
 				}

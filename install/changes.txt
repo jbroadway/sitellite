@@ -78,6 +78,7 @@ Changes in 5.0.3-stable
 - Added "required" class to required fields (not empty) in MailForm.
 - Added option to replace an image file in imagechooser [#144].
 - Modified the way news story are splitted for better printing [#32].
+- Added possibility to upload many files together [#84].
 
 Changes in 5.0.2-stable
 
