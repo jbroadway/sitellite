@@ -310,7 +310,11 @@ class MailFormRule {
 				return false;
 			}
 		} elseif ($this->type == 'email') {
-			if (! preg_match ("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/" , $value)) {
+			if (strpos ($value, '.@') !== false) {
+				return false;
+			} elseif (preg_match ('/\.$/', $value)) {
+				return false;
+			} elseif (! preg_match ("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+\.([a-zA-Z0-9\._-]+)+$/" , $value)) {
 				return false;
 			}
 		} elseif ($this->type == 'header') {
@@ -414,7 +418,7 @@ class MailFormRule {
 				return false;
 			}
 		} elseif ($this->type == 'email') {
-			if (preg_match ("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/" , $value)) {
+			if (strpos ($value, '.@') === false && ! preg_match ('/\.$/', $value) && preg_match ("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+\.([a-zA-Z0-9\._-]+)+$/" , $value)) {
 				return false;
 			}
 		} elseif ($this->type == 'header') {
