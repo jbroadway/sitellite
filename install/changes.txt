@@ -80,6 +80,7 @@ Changes in 5.0.3-stable
 - Modified the way news story are splitted for better printing [#32].
 - Added possibility to upload many files together [#84].
 - Improved the email validation rules in saf.MailForm.Rule.
+- Fixed javascript rendering bug in SiteTemplate [#146].
 
 Changes in 5.0.2-stable
 
