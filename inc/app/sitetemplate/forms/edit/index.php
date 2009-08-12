@@ -59,8 +59,9 @@ class SitetemplateEditForm extends MailForm {
 
 		list ($set, $tpl) = explode ('/', $vals['path']);
 
-		page_title ('Template Saved');
-		echo '<p><a href="' . site_prefix () . '/index/sitetemplate-templateselect-action?set_name=' . $set . '">' . intl_get ('Return to template set') . '</a></p>';
+		session_set ('sitellite_alert', intl_get ('Template Saved'));
+		header ('Location: ' . site_prefix () . '/index/sitetemplate-templateselect-action?set_name=' . $set);
+		exit;
 	}
 }
 

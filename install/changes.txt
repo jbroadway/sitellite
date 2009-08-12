@@ -81,6 +81,7 @@ Changes in 5.0.3-stable
 - Added possibility to upload many files together [#84].
 - Improved the email validation rules in saf.MailForm.Rule.
 - Fixed javascript rendering bug in SiteTemplate [#146].
+- Use alert in sitetemplate-edit-form.
 
 Changes in 5.0.2-stable
 
