@@ -2,6 +2,7 @@
 
 global $cgi;
 
+@touch ('inc/html/' . $cgi->set . '/config.ini.php');
 if (! @is_writable('inc/html/' . $cgi->set) || ! @is_writable('inc/html/' . $cgi->set . '/config.ini.php')) {
 	page_title (intl_get ('An Error Occurred'));
 	echo '<p>' . intl_get ('Your template is not writeable by Sitellite.  Please adjust your server settings to continue.') . '</p>';

@@ -82,6 +82,7 @@ Changes in 5.0.3-stable
 - Improved the email validation rules in saf.MailForm.Rule.
 - Fixed javascript rendering bug in SiteTemplate [#146].
 - Use alert in sitetemplate-edit-form.
+- Fixed an issue in sitetemplate. Create config file if it doesn't exist.
 
 Changes in 5.0.2-stable
 
