@@ -1,0 +1,5 @@
+{loop tags}
+{if loop._index neq 1}{separator}{end if}
+<span style="font-size: {loop/size}%"><a href="{site/prefix}/sitetag-list-items-action/set.{set}/tag.{loop/tag}">{loop/tag}</a></span>
+{end loop}
+{if obj[showEdit]}{box sitetag/add?set=[obj.set]}{end if}

@@ -1,0 +1,6 @@
+<dl>
+{loop items}
+<dt><a href="{site/prefix}/{loop/url}">{loop/title}</a></dt>
+<dd>{loop/description}</dd>
+{end loop}
+</dl>

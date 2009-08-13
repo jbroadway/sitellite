@@ -84,6 +84,7 @@ Changes in 5.0.3-stable
 - Use alert in sitetemplate-edit-form.
 - Fixed an issue in sitetemplate. Create config file if it doesn't exist.
 - Fixed an issue with onbeforeload in AppDoc.
+- SiteTag application (first draft).
 
 Changes in 5.0.2-stable
 
