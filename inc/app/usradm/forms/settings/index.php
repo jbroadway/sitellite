@@ -55,7 +55,9 @@ class UsradmSettingsForm extends MailForm {
 			die ('Error writing to file: inc/conf/config.ini.php');
 		}
 
-		echo '<p>' . intl_get ('Site settings saved.') . '  <a href="' . site_prefix () . '/index/cms-cpanel-action">' . intl_get ('Continue') . '</a></p>';
+		session_set ('sitellite_alert', intl_get ('Site settings saved.'));
+		header ('Location: ' . site_prefix () . '/index/cms-cpanel-action');
+		exit;
 	}
 }
 
