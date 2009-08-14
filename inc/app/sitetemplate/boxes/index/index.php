@@ -47,7 +47,7 @@ $data = array (
 	'template_sets' => array (),
 );
 
-page_title (intl_get ('Choose a Template'));
+page_title (intl_get ('Choose a Template Set'));
 
 $path = session_get ('sitetemplate_path');
 
