@@ -517,23 +517,23 @@ class I18n {
 
 		// 2. build translation array
 		$trans = array();
-		$a = str_split("dNWmtLoyBghHisuIOpZcr");
+		$a = str_split("dNWmtLoyBghHisueIOpTZcr");
 		foreach ($a as $c) {
 			$trans[$c] = date($c, $timestamp);
 		}
 		$d = getdate($timestamp);
 		$trans["D"] = $shortdays[$d["wday"]];
 		$trans["j"] = $d["mday"];
-		$trans["l"] = $days[$indice["wday"]];
+		$trans["l"] = $days[$d["wday"]];
 		$trans["N"] = ($d["wday"] == 0) ? 7 : $d["wday"];
-		$trans["S"] = ($indice["mday"] <= 4) ? $suffixes[$indice["mday"]+1] : "";
+		$trans["S"] = ($d["mday"] <= 4) ? $suffixes[$d["mday"]+1] : "";
 		$trans["w"] = $d["wday"];
 		$trans["z"] = $d["yday"];
-		$trans["F"] = $months[$indice["mon"]+1];
-		$trans["M"] = $shortmonths[$indice["mon"]+1];
+		$trans["F"] = $months[$d["mon"]+1];
+		$trans["M"] = $shortmonths[$d["mon"]+1];
 		$trans["n"] = $d["mday"];
 		$trans["Y"] = $d["year"];
-		$trans["a"] = ($indice["hours"] >= 12) ? $antepost[1] : $antepost[0];
+		$trans["a"] = ($d["hours"] >= 12) ? $antepost[1] : $antepost[0];
 		$trans["A"] = strtoupper($trans["a"]);
 		$trans["G"] = $d["hours"];
 		$trans["U"] = $d[0];
@@ -547,6 +547,9 @@ class I18n {
 		$i = array_keys($trans);
 		foreach ($i as $v) {
 			$trans['\\'.$v] = $v;
+		}
+		foreach ($i as $v) {
+			$trans[$v.$v] = $v;
 		}
 		$trans['\\\\'] = '\\';
 		$format = strtr($format, $trans);
