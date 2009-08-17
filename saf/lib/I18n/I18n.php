@@ -502,16 +502,17 @@ class I18n {
 		}
 
 		// 1. read translations
+		$directory = 'inc/lang';
 		$dateini = array();
-		if (file_exists($this->directory.'/'.$this->default.'.dates.php')) {
-			$dateini = ini_parse($this->directory.'/'.$this->default.'.dates.php');
-		} elseif (file_exists($this->directory.'/en.dates.php')) {
-			$dateini = ini_parse($this->directory.'/en.dates.php');
+		if (file_exists($directory.'/'.$this->default.'.dates.php')) {
+			$dateini = ini_parse($directory.'/'.$this->default.'.dates.php');
+		} elseif (file_exists($directory.'/en.dates.php')) {
+			$dateini = ini_parse($directory.'/en.dates.php');
 		}
 
 		if ($this->language != $this->default) {
-			if (file_exists($this->directory.'/'.$this->language.'.dates.php')) {
-				$locini = ini_parse($this->directory.'/'.$this->language.'.dates.php');
+			if (file_exists($directory.'/'.$this->language.'.dates.php')) {
+				$locini = ini_parse($directory.'/'.$this->language.'.dates.php');
 				$dateini = array_merge($dateini, $locini);
 			}
 		}
@@ -552,6 +553,9 @@ class I18n {
 			$trans[$v.$v] = $v;
 		}
 		$trans['\\\\'] = '\\';
+		$trans['!\\'] = '\\';
+		$trans['\\!'] = '!';
+		$trans['!!'] = '!';
 		$format = strtr($format, $trans);
 
 		return $format;
