@@ -1,5 +1,5 @@
 <?php
 
-define ('SITELLITE_VERSION', '5.0.3-stable');
+define ('SITELLITE_VERSION', '5.1.0-alpha');
 
 ?>
