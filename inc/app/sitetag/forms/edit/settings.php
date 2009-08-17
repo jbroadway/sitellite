@@ -33,7 +33,7 @@ formhelp        = "This is an optional description for the page you want to tag.
 [tags]
 
 ; A custom javascript widget should be created for that
-type            = text
+type            = sitetag.Widget.taginput
 formhelp        = "Space separated list of tags. Use underscores to join many words."
 
 [submit_button]

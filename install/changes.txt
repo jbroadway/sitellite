@@ -86,6 +86,7 @@ Changes in 5.0.3-stable
 - Fixed an issue with onbeforeload in AppDoc.
 - SiteTag application (first draft).
 - Use alert in usradm-settings-form.
+- Added autocompleted input box for sitetag.
 
 Changes in 5.0.2-stable
 

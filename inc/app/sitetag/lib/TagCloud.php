@@ -368,6 +368,22 @@ function getRelated ($url, $n=5) {
 	return $result;
 }
 
+function getAllTags () {
+	if (! $this->canView ) {
+		return array ();
+	}
+
+	$query = 'SELECT DISTINCT tag FROM sitellite_tag WHERE `set`=?';
+	$params = array ($this->name);
+	if ($this->kind == 'members') {
+		$query .= ' AND sitellite_owner=?';
+		$params .= sitellite_username ();
+	}
+	$query .= ' ORDER BY tag';
+	$r = db_shift_array ($query, $params);
+	return $r;
+}
+
 }
 
 ?>

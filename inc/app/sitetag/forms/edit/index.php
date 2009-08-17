@@ -1,6 +1,7 @@
 <?php
 
 global $cgi;
+loader_import ('sitetag.Widget.Taginput');
 
 
 if (! isset ($cgi->url)) {
