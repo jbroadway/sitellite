@@ -382,6 +382,8 @@ class Document {
 			$set = $conf['Server']['default_template_set'];
 		}
 
+$GLOBALS['intl']->addIndex (site_docroot () . '/inc/html/' . $set . '/lang');
+
 		$old_path = $tpl->path;
 
 		$tpl->path = $tpl->path . '/' . $set;

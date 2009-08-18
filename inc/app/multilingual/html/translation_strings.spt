@@ -7,6 +7,7 @@
 </p>
 
 <input type="hidden" name="appname" value="{appname}" />
+<input type="hidden" name="template" value="{template}" />
 <input type="hidden" name="lang" value="{lang}" />
 <input type="hidden" name="charset" value="{charset}" />
 <input type="hidden" name="offset" value="{offset}" />

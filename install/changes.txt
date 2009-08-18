@@ -1,6 +1,7 @@
 Changes in 5.1.0-alpha
 
-- 
+- Added support for international date formats [#4].
+- Each template set now has its own translation strings [#6].
 
 Changes in 5.0.3-stable
 

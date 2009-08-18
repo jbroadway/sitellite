@@ -4,9 +4,10 @@ exit;
 
 global $cgi;
 
-if ($cgi->appname == 'GLOBAL') {
-	$file = 'inc/lang/languages.php';
-	$path = 'inc/lang';
+if ($cgi->appname == 'TEMPLATE') {
+	$template = $cgi->template;
+	$file = 'inc/html/' . $template . '/lang/languages.php';
+	$path = 'inc/html/' . $template . '/lang';
 } else {
 	$file = 'inc/app/' . $cgi->appname . '/lang/languages.php';
 	$path = 'inc/app/' . $cgi->appname . '/lang';

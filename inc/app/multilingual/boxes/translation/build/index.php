@@ -1,13 +1,13 @@
 <?php
 
-if ($parameters['appname'] == 'GLOBAL') {
-	$app = 'GLOBAL';
-	$read = 'inc/html';
-	$write = 'inc/lang/index.php';
+if ($parameters['appname'] == 'TEMPLATE') {
+	$app = $parameters['template'];
+	$read = 'inc/html/' . $app;
+	$write = 'inc/html/' . $app . '/lang/index.php';
 	$list = 'inc/lang/languages.php';
-	$langs = 'inc/lang';
+	$langs = 'inc/html/' . $app . '/lang';
 	$info = array (
-		'app_name' => intl_get ('Global'),
+		'app_name' => intl_get ('{template} Template', $parameters),
 	);
 } elseif ($parameters['appname'] == 'SAF') {
 	$app = 'SAF';
@@ -62,10 +62,10 @@ if (! @file_exists ($list)) {
 }
 
 if (! @file_exists ($write)) {
-	$info = pathinfo ($write);
-	if (! @is_writeable ($info['dirname'])) {
+	$pinfo = pathinfo ($write);
+	if (! @is_writeable ($pinfo['dirname'])) {
 		page_title (intl_get ('An Error Occurred'));
-		echo intl_get ('Cannot write to language folder') . ' (' . $info['dirname'] . '). ' . intl_get ('Please change your filesystem permissions.');
+		echo intl_get ('Cannot write to language folder') . ' (' . $pinfo['dirname'] . '). ' . intl_get ('Please change your filesystem permissions.');
 		return;
 	}
 } else {
@@ -101,6 +101,6 @@ if (! $res) {
 	return;
 }
 
-echo template_simple ('<p><strong>{intl Finished}.  <a href="{site/prefix}/index/multilingual-translation-action?appname={cgi/appname}">{intl Back}</a></strong></p>');
+echo template_simple ('<p><strong>{intl Finished}.  <a href="{site/prefix}/index/multilingual-translation-action?appname={appname}{if obj.template}&template={template}{end if}">{intl Back}</a></strong></p>', $GLOBALS['cgi']);
 
 ?>

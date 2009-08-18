@@ -310,6 +310,39 @@ class I18n {
         return call_user_func_array ('setlocale', $params);
     }
 
+    function addIndex ($directory) {
+       if ((! empty ($this->language)) && (@file_exists ($directory . '/' . $this->language . '.php'))) {
+           if (isset ($this->lang_hash[$this->language])) {
+               $tmp = $this->lang_hash[$this->language];
+           } else {
+               $this->lang_hash[$this->language] = array ();
+               $tmp = false;
+           }
+           if ($this->load_new) {
+               include ($directory . '/' . $this->language . '.php');
+           } else {
+               include_once ($directory . '/' . $this->language . '.php');
+           }
+           if ($tmp) {
+               $this->lang_hash[$this->language] = array_merge ($tmp, $this->lang_hash[$this->language]);
+           }
+       }
+
+       $curlang = $this->language;
+
+       while ($this->languages[$curlang]['fallback']) {
+           $curlang = $this->languages[$curlang]['fallback'];
+
+           if (@file_exists ($directory . '/' . $curlang . '.php')) {
+               if ($this->load_new) {
+                   include ($directory . '/' . $curlang . '.php');
+               } else {
+                   include_once ($directory . '/' . $curlang . '.php');
+               }
+           }
+       }
+    }
+
     function getIndex () {
         if (! is_array ($this->directory)) {
             $directories = array ($this->directory);
@@ -317,36 +350,7 @@ class I18n {
             $directories = $this->directory;
         }
         foreach ($directories as $directory) {
-            if ((! empty ($this->language)) && (@file_exists ($directory . '/' . $this->language . '.php'))) {
-                if (isset ($this->lang_hash[$this->language])) {
-                    $tmp = $this->lang_hash[$this->language];
-                } else {
-                    $this->lang_hash[$this->language] = array ();
-                    $tmp = false;
-                }
-                if ($this->load_new) {
-                    include ($directory . '/' . $this->language . '.php');
-                } else {
-                    include_once ($directory . '/' . $this->language . '.php');
-                }
-                if ($tmp) {
-                    $this->lang_hash[$this->language] = array_merge ($tmp, $this->lang_hash[$this->language]);
-                }
-            }
-
-            $curlang = $this->language;
-
-            while ($this->languages[$curlang]['fallback']) {
-                $curlang = $this->languages[$curlang]['fallback'];
-
-                if (@file_exists ($directory . '/' . $curlang . '.php')) {
-                    if ($this->load_new) {
-                        include ($directory . '/' . $curlang . '.php');
-                    } else {
-                        include_once ($directory . '/' . $curlang . '.php');
-                    }
-                }
-            }
+            $this->addIndex ($directory);
         }
     }
 

@@ -47,9 +47,49 @@ if (! $cgi->appname) {
 	return;
 }
 
-if ($cgi->appname == 'GLOBAL') {
+if ($cgi->appname == 'TEMPLATE' && ! isset ($cgi->template)) {
+	page_title (intl_get ('Translations') . ' - ' . intl_get ('Templates'));
+
+	loader_import ('saf.File.Directory');
+	
+	$dir = new Dir (getcwd () . '/inc/html');
+	if (! $dir->handle) {
+		die ($dir->error);
+	}
+	
+	$templates = array ();
+	$files = $dir->read_all ();
+
+	$list = array ();
+	foreach ($files as $file) {
+		if (strpos ($file, '.') === 0 || $file == 'CVS') {
+			continue;
+		} elseif (@is_dir (getcwd () . '/inc/html/' . $file)) {
+			// get name
+			$name = ucfirst ($file);
+			$list[$file] = $name;
+		}
+	}
+	asort ($list);
+
+	echo template_simple (
+		'<p><a href="{site/prefix}/index/multilingual-app">{intl Back}</a></p>
+		<h2>{intl Choose a template}</h2>
+		<ul>
+		{loop obj}
+			<li><a href="{site/prefix}/index/multilingual-translation-action?appname=TEMPLATE&template={loop/_key}">{loop/_value}</a></li>
+		{end loop}
+		</ul>',
+		$list
+	);
+
+	return;
+}
+
+if ($cgi->appname == 'TEMPLATE') {
+	$template = $cgi->template;
 	$info = array (
-		'app_name' => intl_get ('Global'),
+		'app_name' => intl_get ('{template|ucfirst} Template', $cgi),
 	);
 	$lang_path = 'inc/lang';
 } elseif ($cgi->appname == 'SAF') {
@@ -65,11 +105,7 @@ if ($cgi->appname == 'GLOBAL') {
 	$lang_path = 'inc/lang';
 }
 
-if ($cgi->appname == 'GLOBAL') {
-	page_title (intl_get ('Translations') . ' - ' . intl_get ('Global Templates'));
-} else {
-	page_title (intl_get ('Translations') . ' - ' . $info['app_name']);
-}
+page_title (intl_get ('Translations') . ' - ' . $info['app_name']);
 
 if (! @is_dir ($lang_path)) {
 	loader_import ('saf.File.Directory');
@@ -97,6 +133,10 @@ $data = array (
 
 if (! is_array ($data['langs'])) {
 	$data['langs'] = array ();
+}
+
+if ($cgi->appname == 'TEMPLATE') {
+	$data['template'] = $cgi->template;
 }
 
 function filter_translation_default ($v) {

@@ -2,9 +2,10 @@
 
 global $cgi;
 
-if ($cgi->appname == 'GLOBAL') {
-	$file_index = 'inc/lang/index.php';
-	$file_lang = 'inc/lang/' . $cgi->lang . '.php';
+if ($cgi->appname == 'TEMPLATE') {
+	$template = $cgi->template;
+	$file_index = 'inc/html/' . $template . '/lang/index.php';
+	$file_lang = 'inc/html/' . $template . '/lang/' . $cgi->lang . '.php';
 	$file_langs = 'inc/lang/languages.php';
 } elseif ($cgi->appname == 'SAF') {
 	$file_index = 'inc/lang/saf.php';
@@ -75,7 +76,11 @@ if ($parameters['save'] == 'yes') {
 }
 
 if ($parameters['home'] == 'yes') {
-	header ('Location: ' . site_prefix () . '/index/multilingual-translation-action?appname=' . $cgi->appname);
+	$home = site_prefix () . '/index/multilingual-translation-action?appname=' . $cgi->appname;
+	if ($parameters['template']) {
+		$home .= '&template=' . $parameters['template'];
+	}
+	header ('Location: ' . $home);
 	exit;
 }
 

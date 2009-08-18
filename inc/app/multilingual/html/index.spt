@@ -5,7 +5,7 @@
 	&nbsp; &nbsp;
 	<a href="{site/prefix}/index/multilingual-dates-action">{intl Dates}</a>
 	&nbsp;&nbsp;
-	<a href="{site/prefix}/index/multilingual-translation-action?appname=GLOBAL">{intl Global Templates}</a>
+	<a href="{site/prefix}/index/multilingual-translation-action?appname=TEMPLATE">{intl Templates}</a>
 	&nbsp; &nbsp;
 	<a href="{site/prefix}/index/multilingual-translation-action">{intl Applications}</a>
 </p>
