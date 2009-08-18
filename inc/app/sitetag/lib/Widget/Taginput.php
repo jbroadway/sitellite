@@ -33,9 +33,8 @@ class MF_Widget_taginput extends MF_Widget_text {
 				multiple: true,
 				multipleSeparator: " ",
 				scroll: true,
-				scrollHeight: 300' .
-				($tc->canAdd?',mustMatch: true':'') .
-				'});});');
+				scrollHeight: 300
+				});});');
 
                 if (! isset ($this->data_value)) {
                         $this->data_value = $this->default_value;

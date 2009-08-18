@@ -10,6 +10,7 @@ distinct list of tags, you should create a new tag set.</p>
 <p>Tag sets are defined into ini files located into <strong>/inc/app/sitetag/conf/sets/</strong>. For example, the default <strong>keywords</strong> tag set is named <strong>keywords.ini.php</strong>. Here is the content of this file:</p>
 
 <p></p>
+
 <pre>description = "A global keywords list for sitellite_page"
 sitellite_owner = admin
 sitellite_team = none
@@ -19,11 +20,11 @@ tag = private
 edit = private
 
 template = off
-showEdit = on
 </pre>
 
 The following table describe each parameters in details:
 <p></p>
+
 <table width="98%"><tbody><tr><td valign="top"><strong>Parameter<br />
 
 </strong></td>
@@ -152,21 +153,8 @@ The following table describe each parameters in details:
 
 </tr>
 
-<tr><td valign="top">showEdit<br />
-
-</td>
-
-<td valign="top">on<br />
-
-</td>
-
-<td valign="top">Whether to show or not the edit link in boxes displaying tags.<br />
-
-</td>
-
-</tr>
-
 </tbody>
+
 </table>
 
 <p>This way, you can create many different tag sets, with different levels of permissions. On the same Sitellite installation, you could have a tag set every user can modify, another reserved to logged users, and another user only by site administrators.</p>

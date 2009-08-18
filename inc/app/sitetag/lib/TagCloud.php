@@ -60,7 +60,8 @@ var $tag = 'private';
 var $canTag = false;
 
 /**
- * Sitellite access to add, edit, or delete tags in this set.
+ * Sitellite access to delete tags in this set,
+ * and to update item description.
  * The user will also need $tag permission to do so.
  */
 var $edit = 'private';
@@ -69,11 +70,6 @@ var $edit = 'private';
  * Effective permission, set by class constructor.
  */
 var $canEdit = false;
-
-/**
- * If true, show a 'Edit tags' link into boxes
- */
-var $showEdit = true;
 
 /**
  * Reads tag set config file and set permissions
@@ -183,6 +179,65 @@ function findItem ($url) {
 }
 
 /**
+ * Add a tag to an item
+ *
+ * @param string $url The identifier of the item to tag.
+ * @param string $tag The tag to add.
+ * @param string $title The title of the item.
+ * @param string $description The description of the item.
+ */
+function addTag ($url, $tag, $title, $description="") {
+	if (! $this->canTag ) {
+		return null;
+	}
+
+	$item = $this->findItem ($url);
+	if (!$item) {
+		// Add new item
+		db_execute ('INSERT INTO sitellite_tag_item
+				SET `set`=?, url=?, title=?, description=?, sitellite_owner=?',
+				$this->name, $url, $title, $description, session_username ());
+		$item->id = db_lastid ();
+	}
+
+	$exists = db_shift ('SELECT tag FROM sitellite_tag WHERE tag=? AND `set`=? AND item=?', $tag, $this->name, $item->id);
+	if ($exists) {
+		return null;
+	}
+
+	// Insert new tags, do nothing if it already exists
+	db_execute ('INSERT IGNORE INTO sitellite_tag SET tag=?, `set`=?, item=?, sitellite_owner=?',
+			$tag, $this->name, $item->id, session_username ());
+	return $tag;
+}
+
+/**
+ * Remove a tag from an item
+ *
+ * @param string $url The identifier of the item
+ * @param string $tag The tag to remove
+ */
+function removeTag ($url, $tag) {
+	if (! $this->canEdit ) {
+		return null;
+	}
+
+	$item = $this->findItem ($url);
+	if (!$item) {
+		return null;
+	}
+
+	db_execute ('DELETE FROM sitellite_tag WHERE tag=? AND `set`=? AND item=?',
+			$tag, $this->name, $item->id);
+	if (db_rows ()) {
+		return $tag;
+	}
+	else {
+		return null;
+	}
+}
+
+/**
  * Add or update an item and its associated tags
  *
  * @param string $url The identifier of the page to tag.
@@ -197,10 +252,6 @@ function updateItem ($url, $title, $description, $tags) {
 	}
 
 	$item = $this->findItem ($url);
-	if (! $this->canEdit && ! $item) {
-		// If we cannot edit, we cannot add item.
-		return;
-	}
 	if (!$item) {
 		// Add new item
 		db_execute ('INSERT INTO sitellite_tag_item
@@ -210,6 +261,7 @@ function updateItem ($url, $title, $description, $tags) {
 		$cur_tags = array ();
 	}
 	else {
+		// Edit item if we can
 		if ($this->canEdit) {
 			db_execute ('UPDATE sitellite_tag_item
 					SET url=?, title=?, description=?, sitellite_owner=?
@@ -223,22 +275,12 @@ function updateItem ($url, $title, $description, $tags) {
 		$tags = explode (' ', $tags);
 	}
 
-	if (! $this->canEdit) {
-		// Remove unexisting tags...
-		$alltags = $this->getTagCloud ();
-		foreach ($tags as $k=>$t) {
-			if (! array_key_exists ($t, $alltags)) {
-				unset ($tags[$k]);
-			}
-		}
-	}
-
 	foreach ($cur_tags as $t) {
 		if (($k = array_search ($t, $tags)) !== false) {
 			// Unchanged tag
 			unset ($tags[$k]);
 		}
-		else {
+		else if ($this->canEdit) {
 			// Delete tag
 			db_execute ('DELETE FROM sitellite_tag WHERE tag=? AND `set`=? AND item=?',
 				$t, $this->name, $item->id);
@@ -360,7 +402,7 @@ function getRelated ($url, $n=5) {
 			continue;
 		}
 		++$i;
-		if ($i > $n) {
+		if ($n && $i > $n) {
 			break;
 		}
 		$result[] = $items[$id];

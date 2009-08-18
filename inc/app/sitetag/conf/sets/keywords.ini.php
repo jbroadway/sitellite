@@ -3,8 +3,7 @@ sitellite_owner = admin
 sitellite_team = none
 kind = global
 view = public
-tag = private
+tag = members
 edit = private
 
 template = off
-showEdit = on

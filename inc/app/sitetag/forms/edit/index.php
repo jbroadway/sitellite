@@ -17,19 +17,6 @@ if (! isset ($cgi->set)) {
 	return;
 }
 
-// loader_import ('cms.Workflow.Lock');
-
-// lock_init ();
-
-//if (lock_exists ('sitellite_tag', $cgi->url )) {
-//	page_title (intl_get ('Item Locked by Another User'));
-//	echo '<p><a href="javascript: history.go (-1)">' . intl_get ('Back') . '</a></p>';
-//	echo template_simple (LOCK_INFO_TEMPLATE, lock_info ('sitellite_tag', $cgi->url ));
-//	return;
-//} else {
-//	lock_add ('sitellite_tag', $cgi->url);
-//}
-
 class SitetagEditForm extends MailForm {
 	function SitetagEditForm () {
 		parent::MailForm ();
@@ -47,7 +34,6 @@ class SitetagEditForm extends MailForm {
 			}
 		');
 
-		// add cancel handler
 		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="return cms_cancel (this.form)"';
 
 		loader_import ('sitetag.TagCloud');
@@ -63,9 +49,6 @@ class SitetagEditForm extends MailForm {
 		loader_import ('sitetag.TagCloud');
 		$tc = new TagCloud ($vals['set']);
 		$tc->updateItem ($vals['url'], $vals['title'], $vals['description'], $vals['tags']);
-
-		// remove lock when editing is finished
-//		lock_remove ('sitellite_tag', $vals['url']);
 
 		header ('Location: ' . site_prefix () . '/' . $vals['url']);
 		exit;

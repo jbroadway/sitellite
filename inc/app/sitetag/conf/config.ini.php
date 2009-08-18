@@ -11,7 +11,7 @@ copyright		= "Copyright (C) 2009, Charles Brunet."
 version			= "0.1 alpha"
 
 ; These allow you to call your app via the /index/myapp-app syntax.
-default_handler		= cloud
+default_handler		= index
 default_handler_type	= box
 
 ; Comment these lines out if your app doesn't have an administrative UI to it.
