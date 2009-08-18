@@ -10,7 +10,7 @@
 		This tag sets the window title in the format "Sitellite Example Website - Page Title".
 		Simply change the site name to your own to customize this line.
 	-->
-	<title xt:content="string: Sitellite 5.0 Example Website - ${head_title}">Site Name</title>
+	<title xt:content="string: Sitellite 5.1 Example Website - ${head_title}">Site Name</title>
 
 	<!--
 		This tag replaces the CSS reference with a link that will work with Sitellite
@@ -40,7 +40,7 @@
 <!-- header -->
 <div id="header">
 
-	<a href="/">Sitellite 5.0 Example Website</a>
+	<a href="/">Sitellite 5.1 Example Website</a>
 
 </div>
 
@@ -135,7 +135,7 @@
 		-->
 		<xt:intl>Copyright</xt:intl> [ch:copy] <xt:var name="php: date ('Y')" /> Simian Systems Inc.<br />
 		<xt:intl>All rights reserved.</xt:intl><br /><br />
-		<a href="http://www.sitellite.org/" class="product-credit"><xt:intl>Powered by Sitellite 5.0 Content Management System</xt:intl></a>
+		<a href="http://www.sitellite.org/" class="product-credit"><xt:intl>Powered by Sitellite 5.1 Content Management System</xt:intl></a>
 	</p>
 
 	<p align="right" class="footer-links">
