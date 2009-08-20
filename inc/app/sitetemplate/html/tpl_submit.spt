@@ -15,7 +15,8 @@ function sitetemplate_preview (f) {
 }
 
 function sitetemplate_url_encode (text) {
-        orig = [/%/g, /(\r\n|\n\r|\r|\n)/g, /#/g, /&/g, /\(/g, /\)/g, /\//g, /:/g, /;/g, /=/g, / /g, /</g, />/g, /\{/g, /\}/g];
+        orig = [/%/g, /(\r\n|\n\r|\r|\n)/g, /#/g, /&/g, /\(/g, /\)/g, /\//g, /:/g, /;/g, /=/g, / /g, /</g, />/g, /\{/g,
+        /\}/g];
         uenc = ['%25', '%0D%0A', '%23', '%26', '%28', '%29', '%2F', '%3A', '%3B', '%3C', '+', '%3D', '%3E', '%7B', '%7D']; 
         for (i = 0; i < orig.length; i++) {
                 text = text.replace (orig[i], uenc[i]);

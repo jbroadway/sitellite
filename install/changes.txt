@@ -87,6 +87,7 @@ Changes in 5.0.3-stable
 - SiteTag application (first draft).
 - Use alert in usradm-settings-form.
 - Added autocompleted input box for sitetag.
+- Fixed a javascript error in the SiteTemplate edit form.
 
 Changes in 5.0.2-stable
 
