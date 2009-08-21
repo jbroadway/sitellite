@@ -398,6 +398,23 @@ class I18nBuilder {
 				));
 			}
 
+			// Get tags containing xt:intl attributes
+			preg_match_all ('/<[^> ]+ [^>]*xt:intl="(.*?)"[^>]*>/', $data, $keys, PREG_SET_ORDER);
+			foreach ($keys as $node) {
+				$attrs = explode(';', $node[1]);
+				foreach ($attrs as $attr) {
+					preg_match ('/ '.$attr.'="(.*?)"/', $node[0], $vals);
+					if (isset ($vals[1])) {
+						$this->buffer->set ($this->intl->serialize ($vals[1]), array (
+							'string' => $vals[1],
+							'params' => false,
+							'file' => $file,
+							'line' => false,
+						));
+					}
+				}
+			}
+
 			preg_match_all ('/intl_get ?\(\'(.*)?\'\)/', $data, $keys, PREG_SET_ORDER);
 			//info ($keys);
 			foreach ($keys as $node) {

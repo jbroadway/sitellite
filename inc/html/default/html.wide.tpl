@@ -10,7 +10,7 @@
 		This tag sets the window title in the format "Sitellite Example Website - Page Title".
 		Simply change the site name to your own to customize this line.
 	-->
-	<title xt:content="string: Sitellite 5.1 Example Website - ${head_title}">Site Name</title>
+	<title xt:content="php: intl_get ('Sitellite 5.1 Example Website') . ' - ' . object.head_title">Site Name</title>
 
 	<!--
 		This tag replaces the CSS reference with a link that will work with Sitellite
@@ -40,7 +40,7 @@
 <!-- header -->
 <div id="header">
 
-	<a href="/">Sitellite 5.1 Example Website</a>
+	<a href="/"><xt:intl>Sitellite 5.1 Example Website</xt:intl></a>
 
 </div>
 
@@ -51,13 +51,13 @@
 	-->
 	<div id="page-functions">
 		<xt:register name="site" />
-		<a href="http://digg.com/submit?phase=2[ch:amp]url=${php: urlencode (site.url . site.current)}[ch:amp]title=${php: urlencode (object.title)}" target="_blank"><img src="${site/prefix}/inc/html/default/pix/digg.gif" border="0" alt="Digg this page" title="Digg this page" /></a>
+		<a href="http://digg.com/submit?phase=2[ch:amp]url=${php: urlencode (site.url . site.current)}[ch:amp]title=${php: urlencode (object.title)}" target="_blank"><img src="${site/prefix}/inc/html/default/pix/digg.gif" border="0" alt="Digg this page" title="Digg this page" xt:intl="alt;title" /></a>
 		[ch:nbsp][ch:nbsp]
-		<a href="javascript: void window.open ('http://del.icio.us/post?url=${php: urlencode (site.url . site.current)}[ch:amp]title=${php: urlencode (object.title)}[ch:amp]notes=[ch:amp]v=4[ch:amp]noui[ch:amp]jump=close[ch:amp]src=sitellite${php SITELLITE_VERSION}', 'Bookmark', 'left=50,top=50,width=700,height=300,resize=yes')"><img src="${site/prefix}/inc/html/default/pix/bookmark.gif" border="0" alt="Bookmark with del.icio.us" title="Bookmark with del.icio.us" /></a>
+		<a href="javascript: void window.open ('http://del.icio.us/post?url=${php: urlencode (site.url . site.current)}[ch:amp]title=${php: urlencode (object.title)}[ch:amp]notes=[ch:amp]v=4[ch:amp]noui[ch:amp]jump=close[ch:amp]src=sitellite${php SITELLITE_VERSION}', 'Bookmark', 'left=50,top=50,width=700,height=300,resize=yes')"><img src="${site/prefix}/inc/html/default/pix/bookmark.gif" border="0" alt="Bookmark with del.icio.us" title="Bookmark with del.icio.us" xt:intl="alt;title" /></a>
 		[ch:nbsp][ch:nbsp]
-		<a href="javascript: void window.open ('/index/example-emailafriend-form?url=${site/current}', 'EmailAFriend', 'left=50,top=50,width=400,height=400,resize=yes')"><img src="${site/prefix}/inc/html/default/pix/email.gif" border="0" alt="Email page" title="Email page" /></a>
+		<a href="javascript: void window.open ('/index/example-emailafriend-form?url=${site/current}', 'EmailAFriend', 'left=50,top=50,width=400,height=400,resize=yes')"><img src="${site/prefix}/inc/html/default/pix/email.gif" border="0" alt="Email page" title="Email page" xt:intl="alt;title" /></a>
 		[ch:nbsp][ch:nbsp]
-		<a href="javascript: void window.print ()"><img src="${site/prefix}/inc/html/default/pix/print.gif" border="0" alt="Print page" title="Print page" /></a>
+		<a href="javascript: void window.print ()"><img src="${site/prefix}/inc/html/default/pix/print.gif" border="0" alt="Print page" title="Print page" xt:intl="alt;title" /></a>
 	</div>
 
 	<!--

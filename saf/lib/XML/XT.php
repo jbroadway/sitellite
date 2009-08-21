@@ -1694,6 +1694,15 @@ class XT {
 							$this->ignoreUntilLevel ($node['level']);
 						}
 					}
+					if (isset ($node['attributes'][$this->prefix . 'intl'])) {
+						$attrs = explode (';', $node['attributes'][$this->prefix . 'intl']);
+						global $intl;
+						foreach ($attrs as $attr) {
+							if (isset ($node['attributes'][$attr])) {
+								$node['attributes'][$attr] = $intl->get ($node['attributes'][$attr]);
+							}
+						}	
+					}
 					if (isset ($node['attributes'][$this->prefix . 'loop'])) {
 						list ($varname, $expr) = $this->exp->splitAssignment ($node['attributes'][$this->prefix . 'loop']);
 						$this->loop[] = array (
