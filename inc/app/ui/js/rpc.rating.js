@@ -13,4 +13,13 @@ var rating = {
 			}
 		);
 	},
+	unset: function (group, item, user) {
+		myrpc.call (
+			this.action ('unsetRating', [group, item, user]),
+			function (request) {
+				answer = eval (request.responseText);
+				$('#ui-ratings-text').show().html(answer).animate({opacity:1}, 3000).fadeOut();	
+			}
+		);
+	},
 }

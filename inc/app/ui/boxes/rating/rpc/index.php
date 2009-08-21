@@ -17,6 +17,19 @@ function setRating ($group, $item, $user, $rating) {
 	}
 }
 
+function unsetRating ($group, $item, $user) {
+	db_execute ('DELETE FROM ui_rating WHERE
+		`group`=? AND item=? AND user=?',
+		$group, $item, $user);
+	$result = db_error ();
+	if ($result) {
+		return $result;
+	}
+	else {
+		return intl_get ('Vote canceled.');
+	}
+}
+
 }
 
 echo rpc_handle (new StarRating, $parameters);

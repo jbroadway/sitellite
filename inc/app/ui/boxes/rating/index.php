@@ -33,7 +33,7 @@ else {
 }
 
 if ($parameters['readonly'] == 'yes') {
-	$nstars = $parameters['nstars'] * 2;
+	$parameters['nstars'] *= 2;
 	$options = array (
 			'disabled' => 'true',
 			'split' => 2);
@@ -50,8 +50,13 @@ else {
 	page_add_script (site_prefix () . '/inc/app/ui/js/rpc.rating.js');
 
 	$options = array (
-			'callback' => 'function(ui, type, value){' . 
-			"rating.set('{$parameters['group']}', '{$parameters['item']}', '{$username}', value);}");
+			'callback' => 'function(ui, type, value){
+			if (type == "star") {' . 
+			"rating.set('{$parameters['group']}', '{$parameters['item']}', '{$username}', value);" .
+			'}
+			else {' .
+			"rating.unset('{$parameters['group']}', '{$parameters['item']}', '{$username}');" .
+			'}}');
 
 	// Get current value
 	$value = db_shift ('SELECT rating FROM ui_rating
@@ -68,7 +73,7 @@ $stars->starOptions = $options;
 echo $stars->display (false);
 
 if (! session_valid () && $parameters['anon'] == 'no') {
-	echo '<a href="' . site_prefix () . '/sitemember-login-action' . intl_get ('Sign in to rate.') . '</a>';
+	echo ' <small><a href="' . site_prefix () . '/sitemember-login-action">' . intl_get ('Sign in to rate.') . '</a></small>';
 }
 else if ($parameters['readonly'] == 'no') {
 	echo '<br /><p id="ui-ratings-text" style="display: none;">&nbsp;</p>';
