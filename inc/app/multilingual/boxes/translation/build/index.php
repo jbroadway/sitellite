@@ -1,5 +1,8 @@
 <?php
 
+// Try to increase memory limit, if allowed...
+@ini_set('memory_limit', '32M');
+
 if ($parameters['appname'] == 'TEMPLATE') {
 	$app = $parameters['template'];
 	$read = 'inc/html/' . $app;
