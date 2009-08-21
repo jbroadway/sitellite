@@ -114,7 +114,7 @@ if ($type == 'app' && @is_dir ('inc/app/' . $request . '/lang')) {
 		$lang_dirs[] = 'inc/app/' . $app . '/lang';
 	}
 }
-$intl = new I18n ($lang_dirs, $conf['I18n']['negotiate']); // translation object
+$intl = new I18n ($lang_dirs); // translation object
 $intl->method = $conf['I18n']['serialize'];
 /*************************************************************************/
 

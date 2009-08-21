@@ -4,6 +4,7 @@ Changes in 5.1.0-alpha
 - Each template set now has its own translation strings [#6].
 - Added xt:intl attribute to translate attributes in XT templates [#149].
 - Try to increase memory limit when building lang indexes.
+- Auto-determine language from different methods (url, cookies, http, session).
 
 Changes in 5.0.3-stable
 

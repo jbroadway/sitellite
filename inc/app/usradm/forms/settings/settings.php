@@ -189,13 +189,6 @@ type = text
 alt = Directory
 formhelp = "Directory where language files are stored."
 
-[I18n_negotiate]
-
-type = select
-alt = Determine language from
-setValues = "eval: array ('http' => 'Browser settings', 'cookie' => 'Session cookie', 'url' => 'Page URLs (e.g. /fr/)')"
-formhelp = "The method of determining which language to use for each visitor.  See saf.I18n::negotiate() in the API references for more information."
-
 [I18n_serialize]
 
 type = hidden

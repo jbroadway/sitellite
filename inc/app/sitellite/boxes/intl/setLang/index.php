@@ -15,15 +15,7 @@ if (! defined ('SAF_VERSION')) {
 
 global $cookie, $intl;
 
-if ($intl->negotiation == 'cookie') {
-	$cookie->set ('sitellite_lang_pref', $parameters['choice'], '', '/');
-
-	if ($parameters['goHome']) {
-		header ('Location: ' . site_prefix () . '/index');
-	} else {
-		header ('Location: ' . $_SERVER['HTTP_REFERER']);
-	}
-} elseif ($intl->negotiation == 'url') {
+if ($intl->negotiation == 'url') {
     $curLang = $parameters['curlang'];
 	if ($parameters['goHome']) {
 		if (strpos (site_prefix (), '/' . $curLang . '/') !== false) {
@@ -46,6 +38,15 @@ if ($intl->negotiation == 'cookie') {
 			}
 		}
 		header ('Location: ' . $referrer);
+	}
+}
+else {
+	$cookie->set ($intl->cookieName, $parameters['choice'], '', '/');
+
+	if ($parameters['goHome']) {
+		header ('Location: ' . site_prefix () . '/index');
+	} else {
+		header ('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 }
 

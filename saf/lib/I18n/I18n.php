@@ -260,11 +260,10 @@ class I18n {
      * 
      * @access  public
      * @param   string  $directory
-     * @param   string  $negotiationMethod
      * @param   boolean $load_new
      * 
      */
-    function I18n ($directory = 'inc/lang', $negotiationMethod = 'html', $load_new = false) {
+    function I18n ($directory = 'inc/lang', $load_new = false) {
         $this->directory = $directory;
         $this->load_new = $load_new;
 
@@ -292,8 +291,7 @@ class I18n {
                 }
             }
         }
-        $this->negotiation = $negotiationMethod;
-        $this->language = $this->negotiate ($negotiationMethod);
+        $this->language = $this->negotiate ();
         $this->charset = $this->languages[$this->language]['charset'];
         $this->fullname = $this->languages[$this->language]['name'];
         $this->setLocale ();
@@ -815,111 +813,162 @@ class I18n {
 
     /**
      * Returns the preferred language of the current visitor.
-     * If the $method is 'http' then it uses the HTTP Accept-Language
-     * string for this info.  If the $method is 'cookie' it uses a
-     * cookie (specified by the $cookieName property) to determine,
-     * if the $method is 'session' it relies on the global
-     * $session object, and if the $method is 'url' then it uses the
-     * start of the URL to determine the language (e.g., /fr/ or /en/).
-     * Default is 'http'.
      * 
      * @access  public
-     * @param   string  $method
      * @return  string
-     * 
      */
-    function negotiate ($method = 'http') {
+    function negotiate () {
+	
+		global $cookie;
 
-        if ($method == 'http') {
-            $accepted = array ();
-            $keys = explode (',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+		$lang = $this->_url_negotiate ();
+		if ($lang) {
+			$cookie->set ($intl->cookieName, $lang, '', '/');
+			return $lang;
+		}
 
-            foreach ($keys as $lang) {
-                // remove trailing ";q=" data
-                if ($pos = strpos ($lang, ';')) {
-                    $lang = trim (substr ($lang, 0, $pos));
-                }
+		$lang = $this->_cookie_negotiate ();
+		if ($lang) {
+			return $lang;
+		}
 
-                // check for country code
-                if ($pos = strpos ($lang, '-')) {
-                    list ($lang, $cn) = explode ('-', $lang);
-
-                    if ($lang == 'i') {
-                        $lang = $cn;
-                        unset ($cn);
-                    }
-
-                    if (isset ($cn)) {
-                        if (is_array ($accepted[$lang])) {
-                            $accepted[$lang][] = $cn;
-                        } else {
-                            $accepted[$lang] = array ($cn);
-                        }
-                    } elseif (! is_array ($accepted[$lang])) {
-                        $accepted[$lang] = array ('');
-                    }
-                } else {
-                    if (is_array ($accepted[$lang])) {
-                        $accepted[$lang][] = '';
-                    } else {
-                        $accepted[$lang] = array ('');
-                    }
-                }
-            }
-
-            foreach ($accepted as $lang => $cnlist) {
-                foreach ($cnlist as $cn) {
-                    if (! empty ($cn)) {
-                        $name = $lang . '-' . $cn;
-                    } else {
-                        $name = $lang;
-                    }
-                    if (isset ($this->languages[$name])) {
-                        // found
-                        return $name;
-                    }
-                }
-            }
-
-        } elseif ($method == 'cookie') {
-            // use a cookie (see $cookieName property)
-            global $cookie;
-
-            if (
-                isset ($cookie->{$this->cookieName}) &&
-                isset ($this->languages[$cookie->{$this->cookieName}])
-            ) {
-                return $cookie->{$this->cookieName};
-            }
-
-        } elseif ($method == 'session') {
-            // use $session->lang
-            $lang = session_pref ('lang');
-
-            if (isset ($lang) && isset ($this->languages[$lang])) {
-                return $lang;
-            }
-
-        } elseif ($method == 'url') {
-            // use /en/ or /fr/ to set language
-            global $conf;
-            $parts = parse_url ($_SERVER['REQUEST_URI']);
-            list ($root, $null) = explode ('/index', $parts['path']);
-            $root = trim ($root, '/');
-            if (! empty ($root)) {
-                $list = explode ('/', $root);
-                $lang = array_shift ($list);
-                if (isset ($this->languages[$lang])) {
-                    //$conf['Site']['level']++;
-                    $this->url_increase_level = true;
-                    return $lang;
-                }
-            }
-        }
+		$lang = $this->_http_negotiate ();
+		if ($lang) {
+			$cookie->set ($intl->cookieName, $lang, '', '/');
+			return $lang;
+		}
 
         return $this->default;
 
     }
+
+    /**
+     * Returns the preferred language of the current visitor
+     * using the HTTP Accept-Language string for this info.
+     * 
+     * @access  private
+     * @return  string
+     */
+    function _http_negotiate () {
+	    $accepted = array ();
+	    $keys = explode (',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
+	    foreach ($keys as $lang) {
+		    // remove trailing ";q=" data
+		    if ($pos = strpos ($lang, ';')) {
+			    $lang = trim (substr ($lang, 0, $pos));
+		    }
+
+		    // check for country code
+		    if ($pos = strpos ($lang, '-')) {
+			    list ($lang, $cn) = explode ('-', $lang);
+
+			    if ($lang == 'i') {
+				    $lang = $cn;
+				    unset ($cn);
+			    }
+
+			    if (isset ($cn)) {
+				    if (is_array ($accepted[$lang])) {
+					    $accepted[$lang][] = $cn;
+				    } else {
+					    $accepted[$lang] = array ($cn);
+				    }
+			    } elseif (! is_array ($accepted[$lang])) {
+				    $accepted[$lang] = array ('');
+			    }
+		    } else {
+			    if (is_array ($accepted[$lang])) {
+				    $accepted[$lang][] = '';
+			    } else {
+				    $accepted[$lang] = array ('');
+			    }
+		    }
+	    }
+
+	    foreach ($accepted as $lang => $cnlist) {
+		    foreach ($cnlist as $cn) {
+			    if (! empty ($cn)) {
+				    $name = $lang . '-' . $cn;
+			    } else {
+				    $name = $lang;
+			    }
+			    if (isset ($this->languages[$name])) {
+				    // found
+					$this->negotiation = 'http';
+				    return $name;
+			    }
+		    }
+	    }
+		return null;
+    }
+	
+    /**
+     * Returns the preferred language of the current visitor,
+     * Using a cookie (specified by the $cookieName property) to determine.
+     * 
+     * @access  private
+     * @return  string
+     */
+	function _cookie_negotiate () {
+            // use a cookie (see $cookieName property)
+            global $cookie;
+
+            if (isset ($cookie->{$this->cookieName}) &&
+                isset ($this->languages[$cookie->{$this->cookieName}])
+            ) {
+				$this->negotiation = 'cookie';
+                return $cookie->{$this->cookieName};
+            }
+			return null;
+	}
+
+    /**
+     * Returns the preferred language of the current visitor.
+     * It relies on the global $session object
+     * 
+     * @access  public
+     * @return  string
+     */
+	function session_negotiate ()
+	{
+		// use $session->lang
+		$lang = session_pref ('lang');
+
+		if (isset ($lang) && isset ($this->languages[$lang])) {
+			$this->negotiation = 'session';
+			return $lang;
+		}
+		return null;
+	}
+
+    /**
+     * Returns the preferred language of the current visitor.
+     * It uses the
+     * start of the URL to determine the language (e.g., /fr/ or /en/).
+     * 
+     * @access  private
+     * @return  string
+     */
+	function _url_negotiate ()
+	{
+		// use /en/ or /fr/ to set language
+		global $conf;
+		$parts = parse_url ($_SERVER['REQUEST_URI']);
+		list ($root, $null) = explode ('/index', $parts['path']);
+		$root = trim ($root, '/');
+		if (! empty ($root)) {
+			$list = explode ('/', $root);
+			$lang = array_shift ($list);
+			if (isset ($this->languages[$lang])) {
+				//$conf['Site']['level']++;
+				$this->url_increase_level = true;
+				$this->negotiation = 'url';
+				return $lang;
+			}
+		}
+		return null;
+	}
 
     function writeIndex ($file, $data) {
         $fp = fopen ($file, 'w');

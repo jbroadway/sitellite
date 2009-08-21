@@ -65,6 +65,15 @@ if ((! empty ($cgi->username)) || (! empty ($cookie->{$_sconf['Handler']['cookie
 		$cookie->set ('sitemember_remember', $cookie->sitemember_remember, $cookie->sitemember_remember, '/', site_domain (), site_secure ());
 	}
 	$session->start ();
+
+	// Set language from session
+	if (session_valid ()) {
+		global $intl;
+		$lang = $intl->session_negotiate ();
+		if ($lang) {
+			$cookie->set ($intl->cookieName, $lang, '', '/');
+		}
+	}
 }
 
 //} // end evaluation condition
