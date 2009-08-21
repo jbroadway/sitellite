@@ -8,14 +8,13 @@ function setRating ($group, $item, $user, $rating) {
 	db_execute ('REPLACE INTO ui_rating SET
 		`group`=?, item=?, user=?, rating=?',
 		$group, $item, $user, (int)$rating);
-	return db_error ();
-}
-
-function setAndShow ($group, $item, $user, $rating) {
-	$this->setRating ($group, $item, $user, $rating);
-	return round (db_shift ('SELECT AVG(rating) FROM ui_rating
-		WHERE `group`=? AND item=? GROUP BY item',
-		$group, $item));
+	$result = db_error ();
+	if ($result) {
+		return $result;
+	}
+	else {
+		return intl_get ('Thanks for rating!');
+	}
 }
 
 }

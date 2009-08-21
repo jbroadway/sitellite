@@ -6,18 +6,11 @@ var rating = {
 	action: myrpc.action,
 	set: function (group, item, user, value) {
 		myrpc.call (
-			this.action ('setRating', [group, item, user, value])
-		);
-	},
-
-	setandshow: function (group, item, user, value) {
-		myrpc.call (
-			this.action ('setAndShow', [group, item, user, value]),
+			this.action ('setRating', [group, item, user, value]),
 			function (request) {
-				$('#'+group+'-stars-wrapper').stars (
-					"select",
-					eval(request.responseText));
+				answer = eval (request.responseText);
+				$('#ui-ratings-text').show().html(answer).animate({opacity:1}, 3000).fadeOut();	
 			}
 		);
-	}
+	},
 }

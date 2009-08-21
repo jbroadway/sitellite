@@ -12,36 +12,52 @@ if (!isset ($parameters['nstars'])) {
 	$parameters['nstars'] = 5;
 }
 if (!isset ($parameters['anon'])) {
-	$parameters['anon'] = false;
+	$parameters['anon'] = 'no';
+}
+if (!isset ($parameters['readonly'])) {
+	$parameters['readonly'] = 'yes';
 }
 
 if ( ! session_valid ()) {
-	if ($anon) {
+	if ($parameters['anon'] == 'yes') {
 		$username = $_SERVER["REMOTE_ADDR"];
 	}
 	else {
 		// if user not logged and no anonymous rating,
 		// show average rating instead
-		echo loader_box ('ui/rating/show', $parameters);
-		return;
+		$parameters['readonly'] = 'yes';
 	}
 }
 else {
 	$username = session_username ();
 }
 
-// Add AJAX scripts
-page_add_script (site_prefix () . '/js/rpc-compressed.js');
-page_add_script (site_prefix () . '/inc/app/ui/js/rpc.rating.js');
+if ($parameters['readonly'] == 'yes') {
+	$nstars = $parameters['nstars'] * 2;
+	$options = array (
+			'disabled' => 'true',
+			'split' => 2);
 
-$options = array (
-	'callback' => 'function(ui, type, value){' . 
-	"rating.set('{$parameters['group']}', '{$parameters['item']}', '{$username}', value);}");
+	// Get current value
+	$value = db_shift ('SELECT AVG(rating) FROM ui_rating
+			WHERE `group`=? AND item=? GROUP BY item',
+			$parameters['group'], $parameters['item']);
+	$value = round ($value * 2);
+}
+else {
+	// Add AJAX scripts
+	page_add_script (site_prefix () . '/js/rpc-compressed.js');
+	page_add_script (site_prefix () . '/inc/app/ui/js/rpc.rating.js');
 
-// Get current value
-$value = db_shift ('SELECT rating FROM ui_rating
-		WHERE `group`=? AND item=? and user=?',
-		$parameters['group'], $parameters['item'], $username);
+	$options = array (
+			'callback' => 'function(ui, type, value){' . 
+			"rating.set('{$parameters['group']}', '{$parameters['item']}', '{$username}', value);}");
+
+	// Get current value
+	$value = db_shift ('SELECT rating FROM ui_rating
+			WHERE `group`=? AND item=? and user=?',
+			$parameters['group'], $parameters['item'], $username);
+}
 
 // Create Widget
 $name = $parameters['group'] . '-stars';
@@ -50,5 +66,13 @@ $stars->setValues ( range (0, $parameters['nstars'], 1) );
 $stars->setValue ($value);
 $stars->starOptions = $options;
 echo $stars->display (false);
+
+if (! session_valid () && $parameters['anon'] == 'no') {
+	echo '<a href="' . site_prefix () . '/sitemember-login-action' . intl_get ('Sign in to rate.') . '</a>';
+}
+else if ($parameters['readonly'] == 'no') {
+	echo '<br /><p id="ui-ratings-text" style="display: none;">&nbsp;</p>';
+}
+
 
 ?>

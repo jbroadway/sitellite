@@ -4,7 +4,7 @@
 ; are not so self explanatory have a comment above them.
 
 ; Only app_name among all these is actually required, but all are recommended.
-app_name		= UI
+app_name		= UI Elements
 description		= User interface elements
 author			= Charles Brunet <charles@cbrunet.net>
 copyright		= "Copyright (C) 2009, Charles Brunet."
