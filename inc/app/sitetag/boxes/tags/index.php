@@ -33,7 +33,9 @@ if ($tc->canTag) {
                                 width: 320,
                                 highlight: false,
                                 scroll: true,
-                                scrollHeight: 300
+                                scrollHeight: 300,
+                                multiple: true,
+                                multipleSeparator: " ",
                                 });});');
 
 	page_add_script (site_prefix () . '/js/rpc-compressed.js');

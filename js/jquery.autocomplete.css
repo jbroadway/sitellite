@@ -38,11 +38,16 @@
 	background: white url('indicator.gif') right center no-repeat;
 }
 
+.ac_even {
+	color: #222;
+}
+
 .ac_odd {
+	color: #222;
 	background-color: #eee;
 }
 
 .ac_over {
-	background-color: #0A246A;
+	background-color: #666;
 	color: white;
 }

@@ -20,6 +20,8 @@ if (isset ($parameters['tag'])) {
 	echo template_simple ('list-items.spt', $parameters);
 }
 else {
+	page_title (intl_get ('All Tags'));
+
 	$tags = $tc->getTagCloud ();
 
 	template_simple_register ('tags', $tags);

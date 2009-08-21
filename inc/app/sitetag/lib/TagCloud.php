@@ -182,11 +182,13 @@ function findItem ($url) {
  * Add a tag to an item
  *
  * @param string $url The identifier of the item to tag.
- * @param string $tag The tag to add.
+ * @param string $tags Space separated list of tags to add.
  * @param string $title The title of the item.
  * @param string $description The description of the item.
+ *
+ * @return array list of added tags.
  */
-function addTag ($url, $tag, $title, $description="") {
+function addTag ($url, $tags, $title, $description="") {
 	if (! $this->canTag ) {
 		return null;
 	}
@@ -200,15 +202,24 @@ function addTag ($url, $tag, $title, $description="") {
 		$item->id = db_lastid ();
 	}
 
-	$exists = db_shift ('SELECT tag FROM sitellite_tag WHERE tag=? AND `set`=? AND item=?', $tag, $this->name, $item->id);
-	if ($exists) {
-		return null;
-	}
+	$tags = explode (' ', $tags);
+	foreach ($tags as $k => $tag) { 
+		trim ($tag);
+		if (empty ($tag)) {
+			unset ($tags[$k]);
+			continue;
+		}
+		$exists = db_shift ('SELECT tag FROM sitellite_tag WHERE tag=? AND `set`=? AND item=?', $tag, $this->name, $item->id);
+		if ($exists) {
+			unset ($tags[$k]);
+			continue;
+		}
 
-	// Insert new tags, do nothing if it already exists
-	db_execute ('INSERT IGNORE INTO sitellite_tag SET tag=?, `set`=?, item=?, sitellite_owner=?',
-			$tag, $this->name, $item->id, session_username ());
-	return $tag;
+		// Insert new tags, do nothing if it already exists
+		db_execute ('INSERT IGNORE INTO sitellite_tag SET tag=?, `set`=?, item=?, sitellite_owner=?',
+				$tag, $this->name, $item->id, session_username ());
+	}
+	return $tags;
 }
 
 /**
