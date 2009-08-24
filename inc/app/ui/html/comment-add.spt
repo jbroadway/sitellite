@@ -1,0 +1,8 @@
+<form id="ui-comments-add-form" onsubmit="return mycomment.add (this)">
+<input type="hidden" id="user" name="user" value="{user}" />
+<input type="hidden" id="item-id" name="itemid" value="{item}" />
+<input type="hidden" id="group" name="group" value="{group}" />
+<input type="hidden" id="approved" name="approved" value="{approved}" />
+<textarea id="comment" name="comment"></textarea>
+<input type="submit" name="submit" value="{intl Add comment}" />
+</form>
