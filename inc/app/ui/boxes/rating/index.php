@@ -39,10 +39,11 @@ if ($parameters['readonly'] == 'yes') {
 			'split' => 2);
 
 	// Get current value
-	$value = db_shift ('SELECT AVG(rating) FROM ui_rating
+	$curvals = db_single ('SELECT AVG(rating) AS avgrating,
+			COUNT(rating) AS nvotes FROM ui_rating
 			WHERE `group`=? AND item=? GROUP BY item',
 			$parameters['group'], $parameters['item']);
-	$value = round ($value * 2);
+	$value = round ($curvals->avgrating * 2);
 }
 else {
 	// Add AJAX scripts
@@ -64,20 +65,50 @@ else {
 			$parameters['group'], $parameters['item'], $username);
 }
 
+$caption = true;
+switch ($parameters['nstars'] == 5) {
+	case 5:
+		$values = array (intl_get ('Cancel'),
+			intl_get ('Poor'),
+			intl_get ('Nothing special'),
+			intl_get ('Okay'),
+			intl_get ('Pretty cool'),
+			intl_get ('Awesome!'));
+		break;
+	default:
+		$caption = false;
+		$values = range (0, $parameters['nstars'], 1);
+}
+
+
 // Create Widget
 $name = $parameters['group'] . '-stars';
 $stars = new MF_Widget_rating ($name);
-$stars->setValues ( range (0, $parameters['nstars'], 1) );
+$stars->setValues ($values);
 $stars->setValue ($value);
 $stars->starOptions = $options;
-echo $stars->display (false);
+$stars->caption = $caption;
 
 if (! session_valid () && $parameters['anon'] == 'no') {
-	echo ' <small><a href="' . site_prefix () . '/sitemember-login-action">' . intl_get ('Sign in to rate.') . '</a></small>';
+	$stars->append = '<a href="' . site_prefix () . '/sitemember-login-action">' . intl_get ('Sign in to rate.') . '</a>';
 }
-else if ($parameters['readonly'] == 'no') {
-	echo '<br /><p id="ui-ratings-text" style="display: none;">&nbsp;</p>';
+else if ($parameters['readonly'] == 'yes') {
+	switch ($curvals->nvotes) {
+		case 0:
+			$stars->append = intl_get ('No rating.');
+			break;
+		case 1:
+			$stars->append = intl_get ('1 rating.');
+			break;
+		default:
+			$stars->append = intl_get ('{nvotes} ratings.', $curvals);
+			break;
+	}
 }
+
+
+echo $stars->display (false);
+
 
 
 ?>

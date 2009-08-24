@@ -11,6 +11,17 @@ class MF_Widget_rating extends MF_Widget_select {
 var $starOptions = array ();
 
 /**
+ * Text to append to the widget.
+ */
+var $append = '';
+
+
+/**
+ * Show caption above stars
+ */
+var $caption = false;
+
+/**
  * @param string $callback JavaScript callback to trigger when clicking
  *        on a star
  */
@@ -20,8 +31,12 @@ function display ($generate_html = 0) {
 	page_add_script (site_prefix () . '/js/jquery-ui-1.7.2.min.js');
 	page_add_script (site_prefix () . '/inc/app/ui/js/ui.stars.min.js');
 	page_add_style (site_prefix () . '/inc/app/ui/js/ui.stars.css');
+
+	if ($this->caption) {
+		$this->starOptions['captionEl'] = '$("#' . $this->name . '-caption")';
+	}
 	
-	$script = ' $(function(){
+	$script = '$(document).ready(function(){
 				$("#' . $this->name . '-wrapper").stars({
 					inputType: "select"';
 	foreach ($this->starOptions as $op=>$val) {
@@ -31,9 +46,17 @@ function display ($generate_html = 0) {
 
 	page_add_script ($script);
 
-	$data = '<div id="' . $this->name . '-wrapper">';
+	$data = '';
+	if ($this->caption) {
+		$data = intl_get ('Rating: ') . '<span id="' . $this->name . '-caption"></span>';
+	}
+	$data .= '<div id="' . $this->name . '-wrapper">';
 	$data .= parent::display ();
 	$data .= '</div>';
+	if (!empty ($this->append)) {
+		$data .= '&nbsp;&nbsp;' . $this->append;
+	}
+	$data .= '<br /><span id="' . $this->name . '-ratings-text" style="display: none;">&nbsp;</span>';
 
 	if ($generate_html) {
 		$adv = ($this->advanced) ? ' class="advanced"' : '';
@@ -55,6 +78,7 @@ function display ($generate_html = 0) {
 		return $data;
 	}
 }
+
 
 }
 

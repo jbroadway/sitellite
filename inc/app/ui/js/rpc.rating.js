@@ -9,7 +9,7 @@ var rating = {
 			this.action ('setRating', [group, item, user, value]),
 			function (request) {
 				answer = eval (request.responseText);
-				$('#ui-ratings-text').show().html(answer).animate({opacity:1}, 3000).fadeOut();	
+				$('#'+group+'-stars-ratings-text').show().html(answer).animate({opacity:1}, 3000).fadeOut();	
 			}
 		);
 	},
@@ -18,7 +18,7 @@ var rating = {
 			this.action ('unsetRating', [group, item, user]),
 			function (request) {
 				answer = eval (request.responseText);
-				$('#ui-ratings-text').show().html(answer).animate({opacity:1}, 3000).fadeOut();	
+				$('#'+group+'-stars-ratings-text').show().html(answer).animate({opacity:1}, 3000).fadeOut();	
 			}
 		);
 	},
