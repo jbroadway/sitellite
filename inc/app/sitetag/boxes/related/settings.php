@@ -2,7 +2,7 @@
 
 [Meta]
 
-name            = related
+name            = Related Links
 description     = List related items.
 author          = Charles Brunet <charles@cbrunet.net>
 copyright       = "Copyright (C) 2009, Charles Brunet."

@@ -20,7 +20,7 @@ var tag = {
 
 	add: function (form) {
 		myrpc.call (
-			this.action ('addTag', ['{url}', form.elements.taginput.value, '{title}', '{description}']),
+			this.action ('addTag', ['{url}', form.elements.taginput.value, '{name}', '{description}']),
 			function (request) {
 				tagid = eval (request.responseText);
 				if (tagid.length) {

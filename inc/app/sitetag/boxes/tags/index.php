@@ -14,8 +14,8 @@ $tags = $tc->getTags ($parameters['url']);
 
 if ($tc->canTag) {
 
-	if (! isset ($parameters['title'])) {
-		$parameters['title'] = $GLOBALS['page']->title;
+	if (! isset ($parameters['name'])) {
+		$parameters['name'] = $GLOBALS['page']->title;
 	}
 	if (! isset ($parameters['description'])) {
 		$parameters['description'] = $GLOBALS['page']->description;
