@@ -25,7 +25,7 @@ var tag = {
 				tagid = eval (request.responseText);
 				if (tagid.length) {
 					for (var i in tagid) {
-						$('#set-{set}').append ('<li id="tag-'+tagid[i]+'"><a href="{site/prefix}/sitetag-app/set.{set}/tag.'+tagid[i]+'">'+tagid[i]+'</a>{if obj[canEdit]} <small><a href="#" onclick="tag.del (\''+tagid[i]+'\')">x</a></small>{end if}</li>');
+						$('#set-{set}').append ('<li id="tag-'+tagid[i]+'"><a href="{site/prefix}/sitetag-app/set.{set}/tag.'+tagid[i]+'">'+tagid[i]+'</a>{if obj[canEdit]} &nbsp; <a href="#" onclick="tag.del (\''+tagid[i]+'\')" title="{intl Delete this tag?}"><strong style="font-family: verdana; font-size: 11px">x</strong></a>{end if}</li>');
 					}
 					$('#set-{set}>li').tsort ();
 				}
