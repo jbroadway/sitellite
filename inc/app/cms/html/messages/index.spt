@@ -42,7 +42,7 @@
 				{end if}
 			</td>
 			<td>
-				<a href="{site/prefix}/index/cms-messages-category-action?category={loop/name}">{loop/name}</a>
+				<a href="{site/prefix}/index/cms-messages-category-action?category={loop/name}">{loop/intlname}</a>
 			</td>
 			<td align="right">{loop/count}</td>
 		</tr>

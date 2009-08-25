@@ -12,7 +12,7 @@ class WorkspaceMessageCategory {
 		if (! $user) {
 			$user = session_username ();
 		}
-		$res = db_fetch ('select * from sitellite_msg_category where user = ? order by name asc', $user);
+		$res = db_fetch ('select *, name as intlname from sitellite_msg_category where user = ? order by name asc', $user);
 		if (! $res) {
 			$this->error = db_error ();
 			$res = array ();

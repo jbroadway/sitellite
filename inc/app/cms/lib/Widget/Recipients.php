@@ -230,7 +230,7 @@ class MF_Widget_recipients extends MF_Widget {
 							</td>
 							<td valign="top">
 					<table cellpadding="3" cellspacing="1" border="0">
-					<tr><td>User</td><td><select name="' . $this->name . '_users">
+					<tr><td>' . intl_get ('User') . '</td><td><select name="' . $this->name . '_users">
 						<option value="">- ' . intl_get ('SELECT') . ' -</option>' . NEWLINE;
 			foreach ($users as $user => $name) {
 				if ($user == session_username ()) {
@@ -240,7 +240,7 @@ class MF_Widget_recipients extends MF_Widget {
 				$data .= '>' . $name . '</option>' . NEWLINE;
 			}
 			$data .= '</select></td></tr>
-					<tr><td>Email</td><td><input type="text" name="' . $this->name . '_email" size="10" /> <input type="submit" value="' . intl_get ('Add') . '" onclick="return cms_recipient_add (this.form)" /></td></tr>
+					<tr><td>' . intl_get ('Email') . '</td><td><input type="text" name="' . $this->name . '_email" size="10" /> <input type="submit" value="' . intl_get ('Add') . '" onclick="return cms_recipient_add (this.form)" /></td></tr>
 					</table><br />
 					<input type="submit" value="' . intl_get ('Remove Selected') . '" onclick="return cms_recipient_remove (this.form)" />
 							</td>

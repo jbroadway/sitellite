@@ -9,11 +9,11 @@
 
 <p>
 	{if obj[add]}
-	<a href="{site/prefix}/index/cms-add-form?collection={collection}&_return={filter urlencode}{return}%26_msg%3Dadded{end filter}">{intl Add} {collection_singular}</a>
+	<a href="{site/prefix}/index/cms-add-form?collection={collection}&_return={filter urlencode}{return}%26_msg%3Dadded{end filter}">{add_collection}</a>
 	{end if}
 	{if obj[is_versioned]}
 	{if obj[add]}&nbsp; &nbsp;{end if}
-	<a href="{site/prefix}/index/cms-deleted-items-action?collection={collection}">{intl Deleted} {collection_name}</a>
+	<a href="{site/prefix}/index/cms-deleted-items-action?collection={collection}">{deleted_collection}</a>
 	{end if}
 	{if obj[add] or obj[is_versioned]}&nbsp; &nbsp;{end if}
 	{loop obj[links]}

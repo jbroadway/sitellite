@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>{php PRODUCT_NAME}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset={intl/charset}" >
 		<style type="text/css">
 
 			body {
@@ -65,6 +66,7 @@
 
 			table.menu td {
 				border-top: 2px solid #fff;
+				white-space: nowrap;
 			}
 
 			table.menu td a {

@@ -90,7 +90,7 @@ $dg->rememberValue ('category', $cgi->category);
 $dg->list =& $list;
 $dg->total =& $msg->total;
 
-page_title (intl_get ('Folder') . ': ' . $cgi->category);
+page_title (intl_get ('Folder') . ': ' . intl_get ($cgi->category));
 
 echo template_simple (CMS_JS_ALERT_MESSAGE, $GLOBALS['cgi']);
 

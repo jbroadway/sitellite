@@ -252,7 +252,10 @@ $pg->update ();
 
 //page_title (intl_get ('Browsing') . ': ' . $rex->info['Collection']['display']);
 $data['collection_name'] = intl_get ($rex->info['Collection']['display']);
-$data['collection_singular'] = intl_get ($rex->info['Collection']['singular']);
+$coll = array ('collection'=> $data['collection_name'],
+	'singular'=>intl_get ($rex->info['Collection']['singular']));
+$data['add_collection'] = intl_get ('Add {singular}', $coll);
+$data['deleted_collection'] = intl_get ('Deleted {collection}', $coll);
 $data['title_field'] = $rex->info['Collection']['title_field'];
 $data['key_field'] = $rex->info['Collection']['key_field'];
 
