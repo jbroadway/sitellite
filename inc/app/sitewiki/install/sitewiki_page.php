@@ -58,7 +58,7 @@ fields = "id, body"
 [facet:owner]
 
 type = select
-display = Ower
+display = Owner
 values = "db_shift_array (`select distinct owner from sitewiki_page where owner != ''`)"
 
 ; */ ?>
