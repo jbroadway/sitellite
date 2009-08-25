@@ -46,17 +46,14 @@ function display ($generate_html = 0) {
 
 	page_add_script ($script);
 
-	$data = '';
-	if ($this->caption) {
-		$data = intl_get ('Rating: ') . '<span id="' . $this->name . '-caption"></span>';
-	}
-	$data .= '<div id="' . $this->name . '-wrapper">';
+	$data = '<div id="' . $this->name . '-wrapper">';
 	$data .= parent::display ();
 	$data .= '</div>';
-	if (!empty ($this->append)) {
-		$data .= '&nbsp;&nbsp;' . $this->append;
-	}
-	$data .= '<br /><span id="' . $this->name . '-ratings-text" style="display: none;">&nbsp;</span>';
+	$data .= '&nbsp;&nbsp;';
+	$data .= '<span id="' . $this->name . '-caption">';
+	$data .= $this->append;
+	$data .= '</span>';
+	$data .= '<span id="' . $this->name . '-ratings-text" style="display: none;">&nbsp;</span>';
 
 	if ($generate_html) {
 		$adv = ($this->advanced) ? ' class="advanced"' : '';

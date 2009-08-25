@@ -9,7 +9,7 @@ var rating = {
 			this.action ('setRating', [group, item, user, value]),
 			function (request) {
 				answer = eval (request.responseText);
-				$('#'+group+'-stars-ratings-text').show().html(answer).animate({opacity:1}, 3000).fadeOut();	
+				showAndFade (group, answer);
 			}
 		);
 	},
@@ -18,8 +18,13 @@ var rating = {
 			this.action ('unsetRating', [group, item, user]),
 			function (request) {
 				answer = eval (request.responseText);
-				$('#'+group+'-stars-ratings-text').show().html(answer).animate({opacity:1}, 3000).fadeOut();	
+				showAndFade (group, answer);
 			}
 		);
 	},
+}
+
+function showAndFade (group, text) {
+	$('#'+group+'-stars-caption').hide();
+	$('#'+group+'-stars-ratings-text').show().html(text).animate({opacity:1}, 3000, '', function () {$('#'+group+'-stars-caption').show();}).fadeOut();	
 }
