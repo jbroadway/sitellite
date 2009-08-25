@@ -1,6 +1,6 @@
 <ul id="set-{name}">
 {loop tags}
-<li id="tag-{loop/_value}"><a href="{site/prefix}/sitetag-app/set.{name}/tag.{loop/_value}">{loop/_value}</a>{if obj.canEdit} <small><a href="#" onclick="tag.del ('{loop/_value}')">x</a></small>{end if}</li>
+<li id="tag-{loop/_value}"><a href="{site/prefix}/sitetag-app/set.{name}/tag.{loop/_value}">{loop/_value}</a>{if obj.canEdit} &nbsp; <a href="#" onclick="tag.del ('{loop/_value}')" title="{intl Delete this tag?}"><strong style="font-family: verdana; font-size: 11px">x</strong></a>{end if}</li>
 {end loop}
 </ul>
 {if obj.canTag}
