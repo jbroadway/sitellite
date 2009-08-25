@@ -7,6 +7,7 @@ Changes in 5.1.0-alpha
 - Auto-determine language from different methods (url, cookies, http, session).
 - International Date (and Datetime) MailForm Widget.
 - Fixed an issue in display of strings to translate in multilingual app.
+- Don't display empty strings in multilingual-translation-strings-action.
 
 Changes in 5.0.3-stable
 

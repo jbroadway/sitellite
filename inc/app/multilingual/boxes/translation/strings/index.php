@@ -101,6 +101,11 @@ $parameters['more'] = (($cgi->offset + $limit) < count ($index)) ? true : false;
 $show = array_slice ($index, $cgi->offset, $limit);
 
 foreach ($show as $k => $v) {
+	if (empty ($k)) {
+		// Remove empty strings
+		unset ($show[$k]);
+		continue;
+	}
 	$show[$k]['current'] = $this->lang_hash[$cgi->lang][stripslashes ($k)];
 }
 
