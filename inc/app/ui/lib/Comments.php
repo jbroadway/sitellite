@@ -1,5 +1,7 @@
 <?php
 
+loader_import ('ui.Filters');
+
 function ui_comments_author ($username) {
 	$result = db_single ('SELECT firstname, lastname
 		FROM sitellite_user WHERE username=?', $username);

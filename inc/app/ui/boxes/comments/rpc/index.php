@@ -1,6 +1,7 @@
 <?php
 
 loader_import ('saf.Misc.RPC');
+loader_import ('ui.Filters');
 
 class CommentsRPC {
 
