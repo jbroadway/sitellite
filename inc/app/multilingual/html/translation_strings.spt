@@ -19,7 +19,7 @@
 	<tr style="background-color: {alt/next}">
 		<td valign="top" width="50%" class="label" style="font-weight: {if loop[current] eq null}bold; background-color: #bcd{end if}{if else}normal{end if}">
 			<input type="hidden" name="keys[{loop/_index}]" value="{loop/_key}" />
-			{filter stripslashes}{loop/_key|htmlentities_compat}{end filter}
+			{filter multilingual_key_filter}{loop/_key}{end filter}
 		</td>
 		<td valign="top" class="field">
 			{if strlen (loop[_key]) ge 80}

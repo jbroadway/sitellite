@@ -1,5 +1,15 @@
 <?php
 
+function multilingual_key_filter ($key) {
+	$tr = array (
+		'<' => '&lt;',
+		'>' => '&gt;',
+	);
+	$key = strtr ($key, $tr);
+	$key = stripslashes ($key);
+	return $key;
+}
+
 global $cgi;
 
 if ($cgi->appname == 'TEMPLATE') {
