@@ -518,14 +518,12 @@ class I18n {
 		}
 
         // 2. Look for format
-        if (array_key_exists($format, $this->_datestr[$this->language]["formats"])) {
-            $format = $this->_datestr[$this->language]["formats"][$format];
-        }
+	$format = $this->dateFormat ($format);
 
         // 3. build translation array
         $trans = array();
-        $a = array("d","j","N","w","z","W","m","n","y","Y","t","L","o","y","B","g","G","h","H",
-				   "i","s","u","e","I","O","p","T","Z","c","r","U","D","l","S","F","M","a","A");
+        $a = array("d","j","N","w","z","W","m","n","y","Y","t","L","o","B","g","G","h","H",
+				   "i","s","u","e","I","O","P","T","Z","c","r","U","D","l","S","F","M","a","A");
 		if (function_exists('str_split')) {
 			$b = array_intersect(str_split($format),$a);
 		}
@@ -682,6 +680,77 @@ class I18n {
 				break;
 		}
 		return false;
+	}
+
+	/**
+         * Returns date format string from format name. It no format of this
+         * name exists, then returns the name.
+         *
+         * @param string $name Format name or format string.
+         *
+         * @return string Format string
+         */
+	function dateFormat ($name) {
+		if (array_key_exists($name, $this->_datestr[$this->language]["formats"])) {
+			return $this->_datestr[$this->language]["formats"][$name];
+		}
+		return $name;
+	}
+
+	/**
+         * Returns javascript compatible date format string from format string,
+	 * or format name.
+         *
+         * @param string $name Format name or format string.
+         *
+         * @return string strftime format string
+         */
+	function dateStrftimeFormat ($format) {
+		$format = $this->dateFormat ($format);
+		$tr = array (
+			'%' => '%%',		
+			'A' => '%p',
+			'B' => '', // no eqv
+			'D' => '%a',
+			'F' => '%B',
+			'G' => '%k',
+			'H' => '%H',
+			'I' => '', // no eqv
+			'L' => '', // no eqv
+			'M' => '%b',
+			'N' => '%u',
+			'O' => '%z',
+			'S' => '', // no eqv
+			'T' => '%Z',
+			'U' => '%s',
+			'W' => '', // no eqv
+			'Y' => '%Y',
+			'Z' => '', // no eqv
+			'a' => '%P',
+			'c' => '', // no eqv
+			'd' => '%d',
+			'e' => '%Z',
+			'g' => '%l',
+			'h' => '%I',
+			'i' => '%M',
+			'j' => '%e',
+			'l' => '%A',
+			'm' => '%m',
+			'n' => '%m',
+			'o' => '%G',
+			'P' => '%z',
+			'r' => '%a, %d %b %Y %H:%M:%S %z',
+			's' => '%S',
+			't' => '', // no eqv
+			'u' => '', // no eqv
+			'w' => '%w',
+			'y' => '%y',
+			'z' => '%j',
+			"\t" => '%t',
+			"\n" => '%n',
+		);
+
+		return strtr ($format, $tr);
 	}
 
     /**

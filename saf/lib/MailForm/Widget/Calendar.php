@@ -148,72 +148,6 @@ class MF_Widget_calendar extends MF_Widget {
 		return intl_date ($out, $this->displayFormat);
 	}
 
-	function js2phpFormat ($date) {
-		return str_replace (
-			array (
-				'%a',
-				'%A',
-				'%b',
-				'%B',
-				'%C',
-				'%d',
-				'%e',
-				'%H',
-				'%I',
-				'%j',
-				'%k',
-				'%l',
-				'%m',
-				'%M',
-				'%n',
-				'%p',
-				'%P',
-				'%S',
-				'%s',
-				'%t',
-				'%U',
-				'%W',
-				'%V',
-				'%u',
-				'%w',
-				'%y',
-				'%Y',
-				'%%',
-			),
-			array (
-				'D',
-				'l',
-				'M',
-				'F',
-				'',
-				'd',
-				'j',
-				'H',
-				'h',
-				'z',
-				'G',
-				'g',
-				'm',
-				'i',
-				"\n",
-				'A',
-				'a',
-				's',
-				'U',
-				"\t",
-				'W',
-				'W',
-				'W',
-				'',
-				'w',
-				'y',
-				'Y',
-				'%',
-			),
-			$date
-		);
-	}
-
 	/**
 	 * Returns the display HTML for this widget.  The optional
 	 * parameter determines whether or not to automatically display the widget
@@ -268,7 +202,7 @@ class MF_Widget_calendar extends MF_Widget {
 					inputField	: "mf-calendar-' . $this->name . '",
 					ifFormat	: "' . $this->format . '",
 					displayArea	: "mf-calendar-' . $this->name . '-display",
-					daFormat	: "' . $this->displayFormat . '",
+					daFormat	: "' . $GLOBALS['intl']->dateStrftimeFormat ($this->displayFormat) . '",
 					button		: "mf-calendar-' . $this->name . '-trigger",
 					align		: "Bl",
 					showsTime	: ' . $showsTime . ',
