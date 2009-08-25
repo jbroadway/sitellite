@@ -5,6 +5,7 @@ Changes in 5.1.0-alpha
 - Added xt:intl attribute to translate attributes in XT templates [#149].
 - Try to increase memory limit when building lang indexes.
 - Auto-determine language from different methods (url, cookies, http, session).
+- International Date (and Datetime) MailForm Widget.
 
 Changes in 5.0.3-stable
 

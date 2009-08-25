@@ -219,18 +219,18 @@ class MF_Widget_date extends MF_Widget {
 		global $intl, $simple;
 		if (is_object ($intl)) {
 			$_month->setValues (array (
-				'01' => $intl->get ('January'),
-				'02' => $intl->get ('February'),
-				'03' => $intl->get ('March'),
-				'04' => $intl->get ('April'),
-				'05' => $intl->get ('May'),
-				'06' => $intl->get ('June'),
-				'07' => $intl->get ('July'),
-				'08' => $intl->get ('August'),
-				'09' => $intl->get ('September'),
-				'10' => $intl->get ('October'),
-				'11' => $intl->get ('November'),
-				'12' => $intl->get ('December'),
+				'01' => intl_month_name (1),
+				'02' => intl_month_name (2),
+				'03' => intl_month_name (3),
+				'04' => intl_month_name (4),
+				'05' => intl_month_name (5),
+				'06' => intl_month_name (6),
+				'07' => intl_month_name (7),
+				'08' => intl_month_name (8),
+				'09' => intl_month_name (9),
+				'10' => intl_month_name (10),
+				'11' => intl_month_name (11),
+				'12' => intl_month_name (12),
 			));
 		} else {
 			$_month->setValues (array (
@@ -288,11 +288,10 @@ class MF_Widget_date extends MF_Widget {
 		$_day->data_value = $this->data_value_DAY;
 
 		if ($this->nullable || $this->addblank) {
-			global $intl;
 			if (is_object ($intl)) {
-				$_day->value[''] = $intl->get ('Day');
-				$_month->value[''] = $intl->get ('Month');
-				$_year->value[''] = $intl->get ('Year');
+				$_day->value[''] = intl_get ('Day');
+				$_month->value[''] = intl_get ('Month');
+				$_year->value[''] = intl_get ('Year');
 			} else {
 				$_day->value[''] = 'Day';
 				$_month->value[''] = 'Month';
@@ -304,15 +303,44 @@ class MF_Widget_date extends MF_Widget {
 		$_month->extra = $this->extra;
 		$_day->extra = $this->extra;
 
+		// get order of terms from intl date format
+		if (is_object ($intl)) {
+			$dateformat = $intl->dateFormat ('date');
+			$dateformat = strtr ($dateformat,
+				'dmMnoy',
+				'jFFFYY');
+			$dateformat = preg_replace ('/[^FjY]/', '', $dateformat);
+		}
+		else {
+			$dateformat = 'FjY';
+		}
+		$datewidgets = '';
+		for ($i=0; $i<3; ++$i) {
+			if ($i) {
+				$datewidgets .= '&nbsp;';
+			}
+			switch ($dateformat[$i]) {
+				case 'F':
+					$datewidgets .= $_month->display (0);
+					break;
+				case 'j':
+					$datewidgets .= $_day->display (0);
+					break;
+				case 'Y':
+					$datewidgets .= $_year->display (0);
+					break;
+			}
+		}
+
 		$_date = new MF_Widget_hidden ($this->name);
 		if ($generate_html) {
 			$data = $_date->display (0) . "\n";
 			$data .= "\t<tr>\n\t\t<td class=\"label\"><label for=\"" . $this->name . '"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . "</label></td>\n\t\t<td class=\"field\">" . 
-				$_month->display (0) . '&nbsp;' . $_day->display (0) . '&nbsp;' . $_year->display (0) .
+				$datewidgets .
 				"</td>\n\t</tr>\n";
 		} else {
 			$data = $_date->display (0);
-			$data .= $_month->display (0) . '&nbsp;' . $_day->display (0) . '&nbsp;' . $_year->display (0);
+			$data .= $datewidgets;
 		}
 		return $data;
 	}
