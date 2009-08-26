@@ -34,9 +34,7 @@ alt                     = "Web Hooks (Sitellite will POST to these URLs on workf
 
 type                    = textarea
 
-value                   = "http://www.sitellite.lo/hooktest.php
-http://www.sitellite.lo/hooktest2.php
-"
+value                   = ""
 
 ;
 ; THE END
