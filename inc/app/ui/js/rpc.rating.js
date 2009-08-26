@@ -9,7 +9,12 @@ var rating = {
 			this.action ('setRating', [group, item, user, value]),
 			function (request) {
 				answer = eval (request.responseText);
-				showAndFade (group, answer);
+				//$('#'+group+'-stars-wrapper').stars ("select", answer['avgrating']);
+				//$('#'+group+'-stars-caption').html(answer['nvotes']);
+				//showAndFade (group, answer['text']);
+				$('#'+group+'-stars-caption').html(answer['text']);
+				$('#'+group+'-stars-wrapper a').attr('onmouseover', 'captionOn ("'+group+'", "'+answer['already']+'")');
+				$('#'+group+'-stars-wrapper a').attr('onmouseout', 'captionOff ("'+group+'")');
 			}
 		);
 	},
@@ -27,4 +32,13 @@ var rating = {
 function showAndFade (group, text) {
 	$('#'+group+'-stars-caption').hide();
 	$('#'+group+'-stars-ratings-text').show().html(text).animate({opacity:1}, 3000, '', function () {$('#'+group+'-stars-caption').show();}).fadeOut();	
+}
+
+function captionOn (group, text) {
+	$('#'+group+'-stars-caption').hide();
+	$('#'+group+'-stars-ratings-text').show().html(text);	
+}
+function captionOff (group) {
+	$('#'+group+'-stars-ratings-text').hide();	
+	$('#'+group+'-stars-caption').show();
 }

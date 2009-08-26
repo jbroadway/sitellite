@@ -18,6 +18,7 @@ if (!isset ($parameters['readonly'])) {
 	$parameters['readonly'] = 'yes';
 }
 
+$readonly = $parameters['readonly'];
 if ( ! session_valid ()) {
 	if ($parameters['anon'] == 'yes') {
 		$username = $_SERVER["REMOTE_ADDR"];
@@ -25,24 +26,36 @@ if ( ! session_valid ()) {
 	else {
 		// if user not logged and no anonymous rating,
 		// show average rating instead
-		$parameters['readonly'] = 'yes';
+		$readonly = 'yes';
+		$username = null;
 	}
 }
 else {
 	$username = session_username ();
 }
 
-if ($parameters['readonly'] == 'yes') {
+if ($username) {
+	// Get current value
+	$value = db_shift ('SELECT rating FROM ui_rating
+			WHERE `group`=? AND item=? and user=?',
+			$parameters['group'], $parameters['item'], $username);
+	if ($value) {
+		// Already voted!
+		$readonly = 'yes';
+	}
+}
+$curvals = db_single ('SELECT AVG(rating) AS avgrating,
+		COUNT(rating) AS nvotes FROM ui_rating
+		WHERE `group`=? AND item=? GROUP BY item',
+		$parameters['group'], $parameters['item']);
+
+if ($readonly == 'yes') {
 	$parameters['nstars'] *= 2;
 	$options = array (
 			'disabled' => 'true',
 			'split' => 2);
 
 	// Get current value
-	$curvals = db_single ('SELECT AVG(rating) AS avgrating,
-			COUNT(rating) AS nvotes FROM ui_rating
-			WHERE `group`=? AND item=? GROUP BY item',
-			$parameters['group'], $parameters['item']);
 	$value = round ($curvals->avgrating * 2);
 }
 else {
@@ -51,6 +64,7 @@ else {
 	page_add_script (site_prefix () . '/inc/app/ui/js/rpc.rating.js');
 
 	$options = array (
+			'oneVoteOnly' => 'true',
 			'callback' => 'function(ui, type, value){
 			if (type == "star") {' . 
 			"rating.set('{$parameters['group']}', '{$parameters['item']}', '{$username}', value);" .
@@ -58,11 +72,6 @@ else {
 			else {' .
 			"rating.unset('{$parameters['group']}', '{$parameters['item']}', '{$username}');" .
 			'}}');
-
-	// Get current value
-	$value = db_shift ('SELECT rating FROM ui_rating
-			WHERE `group`=? AND item=? and user=?',
-			$parameters['group'], $parameters['item'], $username);
 }
 
 $caption = true;
@@ -93,9 +102,11 @@ if (! session_valid () && $parameters['anon'] == 'no') {
 	$stars->append = '<a href="' . site_prefix () . '/sitemember-login-action">' . intl_get ('Sign in to rate.') . '</a>';
 }
 else if ($parameters['readonly'] == 'yes') {
+	$stars->append = '';
+}
+else {
 	switch ($curvals->nvotes) {
 		case 0:
-			$stars->append = intl_get ('No rating.');
 			break;
 		case 1:
 			$stars->append = intl_get ('1 rating.');
