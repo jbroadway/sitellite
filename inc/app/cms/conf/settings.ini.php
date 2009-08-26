@@ -36,6 +36,20 @@ type                    = textarea
 
 value                   = ""
 
+extra                   = "style=`width: 100%`"
+
+[cms_webhooks_auth]
+
+alt                     = Web Hooks Authorization Key
+
+type                    = text
+
+value                   = ""
+
+extra                   = "size=`30`"
+
+append                  = " <a href=`#` onclick=`var f=function(){var c='01234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';var r='';for(var i=0;i<32;i++){s=Math.floor(Math.random()*c.length);r+=c.substring(s,s+1);}return r;};document.getElementById('cms_webhooks_auth').value=f()`>Auto-Generate</a>"
+
 ;
 ; THE END
 ;

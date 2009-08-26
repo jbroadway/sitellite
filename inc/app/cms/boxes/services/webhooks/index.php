@@ -15,6 +15,7 @@
  * Sends a POST to each URL in appconf('cms_webhooks') with the following
  * POST values:
  *
+ * - auth: The cms_webhooks_auth value, if available
  * - event: The transition
  * - summary: The message
  * - action: The action, if available
@@ -43,6 +44,10 @@ foreach (explode ("\n", appconf ('cms_webhooks')) as $url) {
 		$req->setMethod ('POST');
 		$req->addPostData ('event', $parameters['transition']);
 		$req->addPostData ('summary', $parameters['message']);
+		$key = appconf ('cms_webhooks_auth');
+		if (! empty ($key)) {
+			$req->addPostData ('auth', $key);
+		}
 		if (isset ($parameters['action'])) {
 			$req->addPostData ('action', $parameters['action']);
 		}
