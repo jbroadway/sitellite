@@ -90,6 +90,7 @@ Changes in 5.0.3-stable
 - Fixed a javascript error in the SiteTemplate edit form.
 - Added star rating ui component.
 - Added comments ui component.
+- Added web hooks to the CMS app settings and workflow services.
 
 Changes in 5.0.2-stable
 

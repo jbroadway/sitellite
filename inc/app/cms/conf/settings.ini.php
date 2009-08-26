@@ -28,6 +28,16 @@ setValues               = "eval:array (0=>'ALL', 2=>2, 5=>5, 10=>10, 20=>20, 50=
 
 value                   = 20
 
+[cms_webhooks]
+
+alt                     = "Web Hooks (Sitellite will POST to these URLs on workflow events)"
+
+type                    = textarea
+
+value                   = "http://www.sitellite.lo/hooktest.php
+http://www.sitellite.lo/hooktest2.php
+"
+
 ;
 ; THE END
 ;

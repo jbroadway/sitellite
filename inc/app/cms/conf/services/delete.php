@@ -14,6 +14,12 @@ name                    = Move Children of Deleted Pages
 
 handler                 = "box:cms/services/movechildren"
 
+[service:cms_services_webhooks]
+
+name                    = Web Hooks
+
+handler                 = "box:cms/services/webhooks"
+
 ;
 ; THE END
 ;

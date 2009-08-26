@@ -14,6 +14,12 @@ name                    = Document Workflow Notifier
 
 handler                 = "box:cms/services/notice"
 
+[service:cms_services_webhooks]
+
+name                    = Web Hooks
+
+handler                 = "box:cms/services/webhooks"
+
 [service:multilingual_services_translation]
 
 name                    = Translator Workflow Notifier
