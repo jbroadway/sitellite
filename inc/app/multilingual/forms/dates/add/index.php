@@ -24,6 +24,7 @@ class MultilingualDatesAddForm extends MailForm {
 		$info = ini_parse ($this->_file);
 
 		page_title (intl_get ('Adding Date Strings') . ': ' . $cgi->lang);
+		page_add_script (template_simple ('format_options.js'));
 
 		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="window.history.go (-1); return false"';
 	}

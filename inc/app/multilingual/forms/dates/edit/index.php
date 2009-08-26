@@ -28,6 +28,7 @@ class MultilingualDatesEditForm extends MailForm {
 		$this->widgets['format_string']->setValue ($info['formats'][$cgi->format]);
 
 		page_title (intl_get ('Editing Date Strings') . ': ' . $cgi->lang);
+		page_add_script (template_simple ('format_options.js'));
 
 		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="window.history.go (-1); return false"';
 	}

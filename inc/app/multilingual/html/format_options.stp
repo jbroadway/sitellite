@@ -1,5 +1,7 @@
-<tr><td colspan="2" class="label">{intl Format Options}</td></tr>
+<tr><td class="label">{intl Format Options}</td>
+<td class="field"><a href="#" onclick="return box_open(this, 'format-div')">{intl Show Help}</a></td></tr>
 <tr><td colspan="2" class="field">
+<div id="format-div" style="display: none">
  <table border="0" cellpadding="0" width="100%">
   <tr><th colspan="3">{intl Day}</th></tr>
   <tr>
@@ -194,4 +196,5 @@
    <td width="40%"></td>
   </tr>
  </table>
+</div>
 </td></tr>
