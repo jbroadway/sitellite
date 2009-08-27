@@ -34,10 +34,12 @@ rule 1 = not empty, You must enter a character set.
 
 [fallback]
 
+alt = Fallback
 type = select
 
 [default]
 
+alt = Default
 type = select
 
 [submit_button]

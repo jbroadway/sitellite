@@ -31,14 +31,14 @@ class MultilingualLanguagesAddForm extends MailForm {
 			$this->_file = 'inc/app/' . $cgi->appname . '/lang/languages.php';
 		}
 
-		$list = array ('no' => 'None');
+		$list = array ('no' => intl_get('None'));
 		$info = ini_parse ($this->_file);
 		foreach ($info as $k => $v) {
 			$list[$k] = $v['name'];
 		}
 		$this->widgets['fallback']->setValues ($list);
 
-		$this->widgets['default']->setValues (array ('yes' => 'Yes', 'no' => 'No'));
+		$this->widgets['default']->setValues (array ('yes' => intl_get('Yes'), 'no' => intl_get('No')));
 		if (count ($list) == 1) {
 			$this->widgets['default']->setDefault ('yes');
 		} else {

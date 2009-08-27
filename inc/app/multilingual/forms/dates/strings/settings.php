@@ -18,7 +18,7 @@ type = text
 alt = Days of week
 rule 1 = "func 'dates_rule_days', You must enter 7 comma separated values, begining with Sunday"
 extra = "size=`80`"
-append = "<br/><pre>Example: Sunday, Monday, Tuesday, Wednesday, Thusday, Friday, Saturday</pre>"
+append = "<br/><pre>Example: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</pre>"
 
 [shortdays]
 

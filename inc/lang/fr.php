@@ -24,6 +24,7 @@ $this->lang_hash['fr'] = array (
 	'Add' => 'Ajouter',
 	'Address' => 'Adresse',
 	'Address Line 2' => 'Adresse (ligne 2)',
+	'ALL' => 'TOUT',
 	'An auto-saved edit of this form has been found from a previous editing session.  Would you like to continue from your previous editing session, or start from the currently saved version?' => 'Une sauvegarde automatique de ce formulaire a été effectuée lors de votre dernière session d\'édition. Désirez vous continuer à travailler à partir de cette sauvegarde, ou bien repartir de la version présentement enregistrée?',
 	'Are you sure you want to remove these items?' => 'Êtes-vous certain de vouloir retirer ces items?',
 	'Browse by %s' => 'Naviguer par %s',

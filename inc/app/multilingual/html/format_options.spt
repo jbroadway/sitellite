@@ -90,7 +90,7 @@
   <tr>
    <td width="10%">Y</td>
    <td width="50%">{intl Numeric representation of a year}</td>
-   <td width="40%">{intl Ex: 1999 of 2003}</td>
+   <td width="40%">{intl Ex: 1999 or 2003}</td>
   </tr>
   <tr>
    <td width="10%">y</td>
@@ -110,7 +110,7 @@
   </tr>
   <tr>
    <td width="10%">B</td>
-   <td width="50%">{intl Swatch Internat time}</td>
+   <td width="50%">{intl Swatch Internet time}</td>
    <td width="40%">{intl 000 through 999}</td>
   </tr>
   <tr>

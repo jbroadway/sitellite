@@ -29,7 +29,7 @@ rule 1 = "func 'dates_rule_format_string', Format string cannot be empty for def
 
 [format_options]
 type = template
-template = format_options.stp
+template = format_options.spt
 
 [submit_button]
 

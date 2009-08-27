@@ -31,7 +31,7 @@ rule 1 = not empty, Format string cannot be empty
 
 [format_options]
 type = template
-template = format_options.stp
+template = format_options.spt
 
 [submit_button]
 
