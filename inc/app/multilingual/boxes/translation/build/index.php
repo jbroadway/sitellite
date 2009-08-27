@@ -50,7 +50,7 @@ if (! @is_dir ($langs)) {
 
 if (! @is_writeable ($langs)) {
 	page_title (intl_get ('An Error Occurred'));
-	echo intl_get ('Cannot write to languages folder') . ' (' . $langs . '). ' . intl_get ('Please change your filesystem permissions.');
+	echo intl_get ('Cannot write to language folder') . ' (' . $langs . '). ' . intl_get ('Please change your filesystem permissions.');
 	return;
 }
 

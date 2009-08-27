@@ -1,0 +1,19 @@
+$(document).ready (function () {
+	$.translate (
+		[
+{loop show}
+			'{loop/_key|stripslashes}'{if loop[_index] lt loop[_total]},{end if}
+{end loop}
+		],
+		'{intl/default}',
+		'{lang}',
+		{
+			complete: function (translations) {
+				for (i = 0; i < translations.length; i++) {
+					$('#tr-' + (i + 1)).html ($.trim (translations[i]));
+					$('#tru-' + (i + 1)).css ('display', 'inline');
+				}
+			}
+		}
+	);
+});
