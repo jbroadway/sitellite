@@ -332,11 +332,20 @@ class I18n {
            $curlang = $this->languages[$curlang]['fallback'];
 
            if (@file_exists ($directory . '/' . $curlang . '.php')) {
+	       if (isset ($this->lang_hash[$curlang])) {
+		   $tmp = $this->lang_hash[$curlang];
+	       } else {
+		   $this->lang_hash[$curlang] = array ();
+		   $tmp = false;
+	       }
                if ($this->load_new) {
                    include ($directory . '/' . $curlang . '.php');
                } else {
                    include_once ($directory . '/' . $curlang . '.php');
                }
+	       if ($tmp) {
+		   $this->lang_hash[$curlang] = array_merge ($tmp, $this->lang_hash[$curlang]);
+	       }
            }
        }
     }

@@ -9,6 +9,7 @@ Changes in 5.1.0-alpha
 - Fixed an issue in display of strings to translate in multilingual app.
 - Don't display empty strings in multilingual-translation-strings-action.
 - French translation.
+- Fixed an issue about getting translation strings for fallback languages.
 
 Changes in 5.0.3-stable
 
