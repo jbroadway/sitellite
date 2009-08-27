@@ -224,7 +224,7 @@ if (! empty ($parameters['story'])) { // view story
 	//}
 
 	if ($context == 'action') {
-		page_title (appconf ('news_name'));
+		page_title (intl_get (appconf ('news_name')));
 	}
 
 	echo template_simple (

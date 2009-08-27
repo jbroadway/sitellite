@@ -154,6 +154,7 @@ var tabberOptions = {
 	 */
 	function display ($generate_html = 0) {
 		$n = 0;
+		$this->title = intl_get ($this->title);
 		$this->widgets = array ();
 		foreach ($this->form->widgets as $k => $w) {
 			if ($w->type == 'tab') {

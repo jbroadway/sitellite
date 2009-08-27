@@ -700,6 +700,9 @@ class I18n {
          * @return string Format string
          */
 	function dateFormat ($name) {
+		if (! is_array ($this->_datestr)) {
+			$this->date ('');
+		}
 		if (array_key_exists($name, $this->_datestr[$this->language]["formats"])) {
 			return $this->_datestr[$this->language]["formats"][$name];
 		}

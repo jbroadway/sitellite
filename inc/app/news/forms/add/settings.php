@@ -27,13 +27,15 @@ extra			= "size=`40`"
 
 [date]
 
+alt			= Date
 type			= calendar
 data_value		= NEWS_TODAY
 
 [summary]
 
+alt			= Summary
 type			= textarea
-labelPosition	= left
+labelPosition		= left
 rows			= 3
 extra			= "id=`summary`"
 

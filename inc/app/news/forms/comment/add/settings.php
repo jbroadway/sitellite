@@ -23,12 +23,13 @@ rule 1			= not empty, You must enter a name.
 [body]
 
 type			= textarea
-alt				= "Comment (no HTML)"
+alt			= "Comment (no HTML)"
 rows			= 7
 rule 1			= not empty, You must enter a comment body.
 
 [security_test]
 
+alt                     = Security Test
 type			= security
 
 [submit_button]

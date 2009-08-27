@@ -25,19 +25,21 @@ type			= hidden
 [title]
 
 type			= text
-alt				= Page Title
+alt			= Page Title
 rule 0			= not empty, You must enter a title for your news story.
 extra			= "size=`40`"
 
 [date]
 
+alt			= Date
 type			= calendar
 data_value		= NEWS_TODAY
 
 [summary]
 
+alt			= Summary
 type			= textarea
-labelPosition	= left
+labelPosition		= left
 rows			= 3
 extra			= "id=`summary`"
 
