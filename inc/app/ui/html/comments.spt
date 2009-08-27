@@ -1,3 +1,4 @@
+<h3>{intl Leave a Reply}</h3>
 <div id="ui-comments-wrapper">
 {loop obj.comments}
 {loop/_value|none}

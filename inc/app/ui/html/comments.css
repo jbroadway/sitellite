@@ -3,6 +3,9 @@
 	padding-bottom: 1em;
 	border-bottom: 1px solid gray;
 }
+.ui-comments-add-form-wrapper {
+	padding-top: 1em;
+}
 .ui-comment-author {
 	font-weight: bold;
 }

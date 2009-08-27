@@ -1,8 +1,9 @@
 <div class="ui-comment" id="ui-comment-{id}">
 <div class="ui-comment-date">{date|intl_datetime}</div>
-<div class="ui-comment-author">{user|ui_comments_author}</div>
-<div class="ui-comment-text">{comment}</div>
+<div class="ui-comment-author">{name|none}</div>
+<div class="ui-comment-text">{comment|nl2br}</div>
 {if obj.admin}<div class="ui-comment-admin">
+<a href="mailto:{email}">{intl email}</a>&nbsp;
 <a href="#" onclick="mycomment.del ({id})">{intl delete}</a>&nbsp;
 {if not obj.approved}<a href="#" onclick="mycomment.approve ({id})" id="ui-comment-approve-{id}">{intl accept}</a>{end if}</div>{end if}
 </div>

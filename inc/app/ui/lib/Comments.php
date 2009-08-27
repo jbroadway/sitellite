@@ -2,18 +2,11 @@
 
 loader_import ('ui.Filters');
 
-function ui_comments_author ($username) {
-	$result = db_single ('SELECT firstname, lastname
-		FROM sitellite_user WHERE username=?', $username);
-	if ($result) {
-		return '<a href="' . site_prefix () . '/sitemember-profile-action?user=' . $username . '">' . $result->firstname . ' ' . $result->lastname . '</a>';
-	}
-	else {
-		return intl_get ('anonymous');
-	}
-}
-
 class Comments {
+
+var $name = '';
+var $email = '';
+var $website = '';
 
 function Comments ($parameters) {
 	$this->group    = $parameters['group'];
@@ -46,12 +39,20 @@ function get () {
 	$this->comments = array ();
 	foreach ($comments as $c) {
 		$c->admin = $this->admin;
+		if (! empty ($c->website)) {
+			$c->name = '<a href="' . $c->website . '" rel="nofollow">' . $c->name .
+				'</a>';
+		}
 		$this->comments[] = template_simple ('comment-item.spt', $c);
 	}
 }
 
-function createAddForm ($username) {
-	$this->user = $username;
+function createAddForm () {
+	if (appconf ('verify_session')) {
+		@session_start ();
+		$_SESSION['mf_verify_session'] = 'mf_verified';
+	}
+
 	switch ($this->approve) {
 		case 'yes':
 			$this->approved = 1;
@@ -67,6 +68,14 @@ function createAddForm ($username) {
 		case 'no':
 		default:
 			$this->approved = 0;
+	}
+	if (session_valid ()) {
+		$name = db_single ('SELECT firstname, lastname, email, website
+			FROM sitellite_user WHERE username=?',
+			session_username ());
+		$this->name    = $name->firstname . ' ' . $name->lastname;
+		$this->email   = $name->email;
+		$this->website = $name->website;
 	}
 	$this->addform = template_simple ('comment-add.spt', $this);
 }

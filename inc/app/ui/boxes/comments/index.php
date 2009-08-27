@@ -12,30 +12,15 @@ if (!isset ($parameters['approve'])) {
 	$parameters['approve'] = 'yes';
 }
 if (!isset ($parameters['anon'])) {
-	$parameters['anon'] = 'no';
+	$parameters['anon'] = 'yes';
 }
 if (!isset ($parameters['readonly'])) {
 	$parameters['readonly'] = 'no';
 }
 
-if ( ! session_valid ()) {
-	if ($parameters['anon'] == 'yes') {
-		$username = $_SERVER["REMOTE_ADDR"];
-	}
-	else {
-		// if user not logged and no anonymous comments,
-		// only show actual comments
-		$parameters['readonly'] = 'yes';
-		$username = null;
-	}
-}
-else {
-	$username = session_username ();
-}
-
 $comments = new Comments ($parameters);
 $comments->get ();
-if ($username) {
+if (session_valid () || $parameters['anon'] = 'yes') {
 	$comments->createAddForm ($username);
 }
 

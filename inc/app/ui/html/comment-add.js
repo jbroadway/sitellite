@@ -7,7 +7,9 @@ var mycomment = {
 		myrpc.call (
 			this.action ('add', [form.elements.group.value,
 					     form.elements.itemid.value,
-					     form.elements.user.value,
+					     form.elements.name.value,
+					     form.elements.email.value,
+					     form.elements.website.value,
 					     form.elements.comment.value,
 					     form.elements.approved.value]),
 			function (request) {

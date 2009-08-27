@@ -12,4 +12,19 @@ function intl_datetime ($date) {
 }
 }
 
+
+function ui_website_filter ($website) {
+	$website = trim (strip_tags ($website));
+	if (empty ($website)) {
+		return '';
+	}
+	if (strpos ($website, 'http') !== 0) {
+		if ($website[0] == '/') {
+			$website = substr ($website, 1);
+		}
+		$website = 'http://' . $website;
+	}
+	return $website;
+}
+
 ?>
