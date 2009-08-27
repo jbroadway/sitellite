@@ -87,7 +87,7 @@ default_value   = 0
 [submit_button]
 
 type		= submit
-setValues	= Register
+setValues	= "eval: intl_get('Register')"
 extra		= "class='submit'"
 
 ; */ ?>

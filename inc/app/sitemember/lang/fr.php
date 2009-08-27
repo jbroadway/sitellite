@@ -115,6 +115,10 @@ $this->lang_hash['fr'] = array (
 	'Country' => 'Pays',
 	'Website' => 'Site web',
 	'Add me to public member list' => 'M\'ajouter à la liste publique des membres',
+	'Total' => 'Total',
+	'You must enter a username.' => 'Vous devez entrer un nom d\'utilisateur.',
+	'Your account information been updated.' => 'Vos informations ont été mises à jour.',
+	'Register' => 'S\'inscrire',
 );
 
 ?>
