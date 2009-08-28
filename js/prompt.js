@@ -316,11 +316,16 @@ Prompter.prototype.open = function (txt) {
 		body = document.getElementsByTagName ('body')[0];
 		body.appendChild (w);
 	}
-	new Effect.BlindDown ('prompt-dialog-' + this.num, {duration: 1, afterFinish: function (obj) {
+	/*new Effect.BlindDown ('prompt-dialog-' + this.num, {duration: 1, afterFinish: function (obj) {
 		n = obj.element.id.split ('-')[2];
 		document.getElementById ('prompt-window-' + n + '-user').style.overflow = 'auto';
 		document.getElementById ('prompt-window-' + n + '-user').focus ();
-	}});
+	}});*/
+	$('#prompt-dialog-' + this.num).slideDown ('normal', function () {
+		n = obj.element.id.split ('-')[2];
+		document.getElementById ('prompt-window-' + n + '-user').style.overflow = 'auto';
+		document.getElementById ('prompt-window-' + n + '-user').focus ();
+	});
 
 	return false;
 }
@@ -337,7 +342,8 @@ Prompter.prototype.reply = function (reply) {
 	if (this.type == 'textarea') {
 		document.getElementById ('prompt-window-' + this.num + '-user').style.overflow = 'hidden';
 	}
-	new Effect.BlindUp ('prompt-dialog-' + this.num, {duration: 1});
+	//new Effect.BlindUp ('prompt-dialog-' + this.num, {duration: 1});
+	$('#prompt-dialog-' + this.num).slideUp ();
 
 	textareas = document.getElementsByTagName ('textarea');
 	for (i = 0; i < textareas.length; i++) {
@@ -414,18 +420,19 @@ function alert (txt) {
 		w.setAttribute ('id', 'alert-window');
 		w.onclick = function () {
 			alert_timeout_end ();
-			new Effect.BlindUp ('alert-window', {duration: 1});
+			//new Effect.BlindUp ('alert-window', {duration: 1});
+			$('#alert-window').slideUp ();
 		};
-		table = Builder.node ('table', {width: '300px', height: '100px', border: '0'});
-		tbody = Builder.node ('tbody');
-		tr = Builder.node ('tr');
-		td = Builder.node ('td', {align: 'center', valign: 'middle', id: 'alert-window-contents'});
-		td.innerHTML = txt;
+		table = $('<table width="300px" height="100px" border="0"></table>');
+		tbody = $('<tbody></tbody>');
+		tr = $('<tr></tr>');
+		td = $('<td align="center" valign="middle" id="alert-window-contents"></td>');
+		td.html (txt);
 	
-		tr.appendChild (td);
-		tbody.appendChild (tr);
-		table.appendChild (tbody);
-		w.appendChild (table);
+		tr.html (td);
+		tbody.html (tr);
+		table.html (tbody);
+		$(w).append (table);
 
 		w.style.marginTop = scrollbar_offset ();
 
@@ -454,11 +461,13 @@ function alert (txt) {
 		}
 	}
 
-	new Effect.BlindDown ('alert-window', {duration: 1});
+	//new Effect.BlindDown ('alert-window', {duration: 1});
+	$('#alert-window').slideDown ();
 
 	alert_timeout = window.setTimeout (
 		function () {
-			new Effect.BlindUp ('alert-window', {duration: 1});
+			//new Effect.BlindUp ('alert-window', {duration: 1});
+			$('#alert-window').slideUp ();
 
 			msie = ((navigator.userAgent.toLowerCase ().indexOf ('msie') != -1) && (navigator.userAgent.toLowerCase ().indexOf ('opera') == -1));
 
