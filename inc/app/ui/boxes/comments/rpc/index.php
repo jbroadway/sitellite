@@ -57,6 +57,13 @@ function del ($id) {
 	return db_error ();
 }
 
+function ban ($id) {
+	$res = db_single ('SELECT * FROM ui_comment WHERE id=?', $id);
+	db_execute ('INSERT INTO sitellite_form_blacklist VALUES (?)', $res->ip);
+	db_execute ('DELETE FROM ui_comment WHERE id=?', $id);
+	return db_error ();
+}
+
 function approve ($id) {
 	db_execute ('UPDATE ui_comment SET approved=1 WHERE id=?', $id);
 	return db_error ();

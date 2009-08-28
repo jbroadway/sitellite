@@ -5,14 +5,14 @@ var mycomment = {
 	action: myrpc.action,
 	add: function (form) {
 		valid = true;
-		$('#name-label').removeClass ("invalid");
+		$('#comment-name-label').removeClass ("invalid");
 		if ( /^\s*$/.test(form.elements.name.value)) {
-			$('#name-label').addClass ("invalid");
+			$('#comment-name-label').addClass ("invalid");
 			valid = false;
 		}
-		$('#email-label').removeClass ("invalid");
+		$('#comment-email-label').removeClass ("invalid");
 		if ( /^\s*$/.test(form.elements.email.value)) {
-			$('#email-label').addClass ("invalid");
+			$('#comment-email-label').addClass ("invalid");
 			valid = false;
 		}
 		if ( /^\s*$/.test(form.elements.comment.value)) {
@@ -41,10 +41,24 @@ var mycomment = {
 		return false;
 	},
 	del: function (id) {
+		if (! confirm ('{intl This will permanently delete the above post. Are you sure you want to continue?}')) {
+			return false;
+		}
 		myrpc.call (
 			this.action ('del', [id]),
 			function (request) {
-				$('#ui-comment-'+id).remove();
+				$('#ui-comment-'+id).slideUp();
+			}
+		);
+	},
+	ban: function (id) {
+		if (! confirm ('{intl This will ban their IP address from future posts and delete all existing posts made from this IP address. Are you sure you want to continue?}')) {
+			return false;
+		}
+		myrpc.call (
+			this.action ('ban', [id]),
+			function (request) {
+				$('#ui-comment-'+id).slideUp();
 			}
 		);
 	},

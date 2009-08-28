@@ -1,10 +1,13 @@
 .ui-comment {
 	margin-top: 1em;
 	padding-bottom: 1em;
-	border-bottom: 1px solid gray;
 }
 .ui-comments-add-form-wrapper {
 	padding-top: 1em;
+}
+.ui-comment-info {
+	margin-bottom: 5px;
+	border-bottom: 1px solid #ccc;
 }
 .ui-comment-author {
 	font-weight: bold;
@@ -17,4 +20,24 @@
 .ui-comment-admin {
 	text-align: right;
 	background: #eee;
+	padding: 3px;
+	margin-top: 3px;
+}
+label#comment-name-label {
+	display: block;
+	float: left;
+	width: 160px;
+	padding-top: 4px;
+}
+label#comment-email-label {
+	display: block;
+	float: left;
+	width: 160px;
+	padding-top: 4px;
+}
+label#comment-website-label {
+	display: block;
+	float: left;
+	width: 160px;
+	padding-top: 4px;
 }
