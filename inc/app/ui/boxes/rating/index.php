@@ -98,13 +98,11 @@ $stars->setValue ($value);
 $stars->starOptions = $options;
 $stars->caption = $caption;
 
-if (! session_valid () && $parameters['anon'] == 'no') {
-	$stars->append = '<a href="' . site_prefix () . '/sitemember-login-action">' . intl_get ('Sign in to rate.') . '</a>';
-}
-else if ($parameters['readonly'] == 'yes') {
+if ($parameters['readonly'] == 'yes') {
 	$stars->append = '';
-}
-else {
+} elseif (! session_valid () && $parameters['anon'] == 'no') {
+	$stars->append = '<a href="' . site_prefix () . '/sitemember-login-action">' . intl_get ('Sign in to rate.') . '</a>';
+} else {
 	switch ($curvals->nvotes) {
 		case 0:
 			break;
@@ -119,7 +117,6 @@ else {
 
 
 echo $stars->display (false);
-
 
 
 ?>
