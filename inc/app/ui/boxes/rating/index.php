@@ -72,6 +72,7 @@ else {
 			else {' .
 			"rating.unset('{$parameters['group']}', '{$parameters['item']}', '{$username}');" .
 			'}}');
+	$value = round ($curvals->avgrating);
 }
 
 $caption = true;
@@ -117,6 +118,5 @@ if ($parameters['readonly'] == 'yes') {
 
 
 echo $stars->display (false);
-
 
 ?>
