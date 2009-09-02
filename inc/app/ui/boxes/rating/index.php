@@ -119,4 +119,13 @@ if ($parameters['readonly'] == 'yes') {
 
 echo $stars->display (false);
 
+if (strpos ($stars->append, 'rating')) {
+	page_add_script ('$(document).ready( function () {
+		$("#' . $parameters['group'] . '-stars-wrapper a").attr("onmouseover", "captionOff (\'' . $parameters['group'] . '\')");
+		$("#' . $parameters['group'] . '-stars-wrapper a").attr("onmouseout", "captionOn (\'' . $parameters['group'] . '\', \'' . $stars->append . '\')");
+	$("#' . $parameters['group'] . '-stars-ratings-text").html("' . $stars->append . '").show();
+	$("#' . $parameters['group'] . '-stars-caption").hide ();
+});
+');
+}
 ?>
