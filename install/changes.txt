@@ -92,6 +92,7 @@ Changes in 5.0.3-stable
 - Added comments ui component.
 - Added web hooks to the CMS app settings and workflow services.
 - Removed prompt.js dependence on prototype.js, uses jquery instead.
+- Fixed a js error on the site maps, loading 2 versions of jquery.
 
 Changes in 5.0.2-stable
 
