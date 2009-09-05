@@ -452,7 +452,7 @@ class Menu {
 	 * 
 	 */
 	function &addItem ($id, $title, $ref = '', $sect = '', $template = '') {
-		$this->{'items_' . $id} =& new MenuItem ($id, $title);
+		$this->{'items_' . $id} = new MenuItem ($id, $title);
 		if (empty ($ref)) {
 			$this->tree[] =& $this->{'items_' . $id};
 		} else {

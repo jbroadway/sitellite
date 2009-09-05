@@ -181,7 +181,7 @@ class Loader {
 		if (is_string ($path)) {
 			$this->paths['default'] = $path;
 		} elseif (is_array ($path)) {
-			$this->paths['default'] = ereg_replace ('\\\\', '/', getcwd ());
+			$this->paths['default'] = preg_replace ('|\\\\|', '/', getcwd ());
 			while (list ($n, $p) = each ($path)) {
 				$this->paths[$n] = $p;
 			}
@@ -323,7 +323,7 @@ class Loader {
 				$d->close ();
 				return;
 			}
-			if (ereg ('^\.+$', $file)) {
+			if (preg_match ('|^\.+$|', $file)) {
 				continue;
 			} elseif (($file == $package) && (@is_dir ($dir . '/' . $file))) {
 				if ($load) {
