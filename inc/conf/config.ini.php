@@ -66,7 +66,9 @@ compress_output         = Off
 
 error_reporting         = "E_ALL ^ E_NOTICE"
 
-xsendfile				= readfile
+xsendfile               = readfile
+
+default_timezone		= UTC
 
 [I18n]
 
@@ -78,31 +80,31 @@ serialize               = plain
 
 [Messaging]
 
-return_address          = ""
+return_address          = Off
 
-email_server            = ""
+email_server            = Off
 
 email_port              = 110
 
-email_username          = ""
+email_username          = Off
 
-email_password          = ""
+email_password          = Off
 
 jabber                  = Off
 
-jabber_server           = ""
+jabber_server           = Off
 
 jabber_port             = 5222
 
-jabber_username         = ""
+jabber_username         = Off
 
-jabber_password         = ""
+jabber_password         = Off
 
 [Services]
 
-recaptcha_public_key	= ""
+recaptcha_public_key    = Off
 
-recaptcha_private_key	= ""
+recaptcha_private_key   = Off
 
 ;
 ; THE END
