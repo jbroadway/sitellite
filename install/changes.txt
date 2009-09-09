@@ -94,6 +94,7 @@ Changes in 5.0.3-stable
 - Removed prompt.js dependence on prototype.js, uses jquery instead.
 - Fixed a js error on the site maps, loading 2 versions of jquery.
 - Fixing PHP 5.3 compatibility issues and warnings.
+- Added reviews ui component.
 
 Changes in 5.0.2-stable
 

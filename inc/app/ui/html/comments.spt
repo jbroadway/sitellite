@@ -9,4 +9,4 @@
 {addform|none}
 </div>
 {end if}
-{if obj.login}<p><a href="{site/prefix}/sitemember-login-action">{intl Sign in to comment.}</a></p>{end if}
+{if obj.login}<p><a href="{site/prefix}/sitemember-login-action?goto={_SERVER.REQUEST_URI|urlencode}">{intl Sign in to comment.}</a></p>{end if}

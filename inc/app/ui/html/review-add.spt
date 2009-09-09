@@ -1,0 +1,14 @@
+<form id="ui-reviews-add-form" onsubmit="return myreview.add (this, {nstars})">
+<h3>{intl Make a review}</h3>
+
+<p style="display: none;" class="invalid" id="ui-comments-error">{intl Please fill required fields.}</p>
+<input type="hidden" id="item-id" name="itemid" value="{item}" />
+<input type="hidden" id="group" name="group" value="{group}" />
+<input type="hidden" id="approved" name="approved" value="{approved}" />
+<input type="hidden" id="user" name="user" value="{user}" />
+
+<p>Your rating: {ratingwidget|none}</p>
+<p>Your comments:<br />
+<textarea id="comment" name="comment" style="height: 80px; width: 100%">{comment}</textarea></p>
+<p><input type="submit" name="submit" value="{intl Submit Review}" /></p>
+</form>

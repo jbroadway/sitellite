@@ -17,6 +17,9 @@
 	font-size: small;
 	float: right;
 }
+.ui-comment-rating {
+	float: right;
+}
 .ui-comment-admin {
 	text-align: right;
 	background: #eee;
