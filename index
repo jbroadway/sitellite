@@ -57,7 +57,9 @@ if (file_exists ('inc/conf/product.php')) {
 
 // set the error_reporting level
 eval ('?' . '><?php error_reporting (' . $conf['Server']['error_reporting'] . '); ?' . '>');
-
+if (function_exists ('date_default_timezone_set') && $conf['Server']['default_timezone']) {
+	date_default_timezone_set ($conf['Server']['default_timezone']);
+}
 // split values which should be arrays
 //$conf['Cache']['cacheable'] = preg_split ('/, ?/', $conf['Cache']['cacheable']);
 /*************************************************************************/

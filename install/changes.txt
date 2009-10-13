@@ -79,6 +79,22 @@ Changes in 5.0.3-stable
 - Added option to replace an image file in imagechooser [#144].
 - Modified the way news story are splitted for better printing [#32].
 - Added possibility to upload many files together [#84].
+- Improved the email validation rules in saf.MailForm.Rule.
+- Fixed javascript rendering bug in SiteTemplate [#146].
+- Use alert in sitetemplate-edit-form.
+- Fixed an issue in sitetemplate. Create config file if it doesn't exist.
+- Fixed an issue with onbeforeload in AppDoc.
+- SiteTag application (first draft).
+- Use alert in usradm-settings-form.
+- Added autocompleted input box for sitetag.
+- Fixed a javascript error in the SiteTemplate edit form.
+- Added star rating ui component.
+- Added comments ui component.
+- Added web hooks to the CMS app settings and workflow services.
+- Removed prompt.js dependence on prototype.js, uses jquery instead.
+- Fixed a js error on the site maps, loading 2 versions of jquery.
+- Fixing PHP 5.3 compatibility issues and warnings.
+- Added reviews ui component.
 
 Changes in 5.0.2-stable
 

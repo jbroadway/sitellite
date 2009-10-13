@@ -1,0 +1,11 @@
+<ul id="set-{name}">
+{loop tags}
+<li id="tag-{loop/_value}"><a href="{site/prefix}/sitetag-app/set.{name}/tag.{loop/_value}">{loop/_value}</a>{if obj.canEdit} &nbsp; <a href="#" onclick="tag.del ('{loop/_value}')" title="{intl Delete this tag?}"><strong style="font-family: verdana; font-size: 11px">x</strong></a>{end if}</li>
+{end loop}
+</ul>
+{if obj.canTag}
+<form id="add-tag-form" onsubmit="return tag.add (this)">
+<input type="text" id="taginput" name="taginput" value="" autocomplete="off" />
+<input type="submit" value="{intl Add}" />
+</form>
+{end if}

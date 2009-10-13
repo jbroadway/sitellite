@@ -33,10 +33,11 @@ class EditForm extends MailForm {
 
 		$b =& $w->getButton ();
 		$b->setValues (intl_get ('Save'));
+		$b->extra = 'onclick="onbeforeunload_form_submitted=true;"';
 
 		$b =& $w->addButton ('submit_button');
 		$b->setValues (intl_get ('Cancel'));
-		$b->extra = 'onclick="window.location.href = \'' . site_prefix () . '/index/appdoc-helpdoc-action?appname=' . $cgi->appname . '&lang=' . $cgi->lang . '\'; return false"';
+		$b->extra = 'onclick="onbeforeunload_form_submitted=true; window.location.href = \'' . site_prefix () . '/index/appdoc-helpdoc-action?appname=' . $cgi->appname . '&lang=' . $cgi->lang . '\'; return false"';
 	}
 
 	function onSubmit ($vals) {

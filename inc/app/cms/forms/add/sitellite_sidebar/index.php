@@ -257,7 +257,7 @@ class CmsAddSitellite_sidebarForm extends MailForm {
 			$key = 'Unknown';
 		}
 
-		if (! empty ($return)) {
+		if (empty ($return)) {
 			$return = site_prefix () . '/index/cms-browse-action?collection=sitellite_sidebar';
 		}
 

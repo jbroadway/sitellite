@@ -8,6 +8,12 @@
 ; Sitellite administrator first.
 ;
 
+[service:cms_services_webhooks]
+
+name                    = Web Hooks
+
+handler                 = "box:cms/services/webhooks"
+
 ;
 ; THE END
 ;

@@ -1,0 +1,165 @@
+<h1>Tag Sets</h1>
+
+<p>A <strong>tag set</strong> is a collection of tags used for a defined goal. By
+default, SiteTag comes with a tag set names keywords that allow you to
+add a generic tagging system to sitelllite pages. Each time you need a
+distinct list of tags, you should create a new tag set.</p>
+
+<h2>The tag set definition file</h2>
+
+<p>Tag sets are defined into ini files located into <strong>/inc/app/sitetag/conf/sets/</strong>. For example, the default <strong>keywords</strong> tag set is named <strong>keywords.ini.php</strong>. Here is the content of this file:</p>
+
+<p></p>
+
+<pre>description = "A global keywords list for sitellite_page"
+sitellite_owner = admin
+sitellite_team = none
+kind = global
+view = public
+tag = private
+edit = private
+
+template = off
+</pre>
+
+The following table describe each parameters in details:
+<p></p>
+
+<table width="98%"><tbody><tr><td valign="top"><strong>Parameter<br />
+
+</strong></td>
+
+<td valign="top"><strong>Default value<br />
+
+</strong></td>
+
+<td valign="top"><strong>Description<br />
+
+</strong></td>
+
+</tr>
+
+<tr><td valign="top">description<br />
+
+</td>
+
+<td valign="top"><br />
+
+</td>
+
+<td valign="top">This field describe what is this tag set. I will be used in a future admin interface for tag sets.<br />
+
+</td>
+
+</tr>
+
+<tr><td valign="top">sitellite_owner<br />
+
+</td>
+
+<td valign="top">admin<br />
+
+</td>
+
+<td valign="top">Who is the owner of this tag set. The owner has a full read and write access to the tag set.<br />
+
+</td>
+
+</tr>
+
+<tr><td valign="top">sitellite_team<br />
+
+</td>
+
+<td valign="top">none<br />
+
+</td>
+
+<td valign="top">The team that owns this tag set. Only used in complex situations.<br />
+
+</td>
+
+</tr>
+
+<tr><td valign="top">kind<br />
+
+</td>
+
+<td valign="top">global<br />
+
+</td>
+
+<td valign="top"><strong>global</strong>: every users share the same keywords.<br />
+
+<strong>members</strong>: this tag set only is used by logged users. Each user has its own set of tags to manage.<br />
+
+</td>
+
+</tr>
+
+<tr><td valign="top">view<br />
+
+</td>
+
+<td valign="top">public<br />
+
+</td>
+
+<td valign="top">The access level to view the tags in this tag set.<br />
+
+</td>
+
+</tr>
+
+<tr><td valign="top">tag<br />
+
+</td>
+
+<td valign="top">private<br />
+
+</td>
+
+<td valign="top">The access level to add of remove tags to an item. A user with only this access level cannot create new tags. Read access is sufficient to be able to tag.<br />
+
+</td>
+
+</tr>
+
+<tr><td valign="top">edit<br />
+
+</td>
+
+<td valign="top">private<br />
+
+</td>
+
+<td valign="top">The access level to add, and edit items to tag, and to add or remove tags. Read access is sufficient to be able to edit tags.<br />
+
+</td>
+
+</tr>
+
+<tr><td valign="top">template<br />
+
+</td>
+
+<td valign="top">off<br />
+
+</td>
+
+<td valign="top">Template to use to display the list of items related to a specific tag.<br />
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>This way, you can create many different tag sets, with different levels of permissions. On the same Sitellite installation, you could have a tag set every user can modify, another reserved to logged users, and another user only by site administrators.</p>
+
+<p><br />
+
+</p>
+

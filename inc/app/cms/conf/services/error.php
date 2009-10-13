@@ -14,6 +14,12 @@ name                    = Activity Logger
 
 handler                 = "box:cms/services/log"
 
+[service:cms_services_webhooks]
+
+name                    = Web Hooks
+
+handler                 = "box:cms/services/webhooks"
+
 ;
 ; THE END
 ;
