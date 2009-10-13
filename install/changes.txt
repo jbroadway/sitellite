@@ -95,6 +95,8 @@ Changes in 5.0.3-stable
 - Fixed a js error on the site maps, loading 2 versions of jquery.
 - Fixing PHP 5.3 compatibility issues and warnings.
 - Added reviews ui component.
+- Fix to use rpc_global object consistently.
+- Fixed bug creating extra versions in child page histories.
 
 Changes in 5.0.2-stable
 
