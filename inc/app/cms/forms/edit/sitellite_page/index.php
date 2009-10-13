@@ -384,12 +384,14 @@ class CmsEditSitellite_pageForm extends MailForm {
 				'return' => $return,
 			));
 		} else {
-			foreach (db_shift_array ('select id from sitellite_page where below_page = ?', $key) as $child) {
-				$method = $rex->determineAction ($key);
-				if (! $method) {
-					die ($rex->error);
+			if ($key != $vals[$rex->key]) {
+				foreach (db_shift_array ('select id from sitellite_page where below_page = ?', $key) as $child) {
+					$method = $rex->determineAction ($key);
+					if (! $method) {
+						die ($rex->error);
+					}
+					$rex->{$method} ($child, array ('below_page' => $vals['id']), 'Updating renamed parent reference');
 				}
-				$rex->{$method} ($child, array ('below_page' => $vals['id']), 'Updating renamed parent reference');
 			}
 
 			loader_import ('cms.Workflow');
