@@ -97,6 +97,7 @@ Changes in 5.0.3-stable
 - Added reviews ui component.
 - Fix to use rpc_global object consistently.
 - Fixed bug creating extra versions in child page histories.
+- Added cgi_rewrite_filter to new template sets in SiteTemplate.
 
 Changes in 5.0.2-stable
 
