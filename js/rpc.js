@@ -131,13 +131,16 @@ function rpc_decode (txt) {
  * process() method.  For this reason, it is advisable to create a single
  * global rpc object for your entire web application.
  */
-var rpc_global;
+var rpc_global = null;
 
 /**
  * This function creates a new rpc object, which provides an abstraction
  * over the JavaScript XMLHttpRequest object.
  */
 function rpc () {
+	if (rpc_global !== null) {
+		return rpc_global;
+	}
 	scripts = document.getElementsByTagName ('script');
 	for (var i = 0; i < scripts.length; i++) {
 		if (scripts[i].src.match (/rpc(-compressed)?.js$/)) {
