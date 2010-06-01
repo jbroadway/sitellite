@@ -5,7 +5,7 @@
 
 ; Only app_name among all these is actually required, but all are recommended.
 app_name		= SiteQuotes
-description		= Display quotes or customer testimonials on your web site.
+description		= "Display quotes or customer testimonials on your web site."
 author			= Lux
 copyright		= "Copyright (C) 2005, Simian Systems Inc."
 license			= "Simian Commercial Software License"
