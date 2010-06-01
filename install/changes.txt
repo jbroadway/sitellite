@@ -99,6 +99,7 @@ Changes in 5.0.3-stable
 - Fixed bug creating extra versions in child page histories.
 - Added cgi_rewrite_filter to new template sets in SiteTemplate.
 - Fixed additional PHP 5.3 compatibility issues and warnings.
+- Fixed Xed box chooser output to be compatible with Firefox 3.6
 
 Changes in 5.0.2-stable
 

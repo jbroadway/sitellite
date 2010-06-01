@@ -81,6 +81,7 @@ var xed_source_positioned = false;
 var xed_agent = navigator.userAgent.toLowerCase();
 var xed_msie = ((xed_agent.indexOf ('msie') != -1) && (xed_agent.indexOf ('opera') == -1));
 var xed_msie7 = false;
+var xed_ff36 = false;
 var xed_events = [];
 var xed_error_window = false;
 
@@ -1924,7 +1925,8 @@ function xed_insert_box (ifname, name, image, arg_list) {
 	e = document.getElementById (ifname);
 
 	if (document.all) {
-		box = '<xt:box name="' + name + '" title="' + name + '" style="word-wrap: break-word; display: list-item; list-style-type: none; border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px; margin: 5px;"'; //background-image: url(' + image + ')"';
+		box = '<xt:box name="' + name + '" title="' + name + '" style="word-wrap: break-word; display: list-item; list-style-type: none; background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px; margin: 5px;"';
+		//box = '<xt:box name="' + name + '" title="' + name + '" style="word-wrap: break-word; display: list-item; list-style-type: none; border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px; margin: 5px;"'; //background-image: url(' + image + ')"';
 		if (arg_list.length > 0) {
 			for (i = 0; i < arg_list.length; i++) {
 				arg_list[i].value = unescape (arg_list[i].value);
@@ -1947,7 +1949,8 @@ function xed_insert_box (ifname, name, image, arg_list) {
 		box = e.contentWindow.document.createElement ('xt:box');
 		box.setAttribute ('name', name);
 		box.setAttribute ('title', name);
-		box.setAttribute ('style', 'word-wrap: break-word; display: list-item; list-style-type: none; border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px; margin: 5px;'); //background-image: url(' + image + ')');
+		box.setAttribute ('style', 'word-wrap: break-word; display: list-item; list-style-type: none; background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px; margin: 5px;');
+		//box.setAttribute ('style', 'word-wrap: break-word; display: list-item; list-style-type: none; border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px; margin: 5px;'); //background-image: url(' + image + ')');
 
 		if (arg_list.length > 0) {
 			for (i = 0; i < arg_list.length; i++) {
@@ -1987,7 +1990,8 @@ function xed_insert_form (ifname, name, image, arg_list) {
 	name = name.replace ('/forms/', '/');
 
 	if (document.all) {
-		box = '<xt:form name="' + name + '" title="' + name + '" style="word-wrap: break-word; display: list-item; list-style-type: none; border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/form-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px; margin: 5px;"'; //background-image: url(' + image + ')"';
+		box = '<xt:form name="' + name + '" title="' + name + '" style="word-wrap: break-word; display: list-item; list-style-type: none; background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px; margin: 5px;"';
+		//box = '<xt:form name="' + name + '" title="' + name + '" style="word-wrap: break-word; display: list-item; list-style-type: none; border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/form-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px; margin: 5px;"'; //background-image: url(' + image + ')"';
 		if (arg_list.length > 0) {
 			for (i = 0; i < arg_list.length; i++) {
 				box = box + ' ' + arg_list[i].name + '="' + arg_list[i].value + '"';
@@ -2009,7 +2013,8 @@ function xed_insert_form (ifname, name, image, arg_list) {
 		box = e.contentWindow.document.createElement ('xt:form');
 		box.setAttribute ('name', name);
 		box.setAttribute ('title', name);
-		box.setAttribute ('style', 'display: list-item; list-style-type: none; border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/form-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px; margin: 5px;'); //background-image: url(' + image + ')');
+		box.setAttribute ('style', 'display: list-item; list-style-type: none; background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px; margin: 5px;');
+		//box.setAttribute ('style', 'display: list-item; list-style-type: none; border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/form-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px; margin: 5px;'); //background-image: url(' + image + ')');
 
 		if (arg_list.length > 0) {
 			for (i = 0; i < arg_list.length; i++) {

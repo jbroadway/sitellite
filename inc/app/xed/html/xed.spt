@@ -475,6 +475,7 @@ function formchooser_handler () {
 	xed_img_popup = {img_popup};
 	xed_msie7 = {msie7};
 	xed_safari = {safari};
+	xed_ff36 = {ff36};
 	xed_adobeair = {adobeair};
 	xed_rpc.url = xed_prefix + '/index/xed-rpc-action';
 	{if obj.fullsize}

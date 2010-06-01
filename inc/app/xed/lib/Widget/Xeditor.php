@@ -62,6 +62,7 @@ class MF_Widget_xeditor extends MF_Widget {
 	var $msie = false;
 	var $fullsize = false;
 	var $msie7 = 'false';
+	var $ff36 = 'false';
 	var $safari = 'false';
 	var $adobeair = 'false';
 
@@ -219,6 +220,13 @@ class MF_Widget_xeditor extends MF_Widget {
 			} elseif (strpos ($ua->property ('ua'), 'adobeair')) {
 				$this->safari = 'true';
 				$this->adobeair = 'true';
+			}
+			if ($ua->property ('browser') == 'mz') {
+				if (preg_match ('/firefox\/([0-9.]+)$/', $ua->property ('ua'), $regs)) {
+					if ($regs[1] >= '3.6') {
+						$this->ff36 = 'true';
+					}
+				}
 			}
 
 			if (@file_exists ('inc/html/' . conf ('Server', 'default_template_set') . '/images.php')) {
