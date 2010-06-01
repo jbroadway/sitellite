@@ -737,7 +737,7 @@ class MailForm {
 			$value = $cgi->{$key};
 			if (is_object ($this->widgets[$key])) {
 				$this->widgets[$key]->setValue ($value);
-			} elseif (ereg ('^(MF_)+([a-zA-Z0-9-]+)_([A-Z0-9_]+)$', $key, $regs)) {
+			} elseif (preg_match ('/^(MF_)+([a-zA-Z0-9-]+)_([A-Z0-9_]+)$/', $key, $regs)) {
 				//echo '<pre>'; print_r ($regs); echo '</pre>';
 				if (is_object ($this->widgets[$regs[2]])) {
 					$this->widgets[$regs[2]]->setValue ($value, $regs[3]);
