@@ -51,7 +51,7 @@ align = center
 
 [browse:ts]
 
-header = Submitted On
+header = "Submitted On"
 width = "18%"
 
 [browse:form_type]

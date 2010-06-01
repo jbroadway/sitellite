@@ -63,6 +63,17 @@ class MF_Widget_select extends MF_Widget {
 	var $type = 'select';
 
 	/**
+	 * Constructor Method.
+	 * 
+	 * @access	public
+	 * @param	string	$name
+	 * 
+	 */
+	function MF_Widget_select ($name) {
+		parent::MF_Widget ($name);
+	}
+
+	/**
 	 * Returns the display HTML for this widget.  The optional
 	 * parameter determines whether or not to automatically display the widget
 	 * nicely, or whether to simply return the widget (for use in a template).

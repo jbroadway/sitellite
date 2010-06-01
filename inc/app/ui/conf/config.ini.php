@@ -6,9 +6,9 @@
 ; Only app_name among all these is actually required, but all are recommended.
 app_name		= UI Elements
 description		= User interface elements
-author			= Charles Brunet <charles@cbrunet.net>
+author			= "Charles Brunet <charles@cbrunet.net>"
 copyright		= "Copyright (C) 2009, Charles Brunet."
-version			= "0.1 alpha
+version			= "0.1 alpha"
 
 ; These allow you to call your app via the /index/myapp-app syntax.
 ;default_handler	= index

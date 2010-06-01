@@ -66,7 +66,7 @@ default_value           = On
 
 alt                     = Items Per Page
 
-instructions            = Select the number of items you would like to appear on a single screen when displaying items in a list.
+instructions            = "Select the number of items you would like to appear on a single screen when displaying items in a list."
 
 type                    = select
 

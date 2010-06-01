@@ -384,7 +384,7 @@ class MF_Widget {
 	function setValues ($key, $value = '') {
 		if (! empty ($value)) {
 			$this->value[$key] = $value;
-		} elseif (strpos ($key, 'eval:') === 0) {
+		} elseif (is_string ($key) && strpos ($key, 'eval:') === 0) {
 			eval (CLOSE_TAG . OPEN_TAG . ' $this->value = ' . substr ($key, 5) . '; ' . CLOSE_TAG);
 		} else {
 			// could be a string or a hash (but no simple arrays!)

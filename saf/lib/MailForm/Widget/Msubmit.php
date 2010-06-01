@@ -121,7 +121,7 @@ class MF_Widget_msubmit extends MF_Widget {
 	 * 
 	 */
 	function &addButton ($name = 'submit_button', $value = '') {
-		$this->buttons[] =& new MF_Widget_submit ($name);
+		$this->buttons[] = new MF_Widget_submit ($name);
 		$this->buttons[count ($this->buttons) - 1]->setValues ($value);
 		return $this->buttons[count ($this->buttons) - 1];
 	}

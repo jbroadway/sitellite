@@ -166,8 +166,8 @@ class Cookie {
 			if (empty ($domain)) {
 				$domain = $_SERVER['HTTP_HOST'];
 			}
-			if (ereg (':', $domain)) {
-				$domain = ereg_replace (':.*$', '', $domain);
+			if (preg_match ('/:/', $domain)) {
+				$domain = preg_replace ('/:.*$/', '', $domain);
 			}
 			$domain = $this->prependDot ($domain);
 			return @setcookie ($name, $value, $expire, $path, $domain, $secure);
