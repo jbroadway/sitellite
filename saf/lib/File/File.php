@@ -253,10 +253,10 @@ class File {
 		$this->absolute = $abs_file_path;
 		if (@is_dir ($abs_file_path)) {
 			$this->extension = 'folder';
-		} elseif (ereg ("\.([^\.]+)$", $abs_file_path, $regs)) {
+		} elseif (preg_match ("/\.([^\.]+)$/", $abs_file_path, $regs)) {
 			$this->extension = $regs[1];
 		}
-		if (ereg ("([^\\/]+)$", $abs_file_path, $regs)) {
+		if (preg_match ("/([^\\/]+)$/", $abs_file_path, $regs)) {
 			$this->name = $regs[1];
 		}
 

@@ -324,7 +324,7 @@ class Cache {
 				//echo "expired, so we generate a new time: $gmt_mtime\n";
 				if ($GLOBALS['HTTP_IF_MODIFIED_SINCE'] == $gmt_mtime) {
 					//echo "send 'em a 304\n";
-					if (eregi ('^WIN', PHP_OS)) {
+					if (preg_match ('/^WIN/i', PHP_OS)) {
 						header ('Status: 304 Not Modified');
 					} else {
 						header ('HTTP/1.1 304 Not Modified');

@@ -272,7 +272,7 @@ class MailFormRule {
 				return false;
 			}
 		} elseif ($this->type == 'regex') {
-			if (! ereg ($this->value, $value)) {
+			if (! preg_match ($this->value, $value)) {
 				return false;
 			}
 		} elseif ($this->type == 'preg') {
@@ -380,7 +380,7 @@ class MailFormRule {
 				return false;
 			}
 		} elseif ($this->type == 'regex') {
-			if (ereg ($this->value, $value)) {
+			if (preg_match ($this->value, $value)) {
 				return false;
 			}
 		} elseif ($this->type == 'preg') {

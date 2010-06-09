@@ -133,7 +133,7 @@ class MF_Widget_allow extends MF_Widget_checkbox {
 		$dir = new Dir (getcwd () . '/mod');
 		$files = $dir->read_all ();
 		foreach ($files as $file) {
-			if (ereg ("^\.+$", $file)) {
+			if (preg_match ("/^\.+$/", $file)) {
 				continue;
 			}
 			$module = new Module ($file);

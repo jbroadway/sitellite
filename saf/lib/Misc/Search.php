@@ -112,31 +112,31 @@ function get_searchengine_keywords ($referer) {
 	$url = urldecode($referer);
 		
 	// Google
-	if (eregi("www\.google",$url)) { 
+	if (preg_match("/www\.google/i",$url)) { 
 		preg_match("'(\?|&)q=(.*?)(&|$)'si", " $url ", $keywords);
 	}
 	// AllTheWeb
-	if (eregi("www\.alltheweb",$url)) { 
+	if (preg_match("/www\.alltheweb/i",$url)) { 
 		preg_match("'(\?|&)q=(.*?)(&|$)'si", " $url ", $keywords); 
 	}
 	// MSN
-	if (eregi("search\.msn",$url)) { 
+	if (preg_match("/search\.msn/i",$url)) { 
 		preg_match("'(\?|&)q=(.*?)(&|$)'si", " $url ", $keywords); 
 	}
 	// Yahoo 
-	if ((eregi("yahoo\.com",$url)) or (eregi("search\.yahoo",$url))) { 
+	if ((preg_match("/yahoo\.com/i",$url)) or (preg_match("search\.yahoo",$url))) { 
 		preg_match("'(\?|&)p=(.*?)(&|$)'si", " $url ", $keywords); 
 	} 
 	// Looksmart 
-	if (eregi("looksmart\.com",$url)) { 
+	if (preg_match("/looksmart\.com/i",$url)) { 
 		preg_match("'(\?|&)qt=(.*?)(&|$)'si", " $url ", $keywords); 
 	}
 	// Ilse.nl
-	if (eregi("ilse\.nl",$url)) { 
+	if (preg_match("/ilse\.nl/i",$url)) { 
 		preg_match("'(\?|&)search_for=(.*?)(&|$)'si", " $url ", $keywords); 
 	}
 	// Vinden.nl or zoeken.nl
-	if (eregi("(vinden\.nl|zoeken\.nl)",$url)) { 
+	if (preg_match("/(vinden\.nl|zoeken\.nl)/i",$url)) { 
 		preg_match("'(\?|&)query=(.*?)(&|$)'si", " $url ", $keywords); 
 	}
 	

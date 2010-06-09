@@ -103,6 +103,7 @@ Changes in 5.0.3-stable
 - Added script to fix existing boxes for Firefox 3.6 compatibility.
 - Merged Professional Edition features into the main codebase.
 - Merged Enterprise Edition features in the main codebase.
+- Replaced old ereg() uses with preg_match().
 
 Changes in 5.0.2-stable
 

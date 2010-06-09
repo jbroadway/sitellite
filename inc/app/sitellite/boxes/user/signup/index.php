@@ -42,7 +42,7 @@ if (empty($parameters['stage'])) {
 
 // Does this function belong in a seperate class or at least in a file in lib/ ?
 function create_user ($email, $username, $password, $password_confirm, $firstname, $lastname) {
-	if (!ereg(".+@.+\..+", $email))
+	if (!preg_match("/.+@.+\..+/", $email))
 		return "Invalid email address";
 	
 	if (empty($username))

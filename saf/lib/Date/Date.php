@@ -233,9 +233,9 @@ class Date {
 			return intl_get ('Empty');
 		}
 		if (is_array ($format)) {
-			if (ereg ('^([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})$', $timestamp, $regs)) {
+			if (preg_match ('/^([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})$/', $timestamp, $regs)) {
 				$unix = mktime ($regs[4], $regs[5], $regs[6], $regs[2], $regs[3], $regs[1]);
-			} elseif (ereg ('^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$', $timestamp, $regs)) {
+			} elseif (preg_match ('/^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$/', $timestamp, $regs)) {
 				$unix = mktime ($regs[4], $regs[5], $regs[6], $regs[2], $regs[3], $regs[1]);
 			} else {
 				return $timestamp;
@@ -252,9 +252,9 @@ class Date {
 				return localdate ($format['other'], $unix);
 			}
 		} else {
-			if (ereg ('^([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})$', $timestamp, $regs)) {
+			if (preg_match ('/^([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})$/', $timestamp, $regs)) {
 				return localdate ($format, mktime ($regs[4], $regs[5], $regs[6], $regs[2], $regs[3], $regs[1]));
-			} elseif (ereg ('^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$', $timestamp, $regs)) {
+			} elseif (preg_match ('/^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$/', $timestamp, $regs)) {
 				return localdate ($format, mktime ($regs[4], $regs[5], $regs[6], $regs[2], $regs[3], $regs[1]));
 			} else {
 				return $timestamp;

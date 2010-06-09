@@ -206,8 +206,8 @@ class MF_Widget_dirlist extends MF_Widget {
 			$dir->close ();
 			foreach ($list as $file) {
 				if (
-						(! eregi ('^\.ht', $file)) &&
-						(eregi ('\.(' . join ('|', $this->extensions) . ')$', $file) || count ($this->extensions) == 0) &&
+						(! preg_match ('/^\.ht/i', $file)) &&
+						(preg_match ('/\.(' . join ('|', $this->extensions) . ')$/i', $file) || count ($this->extensions) == 0) &&
 						($file != '.') &&
 						($file != '..')
 					) {
@@ -221,8 +221,8 @@ class MF_Widget_dirlist extends MF_Widget {
 			for ($i = 0; $i < count ($list); $i++) {
 				if (
 					(! @is_dir ($list[$i])) &&
-					(! eregi ('^\.ht', $list[$i])) &&
-					(eregi ('\.(' . join ('|', $this->extensions) . ')$', $list[$i]) || count ($this->extensions) == 0) &&
+					(! preg_match ('/^\.ht/i', $list[$i])) &&
+					(preg_match ('/\.(' . join ('|', $this->extensions) . ')$/i', $list[$i]) || count ($this->extensions) == 0) &&
 					($list[$i] != '.') &&
 					($list[$i] != '..')
 				) {

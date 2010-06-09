@@ -359,7 +359,7 @@ class CGI {
 		// compile array of key.value pairs
 		foreach (split ('&', $params) as $p) {
 			if (! empty ($p)) {
-				array_push ($vars, ereg_replace ('=', '.', $p));
+				array_push ($vars, str_replace ('=', '.', $p));
 			}
 		}
 
@@ -368,8 +368,8 @@ class CGI {
 			if (empty ($p)) {
 				continue;
 			}
-			$start = ereg_replace ('/' . $p . '(\.?[^/]*)/', '/', $start);
-			$start = ereg_replace ('/' . $p . '(\.?[^/]*)/?$', '', $start);
+			$start = preg_replace ('/' . $p . '(\.?[^/]*)/', '/', $start);
+			$start = preg_replace ('/' . $p . '(\.?[^/]*)/?$', '', $start);
 		}
 		return $start . '/' . join ('/', $vars);
 	}

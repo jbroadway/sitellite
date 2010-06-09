@@ -78,7 +78,7 @@ function update_user ($username, $email, $company, $position, $website, $jabber_
 	if (empty($email))
 		return "No email address";
 
-	if (!ereg(".+@.+\..+", $email))
+	if (!preg_match("/.+@.+\..+/", $email))
 		return "Invalid email address";
 
 	// This probably has structure for being done elsewhere - nasty hard coding
