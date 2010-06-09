@@ -102,6 +102,7 @@ Changes in 5.0.3-stable
 - Fixed Xed box chooser output to be compatible with Firefox 3.6
 - Added script to fix existing boxes for Firefox 3.6 compatibility.
 - Merged Professional Edition features into the main codebase.
+- Merged Enterprise Edition features in the main codebase.
 
 Changes in 5.0.2-stable
 

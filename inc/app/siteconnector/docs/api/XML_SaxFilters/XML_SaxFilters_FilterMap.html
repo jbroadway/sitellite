@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class XML_SaxFilters_FilterMap</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class XML_SaxFilters_FilterMap</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Defines a map which is used to identify when an Filter should be created.</p>
+<p class="description"><p>Used by XML_SaxFilters_FilterBuilder to create an remove filters.  Note: The API is experimental and may be subject to change.</p></p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../XML_SaxFilters/XML_SaxFilters_FilterBuilder.html">XML_SaxFilters_FilterBuilder</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Ext_PEAR_XML_SaxFilters_FilterBuilder_php.html">Program_Root/Ext/PEAR/XML/SaxFilters/FilterBuilder.php</a> (line <span class="field">106</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+									<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">XML_SaxFilters_FilterMap</span>
+										<a href="#XML_SaxFilters_FilterMap" title="details" class="method-name">XML_SaxFilters_FilterMap</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tagName</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$filterName</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$attrName</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$attrValue</span> = <span class="var-default">null</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isFilter" title="details" class="method-name">isFilter</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#trigger" title="details" class="method-name">trigger</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$attrs</span>)
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodXML_SaxFilters_FilterMap" id="XML_SaxFilters_FilterMap"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor XML_SaxFilters_FilterMap</span> (line <span class="line-number">140</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructs FilterMap</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">XML_SaxFilters_FilterMap</span>
+		<span class="method-name">
+			XML_SaxFilters_FilterMap
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tagName</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$filterName</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$attrName</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$attrValue</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tagName</span><span class="var-description">: XML element tag name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filterName</span><span class="var-description">: Filter class to create</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$attrName</span><span class="var-description">: attribute name (optional)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$attrValue</span><span class="var-description">: attribute value (optional)</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodisFilter" id="isFilter"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">isFilter</span> (line <span class="line-number">153</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Checks to see a given XML element has a filter, using the tag name</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if element has filter</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isFilter
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: XML element tag name</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodtrigger" id="trigger"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">trigger</span> (line <span class="line-number">165</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Determines whether the XML element attributes are correct  to trigger creation of a filter.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if element has filter</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			trigger
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$attrs</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$attrs</span><span class="var-description">: of XML element attributes</span>			</li>
+				</ul>
+		
+		
+	</div>
+						
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Tue,  4 May 2004 09:34:42 -0500 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.2.2</a>
+	</p>
+	</div></body>
+</html>

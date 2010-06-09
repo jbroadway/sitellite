@@ -1,0 +1,194 @@
+$Id: Readme,v 1.1.1.1 2004/06/14 18:07:58 lux Exp $
+++Introduction
+XML_SaxFilters provides a foundation for using Sax filters in PHP.
+The original code base was developed by Luis Argerich and published at
+phpxmlclasses.sourceforge.net/show_doc.php?class=class_sax_filters.html.
+Luis discussed how SaxFilters work, using the Sourceforge classes as
+an example, in Chapter 10 of Wrox "PHP 4 XML".
+
+Luis kindly gave permission to modify the code and license for
+inclusion in PEAR.
+
+This version of the Sax Filters makes significant changes to Luis's
+original code (backwards compatibility is definately broken), seperating
+abstract classes from interfaces, providing interfaces for data readers
+and writers and providing methods to help parse XML documents recursively
+with filters (for example AbstractFilter::setParent()) for documents where
+the structure can vary significantly.
+
+Sax Filtering is an approach to making parsing XML documents with Sax modular
+and easy to maintain. The parser delegates events to a child filter which may
+in turn delegate events to another filter. In general it's possible to implement
+filters for a document which are as flexible and powerful as DOM.
+
+For some discussions on Sax filtering try;
+
+http://www.cafeconleche.org/books/xmljava/chapters/ch08.html (Java)
+http://www-106.ibm.com/developerworks/xml/library/x-tipsaxflex.html (Python)
+http://www.xml.com/pub/a/2001/10/10/sax-filters.html (Perl)
+
+The API provided by XML_SaxFilters is a little different from that commonly
+used in other languages, providing the concepts of "parent" and "child".
+A parent of the current filter is the filter (or parser) "upsteam" which
+receive XML event notifications before the current filter.
+A "child" is a filter "downstream" of the current filter (or parser) to
+which XML events are delegated.
+The top of the "family tree" of filters is always the parser itself, which
+can have children but cannot have parents. Filters can have parents and
+children.
+The parsers themselves never handle any XML events personally but always
+delegate to a filter.
+The parser accepts an object implementing the reader interface from which
+it streams the XML.
+The filters can be given an object implementing the writer interface
+to write output to.
+
+For an example of SAX filters in action with PHP try;
+
+http://www.phppatterns.com/index.php/article/articleview/48/1/2/
+(example uses Luis Argerich original Sax Filters).
+
+++Uses
+Some potential things to do with SaxFilters (there's probably loads more)
+- Perform simple XML parsing in a structured manner (see rssfilter.php example)
+- Transform XML into something else (see xml2html.php example)
+- Building a template parser where the template tags are themselves XML
+  (see template.php example)
+
+++Features
+ - Implements Parsers for both the native PHP XML extension and
+   PEAR::XML_HTMLSax
+ - Reading and writing of data is seperated from the parsers by
+   classes implementing the Reader and Writer interfaces. This helps
+   the SaxFilters read and write to any data container.
+ - Using the filters methods;
+    - setChild()
+    - unsetChild()
+    - setParent()
+    - unsetParent()
+    - attachToParent()
+    - detachFromParent()
+   It's possible to have one filter create another while parsing is
+   in progress, which allows for "recursive" parsing of an XML document
+   where the structure was "unknown" before hand. This can be particularily
+   powerful when dealing with documents like HTML or XUL, where structures
+   can vary wildy from document to document.
+ - Most of the classes provided by SaxFilters are abstract or interfaces
+   (interfaces are currently "virtual" in PHP4 but coming soon to PHP5).
+   The intention is to provide a solid basis for building filters to
+   all sorts of common XML document formats (contributions appreciated)
+
+++Usage Notes
+
+- When using the ExpatParser, it defaults to XML_OPTION_CASE_FOLDING = 0.
+  If you need everything converted to upper case to make it easier to match
+  tag names, you should use;
+  $parser->parserSetOption(XML_OPTION_CASE_FOLDING,1);
+  To do the same with the HtmlSaxParser you need;
+  $parser->parserSetOption('caseFolding',1);
+
+- With PHP4, any classes you instantiate from XML_SaxFilters (or built
+  on SaxFilters) should be instantiated by reference, e.g.
+  $filter = & new MyFilter();
+  Wierd things start to happen if your don't, depending on what you're doing.
+
+- Using the HTMLSaxParser depends on PEAR::XML_HTMLSax being installed.
+
+- The SaxFilters only define handles for open tag, close tag and character
+  data events. If there's a demand for more (e.g. entity handling) say the word.
+
+- Including the main file XML_SaxFilters.php includes the AbstractFilter and
+  FilterInterface classes. Parsers, Readers and Writers need to be included
+  on a per use basis from the PEAR XML/SaxFilters namespace.
+
+++ Limitations
+- The HTMLSaxParser needs to be watched carefully right now, related to
+  some minor issues in XML_HTMLSax 1.0 (fixes coming soon). These can
+  all be worked around in a concrete filter but right now HTMLSaxParser
+  behaves a little differently form ExpatParser.
+
+++ Example Use
+Further examples are available in the examples directory of this package.
+
+<?php
+# define('XML_SAXFILTERS', '../../');
+define('XML_SAXFILTERS', 'XML/');
+
+// Include AbstractFilter and ParserFactory
+require_once(XML_SAXFILTERS.'XML_SaxFilters.php');
+
+// Define a customer handler class
+class MyFilter extends XML_SaxFilters_AbstractFilter /* implements XML_SaxFilters_FilterInterface */
+{
+    // Parsed output stored here
+    var $output;
+
+    function MyFilter(){
+        $this->output='';
+    }
+
+    function startElementHandler($name,$attribs)
+    {
+        $this->output.="Open Tag Name: ".$name."\n";
+        if ( count($attribs) > 0 )
+        {
+            foreach ( $attribs as $key => $value )
+            {
+                $this->output.="    $key: $value\n";
+            }
+        }
+    }
+
+    function endElementHandler($name)
+    {
+        $this->output.="Close Tag Name: ".$name."\n";
+    }
+
+    function characterDataHandler($data)
+    {
+        $data = trim($data);
+        if ( !empty($data) )
+            $this->output.="Data:\n ".$data."\n";
+    }
+}
+
+// A Simple XML document
+$doc = <<<EOD
+<?xml version="1.0"?>
+<dynamically_typed_languages>
+    <language name="PHP" version="4.3.2">
+        PHP is number 1 for building web based applications.
+        <url>http://www.php.net</url>
+    </language>
+    <language name="Python" version="2.2.3">
+        Python is number 1 for cross platform desktop applications.
+        <url>http://www.php.net</url>
+    </language>
+    <language name="Perl" version="5.8.0">
+        Perl is number 1 for building backend server applications.
+        <url>http://www.perl.org</url>
+    </language>
+</dynamically_typed_languages>
+EOD;
+
+// Create the parser
+$parser = & XML_SaxFilters_createParser('Expat','String',$doc);
+
+// Instantiate the filter
+$filter = & new MyFilter();
+
+// Add the filter to the parser
+$parser->setChild($filter);
+
+// Parse
+$test = $parser->parse();
+if ( PEAR::isError($test) ) {
+    echo ( '<pre>' );
+    print_r($test);
+    echo ( '</pre>' );
+}
+
+echo ( '<pre>' );
+echo ( $filter->output );
+echo ( '</pre>' );
+?>

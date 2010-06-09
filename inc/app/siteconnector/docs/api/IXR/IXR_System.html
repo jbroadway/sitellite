@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class IXR_System</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class IXR_System</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Handler for XML-RPC system.* methods</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Ext_IXR_Server_php.html">Program_Root/Ext/IXR/Server.php</a> (line <span class="field">303</span>)
+		</p>
+		
+				
+		<pre><a href="../IXR/IXR_Handler.html">IXR_Handler</a>
+   |
+   --IXR_System</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+									<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getCapabilities" title="details" class="method-name">getCapabilities</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$args</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#listMethods" title="details" class="method-name">listMethods</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#methodHelp" title="details" class="method-name">methodHelp</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#methodSignature" title="details" class="method-name">methodSignature</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#multiCall" title="details" class="method-name">multiCall</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">0</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#_getHelp" title="details" class="method-name">_getHelp</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#_getMethods" title="details" class="method-name">_getMethods</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#_getSignatures" title="details" class="method-name">_getSignatures</a>
+										()
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodgetCapabilities" id="getCapabilities"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCapabilities</span> (line <span class="line-number">367</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the XML-RPC spec extensions this server supports</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">see:</span> <a href="http://groups.yahoo.com/group/xml-rpc/message/2897">http://groups.yahoo.com/group/xml-rpc/message/2897</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getCapabilities
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$args</span>)
+			</div>
+	
+		
+		
+	</div>
+<a name="methodlistMethods" id="listMethods"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">listMethods</span> (line <span class="line-number">433</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the methods available from the server</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of available XML-RPC methods</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">see:</span> <a href="http://xmlrpc-c.sourceforge.net/xmlrpc-howto/xmlrpc-howto-api-introspection.html">http://xmlrpc-c.sourceforge.net/xmlrpc-howto/xmlrpc-howto-api-introspection.html</a></li>
+				<li><span class="field">see:</span> <a href="http://scripts.incutio.com/xmlrpc/introspection.html">http://scripts.incutio.com/xmlrpc/introspection.html</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			listMethods
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodmethodHelp" id="methodHelp"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">methodHelp</span> (line <span class="line-number">496</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the method help for a given XML-RPC method</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> method help</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">see:</span> <a href="http://xmlrpc-c.sourceforge.net/xmlrpc-howto/xmlrpc-howto-api-introspection.html">http://xmlrpc-c.sourceforge.net/xmlrpc-howto/xmlrpc-howto-api-introspection.html</a></li>
+				<li><span class="field">see:</span> <a href="http://scripts.incutio.com/xmlrpc/introspection.html">http://scripts.incutio.com/xmlrpc/introspection.html</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			methodHelp
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$method</span><span class="var-description">: XML-RPC method name</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodmethodSignature" id="methodSignature"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">methodSignature</span> (line <span class="line-number">451</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the signatureS (note plural) for a given method</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of available XML-RPC methods</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">see:</span> <a href="http://xmlrpc-c.sourceforge.net/xmlrpc-howto/xmlrpc-howto-api-introspection.html">http://xmlrpc-c.sourceforge.net/xmlrpc-howto/xmlrpc-howto-api-introspection.html</a></li>
+				<li><span class="field">see:</span> <a href="http://scripts.incutio.com/xmlrpc/introspection.html">http://scripts.incutio.com/xmlrpc/introspection.html</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			methodSignature
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$method</span><span class="var-description">: XML-RPC method name</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodmultiCall" id="multiCall"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">multiCall</span> (line <span class="line-number">399</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Allows for method &quot;box-carring&quot;.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> responses from method calls in order they occurred</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">see:</span> <a href="http://www.xmlrpc.com/discuss/msgReader$1208">http://www.xmlrpc.com/discuss/msgReader$1208</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			multiCall
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">0</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">0</span><span class="var-description">: of method calls</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="method_getHelp" id="_getHelp"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">_getHelp</span> (line <span class="line-number">346</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			_getHelp
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../IXR/IXR_Handler.html#method_getHelp">IXR_Handler::_getHelp()</a></dt>
+						<dd>Return the method help of the handler methods. Does nothing here -</dd>
+					</dl>
+		
+	</div>
+<a name="method_getMethods" id="_getMethods"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_getMethods</span> (line <span class="line-number">308</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			_getMethods
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../IXR/IXR_Handler.html#method_getMethods">IXR_Handler::_getMethods()</a></dt>
+						<dd>Returns the available methods of this handler. Unless overridden, this  method uses introspection to determine available methods. Subclass  handler methods beginning with an underscore are ignored.</dd>
+					</dl>
+		
+	</div>
+<a name="method_getSignatures" id="_getSignatures"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">_getSignatures</span> (line <span class="line-number">322</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			_getSignatures
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../IXR/IXR_Handler.html#method_getSignatures">IXR_Handler::_getSignatures()</a></dt>
+						<dd>Return the signatures of the handler methods. Does nothing here -</dd>
+					</dl>
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../IXR/IXR_Handler.html">IXR_Handler</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../IXR/IXR_Handler.html#method_getHelp">IXR_Handler::_getHelp()</a></span><br>
+													<span class="method-name"><a href="../IXR/IXR_Handler.html#method_getMethods">IXR_Handler::_getMethods()</a></span><br>
+													<span class="method-name"><a href="../IXR/IXR_Handler.html#method_getSignatures">IXR_Handler::_getSignatures()</a></span><br>
+													<span class="method-name"><a href="../IXR/IXR_Handler.html#method_setServer">IXR_Handler::_setServer()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Tue,  4 May 2004 09:34:59 -0500 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.2.2</a>
+	</p>
+	</div></body>
+</html>

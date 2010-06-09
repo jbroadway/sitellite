@@ -1,0 +1,25 @@
+<h1>Installation</h1>
+
+Getting up and running with SiteConnector is a fast and easy 4-step process:<br />
+<br />
+1. Create the SiteConnector database tables:<br />
+<pre>$ cd /PATH/TO/SITELLITE<br />$ mysql -p -u USER DBNAME &lt; inc/app/siteconnector/install/install-mysql.sql<br />(enter password when prompted)</pre>
+2. Define a new SiteConnector resource by either a) adding the following line to the file<br />
+inc/conf/auth/resources/index.php:<br />
+<pre>app_siteconnector = Off</pre>
+Or b) adding the resource "app_siteconnector" via the admin tools in the<br />
+Sitellite Control Panel.<br />
+<br />
+3. Define a siteconnector role by either a) copying the file<br />
+inc/app/siteconnector/install/siteconnector.php to inc/conf/auth/roles/<br />
+or b) creating a "siteconnector" role via the admin tools in the Sitellite<br />
+Control Panel with the following settings:<br />
+<pre>Name: siteconnector<br />Is admin?: Yes<br />Disabled: No<br />Allowed Resources: App Siteconnector (Read and Write)</pre>
+You may set the allowed access levels and statuses to whatever you<br />
+want.&nbsp; The default in the example file are All and All (Read and Write).<br />
+<br />
+4. Before a 3rd party can connect to your SiteConnector Web Services,<br />
+you will need to create a user for them with the role "siteconnector" via<br />
+the Sitellite Control Panel.<br />
+<br />
+You should now be ready to start using your new SiteConnector add-on.<br />

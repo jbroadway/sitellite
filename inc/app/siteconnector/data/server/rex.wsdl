@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="rex" targetNamespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+	<message name="createRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="data" type="xsd:string" />
+		<part name="changes" type="xsd:string" />
+	</message>
+
+	<message name="createResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="modifyRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="data" type="xsd:string" />
+		<part name="changes" type="xsd:string" />
+	</message>
+
+	<message name="modifyResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="republishRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="data" type="xsd:string" />
+		<part name="changes" type="xsd:string" />
+	</message>
+
+	<message name="republishResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="updateRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="data" type="xsd:string" />
+		<part name="changes" type="xsd:string" />
+	</message>
+
+	<message name="updateResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="replaceRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="data" type="xsd:string" />
+		<part name="changes" type="xsd:string" />
+	</message>
+
+	<message name="replaceResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="deleteRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="changes" type="xsd:string" />
+	</message>
+
+	<message name="deleteResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="deleteAllRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+	</message>
+
+	<message name="deleteAllResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="clearRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+	</message>
+
+	<message name="clearResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="restoreRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="rid" type="xsd:int" />
+		<part name="data" type="xsd:string" />
+		<part name="changes" type="xsd:string" />
+		<part name="skipCreate" type="xsd:boolean" />
+	</message>
+
+	<message name="restoreResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="compareRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="rid1" type="xsd:int" />
+		<part name="rid2" type="xsd:int" />
+	</message>
+
+	<message name="compareResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getInfoRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:int" />
+	</message>
+
+	<message name="getInfoResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getHistoryRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="full" type="xsd:boolean" />
+		<part name="limit" type="xsd:int" />
+		<part name="offset" type="xsd:int" />
+	</message>
+
+	<message name="getHistoryResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getCurrentRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+	</message>
+
+	<message name="getCurrentResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getSourceRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+	</message>
+
+	<message name="getSourceResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getStoreRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+	</message>
+
+	<message name="getStoreResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getRevisionRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="rid" type="xsd:int" />
+		<part name="full" type="xsd:boolean" />
+	</message>
+
+	<message name="getRevisionResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getStateRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+	</message>
+
+	<message name="getStateResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getListRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="conditions" type="xsd:string" />
+		<part name="limit" type="xsd:int" />
+		<part name="offset" type="xsd:int" />
+		<part name="orderBy" type="xsd:string" />
+		<part name="sort" type="xsd:string" />
+		<part name="count" type="xsd:boolean" />
+	</message>
+
+	<message name="getListResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getStoreListRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="conditions" type="xsd:string" />
+		<part name="limit" type="xsd:int" />
+		<part name="offset" type="xsd:int" />
+		<part name="orderBy" type="xsd:string" />
+		<part name="sort" type="xsd:string" />
+		<part name="count" type="xsd:boolean" />
+	</message>
+
+	<message name="getStoreListResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getStructRequest">
+		<part name="collection" type="xsd:string" />
+	</message>
+
+	<message name="getStructResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="determineActionRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+		<part name="newStatus" type="xsd:string" />
+	</message>
+
+	<message name="determineActionResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<message name="getCollectionsRequest">
+	</message>
+
+	<message name="getCollectionsResponse">
+		<part name="return" type="soap:Array" />
+	</message>
+
+	<message name="syncRequest">
+		<part name="collection" type="xsd:string" />
+		<part name="id" type="xsd:string" />
+	</message>
+
+	<message name="syncResponse">
+		<part name="return" type="xsd:boolean" />
+	</message>
+
+	<message name="scanRequest">
+		<part name="collection" type="xsd:string" />
+	</message>
+
+	<message name="scanResponse">
+		<part name="return" type="xsd:string" />
+	</message>
+
+	<portType name="rex">
+		<operation name="create" parameterOrder="collection data changes">
+			<input name="createRequest" message="createRequest" />
+			<input name="createRequest" message="createRequest" />
+			<input name="createRequest" message="createRequest" />
+			<output name="createResponse" message="createResponse" />
+		</operation>
+
+		<operation name="modify" parameterOrder="collection id data changes">
+			<input name="modifyRequest" message="modifyRequest" />
+			<input name="modifyRequest" message="modifyRequest" />
+			<input name="modifyRequest" message="modifyRequest" />
+			<input name="modifyRequest" message="modifyRequest" />
+			<output name="modifyResponse" message="modifyResponse" />
+		</operation>
+
+		<operation name="republish" parameterOrder="collection id data changes">
+			<input name="republishRequest" message="republishRequest" />
+			<input name="republishRequest" message="republishRequest" />
+			<input name="republishRequest" message="republishRequest" />
+			<input name="republishRequest" message="republishRequest" />
+			<output name="republishResponse" message="republishResponse" />
+		</operation>
+
+		<operation name="update" parameterOrder="collection id data changes">
+			<input name="updateRequest" message="updateRequest" />
+			<input name="updateRequest" message="updateRequest" />
+			<input name="updateRequest" message="updateRequest" />
+			<input name="updateRequest" message="updateRequest" />
+			<output name="updateResponse" message="updateResponse" />
+		</operation>
+
+		<operation name="replace" parameterOrder="collection id data changes">
+			<input name="replaceRequest" message="replaceRequest" />
+			<input name="replaceRequest" message="replaceRequest" />
+			<input name="replaceRequest" message="replaceRequest" />
+			<input name="replaceRequest" message="replaceRequest" />
+			<output name="replaceResponse" message="replaceResponse" />
+		</operation>
+
+		<operation name="delete" parameterOrder="collection id changes">
+			<input name="deleteRequest" message="deleteRequest" />
+			<input name="deleteRequest" message="deleteRequest" />
+			<input name="deleteRequest" message="deleteRequest" />
+			<output name="deleteResponse" message="deleteResponse" />
+		</operation>
+
+		<operation name="deleteAll" parameterOrder="collection id">
+			<input name="deleteAllRequest" message="deleteAllRequest" />
+			<input name="deleteAllRequest" message="deleteAllRequest" />
+			<output name="deleteAllResponse" message="deleteAllResponse" />
+		</operation>
+
+		<operation name="clear" parameterOrder="collection id">
+			<input name="clearRequest" message="clearRequest" />
+			<input name="clearRequest" message="clearRequest" />
+			<output name="clearResponse" message="clearResponse" />
+		</operation>
+
+		<operation name="restore" parameterOrder="collection id rid data changes skipCreate">
+			<input name="restoreRequest" message="restoreRequest" />
+			<input name="restoreRequest" message="restoreRequest" />
+			<input name="restoreRequest" message="restoreRequest" />
+			<input name="restoreRequest" message="restoreRequest" />
+			<input name="restoreRequest" message="restoreRequest" />
+			<input name="restoreRequest" message="restoreRequest" />
+			<output name="restoreResponse" message="restoreResponse" />
+		</operation>
+
+		<operation name="compare" parameterOrder="collection id rid1 rid2">
+			<input name="compareRequest" message="compareRequest" />
+			<input name="compareRequest" message="compareRequest" />
+			<input name="compareRequest" message="compareRequest" />
+			<input name="compareRequest" message="compareRequest" />
+			<output name="compareResponse" message="compareResponse" />
+		</operation>
+
+		<operation name="getInfo" parameterOrder="collection id">
+			<input name="getInfoRequest" message="getInfoRequest" />
+			<input name="getInfoRequest" message="getInfoRequest" />
+			<output name="getInfoResponse" message="getInfoResponse" />
+		</operation>
+
+		<operation name="getHistory" parameterOrder="collection id full limit offset">
+			<input name="getHistoryRequest" message="getHistoryRequest" />
+			<input name="getHistoryRequest" message="getHistoryRequest" />
+			<input name="getHistoryRequest" message="getHistoryRequest" />
+			<input name="getHistoryRequest" message="getHistoryRequest" />
+			<input name="getHistoryRequest" message="getHistoryRequest" />
+			<output name="getHistoryResponse" message="getHistoryResponse" />
+		</operation>
+
+		<operation name="getCurrent" parameterOrder="collection id">
+			<input name="getCurrentRequest" message="getCurrentRequest" />
+			<input name="getCurrentRequest" message="getCurrentRequest" />
+			<output name="getCurrentResponse" message="getCurrentResponse" />
+		</operation>
+
+		<operation name="getSource" parameterOrder="collection id">
+			<input name="getSourceRequest" message="getSourceRequest" />
+			<input name="getSourceRequest" message="getSourceRequest" />
+			<output name="getSourceResponse" message="getSourceResponse" />
+		</operation>
+
+		<operation name="getStore" parameterOrder="collection id">
+			<input name="getStoreRequest" message="getStoreRequest" />
+			<input name="getStoreRequest" message="getStoreRequest" />
+			<output name="getStoreResponse" message="getStoreResponse" />
+		</operation>
+
+		<operation name="getRevision" parameterOrder="collection id rid full">
+			<input name="getRevisionRequest" message="getRevisionRequest" />
+			<input name="getRevisionRequest" message="getRevisionRequest" />
+			<input name="getRevisionRequest" message="getRevisionRequest" />
+			<input name="getRevisionRequest" message="getRevisionRequest" />
+			<output name="getRevisionResponse" message="getRevisionResponse" />
+		</operation>
+
+		<operation name="getState" parameterOrder="collection id">
+			<input name="getStateRequest" message="getStateRequest" />
+			<input name="getStateRequest" message="getStateRequest" />
+			<output name="getStateResponse" message="getStateResponse" />
+		</operation>
+
+		<operation name="getList" parameterOrder="collection conditions limit offset orderBy sort count">
+			<input name="getListRequest" message="getListRequest" />
+			<input name="getListRequest" message="getListRequest" />
+			<input name="getListRequest" message="getListRequest" />
+			<input name="getListRequest" message="getListRequest" />
+			<input name="getListRequest" message="getListRequest" />
+			<input name="getListRequest" message="getListRequest" />
+			<input name="getListRequest" message="getListRequest" />
+			<output name="getListResponse" message="getListResponse" />
+		</operation>
+
+		<operation name="getStoreList" parameterOrder="collection conditions limit offset orderBy sort count">
+			<input name="getStoreListRequest" message="getStoreListRequest" />
+			<input name="getStoreListRequest" message="getStoreListRequest" />
+			<input name="getStoreListRequest" message="getStoreListRequest" />
+			<input name="getStoreListRequest" message="getStoreListRequest" />
+			<input name="getStoreListRequest" message="getStoreListRequest" />
+			<input name="getStoreListRequest" message="getStoreListRequest" />
+			<input name="getStoreListRequest" message="getStoreListRequest" />
+			<output name="getStoreListResponse" message="getStoreListResponse" />
+		</operation>
+
+		<operation name="getStruct" parameterOrder="collection">
+			<input name="getStructRequest" message="getStructRequest" />
+			<output name="getStructResponse" message="getStructResponse" />
+		</operation>
+
+		<operation name="determineAction" parameterOrder="collection id newStatus">
+			<input name="determineActionRequest" message="determineActionRequest" />
+			<input name="determineActionRequest" message="determineActionRequest" />
+			<input name="determineActionRequest" message="determineActionRequest" />
+			<output name="determineActionResponse" message="determineActionResponse" />
+		</operation>
+
+		<operation name="getCollections" parameterOrder="">
+			<input name="getCollectionsRequest" message="getCollectionsRequest" />
+			<output name="getCollectionsResponse" message="getCollectionsResponse" />
+		</operation>
+
+		<operation name="sync" parameterOrder="collection id">
+			<input name="syncRequest" message="syncRequest" />
+			<input name="syncRequest" message="syncRequest" />
+			<output name="syncResponse" message="syncResponse" />
+		</operation>
+
+		<operation name="scan" parameterOrder="collection">
+			<input name="scanRequest" message="scanRequest" />
+			<output name="scanResponse" message="scanResponse" />
+		</operation>
+
+	</portType>
+
+	<binding name="rexBinding" type="rex">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="create">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#create" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="modify">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#modify" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="republish">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#republish" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="update">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#update" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="replace">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#replace" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="delete">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#delete" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="deleteAll">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#deleteAll" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="clear">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#clear" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="restore">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#restore" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="compare">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#compare" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getInfo">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getInfo" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getHistory">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getHistory" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getCurrent">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getCurrent" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getSource">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getSource" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getStore">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getStore" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getRevision">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getRevision" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getState">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getState" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getList">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getList" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getStoreList">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getStoreList" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getStruct">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getStruct" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="determineAction">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#determineAction" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="getCollections">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#getCollections" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="sync">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#sync" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+		<operation name="scan">
+			<soap:operation soapAction="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex#scan" />
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+			</output>
+		</operation>
+
+	</binding>
+
+	<service name="rex">
+		<port name="rex" binding="rexBinding">
+			<soap:address location="http://www.scs.lo/index/wsconnector-app/api.soap/service.rex" />
+		</port>
+
+	</service>
+
+</definitions>

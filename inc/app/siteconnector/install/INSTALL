@@ -1,0 +1,30 @@
+1. Create database tables:
+
+$ cd /PATH/TO/SITELLITE
+$ mysql -p -u USER DBNAME < inc/app/siteconnector/install/install-mysql.sql
+(enter password when prompted)
+
+2. Define resource by either a) adding the following line to
+inc/conf/auth/resources/index.php:
+
+app_siteconnector = Off
+
+Or b) adding the resource "app_siteconnector" via the admin tools in the
+Sitellite Control Panel.
+
+3. Define a siteconnector role by either a) copying the file
+inc/app/siteconnector/install/siteconnector.php to inc/conf/auth/roles/
+or b) creating a "siteconnector" role via the admin tools in the Sitellite
+Control Panel with the following settings:
+
+Name: siteconnector
+Is admin?: Yes
+Disabled: No
+Allowed Resources: App Siteconnector (Read and Write)
+
+You may set the allowed access levels and statuses to whatever you
+want.  The default in the example file are All and All (Read and Write).
+
+4. Before a 3rd party can connect to your SiteConnector Web Services,
+you will need to create a user for them with the role "siteconnector" via
+the Sitellite Control Panel.

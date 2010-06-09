@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class SOAP_Transport_HTTP</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class SOAP_Transport_HTTP</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">HTTP Transport for SOAP</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Shane Caraveo &lt;<a href="mailto:shane@php.net">mailto:shane@php.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: SOAP_Transport_HTTP.html,v 1.1.1.1 2004/06/14 18:08:00 lux Exp $</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Ext_PEAR_SOAP_Transport_HTTP_php.html">Program_Root/Ext/PEAR/SOAP/Transport/HTTP.php</a> (line <span class="field">42</span>)
+		</p>
+		
+				
+		<pre>PEAR
+   |
+   --<a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a>
+      |
+      --<a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a>
+         |
+         --SOAP_Transport_HTTP</pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+								<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$cookies" title="details" class="var-name">$cookies</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$encoding" title="details" class="var-name">$encoding</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$headers" title="details" class="var-name">$headers</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$incoming_payload" title="details" class="var-name">$incoming_payload</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$result_content_type" title="details" class="var-name">$result_content_type</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$result_cookies" title="details" class="var-name">$result_cookies</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$result_encoding" title="details" class="var-name">$result_encoding</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$result_headers" title="details" class="var-name">$result_headers</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$timeout" title="details" class="var-name">$timeout</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$url" title="details" class="var-name">$url</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$urlparts" title="details" class="var-name">$urlparts</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$_userAgent" title="details" class="var-name">$_userAgent</a>
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">SOAP_Transport_HTTP</span>
+										<a href="#SOAP_Transport_HTTP" title="details" class="method-name">SOAP_Transport_HTTP</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$URL</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$encoding</span> = <span class="var-default">SOAP_DEFAULT_ENCODING</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$URI</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addCookie" title="details" class="method-name">addCookie</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">string|fault</span>
+										<a href="#send" title="details" class="method-name">&amp;send</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">&$msg</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">null</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">none</span>
+										<a href="#setCredentials" title="details" class="method-name">setCredentials</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#_parseHeaders" title="details" class="method-name">_parseHeaders</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$headers</span>)
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$cookies" id="$cookies"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$cookies</span>
+						(line <span class="line-number">56</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Cookies</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$encoding" id="$encoding"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$encoding</span>
+			 = <span class="var-default"> SOAP_DEFAULT_ENCODING</span>			(line <span class="line-number">97</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">HTTP Encoding</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$headers" id="$headers"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$headers</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">49</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Basic Auth string</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$incoming_payload" id="$incoming_payload"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$incoming_payload</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">83</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Incoming payload</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$result_content_type" id="$result_content_type"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$result_content_type</span>
+						(line <span class="line-number">110</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">HTTP-Response Content-Type</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$result_cookies" id="$result_cookies"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$result_cookies</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">114</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$result_encoding" id="$result_encoding"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$result_encoding</span>
+			 = <span class="var-default"> 'UTF-8'</span>			(line <span class="line-number">105</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">HTTP-Response Content-Type encoding</p>
+<p class="description"><p>we assume UTF-8 if no encoding is set</p></p>
+	
+	
+		
+		
+
+</div>
+<a name="var$result_headers" id="$result_headers"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$result_headers</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">112</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$timeout" id="$timeout"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">int</span>
+			<span class="var-name">$timeout</span>
+			 = <span class="var-default"> 4</span>			(line <span class="line-number">62</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">var:</span> connection timeout in seconds - 0 = none</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$url" id="$url"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$url</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">76</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Connection endpoint - URL</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$urlparts" id="$urlparts"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$urlparts</span>
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">69</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Array containing urlparts - parse_url()</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$_userAgent" id="$_userAgent"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_userAgent</span>
+			 = <span class="var-default"> SOAP_LIBRARY_NAME</span>			(line <span class="line-number">90</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">HTTP-Request User-Agent</p>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_auto_translation">SOAP_Base::$_auto_translation</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_doconversion">SOAP_Base::$_doconversion</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_namespaces">SOAP_Base::$_namespaces</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_ns_count">SOAP_Base::$_ns_count</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_section5">SOAP_Base::$_section5</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_typemap">SOAP_Base::$_typemap</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_type_translation">SOAP_Base::$_type_translation</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_wsdl">SOAP_Base::$_wsdl</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_xmlEntities">SOAP_Base::$_xmlEntities</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_XMLSchema">SOAP_Base::$_XMLSchema</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_XMLSchemaVersion">SOAP_Base::$_XMLSchemaVersion</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$__attachments">SOAP_Base::$__attachments</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname"><a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$fault">SOAP_Base_Object::$fault</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_debug_data">SOAP_Base_Object::$_debug_data</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_debug_flag">SOAP_Base_Object::$_debug_flag</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_encodings">SOAP_Base_Object::$_encodings</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_myfaultcode">SOAP_Base_Object::$_myfaultcode</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodSOAP_Transport_HTTP" id="SOAP_Transport_HTTP"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor SOAP_Transport_HTTP</span> (line <span class="line-number">125</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SOAP_Transport_HTTP Constructor</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">SOAP_Transport_HTTP</span>
+		<span class="method-name">
+			SOAP_Transport_HTTP
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$URL</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$encoding</span> = <span class="var-default">SOAP_DEFAULT_ENCODING</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$URI</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$URL</span><span class="var-description">: http url to soap endpoint</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$URI</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$encoding</span><span class="var-description">: encoding to use</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodaddCookie" id="addCookie"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addCookie</span> (line <span class="line-number">183</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a cookie</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addCookie
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: cookie name</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: cookie value</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodsend" id="send"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">send</span> (line <span class="line-number">142</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">send and receive soap data</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> response</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string|fault</span>
+		<span class="method-name">
+			&amp;send
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">&$msg</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">&$msg</span><span class="var-description">: outgoing post data</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: options</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodsetCredentials" id="setCredentials"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setCredentials</span> (line <span class="line-number">170</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">set data for http authentication  creates Authorization header</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">none</span>
+		<span class="method-name">
+			setCredentials
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: username</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password</span><span class="var-description">: response data, minus http headers</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="method_parseHeaders" id="_parseHeaders"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_parseHeaders</span> (line <span class="line-number">272</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Parses the headers</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_parseHeaders
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$headers</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$headers</span><span class="var-description">: the headers</span>			</li>
+				</ul>
+		
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#methodSOAP_Base">SOAP_Base::SOAP_Base()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decode">SOAP_Base::_decode()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decodeDIMEMessage">SOAP_Base::_decodeDIMEMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decodeMimeMessage">SOAP_Base::_decodeMimeMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_getNamespaceForPrefix">SOAP_Base::_getNamespaceForPrefix()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_getNamespacePrefix">SOAP_Base::_getNamespacePrefix()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isBase64">SOAP_Base::_isBase64()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isHash">SOAP_Base::_isHash()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isSoapValue">SOAP_Base::_isSoapValue()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_makeDIMEMessage">SOAP_Base::_makeDIMEMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_makeMimeMessage">SOAP_Base::_makeMimeMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_multiArrayType">SOAP_Base::_multiArrayType()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_resetNamespaces">SOAP_Base::_resetNamespaces()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_serializeValue">SOAP_Base::_serializeValue()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_un_htmlentities">SOAP_Base::_un_htmlentities()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method__set_type_translation">SOAP_Base::__set_type_translation()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#methodSOAP_Base_Object">SOAP_Base_Object::SOAP_Base_Object()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method_debug">SOAP_Base_Object::_debug()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method_raiseSoapFault">SOAP_Base_Object::_raiseSoapFault()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method__getfault">SOAP_Base_Object::__getfault()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method__isfault">SOAP_Base_Object::__isfault()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Tue,  4 May 2004 09:34:48 -0500 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.2.2</a>
+	</p>
+	</div></body>
+</html>

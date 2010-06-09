@@ -1,0 +1,4 @@
+New in 1.0.2:
+
+- Fixed missing examples.
+- Fixed license on credits page.

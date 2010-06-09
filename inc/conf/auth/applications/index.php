@@ -108,6 +108,10 @@ sitebanner              = Off
 
 sitelinks               = Off
 
+siteconnector			= Off
+
+sitepublisher			= Off
+
 ;
 ; THE END
 ;

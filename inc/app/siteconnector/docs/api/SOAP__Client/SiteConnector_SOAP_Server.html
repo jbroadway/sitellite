@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class SiteConnector_SOAP_Server</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class SiteConnector_SOAP_Server</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SOAP::Server  SOAP Server Class</p>
+<p class="description"><p>originaly based on SOAPx4 by Dietrich Ayala http://dietrich.ganx4.com/soapx4</p></p>
+	<ul class="tags">
+				<li><span class="field">version:</span> $Id: SiteConnector_SOAP_Server.html,v 1.1.1.1 2004/06/14 18:08:00 lux Exp $</li>
+				<li><span class="field">author:</span> Dietrich Ayala &lt;<a href="mailto:dietrich@ganx4.com">mailto:dietrich@ganx4.com</a>&gt; Original Author</li>
+				<li><span class="field">author:</span> Shane Caraveo &lt;<a href="mailto:shane@php.net">mailto:shane@php.net</a>&gt; Conversion to PEAR and updates</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_SOAP_Server_php.html">Program_Root/SOAP/Server.php</a> (line <span class="field">16</span>)
+		</p>
+		
+				
+		<pre>PEAR
+   |
+   --<a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a>
+      |
+      --<a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a>
+         |
+         --<a href="../SOAP__Client/SOAP_Server.html">SOAP_Server</a>
+            |
+            --SiteConnector_SOAP_Server</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#callMethod" title="details" class="method-name">&amp;callMethod</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$methodname</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">&$args</span>)
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../SOAP__Client/SOAP_Server.html">SOAP_Server</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$callHandler">SOAP_Server::$callHandler</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$callValidation">SOAP_Server::$callValidation</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$call_methodname">SOAP_Server::$call_methodname</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$dispatch_map">SOAP_Server::$dispatch_map</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$dispatch_objects">SOAP_Server::$dispatch_objects</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$endpoint">SOAP_Server::$endpoint</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$headers">SOAP_Server::$headers</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$method_namespace">SOAP_Server::$method_namespace</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$request">SOAP_Server::$request</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$response_encoding">SOAP_Server::$response_encoding</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$result">SOAP_Server::$result</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$service">SOAP_Server::$service</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$soapobject">SOAP_Server::$soapobject</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$xml_encoding">SOAP_Server::$xml_encoding</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Server.html#var$__options">SOAP_Server::$__options</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname"><a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_auto_translation">SOAP_Base::$_auto_translation</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_doconversion">SOAP_Base::$_doconversion</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_namespaces">SOAP_Base::$_namespaces</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_ns_count">SOAP_Base::$_ns_count</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_section5">SOAP_Base::$_section5</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_typemap">SOAP_Base::$_typemap</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_type_translation">SOAP_Base::$_type_translation</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_wsdl">SOAP_Base::$_wsdl</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_xmlEntities">SOAP_Base::$_xmlEntities</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_XMLSchema">SOAP_Base::$_XMLSchema</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_XMLSchemaVersion">SOAP_Base::$_XMLSchemaVersion</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$__attachments">SOAP_Base::$__attachments</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname"><a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$fault">SOAP_Base_Object::$fault</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_debug_data">SOAP_Base_Object::$_debug_data</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_debug_flag">SOAP_Base_Object::$_debug_flag</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_encodings">SOAP_Base_Object::$_encodings</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_myfaultcode">SOAP_Base_Object::$_myfaultcode</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodcallMethod" id="callMethod"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">callMethod</span> (line <span class="line-number">17</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			&amp;callMethod
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$methodname</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">&$args</span>)
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../SOAP__Client/SOAP_Server.html#methodcallMethod">SOAP_Server::callMethod()</a></dt>
+					</dl>
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../SOAP__Client/SOAP_Server.html">SOAP_Server</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodSOAP_Server">SOAP_Server::SOAP_Server()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodaddObjectMap">SOAP_Server::addObjectMap()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodaddObjectWSDL">SOAP_Server::addObjectWSDL()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodaddToMap">SOAP_Server::addToMap()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodbind">SOAP_Server::bind()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodbindWSDL">SOAP_Server::bindWSDL()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodbuildResult">SOAP_Server::buildResult()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodcallMethod">SOAP_Server::callMethod()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodgetReturnType">SOAP_Server::getReturnType()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodparseRequest">SOAP_Server::parseRequest()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodservice">SOAP_Server::service()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodsetCallHandler">SOAP_Server::setCallHandler()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodvalidateMethod">SOAP_Server::validateMethod()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#methodverifyMethod">SOAP_Server::verifyMethod()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#method_getContentEncoding">SOAP_Server::_getContentEncoding()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Server.html#method__decodeRequest">SOAP_Server::__decodeRequest()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#methodSOAP_Base">SOAP_Base::SOAP_Base()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decode">SOAP_Base::_decode()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decodeDIMEMessage">SOAP_Base::_decodeDIMEMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decodeMimeMessage">SOAP_Base::_decodeMimeMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_getNamespaceForPrefix">SOAP_Base::_getNamespaceForPrefix()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_getNamespacePrefix">SOAP_Base::_getNamespacePrefix()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isBase64">SOAP_Base::_isBase64()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isHash">SOAP_Base::_isHash()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isSoapValue">SOAP_Base::_isSoapValue()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_makeDIMEMessage">SOAP_Base::_makeDIMEMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_makeMimeMessage">SOAP_Base::_makeMimeMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_multiArrayType">SOAP_Base::_multiArrayType()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_resetNamespaces">SOAP_Base::_resetNamespaces()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_serializeValue">SOAP_Base::_serializeValue()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_un_htmlentities">SOAP_Base::_un_htmlentities()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method__set_type_translation">SOAP_Base::__set_type_translation()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#methodSOAP_Base_Object">SOAP_Base_Object::SOAP_Base_Object()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method_debug">SOAP_Base_Object::_debug()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method_raiseSoapFault">SOAP_Base_Object::_raiseSoapFault()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method__getfault">SOAP_Base_Object::__getfault()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method__isfault">SOAP_Base_Object::__isfault()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Tue,  4 May 2004 09:27:01 -0500 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.2.2</a>
+	</p>
+	</div></body>
+</html>

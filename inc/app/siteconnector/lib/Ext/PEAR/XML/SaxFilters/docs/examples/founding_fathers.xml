@@ -1,0 +1,18 @@
+<myDatabase>
+  <!-- table  founding_fathers -->
+    <founding_fathers>
+        <id>1</id>
+        <first>George</first>
+        <last>Washington</last>
+    </founding_fathers>
+    <founding_fathers>
+        <id>2</id>
+        <first>Alexander</first>
+        <last>Hamilton</last>
+    </founding_fathers>
+    <founding_fathers>
+        <id>3</id>
+        <first>Benjamin</first>
+        <last>Franklin</last>
+    </founding_fathers>
+</myDatabase>

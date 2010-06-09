@@ -109,6 +109,9 @@ session_table	= sitellite_user_session
 ; This sets the session store to use.  The session store handles the
 ; authentication of the user.
 driver			= PHP
+;driver = Memcache
+;server = localhost
+;port = 11211
 
 ;
 ; THE END
