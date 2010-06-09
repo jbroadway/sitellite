@@ -3,6 +3,7 @@
 global $cgi;
 
 loader_import ('cms.Versioning.Rex');
+loader_import ('cms.Workflow');
 
 $rex = new Rex ($cgi->collection);
 
