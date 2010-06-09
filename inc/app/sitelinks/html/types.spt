@@ -1,0 +1,25 @@
+<h1>{appconf/sitelinks_name}</h1>
+
+{if obj[sitesearch]}
+<p>
+	<a href="{site/prefix}/index/sitesearch-app?ctype=sitelinks_item&show_types=yes">{intl Search}</a>
+	{if appconf ('user_submissions')}
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitelinks-mylinks-action">{intl My} {appconf/sitelinks_name}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitelinks-newest-action">{intl Newest Links}</a>
+	{end if}
+	{if appconf ('user_ratings')}
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitelinks-top-action">{intl Top Listings}</a>
+	{end if}
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitelinks-categories-action">{intl Browse By Category}</a>
+</p>
+{end if}
+
+<ul>
+{loop obj[types]}
+	<li><a href="{site/prefix}/index/sitelinks-app/type.{loop/ctype}">{filter ucwords}{loop/ctype}{end filter} ({loop/items})</a></li>
+{end loop}
+</ul>

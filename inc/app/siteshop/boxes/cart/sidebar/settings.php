@@ -1,0 +1,3 @@
+[Meta]
+
+name = Cart Sidebar

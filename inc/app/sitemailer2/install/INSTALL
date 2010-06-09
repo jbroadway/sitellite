@@ -1,0 +1,69 @@
+1. Install the Database Schema:
+
+    cd /path/to/sitellite
+    cd inc/app/sitemailer2/install
+    mysql -u DB_USERNAME -p SITELLITE_DB_NAME < install-mysql.sql
+    (enter password when prompted)
+
+2. Install the Collections: 
+
+    cd /path/to/sitellite
+    cd inc/app/sitemailer2/install
+    cp *.php ../../cms/conf/collections/
+    cp html.settings.tpl ../../../html/<YOUR_TEMPLATE_SET>/
+
+    Note: If you do not know your template set specify "default".
+
+3. Make 2 Files Writable By Apache:
+
+    cd /path/to/sitellite
+    cd inc/app/sitemailer2/
+    chmod 777 data/tmp
+    chmod 777 conf/settings2.ini.php 
+
+4. Configure Your Outgoing Mail Server:
+
+    cd /path/to/sitellite
+    cd inc/app/sitemailer2/conf
+    vi properties.php 
+    
+    Then find the line: "appconf_set ('mta', 'smtp');"
+    
+    If you want to use an smtp server leave this line and make the appropriate changes to the line:
+        "appconf_set (
+             'mta_smtp',"
+
+5. Verify The Settings Tab in the Sitemailer2 Web Interface
+
+    Visit http://<site_with_sitellite>/index/sitemailer2-settings-form
+    
+6. Edit 2 Scripts:
+
+    cd /path/to/sitellite
+    cd inc/app/sitemailer2/script
+    vi start.sh
+    
+    Make sure the line "export PATH=" has the path to your php binary. If you don't
+    know the path to your php binary, you can find out using the which command.
+    
+    vi start_bouncer.sh
+    
+    Make the same change here.
+
+7. Start SiteMailer2:
+
+    cd /path/to/sitellite
+    cd inc/app/sitemailer2/script
+    ./start
+    
+8. Install the Following Cron Job:
+
+    0,10,20,30,40,50 * * * *   /path/to/sitellite/inc/app/sitemailer2/script/running.sh
+
+    Note: make sure to replace /path/to/sitellite with the actual path to sitellite
+
+9. Start Using Sitemailer2:
+
+    Verify The Settings Tab in the Sitemailer2 Web Interface. The default username/password is admin/admin.
+
+    Visit http://<site_with_sitellite>/index/sitemailer2-app

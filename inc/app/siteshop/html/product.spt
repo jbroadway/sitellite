@@ -1,0 +1,60 @@
+<div class="siteshop-product-images">
+<img src="{php Product::getThumbnail (obj.id)}" alt="" border="0" style="float: left; margin-right: 15px; margin-bottom: 15px; width: 250px; height: 175px" id="siteshop-photo-0" />
+
+{loop Product::getImages (obj.id)}
+<a href="{loop/_value}" target="_blank" rel="lightbox[siteshop]" onmouseover="document.getElementById ('siteshop-photo-0').src = '{loop/_value}'"><img src="{loop/_value}" alt="" border="0" style="float: left; margin-right: 15px; margin-bottom: 15px; height: 35px; width: 50px" /></a>
+{end loop}
+</div>
+
+{if obj.sale}
+<p class="siteshop-product-price siteshop-notice" style="clear: both">
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top" style="padding-top: 5px" class="siteshop-product-price siteshop-notice">
+			{intl On Sale}: {intl Only} ${sale_price}!<br />
+			<span class="siteshop-reg">({intl Reg.} ${price})</span>
+		</td>
+		<td valign="middle" style="padding-left: 15px">
+			{if appconf ('product_ratings')}
+			<div class="js-kit-rating" title="Rated item" path="{_SERVER/REQUEST_URI}"></div>
+			<script src="http://js-kit.com/ratings.js"></script>
+			{end if}
+		</td>
+	</tr>
+</table>
+</p>
+{end if}
+{if else}
+<p class="siteshop-product-price" style="clear: both">
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top" style="padding-top: 5px" class="siteshop-product-price">
+			{intl Price}: ${price}
+			{if obj.weight gt 0}&nbsp;<span class="siteshop-weight">{filter siteshop_filter_weight}{weight}{end filter}!</span>{end if}
+		</td>
+		<td valign="middle" style="padding-left: 15px">
+			{if appconf ('product_ratings')}
+			<div class="js-kit-rating" title="Rated item" path="{_SERVER/REQUEST_URI}"></div>
+			<script src="http://js-kit.com/ratings.js"></script>
+			{end if}
+		</td>
+	</tr>
+</table>
+</p>
+{end if}
+
+<p class="siteshop-product-availability">
+	{intl Availability}: {filter siteshop_filter_availability}{availability}{end filter}
+</p>
+
+{filter none}{addtocartform}{end filter}
+
+<h2>{intl Details}</h2>
+
+<div class="siteshop-product-body">{filter none}{body}{end filter}</div>
+
+{if appconf ('product_comments')}
+<h2>{intl Comments}</h2>
+<div class="js-kit-comments" path="{_SERVER/REQUEST_URI"></div>
+<script src="http://js-kit.com/comments.js"></script>
+{end if}

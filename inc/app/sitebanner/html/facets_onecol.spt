@@ -1,0 +1,20 @@
+<style type="text/css">
+
+	tr.cms-facet-fieldset strong {
+		font-weight: normal;
+	}
+
+</style>
+
+&nbsp;<br />
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="cms-facet-table">
+	{loop obj[facets]}
+		<tr class="cms-facet-fieldset">
+			{loop loop}
+				<td colspan="3" width="33%" align="{if loop._index eq 1}right{end if}{if loop._index eq 2}center{end if}{if loop._index eq 3}right{end if}">
+					{filter none}{loop/_value}{end filter}
+				</td>
+			{end loop}
+		</tr>
+	{end loop}
+</table>

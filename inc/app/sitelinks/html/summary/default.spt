@@ -1,0 +1,10 @@
+<div class="sitelinks-item-summary">
+	{box cms/buttons?collection=sitelinks_item&id=[id]&status=[sitellite_status]&access=[sitellite_access]&float=true&add=false&return=[php site_prefix () _ '/index/sitelinks-app/category.' _ obj.category]&team=none}
+	<h2>
+		<a href="{site/prefix}/index/sitelinks-app/item.{id}">{title}{if obj.sitelinks_top} ({intl Rating}: {rating}){end if}</a>
+	</h2>
+
+	<p class="sitelinks-summary">{filter none}{summary}{end filter}</p>
+
+	<p>{intl Last Updated}: {filter sitelinks_filter_ts}{ts}{end filter}</p>
+</div>

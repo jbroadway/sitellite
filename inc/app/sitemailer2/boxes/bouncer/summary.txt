@@ -1,0 +1,111 @@
+    'DSN', delivery status notification
+        header action != failed or failure
+    'Qmail', 
+        introtag = 'Hi. This is the'
+        acre = re.compile(r'<(?P<addr>[^>]*)>:')
+    'Postfix', 
+        pcre = re.compile(r'[ \t]*the\s*(bns)?\s*(postfix|keftamail|smtp_gateway)', re.IGNORECASE)
+        rcre = re.compile(r'failure reason:$', re.IGNORECASE)
+        acre = re.compile(r'<(?P<addr>[^>]*)>:')
+    'Yahoo',
+        tcre = re.compile(r'message\s+from\s+yahoo\.\S+', re.IGNORECASE)
+        acre = re.compile(r'<(?P<addr>[^>]*)>:')
+        ecre = re.compile(r'--- Original message follows')
+        if not sender.startswith('mailer-daemon@yahoo'):
+    'Caiwireless',
+        tcre = re.compile(r'the following recipients did not receive this message:', re.IGNORECASE)
+        acre = re.compile(r'<(?P<addr>[^>]*)>')
+    'Exchange',
+        scre = re.compile('did not reach the following recipient')
+        ecre = re.compile('MSEXCH:')
+        a1cre = re.compile('SMTP=(?P<addr>[^;]+); on ')
+        a2cre = re.compile('(?P<addr>[^ ]+) on ')
+    'Exim',
+        header 'x-failed-recipients'
+    'Netscape',
+        pcre = re.compile(r'This Message was undeliverable due to the following reason:',
+            re.IGNORECASE)
+        acre = re.compile(r'(?P<reply>please reply to)?.*<(?P<addr>[^>]*)>', re.IGNORECASE)
+    'Compuserve',
+        dcre = re.compile(r'your message could not be delivered', re.IGNORECASE)
+        acre = re.compile(r'Invalid receiver address: (?P<addr>.*)')
+    'Microsoft',
+        scre = re.compile(r'transcript of session follows', re.IGNORECASE)
+    'GroupWise',
+        X-Mailer: Novell GroupWise Internet Agent 5.5.3.1
+        X-Mailer: NTMail v4.30.0012
+        X-Mailer: Internet Mail Service (5.5.2653.19)
+        ???
+    'SMTP32',
+        ecre = re.compile('original message follows', re.IGNORECASE)
+        acre = re.compile(r'''
+            (                                             # several different prefixes
+            user\ mailbox[^:]*:                           # have been spotted in the
+            |delivery\ failed[^:]*:                       # wild...
+            |undeliverable\ to
+            )
+            \s*                                           # space separator
+            (?P<addr>.*)                                  # and finally, the address
+            ''', re.IGNORECASE | re.VERBOSE)
+    'SimpleMatch',
+        PATTERNS = [
+            # sdm.de
+            (_c('here is your list of failed recipients'),
+             _c('here is your returned mail'),
+             _c(r'<(?P<addr>[^>]*)>')),
+            # sz-sb.de, corridor.com, nfg.nl
+            (_c('the following addresses had'),
+             _c('transcript of session follows'),
+             _c(r'<(?P<fulladdr>[^>]*)>|\(expanded from: <?(?P<addr>[^>)]*)>?\)')),
+            # robanal.demon.co.uk
+            (_c('this message was created automatically by mail delivery software'),
+             _c('original message follows'),
+             _c('rcpt to:\s*<(?P<addr>[^>]*)>')),
+            # s1.com (InterScan E-Mail VirusWall NT ???)
+            (_c('message from interscan e-mail viruswall nt'),
+             _c('end of message'),
+             _c('rcpt to:\s*<(?P<addr>[^>]*)>')),
+            # Smail
+            (_c('failed addresses follow:'),
+             _c('message text follows:'),
+             _c(r'\s*(?P<addr>\S+@\S+)')),
+            # newmail.ru
+            (_c('This is the machine generated message from mail service.'),
+             _c('--- Below the next line is a copy of the message.'),
+             _c('<(?P<addr>[^>]*)>')),
+            # turbosport.com runs something called `MDaemon 3.5.2' ???
+            (_c('The following addresses did NOT receive a copy of your message:'),
+             _c('--- Session Transcript ---'),
+             _c('[>]\s*(?P<addr>.*)$')),
+            # usa.net
+            (_c('Intended recipient:\s*(?P<addr>.*)$'),
+             _c('--------RETURNED MAIL FOLLOWS--------'),
+             _c('Intended recipient:\s*(?P<addr>.*)$')),
+            # hotpop.com
+            (_c('Undeliverable Address:\s*(?P<addr>.*)$'),
+             _c('Original message attached'),
+             _c('Undeliverable Address:\s*(?P<addr>.*)$')),
+            # Another demon.co.uk format
+            (_c('This message was created automatically by mail delivery'),
+             _c('^---- START OF RETURNED MESSAGE ----'),
+             _c("addressed to '(?P<addr>[^']*)'")),
+            # Next one goes here...
+            ]
+    'SimpleWarning',
+        patterns = [
+            # pop3.pta.lia.net
+            (_c('The address to which the message has not yet been delivered is'),
+             _c('No action is required on your part'),
+             _c(r'\s*(?P<addr>\S+@\S+)\s*')),
+            # Next one goes here...
+            ]
+    'Yale',
+        scre = re.compile(r'Message not delivered to the following', re.IGNORECASE)
+        ecre = re.compile(r'Error Detail', re.IGNORECASE)
+        acre = re.compile(r'\s+(?P<addr>\S+)\s+')
+        addrs.append(name + '@yale.edu')
+        addrs.append(name + '@cs.yale.edu')
+    'LLNL',
+        acre = re.compile(r',\s*(?P<addr>\S+@[^,]+),', re.IGNORECASE)
+        
+

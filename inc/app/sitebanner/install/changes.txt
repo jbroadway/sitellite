@@ -1,0 +1,21 @@
+Changes in 1.0.4
+
+- Fixed a compatibility issue with Sitellite 5's new lazy-loading menu code.
+- Added SiteBanner to the box chooser.
+
+Changes in 1.0.3
+
+- Removed Google AdSense limit of one per page, since Google has removed
+  theirs.
+
+Changes in 1.0.2
+
+- Fixed array_rand() on zero-item array error.
+
+Changes in 1.0.1
+
+- Added full stats view for both admin and user.
+- Added target field.
+- Added format field, and support for images, html, text, external, and
+  Google AdSense ad types now.
+- Added CSV export of stats.

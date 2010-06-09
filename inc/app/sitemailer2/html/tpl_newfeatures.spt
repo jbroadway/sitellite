@@ -1,0 +1,110 @@
+<script language="javascript" type="text/javascript">
+
+function sitetemplate_set_caret (t) {
+	if (t.createTextRange) {
+		t.caretPos = document.selection.createRange ().duplicate ();
+	}
+}
+
+function sitetemplate_insert_text (i) {
+	f = document.getElementById ('sitetemplate-editor');
+	t = f.elements.body;
+
+	if (t.createTextRange && t.caretPos) { // msie
+		sitetemplate_set_caret (t);
+		var caretPos = t.caretPos;
+		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? i + '' : i;
+
+	} else if (t.selectionStart && t.setSelectionRange) { // Mozilla 1.3+
+		var val = t.value;
+		var cpos = t.selectionStart;
+		var fpos = cpos + i.length +1;
+
+		var before = val.substr (0, cpos);
+		var after = val.substr (cpos, val.length);
+		var aspace = after.charAt (0) == ' ' ? "" : "";
+		var bspace = before.charAt (before.length) == ' ' ? "" : "";
+
+		t.value = before + bspace + i + aspace + after;
+		t.setSelectionRange (fpos, fpos);
+		t.focus();
+
+	} else {
+		t.value	= t.value + i;
+	}
+
+	return true;
+}
+
+function sitetemplate_button_help () {
+	window.open (
+		'{site/prefix}/index/help-app?appname=sitetemplate',
+		'SiteTemplateHelp',
+		'left=50,top=50'
+	);
+	return false;
+}
+
+function sitetemplate_button_box () {
+	sitetemplate_insert_text ('<xt:box name=""><' + '/xt:box>');
+	return false;
+}
+
+function sitetemplate_button_dtd () {
+	sitetemplate_insert_text ('<xt:doctype root="html" access="public" name="-//W3C//DTD XHTML 1.0 Transitional//EN" uri="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />');
+	return false;
+}
+
+function sitetemplate_button_if_else () {
+	sitetemplate_insert_text ("<xt:condition>\n" + "\t<xt:if expr=\"\">\n\t<" + "/xt:if>\n" + "\t<xt:elseif expr=\"\">\n\t<" + "/xt:elseif>\n\t<xt:else>\n\t<" + "/xt:else>\n<" + "/xt:condition>");
+	return false;
+}
+
+function sitetemplate_button_intl () {
+	sitetemplate_insert_text ('<xt:intl><' + '/xt:intl>');
+	return false;
+}
+
+function sitetemplate_button_loop () {
+	sitetemplate_insert_text ('<xt:loop through=""><' + '/xt:loop>');
+	return false;
+}
+
+function sitetemplate_button_var () {
+	sitetemplate_insert_text ('<xt:var name="" />');
+	return false;
+}
+
+function sitetemplate_button_xml () {
+	sitetemplate_insert_text ('<xt:xmldecl version="1.0" encoding="ISO-8859-1" />');
+	return false;
+}
+
+</script>
+
+	<tr>
+		<td class="label" colspan="2">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="80%">
+						<a href="#" onclick="return sitetemplate_button_box ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/box.gif" alt="{intl Insert a box tag}" title="{intl Insert a box tag}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_dtd ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/dtd.gif" alt="{intl Insert a doctype definition tag}" title="{intl Insert a doctype definition tag}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_if_else ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/if_else.gif" alt="{intl Insert a if/else condition block}" title="{intl Insert a if/else condition block}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_intl ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/intl.gif" alt="{intl Insert an intl tag}" title="{intl Insert an intl tag}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_loop ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/loop.gif" alt="{intl Insert a loop tag}" title="{intl Insert a loop tag}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_var ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/var.gif" alt="{intl Insert a var tag}" title="{intl Insert a var tag}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_xml ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/xml.gif" alt="{intl Insert an XML declaration}" title="{intl Insert an XML declaration}" border="0" /></a>
+					</td>
+					<td width="20%" align="right">
+						<a href="#" onclick="return sitetemplate_button_help ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/help.gif" alt="{intl Help}" title="{intl Help}" border="0" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>

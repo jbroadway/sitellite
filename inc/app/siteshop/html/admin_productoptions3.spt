@@ -1,0 +1,9 @@
+<tr>
+	<td colspan="4" align="center" class="submit" style="padding-top: 14px;">
+		<input type="submit" name="submit_button" value="Save"  />
+		&nbsp;
+		<input type="submit" name="submit_button" value="Cancel" onclick="history.go (-1); return false" />
+	</td>
+</tr>
+</table>
+</form>

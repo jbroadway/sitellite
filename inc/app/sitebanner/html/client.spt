@@ -1,0 +1,26 @@
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th>{intl Banner}</th>
+		<th width="12%">{intl Impressions}</th>
+		<th width="12%">{intl Remaining}</th>
+		<th width="12%">{intl Clicks}</th>
+		<th width="12%">%</th>
+		<th width="12%">{intl Active}</th>
+	</tr>
+	{loop obj[list]}
+	<tr>
+		<td>
+			<a href="{site/prefix}/index/sitebanner-display-action?id={loop/id}" target="_blank">{loop/name}</a>
+		</td>
+		<td align="right">{loop/impressions}</td>
+		<td align="right">{loop/purchased}</td>
+		<td align="right">{loop/clicks}</td>
+		<td align="right">{loop/clicks_percent}</td>
+		<td>{filter ucfirst}{loop/active}{end filter}</td>
+	</tr>
+	{end loop}
+</table>
+
+<p>
+	<a href="{site/prefix}/index/sitebanner-create-form">{intl Create New Banner}</a>
+</p>

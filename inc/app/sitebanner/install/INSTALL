@@ -1,0 +1,16 @@
+SITEBANNER INSTALL INSTRUCTIONS
+
+1. Install the necessary database tables:
+
+$ mysql -p -u USER DBNAME < inc/app/sitebanner/install/install-mysql.sql
+(enter password when prompted)
+
+2. Copy the banner collection definition into the cms app:
+
+$ cd /PATH/TO/SITELLITE
+$ cp -R inc/app/sitebanner/install/sitebanner_ad.php inc/app/cms/conf/collections/
+
+3. Call sitebanner/display in your templates and/or sidebars, and create some
+banners.
+
+That's all there is to it!

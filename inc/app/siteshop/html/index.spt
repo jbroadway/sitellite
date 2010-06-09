@@ -1,0 +1,69 @@
+{alt 1 2 3}
+
+{if not empty (obj[sale_name])}
+<div class="siteshop-sale-area">
+<h2>{sale_name} {intl Sale}!</h2>
+
+{loop obj[sale_items]}
+<div class="siteshop-product-listing siteshop-product-sale siteshop-product-matrix-{alt/next}">
+	<h2><a href="{site/prefix}/index/siteshop-app/pid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}">{loop/name}</a></h2>
+	<p><a href="{site/prefix}/index/siteshop-app/pid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}"><img src="{php Product::getThumbnail (loop.id)}" alt="{loop/name}" border="0" /></a></p>
+	<p>{loop/description}</p>
+	<p class="siteshop-product-price siteshop-notice">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td valign="top" style="padding-top: 5px" class="siteshop-product-price siteshop-notice">
+					{intl ONLY} ${loop/sale_price}!<br />
+					<span class="siteshop-reg">({intl REG.} ${loop/price})</span>
+				</td>
+				<td valign="top" style="padding-left: 15px">
+					{if appconf ('product_ratings')}
+					<div class="js-kit-rating" title="Rated item" path="{site/prefix}/index/siteshop-app/pid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}"></div>
+					<script src="http://js-kit.com/ratings.js"></script>
+					{end if}
+				</td>
+			</tr>
+		</table>
+	</p>
+	<p>
+		<!--<a href="{site/prefix}/index/siteshop-cart-add-action/pid.{loop/id}">{intl Add to Cart}</a> | -->
+		<a href="{site/prefix}/index/siteshop-app/pid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}">{intl More Info}</a>
+	</p>
+</div>
+{end loop}
+
+<p style="clear: both"><a href="{site/prefix}/index/siteshop-sale-action"><strong>{intl More} {sale_name} {intl Sales}!</strong></a></p>
+</div>
+{end if}
+
+{alt/reset}
+
+<h2>{intl Featured Products}</h2>
+
+{loop obj[featured_items]}
+<div class="siteshop-product-listing siteshop-product-weight-{loop.weight} siteshop-product-matrix-{alt/next}">
+	<h2><a href="{site/prefix}/index/siteshop-app/pid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}">{loop/name}</a></h2>
+	<p><a href="{site/prefix}/index/siteshop-app/pid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}"><img src="{php Product::getThumbnail (loop.id)}" alt="{loop/name}" border="0" /></a></p>
+	<p>{loop/description}</p>
+	<p class="siteshop-product-price">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td valign="top" style="padding-top: 5px" class="siteshop-product-price">
+					${loop/price}
+					{if loop.weight gt 0}<br /><span class="siteshop-weight">{filter siteshop_filter_weight}{loop/weight}{end filter}!</span>{end if}
+				</td>
+				<td valign="top" style="padding-left: 15px">
+					{if appconf ('product_ratings')}
+					<div class="js-kit-rating" title="Rated item" path="{site/prefix}/index/siteshop-app/pid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}"></div>
+					<script src="http://js-kit.com/ratings.js"></script>
+					{end if}
+				</td>
+			</tr>
+		</table>
+	</p>
+	<p>
+		<!--d<a href="{site/prefix}/index/siteshop-cart-add-action/pid.{loop/id}">{intl Add to Cart}</a> | -->
+		<a href="{site/prefix}/index/siteshop-app/pid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}">{intl More Info}</a>
+	</p>
+</div>
+{end loop}

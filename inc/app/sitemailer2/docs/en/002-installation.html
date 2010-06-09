@@ -1,0 +1,24 @@
+<h1>Installation</h1>
+
+<p>From the Unix command-line, enter the following:</p>
+
+<pre><code>
+mysql -p -u USER DBNAME &lt; inc/app/sitemailer/install/install-mysql.sql
+</code></pre>
+
+<p>Then enter your password when prompted.  You may also use an alternate MySQL client, such as phpMyAdmin, if you prefer.  This will create the necessary database tables that SiteMailer needs to store your subscriber lists.</p>
+
+<h1>Edit your configuration file</h1>
+
+<p>SiteMailer contains two configuration files that specify the behaviour of the application.  The first is called config.ini.php, which tells the Sitellite Content Server how to load SiteMailer and how to interact with it.  The second, which is called properties.php, tells SiteMailer how you want it to behave.  Both of these files live in the inc/app/sitemailer/conf folder.</p>
+
+<p>The only two options that everyone needs to adjust in the properties.php file are the following lines:</p>
+
+<pre><code>
+appconf_set ('from_email', 'you@yourWebSite.com');
+appconf_set ('from_name', 'SiteMailer');
+</code></pre>
+
+<p>The first line tells SiteMailer to send messages &#8220;from&#8221; the specified email address, and the second tells SiteMailer to give the the &#8220;from&#8221; line an actual name.</p>
+
+<p>The rest of the options are for advanced users only, and instructions for each of them are contained inside the properties.php file.</p>

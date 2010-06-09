@@ -1,0 +1,56 @@
+{alt #ffffff #eeeeee}
+
+<p>
+	<a href="{site/prefix}/index/sitebanner-stats-client-action?id={cgi/id}&_range={cgi/_range}&date={date}&csv=true">{intl Save as CSV}</a>
+</p>
+
+<p>
+	{filter none}{facets}{end filter}
+</p>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-bottom: 1px solid #aaa">
+	<tr>
+		<td width="33%" align="left" valign="top" style="border-right: 1px solid #aaa; padding-bottom: 3px">
+			<a href="{site/prefix}/index/sitebanner-display-action?_range={cgi/_range}&date={previous}&id={cgi/id}"><img src="{site/prefix}/inc/app/sitetracker/pix/arrow.prev.gif" alt="{intl Previous}" border="0" /> {intl Previous}: {filter sitebanner_filter_date}{previous}{end filter}</a>
+		</td>
+		<td width="26%" align="center" valign="top" style="border-right: 1px solid #aaa; padding-bottom: 3px">
+			<strong>{filter sitebanner_filter_date}{date}{end filter}</strong>
+		</td>
+		<td width="33%" align="right" valign="top" style="padding-bottom: 3px">
+			<a href="{site/prefix}/index/sitebanner-display-action?_range={cgi/_range}&date={next}&id={cgi/id}">{intl Next}: {filter sitebanner_filter_date}{next}{end filter} <img src="{site/prefix}/inc/app/help/pix/arrow.next.gif" alt="{intl Next}" border="0" /></a>
+		</td>
+	</tr>
+</table>
+</p>
+
+<p>
+<table border="0" class="elevated" cellspacing="1" style="width: 100%">
+	<tr class="topheader">
+		<th width="40%">&nbsp;</th>
+		<th width="20%" align="center">{intl Views}</th>
+		<th width="20%" align="center">{intl Clicks}</th>
+		<th width="20%" align="center">{intl CTR}</th>
+	</tr>
+{loop obj[parts]}
+	<tr bgcolor="{alt/next}">
+		<td>{if loop[link]}<a href="{loop/link}">{loop/part}</a>{end if}{if else}{loop/part}{end if}</td>
+		<td align="right">{loop/views}</td>
+		<td align="right">{loop/clicks}</td>
+		<td align="right">{loop/ctr}%</td>
+	</tr>
+{end loop}
+	<tr bgcolor="{alt/next}" style="font-weight: bold">
+		<td>{intl Average}</th>
+		<td align="right">{views_avg}</td>
+		<td align="right">{clicks_avg}</td>
+		<td align="right">{ctr_avg}%</td>
+	</tr>
+	<tr bgcolor="{alt/next}" style="font-weight: bold">
+		<td>{intl Total}</td>
+		<td align="right">{views_total}</td>
+		<td align="right">{clicks_total}</td>
+		<td align="right">{ctr_total}%</td>
+	</tr>
+</table>
+</p>

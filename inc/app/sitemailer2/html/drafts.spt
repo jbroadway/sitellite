@@ -1,0 +1,55 @@
+{filter none}
+{CMS_JS_DELETE_CONFIRM}
+{CMS_JS_SELECT_ALL}
+{end filter}
+
+{alt even odd}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="navbar">
+	<tr>
+		<td>
+		<span><a href="{site/prefix}/index/sitemailer2-newsletters-action">{intl Newsletters}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-subscribers-action">{intl Subscribers}</a></span>
+		<span class="current"><a href="{site/prefix}/index/sitemailer2-drafts-action" class="current">{intl Drafts}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-templates-action">{intl Templates}</a></span>
+        <span><a href="{site/prefix}/index/sitemailer2-campaigns-action">{intl Campaigns}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-stats-action">{intl Stats}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-settings-form">{intl Settings}</a></span>
+		<span><a href="{site/prefix}/index/help-app?appname=sitemailer2">{intl Help}</a></span>
+		</td>
+	</tr>
+</table>
+
+<br clear="both" />
+
+<p style="margin-top: 0px">
+	<a href="{site/prefix}/index/cms-add-form?collection=sitemailer2_message">{intl Compose Message}</a>
+</p>
+
+<form method="post" action="{site/prefix}/index/cms-delete-action" style="display: inline">
+<input type="hidden" name="_collection" value="sitemailer2_message" />
+<input type="hidden" name="_return" value="{site/prefix}/index/sitemailer2-drafts-action?_msg=draftdel" />
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	<tr>
+		<th width="50">
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return cms_select_all (this.form)" />&nbsp;
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return cms_delete_confirm ()" />
+		</th>
+		<th width="42%">{intl Subject}</th>
+		<th width="25%">{intl Newsletter}</th>
+		<th width="25%">{intl Date}</th>
+	</tr>
+	{loop obj[list]}
+		<tr class="{alt/next}">
+			<td width="50" align="center">
+				<input type="checkbox" name="_key[]" value="{loop/id}" />
+			</td>
+			<td>
+				<a href="{site/prefix}/index/cms-edit-form?_collection=sitemailer2_message&_key={loop/id}">{loop/subject}</a>
+			</td>
+			<td>{loop/newsletter}</td>
+			<td>{filter sitemailer2_filter_last_sent}{loop/date}{end filter}</td>
+		</tr>
+	{end loop}
+</table>
+</form>

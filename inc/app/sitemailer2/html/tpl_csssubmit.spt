@@ -1,0 +1,57 @@
+<script language="javascript" type="text/javascript">
+
+function sitetemplate_url_encode (text) {
+        orig = [/%/g, /(\r\n|\n\r|\r|\n)/g, /#/g, /&/g, /\(/g, /\)/g, /\//g, /:/g, /;/g, /=/g, / /g, /</g, />/g, /\{/g, /\}/g];
+        uenc = ['%25', '%0D%0A', '%23', '%26', '%28', '%29', '%2F', '%3A', '%3B', '%3C', '+', '%3D', '%3E', '%7B', '%7D']; 
+        for (i = 0; i < orig.length; i++) {
+                text = text.replace (orig[i], uenc[i]);
+        }
+        return text;
+}
+
+function sitetemplate_preview (f) {
+	a = f.action;
+	t = f.target;
+
+	f.action = '{site/prefix}/index/sitetemplate-preview-action';
+	f.target = '_BLANK';
+	f.submit ();
+
+	f.action = a;
+	f.target = t;
+
+	return false;
+}
+
+function sitetemplate_validate (f) {
+	window.open (
+		'http:/' + '/jigsaw.w3.org/css-validator/validator?text=' + sitetemplate_url_encode (f.elements.body.value) + '&usermedium=all',
+		'CSSValidator',
+		''
+	);
+
+	return false;
+}
+
+</script>
+
+	<tr>
+		<td class="label" colspan="2">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="50%">
+						<input type="submit" name="submit_button" value="{intl Save}" />
+						&nbsp;
+						<input type="submit" value="{intl Cancel}" onclick="window.location.href = '{site/prefix}/index/sitetemplate-templateselect-action?set_name={set}'; return false" />
+					</td>
+					<td width="50%" align="right">
+						<strong>{intl Validate:}</strong>
+						<select name="validate">
+							<option value="CSS">{intl CSS Syntax}</option>
+						</select>
+						<input type="submit" value="{intl Go}" onclick="return sitetemplate_validate (this.form)" />
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>

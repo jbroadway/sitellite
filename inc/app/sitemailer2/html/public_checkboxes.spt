@@ -1,0 +1,18 @@
+<form>
+
+{if obj[updated]}
+<p>{intl Your subscription preferences have been saved!}</p>
+{end if}
+{if else}
+<p>{intl Select which newsletters you would like to receive}:</p>
+{end if}
+
+<p>
+{loop obj[lists]}
+	<input type="checkbox" name="newsletters[]" value="{loop/id}"{if loop.subscribed} checked="checked"{end if}" /> {loop/name} &ndash; <a href="{site/prefix}/index/sitemailer2-public-archive-action/list.{loop/id}">{intl Archive}</a> &ndash; <a href="{site/prefix}/index/sitemailer2-public-rss-action/list.{loop/id}?click">{intl RSS}</a><br />
+{end loop}
+</p>
+
+<p><input type="submit" name="submit_button" value="{intl Save}" /></p>
+
+</form>

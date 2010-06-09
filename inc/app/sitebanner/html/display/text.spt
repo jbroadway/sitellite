@@ -1,0 +1,1 @@
+<a href="{site/prefix}/index/sitebanner-click-action?id={id}" target="_{target}">{file}</a>

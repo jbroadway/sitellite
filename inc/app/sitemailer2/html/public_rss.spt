@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:admin="http://webns.net/mvcb/"
+	xmlns="http://purl.org/rss/1.0/"
+>
+
+<channel rdf:about="{site/url}/index/news-app">
+
+	<title>{name}</title>
+	<link>{site/url}/index/sitemailer2-public-action</link>
+
+	<dc:language>{if intl_locale ()}{intl/locale}-{end if}{intl/language}</dc:language>
+	<dc:date>{date}</dc:date>
+
+	<syn:updatePeriod>hourly</syn:updatePeriod>
+	<syn:updateFrequency>1</syn:updateFrequency>
+	<syn:updateBase>1970-01-01T00:00+00:00</syn:updateBase>
+
+	<admin:generatorAgent rdf:resource="http://www.simian.ca/index/sitemailer2" />
+
+	<items>
+		<rdf:Seq>
+{loop obj[items]}
+			<rdf:li rdf:resource="{site/url}/index/sitemailer2-public-message-action/id.{loop/id}" />
+{end loop}
+		</rdf:Seq>
+	</items>
+
+</channel>
+
+{loop obj[items]}
+<item rdf:about="{site/url}/index/sitemailer2-public-message-action/id.{loop/id}">
+	<title>{loop/title}</title>
+	<link>{site/url}/index/sitemailer2-public-message-action/id.{loop/id}</link>
+	<dc:date>{loop/date}</dc:date>
+</item>
+
+{end loop}
+</rdf:RDF>

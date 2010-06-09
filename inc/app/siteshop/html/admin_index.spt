@@ -1,0 +1,65 @@
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="40%" valign="top">
+
+<h2>{intl Orders} ({orders_total})</h2>
+
+<ul>
+	<li><a href="{site/prefix}/index/siteshop-admin-orders-action?_status=new">New</a> ({orders_new})</li>
+	<li><a href="{site/prefix}/index/siteshop-admin-orders-action?_status=partly-shipped">Partly-Shipped</a> ({orders_partly_shipped})</li>
+	<li><a href="{site/prefix}/index/siteshop-admin-orders-action?_status=shipped">Shipped</a> ({orders_shipped})</li>
+	<li><a href="{site/prefix}/index/siteshop-admin-orders-action?_status=cancelled">Cancelled</a> ({orders_cancelled})</li>
+</ul>
+
+<h2>{intl Statistics}</h2>
+
+<table border="0" cellpadding="0" cellspacing="0" width="70%">
+	<tr>
+		<td width="75%">
+{intl Total Sales Today}:<br />
+{intl Total Sales This Month}:<br />
+{intl Total Sales This Year}:<br />
+{intl Orders Today}:<br />
+{intl Orders This Month}:<br />
+{intl Orders This Year}:
+		</td>
+		<td width="25%" align="right">
+${sales_today}<br />
+${sales_month}<br />
+${sales_year}<br />
+{orders_today}<br />
+{orders_month}<br />
+{orders_year}
+		</td>
+	</tr>
+</table>
+
+		</td>
+		<td width="60%" valign="top">
+
+<h2>Quick Links</h2>
+
+<table border="0" cellpadding="0" cellspacing="0" width="70%">
+	<tr>
+		<td width="50%">
+Products ({products})<br />
+Checkout Offers ({offers})<br />
+Sales ({sales})<br />
+Categories ({categories})<br />
+Orders ({orders_total})
+		</td>
+		<td width="50%">
+<a href="{site/prefix}/index/siteshop-add-form">Add</a> | <a href="{site/prefix}/index/siteshop-admin-products-action">View</a><br />
+<a href="{site/prefix}/index/siteshop-add-offer-form">Add</a> | <a href="{site/prefix}/index/siteshop-admin-offers-action">View</a><br />
+<a href="{site/prefix}/index/siteshop-add-sale-form">Add</a> | <a href="{site/prefix}/index/siteshop-admin-sales-action">View</a><br />
+<a href="{site/prefix}/index/siteshop-add-category-form">Add</a> | <a href="{site/prefix}/index/siteshop-admin-categories-action">View</a><br />
+<a href="{site/prefix}/index/siteshop-admin-orders-action">View</a><br />
+		</td>
+	</tr>
+</table>
+
+		</td>
+	</tr>
+</table>
+</p>

@@ -89,3 +89,5 @@ create table myadm_report_results (
 alter table petition_signature change column province province char(2) not null;
 alter table petition_signature add column country char(2) not null after province;
 alter table petition_signature change column postal_code postal_code char(10) not null;
+
+alter table siteshop_category add column weight tinyint not null default 0;

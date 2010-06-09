@@ -1,0 +1,38 @@
+2.0.6:
+
+- Added box chooser support.
+- Content types are now hidden, access through Tools > SiteMailer 2.
+
+2.0.5:
+
+- Updated the settings so they don't conflict with Sitellite's new app
+  settings editor.
+
+2.0.4:
+
+- Fixed a bug causing changes to drafts not to be saved
+
+2.0.3:
+
+- Fixed many i18n issues throughout the templates
+- Fixed an i18n issue where code logic relied on default submit button
+  values
+
+2.0.2:
+
+- Improved shell scripts
+
+2.0.1:
+
+- Sending one message doesn't send all drafts now
+- Newsletter column was blank in draft list
+- Settings form shows with wrong template set
+- Fixed default paths in shell scripts
+- Added data directory to CVS, needed for pid files
+- Fixed a memory problem with sending to large numbers of subscribers
+- Fixed a problem causing messages to occassionally get marked 'done'
+  prematurely.
+- Fixed a bug in mailer causing Sent # in archive not to update while
+  mail was in progress.
+- Added a percent value to running messages in the archive.
+- Increased the memory usage of the message form from 8 to 24 MB.

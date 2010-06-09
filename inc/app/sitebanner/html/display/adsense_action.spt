@@ -1,0 +1,36 @@
+<style type="text/css">
+	body,tr {
+		font: 12px Arial, Helvetica, sans-serif;
+	}
+	a {
+		font: 12px Arial, Helvetica, sans-serif;
+	}
+	th {
+		background-color: #666;
+		color: #fff;
+	}
+	tr.cms-facet-fieldset {
+		background-color: #eee;
+	}
+	td {
+		padding: 3px;
+	}
+	h2 {
+		font-size: 16px;
+	}
+</style>
+
+<div align="center">
+
+{filter none}{file}{end filter}
+
+<br />
+<br />
+<a href="#" onclick="window.close ()">{intl Close Window}</a>
+
+</div>
+
+<h2>{intl Banner Stats}</h2>
+
+{box sitebanner/stats/client?id=[cgi/id]}
+

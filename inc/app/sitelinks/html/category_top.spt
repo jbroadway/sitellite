@@ -1,0 +1,43 @@
+{if not empty (obj[category])}
+<h1>{category}</h1>
+
+<p>
+	<a href="{site/prefix}/index/sitelinks-app">{appconf/sitelinks_name}</a> /
+	{category}
+</p>
+{end if}
+{if else}
+<h1>{appconf/sitelinks_name}</h1>
+{end if}
+
+{if obj[sitesearch] or appconf ('user_submissions')}
+<p>
+	{if obj[sitesearch]}
+	<a href="{site/prefix}/index/sitesearch-app?ctype=sitelinks_item&show_types=yes">{intl Search}</a>
+	&nbsp; &nbsp;
+	{end if}
+	{if appconf ('user_submissions')}
+	<a href="{site/prefix}/index/sitelinks-mylinks-submit-action?category={category}">{intl Add} {appconf/sitelinks_name_singular}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitelinks-mylinks-action">{intl My} {appconf/sitelinks_name}</a>
+	{end if}
+	{if appconf ('rss_links')}
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitelinks-rss-action/category.{category}">{intl Syndicated Feed (RSS)}</a>
+	{end if}
+</p>
+{end if}
+
+{box cms/buttons/add?collection=sitelinks_item&return=[php site_prefix () _ '/index/sitelinks-app/category.' _ cgi.category]}
+
+{if obj[pager]}
+<div id="sitelinks-pager">
+	<span style="float: left">
+		{spt PAGER_TEMPLATE_FROM_TO}
+	</span>
+	<span style="float: right; text-align: right">
+		{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}
+	</span>
+	<br style="clear: both" />
+</div>
+{end if}

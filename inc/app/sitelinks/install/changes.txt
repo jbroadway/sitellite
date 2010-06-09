@@ -1,0 +1,19 @@
+Changes in 1.0.4
+
+- Database schema update to comply with Sitellite 4.2.7 -- see the file
+  install/upgrade-1.0.3-1.0.4.sql
+
+Changes in 1.0.3
+
+- mylinks box now hides <h1> and breadcrumb if embedded into another page,
+  making it more suitable for use with SiteMember now.
+- Added sitelinks/mylinks/profile box for use with SiteMember for profile
+  pages.
+
+Changes in 1.0.2
+
+- Browse by type.
+
+Changes in 1.0.1
+
+- Added sitellite_owner and sitellite_team columns to the sitelinks_item table.

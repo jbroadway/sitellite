@@ -1,0 +1,7 @@
+{title}
+
+Day	Views	Clicks	CTR
+{loop obj[parts]}{loop/part}	{loop/views}	{loop/clicks}	{loop/ctr}%
+{end loop}
+Average	{views_avg}	{clicks_avg}	{ctr_avg}%
+Total	{views_total}	{clicks_total}	{ctr_total}%

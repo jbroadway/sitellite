@@ -43,6 +43,13 @@ requires = r
 text = Export Contacts
 url = /index/sitellite-export-form
 
+[link:sitemailer2]
+
+requires = r
+requires resource = app_sitemailer2
+text = "Add to Newsletter"
+url = "/index/sitemailer2-import-submissions-form"
+
 [browse:id]
 
 header = ID

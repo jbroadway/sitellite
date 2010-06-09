@@ -1,0 +1,30 @@
+{if not empty (obj[category])}
+<h1>{category}</h1>
+
+<p>
+	<a href="{site/prefix}/index/sitelinks-app">{appconf/sitelinks_name}</a> /
+	{category}
+</p>
+{end if}
+{if else}
+<h1>{appconf/sitelinks_name}</h1>
+{end if}
+
+{box cms/buttons/add?collection=sitelinks_item&return=[php site_prefix () _ '/index/sitelinks-app/category.' _ loop.category]}
+
+<ul>
+{loop obj[list]}
+	{if appconf ('item_pages')}
+		<li>
+			{box cms/buttons?collection=sitelinks_item&id=[loop/id]&status=[loop/sitellite_status]&access=[loop/sitellite_access]&float=true&add=false&return=[php site_prefix () _ '/index/sitelinks-app/category.' _ loop.category]}
+			<a href="{site/prefix}/index/sitelinks-app/item.{loop/id}">{loop/title}</a>
+		</li>
+	{end if}
+	{if else}
+		<li>
+			{box cms/buttons?collection=sitelinks_item&id=[loop/id]&status=[loop/sitellite_status]&access=[loop/sitellite_access]&float=true&add=false&return=[php site_prefix () _ '/index/sitelinks-app/category.' _ loop.category]}
+			<a href="{site/prefix}/index/sitelinks-app/forward.{loop/id}">{loop/title}</a>
+		</li>
+	{end if}
+{end loop}
+</ul>

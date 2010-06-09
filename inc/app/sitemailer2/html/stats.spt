@@ -1,0 +1,38 @@
+{filter none}
+{CMS_JS_DELETE_CONFIRM}
+{CMS_JS_SELECT_ALL}
+{end filter}
+
+{alt even odd}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="navbar">
+	<tr>
+		<td>
+		<span><a href="{site/prefix}/index/sitemailer2-newsletters-action">{intl Newsletters}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-subscribers-action">{intl Subscribers}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-drafts-action">{intl Drafts}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-templates-action">{intl Templates}</a></span>
+        <span><a href="{site/prefix}/index/sitemailer2-campaigns-action">{intl Campaigns}</a></span>
+		<span class="current"><a href="{site/prefix}/index/sitemailer2-stats-action" class="current">{intl Stats}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-settings-form">{intl Settings}</a></span>
+		<span><a href="{site/prefix}/index/help-app?appname=sitemailer2">{intl Help}</a></span>
+		</td>
+	</tr>
+</table>
+
+<br clear="both" />
+
+<h2>{intl Subscribers}</h2>
+
+<table border="0" cellpadding="5" cellspacing="1" width="50%">
+	<tr>
+		<th width="50%">{intl Status}</th>
+		<th>{intl Subscribers}</th>
+	</tr>
+	{loop obj[subscribers]}
+	<tr class="{alt/next}">
+		<td><strong>{filter ucfirst}{loop/_key}{end filter}</strong></td>
+		<td align="right">{loop/_value}</td>
+	</tr>
+	{end loop}
+</table>

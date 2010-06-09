@@ -1,0 +1,12 @@
+{if obj[context] eq 'action'}
+<h1>{intl My} {appconf/sitelinks_name}</h1>
+
+<p>
+	<a href="{site/prefix}/index/sitelinks-app">{appconf/sitelinks_name}</a> /
+	{intl My} {appconf/sitelinks_name}
+</p>
+{end if}
+
+<p>{intl You have not submitted any} {filter strtolower}{appconf/sitelinks_name}{end filter} {intl yet.}</p>
+
+<p><a href="{site/prefix}/index/sitelinks-mylinks-submit-action">{intl Add} {appconf/sitelinks_name_singular}</a></p>

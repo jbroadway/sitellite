@@ -36,6 +36,6 @@ if (conf ('Product', 'header_graphic')) {
 	define ('PRODUCT_HEADER_GRAPHIC', site_prefix () . '/inc/app/cms/pix/sitellite-cms.gif');
 }
 
-define ('PRODUCT_EDITION', 'Open Source Edition');
+define ('PRODUCT_EDITION', '');
 
 ?>

@@ -49,7 +49,7 @@
 	</script>
 	<?php
 
-	echo template_simple ('<p><a href="{site/prefix}/index/usradm-add-user-action?_list={cgi/list}">{intl Add User}</a> &nbsp; &nbsp; <a href="{site/prefix}/index/usradm-export-user-action">Export Users</a></p>');
+	echo template_simple ('<p><a href="{site/prefix}/index/usradm-add-user-action?_list={cgi/list}">{intl Add User}</a> &nbsp; &nbsp; <a href="{site/prefix}/index/usradm-export-user-action">Export Users</a> &nbsp; &nbsp; <a href="{site/prefix}/index/sitemailer2-import-users-form">Add to Newsletter</a></p>');
 
 	$snm =& session_get_manager ();
 	$users = $snm->user->getList ($cgi->offset, $limit, $cgi->orderBy, $cgi->sort, $cgi->_role, $cgi->_team, $cgi->_lastname, $cgi->_disabled, $cgi->_public, $cgi->_teams);

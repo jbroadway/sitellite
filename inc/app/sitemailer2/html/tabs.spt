@@ -1,0 +1,42 @@
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="navbar">
+	<tr>
+		<td>
+		<a href="{site/prefix}/index/sitemailer2-newsletters-action">{intl Newsletters}</a>
+		<a href="{site/prefix}/index/sitemailer2-subscribers-action">{intl Subscribers}</a>
+		<a href="{site/prefix}/index/sitemailer2-drafts-action">{intl Drafts}</a>
+		<a href="{site/prefix}/index/sitemailer2-templates-action">{intl Templates}</a>
+        <a href="{site/prefix}/index/sitemailer2-campaigns-action">{intl Campaigns}</a>
+		<a href="{site/prefix}/index/sitemailer2-stats-action">{intl Stats}</a>
+		<a href="{site/prefix}/index/sitemailer2-settings-form">{intl Settings}</a>
+		<a href="{site/prefix}/index/help-app?appname=sitemailer2">{intl Help}</a>
+		</td>
+	</tr>
+</table>
+<br />
+<a href="{site/prefix}/index/sitemailer2-campaigns-action">{intl Back}</a> &nbsp&nbsp <a target="_BLANK" href="{forward_url}">{intl View}</a><br />
+
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	<tr>
+		<th width="50">
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return cms_select_all (this.form)" />&nbsp;
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return cms_delete_confirm ()" />
+		</th>
+		<th width="40%">{intl Campaign}</th>
+		<th width="39%">{intl Address}</th>
+        <th width="5%">{intl Clicks}</th>
+        <th width="10%">{intl Created}</th>
+	</tr>
+	{loop obj[list]}
+		<tr class="{alt/next}">
+			<td width="50" align="center">
+				<input type="checkbox" name="delete[]" value="{loop/id}" />
+			</td>
+			<td width="40%">
+				<a href="{site/prefix}/index/sitemailer2-campaign-edit-form?id={loop/id}">{loop/title}</a>
+			</td>
+			<td width="39%"><a target="_BLANK" href="{loop/forward_url}">{loop/forward_url}</a></td>
+            <td width="5%"><a title="Details" alt="Details" href="{site/prefix}/index/sitemailer2-campaigns-stats-action?id={loop/id}">{loop/clicks}</a></td>
+            <td width="10%">{filter sitemailer2_filter_date}{loop/created}{end filter}</td>
+		</tr>
+	{end loop}
+</table>

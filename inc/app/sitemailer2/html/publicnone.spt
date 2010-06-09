@@ -1,0 +1,13 @@
+{loop obj}
+	<div id="newsletter">
+		<h2>{loop/name}</h2>
+		<form method="post" action="{site/prefix}/index/sitemailer2-public-subscribe-action" style="display: inline">
+		<input type="hidden" name="list" value="{loop/id}" />
+		<ul>
+			<li>{intl Email}: <input type="text" name="email" /> <input type="submit" name="subscribe" value="{intl Subscribe}" /> <input type="submit" name="unsubscribe" value="{intl Unsubscribe}" /></li>
+			<li><a href="{site/prefix}/index/sitemailer2-public-rss-action/list.{loop/id}">{intl Subscribe as an RSS feed}</a></li>
+			<li><a href="{site/prefix}/index/sitemailer2-public-archive-action/list.{loop/id}">{intl Read message archive}</a></li>
+		</ul>
+		</form>
+	</div>
+{end loop}

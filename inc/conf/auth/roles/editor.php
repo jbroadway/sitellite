@@ -18,9 +18,13 @@ disabled                = no
 
 [allow:resources]
 
+add                     = rw
+
 app_boxchooser          = rw
 
 delete                  = rw
+
+sitellite_form_submission= rw
 
 imagechooser_delete     = rw
 

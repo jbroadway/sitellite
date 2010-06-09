@@ -1,0 +1,45 @@
+<div class="sitelinks-item">
+	{box cms/buttons?collection=sitelinks_item&id=[id]&status=[sitellite_status]&access=[sitellite_access]&float=true&return=[php site_prefix () _ '/index/sitelinks-app/item.' _ obj.id]&team=none}
+	<h1><a href="{site/prefix}/index/sitelinks-app/forward.{id}">{title}</a></h1>
+
+	<p>
+		<a href="{site/prefix}/index/sitelinks-app">{appconf/sitelinks_name}</a> /
+		<a href="{site/prefix}/index/sitelinks-app/category.{category}">{category}</a> /
+		{title}
+	</p>
+
+	{if obj.sitesearch}
+		{if not empty (obj.search_bar)}
+			{filter none}{search_bar}{end filter}
+		{end if}
+	{end if}
+
+	{if obj.sitesearch or appconf ('user_submissions')}
+	<p>
+		{if obj.sitesearch}
+		<a href="{site/prefix}/index/sitesearch-app?ctype=sitelinks_item&show_types=yes">{intl Search}</a>
+		&nbsp; &nbsp;
+		{end if}
+		{if appconf ('user_submissions')}
+		{if session_username () eq obj.user_id}
+		<a href="{site/prefix}/index/sitelinks-mylinks-update-action?id={id}">{intl Update This} {appconf/sitelinks_name_singular}</a>
+		&nbsp; &nbsp;
+		{end if}
+		<a href="{site/prefix}/index/sitelinks-mylinks-submit-action?category={category}">{intl Add} {appconf/sitelinks_name_singular}</a>
+		&nbsp; &nbsp;
+		<a href="{site/prefix}/index/sitelinks-mylinks-action">{intl My} {appconf/sitelinks_name}</a>
+		{end if}
+	</p>
+	{end if}
+
+	<p class="sitelinks-summary">{filter none}{summary}{end filter}</p>
+
+	<ul>
+		<li><strong>{intl Cost}:</strong> {cost}</strong></li>
+		<li><strong>{intl Platform}:</strong> {platform}</strong></li>
+		<li><strong>{intl Version}:</strong> {version}</strong></li>
+		<li><strong>{intl Last Updated}:</strong> {filter sitelinks_filter_ts}{ts}{end filter}</li>
+		<li><strong>{intl Views}:</strong> {views}</li>
+		<li><strong>{intl Hits}:</strong> {hits}</li>
+	</ul>
+</div>

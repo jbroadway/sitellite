@@ -1,0 +1,7 @@
+<form name="addtocartform" method="post" action="{site/prefix}/index/siteshop-cart-add-action/pid.{id}">
+<p class="siteshop-product-add-to-cart">
+<a onclick="javascript:addtocart()" href="#" alt="{intl Add to Cart}" title="{intl Add to Cart}">
+<strong>{intl Add to Cart}</strong>
+</a>
+</p>
+</form>

@@ -50,6 +50,54 @@ app_boxchooser          = Off
 
 app_sitetemplate        = Off
 
+app_sitefaq				= Off
+
+app_siteforum			= Off
+
+app_siteglossary		= Off
+
+app_sitepoll			= Off
+
+app_sitequotes			= Off
+
+app_sitesearch			= Off
+
+app_sitewiki			= Off
+
+app_siteblog			= Off
+
+app_sitegallery			= Off
+
+app_sitestreamer		= Off
+
+app_sitestudy			= Off
+
+app_deadlines			= Off
+
+app_timetracker			= Off
+
+app_todo				= Off
+
+app_sitepresenter		= Off
+
+app_devtools			= Off
+
+app_sitebanner			= Off
+
+app_siteevent			= Off
+
+app_sitelinks			= Off
+
+app_sitemailer			= Off
+
+app_sitetracker			= Off
+
+app_sitemailer2			= Off
+
+app_sitepublisher		= Off
+
+app_pbadmin				= Off
+
 ;
 ; THE END
 ;

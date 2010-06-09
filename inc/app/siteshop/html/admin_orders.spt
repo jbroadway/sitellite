@@ -1,0 +1,94 @@
+<p style="clear: both; margin-bottom: 12px">
+{filter none}{facets}{end filter}
+</p>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+{alt #fff #eee}
+
+<form method="post" action="{site/prefix}/index/siteshop-admin-orders-delete-action" style="display: inline">
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="7%" align="center">
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return siteshop_select_all (this.form)" />&nbsp;<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return siteshop_delete_confirm ()" />
+		</th>
+		<th width="8%"><a href="{site/prefix}/index/siteshop-admin-orders-action?orderBy=id&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'id') ? 'desc': 'asc'}">{intl Order} #</a>
+		{if obj[orderBy] eq 'id'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="15%"><a href="{site/prefix}/index/siteshop-admin-orders-action?orderBy=bill_to&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'bill_to') ? 'desc': 'asc'}">{intl Customer Name}
+		{if obj[orderBy] eq 'bill_to'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="14%"><a href="{site/prefix}/index/siteshop-admin-orders-action?orderBy=status&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'status') ? 'desc': 'asc'}">{intl Status}
+		{if obj[orderBy] eq 'status'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="20%"><a href="{site/prefix}/index/siteshop-admin-orders-action?orderBy=ts&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'ts') ? 'desc': 'asc'}">{intl Date/Time}
+		{if obj[orderBy] eq 'ts'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="9%"><a href="{site/prefix}/index/siteshop-admin-orders-action?orderBy=subtotal&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'subtotal') ? 'desc': 'asc'}">{intl Subtotal}
+		{if obj[orderBy] eq 'subtotal'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="9%"><a href="{site/prefix}/index/siteshop-admin-orders-action?orderBy=shipping&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'shipping') ? 'desc': 'asc'}">{intl Shipping}
+		{if obj[orderBy] eq 'shipping'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="9%"><a href="{site/prefix}/index/siteshop-admin-orders-action?orderBy=taxes&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'taxes') ? 'desc': 'asc'}">{intl Taxes}
+		{if obj[orderBy] eq 'taxes'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="9%"><a href="{site/prefix}/index/siteshop-admin-orders-action?orderBy=total&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'total') ? 'desc': 'asc'}">{intl Total}
+		{if obj[orderBy] eq 'total'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+	</tr>
+{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td width="7%" align="center">
+<input type="checkbox" name="_key[]" value="{loop/id}" />
+		</td>
+		<td width="8%" align="center"><a href="{site/prefix}/index/siteshop-admin-orders-view-action?id={loop/id}">{loop/id}</a></td>
+		<td width="15%"><a href="{site/prefix}/index/siteshop-admin-orders-view-action?id={loop/id}">{loop/bill_to}</a></td>
+		<td width="14%" align="center">{filter ucwords}{loop/status}{end filter}</td>
+		<td width="20%">{filter siteshop_filter_date_time}{loop/ts}{end filter}</td>
+		<td width="9%" align="right">${loop/subtotal}</td>
+		<td width="9%" align="right">${loop/shipping}</td>
+		<td width="9%" align="right">${loop/taxes}</td>
+		<td width="9%" align="right">${loop/total}</td>
+	</tr>
+{end loop}
+</table>
+</form>
+
+<form method="post" action="{site/prefix}/index/siteshop-admin-orders-export-action">
+<h2>{intl Export Orders (CSV)}</h2>
+<p>{intl Status}:&nbsp;
+	<select name="status">
+		<option value="">- {intl ALL} -</option>
+		<option value="new">{intl New}</option>
+		<option value="partly-shipped">{intl Partly-Shipped}</option>
+		<option value="shipped">{intl Shipped}</option>
+		<option value="cancelled">{intl Cancelled}</option>
+	</select> &nbsp;
+	<input type="submit" value="{intl Export}" />
+</p>
+</form>
+

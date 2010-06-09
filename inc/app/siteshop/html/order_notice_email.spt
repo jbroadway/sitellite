@@ -1,0 +1,12 @@
+An order has been submitted at {site/domain}.
+
+Order summary:
+
+{loop obj[cart]}
+{php str_pad (loop.sku, 11)}{php str_pad (substr (loop.name, 0, 45), 50)}{php str_pad (substr (loop.options_str, 0, 30), 35)}{php str_pad (loop.qty, 3)} {loop/price}
+{end loop}
+
+Subtotal  ${subtotal}
+Shipping  ${shipping}
+Tax       ${taxes}
+Total     ${total}

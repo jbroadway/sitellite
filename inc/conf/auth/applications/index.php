@@ -104,6 +104,10 @@ deadlines               = Off
 
 realty                  = Off
 
+sitebanner              = Off
+
+sitelinks               = Off
+
 ;
 ; THE END
 ;

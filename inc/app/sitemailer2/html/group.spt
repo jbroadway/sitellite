@@ -1,0 +1,13 @@
+<p>
+	<a href="{site/prefix}/index/sitemailer-app">{intl Back}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitemailer-message-send-form?groups[]={cgi/id}">{intl Send Message}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitemailer-subscriber-add-form?groups[]={cgi/id}">{intl Add Subscriber}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitemailer-import-form?group={cgi/id}">{intl Import vCard}</a> &nbsp; &nbsp;
+</p>
+
+{form sitemailer/group/edit}
+
+<ul>
+	<li><a href="{site/prefix}/index/sitemailer-subscriber-action?group={cgi/id}">{intl Subscribers}: {filter none}{subscribers}{end filter}</a></li>
+	<li><a href="{site/prefix}/index/sitemailer-messages-action?group={cgi/id}">{intl Messages}: {filter none}{messages}{end filter}</a></li>
+</ul>

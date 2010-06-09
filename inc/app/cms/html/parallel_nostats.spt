@@ -1,0 +1,3 @@
+<p>{intl There are no stats for this test yet. Please check back later.}</p>
+
+<p><a href="{site/prefix}/index/{cgi/id}">{intl Back}</a></p>

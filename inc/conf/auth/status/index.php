@@ -14,6 +14,8 @@ archived                = Off
 
 draft                   = Off
 
+parallel                = Off
+
 pending                 = Off
 
 queued                  = Off

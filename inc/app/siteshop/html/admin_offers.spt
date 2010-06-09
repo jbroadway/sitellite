@@ -1,0 +1,45 @@
+<p><a href="{site/prefix}/index/siteshop-add-offer-form">{intl Add Checkout Offer}</a></p>
+
+{alt #fff #eee}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="7%" align="center">
+			&nbsp;
+		</th>
+		<th width="7%">
+			#
+		</th>
+		<th width="35%">
+			{intl Offer Text}
+		</th>
+		<th width="30%">
+			{intl Product}
+		</th>
+		<th width="20%">
+			{intl Sale Price}
+		</th>
+	</tr>
+{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td align="center" valign="top">
+			<a href="{site/prefix}/index/siteshop-admin-offers-delete-action?_key={loop/id}" onclick="return confirm ('{intl Are you sure?}')"><img
+				src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete}" title="{intl Delete}" border="0" /></a>
+		</td>
+		<td align="center">
+			{loop/offer_number}
+		</td>
+		<td valign="top">
+			<a href="{site/prefix}/index/siteshop-edit-offer-form?id={loop/id}">{loop/offer_text}</a>
+		</td>
+		<td valign="top">
+			{filter siteshop_filter_product_name}{loop/product_id}{end filter}
+		</td>
+		<td align="center">
+			${loop/sale_price}
+		</td>
+	</tr>
+{end loop}
+</table>
+</p>

@@ -1,0 +1,8 @@
+New in 2.0.1:
+
+- Added customer registration/accounts
+- Added product options (colours, sizes)
+- Added more template settings
+- Added customizable category screens
+- Begun adding multilingual support
+- Added lightbox effect instead of product image popups
