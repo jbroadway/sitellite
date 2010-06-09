@@ -6,8 +6,7 @@
 ; Only app_name among all these is actually required, but all are recommended.
 app_name		= SiteStudy
 description		= Case studies for your web site
-author			= Simian Systems
-copyright		= "Copyright (C) 2004, Simian Systems Inc."
+author			= "Lux <john.luxford@gmail.com>"
 license			= "GPL"
 
 ; These allow you to call your app via the /index/myapp-app syntax.

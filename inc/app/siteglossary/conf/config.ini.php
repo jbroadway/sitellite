@@ -6,9 +6,8 @@
 ; Only app_name among all these is actually required, but all are recommended.
 app_name		= SiteGlossary
 description		= SiteGlossary is a simple tool to add a glossary to your web site.
-author			= SIMIAN systems Inc.
-copyright		= "Copyright (C) 2004, SIMIAN systems Inc."
-license			= "Simian Commercial Software License"
+author			= "Lux <john.luxford@gmail.com>"
+license			= "GNU GPL License"
 version			= "0.1 alpha $Id: config.ini.php,v 1.2 2006/08/18 16:47:23 lux Exp $"
 
 ; These allow you to call your app via the /index/myapp-app syntax.

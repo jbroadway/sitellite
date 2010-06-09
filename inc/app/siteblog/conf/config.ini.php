@@ -7,7 +7,7 @@
 app_name		= SiteBlog
 description		= Multi-author blog module for Sitellite
 author			= Jonathan Dart, John Luxford
-copyright		= "Copyright (C) 2007, Simian Systems Inc."
+copyright		= "Copyright (C) 2010, Sitellite.org Community"
 license			= "GPL"
 
 ; These allow you to call your app via the /index/myapp-app syntax.

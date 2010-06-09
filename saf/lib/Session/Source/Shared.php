@@ -1,15 +1,19 @@
 <?php
 //
 // +----------------------------------------------------------------------+
-// | Sitellite - Content Management System                                |
+// | Sitellite Content Management System                                  |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2001-2005 Simian Systems                               |
+// | Copyright (c) 2010 Sitellite.org Community                           |
 // +----------------------------------------------------------------------+
-// | This software is released under the Simian Commercial License.       |
-// | You can find a full copy of this license at the following web site   |
-// | address: <http://www.simian.ca/index/license>                        |
+// | This software is released under the GNU GPL License.                 |
+// | Please see the accompanying file docs/LICENSE for licensing details. |
+// |                                                                      |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
 // +----------------------------------------------------------------------+
-// | Authors: John Luxford <lux@simian.ca>                                |
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
 // +----------------------------------------------------------------------+
 //
 // This is the Shared source driver package for saf.Session.
@@ -58,9 +62,8 @@
 	 * </code>
 	 * 
 	 * @package	Session
-	 * @author	John Luxford <lux@simian.ca>
-	 * @copyright	Copyright (C) 2001-2005, Simian Systems Inc.
-	 * @license	http://www.simian.ca/index/license	Simian Commercial Software License
+	 * @author	John Luxford <john.luxford@gmail.com>
+	 * @license	http://www.sitellite.org/index/license	GNU GPL License
 	 * @access	public
 	 * 
 	 */

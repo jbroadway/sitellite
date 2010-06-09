@@ -4,7 +4,7 @@
  * Set this to the email address to send notices of completed tasks to.
  * Add multiple email recipients by separating them with commas.
  */
-appconf_set ('email_notices', 'lux@simian.ca');
+appconf_set ('email_notices', 'john.luxford@gmail.com');
 
 /**
  * Override the template set used in the application.  This can be used

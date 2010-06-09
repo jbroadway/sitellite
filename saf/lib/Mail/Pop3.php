@@ -281,7 +281,7 @@ class Pop3 {
 }
 
 /*
-$p = new Pop3 ('mailbox.simian.ca', 110, 2);
+$p = new Pop3 ('mailbox.sitellite.org', 110, 2);
 $p->logging = true;
 //$p->eraseFromServer = true;
 
@@ -294,7 +294,7 @@ if (! $p->connect ()) {
 //	echo "<h3>Connected!</h3>\n";
 }
 
-if (! $p->authenticate ('testing@simian.ca', 'steak')) {
+if (! $p->authenticate ('testing@sitellite.org', 'steak')) {
 //	echo 'ERROR: ' . $p->error . '<br />';
 //	echo '<pre>';
 //	print_r ($p->log);

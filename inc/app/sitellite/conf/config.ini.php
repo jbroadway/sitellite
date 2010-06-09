@@ -2,8 +2,7 @@
 
 app_name				= Utilities
 description				= Generic reusable utilities to assist in common tasks.
-author					= "John Luxford <lux@simian.ca>"
-copyright				= "Copyright (C) 2003, SIMIAN systems Inc."
+author					= "John Luxford <john.luxford@gmail.com>"
 license					= "http://www.sitellite.org/index/license"
 version					= "1.0 $Id: config.ini.php,v 1.3 2007/09/24 17:37:12 lux Exp $"
 boxchooser				= yes

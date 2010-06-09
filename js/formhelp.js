@@ -3,9 +3,8 @@
  *
  * Displays instructions to assist users in filling out forms.
  *
- * Copyright (c) SIMIAN systems Inc. 2003.  All rights reserved.
+ * Copyright (c) Sitellite.org Community.  All rights reserved.
  * http://www.sitellite.org
- * http://www.sitellite.net
  *
  * Feel free to use this script under the terms of the GNU Lesser General
  * Public License, as long as you do not remove or alter this notice.

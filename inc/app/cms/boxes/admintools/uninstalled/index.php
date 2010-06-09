@@ -1,6 +1,6 @@
 <?php
 
-$data = @join ('', @file ('http://www.simian.ca/apps.xml'));
+$data = @join ('', @file ('http://www.sitellite.org/apps.xml'));
 if (! $data) {
 	return;
 	echo '<h1>Not Installed</h1>';

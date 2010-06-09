@@ -4,8 +4,7 @@
 
 name            = tpl
 description     = Create a new template set
-author          = Lux <lux@simian.ca>
-copyright       = "Copyright (C) 2004, SIMIAN systems Inc."
+author          = Lux <john.luxford@gmail.com>
 license         = "http://www.opensource.org/licenses/gpl-license.php"
 version         = 0.1
 

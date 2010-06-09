@@ -1,20 +1,19 @@
 <?php
 //
 // +----------------------------------------------------------------------+
-// | Sitellite - Content Management System                                |
+// | Sitellite Content Management System                                  |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2007 Simian Systems                                    |
+// | Copyright (c) 2010 Sitellite.org Community                           |
 // +----------------------------------------------------------------------+
-// | This software is released under the GNU General Public License (GPL) |
+// | This software is released under the GNU GPL License.                 |
 // | Please see the accompanying file docs/LICENSE for licensing details. |
 // |                                                                      |
-// | You should have received a copy of the GPL Software License along    |
-// | with this program; if not, write to Simian Systems, 242 Lindsay,     |
-// | Winnipeg, MB, R3N 1H1, CANADA.  The License is also available at     |
-// | the following web site address:                                      |
-// | <http://www.sitellite.org/index/license>                             |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
 // +----------------------------------------------------------------------+
-// | Authors: John Luxford <lux@simian.ca>                                |
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
 // +----------------------------------------------------------------------+
 //
 // Menu is a class that is used to generate navigation systems on the
@@ -69,9 +68,8 @@ $GLOBALS['loader']->import ('saf.GUI.MenuItem');
 	 * </code>
 	 * 
 	 * @package	GUI
-	 * @author	John Luxford <lux@simian.ca>
-	 * @copyright	Copyright (C) 2001-2003, Simian Systems Inc.
-	 * @license	http://www.sitellite.org/index/license	Simian Open Software License
+	 * @author	John Luxford <john.luxford@gmail.com>
+	 * @license	http://www.sitellite.org/index/license	GNU GPL License
 	 * @version	2.6, 2003-06-18, $Id: Menu.php,v 1.12 2007/12/20 09:07:53 lux Exp $
 	 * @access	public
 	 * 

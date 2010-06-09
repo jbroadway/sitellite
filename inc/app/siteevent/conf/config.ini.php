@@ -6,9 +6,8 @@
 ; Only app_name among all these is actually required, but all are recommended.
 app_name		= SiteEvent
 description		= SiteEvent is an event listings add-on to the Sitellite CMS.
-author			= SIMIAN systems Inc.
-copyright		= "Copyright (C) 2004, SIMIAN systems Inc."
-license			= "Simian Commercial Software License"
+author			= "Lux <john.luxford@gmail.com>"
+license			= "GNU GPL License"
 version			= "0.1 alpha $Id: config.ini.php,v 1.1.1.1 2008/03/14 18:29:46 lux Exp $"
 
 ; These allow you to call your app via the /index/myapp-app syntax.

@@ -36,8 +36,7 @@
  *
  * @package CMS
  * @category Workflow
- * @author John Luxford <lux@simian.ca>
- * @copyright	Copyright (C) 2004, Simian Systems Inc.
+ * @author John Luxford <john.luxford@gmail.com>
  * @license	http://www.sitellite.org/index/license GNU Public License
  * @version	1.0, 2004-06-24, $Id: Workflow.php,v 1.2 2008/03/19 16:56:01 lux Exp $
  * @access	public

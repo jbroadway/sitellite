@@ -45,9 +45,8 @@ define ('LOCK_INFO_TEMPLATE', '<h2>{intl Lock Information}</h2>
  * </code>
  *
  * @package	Workflow
- * @author	John Luxford <lux@simian.ca>
- * @copyright	Copyright (C) 2001-2003, Simian Systems Inc.
- * @license	http://www.sitellite.org/index/license	Simian Open Software License
+ * @author	John Luxford <john.luxford@gmail.com>
+ * @license	http://www.sitellite.org/index/license	GNU GPL License
  * @version	1.0, 2003-10-13, $Id: Lock.php,v 1.2 2008/02/22 16:23:16 lux Exp $
  * @access	public
  *

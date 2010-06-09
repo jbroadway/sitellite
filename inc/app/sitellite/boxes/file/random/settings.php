@@ -4,8 +4,7 @@
 
 name            = random
 description     = Displays a random file from the specified folder path.
-author          = Lux <lux@simian.ca>
-copyright       = "Copyright (C) 2004, SIMIAN systems Inc."
+author          = Lux <john.luxford@gmail.com>
 license         = "http://www.opensource.org/licenses/index.php#GPL"
 version         = 0.1
 parameters      = 

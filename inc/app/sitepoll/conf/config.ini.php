@@ -6,8 +6,7 @@
 ; Only app_name among all these is actually required, but all are recommended.
 app_name		= SitePoll
 description		= SitePoll is a poll management add-on to the Sitellite CMS.
-author			= SIMIAN systems Inc.
-copyright		= "Copyright (C) 2004, SIMIAN systems Inc."
+author			= "Lux <john.luxford@gmail.com>"
 license			= "http://www.opensource.org/licenses/gpl-license.php"
 version			= "0.1 alpha : mkapp.sh,v 1.2 2004/02/20 19:36:14 lux Exp $"
 

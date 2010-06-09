@@ -7,7 +7,6 @@
 app_name		= SitePresenter
 description		= Create and publish PowerPoint-like presentations to any browser.
 author			= John Luxford
-copyright		= "Copyright (C) 2004, Simian Systems Inc."
 license			= "GPL"
 
 ; These allow you to call your app via the /index/myapp-app syntax.

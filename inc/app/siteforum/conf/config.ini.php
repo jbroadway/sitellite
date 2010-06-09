@@ -7,7 +7,6 @@
 app_name		= SiteForum
 description		= SiteForum is a basic discussion forum/bulletin board application.
 author			= Me
-copyright		= "Copyright (C) 2004, SIMIAN systems Inc."
 license			= "http://www.sitellite.org/index/license"
 version			= "0.1 alpha $"
 

@@ -132,7 +132,6 @@ class PDF extends FPDF {
 
 	// heading
 	$pdf->SetFont ('Arial', '', 10);
-	//$pdf->Cell (0, 5, 'Simian Systems Inc.', 0, 1, 'R');
 	$pdf->SetFont ('Arial', '', 10);
 	$pdf->Cell (0, 5, appconf ('company_address'), 0, 1, 'R');
 	$pdf->SetLeftMargin (131.5);

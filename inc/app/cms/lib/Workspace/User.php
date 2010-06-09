@@ -91,7 +91,7 @@ class WorkspaceUser {
 		$card = new vCal ();
 		$card->tag = 'VCARD';
 		$card->addProperty ('VERSION', '3.0');
-		$card->addProperty ('PRODID', '-//Simian Systems\, Inc//NONSGML Sitellite CMS ' . SITELLITE_VERSION . '//EN');
+		$card->addProperty ('PRODID', '-//Sitellite CMS//NONSGML Sitellite CMS ' . SITELLITE_VERSION . '//EN');
 
 		if (empty ($row->firstname) && empty ($row->lastname)) {
 			// skip name

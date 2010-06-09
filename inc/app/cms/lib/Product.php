@@ -3,7 +3,7 @@
 if (conf ('Product', 'name')) {
 	define ('PRODUCT_NAME', conf ('Product', 'name'));
 } else {
-	define ('PRODUCT_NAME', 'Sitellite Content Manager ' . SITELLITE_VERSION);
+	define ('PRODUCT_NAME', 'Sitellite Content Management System ' . SITELLITE_VERSION);
 }
 
 if (conf ('Product', 'shortname')) {
@@ -15,13 +15,13 @@ if (conf ('Product', 'shortname')) {
 if (conf ('Product', 'copyright')) {
 	define ('PRODUCT_COPYRIGHT', conf ('Product', 'copyright'));
 } else {
-	define ('PRODUCT_COPYRIGHT', 'Simian Systems Inc.');
+	define ('PRODUCT_COPYRIGHT', 'Sitellite.org Community');
 }
 
 if (conf ('Product', 'copyright_website')) {
 	define ('PRODUCT_COPYRIGHT_WEBSITE', conf ('Product', 'copyright_website'));
 } else {
-	define ('PRODUCT_COPYRIGHT_WEBSITE', 'http://www.simian.ca/');
+	define ('PRODUCT_COPYRIGHT_WEBSITE', 'http://www.sitellite.org/');
 }
 
 if (conf ('Product', 'license')) {

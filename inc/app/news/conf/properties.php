@@ -38,7 +38,7 @@ appconf_set ('comments_security', true);
 // Set this to false if you do not want to allow public submissions to your
 // web site news.  If you do, then enter one or more email addresses (comma-
 // separated) in this property.
-appconf_set ('submissions', 'lux@simian.ca');
+appconf_set ('submissions', 'john.luxford@gmail.com');
 
 /**
  * Set to true for comment links also on the front page and section

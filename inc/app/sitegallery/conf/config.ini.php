@@ -7,7 +7,6 @@
 app_name		= SiteGallery
 description		= Basic gallery capabilities for Sitellite
 author			= Lux
-copyright		= "Copyright (C) 2004, Simian Systems Inc."
 license			= "GPL"
 
 ; These allow you to call your app via the /index/myapp-app syntax.

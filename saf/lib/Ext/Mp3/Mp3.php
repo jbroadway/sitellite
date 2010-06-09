@@ -7,7 +7,7 @@
 
 // You can use 'genres' to determine what means the 'genreid' number. if you think you will not need it, delete it to. And also we need to specify all variables for mp3 header.
 
-// Converted to a class by Lux (08/01/02): lux@simian.ca
+// Converted to a class by Lux (08/01/02): john.luxford@gmail.com
 // To keep the function-like structure intact, we'll make the syntax something like: Mp3Parser::mp3_id (file)
 class Mp3Parser {
 

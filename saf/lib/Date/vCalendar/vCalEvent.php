@@ -1,20 +1,19 @@
 <?php
 //
 // +----------------------------------------------------------------------+
-// | Sitellite - Content Management System                                |
+// | Sitellite Content Management System                                  |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2007 Simian Systems                                    |
+// | Copyright (c) 2010 Sitellite.org Community                           |
 // +----------------------------------------------------------------------+
-// | This software is released under the GNU General Public License (GPL) |
+// | This software is released under the GNU GPL License.                 |
 // | Please see the accompanying file docs/LICENSE for licensing details. |
 // |                                                                      |
-// | You should have received a copy of the GPL Software License along    |
-// | with this program; if not, write to Simian Systems, 242 Lindsay,     |
-// | Winnipeg, MB, R3N 1H1, CANADA.  The License is also available at     |
-// | the following web site address:                                      |
-// | <http://www.sitellite.org/index/license>                             |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
 // +----------------------------------------------------------------------+
-// | Authors: John Luxford <lux@simian.ca>                                |
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
 // +----------------------------------------------------------------------+
 //
 // vCalEvent contains individual events for the vCal package.
@@ -32,13 +31,13 @@ $GLOBALS['loader']->import ('saf.Date.vCalendar.vCalProperty');
 	 * $cal = new vCal ();
 	 * 
 	 * $cal->addProperty ('VERSION', '2.0');
-	 * $cal->addProperty ('PRODID', '-//Simian Systems//NONSGML Sitellite Application Framework//EN');
+	 * $cal->addProperty ('PRODID', '-//Sitellite CMS//NONSGML Sitellite Application Framework//EN');
 	 * 
 	 * $event =& $cal->addEvent ('VEVENT');
 	 * 
 	 * $event->addProperty ('UID', 54321);
-	 * $event->addProperty ('ORGANIZER', 'MAILTO:bananaman@simian.ca');
-	 * $prop =& $event->addProperty ('ATTENDEE', 'MAILTO:bananaman@simian.ca');
+	 * $event->addProperty ('ORGANIZER', 'MAILTO:bananaman@sitellite.org');
+	 * $prop =& $event->addProperty ('ATTENDEE', 'MAILTO:bananaman@sitellite.org');
 	 * $prop->addParameter ('RSVP', 'TRUE');
 	 * 
 	 * // start time is now
@@ -56,9 +55,8 @@ $GLOBALS['loader']->import ('saf.Date.vCalendar.vCalProperty');
 	 * </code>
 	 * 
 	 * @package	Date
-	 * @author	John Luxford <lux@simian.ca>
-	 * @copyright	Copyright (C) 2001-2003, Simian Systems Inc.
-	 * @license	http://www.sitellite.org/index/license	Simian Open Software License
+	 * @author	John Luxford <john.luxford@gmail.com>
+	 * @license	http://www.sitellite.org/index/license	GNU GPL License
 	 * @version	1.0, 2002-08-28, $Id: vCalEvent.php,v 1.3 2007/10/06 00:06:30 lux Exp $
 	 * @access	public
 	 * 

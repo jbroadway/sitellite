@@ -7,7 +7,6 @@
 app_name		= SiteTemplate
 description		= SiteTemplate is the Sitellite template editor.
 author			= Jonathan Dart
-copyright		= "Copyright (C) 2004, SIMIAN systems Inc."
 license			= "http://www.opensource.org/licenses/gpl-license.php"
 version			= "$Id: config.ini.php,v 1.1.1.2 2004/08/10 18:17:06 lux Exp $"
 

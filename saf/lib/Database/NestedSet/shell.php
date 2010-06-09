@@ -41,10 +41,9 @@ while ($t) {
 			echo "to the saf.Database.NestedSet package.  It allows you to create,\n";
 			echo "modify, and inspect NestedSet collection.\n\n";
 			echo "License:     GPL\n";
-			echo "Author:      Lux (SIMIAN systems Inc.)\n";
-			echo "Feedback:    lux@simian.ca\n";
+			echo "Author:      Lux (Sitellite.org)\n";
+			echo "Feedback:    john.luxford@gmail.com\n";
 			echo "Web Site(s): http://www.sitellite.org/\n";
-			echo "             http://www.simian.ca/\n";
 			break;
 		case 'help':
 			echo "Command List\n------------\n\n";

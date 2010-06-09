@@ -6,8 +6,7 @@
 ; Only app_name among all these is actually required, but all are recommended.
 app_name		= SiteConnector
 description		= "SiteConnector enables 3rd-party applications to talk to Sitellite programmatically via web services (ie. SOAP and XML-RPC)."
-author			= SIMIAN systems Inc.
-copyright		= "Copyright (C) 2004, SIMIAN systems Inc."
+author			= "Lux <john.luxford@gmail.com>"
 license			= "http://www.opensource.org/licenses/gpl-license.php"
 version			= "0.1 alpha $id$"
 

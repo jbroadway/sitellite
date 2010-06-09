@@ -9,8 +9,7 @@ admin_handler			= ""
 admin_handler_type		= app
 
 description				= A developer documentation browser used to describe SCS apps, boxes, and forms.
-author					= John Luxford <lux@simian.ca>
-copyright				= "Copyright (C) 2003, SIMIAN systems Inc."
+author					= John Luxford <john.luxford@gmail.com>
 license					= "http://www.sitellite.org/index/license"
 version					= 1.0
 

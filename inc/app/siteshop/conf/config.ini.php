@@ -7,8 +7,8 @@
 app_name		= SiteShop
 description		= Shopping Cart module for Sitellite
 author			= Lux
-copyright		= "Copyright (C) 2007, Simian Systems Inc."
-license			= "Simian Commercial Software License"
+copyright		= "Copyright (C) 2010, Sitellite.org Community"
+license			= "GNU GPL License"
 
 ; These allow you to call your app via the /index/myapp-app syntax.
 default_handler		= index

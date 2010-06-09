@@ -35,12 +35,8 @@ questions to the official community discussion group, located at:</p>
 
 <p><a href="http://groups.google.com/group/sitellite" target="_blank">http://groups.google.com/group/sitellite</a></p>
 
-<p>You can also view our commercial support options here:</p>
-
-<p><a href="http://www.simian.ca/" target="_blank">http://www.simian.ca/</a></p>
-
 <p>Please click "Next" to continue whenever you are ready, and on behalf of
-<a href="http://www.simian.ca/" target="_blank">Simian Systems</a> and the entire <a href="http://www.sitellite.org/" target="_blank">Sitellite community</a>,
+the <a href="http://www.sitellite.org/" target="_blank">Sitellite.org Community</a>,
 thanks for your interest in Sitellite and welcome to the neighbourhood!</p>';
 		break;
 

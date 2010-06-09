@@ -7,8 +7,7 @@
 app_name		= SiteWiki
 description		= Wiki implementation for Sitellite.
 author			= Lux
-copyright		= "Copyright (C) 2004, Simian Systems Inc."
-license			= "Simian Commercial Software License"
+license			= "GNU GPL License"
 
 ; These allow you to call your app via the /index/myapp-app syntax.
 default_handler		= page

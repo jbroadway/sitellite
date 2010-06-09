@@ -114,7 +114,7 @@
 			xt:var tag is a quick way of dynamically inserting the current date
 			into the template.
 		-->
-		<xt:intl>Copyright</xt:intl> [ch:copy] <xt:var name="php: date ('Y')" /> Simian Systems Inc.<br />
+		<xt:intl>Copyright</xt:intl> [ch:copy] <xt:var name="php: date ('Y')" /> Sitellite.org Community<br />
 		<xt:intl>All rights reserved.</xt:intl><br /><br />
 		<a href="http://www.sitellite.org/" class="product-credit"><xt:intl>Powered by Sitellite 5.0 Content Management System</xt:intl></a>
 	</p>

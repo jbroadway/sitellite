@@ -1,20 +1,19 @@
 <?php
 //
 // +----------------------------------------------------------------------+
-// | Sitellite - Content Management System                                |
+// | Sitellite Content Management System                                  |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2001 Simian Systems                                    |
+// | Copyright (c) 2010 Sitellite.org Community                           |
 // +----------------------------------------------------------------------+
-// | This software is released under the Simian Open Software License.    |
-// | Please see the accompanying file OPENLICENSE for licensing details!  |
+// | This software is released under the GNU GPL License.                 |
+// | Please see the accompanying file docs/LICENSE for licensing details. |
 // |                                                                      |
-// | You should have received a copy of the Simian Open Software License  |
-// | along with this program; if not, write to Simian Systems,            |
-// | 101-314 Broadway, Winnipeg, MB, R3C 0S7, CANADA.  The Simian         |
-// | Public License is also available at the following web site           |
-// | address: <http://www.simian.ca/license.php>                          |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
 // +----------------------------------------------------------------------+
-// | Authors: John Luxford <lux@simian.ca>                                |
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
 // +----------------------------------------------------------------------+
 //
 // Xed WYSIWYG editor widget.
@@ -30,8 +29,8 @@
 			version="1.0">
 
 	<author	name="John Luxford"
-				email="lux@simian.ca"
-				url="http://www.simian.ca/" />
+				email="john.luxford@gmail.com"
+				url="http://www.sitellite.org/" />
 
 	<summary>Xed WYSIWYG editor widget.</summary>
 

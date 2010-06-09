@@ -22,9 +22,8 @@
  * </code>
  *
  * @package	Date
- * @author	John Luxford <lux@simian.ca>
- * @copyright	Copyright (C) 2004, Simian Systems Inc.
- * @license	http://www.sitellite.org/index/license	Simian Open Software License
+ * @author	John Luxford <john.luxford@gmail.com>
+ * @license	http://www.sitellite.org/index/license	GNU GPL License
  * @version	1.0, 2004-04-26, $Id: Mini.php,v 1.1.1.1 2005/04/29 04:44:34 lux Exp $
  * @access	public
  */

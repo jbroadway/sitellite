@@ -6,8 +6,7 @@
 ; Only app_name among all these is actually required, but all are recommended.
 app_name		= SiteLinks
 description		= SiteLinks is a categorical links/listings add-on.
-author			= "John Luxford <lux@simian.ca>"
-copyright		= "Copyright (C) 2004, SIMIAN systems Inc."
+author			= "John Luxford <john.luxford@gmail.com>"
 license			= "http://www.opensource.org/licenses/index.php#PICK ONE!!!"
 version			= "0.1 alpha : $Id: config.ini.php,v 1.2 2005/03/24 22:23:13 lux Exp $"
 

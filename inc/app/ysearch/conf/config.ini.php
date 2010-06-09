@@ -2,8 +2,7 @@
 
 app_name				= Ysearch
 description				= Basic search add-on using the Yahoo search API.
-author					= John Luxford <lux@simian.ca>
-copyright				= "Copyright (C) 2006, Simian Systems Inc."
+author					= John Luxford <john.luxford@gmail.com>
 license					= "http://www.sitellite.org/index/license"
 
 default_handler			= search

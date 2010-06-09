@@ -3,7 +3,6 @@
 app_name = Digger
 description = "Community news site service with user ratings based on digg.com"
 author = Lux
-copyright = "Copyright (C) 2006, Simian Systems Inc."
 license = GPL
 
 default_handler = index

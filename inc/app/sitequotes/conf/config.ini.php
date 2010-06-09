@@ -7,8 +7,7 @@
 app_name		= SiteQuotes
 description		= "Display quotes or customer testimonials on your web site."
 author			= Lux
-copyright		= "Copyright (C) 2005, Simian Systems Inc."
-license			= "Simian Commercial Software License"
+license			= "GNU GPL License"
 
 ; These allow you to call your app via the /index/myapp-app syntax.
 default_handler		= index

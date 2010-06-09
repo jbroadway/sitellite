@@ -24,22 +24,13 @@
 
 		<xt:note>NEW PAGE</xt:note>
 
-		<h2>Contact Simian Systems</h2>
+		<h2>Need help?</h2>
 
-		<ul>
-			<li>Online at <a href="http://www.simian.ca/">www.simian.ca</a></li>
-
-			<li>By phone at 250-714-0440</li>
-			<li>Or visit us in person at:<br /><br />
-				1071 Corydon<br />
-				Winnipeg, Manitoba<br />
-				R3M 0X3
-			</li>
-		</ul>
+		<p>Visit us online at <a href="http://www.sitellite.org/">www.sitellite.org</a></p>
 
 		<h2>Copyright Notice</h2>
 
-		<p>Copyright <ch:copy /> <xt:var name="php: date ('Y')" /> Simian Systems Inc.</p>
+		<p>Copyright <ch:copy /> <xt:var name="php: date ('Y')" /> Sitellite.org Community</p>
 
 </td>
 </tr>

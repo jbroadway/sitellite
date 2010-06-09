@@ -1,20 +1,19 @@
 ; <?php /* DO NOT ALTER THIS LINE, IT IS HERE FOR SECURITY REASONS
 ;
 ; +----------------------------------------------------------------------+
-; | Sitellite - Content Management System                                |
+; | Sitellite Content Management System                                  |
 ; +----------------------------------------------------------------------+
-; | Copyright (c) 2001 Simian Systems                                    |
+; | Copyright (c) 2010 Sitellite.org Community                           |
 ; +----------------------------------------------------------------------+
-; | This software is released under the Simian Public License.           |
-; | Please see the accompanying file LICENSE for licensing details!      |
+; | This software is released under the GNU GPL License.                 |
+; | Please see the accompanying file docs/LICENSE for licensing details. |
 ; |                                                                      |
-; | You should have received a copy of the Simian Public License         |
-; | along with this program; if not, write to Simian Systems,            |
-; | 101-314 Broadway, Winnipeg, MB, R3C 0S7, CANADA.  The Simian         |
-; | Public License is also available at the following web site           |
-; | address: <http://www.simian.ca/license.php>                          |
+; | You should have received a copy of the GNU GPL License               |
+; | along with this program; if not, visit www.sitellite.org.            |
+; | The license text is also available at the following web site         |
+; | address: <http://www.sitellite.org/index/license                     |
 ; +----------------------------------------------------------------------+
-; | Authors: John Luxford <lux@simian.ca>                                |
+; | Authors: John Luxford <john.luxford@gmail.com>                       |
 ; +----------------------------------------------------------------------+
 ;
 ; Formatting rules of this document:
@@ -217,19 +216,19 @@ serialize		= plain
 ; emails and text messages.  This is also the address for message
 ; recipients to reply to when sending responsed to system or
 ; forwarded messages.
-return_address	= test@simian.ca
+return_address	= test@sitellite.org
 
 ; The email server to check for incoming email.  This must be a POP3
 ; mail server.  Ordinarily, simply setting up a dedicated email account
 ; for Sitellite on your existing mail server is sufficient to enable
 ; this functionality.
-email_server	= mail.simian.ca
+email_server	= mail.sitellite.org
 
 ; The port of the POP3 mail server.  The default is usually correct.
 email_port		= 110
 
 ; The username to access the email account designated to Sitellite.
-email_username	= test@simian.ca
+email_username	= test@sitellite.org
 
 ; The password to access the email account designated to Sitellite.
 email_password	= test

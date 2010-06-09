@@ -7,7 +7,6 @@
 app_name		= SiteStreamer
 description		= Provides basic podcasting and audio playlist generation capabilities for Sitellite
 author			= Lux
-copyright		= "Copyright (C) 2004, Simian Systems Inc."
 license			= "GPL"
 
 ; These allow you to call your app via the /index/myapp-app syntax.

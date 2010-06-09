@@ -15,7 +15,7 @@ $list = $e->getUpcoming ($parameters['limit'], $parameters['category'], $paramet
 $cal = new vCal ();
 $cal->addProperty ('METHOD', 'PUBLISH');
 $cal->addProperty ('CALSCALE', 'GREGORIAN');
-$cal->addProperty ('PRODID', '-//SIMIAN systems//NONSGML SiteEvent//EN');
+$cal->addProperty ('PRODID', '-//Sitellite CMS//NONSGML SiteEvent//EN');
 $cal->addProperty ('VERSION', '2.0');
 
 foreach (array_keys ($list) as $k) {
