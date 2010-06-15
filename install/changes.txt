@@ -104,6 +104,7 @@ Changes in 5.0.3-stable
 - Merged Professional Edition features into the main codebase.
 - Merged Enterprise Edition features in the main codebase.
 - Replaced old ereg() uses with preg_match().
+- Fixed PHP 5.3 warnings in the web installer.
 
 Changes in 5.0.2-stable
 

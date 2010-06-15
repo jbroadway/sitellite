@@ -10,7 +10,7 @@ if (@file_exists ('installed')) {
 	$cgi->step = 0;
 }
 
-$url = 'http://' . $_SERVER['HTTP_HOST'] . array_shift (split ('/install/', $_SERVER['REQUEST_URI']));
+$url = 'http://' . $_SERVER['HTTP_HOST'] . array_shift (preg_split ('/install/', $_SERVER['REQUEST_URI']));
 
 switch ($cgi->step) {
 
@@ -66,11 +66,11 @@ thanks for your interest in Sitellite and welcome to the neighbourhood!</p>';
 
 
 		loader_import ('pear.HTTP.Request');
-		$req1 =& new HTTP_request ($url . '/install/inc/apache/forcetype/index');
+		$req1 = new HTTP_request ($url . '/install/inc/apache/forcetype/index');
 		$req1->sendRequest ();
-		$req2 =& new HTTP_request ($url . '/install/inc/apache/directoryindex/');
+		$req2 = new HTTP_request ($url . '/install/inc/apache/directoryindex/');
 		$req2->sendRequest ();
-		$req3 =& new HTTP_request ($url . '/install/inc/apache/acceptpathinfo/index.php/test');
+		$req3 = new HTTP_request ($url . '/install/inc/apache/acceptpathinfo/index.php/test');
 		$req3->sendRequest ();
 
 		if (PHP_VERSION < '4.2') {
