@@ -144,7 +144,7 @@ class MF_Widget_multiple extends MF_Widget {
 		if (! isset ($this->data_value)) {
 			$this->data_value = $this->default_value;
 		}
-		$vals = split (',', $this->data_value);
+		$vals = explode (',', $this->data_value);
 		if ($generate_html) {
 			$data = "\t" . '<tr>' . "\n\t\t" . '<td valign="top" class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $this->display_value . '</label></td>' . "\n\t\t" .
 				'<td class="field"><select name="' . $this->name . '[]" multiple="multiple" size="' . $this->size . '" ' . $this->extra . ' >' . "\n";

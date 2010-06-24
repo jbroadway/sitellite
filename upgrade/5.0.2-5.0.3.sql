@@ -35,32 +35,32 @@ CREATE TABLE `ui_review` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 UPDATE sitellite_page SET body=replace(body,
-	'border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
+	'border: 0px none; background-image: url(/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
 	'background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px;'
 );
 
 UPDATE sitellite_page_sv SET body=replace(body,
-	'border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
+	'border: 0px none; background-image: url(/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
 	'background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px;'
 );
 
 UPDATE sitellite_news SET body=replace(body,
-	'border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
+	'border: 0px none; background-image: url(/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
 	'background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px;'
 );
 
 UPDATE sitellite_news_sv SET body=replace(body,
-	'border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
+	'border: 0px none; background-image: url(/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
 	'background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px;'
 );
 
 UPDATE siteblog_post SET body=replace(body,
-	'border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
+	'border: 0px none; background-image: url(/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
 	'background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px;'
 );
 
 UPDATE siteblog_post_sv SET body=replace(body,
-	'border: 0px none; background-image: url(' + xed_prefix + '/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
+	'border: 0px none; background-image: url(/inc/app/xed/pix/box-bg.jpg); background-repeat: no-repeat; width: 528px; height: 63px; font-weight: normal; padding: 23px 10px 0px 85px;',
 	'background-color: #b7c3cf; -moz-border-radius: 10px; min-height: 20px; width: 575px; font-weight: normal; padding: 15px 15px 15px 15px;'
 );
 
