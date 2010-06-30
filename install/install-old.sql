@@ -556,6 +556,7 @@ create table sitellite_news_sv (
 	author char(72) not null,
 	category char(48) not null,
 	summary text not null,
+	external char(128) not null,
 	sitellite_status varchar(32) NOT NULL default '',
 	sitellite_access varchar(32) NOT NULL default '',
 	sitellite_startdate datetime default NULL,
@@ -1002,7 +1003,7 @@ create table sitemailer2_recipient (
     index (email, status, created)
 );
 
--- table storing newsletters a recipient belongs to
+
 create table sitemailer2_recipient_in_newsletter (
 	recipient int not null,
 	newsletter int not null,
@@ -1011,7 +1012,7 @@ create table sitemailer2_recipient_in_newsletter (
 	primary key (recipient, newsletter)
 );
 
--- list of message categories
+
 create table sitemailer2_newsletter (
 	id int not null auto_increment primary key,
 	name char(48) not null,
@@ -1026,7 +1027,7 @@ create table sitemailer2_newsletter (
 
 insert into sitemailer2_newsletter (id, name) values (1, 'Default');
 
--- table for messages
+
 create table sitemailer2_message (
 	id int not null auto_increment primary key,
 	title char (128) not null,
@@ -1053,10 +1054,10 @@ create table sitemailer2_message_newsletter (
     newsletter int not null
 );
 
---table for templates
+
 create table sitemailer2_template (
 	id int not null auto_increment primary key,
-	title char (128) not null,
+	title char(128) not null,
 	date datetime not null,
 	body text not null, 
 	index (date)
@@ -1064,7 +1065,7 @@ create table sitemailer2_template (
 
 insert into sitemailer2_template (id, title, date, body) values (NULL, "Default", now(), "{body}");
 
---table for mail to be sent
+
 create table sitemailer2_q (
 	id int not null auto_increment primary key, 
 	recipient int not null,
@@ -1077,7 +1078,7 @@ create table sitemailer2_q (
 	index (message)
 );
 
---table for mail that failed to send
+
 create table sitemailer2_failed_q (
 	id int not null auto_increment primary key, 
 	recipient int not null,
@@ -1089,7 +1090,7 @@ create table sitemailer2_failed_q (
 	index (message)
 );
 
---subscription confirmation url table
+
 create table sitemailer2_email_tracker (
 	id int not null auto_increment primary key, 
 	url char (128) not null,
@@ -1100,11 +1101,11 @@ create table sitemailer2_email_tracker (
     index (newsletter, message)
 );
 
---create table sitemailer2_rss_tracker (
 
---);
 
---bounce tracker
+
+
+
 create table sitemailer2_bounces (
     id int not null auto_increment primary key,
     recipient int not null,
@@ -1112,7 +1113,7 @@ create table sitemailer2_bounces (
     occurred datetime not null
 );
 
---campains
+
 
 create table sitemailer2_campaign (
     id int not null auto_increment primary key,
@@ -1121,7 +1122,7 @@ create table sitemailer2_campaign (
     created datetime not null
 );
 
---alter table sitemailer2_link_tracker add recipient int not null;
+
 
 create table sitemailer2_link_tracker (
     id int not null auto_increment primary key,
@@ -1628,13 +1629,13 @@ INSERT INTO siteshop_province (code, country_code, province) VALUES ('wy', 'us',
 
 create table siteconnector_log (
 	id int not null auto_increment primary key,
-	protocol char(12) not null,
-	user_id char(48) not null,
-	ip char(24) not null,
-	service char(128) not null,
-	action char(128) not null,
+	protocol char(12) CHARACTER SET latin1 not null,
+	user_id char(48) CHARACTER SET latin1 not null,
+	ip char(24) CHARACTER SET latin1 not null,
+	service char(128) CHARACTER SET latin1 not null,
+	action char(128) CHARACTER SET latin1 not null,
 	ts datetime not null,
-	response_code char(32) not null,
+	response_code char(32) CHARACTER SET latin1 not null,
 	message_body text,
 	response_body text,
 	index (protocol, user_id, ip, service, action, ts, response_code)
