@@ -40,7 +40,7 @@ if (session_valid () && ! empty ($parameters['goto'])) {
 	exit;
 }
 
-list ($type, $call) = split (':', appconf ($action), 2);
+list ($type, $call) = explode (':', appconf ($action), 2);
 $func = 'loader_' . $type;
 echo $func (trim ($call), $parameters, $box['context']);
 

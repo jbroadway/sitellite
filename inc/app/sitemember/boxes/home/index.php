@@ -30,7 +30,7 @@ $data = array ();
 $services = appconf ('member_services');
 
 foreach ($services['home'] as $name => $service) {
-	list ($type, $call) = split (':', $service);
+	list ($type, $call) = explode (':', $service);
 	$func = 'loader_' . $type;
 	$data[$name] = $func (trim ($call), $parameters);
 }
