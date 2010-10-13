@@ -124,7 +124,7 @@ function get_searchengine_keywords ($referer) {
 		preg_match("'(\?|&)q=(.*?)(&|$)'si", " $url ", $keywords); 
 	}
 	// Yahoo 
-	if ((preg_match("/yahoo\.com/i",$url)) or (preg_match("search\.yahoo",$url))) { 
+	if ((preg_match("/yahoo\.com/i",$url)) or (preg_match("/search\.yahoo/i",$url))) { 
 		preg_match("'(\?|&)p=(.*?)(&|$)'si", " $url ", $keywords); 
 	} 
 	// Looksmart 
