@@ -65,10 +65,15 @@ function news_page_nav ($pages, $pagenum, $story, $highlight = '') {
 					$links .= ' &nbsp; <a href="' . site_prefix () . '/index/news-app/story.' . $story . '/pagenum.' . ($i + 1) . $highlight . '">' . ($i + 1) . '</a>';
 				}
 			}
-			if ($pagenum < count ($pages)) {
+			if ($pagenum != 'all' && $pagenum < count ($pages)) {
 				$links .= ' &nbsp; <a href="' . site_prefix () . '/index/news-app/story.' . $story . '/pagenum.' . ($pagenum + 1) . '">' . intl_get ('Next') . '</a>';
 			} else {
 				$links .= ' &nbsp; <span class="news-page-nav-inactive">' . intl_get ('Next') . '</span>';
+			}
+			if ($pagenum == 'all') {
+				$links .= ' &nbsp; <strong class="news-page-nav-current">' . intl_get ('All') . '</strong>';
+			} else {
+				$links .= ' &nbsp; <a href="' . site_prefix () . '/index/news-app/story.' . $story . '/pagenum.all">' . intl_get ('All') . '</a>';
 			}
 			$links .= '</p>';
 			break;
@@ -145,22 +150,26 @@ function news_page_nav ($pages, $pagenum, $story, $highlight = '') {
 		$pages[$n] = preg_replace ('/^([\r\n\t ]*<br[^>]*>[\r\n\t ]*)*/is', '', $pages[$n]);
 		$pages[$n] = preg_replace ('/([\r\n\t ]*<br[^>]*>[\r\n\t ]*)*$/is', '', $pages[$n]);
 		$body .= NEWLINE;
-		if ($n == $pagenum - 1) {
-			$body .= '<div class="news-split" id="page' . $pagenum . '">' . $pages[$n] . '</div>';
-		}
-		else {
-			$body .= '<div class="news-hidden news-split" id="page' . $pagenum . '">' . $pages[$n] . '</div>';
+		if ($pagenum == 'all') {
+			$body .= '<div class="news-split" id="news-page' . ($n + 1) . '">' . $pages[$n] . '</div>';
+			if ($n != count ($pages) - 1) {
+				$body .= '<p class="news-spacer"></p>';
+			}
+		} elseif ($n == $pagenum - 1) {
+			$body .= '<div class="news-split" id="news-page' . ($n + 1) . '">' . $pages[$n] . '</div>';
+		} else {
+			$body .= '<div class="news-hidden news-split" id="news-page' . ($n + 1) . '">' . $pages[$n] . '</div>';
 		}
 	}
 
 	switch (appconf ('page_nav_location')) {
 		case 'top':
-			return $links . $body . '<br /><br />';
+			return $links . $body . '<p class="news-spacer"></p>';
 		case 'bottom':
-			return $body . '<br /><br />' . $links;
+			return $body . '<p class="news-spacer"></p>' . $links;
 		case 'both':
 		default:
-			return $links . $body . '<br /><br />' . $links;
+			return $links . $body . '<p class="news-spacer"></p>' . $links;
 	}
 }
 

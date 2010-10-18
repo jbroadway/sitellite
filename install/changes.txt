@@ -105,6 +105,7 @@ Changes in 5.0.3-stable
 - Merged Enterprise Edition features in the main codebase.
 - Replaced old ereg() uses with preg_match().
 - Fixed PHP 5.3 warnings in the web installer.
+- Added 'all' page to news app for reading/printing stories on one page.
 
 Changes in 5.0.2-stable
 

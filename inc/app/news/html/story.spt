@@ -10,7 +10,7 @@
 <h1 class="news-headline">{title}</h1>
 {end if}
 
-{if obj.pagenum eq 1}
+{-- if obj.pagenum eq 1 or obj.pagenum eq 'all' --}
 
 {if not empty (obj.author)}
 <p class="news-byline">{intl By} <a href="{site/prefix}/index/news-app/author.{author}">{author}</a></p>
@@ -18,7 +18,7 @@
 
 <p class="news-dateline">{filter news_date}{date}{end filter}</p>
 
-{end if}
+{-- end if --}
 
 {filter template_parse_body}{body}{end filter}
 
