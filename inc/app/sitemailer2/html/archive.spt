@@ -1,0 +1,63 @@
+{filter none}
+{CMS_JS_DELETE_CONFIRM}
+{CMS_JS_SELECT_ALL}
+{end filter}
+
+{alt even odd}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="navbar">
+	<tr>
+		<td>
+		<span class="current"><a href="{site/prefix}/index/sitemailer2-newsletters-action" class="current">{intl Newsletters}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-subscribers-action">{intl Subscribers}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-drafts-action">{intl Drafts}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-templates-action">{intl Templates}</a></span>
+        <span><a href="{site/prefix}/index/sitemailer2-campaigns-action">{intl Campaigns}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-stats-action">{intl Stats}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-settings-form">{intl Settings}</a></span>
+		<span><a href="{site/prefix}/index/help-app?appname=sitemailer2">{intl Help}</a></span>
+		</td>
+	</tr>
+</table>
+
+<br clear="both" />
+
+<p style="margin-top: 0px">
+	<a href="{site/prefix}/index/sitemailer2-app">{intl Newsletters}</a> / {intl Archive}
+</p>
+
+<p style="clear: both">
+	{filter none}{facets}{end filter}
+</p>
+
+<p>
+<table border="0" cellpadding="3" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	<tr>
+		<th width="30%">{intl Subject}</th>
+		<th width="20%">{intl Date}</th>
+		<th width="12%">{intl Status}</th>
+		<th width="12%">{intl Sent}</th>
+		<th width="12%">{intl Viewed}</th>
+		<th width="12%">{intl Bounced}</th>
+	</tr>
+	{loop obj[list]}
+		<tr class="{alt/next}">
+			<td>
+				<a href="{site/prefix}/index/sitemailer2-message-action?id={loop/id}" target="_blank">{loop/subject}</a>
+			</td>
+			<td>{filter sitemailer2_filter_last_sent}{loop/date}{end filter}</td>
+			<td align="center">{filter ucfirst}{loop/status}{end filter}</td>
+			<td align="right">{loop/numsent}</td>
+			<td align="right">{loop/confirmed_views}</td>
+			<td align="right">{loop/bounced}</td>
+		</tr>
+	{end loop}
+</table>
+</p>

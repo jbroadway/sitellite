@@ -1,0 +1,27 @@
+<script language="javascript">
+
+function done (f) {
+	currs = '';
+	sep = '';
+	for (i = 0; i < f.elements.length; i++) {
+		if (f.elements[i].checked) {
+			currs += sep + f.elements[i].value;
+			sep = ', ';
+		}
+	}
+	opener.document.forms[0].elements.currencies.value = currs;
+	window.close ();
+	return false;
+}
+
+</script>
+
+<form onsubmit="return done (this)">
+<p>
+{loop obj[currencies]}
+	<input type="checkbox" name="currencies_{loop/code}" value="{loop/code}"{if loop[sel]} checked="checked"{end if} /> {loop/code} - {loop/name}<br />
+{end loop}
+</p>
+
+<input type="submit" value="Done" />
+</form>

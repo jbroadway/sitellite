@@ -1,0 +1,48 @@
+{filter none}
+{CMS_JS_RESTORE_CONFIRM}
+{CMS_JS_DELETE_CONFIRM}
+{end filter}
+
+<h1>{intl Deleted} {collection_name}</h1>
+
+<p><a href="{site/prefix}/index/cms-browse-action?collection={collection}">{intl Back to} {collection_name}</a></p>
+
+<p>
+<table border="0" cellpadding="3" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+{alt #eee #fff}
+
+<p>
+<table border="0" cellpadding="2" cellspacing="1" width="100%">
+	<tr style="background-color: {alt/next}">
+			<th>&nbsp;</th>
+			<th>{intl Item ID}</th>
+			<th>{intl Revision ID}</th>
+			<th>{intl Author}</th>
+			<th>{intl Date}</th>
+			<th>{intl Change Summary}</th>
+	</tr>
+	{loop pager.results}
+		<tr style="background-color: {alt/next}">
+			<td align="center">
+				<a href="{site/prefix}/index/cms-history-view-action?_collection={collection}&_key={loop/_key}&_rid={loop/sv_autoid}&_current={loop/sv_autoid}&_return={site/prefix}/index/cms-deleted-items-action?collection={cgi/collection}">{intl View}</a> &nbsp;
+				{if obj[restore]}
+					<a href="{site/prefix}/index/cms-deleted-restore-action?collection={collection}&key={loop/_key}&rid={loop/sv_autoid}" onclick="return cms_restore_confirm ()">{intl Restore}</a>&nbsp;
+				{end if}
+				<a href="{site/prefix}/index/cms-deleted-delete-action?collection={collection}&key={loop/_key}&rid={loop/sv_autoid}" onclick="return cms_delete_confirm ()">{intl Permanent Delete}</a>
+			</td>
+			<td>{loop/_key}</td>
+			<td>{loop/sv_autoid}</td>
+			<td>{loop/sv_author}</td>
+			<td>{filter pretty_date}{loop/sv_revision}{end filter}</td>
+			<td>{loop/sv_changelog}</td>
+		</tr>
+	{end loop}
+</table>
+</p>

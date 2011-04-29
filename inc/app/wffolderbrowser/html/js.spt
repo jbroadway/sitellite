@@ -1,0 +1,160 @@
+var rpc = new rpc ();
+
+var wf_current = '';
+
+var pagebrowser = {
+	url: '{site/prefix}/index/wffolderbrowser-rpc-action',
+	action: rpc.action,
+
+	// Limit pages shown to pages the user can write to
+	limit: false,
+
+	// Reset the section select box
+	updateSections: function () {
+		document.getElementById ('jump').selectedIndex = 0;
+		return false;
+	},
+
+	// Update the page trail
+	updateTrail: function (trail) {
+		html = '';
+		for (i = 0; i < trail.length; i++) {
+			html += '<a href="#" onclick="return pagebrowser.setCurrent (\'' + trail[i].id + '\')">' + trail[i].title + '</a> / ';
+		}
+		document.getElementById ('trail').innerHTML = html;
+		return false;
+	},
+
+	// Update the title of the currently open page
+	updateTitle: function (title) {
+		document.getElementById ('title').innerHTML = title;
+		return false;
+	},
+
+	// Update the list of pages shown
+	updateChildren: function (childs, folders) {
+		html = '';
+		for (i = 0; i < folders.length; i++) {
+			html += '<tr>';
+			html += '<td width="20">';
+			html += '<a href="#" onclick="return pagebrowser.deleteFolder (\'' + folders[i].id + '\')" title="{intl Delete this Folder}"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" border="0" alt="{intl Delete this Folder}" title="{intl Delete this Folder}" /></a></td>';
+			html += '<td width="20">';
+			html += '<a href="#" onclick="return pagebrowser.setCurrent (\'' + folders[i].id + '\')" title="{intl Enter this Folder}"><img src="{site/prefix}/inc/app/wffolderbrowser/pix/add.gif" border="0" alt="{intl Enter this Folder}" title="{intl Enter this Folder}" /></a></td>';
+			html += '<td><a href="#" onclick="return pagebrowser.select (\'' + folders[i].id + '\')" title="{intl Select this Folder}">' + folders[i].name + '</a></td></tr>';
+		}
+/*		for (i = 0; i < childs.length; i++) {
+			html += '<tr>';
+			html += '<td width="20">';
+			html += '<a href="#" onclick="return pagebrowser.select (\'' + childs[i].id + '\')" title="{intl Select this Page}"><img src="{site/prefix}/inc/app/wffolderbrowser/pix/file.gif" border="0" alt="{intl Open}" title="{intl Open}" /></a></td>';
+			html += '<td><a href="#" onclick="return pagebrowser.select (\'' + childs[i].id + '\')" title="{intl Select this Page}">' + childs[i].title + '</a></td></tr>';
+		}*/
+		try {
+			document.getElementById ('pages').innerHTML = html;
+		} catch (e) {
+			t = document.getElementById ('pages');
+			while (t.rows.length > 0) {
+				t.deleteRow (0);
+			}
+			for (i = 0; i < folders.length; i++) {
+				r = t.insertRow ();
+				c1 = r.insertCell ();
+				c1.style.width = '20px';
+				c1.innerHTML = '<a href="#" onclick="return pagebrowser.deleteFolder (\'' + folders[i].id + '\')" title="{intl Delete this Folder}"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" border="0" alt="{intl Delete this Folder}" title="{intl Delete this Folder}" /></a>';
+				c2 = r.insertCell ();
+				c2.style.width = '20px';
+				c2.innerHTML = '<a href="#" onclick="return pagebrowser.setCurrent (\'' + folders[i].id + '\')" title="{intl Enter this Folder}"><img src="{site/prefix}/inc/app/wffolderbrowser/pix/add.gif" border="0" alt="{intl Enter this Folder}" title="{intl Enter this Folder}" /></a>';
+				c3 = r.insertCell ();
+				c3.innerHTML = '<a href="#" onclick="return pagebrowser.select (\'' + folders[i].id + '\')" title="{intl Select this Folder}">' + folders[i].name + '</a>';
+			}
+/*			for (i = 0; i < childs.length; i++) {
+				r = t.insertRow ();
+				c1 = r.insertCell ();
+				c1.style.width = '20px';
+				c1.innerHTML = '<a href="#" onclick="return pagebrowser.select (\'' + childs[i].id + '\')" title="{intl Select this Page}"><img src="{site/prefix}/inc/app/wffolderbrowser/pix/file.gif" border="0" alt="{intl Open}" title="{intl Open}" /></a>';
+				c2 = r.insertCell ();
+				c2.innerHTML = '<a href="#" onclick="return pagebrowser.select (\'' + childs[i].id + '\')" title="{intl Select this Page}">' + childs[i].title + '</a>';
+			}*/
+		}
+		return false;
+	},
+
+	// Get new data from the server based on a new currently open page
+	setCurrent: function (id) {
+		wf_current = id;
+		rpc.call (
+			this.action ('setCurrent', [id, pagebrowser.limit]),
+			function (request) {
+				o = eval (request.responseText);
+				pagebrowser.updateSections ();
+				pagebrowser.updateTrail (o[2]);
+				pagebrowser.updateTitle (o[0]);
+				pagebrowser.updateChildren (o[1], o[3]);
+			}
+		);
+		return false;
+	},
+
+	// Return the selected page to the form that called the page browser
+	select: function (id) {
+		if (opener && ! opener.closed) {
+			opener.dialogWin.returnedValue = id;
+			opener.dialogWin.returnFunc ();
+		} else {
+			alert ('Hey, where did my parent go?');
+		}
+		window.close ();
+		return false;
+	},
+
+	deleteFolder: function (id) {
+		if (! confirm ('Are you sure you want to delete this folder?')) {
+			return false;
+		}
+
+		rpc.call (
+			pagebrowser.action ('deleteFolder', [id, wf_current]),
+			function (request) {
+				o = eval (request.responseText);
+				if (o === false) {
+					alert ('Failed to delete the folder.  Please ensure that the folder is empty and try again.');
+					return false;
+				}
+				pagebrowser.updateSections ();
+				pagebrowser.updateTrail (o[2]);
+				pagebrowser.updateTitle (o[0]);
+				pagebrowser.updateChildren (o[1], o[3]);
+			}
+		);
+
+		return false;
+	},
+
+	addFolder: function () {
+		prompt (
+			'New folders(s) -- separate multiple with commas (one, two, three)',
+			'',
+			function (word) {
+				if (word == null || word == false || word.length == 0) {
+					return false;
+				}
+				rpc.call (
+					pagebrowser.action ('addFolder', [word, wf_current]),
+					function (request) {
+						o = eval (request.responseText);
+						if (o === false) {
+							alert ('Failed to create new folder(s).  Please verify your server permissions and try again.');
+							return false;
+						}
+						pagebrowser.updateSections ();
+						pagebrowser.updateTrail (o[2]);
+						pagebrowser.updateTitle (o[0]);
+						pagebrowser.updateChildren (o[1], o[3]);
+					}
+				);
+				return false;
+			}
+		);
+
+		return false;
+	}
+}

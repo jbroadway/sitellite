@@ -1,0 +1,87 @@
+<ul>
+	<li><a href="#summary">{intl Summary}</a></li>
+	<li><a href="#usage">{intl Usage}</a></li>
+	<li><a href="#access">{intl Access Settings}</a></li>
+	<li><a href="#fields">{intl Fields}</a></li>
+	<li><a href="#source">{intl Source Code}</a></li>
+</ul>
+
+{alt #eee #fff}
+
+<a name="summary"></a>
+<h2>{intl Summary}</h2>
+
+{if not empty (obj[description])}
+<p>{description}</p>
+{end if}
+{if empty (obj[description])}
+<p>{intl No summary.}</p>
+{end if}
+
+<p align="right"><a href="#top">[ {intl top} ]</a></p>
+
+<a name="usage"></a>
+<h2>{intl Usage}</h2>
+
+{alt/reset}
+
+<p><span style="color: #00b">&lt;xt:form</span> <span style="color: #070">name=</a>"<strong style="color: #d00">{cgi/appname}/{cgi/form}</strong>" <span style="color: #00b">/&gt;</span></p>
+
+<p align="right"><a href="#top">[ {intl top} ]</a></p>
+
+{alt/reset}
+
+<a name="access"></a>
+<h2>{intl Access Settings}</h2>
+
+<p>{if not count (obj[access])}No access settings.{end if}
+<table cellpadding="5" cellspacing="1" width="100%">
+	{loop obj[access]}
+		<tr style="background-color: {alt/next}; border: 1px solid #aaa">
+			<td valign="top" width="100"><strong>{loop/_key}</strong></td>
+			<td valign="top">
+				{filter help_typecheck}{loop/_value}{end filter}
+			</td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+<p align="right"><a href="#top">[ {intl top} ]</a></p>
+
+{alt/reset}
+
+<a name="fields"></a>
+<h2>{intl Fields}</h2>
+
+<p>{if not count (obj[params])}No parameters.{end if}
+<table cellpadding="10" cellspacing="1" width="100%">
+	{loop obj[params]}
+		<tr style="background-color: {alt/next}">
+			<td valign="top" colspan="2">
+				<em>{loop/type}</em>
+				<a name="param-{loop/_key}"></a><strong>{loop/_key}</strong>
+				{if not empty (loop[default_value])}( {loop/default_value} ){end if}
+				<br /><br />
+				{loop/alt}
+				<br /><br />
+				{if is_array (loop[rules])}
+					Rules:
+					<ul>
+						{loop loop[rules]}
+							<li>{loop/_value}</li>
+						{end loop}
+					</ul>
+				{end if}
+			</td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+<p align="right"><a href="#top">[ {intl top} ]</a></p>
+
+<a name="souce"></a>
+<h2>{intl Source Code}</h2>
+
+{filter none}{source}{end filter}

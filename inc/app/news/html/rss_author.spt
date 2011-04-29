@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="{intl/charset}"?>
+
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:admin="http://webns.net/mvcb/"
+	xmlns="http://purl.org/rss/1.0/"
+>
+
+<channel rdf:about="{site/url}/index/news-app/author.{cgi/author}">
+
+	<title>{rss_title} : {intl stories by} {cgi/author}</title>
+	<link>http://{site/domain}{site/prefix}/index/news-app/author.{cgi/author}</link>
+	<description>{rss_description}</description>
+
+	<dc:language>{if intl_locale ()}{intl/locale}-{end if}{intl/language}</dc:language>
+	<dc:date>{rss_date}</dc:date>
+
+	<syn:updatePeriod>hourly</syn:updatePeriod>
+	<syn:updateFrequency>1</syn:updateFrequency>
+	<syn:updateBase>1970-01-01T00:00+00:00</syn:updateBase>
+
+	<admin:generatorAgent rdf:resource="http://www.sitellite.org/v.{SITELLITE_VERSION}" />
+
+	<items>
+		<rdf:Seq>
+{loop obj[list]}{if loop._type ne 'date'}
+			<rdf:li rdf:resource="http://{site/domain}{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}" />
+{end if}{end loop}
+		</rdf:Seq>
+	</items>
+
+</channel>
+
+{loop obj[list]}{if loop._type ne 'date'}
+<item rdf:about="http://{site/domain}{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">
+	<title>{loop/title}</title>
+	<link>http://{site/domain}{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}</link>
+	<description>{if empty (loop.summary)}{filter strip_tags}{loop/body}{end filter}{end if}{if else}{loop/summary}{end if}</description>
+	<dc:subject>{filter intl_get}{loop/category}{end filter}</dc:subject>
+	<dc:date>{loop/date}</dc:date>
+</item>
+
+{end if}{end loop}
+</rdf:RDF>

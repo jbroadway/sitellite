@@ -1,0 +1,16 @@
+<div>
+    <p>
+        <b>{intl Original question}:</b><br />
+        <p>"{filter none}{question}{end filter}"</p>
+    </p>
+    <p>
+        <b>{intl Our response}:</b><br />
+        <span>"{filter strip_tags}{answer}{end filter}"</span>
+    </p>
+
+    {intl We hope this answers your question satisfactorily.}<br />
+    {intl Sincerely},<br />
+    <br />
+    {intl The} {site/domain} {intl Team}
+    <br />
+</div>

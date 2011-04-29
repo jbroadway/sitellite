@@ -1,0 +1,42 @@
+README
+
+Troubleshooting
+
+For troubleshooting information, please refer to http://www.sitellite.org/
+
+Known Issues
+
+Please see the file saf/KNOWN ISSUES for a complete and current list.
+
+License
+
+The Sitellite Application Framework (SAF) is licensed separately from the rest of
+the Sitellite Content Server (SCS).  While SCS is licensed under the GPL, we
+chose the LGPL for SAF because it allows for use by commercial applications
+which the GPL does not.  Please read the license in the file saf/LICENSE before
+using this software.
+
+Documentation
+
+Documentation for the Sitellite Application Framework can be found at
+http://www.sitellite.org/
+
+Instructions
+
+To use these libraries, copy the entire saf folder to wherever you want, and
+make sure your PHP scripts can access that location.  Then you can use them
+by simply including the libraries you need.  We recommend using the provided
+init.php script in the saf directory, which creates a $loader (saf.Loader)
+object with a preconfigured 'saf' namespace, and also includes some custom
+functions that some packages may rely on.  This can be done using the
+following code (assumes the SAF installation is in an 'saf' folder directly
+below the running script):
+
+<?php
+
+include_once ('saf/init.php');
+
+// you can now use $loader to import additional packages
+// or to define additional namespaces.
+
+?>

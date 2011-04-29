@@ -1,0 +1,10 @@
+<div>
+
+    <b>{intl You have received the following FAQ submission}:</b><br />
+    <p>
+        "{filter none}{question}{end filter}"
+    </p>
+    <br />
+    {intl To log into Sitellite, click on the following link}: <a href="{site/url}/sitellite">{intl Login}</a>
+
+</div>

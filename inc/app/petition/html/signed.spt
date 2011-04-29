@@ -1,0 +1,3 @@
+<p>{intl Your signature has been added.}</p>
+
+<p><a href="{site/prefix}/index/petition-signatures-action/id.{id}">&raquo; {intl View the signatures}</a></p>

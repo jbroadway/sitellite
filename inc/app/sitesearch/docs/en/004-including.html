@@ -1,0 +1,80 @@
+<h1>Including SiteSearch into your web site</h1>
+
+<p>To include SiteSearch into your web site, include the box "sitesearch/search" via one of the following methods:</p>
+
+
+
+<ul>
+
+	<li>Use the Sitellite Pro "Box Chooser" to embed the search box into any page or sidebar.</li>
+	<li>Include this tag in your templates: &lt;xt:box name="sitesearch/search" /&gt;</li>
+
+	<li>Provide a link to this URL: http://www.yourWebSite.com/index/sitesearch-app</li>
+
+	<li>Create a page that is an alias to the path: /index/sitesearch-app</li>
+
+</ul>
+
+<h2>Box Include Parameters</h2>
+
+SiteSearch allows you to customize the search form presented with the following list of optional parameters:<br />
+
+<br />
+
+<table cellpadding="3" cellspacing="1" border="0"><tbody><tr><th width="25%" valign="top"><strong>Parameter Name</strong></th><th valign="top"><strong>Description</strong></th></tr><tr><td valign="top">ctype<br /></td><td valign="top">This
+
+contains either a comma-separated list of collection types to search,
+
+or it can be presented as an array of collection types to search, or
+
+even just a single collection type.&nbsp; This allows you to focus your
+
+search on a single or combination of multiple data types.<br /></td></tr><tr><td valign="top">show_types<br /></td><td valign="top">If
+
+this is set to "yes", it will display a select box of collections that
+
+the search can be limited to, defaulting to "All Types".<br /></td></tr><tr><td valign="top">multiple<br /></td><td valign="top">If
+
+this is set to "yes", the select box displayed when show_types is also
+
+"yes" will render as a multiple-selection select box.&nbsp; This gives
+
+users even more power in selecting combinations of data types, but
+
+takes up extra vertical space, and may be overkill depending on the
+
+intended audience.<br /></td></tr></tbody></table><br />
+
+Parameters can be passed through the URL, or in your box call.&nbsp; For example:<br />
+
+<br />
+
+<pre>http://www.example.com/index/sitesearch-app?ctype=sitellite_news</pre>
+
+<br />
+
+And similarly:<br />
+
+<br />
+
+<pre>&lt;xt:box name="sitesearch/search" ctype="sitellite_news" /&gt;</pre>
+
+<h2>Result Highlighting</h2>
+
+In order for the search result highlighting to appear on pages once
+
+they've been clicked on from the search result screen, the following
+
+CSS needs to be present in your site.css file:<br />
+
+<br />
+
+<pre>span.highlighted {<br />&nbsp;&nbsp;&nbsp; font-weight: bold;<br />&nbsp;&nbsp;&nbsp; color: #feb;<br />&nbsp;&nbsp;&nbsp; padding: 2px;<br />&nbsp;&nbsp;&nbsp; padding-bottom: 0px;<br />}</pre>
+
+<br />
+
+This will create a yellow background behind the highlighted search
+
+terms within the body of a page, a news story, a forum posting, or
+
+other data types and apps that support SiteSearch term highlighting.<br />

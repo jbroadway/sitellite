@@ -1,0 +1,49 @@
+<h1>Usage</h1>
+
+To create a podcast or playlist, log into Sitellite and go to the Control<br />
+Panel.  From there, under the Content menu choose "Web Files", then click the<br />
+"Add File" link on the next screen.<br />
+<br />
+Click "Browse..." and upload the audio or video file that contains your first<br />
+podcast show.  Next, click "Add" next to the Folder field and create a new<br />
+folder for your podcast files.  Make sure to select the new folder after<br />
+creating it; it will appear in the select box once it's been created.<br />
+<br />
+To ensure that visitors will be able to access the files, click on the "State"<br />
+tab and set the status to "Approved".  Click "Create" at the bottom of the<br />
+form and repeat for any additional files you wish to add to your podcast or<br />
+playlist.  This is also how you will add new shows to your podcast later on.<br />
+<br />
+The next step is to link your podcast or playlist into your website.  The<br />
+easiest way to do this is to use the Xed 2 box chooser.  After installing<br />
+SiteStreamer, Sitellite Pro users will see a new "SiteStreamer" option in<br />
+that dialogue window.  Simply select "SiteStreamer" from the list, then<br />
+either "Podcast" or "Playlist", then fill out any information requested, such<br />
+as the title and folder of the podcast or playlist.  This will create a link<br />
+to the podcast or playlist where the box was inserted into the page.<br />
+<br />
+For users of Sitellite GPL Edition, there are 3 ways to call SiteStreamer<br />
+without Xed 2's box chooser.  These are:<br />
+<br />
+1. Linking directly to the podcast or playlist URLs<br />
+<br />
+The link format to link directly to a podcast is:<br />
+<br />
+http://www.example.com/index/sitestreamer-podcast-action/path.foldername/title.Podcast Name<br />
+<br />
+2. Making a sidebar box an alias of the sitestreamer/podcast box<br />
+<br />
+To do this, create a new sidebar and under the "Properties" tab enter the<br />
+following value into the "Alias" field:<br />
+<br />
+sitestreamer/podcast?title=Podcast Name&amp;path=foldername<br />
+<br />
+3. Linking to the podcast or playlist boxes in an XT template<br />
+<br />
+The format of the XT box inclusion would look like this:<br />
+<br />
+&lt;xt:box name="sitestreamer/podcast" title="Podcast Name" path="foldername" /&gt;<br />
+<br />
+That should be all you have to do to get up and running with a new podcast<br />
+or audio stream for your website.<br />
+

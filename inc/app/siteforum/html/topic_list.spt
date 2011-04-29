@@ -1,0 +1,110 @@
+<p>
+<a href="{site/prefix}/index/siteforum-search-action">{intl Search}</a>
+&nbsp; &nbsp; &nbsp; &nbsp;
+{if not session_valid ()}
+	<a href="{site/prefix}/index/siteforum-post-form">{intl Log In}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+{end if}
+{if appconf ('rss_links')}
+	<a href="{site/prefix}/index/siteforum-rss-action">{intl Syndicated Feed (RSS)}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+{end if}
+</p>
+
+{alt #fff #eee}
+
+{if session_admin ()}
+<div id="scm-toolbar" align="right">
+<table><tr><td align="center">
+	<a href="{site/prefix}/index/siteforum-topic-add-form"><img
+		src="{site/prefix}/inc/app/cms/pix/icons/add.gif"
+		alt="{intl Add Topic}"
+		title="{intl Add Topic}"
+		border="0"
+	/></a>
+</td></tr></table>
+</div>
+{end if}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th align="left">{intl Topic}</th>
+		<th align="left" width="10%">{intl Threads}</th>
+		<th align="left" width="10%">{intl Posts}</th>
+		<th align="left" width="20%">{intl Last Post}</th>
+	</tr>
+	{loop obj[list]}
+		<tr style="background-color: {alt/next}">
+			<td valign="top">
+				<a href="{site/prefix}/index/siteforum-topic-action/topic.{loop/id}/title.{filter siteforum_filter_link_title}{loop/name}{end filter}"><strong>{loop/name}</strong></a>
+				{if session_admin ()}
+						&nbsp;&nbsp;<a href="{site/prefix}/index/siteforum-topic-edit-form?id={loop/id}"><img
+							src="{site/prefix}/inc/app/cms/pix/icons/edit.gif"
+							alt="{intl Edit Topic}"
+							title="{intl Edit Topic}"
+							border="0"
+						/></a>
+                        &nbsp;&nbsp;<a href="{site/prefix}/index/siteforum-topic-delete-action?id={loop/id}" onclick="return confirm ('{intl Are you sure you want to delete this topic?}')"><img
+                            src="{site/prefix}/inc/app/cms/pix/icons/delete.gif"
+                            alt="{intl Delete Topic}"
+                            title="{intl Delete Topic}"
+                            border="0"
+                        /></a>
+				{end if}
+				<br />{loop/description}
+			</td>
+			<td align="right" valign="top">{loop/threads}</td>
+			<td align="right" valign="top">{loop/posts}</td>
+			<td align="left" valign="top">
+				{filter siteforum_filter_shortdate}{loop/last_post}{end filter}<br />
+				{if loop.last_post_id gt 0}
+					<a href="{site/prefix}/index/siteforum-post-action/id.{loop/last_post_id}">{intl Read}</a>
+					{if loop.last_post_user_public eq 'yes'}
+						(<a href="{site/prefix}/index/sitemember-profile-action/user.{loop/last_post_user}">{loop/last_post_user}</a>)
+					{end if}
+					{if else}
+						({loop/last_post_user})
+					{end if}
+				{end if}
+			</td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+{alt/reset}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th colspan="2" align="left">{intl Forum Statistics}</th>
+	</tr>
+	<tr style="background-color: {alt/next}">
+		<td><abbr title="{intl Users who are currently logged into the website.}">{intl Active Users}</abbr></td>
+		<td align="right">{active}</td>
+	</tr>
+	{if obj[guests] neq false}
+	<tr style="background-color: {alt/next}">
+		<td><abbr title="{intl Users who are currently anonymously browsing the forum.}">{intl Guests}</abbr></td>
+		<td align="right">{guests}</td>
+	</tr>
+	<tr style="background-color: {alt/next}">
+		<td width="50%"><abbr title="{intl Total number of registered users.}">{intl Total Users}</abbr></td>
+		<td align="right">{users}</td>
+	</tr>
+	{end if}
+	<tr style="background-color: {alt/next}">
+		<td><abbr title="{intl Number of forum postings made today.}">{intl Today's Posts}</abbr></td>
+		<td align="right">{today}</td>
+	</tr>
+	<tr style="background-color: {alt/next}">
+		<td><abbr title="{intl Number of forum postings made this week.}">{intl This Week's Posts}</abbr></td>
+		<td align="right">{week}</td>
+	</tr>
+	<tr style="background-color: {alt/next}">
+		<td><abbr title="{intl Total number of forum postings.}">{intl Total Posts}</abbr></td>
+		<td align="right">{posts}</td>
+	</tr>
+</table>
+</p>

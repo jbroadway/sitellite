@@ -1,0 +1,12 @@
+{spt nav.spt obj}
+
+<ul>
+{loop obj.list}
+	<li>
+		{loop/_key} {intl co- or authored}:
+		{loop loop}
+			{filter none}{loop/_value}{end filter}
+		{end loop}
+	</li>
+{end loop}
+</ul>

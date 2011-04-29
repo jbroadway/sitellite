@@ -1,0 +1,104 @@
+<style type="text/css">
+
+div.browse-level {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 685px;
+	float: right;
+	text-align: right;
+	height: 35px;
+	padding: 0px;
+	height: 0px;
+}
+
+div.browse-level p {
+	display: block;
+	width: 100%;
+	text-align: right;
+	padding: 10px 25px 10px 10px;
+	margin: 0px;
+}
+
+div.browse-level strong {
+	color: #0081d6;
+}
+
+{if session_pref ('browse_level') eq 'normal'}
+tr.advanced {
+	display: none;
+}
+{end if}
+
+</style>
+
+<script language="javascript">
+
+var blrpc = new rpc ();
+
+var browse_level_value = '{php session_pref ('browse_level')}';
+
+var browse_level = {
+	url: '{site/prefix}/index/cms-user-preferences-level-action',
+	action: blrpc.action,
+
+	toggle: function () {
+		blrpc.call (
+			this.action ('toggle'),
+			function (request) {
+				return false;
+			}
+		);
+		if (browse_level_value == 'normal') {
+			browse_level_value = 'advanced';
+			easy = document.getElementById ('browse-level-links-easy');
+			easy.style.fontWeight = 'normal';
+			easy.style.color = '#0081d6';
+			adv = document.getElementById ('browse-level-links-advanced');
+			adv.style.fontWeight = 'bold';
+			adv.style.color = '#0081d6';
+			adv.blur ();
+
+			tr_list = document.getElementsByTagName ('tr');
+			for (i = 0; i < tr_list.length; i++) {
+				if (tr_list[i].className == 'advanced') {
+					if (document.all) {
+						tr_list[i].style.display = 'block';
+					} else {
+						tr_list[i].style.display = 'table-row';
+					}
+				}
+			}
+		} else {
+			browse_level_value = 'normal';
+			easy = document.getElementById ('browse-level-links-easy');
+			easy.style.fontWeight = 'bold';
+			easy.style.color = '#0081d6';
+			adv = document.getElementById ('browse-level-links-advanced');
+			adv.style.fontWeight = 'normal';
+			adv.style.color = '#0081d6';
+			easy.blur ();
+
+			tr_list = document.getElementsByTagName ('tr');
+			for (i = 0; i < tr_list.length; i++) {
+				if (tr_list[i].className == 'advanced') {
+					tr_list[i].style.display = 'none';
+				}
+			}
+		}
+		return false;
+	}
+}
+
+</script>
+
+{if session_pref ('browse_level') eq 'normal'}
+	<div class="browse-level">
+		<p>{intl Mode}: <a href="#" id="browse-level-links-easy" onclick="return browse_level.toggle ()" style="font-weight: bold; color: #0081d6" title="{intl Easy mode hides the more advanced features.}">{intl Easy}</a> | <a href="#" id="browse-level-links-advanced" onclick="return browse_level.toggle ()" title="{intl Advanced mode shows all features.}">{intl Advanced}</a></p>
+	</div>
+{end if}
+{if else}
+	<div class="browse-level">
+		<p>{intl Mode}: <a href="#" id="browse-level-links-easy" onclick="return browse_level.toggle ()" title="{intl Easy mode hides the more advanced features.}">{intl Easy}</a> | <a href="#" id="browse-level-links-advanced" onclick="return browse_level.toggle ()" style="font-weight: bold; color: #0081d6" title="{intl Advanced mode shows all features.}">{intl Advanced}</a></p>
+	</div>
+{end if}

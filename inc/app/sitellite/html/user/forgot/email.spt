@@ -1,0 +1,19 @@
+{errormsg}
+<form
+	name="forgot"
+	action="{site/prefix}/index/sitellite-user-forgot-action"
+	method="post">
+
+<p>
+	Email address<br />
+	<input type="text" name="email" size="20" />
+</p>
+
+<p>
+	<input type="submit" value="Email me my new password" class="submit" /><br />
+</p>
+
+<input type="hidden" name="goto" value="{goto}" />
+<input type="hidden" name="invalid" value="{invalid}" />
+
+</form>

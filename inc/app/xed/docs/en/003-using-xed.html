@@ -1,0 +1,23 @@
+<h1>Using Xed</h1>
+
+<p>To create a Xed widget in one of your forms, simply add the following elements to your form settings.php file:</p>
+
+<pre><code>
+[field_name]
+type = xed.Widget.Xeditor
+</code></pre>
+
+<p>This will create the necessary widget.  Now in the main [Form] section, add the following line:</p>
+
+<pre><code>
+extra = "onsubmit=`xed_copy_value (this, 'field_name')`"
+</code></pre>
+
+<p>This handles the task of copying the editor value from the iframe to a hidden variable within the form (created automatically for you) that will pass along the editor contents upon form submission.</p>
+
+<p>You can also call the Xed MailForm widget directly from <span class="caps">PHP</span> code, if your form doesn&#8217;t happen to use a settings.php file for some reason.  In this case you could simply say all at once:</p>
+
+<pre><code>
+$widget =&#38; $form-&gt;addWidget ('xed.Widget.Xeditor', 'field_name');
+$form-&gt;extra = 'onsubmit="xed_copy_value (this, \'field_name\')"';
+</code></pre>

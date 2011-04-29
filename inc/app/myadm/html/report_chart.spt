@@ -1,0 +1,17 @@
+<div id="chart" style="margin-top: 15px"></div>
+
+<script type="text/javascript">
+
+var api = new jGCharts.Api ();
+
+var opt = {
+	data: {data|none},
+	bar_width: {bar_width},
+	axis_labels: {labels|none},
+	size: '475x300',
+	colors: ['99bbdd']
+};
+
+$('<img>').attr ('src', api.make (opt)).appendTo ('#chart');
+
+</script>

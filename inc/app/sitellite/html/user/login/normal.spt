@@ -1,0 +1,32 @@
+<form
+	name="login"
+	action="{site/prefix}/index/sitellite-user-login-action"
+	method="post">
+
+<p>
+	{intl Username}<br />
+	<input type="text" name="username" size="20" />
+</p>
+
+<p>
+	{intl Password}<br />
+	<input type="password" name="password" size="20" />
+</p>
+
+<p>
+	<input type="submit" value="{intl Enter}" class="submit" />
+</p>
+
+<input type="hidden" name="goto" value="{goto}" />
+<input type="hidden" name="template" value="{template}" />
+<input type="hidden" name="invalid" value="{invalid}" />
+
+</form>
+
+<p>
+	<a href="{site/prefix}/index/sitellite-user-passrecover-action">{intl Forgot your password?}</a>
+</p>
+
+{if obj[signup]}
+	<p>{intl Not a member?}  <a href="{signup}">{intl Click here to register}</a></p>
+{end if}

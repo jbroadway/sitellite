@@ -1,0 +1,81 @@
+SITELLITE INSTALLATION NOTES
+
+Please read all of this document so that you are comfortably familiar with the
+installation process.  This document is also available online at
+http://www.sitellite.org/
+
+Requirements
+------------
+
+Please refer to the file REQUIREMENTS for a complete and current list.
+
+------------
+Installation
+
+(Note: Upgrading information is below this section)
+
+1. Extract the Sitellite tarball in the base directory of your web site.
+   On Unix, execute the following command on the shell:
+
+tar -zxvf sitellite-4.2.0-stable.tar.gz
+
+   This should create a directory called sitellite-4.2.0-stable.  You will
+   have to copy all of the files and folders in this directory into the base
+   directory of your web site.  If you have a pre-existing site there already,
+   which we recommend against installing on top of, please be careful you
+   aren't overwriting anything you need.
+
+   To copy these files over from the command line, do the following from in
+   the same directory you just extracted the Sitellite tarball in:
+
+cp sitellite-4.2.0-stable/.htaccess .
+cp -R sitellite-4.2.0-stable/* .
+
+2. Before you can run the web-based installer, you will need to set the
+   Unix file permissions of Sitellite.  To do this, enter the following
+   commands:
+
+chmod -R 777 cache
+chmod -R 777 inc/app/cms/conf/services
+chmod -R 777 inc/app/cms/data
+chmod -R 777 inc/conf
+chmod -R 777 inc/data
+chmod -R 777 inc/html
+chmod -R 777 install
+chmod -R 777 pix
+chmod -R 777 inc/app/*/conf
+chmod -R 777 inc/app/*/data
+chmod -R 777 inc/app/*/lang
+chmod 777 inc/app/*
+
+3. Launch the web-based installer by going to the following web site URL:
+
+http://www.yourWebSite.com/install
+
+   Follow the instructions of the installer, and it will guide you through
+   the remainder of the installation process.
+
+4. In order for certain functions in Sitellite to behave correctly,
+   Sitellite's task scheduler needs to be run at certain intervals.  Full
+   details for the scheduler can be found in Sitellite's bulit-in help
+   documents, which you should be able to access once you've completed
+   step 3.
+
+5. If you want to install any additional apps (see inc/app), please refer
+   to their install instructions.
+
+---------
+Upgrading
+
+If you are upgrading a site, check in the 'upgrade' directory for the
+necessary files and information.
+
+---------------
+Troubleshooting
+
+For troubleshooting information, please refer to http://www.sitellite.org/
+
+------------
+Known Issues
+
+Please see the file KNOWN ISSUES for a complete and current list.

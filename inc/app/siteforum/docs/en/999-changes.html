@@ -1,0 +1,125 @@
+<h1>Changes</h1>
+
+1.2.0<br />
+<br />
+- Added optional wysiwyg editing.<br />
+- Added optional file uploads.<br />
+<br />
+1.0.7<br />
+<br />
+- Fixed broken RSS feeds in PHP5.<br />
+<br />
+1.0.6<br />
+<br />
+- Fixed missing permissions in SiteForum_Post::getLatest() method.<br />
+<br />
+1.0.5<br />
+<br />
+- Long urls posted now automatically wrap after 70 characters.<br />
+<br />
+1.0.4<br />
+<br />
+- Fixed RSS feed links which were causing posts not to appear in threads.<br />
+<br />
+1.0.3<br />
+<br />
+- Re-fixed any references to Org app to point to SiteMember.  Somehow these<br />
+  got overridden with their former values.<br />
+<br />
+1.0.2<br />
+<br />
+- Fixed error-causing default properties.<br />
+<br />
+1.0.1<br />
+<br />
+- Added subject summaries to URLs for improved SEO positioning.<br />
+- Modified sorting so threads with new posts bump up in the listings.  This<br />
+  should improve the useability of SiteForum by encouraging the promotion<br />
+  of active discussions.<br />
+- Fixed any references to Org app to point to SiteMember.<br />
+<br />
+1.0.0<br />
+<br />
+- Added RSS alternate link so browsers can discover SiteForum feeds.<br />
+- Updated properties to use SiteMember for member services.<br />
+- Fixed bug in topic edit form.<br />
+<br />
+0.9.9<br />
+<br />
+- Added sitellite_owner and sitellite_team columns to the siteforum_topic and<br />
+  siteforum_post table.<br />
+<br />
+0.9.8<br />
+<br />
+- Added proper indentation to the &lt;code&gt;&lt;/code&gt; filter.<br />
+- Made the allowed HTML tags click-able from within the list, which inserts<br />
+  the selected tag into the textarea below.<br />
+<br />
+0.9.7-rc<br />
+<br />
+- Added siteforum/sidebar box, which enables you to add a sidebar to your<br />
+  site displaying the latest forum postings.<br />
+- Fixed the login form when clicking "Quote and reply" (it was dropping<br />
+  the "quote" parameter.<br />
+- Added the ability to go back and edit your own posts.<br />
+- SiteSearch checking now looks for pid file, not just the sitesearch<br />
+  directory.<br />
+- Changed the default name from SiteForum to just Forum.<br />
+- Added forum statistics to the bottom of the siteforum index screen.<br />
+- Added a "Log In" link to the menu (which previously only had "Search" in<br />
+  it) on the index screen ("Start new thread" and "Reply" are adequate on<br />
+  subsequent screens).<br />
+- Added RSS news feeds of the latest posts, or the latest posts within a<br />
+  given topic.<br />
+- Added the ability for non-posters to subscribe to discussion threads.<br />
+- Fixed the page title on thread screens, which was showing the topic<br />
+  name instead of the thread name.  Also removed the "Topic:" from the<br />
+  thread list screens.<br />
+<br />
+0.9.6-rc<br />
+<br />
+- Added HTML highlighting (not just PHP highlighting) by wrapping blocks in<br />
+  &lt;code&gt;&lt;/code&gt; tags.<br />
+- Added search engine friendly URLs.<br />
+- Many UI improvements.<br />
+- Made the Org app functionality automatically enabled/disabled based on<br />
+  a) whether Org is installed, and b) the user preferences from Org.<br />
+<br />
+0.9.5-rc<br />
+<br />
+- Fixed a bug where the last post date was sometimes missing on the thread<br />
+  list page.<br />
+- Fixed a bug where the thread creator wouldn't be correctly subscribed<br />
+  to their own thread.<br />
+<br />
+0.9.4-beta<br />
+<br />
+- Added permissions to control access based on topics.<br />
+- Permissions are made to work seamlessly with SiteSearch.<br />
+- Added # of posts and date/time of last post to topic index.<br />
+- Adding date/time of last post to thread list screen.<br />
+- Added a configuration option to specify a template to be used by the<br />
+  whole app.  This allows you to more easily provide a separate template<br />
+  for your forums, which often require a wider amount of screen space<br />
+  than usual.<br />
+- Added support for PHP code examples in messages, with proper source<br />
+  highlighting.  Also strips script and onclick-style event attributes<br />
+  to the allowed tags.<br />
+- Adding ability for posters to subscribe to the threads they've posted to,<br />
+  and receive emails on response postings.<br />
+- Post preview function now implemented.<br />
+<br />
+0.9.3-beta<br />
+<br />
+- Added the ability for an administrator to be emailed when posts are made.<br />
+- Added the ability for an administrator to designate posts as "notices".<br />
+<br />
+0.9.2-alpha<br />
+<br />
+- Minor fixes.<br />
+<br />
+0.9.1-alpha<br />
+<br />
+- Initial public release.<br />
+<br />
+

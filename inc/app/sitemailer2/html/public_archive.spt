@@ -1,0 +1,5 @@
+<ul>
+	{loop obj[items]}
+		<li><a href="{site/prefix}/index/sitemailer2-public-message-action/id.{loop/id}" target="_blank">{loop/date} - {loop/title}</a></li>
+	{end loop}
+</ul>

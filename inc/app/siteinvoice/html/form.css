@@ -1,0 +1,53 @@
+th {
+	background-color: #eee;
+	color: #000;
+	font: 12px Arial;
+	padding: 1px 5px 1px 5px;
+}
+
+th.head {
+	background-color: #eee;
+}
+
+td {
+	background-color: #fff;
+}
+
+td.black {
+	background-color: #4e7c93;
+}
+
+input {
+	border: 0px none;
+	font: 12px Courier;
+	padding: 1px 5px 1px 5px;
+	background-color: #fff;
+	width: 75px;
+}
+
+input.desc {
+	width: 400px;
+}
+
+input.submit {
+	border-left: #fff 2px solid;
+	border-right: #999 2px solid;
+	border-top: #fff 2px solid;
+	border-bottom: #999 2px solid;
+	background-color: #eee;
+	width: 200px;
+}
+
+textarea {
+	border-left: #999 2px solid;
+	border-right: #fff 2px solid;
+	border-top: #999 2px solid;
+	border-bottom: #fff 2px solid;
+	background-color: #eee;
+}
+
+textarea.fax {
+	border: 0px #fff none;
+	background-color: #fff;
+}
+

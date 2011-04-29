@@ -1,0 +1,22 @@
+<p>{intl Hello} {firstname} {lastname},<p>
+
+<p>{intl This email has been sent so that you may confirm your subscription cancellation request.}</p>
+
+<p>{intl Subscription Info}:</p>
+
+<p>{intl Name}: {firstname} {lastname}<br />
+{intl Email}: {email}<br />
+{intl Organization}: {organization}<br />
+{intl Web Site}: {website}</p>
+
+<p>{intl To confirm your email address and cancel your subscription, either click on the following link, or paste it into your web browser.}</p>
+
+<p><a href="{site/url}/index/sitemailer2-public-unsubscribe-verify-action?email={email}&nl={nl}&key={key}"> {site/url}/index/sitemailer2-public-unsubscribe-verify-action?email={email}&nl={nl}&key={key}</a></p>
+
+<p>{intl Thank you}</p>
+
+<p>--</p>
+
+<p>{from_name}
+{from_email}
+{site/url}</p>

@@ -1,0 +1,19 @@
+<h2>{intl Add Note}</h2>
+
+<form method="post" action="{site/prefix}/index/devnotes-index-action" name="devnotes">
+	<input type="hidden" name="appname" value="{appname}" />
+	<p><label for="name">{intl Name}:</label><br />
+	<input type="text" name="name" size="8" />
+	{if count (obj[users]) gt 0}
+		<select name="nameChooser">
+			<option selected="selected" value="">-- {intl Existing User} --</option>
+			{loop obj[users]}
+				<option value="{loop/_value}">{loop/_value}</option>
+			{end loop}
+		</select>
+	{end if}
+	</p>
+	<p><label for="body">{intl Note}:</label><br />
+	<textarea rows="4" cols="30" name="body"> </textarea></p>
+	<p><input type="submit" value="{intl Save}" /></p>
+</form>

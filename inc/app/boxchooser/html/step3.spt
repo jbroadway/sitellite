@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<title>Box Chooser/{name}</title>
+		<script language="javascript" type="text/javascript" src="/js/dialog.js"></script>
+		<script language="javascript">
+		<!--
+
+{spt js.spt}
+
+		// -->
+		</script>
+		<style type="text/css">
+
+			body {
+				font: 12px Verdana, Arial, sans-serif;
+				margin: 0px;
+			}
+
+			td {
+				font: 12px Verdana, Arial, sans-serif;
+				padding: 3px;
+			}
+
+			.odd {
+				background-color: #fff;
+			}
+
+			.even {
+				background-color: #eee;
+			}
+
+			table {
+				width: 94%;
+			}
+
+			p#stripe {
+				width: 100%;
+				padding-top: 0px;
+				padding-left: 0px;
+				padding-right: 0px;
+				margin-top: 0px;
+				margin-left: 0px;
+				margin-right: 0px;
+				background-color: #0081d6;
+			}
+
+			h1,h2,h3,p,table {
+				margin: 10px;
+			}
+
+			hr {
+				border: 0px none;
+				height: 1px;
+				background-color: #999;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			a {
+				color: #0081d6;
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			h1 {
+				color: #0081d6;
+				font-size: 16px;
+			}
+
+			h2 {
+				color: #0081d6;
+				font-size: 14px;
+				font-weight: normal;
+			}
+
+			.err {
+				color: #900;
+			}
+
+		</style>
+	</head>
+	<body onload="if (opener) opener.blockEvents ()" onunload="if (opener) opener.unblockEvents ()"><a name="top"></a>
+
+<p id="stripe">&nbsp;</p>
+
+<h1>Fill in the parameters for the box: {name}</h1>
+
+<p>
+	<a href="javascript: window.close ()">{intl Cancel}</a> &nbsp; &nbsp;
+</p>
+
+<table cellspacing="0">
+	
+	<form
+			name="parameters"
+			action="{site/prefix}/index/boxchooser-?????-action"
+			method="post">
+			
+	{loop obj[parameters]}
+		
+<p>
+	{loop/name} ({loop/default})<br />
+	<input type="text" name="{loop/name}" />
+</p>
+
+	{end loop}
+	<p>
+	<input type="submit" value="{intl Add Box}" class="submit" />
+</p>
+
+</form>
+</table>
+
+
+<p align="right"><a href="#top">[ {intl top} ]</a></p>
+
+<!-- hr />
+<p>
+Copyright &copy; {php date ('Y')} <a href="http://www.simian.ca/" target="_blank">SIMIAN systems Inc.</a><br />
+All rights reserved.
+</p -->
+
+	</body>
+</html>

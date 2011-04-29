@@ -1,0 +1,96 @@
+div.siteshop-product-listing {
+	width: 150px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	float: left;
+}
+
+div.siteshop-product-listing img {
+	width: 125px;
+	height: 87px;
+}
+
+div.siteshop-checkout-product img {
+	width: 125px;
+	height: 87px;
+	margin-right: 15px;
+}
+
+div.siteshop-product-matrix-1 {
+	/* this causes the product category screen to display properly */
+	clear: both;
+}
+
+div.siteshop-product-matrix-3 {
+	/* this causes the product category screen to display properly */
+	margin-right: 0px !important;
+}
+
+.siteshop-product-price {
+	font-weight: bold;
+}
+
+p.siteshop-product-availability {
+	color: #666;
+}
+
+p.siteshop-product-add-to-cart {
+	margin: 20px 0px 20px 0px;
+}
+
+p.siteshop-product-add-to-cart a {
+	font-weight: bold;
+	font-size: 13px;
+	background: #eee;
+	border: 1px solid #666;
+	border-left: 1px solid #999;
+	border-top: 1px solid #999;
+	padding: 7px 7px 5px 7px;
+}
+
+p.siteshop-product-add-to-cart a:hover {
+	text-decoration: none;
+}
+
+span.siteshop-weight {
+	font-size: 9px;
+	font-weight: bold;
+	color: #900;
+	text-transform: uppercase;
+}
+
+span.siteshop-reg {
+	font-size: 9px;
+	font-weight: bold;
+	color: #666;
+	text-transform: uppercase;
+}
+
+p.siteshop-notice {
+	font-weight: bold;
+	color: #900;
+}
+
+div.siteshop-sale-area {
+	/* style sales block here */
+}
+
+div.siteshop-sale-area h2 {
+	color: #900;
+}
+
+div.siteshop-product-weight-1 {
+	/* style special products here */
+}
+
+div.siteshop-product-weight-2 {
+	/* style on sale products here */
+}
+
+div.siteshop-product-weight-3 {
+	/* style hot seller products here */
+}
+
+div.siteshop-product-weight-4 {
+	/* style featured products here */
+}

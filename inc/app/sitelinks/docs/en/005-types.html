@@ -1,0 +1,33 @@
+<h1>Custom Types</h1>
+
+New content types can be defined in SiteLinks by adding INI files to
+the inc/app/sitelinks/conf/types folder.&nbsp; These files define the
+additional fields available to that custom type.&nbsp; An example INI
+file is shown below:<br />
+<br />
+<pre>;&lt;?php /*
+
+[Type]
+
+name = Software
+
+[version]
+
+type = text
+
+[cost]
+
+type = select
+setValues = "eval: formdata_get ('types_software_cost')"
+
+[platform]
+
+type = select
+setValues = "eval: formdata_get ('types_software_platform')"
+
+; */ ?&gt;<br /></pre>The formdata_get() function calls are retrieving lists of select options defined in inc/app/sitelinks/conf/properties.php<br />
+<br />
+Additionally, you can define custom templates for the summary and full
+display of each custom type by adding them to the
+inc/app/sitelinks/html/summary and inc/app/sitelinks/html/full
+folders.&nbsp; These templates are in SimpleTemplate format.<br />

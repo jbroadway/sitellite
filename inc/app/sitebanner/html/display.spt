@@ -1,0 +1,2 @@
+<a href="{site/prefix}/index/sitebanner-click-action?id={id}" target="_{target}">
+	<img src="{file}" alt="{display_url}" width="{width}" height="{height}" border="0" /></a>

@@ -1,0 +1,15 @@
+<form
+	name="passrecover"
+	action="{site/prefix}/index/sitemember-passrecover-action"
+	method="post">
+
+<p>
+	<label for="email">{intl Please enter your email address}</label><br />
+	<input type="text" name="email" id="email" />
+</p>
+
+<p>
+	<input type="submit" value="{intl Send Info}" class="submit" />
+</p>
+
+</form>

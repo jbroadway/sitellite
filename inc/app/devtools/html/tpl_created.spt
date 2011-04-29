@@ -1,0 +1,3 @@
+<p>{intl Your template set has been created.}</p>
+
+<p><a href="{site/prefix}/index/devtools-app">{intl Click here to continue.}</a></p>

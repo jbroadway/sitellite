@@ -1,0 +1,25 @@
+{alt #fff #eee}
+
+<p>
+	<a href="{site/prefix}/index/cms-autosave-clear-action?forward={site/prefix}/index/cms-cpanel-action" onclick="return confirm ('{intl Are you sure?}')">{intl Clear All}</a>
+</p>
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th>&nbsp;</th>
+		<th>{intl Form Name}</th>
+		<th>{intl Date}</th>
+	</tr>
+{loop obj}
+	<tr style="background-color: {alt/next}">
+		<td align="center">
+			<a href="{loop/url}">{intl Continue Editing}</a> |
+			<a href="{site/prefix}/index/cms-autosave-clear-action?url={filter rawurlencode}{loop/url}{end filter}&forward={site/prefix}/index/cms-cpanel-action" onclick="return confirm ('{intl Are you sure?}')">{intl Clear}</a>
+		</td>
+		<td>{loop/page_title}</td>
+		<td>{filter cms_filter_date_time}{loop/ts}{end filter}</td>
+	</tr>
+{end loop}
+</table>
+</p>

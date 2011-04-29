@@ -1,0 +1,20 @@
+<p>
+	<a href="javascript: window.location.href = '{site/prefix}/index/sitetemplate-app'">{intl Back}</a>
+</p>
+
+{if obj[err]}
+	<p class="err">{err}</p>
+{end if}
+
+<form method="post" action="{site/prefix}/index/sitetemplate-newset-action" enctype="multipart/form-data">
+<table cellspacing="0">
+	<tr>
+		<td>{intl Choose a template set name}</td>
+		<td><input type="text" name="file" /></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" value="{intl Add Template Set}" /></td>
+	</tr>
+</table>
+</form>

@@ -1,0 +1,43 @@
+{if not empty (obj[username])}
+<p>{intl Invalid username or password.  Please try again.}</p>
+{end if}
+
+<form
+	name="login"
+	action="{site/prefix}/index/sitemember-app"
+	method="post">
+
+{if not empty (obj[goto])}
+<input type="hidden" name="goto" value="{goto}" />
+{end if}
+
+<p>
+	<label for="username_{context}">{intl Username}</label><br />
+	<input type="text" name="username" size="20" id="username_{context}" />
+</p>
+
+<p>
+	<label for="password_{context}">{intl Password}</label><br />
+	<input type="password" name="password" size="20" id="password_{context}" />
+</p>
+
+{if appconf ('remember_login')}
+<p>
+	<input type="checkbox" name="remember_me" value="yes" id="remember_me_{context}" />
+	<label for="remember_me_{context}">{intl Remember Login}</label>
+</p>
+{end if}
+
+<p>
+	<input type="submit" value="{intl Enter}" class="submit" />
+</p>
+
+</form>
+
+<p>
+	<a href="{site/prefix}/index/sitemember-passrecover-action">{intl Forgot your password?}</a>
+</p>
+
+{if appconf ('register')}
+	<p>{intl Not a member?}  <a href="{site/prefix}/index/sitemember-register-form">{intl Click here to register}</a></p>
+{end if}

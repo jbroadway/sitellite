@@ -1,0 +1,38 @@
+<p>
+	<a href="javascript: window.close ()">{intl Close Window}</a>
+</p>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th align="left" width="20%">{intl Author}</th>
+		<th align="left">{intl Message}</th>
+	</tr>
+	<tr style="background-color: #eee">
+		<td valign="top">
+			<strong>
+				<a href="{site/prefix}/index/sitemember-profile-action?user={session/username}">{session/username}</a>
+			</strong>
+		</td>
+		<td valign="top">
+			<table border="0" cellpadding="0" width="100%">
+				<tr>
+					<td style="border-bottom: 1px solid #aaa">
+			<strong>{subject}</strong> - {intl Posted}: {filter siteforum_filter_date}{date}{end filter}
+					</td>
+				</tr>
+			</table>
+			{filter siteforum_filter_body}{body}<br /><br />
+			{sig}{end filter}
+		</td>
+	</tr>
+	<tr style="background-color: #eee">
+		<td>
+			<a href="#top">{intl Back to top}</a>
+		</td>
+		<td>
+			<a href="{site/prefix}/index/sitemember-profile-action?user={session/username}">{intl View user profile}</a> &nbsp; &nbsp;
+			<a href="{site/prefix}/index/sitemember-contact-form?user={session/username}">{intl Contact this member}</a>
+		</td>
+	</tr>
+	{end loop}
+</table>

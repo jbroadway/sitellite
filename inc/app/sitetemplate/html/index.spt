@@ -1,0 +1,29 @@
+
+<style type="text/css">
+
+	.odd {
+		background-color: #fff;
+	}
+
+	.even {
+		background-color: #eee;
+	}
+
+</style>
+
+<p><a href="{site/prefix}/index/sitetemplate-newset-action">{intl New Template Set}</a></p>
+
+{alt even odd}
+
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	{loop obj[template_sets]}
+		<tr class="{alt/next}">
+			<!-- td style="width: 20px">
+				<a href="{site/prefix}/index/sitetemplate-editset-form?set={loop/path}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" border="0" alt="{intl Edit}" title="{intl Click to edit set properties}" /></a>
+			</td -->			
+			<td>
+				<a href="{site/prefix}/index/sitetemplate-templateselect-action?set_name={loop/path}" title="{loop/description}">{loop/set_name}</a>
+			</td>
+		</tr>
+	{end loop}
+</table>

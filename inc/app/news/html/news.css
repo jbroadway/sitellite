@@ -1,0 +1,23 @@
+@media screen {
+	.news-hidden {
+		display: none;
+	}
+}
+@media print {
+	.news-split {
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
+	.news-split + .news-split {
+		border-top: 1px solid black;
+	}
+}
+
+
+.news-story-summary {
+	display: block;
+}
+
+.news-story-summary-short {
+    display: block;
+}

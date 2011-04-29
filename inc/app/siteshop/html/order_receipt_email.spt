@@ -1,0 +1,21 @@
+Your order #{id} has been submitted and is being processed.  Here is a summary
+of your order:
+
+{loop obj[cart]}
+{php str_pad (loop.sku, 11)}{php str_pad (substr (loop.name, 0, 55), 50)}{php str_pad (substr (loop.options_str, 0, 30), 35)}{php str_pad (loop.qty, 3)}{loop/price} 
+{end loop}
+
+Subtotal  ${subtotal}
+Shipping  ${shipping}
+Tax       ${taxes}{if not empty obj[promo_code]}
+Promo     ${promo_discount}{end if}
+Total     ${total}
+
+This order will ship to the following address:
+
+{ship_to}
+{ship_address}{if not empty (obj[ship_address2])}
+{ship_address2}{end if}
+{ship_city}, {filter strtoupper}{ship_state}{end filter}
+{filter siteshop_filter_country}{ship_country}{end filter}
+{ship_zip}

@@ -1,0 +1,10 @@
+<body onload="document.forms[0].submit ()">
+
+<form method="post" action="http://www.htmlhelp.com/cgi-bin/validate.cgi">
+<input type="hidden" name="area" value="{filter none}{results}{end filter}" />
+<!-- input type="hidden" name="charset" value="ISO-8859-1" / -->
+<input type="hidden" name="warnings" value="yes" />
+<input type="hidden" name="input" value="yes" />
+</form>
+
+</body>

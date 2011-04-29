@@ -1,0 +1,39 @@
+<table class="simplecal" cellpadding="2" cellspacing="2" border="0" width="100%">
+	<tr>
+		<td align="center" class="previous-month" colspan="2">
+			<a href="{site/prefix}/index/siteevent-app/view.week/week.{prev}">&laquo; {intl Previous Week}</a>
+		</td>
+		<td align="center" colspan="3" class="current-month">
+			{dateName}
+		</td>
+		<td align="center" class="next-month" colspan="2">
+			<a href="{site/prefix}/index/siteevent-app/view.week/week.{next}">{intl Next Week} &raquo;</a>
+		</td>
+	</tr>
+	<tr class="day-headings">
+		<td align="center" width="14%">{intl Sun}</td>
+		<td align="center" width="14%">{intl Mon}</td>
+		<td align="center" width="14%">{intl Tue}</td>
+		<td align="center" width="14%">{intl Wed}</td>
+		<td align="center" width="14%">{intl Thu}</td>
+		<td align="center" width="14%">{intl Fri}</td>
+		<td align="center" width="14%">{intl Sat}</td>
+	</tr>
+	<tr>
+{loop obj[list]}
+		<td valign="top" class="day">
+		<span class="day-date"><a href="{site/prefix}/index/siteevent-app/view.day/day.{loop/_key}">{filter siteevent_filter_day}{loop/_key}{end filter}</a></span>
+		<span class="day-links">
+		{loop loop}
+			{if loop[priority] eq 'high'}
+				{if not empty (loop[time])}{loop/time}<br />{end if}<a href="{loop/link}"><strong>{loop/title}</strong></a><br /><br />
+			{end if}
+			{if else}
+				{if not empty (loop[time])}{loop/time}<br />{end if}<a href="{loop/link}">{loop/title}</a><br /><br />
+			{end if}
+		{end loop}
+		</span>
+		</td>
+{end loop}
+	</tr>
+</table>

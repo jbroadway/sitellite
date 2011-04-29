@@ -1,0 +1,29 @@
+<h1>Installation</h1>
+
+<p>ABOUT</p>
+<p>This app implements a documentation browser for the Sitellite class libraries<br />
+in the saf/lib directory of Sitellite.  It's very simple (one class basically)<br />
+based on the PHP tokenizer and one simple output template.</p>
+<p>The motivation was that PhpDocumentor began running out of memory for me, with<br />
+up to 256MB allotted to it, and even with just the default settings.  Doxygen<br />
+then didn't seem to like the PhpDocumentor-isms in my code, and although<br />
+PHPDoctor was much better (and fast!) it seemed to get confused with too many<br />
+@package tags and put most things into the default package, so I wrote my own.</p>
+<p>I would like to extend it to also work with any Sitellite app's libraries as<br />
+well, which should be really easy to do.</p>
+<p>INSTALLATION</p>
+<p>To install, unzip into inc/app/docs and chmod 777 inc/app/docs/data which<br />
+enables caching for progressively better performance.</p>
+<p>To access, go to /index/docs-app on your site.</p>
+<p>TODO</p>
+<p>- Stop hard-coding it for saf/lib and allow it to build references for classes<br />
+  in inc/app/*/lib as well (just look at all the code in the cms app's lib!)</p>
+<p>- Implement a filemtime check on the cache vs real files, not a huge priority<br />
+  since code for a released version of software should in theory never change<br />
+  (that would be a new release).</p>
+<p>- Any suggestions?</p>
+<p>CREDITS</p>
+<p>Written by John Luxford (sitellite.org).  Uses the jQuery library by John Resig<br />
+(jquery.com) as well as the jQuery Treeview plugin by Jörn Zaefferer<br />
+(bassistance.de).<br />
+</p>

@@ -1,0 +1,3 @@
+<p>{intl A message has been sent to the specified email address containing instructions to reset your password.}</p>
+
+<p><a href="{site/prefix}/index/cms-app" target="_top">{intl Return to login}</a></p>

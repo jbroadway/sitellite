@@ -1,0 +1,10 @@
+<ul class="news-authors">
+	{loop obj}
+		<li><a href="{site/prefix}/index/news-app/author.{loop/name}">{loop/name}</a></li>
+	{end loop}
+</ul>
+
+<p class="news-links">
+	<a href="{site/prefix}/index/news-app">{intl Home}</a> &nbsp;//&nbsp;
+	<a href="{site/prefix}/index/news-search-action">{intl Search}</a>
+</p>

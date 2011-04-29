@@ -1,0 +1,18 @@
+<h1 class="news-headline">{title}</h1>
+
+{if not empty (obj.author)}
+<p class="news-byline">{intl By} <a href="{site/prefix}/index/news-app/author.{author}">{author}</a></p>
+{end if}
+
+<p class="news-dateline">{date}</p>
+
+{filter template_parse_body}{body}{end filter}
+
+<p class="news-links">
+	<a href="{site/prefix}/index/news-app">{intl Home}</a> /
+	<a href="{site/prefix}/index/news-app/section.{category}">{filter intl_get}{category}{end filter}</a> &nbsp;//&nbsp;
+	<a href="{site/prefix}/index/news-search-action">{intl Search}</a>
+	{if appconf ('submissions')}
+		&nbsp;//&nbsp; <a href="{site/prefix}/index/news-submissions-form">{intl Submissions}</a>
+	{end if}
+</p>

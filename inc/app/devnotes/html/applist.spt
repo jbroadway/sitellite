@@ -1,0 +1,35 @@
+{alt #fff #eee}
+
+<p>
+	<a href="#settings">{intl Settings}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=devnotes">{intl Help}</a>
+</p>
+
+<a name="list"></a>
+<h2>{intl Screen List}</h2>
+
+{if count (obj[apps]) eq 0}
+	<p>{intl No notes made}</p>
+{end if}
+
+{if count (obj[apps]) gt 0}
+<p>
+<table cellpadding="5" cellspacing="1" border="0" width="100%">
+{loop obj[apps]}
+	<tr style="background-color: {alt/next}">
+		<td><a href="{site/prefix}/index/devnotes-page-action?appname={filter urlencode}{loop/appname}{end filter}"><strong>{loop/appname}</strong></a></td>
+		<td><a href="{site/prefix}/index/devnotes-page-action?appname={filter urlencode}{loop/appname}{end filter}&devnotes=yes">{loop/note_count} {intl notes}</a></td>
+		<!-- td><a href="{site/prefix}/index/devnotes-admin-action?app={loop/appname}">{intl View Notes}</a></td>
+		<td><a href="{loop/appname}" target="_blank">{intl View Screen}</a></td -->
+	</tr>
+{end loop}
+</table>
+</p>
+{end if}
+
+<p align="right"><a href="#top">[ {intl top} ]</a></p>
+
+<a name="settings"></a>
+<h2>{intl Settings}</h2>
+
+{form devnotes/settings}

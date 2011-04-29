@@ -1,0 +1,12 @@
+Hello,
+
+This is an automatic notice sent to let you know that the status of your
+order #{id} has been changed to {filter ucwords}{status}{end filter}.
+{if not empty (obj.tracking)}
+You can track the shipment status of this order here:
+
+{tracking}{end if}
+
+If you have any questions, please let us know.
+
+{site/domain}

@@ -1,0 +1,15 @@
+<h1>Overview</h1>
+
+Sitellite templates are broken up into what we call "template sets".  A template set is a collection of related templates that belong to the same design, but render slightly differently.  These differences can be that they drop a column to widen the design or change the colours to reflect the different sections of the site (or any other design alteration).  They can also be that some templates output to different "output modes", such as PDF, cell phone (WML), or any other format.<br />
+<br />
+Sitellite includes two template sets in the default installation, "admin" and "default".  The "admin" set is used by the Sitellite user interface itself, and the "default" set is used by the example site installed with Sitellite.  When you want to create a custom design, it is best to create a new set for it, instead of modifying the "default" set, then change the "default_template_set" setting in inc/conf/config.ini.php.<br />
+<br />
+A template set consists of several different files, which can all be managed from within SiteTemplate:<br />
+<ul><li><strong>config.ini.php</strong> - Contains the name, description, and author info for the template set.</li>
+<li><strong>modes.php</strong> - Contains a list of output modes, the content type to send to the browser for each of them, and any optional output filters for use with them, such as search result or glossary term highlighting.</li>
+<li><strong>html.default.tpl</strong> - You can have one or more template files in your template set.  The default file is named html.default.tpl.  The first part of the name corresponds to the output mode, and the second part is the template name itself.<br />
+</li>
+<li><strong>site.css</strong> - You can have one or more CSS files in your template set.  The default file is named site.css.</li>
+<li><strong>pix/</strong> - You can have as many images as you want in your template set.  They are all stored in the "pix" subfolder of your template set, and can be referenced in your templates via "/inc/html/SET_NAME/pix/IMAGE_NAME.gif".</li>
+</ul>
+<br />

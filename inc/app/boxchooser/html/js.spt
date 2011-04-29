@@ -1,0 +1,66 @@
+
+var boxchooser_{name}_form = false;
+var boxchooser_{name}_element = false;
+var boxchooser_{name}_attrs = false;
+dialogWin.scrollbars = 'yes';
+dialogWin.resizable = 'yes';
+
+function boxchooser_{name} () {
+	openDGDialog (
+		'{site/prefix}/index/boxchooser-app?name={name}&attrs=' + boxchooser_{name}_attrs,
+		400,
+		300,
+		boxchooser_{name}_handler
+	);
+}
+
+function boxchooser_{name}_get_file (f, e) {
+	boxchooser_{name}_form = f;
+	boxchooser_{name}_element = e;
+	boxchooser_{name} ();
+	return false;
+}
+
+function boxchooser_{name}_view (file) {
+	if (! file) {
+		return false;
+	}
+	
+	win = window.open (
+		file,
+		'BoxChooser',
+		'top=50,left=50'
+	);
+	return false;
+}
+
+function boxchooser_{name}_select (f) { // alt and flt are optional parameters
+	if (arguments.length > 1) {
+		alt = arguments[1];
+		flt = arguments[2];
+		h = arguments[3];
+		w = arguments[4];
+	} else {
+		alt = false;
+		h = false;
+	}
+	if (opener && ! opener.closed) {
+		if (h != false) {
+			opener.dialogWin.returnedValue = new Array ();
+			opener.dialogWin.returnedValue['src'] = f;
+			opener.dialogWin.returnedValue['alt'] = alt;
+			opener.dialogWin.returnedValue['float'] = flt;
+			opener.dialogWin.returnedValue['height'] = h;
+			opener.dialogWin.returnedValue['width'] = w;
+		} else {
+			opener.dialogWin.returnedValue = f;
+		}
+		opener.dialogWin.returnFunc ();
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+	window.close ();
+	if (h != false) {
+		return false;
+	}
+}

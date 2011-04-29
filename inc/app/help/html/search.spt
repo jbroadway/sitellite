@@ -1,0 +1,38 @@
+<p>
+	<a href="help-app?appname={cgi/appname}&lang={cgi/lang}&helpfile={cgi/helpfile}">{intl Back}</a>
+</p>
+
+<form method="get" action="{site/prefix}/index/help-search-action">
+<input type="hidden" name="appname" value="{cgi/appname}" />
+<input type="hidden" name="helpfile" value="{cgi/helpfile}" />
+<input type="hidden" name="lang" value="{cgi/lang}" />
+<p>
+	{intl Search for}:
+	<input type="text" name="query" value="{query}" lang="{cgi/lang}" />
+	<input type="submit" value="{intl Go}" />
+</p>
+</form>
+
+{if not empty (obj[query])}
+	{if count (obj[results]) eq 0}
+		<hr /><p>{intl No matches found.}</p>
+	{end if}
+	{if count (obj[results]) eq 1}
+		<hr /><p>{intl 1 match found.}</p>
+	{end if}
+	{if count (obj[results]) gt 1}
+		<hr /><p>{php count (obj[results])} {intl matches found}:</p>
+	{end if}
+{end if}
+
+{loop obj[results]}
+	<p><a href="{site/prefix}/index/help-app?appname={cgi/appname}&helpfile={loop/id}&lang={cgi/lang}&highlight={filter urlencode}{cgi/query}{end filter}"><img src="{site/prefix}/inc/app/cms/pix/arrow-10px.gif" alt="" title="" border="0" /> <strong lang="{cgi/lang}">{loop/title}</strong></a> ({loop/hits} {intl Occurrences})</p>
+	{if empty (loop.description)}
+		{filter strip_tags}
+		<span lang="{cgi/lang}">{loop/summary}...</span>
+		{end filter}
+	{end if}
+	{if not empty (loop.description)}
+		<span lang="{cgi/lang}">{filter none}{loop/description}...{end filter}</span>
+	{end if}
+{end loop}

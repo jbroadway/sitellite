@@ -1,0 +1,5 @@
+<h2>Options For: {name}</h2>
+
+<form action="siteshop-admin-productoptions-action?p={product_id}" method="post">
+<table align="center" border="0" cellspacing="1" cellpadding="3">
+

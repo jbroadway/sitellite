@@ -1,0 +1,37 @@
+{alt #fff #eee}
+
+<p>
+	<a href="{site/prefix}/index/cms-messages-compose-action">{intl Compose Message}</a>
+	&nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/cms-messages-category-action?category=Inbox">{intl Inbox}</a>
+	&nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/cms-messages-action">{intl Folders}</a>
+	<!-- &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/cms-messages-settings-action">{intl Preferences}</a> -->
+</p>
+
+<p>
+<table border="0" cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<th>&nbsp;</th>
+		<th>{intl Subject}</th>
+		<th>{intl From}</th>
+		<th>{intl Date}</th>
+	</tr>
+{if is_array (obj[messages])}
+{loop obj[messages]}
+	<tr style="background-color: {alt/next}">
+		<td align="center">{if loop.priority eq 'high'}<img src="{site/prefix}/inc/app/cms/pix/icons/important.gif" alt="{intl Important}" title="{intl Important}" border="0" />{end if}</td>
+		<td><a href="{site/prefix}/index/cms-messages-view-action?id={loop/id}">{loop/subject}</a></td>
+		<td>{if loop.from_user eq 'system'}system{end if}{if loop.from_user ne 'system'}<a href="{site/prefix}/index/cms-user-view-action?user={loop/from_user}">{filter msg_get_name}{loop/from_user}{end filter}</a>{end if}</td>
+		<td>{filter msg_date_format}{loop/msg_date}{end filter}</td>
+	</tr>
+{end loop}
+{end if}
+{if not is_array (obj[messages])}
+	<tr>
+		<td colspan="4">{intl No new messages.}</td>
+	</tr>
+{end if}
+</table>
+</p>

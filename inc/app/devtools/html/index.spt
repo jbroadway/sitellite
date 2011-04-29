@@ -1,0 +1,16 @@
+<p>{intl Please choose an action:}</p>
+
+<ul>
+	<li>
+		<a href="{site/prefix}/index/devtools-phpinfo-action">{intl PHP Configuration Info}</a>
+	</li>
+	<li>
+		<a href="{site/prefix}/index/devtools-app-form">{intl Create a New App}</a>
+	</li>
+	<li>
+		<a href="{site/prefix}/index/devtools-tpl-form">{intl Create a New Template Set}</a>
+	</li>
+	<li>
+		<a href="{site/prefix}/index/help-app?appname=devtools">{intl Documentation}</a>
+	</li>
+</ul>

@@ -1,0 +1,27 @@
+{if obj[add]}
+<p><strong>{intl Item added.}</strong></p>
+{end if}
+
+{if obj[del]}
+<p><strong>{intl Item removed.}</strong></p>
+{end if}
+
+{alt #eee #fff}
+
+<p style="height: {height}px; overflow: auto">
+<table border="0" cellpadding="3" cellspacing="1" width="50%">
+{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td>{loop/_value}</td>
+		<td><a href="{site/prefix}/index/cms-joiner-manage-action?table={table}&key={key}&title={title}&del={loop/_key}" onclick="return confirm ('{intl Are you sure you want to delete this item?}')">{intl Remove}</a></td>
+	</tr>
+{end loop}
+</table>
+</p>
+
+<form>
+<input type="hidden" name="table" value="{table}" />
+<input type="hidden" name="key" value="{key}" />
+<input type="hidden" name="title" value="{title}" />
+{intl New item}: <input type="text" name="add" /> <input type="submit" value="{intl Add}" />
+</form>

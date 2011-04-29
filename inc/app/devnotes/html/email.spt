@@ -1,0 +1,18 @@
+<!--
+resolved tickets:
+#198 Allow for HTML mailing templates.
+-->
+<div>
+    {intl Hello},<br />
+    <br />
+    {intl You have received a DevNote message}:<br />
+    <ul>
+        <li>{intl Posted By}: {name}</li>
+        <li>{intl Message}: {body}</li>
+    </ul>
+    {intl The message is also attached to the following page}: <a href="http://{site/domain}{site/prefix}/index/devnotes-page-action?appname={filter urlencode}{appname}{end filter}&devnotes=yes">{filter urlencode}{appname}{end filter}</a><br />
+    <br />
+    {intl Cheers},<br />
+    <br />
+    {intl DevNotes}
+</div>

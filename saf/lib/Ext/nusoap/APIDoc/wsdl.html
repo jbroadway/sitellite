@@ -1,0 +1,1096 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- Generated with PHPDoc v1.5, http://www.phpdoc.de -->
+<html>
+<head>
+	<title>NuSOAP -  - Class: wsdl</title>
+	<link href="phpdoc.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<table width="100%" border="0">
+	<tr>
+		<td align="left" valign="top" bgcolor="#B0BAFF">			
+			<table width="100%">
+				<tr>
+					<td align="left" valign="top"><a href="phpdoc_packagelist.html">Packageindex</a></td>
+					<td align="left" valign="top"><a href="phpdoc_classtree.html">Classtrees</a></td>
+					<td align="left" valign="top"><a href="phpdoc_modulegroup.html">Modulegroups</a></td>
+					<td align="left" valign="top"><a href="phpdoc_elementlist.html">Elementlist</a></td>
+					<td align="left" valign="top"><a href="phpdoc_warnings.html">Report</a></td>
+					<td align="left" valign="top"><a href="phpdoc_xmlfiles.html">XML Files</a></td>
+				</tr>
+			</table>	
+		</td>
+	</tr>
+	<tr>	
+		<td height="20" align="left" valign="top"><hr></td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">			
+			<h6></h6>
+			<h1>wsdl</h1>
+			<pre><a href="nusoap_base.html">nusoap_base</a><br>&nbsp;&nbsp; |<br>&nbsp;&nbsp;+-- <a href="XMLSchema.html">XMLSchema</a><br>&nbsp;&nbsp;&nbsp;&nbsp; |<br>&nbsp;&nbsp;&nbsp;&nbsp;+-- wsdl<br></pre>
+		</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">
+			<h4>public    class wsdl extends <a href="XMLSchema.html">XMLSchema</a></h4>
+			
+			<p>
+			<table>
+				
+				
+				<tr><td align="left" valign="top">Authors</td><td align="left" valign="top">Dietrich Ayala &lt;<a href="mailto:dietricha@ganx4.com">dietricha@ganx4.com</a>&gt;</td></tr>
+				
+				<tr><td align="left" valign="top">Version</td><td align="left" valign="top">v 0.6</td></tr>
+				
+				
+				
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="10" align="left" valign="top">&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td height="20" align="left" valign="top"><hr></td>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td align="left" valign="top"><h2>Methods inherited from XMLSchema</h2></td>
+				</tr>
+				<tr>
+					<td align="left" valign="top"><a href="XMLSchema.html#function_xmlschema">xmlschema</a>, <a href="XMLSchema.html#function_parsefile">parsefile</a>, <a href="XMLSchema.html#function_parsestring">parsestring</a>, <a href="XMLSchema.html#function_schemastartelement">schemastartelement</a>, <a href="XMLSchema.html#function_schemaendelement">schemaendelement</a>, <a href="XMLSchema.html#function_schemacharacterdata">schemacharacterdata</a>, <a href="XMLSchema.html#function_serializeschema">serializeschema</a>, <a href="XMLSchema.html#function_expandqname">expandqname</a>, <a href="XMLSchema.html#function_xdebug">xdebug</a>, <a href="XMLSchema.html#function_getphptype">getphptype</a>, <a href="XMLSchema.html#function_getlocalpart">getlocalpart</a>, <a href="XMLSchema.html#function_getprefix">getprefix</a>, <a href="XMLSchema.html#function_getnamespacefromprefix">getnamespacefromprefix</a>, <a href="XMLSchema.html#function_getprefixfromnamespace">getprefixfromnamespace</a>, <a href="XMLSchema.html#function_gettypedef">gettypedef</a>, <a href="XMLSchema.html#function_serializetypedef">serializetypedef</a>, <a href="XMLSchema.html#function_typetoform">typetoform</a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td align="left" valign="top"><h2>Methods inherited from nusoap_base</h2></td>
+				</tr>
+				<tr>
+					<td align="left" valign="top"><a href="nusoap_base.html#function_nusoap_base">nusoap_base</a>, <a href="nusoap_base.html#function_debug">debug</a>, <a href="nusoap_base.html#function_geterror">geterror</a>, <a href="nusoap_base.html#function_seterror">seterror</a>, <a href="nusoap_base.html#function_serialize_val">serialize_val</a>, <a href="nusoap_base.html#function_serializeenvelope">serializeenvelope</a>, <a href="nusoap_base.html#function_timestamp_to_iso8601">timestamp_to_iso8601</a>, <a href="nusoap_base.html#function_iso8601_to_timestamp">iso8601_to_timestamp</a>, <a href="nusoap_base.html#function_formatdump">formatdump</a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td align="left" valign="top">		
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Public Method Summary</h2></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_wsdl()" class="head">wsdl([ string $wsdl ])</a><br />constructor<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">array</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getOperations()" class="head">getOperations([ string $bindingType ])</a><br />returns an assoc array of operation names => operation data<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">array</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getOperationData()" class="head">getOperationData(string $operation, [ string $bindingType ])</a><br />returns an associative array of data necessary for calling an operation<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">string</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_serialize()" class="head">serialize()</a><br />serialize the parsed wsdl<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">string</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_serializeType()" class="head">serializeType(string $name, string $type, mixed $value)</a><br />serializes a PHP value according a given type definition<br /></td>
+				</tr>
+				
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">		
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Private Method Summary</h2></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_parseWSDL()" class="head">parseWSDL([ string $wsdl ])</a><br />parses the wsdl document<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_start_element()" class="head">start_element(string $parser, string $name, string $attrs)</a><br />start-element handler<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_end_element()" class="head">end_element(string $parser, string $name)</a><br />end-element handler<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_character_data()" class="head">character_data(string $parser, string $data)</a><br />element content handler<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">mixed</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_serializeRPCParameters()" class="head">serializeRPCParameters(string $operation, mixed $direction,  $parameters)</a><br />serialize a PHP value according to a WSDL message definition<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getBindingData()" class="head">getBindingData( $binding)</a><br />Warning: documentation is missing.<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getMessageData()" class="head">getMessageData( $operation,  $portType,  $msgType)</a><br />Warning: documentation is missing.<br /></td>
+				</tr>
+				
+			</table>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td align="left" valign="top"><h2>Fields inherited from nusoap_base</h2></td>
+				</tr>
+				<tr>
+					<td align="left" valign="top"><a href="nusoap_base.html#variable_$soap_defencoding">$soap_defencoding</a>, <a href="nusoap_base.html#variable_$namespaces">$namespaces</a>, <a href="nusoap_base.html#variable_$typemap">$typemap</a>, <a href="nusoap_base.html#variable_$xmlentities">$xmlentities</a>, <a href="nusoap_base.html#variable_$title">$title</a>, <a href="nusoap_base.html#variable_$version">$version</a>, <a href="nusoap_base.html#variable_$error_str">$error_str</a>, <a href="nusoap_base.html#variable_$charencoding">$charencoding</a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	
+	
+	
+	
+	
+	
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Public Method Details</h2></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_wsdl()"><h4>wsdl</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    void wsdl([ string $wsdl ])</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$wsdl</td>
+								<td align="left" valign="top"><code>= >>&quot;&quot;<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">WSDL document URL</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getOperations()"><h4>getOperations</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    array getOperations([ string $bindingType ])</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						  NOTE: currently only supports multiple services of differing binding types   This method needs some work
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$bindingType</td>
+								<td align="left" valign="top"><code>= >>&quot;soap&quot;<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">eg: soap, smtp, dime (only soap is currently supported)</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>array <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getOperationData()"><h4>getOperationData</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    array getOperationData(string $operation, [ string $bindingType ])</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$operation</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, name of operation</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$bindingType</td>
+								<td align="left" valign="top"><code>= >>&quot;soap&quot;<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, type of binding eg: soap</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>array <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_serialize()"><h4>serialize</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    string serialize()</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>string <p> , serialization of WSDL</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_serializeType()"><h4>serializeType</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    string serializeType(string $name, string $type, mixed $value)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$name</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, name of type</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$type</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, type of type, heh</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">mixed</td>
+								<td align="left" valign="top">$value</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, a native PHP value</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>string <p>serialization </td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+			</table>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Private Method Details</h2></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_parseWSDL()"><h4>parseWSDL</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void parseWSDL([ string $wsdl ])</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$wsdl</td>
+								<td align="left" valign="top"><code>= >>&quot;&quot;<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">path or URL</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_start_element()"><h4>start_element</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void start_element(string $parser, string $name, string $attrs)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$parser</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">XML parser object</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$name</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">element name</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$attrs</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">associative array of attributes</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_end_element()"><h4>end_element</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void end_element(string $parser, string $name)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$parser</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">XML parser object</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$name</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">element name</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_character_data()"><h4>character_data</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void character_data(string $parser, string $data)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$parser</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">XML parser object</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$data</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">element content</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_serializeRPCParameters()"><h4>serializeRPCParameters</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    mixed serializeRPCParameters(string $operation, mixed $direction,  $parameters)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						    TODO   - only serialize namespaces used in the message   - multi-ref serialization   - validate PHP values against type definitions, return errors if invalid   - probably more stuff :)   - implement 'out' functionality or write new function for 'out' parameters
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$operation</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">name</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">mixed</td>
+								<td align="left" valign="top">$direction</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">value</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top"></td>
+								<td align="left" valign="top">$parameters</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">Warning: documentation is missing.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>mixed <p>new param or false if initial value didn't validate</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getBindingData()"><h4>getBindingData</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void getBindingData( $binding)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						Warning: documentation is missing.
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top"></td>
+								<td align="left" valign="top">$binding</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">Warning: documentation is missing.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getMessageData()"><h4>getMessageData</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void getMessageData( $operation,  $portType,  $msgType)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						Warning: documentation is missing.
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top"></td>
+								<td align="left" valign="top">$operation</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">Warning: documentation is missing.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top"></td>
+								<td align="left" valign="top">$portType</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">Warning: documentation is missing.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top"></td>
+								<td align="left" valign="top">$msgType</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">Warning: documentation is missing.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+			</table>
+	</tr>
+		
+		
+	
+	
+	<tr>
+		<td height="10" align="left" valign="top"><hr></td>
+	</tr>
+	<tr>
+		<td align="left" valign="top" bgcolor="#C0C0C0">			
+			<table width="100%">
+				<tr>
+					<td align="left" valign="top"><a href="phpdoc_packagelist.html">Packageindex</a></td>
+					<td align="left" valign="top"><a href="phpdoc_classtree.html">Classtrees</a></td>
+					<td align="left" valign="top"><a href="phpdoc_modulegroup.html">Modulegroups</a></td>
+					<td align="left" valign="top"><a href="phpdoc_elementlist.html">Elementlist</a></td>
+					<td align="left" valign="top"><a href="phpdoc_warnings.html">Report</a></td>
+					<td align="left" valign="top"><a href="phpdoc_xmlfiles.html">XML Files</a></td>
+				</tr>
+			</table>	
+		</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Generated on Mon, 22 Apr 2002 16:07:52 -0700 by PHPDoc v1.5 <a href="http://www.phpdoc.de/">www.phpdoc.de</a</td>
+	</tr>
+</table>
+
+</body>
+</html>

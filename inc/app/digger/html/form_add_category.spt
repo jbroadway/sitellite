@@ -1,0 +1,11 @@
+<p>{intl Step 1 - Topic Selection}</p>
+
+<form method="GET">
+	<p>{intl Topic}
+	<select name="category" onchange="this.form.submit()">
+	{loop obj[categories]}
+		<option value="{loop/_key}">{loop/_value}</option>
+	{end loop}
+	</select></p>
+	<p align="center"><input type="submit" value="{intl Next}" /></p>
+</form>

@@ -1,0 +1,3 @@
+<p>{intl You have been unsubscribed.}</p>
+
+<p><a href="{site/prefix}/index">{intl Continue browsing.}</a></p>

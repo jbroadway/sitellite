@@ -1,0 +1,12 @@
+phpApplication v1.0 by nathan@0x00.org
+http://0x00.org/php/phpApplication/
+
+phpApplication is an application level variable manager.  It allows you to have a set of variables that are scoped to the entire PHP site, not just the session or page.  The variables set will be available from any page that uses the same application object name.
+
+phpApplication gives PHP a similar option to ColdFusion's #Application.var# storage and ASP's Application object.
+
+See sample.php for an example.
+
+Please drop me an email with your success or horror story ;)
+
+nathan@0x00.org

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<slideshow>
+	<preferences
+		controlAutoHide="true"
+		kenBurnsMode="random"
+	/>
+	<album title="{title}" description="{description}" thumbnail="{album_thumb}" imagePath="{site/prefix}/pix/{if not empty (obj[folder])}{folder}/{end if}" thumbnailPath="{site/prefix}/inc/app/monoslideshow/pix/">
+	{loop obj[images]}
+		<img src="{filter basename}{loop/image}{end filter}" thumbnail="{filter basename}{loop/thumb}{end filter}" />
+	{end loop}
+	</album>
+</slideshow>

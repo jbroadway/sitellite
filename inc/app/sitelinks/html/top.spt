@@ -1,0 +1,22 @@
+{if not empty (obj[category])}
+<h1>{category}</h1>
+
+<p>
+	<a href="{site/prefix}/index/sitelinks-app">{appconf/sitelinks_name}</a> /
+	{category}
+</p>
+{end if}
+{if else}
+<h1>{appconf/sitelinks_name}</h1>
+{end if}
+
+<ul>
+{loop obj[list]}
+	{if appconf ('item_pages')}
+		<li><a href="{site/prefix}/index/sitelinks-app/item.{loop/id}">{loop/title} ({intl Rating}: {loop/ratings})</a></li>
+	{end if}
+	{if else}
+		<li><a href="{site/prefix}/index/sitelinks-app/forward.{loop/id}">{loop/title} ({intl Rating}: {loop/ratings})</a></li>
+	{end if}
+{end loop}
+</ul>

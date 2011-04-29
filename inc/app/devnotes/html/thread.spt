@@ -1,0 +1,11 @@
+{eval loader_import ('saf.Date')}
+
+<h2>{intl Notes}</h2>
+
+{loop obj[thread]}
+	
+	<p style="background-color: {php obj[users][ loop.name ]}; padding: 5px" class="devnotes-message">
+		<a href="{site/prefix}/index/devnotes-user-action?user={loop/name}"{if obj[inframe]} target="_parent"{end if}><strong>{loop/name}</strong></a> - {php Date::timestamp (loop.ts, 'g:ia - M j, Y')}<br /><br />
+		{loop/body}
+	</p>
+{end loop}

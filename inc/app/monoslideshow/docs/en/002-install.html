@@ -1,0 +1,19 @@
+<h1>Installation</h1>
+
+<p>Installing the Monoslideshow app<br />
+--------------------------------</p>
+<p>Please Note: The Monoslideshow app requires the PHP GD extension with JPEG<br />
+support for use in generating thumbnails of images.</p>
+<p>1. Unpack the app into inc/app</p>
+<p>cp monoslideshow_app.tar.gz /path/to/sitellite/inc/app<br />
+cd /path/to/sitellite/inc/app<br />
+tar -zxf monoslideshow_app.tar.gz</p>
+<p>2. Set the permissions of the pix folder to 777</p>
+<p>chmod -R 777 monoslideshow/pix</p>
+<p>3. Place the monoslideshow.swf file from your copy of Monoslideshow into<br />
+the monoslideshow/html folder.</p>
+<p>4. Embed into any page with the box chooser or with the XT command:</p>
+<p><xt:box name="monoslideshow/embed" folder="some_folder_inside_pix"></xt:box>
+</p>
+<p>Make sure that "some_folder_inside_pix" is replaced with a real sub-folder<br />
+of pix/ that contains .jpg images.</p>

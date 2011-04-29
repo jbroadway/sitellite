@@ -1,0 +1,27 @@
+<div>
+    <b>{intl Story Submission}</b><br />
+    <br />
+    <b>- {intl User Info} -</b><br />
+    <ul>
+        {if session_valid ()}
+            <li>{intl User}: {session/username}</li>
+        {end if}
+        <li>{intl IP Address}: {_SERVER/REMOTE_ADDR}</li>
+    </ul>
+    <br />
+    <b>- {intl Story Info} -</b><br />
+    <ul>
+        <li>{intl ID}: {id}</li>
+        <li>{intl Title}: {title}</li>
+        <li>{intl Author}: {author}</li>
+        <li>{intl Category}: {category}</li>
+    </ul>
+    <br />
+    <b>- {intl Summary} -</b><br />
+    <span>{summary}</span>
+    <br />
+    <b>- {intl Body} -</b><br />
+    <span>{filter htmlentities_compat}{body}{end filter}</span>
+    <br />
+    --
+</div>

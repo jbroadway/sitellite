@@ -1,0 +1,12 @@
+<!--
+resolved tickets:
+#197 File Icons - File Display
+ -->
+<ul>
+	{loop obj[list]}
+		<li class="file-extentions">
+			<img width="16" height="16" src="{site/prefix}/inc/app/cms/pix/extensions/{loop/extension}.png" alt="[{loop/extension}]"/>
+			<a href="{site/prefix}/index/cms-filesystem-action/{path}{loop/name}.{loop/extension}">{loop/display_title}{if obj[show]}.{loop/extension}{end if}</a>
+		</li>
+	{end loop}
+</ul>

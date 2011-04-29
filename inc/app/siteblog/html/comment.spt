@@ -1,0 +1,23 @@
+<a name="#siteblog-comments"></a>
+{if count (obj[comment]) gt 0}
+<h3>{intl Comments}</h3>
+
+{loop obj[comment]}
+
+    <div class="blogonlypost">
+    <div class="bloginfo">
+    <h3>{loop/subject}</h3>
+    Posted by {loop/author} @ {filter siteblog_filter_nicedate}{loop/date}{end filter} </div>
+    {box cms/buttons?collection=siteblog_comment&add=false&id=[loop/id]&status=approved&access=public&team=none}
+    <p>{filter siteblog_filter_comment}{loop/body}{end filter}</p>
+    </div>
+    <br />
+
+{end loop}
+{end if}
+{if count (obj[comment]) eq 0}
+<h3>{intl No Comments}</h3>
+{end if}
+
+<a name="#siteblog-comment-form"></a>
+{form siteblog/comment}

@@ -1,0 +1,52 @@
+<div>
+    {if not empty (obj[account_number])}<b>{intl Account} #:</b> {account_number}<br />{end if}
+
+    {if not empty (obj[pass_phrase])}<b>{intl Pass Phrase}:</b> {pass_phrase}<br />{end if}
+
+    <b>{intl Name}:</b> {salutation} {first_name} {last_name}<br />
+
+    <b>{intl Email}:</b> {email_address}<br />
+
+    {if not empty (obj[birthday])}<b>{intl Birthday}:</b> {birthday}<br />{end if}
+
+    {if not empty (obj[gender])}<b>{intl Gender}:</b> {gender}<br />{end if}
+
+    {if not empty (obj[address_line1])}
+    <br />
+    <b>{intl Address}:</b>
+    <p>
+        {address_line1}<br />
+        {address_line2}<br />
+        {city}, {state}<br />
+        {country} {zip}<br />
+    </p>
+    {end if}
+
+    {if not empty (obj[company])}<b>{intl Company}:</b> {company}<br />{end if}
+
+    {if not empty (obj[job_title])}<b>{intl Job Title}:</b> {job_title}<br />{end if}
+
+    {if not empty (obj[phone_number])}<b>{intl Phone Number}:</b> {phone_number}<br />{end if}
+
+    {if not empty (obj[daytime_phone])}<b>{intl Daytime Phone}:</b> {daytime_phone}<br />{end if}
+
+    {if not empty (obj[evening_phone])}<b>{intl Evening Phone}:</b> {evening_phone}<br />{end if}
+
+    {if not empty (obj[mobile_phone])}<b>{intl Mobile Phone}:</b> {mobile_phone}<br />{end if}
+
+    {if not empty (obj[fax_number])}<b>{intl Fax Number}:</b> {fax_number}<br />{end if}
+
+    {if not empty (obj[preferred_method_of_contact])}<b>{intl Preferred method of contact}:</b> {preferred_method_of_contact}<br />{end if}
+
+    {if not empty (obj[best_time])}<b>{intl Best time to reach you}:</b> {best_time}<br />{end if}
+
+    {if not empty (obj[may_we_contact_you])}<b>{intl May we contact you}:</b> {may_we_contact_you}<br />{end if}
+
+    {if not empty (obj[comments])}
+    <br />
+    <b>{intl Comments}:</b>
+    <p>
+        {filter none}{comments}{end filter}
+    </p>
+    {end if}
+</div>

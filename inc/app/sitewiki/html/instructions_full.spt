@@ -1,0 +1,355 @@
+<style type="text/css">
+
+body, td {
+	font-family: sans-serif;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+h1 {
+	font-size: 18px;
+}
+
+	h1 span.small {
+		font-size: 12px;
+	}
+
+h2 {
+	font-size: 16px;
+}
+
+h3 {
+	font-size: 14px;
+}
+
+h4 {
+	font-size: 13px;
+}
+
+h4 {
+	font-size: 12px;
+}
+
+pre, p.pre, code {
+	display: block;
+	border: 1px dashed #666;
+	background: #eee;
+	padding: 5px;
+}
+
+</style>
+
+<body><a name="top"></a>
+
+	<h1>{intl Formatting Instructions} <span class="small">(<a href="javascript: window.close ()">{intl Close Window}</a>)</span></h1>
+
+	<ol>
+		<li><a href="#inline">Inline Formatting</a></li>
+		<li><a href="#literal">Literal Text</a></li>
+		<li><a href="#headings">Headings</a></li>
+		<li><a href="#toc">Table of Contents</a></li>
+		<li><a href="#rules">Horizontal Rules</a></li>
+		<li><a href="#lists">Lists</a></li>
+		<li><a href="#links">Links and Images</a></li>
+		<li><a href="#code">Code Blocks</a></li>
+		<li><a href="#tables">Tables</a></li>
+	</ol>
+
+	<a name="inline"></a>
+	<h2>{intl Inline Formatting}</h2>
+
+	<pre>//emphasis text//</pre>
+	<p><em>emphasis text</em></p>
+
+	<pre>**strong text**</pre>
+	<p><strong>strong text</strong></p>
+
+	<pre>//**emphasis and strong**//</pre>
+	<p><em><strong>emphasis and strong</strong></em></p>
+
+	<p class="pre"><tt>{<nul />{<nul />
+		teletype text
+	<nul />}<nul />}</tt></p>
+	<p><tt>teletype text</tt></p>
+
+	<pre>@@--- delete text +++ insert text @@</pre>
+	<p><del> delete text </del><ins> insert text </ins></p>
+
+	<pre>@@--- delete only @@</pre>
+	<p><del> delete only </del></p>
+
+	<pre>@@+++ insert only @@</pre>
+	<p><ins> insert only </ins></p>
+
+<p align="right"><a href="#top">Top</a></p>
+
+	<a name="literal"></a>
+	<h2>{intl Literal Text}</h2>
+
+	<pre>``This //text// does not get **parsed**.``</pre>
+	<p>This //text// does not get **parsed**.</p>
+
+<p align="right"><a href="#top">Top</a></p>
+
+	<a name="headings"></a>
+	<h2>{intl Headings}</h2>
+
+	<pre>+++ Level 3 Heading<br />++++ Level 4 Heading<br />+++++ Level 5 Heading</pre>
+
+	<h3 style="margin-bottom: 0px; margin-top: 0px">Level 3 Heading</h3>
+
+	<h4 style="margin-bottom: 0px; margin-top: 0px">Level 4 Heading</h4>
+
+	<h5 style="margin-bottom: 0px; margin-top: 0px">Level 5 Heading</h5>
+
+<p align="right"><a href="#top">Top</a></p>
+
+	<a name="toc"></a>
+	<h2>{intl Table of Contents}</h2>
+
+	<p>To create a list of every heading, with a link to that heading, put a table of contents tag on its own line.</p>
+
+	<pre>[[toc]]</pre>
+
+<p align="right"><a href="#top">Top</a></p>
+
+	<a name="rules"></a>
+	<h2>{intl Horizontal Rules}</h2>
+
+	<p>Use four dashes (<tt>----</tt>) to create a horizontal rule.</p>
+
+<p align="right"><a href="#top">Top</a></p>
+
+	<a name="lists"></a>
+	<h2>{intl Lists}</h2>
+
+	<h3>{intl Bullet Lists}</h3>
+
+	<p>You can create bullet lists by starting a paragraph with one or more asterisks.</p>
+
+	<pre>* Bullet one<br />&nbsp; * Sub-bullet</pre>
+
+	<ul>
+		<li>Bullet one
+			<ul>
+				<li>Sub-bullet</li>
+			</ul>
+		</li>
+	</ul>
+
+	<h3>{intl Numbered Lists}</h3>
+
+	<p>Similarly, you can create numbered lists by starting a paragraph with one or more hashes.</p>
+
+	<pre># Number one<br /># Number two<br />&nbsp; # Sub-item</pre>
+
+	<ol>
+		<li>Number one</li>
+		<li>Number two
+			<ol>
+				<li>Sub-item</li>
+			</ol>
+		</li>
+	</ol>
+
+	<h3>Mixing Bullet and Number List Items</h3>
+
+	<p>You can mix and match bullet and numbered lists:</p>
+
+	<pre># Number one
+ * Bullet
+ * Bullet
+# Number two
+ * Bullet
+ * Bullet
+  * Sub-bullet
+   # Sub-sub-number
+   # Sub-sub-number
+# Number three
+ * Bullet
+ * Bullet</pre>
+ 
+ <ol>
+ 	<li>Number one
+ 		<ul>
+ 			<li>Bullet</li>
+ 			<li>Bullet</li>
+ 		</ul>
+ 	</li>
+ 	<li>Number two
+ 		<ul>
+ 			<li>Bullet</li>
+ 			<li>Bullet
+ 				<ul>
+ 					<li>Sub-bullet
+ 						<ol>
+ 							<li>Sub-sub-number</li>
+ 							<li>Sub-sub-number</li>
+ 						</ol>
+ 					</li>
+ 				</ul>
+ 			</li>
+ 		</ul>
+ 	</li>
+ 	<li>Number three
+ 		<ul>
+ 			<li>Bullet</li>
+ 			<li>Bullet</li>
+ 		</ul>
+ 	</li>
+ </ol>
+
+	<h3>Definition Lists</h3>
+
+	<p>You can create a definition (description) list with the following syntax:</p>
+
+	<pre>: Item 1 : Something<br />: Item 2 : Something else</pre>
+
+	<dl>
+		<dt>Item 1</dt>
+		<dd>Something</dd>
+		<dt>Item 2</dt>
+		<dd>Something else</dd>
+	</dl>
+
+<p align="right"><a href="#top">Top</a></p>
+
+	<a name="links"></a>
+	<h2>Links and Images</h2>
+
+	<h3>Wiki Links</h3>
+
+	<p><a href="#">SmashWordsTogether</a> to create a page link.</p>
+
+	<p>You can force a <a href="#">WikiPage</a> name <strong>not</strong> to be clickable by putting an exclamation mark in front of it.</p>
+
+	<pre>WikiPage !WikiPage</pre>
+
+	<p><a href="#">WikiPage</a> WikiPage</p>
+
+	<p>You can create a "described" or "labeled" link to a wiki page by putting the page name in brackets, followed by some text.</p>
+
+	<pre>[WikiPage Descriptive text for the link.]</pre>
+
+	<p><a href="#">Descriptive text for the link.</a></p>
+
+	<h3>URLs</h3>
+
+	<p>Create a remote link simply by typing its URL: <a href="http://ciaweb.net">http://ciaweb.net</a>.</p>
+
+	<p>If you like, enclose it in brackets to create a numbered reference and avoid cluttering the page; <tt>[http://ciaweb.net/free/]</tt> becomes <sup><a href="http://ciaweb.net/free/">1</a></sup>.</p>
+
+	<p>Or you can have a described-reference instead of a numbered reference:</p>
+
+	<pre>[http://pear.php.net PEAR]</pre>
+
+	<p><a href="http://pear.php.net">PEAR</a></p>
+
+	<h3>Images</h3>
+
+	<p>You can put a picture in a page by typing the URL to the picture (it must end in gif, jpg, or png).</p>
+
+	<pre>http://c2.com/sig/wiki.gif</pre>
+
+	<p><img src="http://c2.com/sig/wiki.gif" border="0" /></p>
+
+	<p>You can use the described-reference URL markup to give the image an ALT tag:</p>
+
+	<pre>[http://phpsavant.com/etc/fester.jpg Fester]</pre>
+
+	<p><img src="http://phpsavant.com/etc/fester.jpg" border="0" alt="Fester" /></p>
+
+<p align="right"><a href="#top">Top</a></p>
+
+	<a name="code"></a>
+	<h2>{intl Code Blocks}</h2>
+
+	<p>Create code blocks by using <tt>&lt;code&gt;...&lt;/code&gt;</tt> tags (each on its own line).</p>
+
+	<pre>&lt;code&gt;
+This is an example code block!
+&lt;/code&gt;</pre>
+
+	<p>To create PHP blocks that get automatically colorized when you use PHP tags, simply surround the code with <tt>&lt;code type="php"&gt; ... &lt;/code&gt;</tt> tags (the tags themselves should each be on their own lines, and no need for the <tt>&lt;?php ... ?&gt;</tt> tags).</p>
+
+	<pre>&lt;code type="php"&gt;
+
+for ($i = 0; $i &lt; 10; $i++) {
+	echo $i . '&lt;br /&gt;';
+}
+
+&lt;/code&gt;</pre>
+
+<code><font color="#000000">
+<font color="#007700">&lt;?</font><font color="#0000BB">php<br /><br /></font><font color="#007700">for (</font><font color="#0000BB">$i </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i </font><font color="#007700">&lt; </font><font color="#0000BB">10</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">++) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$i </font><font color="#007700">. </font><font color="#DD0000">'&lt;br /&gt;'</font><font color="#007700">;<br />
+}<br /><br /></font><font color="#0000BB">?&gt;</font>
+
+</font>
+</code>
+
+<p align="right"><a href="#top">Top</a></p>
+
+	<a name="tables"></a>
+	<h2>{intl Tables}</h2>
+
+	<p>You can create tables using pairs of vertical bars:</p>
+
+	<pre>|| cell one || cell two ||
+|||| big ol' line ||
+|| cell four || cell five ||
+|| cell six || here's a very long cell ||</pre>
+
+	<table border="1" cellpadding="5" cellspacing="0">
+		<tr>
+			<td>cell one</td>
+			<td>celltwo</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				big ol' line
+			</td>
+		</tr>
+		<tr>
+			<td>cell four</td>
+			<td>cell five</td>
+		</tr>
+		<tr>
+			<td>cell six</td>
+			<td>here's a very long cell</td>
+		</tr>
+	</table>
+
+	<pre>|| lines must start and end || with double vertical bars || nothing ||
+|| cells are separated by || double vertical bars || nothing ||
+|||| you can span multiple columns by || starting each cell ||
+|| with extra cell |||| separators ||
+|||||| but perhaps an example is the easiest way to see ||</pre>
+
+	<table border="1" cellpadding="5" cellspacing="0">
+		<tr>
+			<td>lines must start and end</td>
+			<td>with double vertical bars</td>
+			<td>nothing</td>
+		</tr>
+		<tr>
+			<td>cells are separated by</td>
+			<td>double vertical bars</td>
+			<td>nothing</td>
+		</tr>
+		<tr>
+			<td colspan="2">you can span multiple columns by</td>
+			<td>starting each cell</td>
+		</tr>
+		<tr>
+			<td>will extra cell</td>
+			<td colspan="2">separators</td>
+		</tr>
+		<tr>
+			<td colspan="3">but perhaps an example is the easiest way to see</td>
+		</tr>
+	</table>
+
+<p align="right"><a href="#top">Top</a></p>
+
+</body>

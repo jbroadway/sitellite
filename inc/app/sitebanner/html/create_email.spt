@@ -1,0 +1,22 @@
+Banner Submission
+
+- User Info -
+
+User:        {session/username}
+IP Address:  {_SERVER/REMOTE_ADDR}
+
+- Banner Info -
+
+ID:          {id}
+Name:        {name}
+Web Site:    {url}
+Image:       {file}
+Alt Text:    {display_url}
+Sections:    {section}
+Position:    {position}
+
+- Additional Comments -
+
+{filter none}{description}{end filter}
+
+--

@@ -1,0 +1,8 @@
+<p>Your MySQL database information has been verified.  We're now ready to install the Sitellite database tables and save your configuration settings.  Click "Next" to proceed.</p>
+
+<input type="hidden" name="dbhost" value="{cgi/dbhost}" />
+<input type="hidden" name="dbport" value="{cgi/dbport}" />
+<input type="hidden" name="database" value="{cgi/database}" />
+<input type="hidden" name="dbuser" value="{cgi/dbuser}" />
+<input type="hidden" name="dbpass" value="{cgi/dbpass}" />
+<input type="hidden" name="drop" value="{cgi/drop}" />

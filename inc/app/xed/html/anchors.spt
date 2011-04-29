@@ -1,0 +1,28 @@
+<script language="javascript" type="text/javascript">
+
+function submit_anchor (anchor) {
+	if (opener && ! opener.closed) {
+		opener.dialogWin.returnedValue = anchor;
+		opener.dialogWin.returnFunc ();
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+	window.close ();
+	return false;
+}
+
+</script>
+
+<form>
+	<p><select name="anchor">
+		<option value="">{intl - SELECT -}</option>
+	{loop obj}
+		<option value="{loop/_key}">{loop/_value}</option>
+	{end loop}
+	</select></p>
+	<p>
+		<input type="submit" value="{intl OK}" onclick="return submit_anchor (this.form.elements['anchor'].options[this.form.elements['anchor'].selectedIndex].value)" />
+		&nbsp;&nbsp;
+		<input type="submit" value="{intl Cancel}" onclick="window.close (); return false" />
+	</p>
+</form>

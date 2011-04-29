@@ -1,0 +1,15 @@
+<div class="shoutbox" style="height: 250px; overflow: auto">
+
+{loop obj}
+<p>
+    <a href="{loop/url}">{loop/name}</a> says:<br />
+    {loop/message}<br />
+    <span class="shoutbox-date">
+        {filter shoutbox_filter_date}{loop/posted_on}{end filter}
+    </span>
+</p>
+{end loop}
+
+</div>
+
+{form shoutbox/add}

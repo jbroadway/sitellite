@@ -1,0 +1,38 @@
+{errormsg}
+<form
+	name="signup"
+	action="{site/prefix}/index/sitellite-user-signup-action"
+	method="post">
+
+<p>
+	Username (used for login)<br />
+	<input type="text" name="Xusername" size="20" value="{Xusername}" />
+</p>
+
+<p>
+	Password<br />
+	<input type="password" name="password" size="20" /><br />
+	<input type="password" name="password_confirm" size="20" />
+</p>
+
+<p>
+	Email<br />
+	<input type="text" name="email" size="20" value="{email}" />
+</p>
+
+<p>
+	First & Last name<br />
+	<input type="text" name="firstname" size="20" value="{firstname}" />
+	<input type="text" name="lastname" size="20" value="{lastname}" />
+</p>
+
+<p>
+</p>
+
+<p>
+	<input type="submit" value="Sign Up" class="submit" /><br />
+</p>
+
+<input type="hidden" name="stage" value="essential" />
+
+</form>

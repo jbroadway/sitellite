@@ -1,0 +1,1 @@
+alter table sitellite_msg_recipient change status status enum('unread','read','trash') not null default 'unread';

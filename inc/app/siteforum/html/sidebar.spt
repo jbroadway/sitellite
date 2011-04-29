@@ -1,0 +1,14 @@
+<ul>
+	{loop obj[list]}
+		<li>
+			<a href="{site/prefix}/index/siteforum-post-action/id.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}"><strong>{loop/subject}</strong></a><br />
+			{intl Posted}: {filter siteforum_filter_shortdate}{loop/ts}{end filter}<br />
+			{intl Topic}: <a href="{site/prefix}/index/siteforum-topic-action/topic.{loop/topic_id}/title.{filter siteforum_filter_link_title}{loop/topic_name}{end filter}">{loop/topic_name}</a><br />
+			{intl Author}: {if loop.user_public eq 'yes'}<a href="{site/prefix}/index/sitemember-profile-action/user.{loop/user_id}">{loop/user_id}</a>{end if}{if else}{loop/user_id}{end if}
+		</li>
+	{end loop}
+</ul>
+
+<p>
+	<a href="{site/prefix}/index/siteforum-app">{intl Visit} {appconf/forum_name}</a>
+</p>

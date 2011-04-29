@@ -1,0 +1,5 @@
+<ul>
+{loop items}
+<li><a href="{site/prefix}/{loop/url}">{loop/title}</a></li>
+{end loop}
+</ul>

@@ -1,0 +1,18 @@
+<!--
+resolved tickets:
+#198 Allow for HTML mailing templates.
+-->
+<div>
+    {intl Hello},<br />
+    <br />
+    {intl A new file has been added at}: <a href="http://{site/domain}{site/prefix}/index/devfiles-page-action?appname={filter urlencode}{appname}{end filter}&files=yes">{filter urlencode}{appname}{end filter}</a><br />
+    <ul>
+        <li>{intl Posted By}: {name}</li>
+        <li>{intl Type}: {type}</li>
+        <li>{intl Size}: {size}</li>
+        <li>{intl Download}: http://{site/domain}{site/prefix}/inc/app/devfiles/data{filter urlencode}{_filename}{end filter}</li>
+    </ul>
+    {intl Cheers},<br />
+    <br />
+    {intl Files}
+</div>

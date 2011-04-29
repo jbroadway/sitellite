@@ -1,0 +1,27 @@
+<form
+	name="passrecover"
+	action="{site/prefix}/index/sitellite-user-passrecover-action"
+	method="post">
+
+{if obj.error}
+<p class="invalid">{intl Your password does not match.}</p>
+{end if}
+
+<p>
+	{intl Please enter a new password}<br />
+	<input type="password" name="password" />
+</p>
+
+<p>
+	{intl Please re-type your new password}<br />
+	<input type="password" name="verify" />
+</p>
+
+<p>
+	<input type="submit" value="{intl Save}" class="submit" />
+</p>
+
+<input type="hidden" name="email" value="{email}" />
+<input type="hidden" name="key" value="{key}" />
+
+</form>

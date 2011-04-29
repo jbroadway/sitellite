@@ -1,0 +1,11 @@
+{spt nav.spt obj}
+
+<ul>
+{loop obj.list}
+	<li>
+		<a href="{site/prefix}/index/sitewiki-app/show.{loop/id}">{filter sitewiki_filter_id}{loop/id}{end filter}</a><br />
+		{intl on} {filter sitewiki_filter_date}{loop/sv_revision}{end filter}
+		{intl by} {loop/sv_author}
+	</li>
+{end loop}
+</ul>

@@ -1,0 +1,2 @@
+<a href="{site/prefix}/index/siteblog-view-action/head.on/{var}.{value}{if obj[title]}/title.{filter siteblog_filter_link_title}{title}{end filter}{end if}">
+    {display} ({count})</a><br />

@@ -1,0 +1,69 @@
+<h1>Installation</h1>
+
+Usage:<br />
+<br />
+Install into inc/app/webfiles folder.  Access via:<br />
+<br />
+http://www.example.com/index/webfiles-app<br />
+<br />
+Requires a valid Sitellite login.<br />
+<br />
+Status:<br />
+<br />
+Development has been halted, although it is very close to working.<br />
+WebDAV does not seem to be a stable solution for remote file access,<br />
+so we're focusing instead on the Sitellite Desktop and integrating<br />
+that with our own custom REST API for Web Files that supports all<br />
+of the same operations as WebDAV, but which we control at the API<br />
+and design level.  The Web Files REST API will also be easier to<br />
+support and extend with future ideas like versioning, whereas<br />
+the WebDAV versioning extension is ill-supported by the majority<br />
+of popular clients and servers.<br />
+<br />
+Litmus tests:<br />
+<br />
+- basic 15/15 passed<br />
+- copymove 13/13 passed<br />
+- props 22/30 passed (not officially supporting custom properties)<br />
+- locks 20/30 passed (they do seem to be working correctly via cadaver)<br />
+- http 4/4 passed<br />
+<br />
+Clients:<br />
+<br />
+Cadaver<br />
+<br />
+- No known issues<br />
+<br />
+Transmit<br />
+<br />
+- No known issues<br />
+<br />
+OSX<br />
+<br />
+- "File already exists" error on PUT for any uppercase file names.<br />
+  Results in a zero-byte file uploaded.  In Web Files, names are<br />
+  changed to lowercase because MySQL select is case-insensitive<br />
+  and Web Files depends on that for versioning and other features.<br />
+- Stores dot-files outside of Web Files collection, just in the<br />
+  filesystem, so they don't pollute the file list for other users.<br />
+<br />
+Windows<br />
+<br />
+- Not thoroughly tested, but the only known issue is direct editing<br />
+  fails (edit through a program or right-click to open).  Download,<br />
+  drag 'n' drop, upload, etc. all work fine.<br />
+- Make sure to connect using dav@ to specify username or Windows will<br />
+  revert to an unsupported authentication scheme.  Still had to go<br />
+  through the username/password prompt 3 times before it took (same<br />
+  creds each time, *sigh*).<br />
+<br />
+Webdrive (3rd party Windows client)<br />
+<br />
+- No known issues<br />
+<br />
+Misc:<br />
+<br />
+- Not yet tested with https<br />
+- Copy/move folders only goes 2 levels, not recursive<br />
+<br />
+

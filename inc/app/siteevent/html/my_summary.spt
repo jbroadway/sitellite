@@ -1,0 +1,7 @@
+<ul>
+	<li><a href="{site/prefix}/index/siteevent-my-submissions-action">{intl Approved} ({events})</a></li>
+	<li><a href="{site/prefix}/index/siteevent-my-submissions-action?status=pending">{intl Pending} ({pending})</a></li>
+	<li><a href="{site/prefix}/index/siteevent-my-submissions-action?status=rejected">{intl Rejected} ({rejected})</a></li>
+</ul>
+
+<p><a href="{site/prefix}/index/siteevent-submissions-form">{intl Submit An Event}</a></p>

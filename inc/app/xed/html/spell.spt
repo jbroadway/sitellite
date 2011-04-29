@@ -1,0 +1,208 @@
+<html>
+	<head>
+		<title>{intl Spell Checker}</title>
+		<style type="text/css">
+			body {
+				margin: 0px;
+				padding: 0px;
+				font: 10px Arial, Helvetica, sans-serif;
+				line-height: 15px;
+			}
+
+			#blue {
+				position: absolute;
+				width: 100%;
+				height: 10px;
+				background: #4e7c93;
+			}
+
+			#options {
+				position: absolute;
+				top: 20px;
+				left: 10px;
+				margin-bottom: 10px;
+				height: 380px;
+				width: 150px;
+				border: 1px solid #aaa;
+				padding: 5px;
+			}
+
+			#options p {
+				margin: 0px;
+				margin-bottom: 12px;
+			}
+
+			#highlight {
+				position: absolute;
+				top: 20px;
+				left: 180px;
+				width: 400px;
+				margin-bottom: 10px;
+				height: 380px;
+				border: 1px solid #aaa;
+				padding: 5px;
+				overflow: auto;
+			}
+
+			a {
+				color: #4e7c93;
+			}
+
+			#highlight a.mistake {
+				color: #c00;
+				text-decoration: underline;
+			}
+
+			#highlight a.mistake:hover {
+				color: #4e7c93;
+				text-decoration: underline;
+			}
+
+			#current {
+				display: inline;
+				font-weight: bold;
+				background: #ff0;
+				padding: 2px;
+				border: 0px none;
+				text-decoration: none;
+				color: #000;
+			}
+
+			form {
+				display: inline;
+			}
+
+			input {
+				width: 144px;
+				font-size: 10px;
+				border: 1px solid #666;
+				border-bottom: 1px solid #ccc;
+				border-right: 1px solid #ccc;
+				padding: 2px;
+			}
+
+			select {
+				width: 144px;
+				font-size: 10px;
+			}
+
+			input.submit {
+				width: 72px;
+				margin-bottom: 5px;
+				padding: 3px;
+				border: 1px solid #666;
+				border-top: 1px solid #ccc;
+				border-left: 1px solid #ccc;
+			}
+
+			tr {
+				font: 10px Arial, Helvetica, sans-serif;
+			}
+		</style>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc.js"> </script>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/inc/app/xed/js/speler.js"> </script>
+		<script language="javascript" type="text/javascript">
+			var speler = new Speler ('{ifname}', '{site/prefix}');
+			speler.original = '{text}';
+			speler.display = speler.original;
+			speler.correct = speler.original;
+			speler.current = 0;
+			{loop obj[mistakes]}
+			i = speler.mistakes.length;
+			speler.mistakes[i] = [];
+			speler.mistakes[i]['word'] = '{loop/word}';
+			speler.mistakes[i]['offset'] = {loop/offset};
+			speler.mistakes[i]['length'] = {loop/length};
+			speler.mistakes[i]['suggestions'] = [];
+			{loop loop[suggestions]}
+			speler.mistakes[i]['suggestions'].push ('{loop/_value}');
+			{end loop}
+			{end loop}
+
+			speler.messages['finished'] = '{intl Spell checking completed.}';
+
+			window.speler = speler;
+
+			window.onload = function () {
+				speler.init ();
+			}
+		</script>
+	</head>
+	<body>
+
+		<div id="blue"></div>
+
+		<div id="options">
+			<form method="post" id="xed-spell-form">
+				<input type="hidden" name="text" value="{text}" />
+				<input type="hidden" name="ifname" value="{ifname}" />
+
+				<p>
+				{intl Word}:<br />
+				<input type="text" name="word" id="word" />
+				</p>
+
+				<p>
+				{intl Suggestions}:<br />
+				<select name="suggestions" size="7" onchange="this.form.elements.word.value = this.options[this.selectedIndex].value; return false">
+				</select>
+				</p>
+
+				<p>
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td style="padding-right: 3px; padding-bottom: 3px; width: 50%">
+				<input type="submit" class="submit" value="{intl Replace}" onclick="return speler.replace (speler.current, this.form.elements.word.value)" />
+						</td>
+						<td>
+				<input type="submit" class="submit" value="{intl Ignore}" onclick="return speler.ignore (speler.current)" />
+						</td>
+					</tr>
+				</table>
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td style="padding-right: 3px; width: 50%">
+				<input type="submit" class="submit" value="{intl Replace All}" onclick="return speler.replaceAll (speler.current, this.form.elements.word.value)" />
+						</td>
+						<td>
+				<input type="submit" class="submit" value="{intl Ignore All}" onclick="return speler.ignoreAll (speler.current)" />
+						</td>
+					</tr>
+				</table>
+				</p>
+
+				<p>
+				{intl Personal Dictionary}:<br />
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td style="padding-right: 3px; width: 50%">
+				<input type="submit" class="submit" value="{intl Learn}" onclick="return speler.learn (this.form.elements.word.value)" />
+						</td>
+						<td>
+				<input type="submit" class="submit" value="{intl Edit}" onclick="return speler.edit ()" />
+						</td>
+					</tr>
+				</table>
+				</p>
+
+				<p>
+				{intl Language}:<br />
+				<select name="lang" onchange="return speler.reload (this.form)">
+					{loop obj[langs]}
+						<option value="{loop/code}"{if loop[code] eq obj[lang]} selected="selected"{end if}>{filter none}{loop/name}{end filter}</option>
+					{end loop}
+				</select>
+				</p>
+
+				<p>
+				<input type="submit" class="submit" value="{intl Done}" onclick="return speler.submit (true)" />
+				<!-- input type="submit" class="submit" value="{intl Debug}" onclick="return speler.debug ()" / -->
+				</p>
+			</form>
+		</div>
+
+		<div id="highlight"></div>
+		<iframe id="rpc-caller" style="border: 0px none; width: 0px; height: 0px"> </iframe>
+
+	</body>
+</html>

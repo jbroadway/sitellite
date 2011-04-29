@@ -1,0 +1,122 @@
+<script language="javascript" type="text/javascript">
+
+function preview (f) {
+	a = f.action;
+	t = f.target;
+
+	f.action = '/index/sitemailer2-preview-template-action';
+	f.target = '_BLANK';
+	f.submit ();
+
+	f.action = a;
+	f.target = t;
+
+	return false;
+}
+
+function sitetemplate_url_encode (text) {
+        orig = [/%/g, /(\r\n|\n\r|\r|\n)/g, /#/g, /&/g, /\(/g, /\)/g, /\//g, /:/g, /;/g, /=/g, / /g, /</g, />/g, /\{/g, /\}/g];
+        uenc = ['%25', '%0D%0A', '%23', '%26', '%28', '%29', '%2F', '%3A', '%3B', '%3C', '+', '%3D', '%3E', '%7B', '%7D']; 
+        for (i = 0; i < orig.length; i++) {
+                text = text.replace (orig[i], uenc[i]);
+        }
+        return text;
+}
+
+
+function sitetemplate_set_caret (t) {
+	if (t.createTextRange) {
+		t.caretPos = document.selection.createRange ().duplicate ();
+	}
+}
+
+function sitetemplate_insert_text (i) {
+	f = document.getElementById ('sitemailer2-editor');
+	t = f.elements.body;
+
+	if (t.createTextRange && t.caretPos) { // msie
+		sitetemplate_set_caret (t);
+		var caretPos = t.caretPos;
+		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? i + '' : i;
+
+	} else if (t.selectionStart && t.setSelectionRange) { // Mozilla 1.3+
+		var val = t.value;
+		var cpos = t.selectionStart;
+		var fpos = cpos + i.length +1;
+
+		var before = val.substr (0, cpos);
+		var after = val.substr (cpos, val.length);
+		var aspace = after.charAt (0) == ' ' ? "" : "";
+		var bspace = before.charAt (before.length) == ' ' ? "" : "";
+
+		t.value = before + bspace + i + aspace + after;
+		t.setSelectionRange (fpos, fpos);
+		t.focus();
+
+	} else {
+		t.value	= t.value + i;
+	}
+
+	return true;
+}
+
+function rec_name () {
+	sitetemplate_insert_text ('{' + 'recipient_name' + '}');
+	return false;
+}
+
+</script>
+
+
+
+<table border="0">
+
+<tr><td>
+
+<table border="0" cellspacing="1" cellpadding="3" align="center">
+	<tr>
+		<td class="label"><label for="title" id="title-label">{intl Template Name}</label></td>
+		<td class="field"><input type="text" name="title"  value="{title}" size="40" /></td>
+	</tr>
+	<!-- tr>
+		<td class="label"><label for="subject" id="subject-label">Subject</label></td>
+
+		<td class="field"><input type="text" name="subject"  value="{subject}" style='width: 450px;' /></td>
+	</tr --><input type="hidden" name="subject" value="{subject}" />
+	<tr>
+		<td colspan="2" class="field"><textarea name="body" id="editor" rows="8" cols="40" style='width: 550px; height: 370px; padding-left: 2px' >{body}</textarea></td>
+	</tr>
+	
+</table>
+
+	</td> 
+	<td style="vertical-align: top">
+			<ul style="margin-left: 5px; padding-left: 0px; margin-top: 30px; background: #eee; width: 150px">
+				<li style="padding: 5px; list-style-type: none"><strong>{intl Tags}:</strong></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'body' + '}')" title="{intl Message body}">&#123;body&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'date' + '}')" title="{intl Today's date}">&#123;date&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'email' + '}')" title="{intl Subscriber email address}">&#123;email&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'firstname' + '}')" title="{intl First name}">&#123;firstname&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'fullname' + '}')" title="{intl Full name}">&#123;fullname&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'lastname' + '}')" title="{intl Last name}">&#123;lastname&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'organization' + '}')" title="{intl Subscriber organization}">&#123;organization&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'tracker' + '}')" title="{intl Receipt tracker}">&#123;tracker&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'unsubscribe' + '}')" title="{intl Unsubscribe link address}">&#123;unsubscribe&#125;</a></li>
+				<li style="padding: 5px; list-style-type: none"><a href="#" onclick="return sitetemplate_insert_text ('{' + 'website' + '}')" title="{intl Subscriber web site}">&#123;website&#125;</a></li>
+			</ul>
+	</td>
+</tr>	
+<tr>
+		<td align="center">
+
+			<input type="submit" name="submit_button" value="{intl Save}" />
+			&nbsp;
+			<input type="submit" value="{intl Preview}" onclick="return preview (this.form)" />&nbsp;
+			
+			<input type="submit" value="{intl Cancel}" onclick="window.location.href = '{site/prefix}/index/sitemailer2-templates-action'; return false" />
+		</td>
+		
+	</tr>
+</table>
+
+

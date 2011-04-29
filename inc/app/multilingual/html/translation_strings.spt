@@ -1,0 +1,83 @@
+{alt #fff #eee}
+
+<form method="post" action="{site/prefix}/index/multilingual-translation-strings-action">
+
+<p>
+	{intl Screen}: {screen_num} {intl of} {screen_total}
+</p>
+
+<input type="hidden" name="appname" value="{appname}" />
+<input type="hidden" name="lang" value="{lang}" />
+<input type="hidden" name="charset" value="{charset}" />
+<input type="hidden" name="offset" value="{offset}" />
+<input type="hidden" name="save" value="yes" />
+<input type="hidden" name="home" value="no" />
+
+<table cellspacing="1" cellpadding="3" width="100%">
+{loop show}
+	<tr style="background-color: {alt/next}">
+		<td valign="top" width="50%" class="label" style="font-weight: {if loop[current] eq null}bold; background-color: #bcd{end if}{if else}normal{end if}">
+			<input type="hidden" name="keys[{loop/_index}]" value="{loop/_key}" />
+			{filter stripslashes}{loop/_key|htmlentities_compat}{end filter}
+		</td>
+		<td valign="top" class="field">
+			{if strlen (loop[_key]) ge 80}
+			<textarea name="values[{loop/_index}]" id="trv-{loop/_index}" style="width: 100%" rows="4">{if loop[current] ne null}{loop/current}{end if}</textarea><br />
+			{intl Google Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+			{end if}
+			{if strlen (loop[_key]) ge 40 and strlen (loop[_key]) lt 80}
+			<textarea name="values[{loop/_index}]" id="trv-{loop/_index}" style="width: 100%" rows="2">{if loop[current] ne null}{loop/current}{end if}</textarea><br />
+			{intl Google Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+			{end if}
+			{if strlen (loop[_key]) lt 40}
+			<input name="values[{loop/_index}]" id="trv-{loop/_index}" type="text" style="width: 100%" {if loop[current] ne null}value="{loop/current}"{end if} /><br />
+			{intl Google Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+			{end if}
+		</td>
+	</tr>
+{end loop}
+</table>
+
+<p align="center">
+	{if obj[offset] gt 0}
+		<input type="submit" value="{intl Previous}" onclick="this.form.elements.offset.value = parseInt (this.form.elements.offset.value) - 20" />
+		&nbsp; &nbsp;
+	{end if}
+	{if obj[more]}
+		<input type="submit" value="{intl Next}" onclick="this.form.elements.offset.value = parseInt (this.form.elements.offset.value) + 20" />
+		&nbsp; &nbsp;
+	{end if}
+	<input type="submit" value="{intl Save}" onclick="this.form.elements.home.value = 'yes'" />
+	&nbsp; &nbsp;
+	<input type="submit" value="{intl Cancel}" onclick="window.location.href = '{site/prefix}/index/multilingual-translation-action?appname={appname}'; return false" />
+</p>
+
+</form>
+
+<script type="text/javascript">
+
+$(document).ready (function () {
+	$.translate (
+		[
+{loop show}
+			'{loop/_key}'{if loop[_index] lt loop[_total]},{end if}
+{end loop}
+		],
+//		'{intl/default}', SEMIAS edit PHAGENS 26.10.10, as English 'en' is the default language used by the system, use it hardcoded here.
+        'en',
+		'{lang}',
+		{
+			complete: function (translations) {
+				for (i = 0; i < translations.length; i++) {
+					$('#tr-' + (i + 1)).html ($.trim (translations[i]));
+					$('#tru-' + (i + 1)).css ('display', 'inline');
+				}
+			}
+		}
+	);
+});
+
+</script>

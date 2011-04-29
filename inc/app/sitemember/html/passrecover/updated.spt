@@ -1,0 +1,1 @@
+<p>{intl Your password has been changed.}  <a href="{site/prefix}/index/sitemember-app">{intl Click here to log in.}</a></p>

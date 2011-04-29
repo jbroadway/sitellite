@@ -1,0 +1,42 @@
+<p>
+	<a href="{site/prefix}/index/petition-app/id.{id}#signature">&raquo; {intl Add your signature}</a><br />
+	<a href="{site/prefix}/index/petition-app/id.{id}">&raquo; {intl Read the declaration}</a>
+</p>
+
+<p>{intl Thank you to the following people for signing our declaration. New names appear at the bottom of the list.}</p>
+
+{if obj[total] gt 100}
+<p class="pager">{intl Page}: {if pager.total}
+{loop pager.getPages (false)}
+	{if loop[current]}<strong>{loop/page}</strong>{end if}
+	{if not loop[current]}
+	<a href="{pager/url}&amp;offset={loop/offset}">{loop/page}</a>{end if}{if loop[separator]} &nbsp; {end if}{end loop}{end if}</p>
+{end if}
+
+{alt odd even}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="95%">
+	<tr>
+		<th width="50%">{intl Signed by}</th>
+		<th width="50%">{intl Location}</th>
+	</tr>
+{loop obj[list]}
+	<tr class="{alt/next}">
+		<td>{loop/num}. {loop/firstname} {loop/lastname}</td>
+		<td>{loop/city}{if loop.province ne '--' and loop.province ne ''}, {filter petition_filter_province}{loop/province}{end filter}{end if}{if loop.country ne '--' and loop.country ne ''}, {filter petition_filter_country}{loop/country}{end filter}{end if}</td>
+	</tr>
+{end loop}
+</table>
+</p>
+
+{if obj[total] gt 100}
+<p class="pager">{intl Page}: {if pager.total}
+{loop pager.getPages (false)}
+	{if loop[current]}<strong>{loop/page}</strong>{end if}
+	{if not loop[current]}
+	<a href="{pager/url}&amp;offset={loop/offset}">{loop/page}</a>{end if}{if loop[separator]} &nbsp; {end if}{end loop}{end if}</p>
+{end if}
+{if else}
+&nbsp;<br />
+{end if}

@@ -1,0 +1,114 @@
+{filter none}
+{CMS_JS_DELETE_CONFIRM}
+{CMS_JS_SELECT_ALL}
+{end filter}
+
+{!-- box cms/bookmarks/button --}
+
+<h1>{intl Browsing}: {collection_name}</h1>
+
+<p>
+	{if obj[add]}
+	<a href="{site/prefix}/index/cms-add-form?collection={collection}&_return={filter urlencode}{return}%26_msg%3Dadded{end filter}">{intl Add} {collection_singular}</a>
+	{end if}
+	{if obj[is_versioned]}
+	{if obj[add]}&nbsp; &nbsp;{end if}
+	<a href="{site/prefix}/index/cms-deleted-items-action?collection={collection}">{intl Deleted} {collection_name}</a>
+	{end if}
+	{if obj[add] or obj[is_versioned]}&nbsp; &nbsp;{end if}
+	{loop obj[links]}
+	<a href="{loop/url}">{loop/text}</a>
+	&nbsp; &nbsp;
+	{end loop}
+</p>
+
+<!-- "browse by" stuff to go here -->
+<p style="clear: both; margin-bottom: 12px">
+{filter none}{facets}{end filter}
+</p>
+
+<table border="0" cellpadding="3" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+
+{alt #eee #fff}
+
+<form method="post" action="{site/prefix}/index/cms-delete-action" style="display: inline">
+	<input type="hidden" name="_collection" value="{collection}" />
+	<input type="hidden" name="_return" value="{site/current}?collection={collection}&_msg=deleted{facet_url}" />
+<table border="0" cellpadding="2" cellspacing="1" width="100%">
+	<tr style="background-color: {alt/next}">
+		<th valign="bottom" width="50">
+		{if obj[deletable]}
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return cms_select_all (this.form)" />&nbsp;
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return cms_delete_confirm ()" />
+		{end if}
+		{if not obj[deletable]}
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return cms_select_all (this.form)" />&nbsp;
+			<img src="{site/prefix}/inc/app/cms/pix/icons/delete-disabled.gif" alt="{intl Delete Selected - Not Allowed}" title="{intl Delete Selected - Not Allowed}" border="0" />
+		{end if}
+		</th>
+		{if obj[is_versioned]}
+			<th valign="bottom" width="50">
+				&nbsp;
+			</th>
+		{end if}
+		{loop obj[headers]}
+			{if loop.virtual}
+			<th>{filter intl_get}{loop/fullname}{end filter}</th>
+			{end if}
+			{if else}
+			<th><a href="{site/prefix}/index/cms-browse-action?{filter urlencode}collection={cgi/collection}&offset={cgi/offset}&orderBy={loop/name}&sort={loop/getSort}{end filter}{facet_url}">{filter intl_get}{loop/fullname}{end filter}</a>
+			{if loop.isCurrent ()}
+				<img src="{site/prefix}/inc/app/cms/pix/arrow.{cgi/sort}.gif" alt="{cgi/sort}" border="0" />
+			{end if}
+			</th>
+			{end if}
+		{end loop}
+	</tr>
+	{loop pager.results}
+		<tr style="background-color: {alt/next}">
+			<td align="center">
+                {if not (loop._key == obj[handler])}
+                    {if locks[ loop._key ] or not editable[ loop._key ]}
+					    <a href="#" class="lock-info"><img src="{site/prefix}/inc/app/cms/pix/icons/locked.gif" alt="{intl Locked}" title="{intl Locked}" border="0" />{if not empty (loop.lock_owner)}<span>{intl Lock Owner}: {loop/lock_owner}<br />{intl Expires}: {filter cms_filter_ts_time}{loop/lock_expires}{end filter}</span>{end if}</a>
+			    	{end if}
+				    {if not locks[ loop._key ] and editable[ loop._key ]}
+					    <input type="checkbox" name="_key[]" value="{loop/_key}" />
+    				{end if}
+                {end if}
+			</td>
+			{if obj[is_versioned]}
+				<td align="center">
+					{if not locks[ loop._key ] and editable[ loop._key ]}
+					<a href="{site/prefix}/index/cms-history-action?_key={loop/_key}&_collection={collection}&_return={filter urlencode}{return}{end filter}"><img src="{site/prefix}/inc/app/cms/pix/icons/history.gif" alt="{intl Change History}" title="{intl Change History}" border="0" /></a>
+					{end if}
+					{if else}
+					&nbsp;
+					{end if}
+				</td>
+			{end if}
+			{loop loop._properties}
+				{if strpos (loop._key, '_') !== 0 and strpos (loop._key, 'lock_') !== 0}
+				{if loop._key eq obj[title_field]}
+					{if locks[ parent._key ] or not editable[ parent._key ]}
+					<td align="{php align[ loop._key ]}" width="{php width[ loop._key ]}">{filter none}{loop/_value}{end filter}</td>
+					{end if}
+					{if not locks[ parent._key ] and editable[ parent._key ]}
+					<td align="{php align[ loop._key ]}" width="{php width[ loop._key ]}"><a href="{site/prefix}/index/cms-edit-form?_collection={collection}&_key={parent/_key}&_return={filter urlencode}{return}{end filter}">{filter none}{loop/_value}{end filter}</a></td>
+					{end if}
+				{end if}
+				{if loop._key ne obj[title_field]}
+					<td align="{php align[ loop._key ]}" width="{php width[ loop._key ]}">{filter none}{loop/_value}{end filter}</td>
+				{end if}
+				{end if}
+			{end loop}
+		</tr>
+	{end loop}
+</table>
+</form>
+
+<p align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</p>

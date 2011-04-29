@@ -1,0 +1,9 @@
+{loop obj}
+	<h2>{loop/_key}</h2>
+
+	<ul>
+		{loop loop}
+			<li><a href="{site/prefix}/index/sitepoll-results-action/poll.{loop/id}">{filter sitepoll_filter_shortdate}{loop/date_added}{end filter} - {loop/title}</a></li>
+		{end loop}
+	</ul>
+{end loop}

@@ -1,0 +1,3 @@
+<p>{intl Your post has been updated.}</p>
+
+<p><a href="{site/prefix}/index/siteforum-post-action/id.{id}">{intl Click here to return to the forum.}</a></p>

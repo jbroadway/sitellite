@@ -1,0 +1,13 @@
+{box cms/buttons/add?collection=sitequotes_entry}
+
+{loop obj[result]}
+<div class="sitequote">
+	{box cms/buttons?collection=sitequotes_entry&id=[loop/id]&status=approved&access=public&team=none&float=false&add=false&return=sitequotes-app}
+	<p><span class="quote">&ldquo; </span>
+        {filter none}{loop/quote}{end filter}
+        <span class="quote">&rdquo; </span></p>
+	<p class="sitequote-byline">
+		&mdash; {loop/person}{if not empty (loop.company)}, <a href="{loop/website}">{loop/company}</a>{end if}
+	</p>
+</div>
+{end loop}

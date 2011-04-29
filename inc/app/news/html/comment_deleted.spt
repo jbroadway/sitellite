@@ -1,0 +1,5 @@
+<p>{intl Your comment has been deleted.}</p>
+
+<p>
+	<a href="{site/prefix}/index/news-app/story.{story_id}#news-comments">{intl Back to Comments}</a>
+</p>

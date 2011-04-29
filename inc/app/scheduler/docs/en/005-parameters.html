@@ -1,0 +1,19 @@
+<h1>Command Line Parameters</h1>
+
+<p>In addition to the default way of calling the scheduler, you can
+include additional parameters on the command line to control which
+tasks are run.&nbsp; The two methods of specifying tasks are as follows:</p>
+
+<ol>
+  <li>Specify a single task to run, and only that task will be run.</li>
+  <li>Specify one or more tasks to skip, and all tasks except those will be run.</li>
+</ol>
+
+<p>The following are examples of these two methods:</p>
+
+<pre># run the scanner task only
+php -f index scheduler-app scanner
+
+# run all tasks except the scanner and documents tasks
+php -f index scheduler-app -scanner -documents
+</pre>

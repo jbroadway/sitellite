@@ -1,0 +1,55 @@
+<div>
+
+    <p><b>{intl Event Submission}</b></p>
+
+    <b>- {intl User Info} -</b><br />
+
+    <p>
+        {if session_valid ()}
+        <b>{intl User}:</b> {session/username}<br />
+        {end if}
+        <b>{intl IP Address}:</b>  {_SERVER/REMOTE_ADDR}
+    </p>
+
+    <b>- {intl Event Info} -</b><br />
+
+    <p>
+        <b>{intl ID}:</b> {id}<br />
+        <b>{intl Title}:</b> {title}<br />
+        <b>{intl Category}:</b> {category}
+    </p>
+
+    <p>
+        <b>{intl Date}:</b> {date}<br />
+        <b>{intl End Date}:</b> {end_date}<br />
+        <b>{intl Time}:</b> {time}<br />
+        <b>{intl End Time}:</b> {end_time}
+    </p>
+
+    <b>- {intl Contact Info} -</b><br />
+
+    <p>
+        <b>{intl Name}:</b> {contact}
+        <b>{intl Email}:</b> {contact_email}
+        <b>{intl Phone}:</b> {contact_phone}
+        <b>{intl Web Site}:</b> {contact_url}
+    </p>
+
+    <b>- {intl Location Info} -</b><br />
+
+    <p>
+        <b>{intl Name}:</b> {loc_name}
+        <b>{intl Address}:</b> {loc_address}
+        <b>{intl City}:</b> {loc_city}
+        <b>{intl Province}:</b> {loc_province}
+        <b>{intl Country}:</b> {loc_country}
+        <b>{intl Map Link}:</b> {loc_map}
+    </p>
+
+    <b>- {intl Details} -</b><br />
+
+    <p>{filter strip_tags}{details}{end filter}</p>
+
+    --<br />
+
+</div>

@@ -1,0 +1,23 @@
+<h1>Installation</h1>
+
+SITEQUOTES INSTALL INSTRUCTIONS<br />
+<br />
+1. Install the necessary database tables:<br />
+<br />
+$ mysql -p -u USER DBNAME &lt; inc/app/sitequotes/install/install-mysql.sql<br />
+(enter password when prompted)<br />
+<br />
+2. Copy the SiteQuotes collection definition into the cms app:<br />
+<br />
+$ cd /PATH/TO/SITELLITE<br />
+$ cp -R inc/app/sitequotes/install/sitequotes_entry.php inc/app/cms/conf/collections/<br />
+<br />
+3. Link to SiteQuotes somewhere on your web site.  SiteQuotes can be<br />
+accessed from the following URL (change www.yourWebSite.com to YOUR<br />
+WEB SITE, of course):<br />
+<br />
+http://www.yourWebSite.com/index/sitequotes-app<br />
+<br />
+That's all there is to it!<br />
+<br />
+

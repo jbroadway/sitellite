@@ -1,0 +1,143 @@
+<style type="text/css">
+
+	.cms-tab-active {
+		float: right;
+		width: 150px;
+		height: 16px;
+		margin-right: 1px;
+		text-align: center;
+		padding: 3px;
+		background-color: #eee;
+		font-weight: bold;
+		background-image: url('{site/prefix}/inc/app/cms/pix/corner.gif');
+		background-repeat: no-repeat;
+	}
+
+	.cms-tab-button {
+		float: right;
+		width: 150px;
+		height: 16px;
+		margin-right: 1px;
+		text-align: center;
+		padding: 3px;
+		background-color: #cde;
+		background-image: url('{site/prefix}/inc/app/cms/pix/corner.gif');
+		background-repeat: no-repeat;
+	}
+
+</style>
+
+<h1>{intl Highlighting Changes}: {collection} / {title} / {cgi/_rid}</h1>
+
+<p>
+	<a href="{site/prefix}/index/cms-history-action?_collection={cgi/_collection}&_key={cgi/_key}&_return={cgi/_return}&_current={cgi/_current}">{intl Back}</a>
+        &nbsp;&nbsp;
+        <a href="{site/prefix}/cms-history-restore-action?collection={cgi/_collection}&key={cgi/_key}&rid={cgi/_rid}&_return={cgi/_return}&_current={cgi/_current}">{intl Restore}</a>
+</p>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td align="right" colspan="2" style="padding: 0px">
+			<div class="cms-tab-active"><a href="#">{intl Highlight Changes}</a></div>
+			<div class="cms-tab-button"><a href="{site/prefix}/index/cms-history-compare-action?_collection={cgi/_collection}&_key={cgi/_key}&_return={cgi/_return}&_rid={cgi/_rid}&_current={cgi/_current}">{intl Compare to Current}</a></div>
+			<div class="cms-tab-button"><a href="{site/prefix}/index/cms-history-view-action?_collection={cgi/_collection}&_key={cgi/_key}&_return={cgi/_return}&_rid={cgi/_rid}&_current={cgi/_current}">{intl View}</a></div>
+		</td>
+	</tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="100%" style="background-color: #eee; height: 5px"><img src="{site/prefix}/inc/app/cms/pix/spacer.gif" alt="" border="0" height="5" /></td>
+	</tr>
+	<tr>
+		<td valign="top" style="border: 1px solid #eee">
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th align="left" colspan="3">{intl Revision Info}</th>
+	</tr>
+	<tr>
+		<td class="label" align="center" width="15%">&nbsp;</td>
+		<td class="label" align="center" width="42%">{intl Current Revision}</td>
+		<td class="label" align="center" width="42%">{intl Selected Revision}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Revision ID}</td>
+		<td class="field" valign="top">{c_autoid}</td>
+		<td class="field" valign="top">{r_autoid}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Author}</td>
+		<td class="field" valign="top">{c_author}</td>
+		<td class="field" valign="top">{r_author}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Action}</td>
+		<td class="field" valign="top">{c_action}</td>
+		<td class="field" valign="top">{r_action}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Date / Time}</td>
+		<td class="field" valign="top">{c_revision}</td>
+		<td class="field" valign="top">{r_revision}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Current}</td>
+		<td class="field" valign="top">{c_current}</td>
+		<td class="field" valign="top">{r_current}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Deleted}</td>
+		<td class="field" valign="top">{c_deleted}</td>
+		<td class="field" valign="top">{r_deleted}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Change Summary}</td>
+		<td class="field" valign="top">{c_changelog}</td>
+		<td class="field" valign="top">{r_changelog}</td>
+	</tr>
+	<tr>
+		<th align="left" colspan="3">{intl Revision Data}</th>
+	</tr>
+	<tr>
+		<td class="label" align="center" width="15%">&nbsp;</td>
+		<td class="label" align="center" width="42%">{intl Current Revision}</td>
+		<td class="label" align="center" width="42%">{intl Selected Revision}</td>
+	</tr>
+	{loop obj[diff]}
+	{if cgi._collection eq 'sitellite_filesystem' and loop._key eq 'body'}
+		{if in_array (loop._key, obj[altered])}
+		<tr>
+			<td class="label" style="background-color: #47a; color: #fff" valign="top">{filter cms_filter_colname}{loop/_key}{end filter}</td>
+			<td class="field" style="background-color: #cde" valign="top" colspan="2"> &nbsp;&nbsp; <a href="{site/prefix}/index/cms-filesystem-action?file={cgi/_key}">{intl Current file}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/cms-filesystem-action?file={cgi/_key}&rid={cgi/_rid}">{intl Selected revision}</a></td>
+		</tr>
+		{end if}
+		{if not in_array (loop._key, obj[altered])}
+		<tr>
+			<td class="label" valign="top">{filter cms_filter_colname}{loop/_key}{end filter}</td>
+			<td class="field" valign="top" colspan="2"> &nbsp;&nbsp; <a href="{site/prefix}/index/cms-filesystem-action?file={cgi/_key}">{intl Current file}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/cms-filesystem-action?file={cgi/_key}&rid={cgi/_rid}">{intl Selected revision}</a></td>
+		</tr>
+		{end if}
+	{end if}
+	{if loop._key ne 'body' or cgi._collection ne 'sitellite_filesystem'}
+		{if in_array (loop._key, obj[altered])}
+		<tr>
+			<td class="label" style="background-color: #47a; color: #fff" valign="top">{filter cms_filter_colname}{loop/_key}{end filter}</td>
+			<td class="field" style="background-color: #cde" valign="top" colspan="2">{filter none}{loop/_value}{end filter}</td>
+		</tr>
+		{end if}
+		{if not in_array (loop._key, obj[altered])}
+		<tr>
+			<td class="label" valign="top">{filter cms_filter_colname}{loop/_key}{end filter}</td>
+			<td class="field" valign="top" colspan="2">{filter none}{loop/_value}{end filter}</td>
+		</tr>
+		{end if}
+	{end if}
+	{end loop}
+</table>
+
+		</td>
+	</tr>
+</table>
+</p>

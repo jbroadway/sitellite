@@ -1,0 +1,4 @@
+<p>
+	{intl There are no strings to translate for this application.}
+	<a href="{site/prefix}/index/multilingual-translation-action?appname={appname}">{intl Back}</a>
+</p>

@@ -1,0 +1,73 @@
+<p><a href="{site/prefix}/index/siteshop-add-form">{intl Add Product}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{site/prefix}/index/siteshop-admin-options-action">{intl Product Options}</a></p>
+
+<p style="clear: both; margin-bottom: 12px">
+{filter none}{facets}{end filter}
+</p>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+{alt #fff #eee}
+
+<form method="post" action="{site/prefix}/index/siteshop-admin-products-delete-action" style="display: inline">
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="7%" align="center">
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return siteshop_select_all (this.form)" />&nbsp;<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return siteshop_delete_confirm ()" />
+		</th>
+		<th width="2%"></th>
+		<th width="8%"><a href="{site/prefix}/index/siteshop-admin-products-action?orderBy=sku&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'sku') ? 'desc': 'asc'}">SKU</a>
+		{if obj[orderBy] eq 'sku'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="22%"><a href="{site/prefix}/index/siteshop-admin-products-action?orderBy=name&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'name') ? 'desc': 'asc'}">{intl Product Name}
+		{if obj[orderBy] eq 'name'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="8%"><a href="{site/prefix}/index/siteshop-admin-products-action?orderBy=price&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'price') ? 'desc': 'asc'}">{intl Price}
+		{if obj[orderBy] eq 'price'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="8%"><a href="{site/prefix}/index/siteshop-admin-products-action?orderBy=shipping&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'shipping') ? 'desc': 'asc'}">{intl Shipping}
+		{if obj[orderBy] eq 'shipping'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="8%"><a href="{site/prefix}/index/siteshop-admin-products-action?orderBy=quantity&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'quantity') ? 'desc': 'asc'}">{intl Quantity}
+		{if obj[orderBy] eq 'quantity'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="12%"><a href="{site/prefix}/index/siteshop-admin-products-action?orderBy=weight&sort={php (obj[sort] eq 'asc' and obj[orderBy] eq 'weight') ? 'desc': 'asc'}">{intl Sorting Weight}
+		{if obj[orderBy] eq 'weight'}
+			<img src="{site/prefix}/inc/app/cms/pix/arrow.{sort}.gif" alt="{cgi/sort}" border="0" />
+		{end if}
+		</th>
+		<th width="12%">{intl Categories}</th>
+	</tr>
+{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td width="7%" align="center">
+<input type="checkbox" name="_key[]" value="{loop/id}" />
+		</td>
+		<td width="2%" align="center"><a href="{site/prefix}/index/siteshop-admin-productoptions-action?p={loop/id}"><img src="{site/prefix}/inc/app/cms/pix/icons/history.gif" alt="Product Options" title="Product Options" border="0" /></a></td>
+		<td width="8%"><a href="{site/prefix}/index/siteshop-edit-form?id={loop/id}">{loop/sku}</a></td>
+		<td width="22%"><a href="{site/prefix}/index/siteshop-edit-form?id={loop/id}">{loop/name}</a></td>
+		<td width="8%" align="right">${loop/price}</td>
+		<td width="8%" align="right">${loop/shipping}</td>
+		<td width="8%">{if loop.quantity eq -1}{intl Unlimited}{end if}{if else}{loop/quantity}{end if}</td>
+		<td width="12%">{filter siteshop_filter_weight}{loop/weight}{end filter}</td>
+		<td width="12%">{filter siteshop_filter_categories}{loop/id}{end filter}</td>
+	</tr>
+{end loop}
+</table>
+</form>

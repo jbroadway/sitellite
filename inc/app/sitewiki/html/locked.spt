@@ -1,0 +1,11 @@
+{if obj.min eq 0}
+	<p>{user} {intl has just started editing this page}.</p>
+{end if}
+{if else}
+	<p>{user} {intl has been editing this page for} {min} {intl minutes}.</p>
+{end if}
+
+<p>
+	<a href="{site/prefix}/index/sitewiki-edit-form?page={cgi/page}&break_lock=1">{intl Edit the page anyway}</a> |
+	<a href="{site/prefix}/index/sitewiki-app/show.{cgi/page}">{intl Cancel}</a>
+</p>

@@ -1,0 +1,5 @@
+<p>{intl Your question has been received and will be answered shortly.}</p>
+
+<p>
+	<a href="{site/prefix}/index/sitefaq-app">{intl Click here to continue.}</a>
+</p>

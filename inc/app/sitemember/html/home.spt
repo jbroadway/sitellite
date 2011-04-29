@@ -1,0 +1,4 @@
+{loop obj}
+	{if not is_numeric (loop._key)}<h2>{loop/_key}</h2>{end if}
+	{filter none}{loop/_value}{end filter}
+{end loop}

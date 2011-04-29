@@ -1,0 +1,56 @@
+<p><a href="#" onclick="history.go (-1)">Go back.</a></p>
+
+<p>
+<table border="0" cellspacing="1" cellpadding="3">
+
+{if not empty (obj.account_number)}<tr><td><strong>{intl Account} #:</strong></td><td>{account_number}</td></tr>{end if}
+
+{if not empty (obj.pass_phrase)}<tr><td><strong>{intl Pass Phrase}:</strong></td><td>{pass_phrase}</td></tr>{end if}
+
+<tr><td><strong>{intl Name}:</strong></td><td>{filter ucwords}{salutation}{end filter} {first_name} {last_name}</td></tr>
+
+<tr><td><strong>{intl Email}:</strong></td><td>{email_address}</td></tr>
+
+{if not empty (obj.birthday)}<tr><td><strong>{intl Birthday}:</strong></td><td>{birthday}</td></tr>{end if}
+
+{if not empty (obj.gender)}<tr><td><strong>{intl Gender}:</strong></td><td>{gender}</td></tr>{end if}
+
+{if not empty (obj.address_line1)}
+<tr><td colspan="2"><strong>{intl Address}:</strong><br />
+
+{address_line1}<br />
+{address_line2}<br />
+{city}, {state}<br />
+{country} {zip}
+</td></tr>
+{end if}
+
+{if not empty (obj.company)}<tr><td><strong>{intl Company}:</strong></td><td>{company}</td></tr>{end if}
+
+{if not empty (obj.job_title)}<tr><td><strong>{intl Job Title}:</strong></td><td>{job_title}</td></tr>{end if}
+
+{if not empty (obj.phone_number)}<tr><td><strong>{intl Phone Number}:</strong></td><td>{phone_number}</td></tr>{end if}
+
+{if not empty (obj.daytime_phone)}<tr><td><strong>{intl Daytime Phone}:</strong></td><td>{daytime_phone}</td></tr>{end if}
+
+{if not empty (obj.evening_phone)}<tr><td><strong>{intl Evening Phone}:</strong></td><td>{evening_phone}</td></tr>{end if}
+
+{if not empty (obj.mobile_phone)}<tr><td><strong>{intl Mobile Phone}:</strong></td><td>{mobile_phone}</td></tr>{end if}
+
+{if not empty (obj.fax_number)}<tr><td><strong>{intl Fax Number}:</strong></td><td>{fax_number}</td></tr>{end if}
+
+{if not empty (obj.preferred_method_of_contact)}<tr><td><strong>{intl Preferred method of contact}:</strong></td><td>{preferred_method_of_contact}</td></tr>{end if}
+
+{if not empty (obj.best_time)}<tr><td><strong>{intl Best time to reach you}:</strong></td><td>{best_time}</td></tr>{end if}
+
+{if not empty (obj.may_we_contact_you)}<tr><td><strong>{intl May we contact you}:</strong></td><td>{may_we_contact_you}</td></tr>{end if}
+
+{if not empty (obj.comments)}
+<tr><td colspan="2"><strong>{intl Comments}:</strong><br />
+
+{filter nl2br}{comments}{end filter}
+</td></tr>
+{end if}
+
+</table>
+</p>

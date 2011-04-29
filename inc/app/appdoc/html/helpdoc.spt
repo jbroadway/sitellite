@@ -1,0 +1,54 @@
+{filter none}
+{HELPDOC_JS_DELETE_CONFIRM}
+{HELPDOC_JS_SELECT_ALL}
+{end filter}
+
+<form method="get">
+	<p align="right">
+		<input type="hidden" name="appname" value="{appname}" />
+		{intl Language}:
+		<select name="lang" onchange="this.form.submit ()">
+			{loop obj[langs]}
+			<option value="{loop/_key}"
+			{if loop._key eq obj[lang]}selected="selected"{end if}
+			>{loop/_value}</option>
+			{end loop}
+		</select>
+		&nbsp; <a href="{site/prefix}/index/appdoc-helpdoc-add-language-action?appname={appname}&lang={lang}">{intl Add Language}</a>
+	</p>
+</form>
+
+<p>
+	<a href="{site/prefix}/index/appdoc-appinfo-action?appname={appname}">{intl Back}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/appdoc-helpdoc-add-action?appname={appname}&lang={lang}">{intl Add File}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname={appname}&lang={lang}">{intl View Files}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=appdoc">{intl Help}</a>
+</p>
+
+<form method="post" action="{site/prefix}/index/appdoc-helpdoc-delete-action">
+	<input type="hidden" name="appname" value="{appname}" />
+	<input type="hidden" name="lang" value="{lang}" />
+<p>
+	<table border="0" width="100%" cellpadding="3" cellspacing="1">
+		<tr>
+			<th align="center" width="10%">
+				<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return helpdoc_select_all (this.form)" />&nbsp;
+				<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return helpdoc_delete_confirm ()" />
+			</th>
+			<th align="left">{intl File Name}</th>
+			<th align="left">{intl Title}</th>
+			<th align="left">{intl Word Count}</th>
+		</tr>
+		{loop obj[files]}
+		<tr>
+			<td align="center" width="10%">
+				<input type="checkbox" name="_key[]" value="{loop/_key}" />
+			</td>
+			<td><a href="{site/prefix}/index/appdoc-helpdoc-edit-action?appname={appname}&lang={lang}&helpfile={loop/id}">{loop/_key}</a></td>
+			<td>{loop/title}</td>
+			<td>{loop/words}</td>
+		</tr>
+		{end loop}
+	</table>
+</p>
+</form>

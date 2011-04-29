@@ -1,0 +1,39 @@
+Changelog for FPDI:
+
+v1.1 (2005-04-06, 2005-05-06):
+    - added some things to free memory when objects are not longer used.
+    - made FPDI 1.1 compatible with FPDF 1.53
+    - fixed method getPageBox() in fpdi_pdf_parser.php, which did not work
+      correct, when the box is an object reference.
+
+v1.1beta (2004-11-12):
+    - splitted pdf_parser in 2 classes
+    - Fixed major bugs for PHP Version < 4.3
+    - Correct fpdi_pdf_parser::hex2String to handle big/little endian hexstrings
+    - Fixed pdf_parser::pdf_read_value: 
+        - In very few situations it rans into an infinite loop.
+        - string-matching with escaped parenthesis is fixed
+        - hex-matching fixed
+        - included stream-matching and improved speed due using the length value
+          of the stream-dictionary. (pdf_context::read_stream() is removed)
+    - Fixes, changes in fpdi-class:
+        - Added own _out()-Method to disable linebreaks after _out-call
+        - Added "var $obj_stack;" to class
+    - Added LZW-Decoder
+    - Added ASCII85-Decoder
+    - renamed fpdi_functions to wrapper_functions.php
+    - Added methods for closing opened PDF-Documents (fclose)
+
+v1.02beta (2004-08-24):
+    - back to the roots... make FPDI usable with older php versions up 4.1+ ;-)
+      I used some function wrappers to do this - comments are welcome.
+    - fixed bug in parser, if it reaches a tab-character.
+    - include error handling if zlib is not supported.
+    - fixed a bug in pdf_parser::getPageContent() if content reference is an
+      array
+
+v1.01 (2004-08-10):
+    - fixed regex in php_parser::find_xref_table to handle files with
+      whitespaces before xref position.
+    - fixed php_parser::rebuildContentStream to run without notice
+      if error_reporting is set to all and no Filter is given.

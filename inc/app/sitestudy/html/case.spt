@@ -1,0 +1,13 @@
+{box cms/buttons?collection=sitestudy_item&object=[obj]&float=true}
+
+<h2>{intl Problem}</h2>
+
+<p>{filter none}{problem}{filter none}</p>
+
+<h2>{intl Solution}</h2>
+
+{filter none}{solution}{end filter}
+
+<p>&nbsp;<br />
+	<a href="{site/prefix}/index/sitestudy-app">{intl More Case Studies}</a>
+</p>

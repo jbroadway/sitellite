@@ -1,0 +1,15 @@
+<script language="javascript" type="text/javascript">
+
+function importer_return () {
+	if (opener && ! opener.closed) {
+		opener.document.getElementById ('{ifname}').xed_word_importer_return ('{ifname}', '{filter xed_filter_html}{doc}{end filter}');
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+	window.close ();
+	return false;
+}
+
+importer_return ();
+
+</script>

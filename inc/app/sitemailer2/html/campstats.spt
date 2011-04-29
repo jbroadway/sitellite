@@ -1,0 +1,41 @@
+{alt even odd}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="navbar">
+	<tr>
+		<td>
+		<a href="{site/prefix}/index/sitemailer2-newsletters-action">{intl Newsletters}</a>
+		<a href="{site/prefix}/index/sitemailer2-subscribers-action">{intl Subscribers}</a>
+		<a href="{site/prefix}/index/sitemailer2-drafts-action">{intl Drafts}</a>
+		<a href="{site/prefix}/index/sitemailer2-templates-action">{intl Templates}</a>
+        <a href="{site/prefix}/index/sitemailer2-campaigns-action">{intl Campaigns}</a>
+		<a href="{site/prefix}/index/sitemailer2-stats-action">{intl Stats}</a>
+		<a href="{site/prefix}/index/sitemailer2-settings-form">{intl Settings}</a>
+		<a href="{site/prefix}/index/help-app?appname=sitemailer2">{intl Help}</a>
+		</td>
+	</tr>
+</table>
+<br />
+<a href="{site/prefix}/index/sitemailer2-campaigns-action">{intl Back}</a> &nbsp&nbsp&nbsp&nbsp&nbsp <a target="_BLANK" href="{forward_url}">{intl Visit}</a><br />
+
+<br />
+
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	<tr>
+		<th width="25%">{intl Message}</th>
+		<th width="25%">{intl Newsletter}</th>
+        <th width="10%">{intl Date}</th>
+        <th width="10%">{intl Impressions}</th>
+        <th width="10%">{intl Clicks}</th>
+        <th width="10%">%</th>
+	</tr>
+	{loop obj[list]}
+		<tr class="{alt/next}">
+			<td width="25%"><a href="{site/prefix}/index/sitemailer2-message-action?id={loop/message_id}">{loop/subject}</a></td>
+            <td width="25%">{loop/newsletter}</td>
+            <td width="10%">{filter sitemailer2_filter_date}{loop/date}{end filter}</td>
+            <td width="10%"  style="text-align: right;">{loop/impressions}</td>
+            <td width="10%"  style="text-align: right;">{loop/clicks}</td>
+            <td width="10%"  style="text-align: right;">{loop/percent}</td>
+		</tr>
+	{end loop}
+</table>

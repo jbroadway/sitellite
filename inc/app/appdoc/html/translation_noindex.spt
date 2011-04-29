@@ -1,0 +1,12 @@
+<p>{intl You have not yet built a translation index for this app.}</p>
+
+<form method="get" action="{site/prefix}/index/appdoc-translation-build-action">
+	<p>
+		<input type="hidden" name="appname" value="{appname}" />
+		<input
+			type="submit"
+			value="{intl Build index}"
+			onclick="return confirm ('{filter addslashes}{intl Are you sure you want to build the translation index?  It is a memory-intensive process that may briefly slow your web site down.}{end filter}')"
+		/>
+	</p>
+</form>

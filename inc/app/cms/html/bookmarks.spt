@@ -1,0 +1,9 @@
+{alt #fff #eee}
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	{loop obj[bookmarks]}
+	<tr style="background-color: {alt/next}">
+		<td><a href="{loop/link}"><img src="{site/prefix}/inc/app/cms/pix/arrow-10px.gif" alt="" border="0" /> {loop/name}</a></td>
+		<td width="25%"><a href="{site/prefix}/index/cms-bookmarks-delete-action?bk_id={loop/id}">[ {intl Delete} ]</a></td>
+	</tr>
+	{end loop}
+</table>

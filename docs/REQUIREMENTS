@@ -1,0 +1,73 @@
+REQUIREMENTS
+
+For the most current requirements, please visit http://www.sitellite.org/
+
+Server Requirements
+-------------------
+
+Apache Web Server:
+
+The Apache web server version 1.3 or greater, configured with "AllowOverride
+All" or "AllowOverride FileInfo Indexes" (will require access to httpd.conf if
+this is not set correctly) and mod_rewrite.  Available from
+http://www.apache.org/
+
+PHP Language:
+
+PHP 4.3 or greater, compiled as an Apache module and CLI-mode enabled.
+Available from http://www.php.net/
+
+MySQL Database:
+
+MySQL 4.1 or greater.  Available from http://www.mysql.com/
+
+Other Databases:
+
+Oracle, SQLite, and others can be used as secondary data sources
+via Sitellite's database abstraction layer.  However, a MySQL database is
+required for the core web site functionality.
+
+Task Scheduler:
+
+Cron or At command-line tools, or an equivalent scheduling facility.  The
+INSTALL file assumes you are using crontab.  Windows users will have to use
+the Windows Task Manager, which should be accessible from the Windows Control
+Panel. 
+
+Sitellite should run on any operating system supported by these packages,
+however we strongly recommend using a Unix operating system, for its
+security and stability over Windows.  We test our software primarily on Linux
+and Mac OS X.
+
+Client Requirements
+-------------------
+
+There are no Sitellite-specific browser requirements for website visitors,
+only for the Sitellite administrative interface.
+
+Sitellite supports the following list of browsers:
+
+- Firefox 2.0 or greater on any operating system.
+- Safari 3.0 or greater on Mac OS X or Windows.
+- Microsoft Internet Explorer 6.0 or greater on Windows only.
+
+We plan to add support for Opera in the future as well.  If you would like to
+help with this, please join us at http://www.sitellite.org/
+
+If you visit the Sitellite administrative login screen
+(www.yourWebSite.com/sitellite) with an unsupported browser, it will present an
+"Unsupported Browser" notice instead of letting you log in.  From the
+"front-end" of the web site, it does not, because your web site member usage
+likely doesn't have the same restrictions.
+
+For installation, one of the following is needed:
+
+A File Transfer Protocol (FTP) client or equivalent software (Secure FTP,
+scp, etc), and an FTP account on the server on which you wish to run Sitellite.
+For FTP clients, we recommend one that is able to set file permissions on
+the server recursively.  Transmit on Mac OS X and WinSCP on Windows can both
+do this and others may as well.
+
+A Telnet or Secure Shell (SSH) client, and an account on the server on which
+you wish to run Sitellite.  This is the preferred method of installing
+Sitellite, but requires knowledge of using the Unix command line interface.

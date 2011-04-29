@@ -1,0 +1,3 @@
+<IfDefine APACHE2>
+  AcceptPathInfo On
+</IfDefine>

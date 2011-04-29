@@ -1,0 +1,42 @@
+{alt #fff #eee}
+
+<p>
+	<a href="{site/prefix}/index/sitemailer-group-action?id={cgi/group}">{intl Back}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitemailer-message-send-form?groups[]={cgi/group}">{intl Send Message}</a>
+</p>
+
+<p>
+{if count (pager.results) gt 0}
+<table border="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}</td>
+	</tr>
+</table>
+{end if}
+{if count (pager.results) eq 0}
+	{intl No messages}.
+{end if}
+</p>
+
+<p>
+<table width="100%" cellpadding="3" cellspacing="1">
+	<tr>
+		{loop obj[headers]}
+			<th><a href="{site/current}{filter urlencode}?group={cgi/group}&orderBy={loop/name}&sort={loop/getSort}">{php intl_get (loop.fullname)}</a>
+			{if loop.isCurrent ()}
+				<img src="{site/prefix}/inc/app/sitemailer/pix/arrow.{cgi/sort}.gif" alt="{cgi/sort}" border="0" />
+			{end if}
+			</th>
+		{end loop}
+	</tr>
+	{loop pager.results}
+		<tr style="background-color: {alt/next}">
+			<td><a href="{site/prefix}/index/sitemailer-message-action?id={loop/id}">{loop/subject}</a></td>
+			<td>{filter sitemailer_date}{loop/date}{end filter}</td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+<hr />

@@ -1,0 +1,9 @@
+<h1>Web View - Control Panel view</h1>
+
+<div class="greet-cnt"><div><p>When I select 'Control Panel' as default view in preferences, the 'Control Panel' is selected on login, but web view still is displayed in the bottom frame. If 'Web View' is selected in preferences, then it works as expected.</p>
+</div>
+</div>
+<div style="CLEAR: left" class="desc"><div><p>It works if I login from /cms-app but when I login from sitemember sidebar, it displays webview instead of ControlPanel view, even if ControlPanel is selected in the upper part of the window.</p>
+</div>
+</div>
+<p>When you log in from the public site as an admin, Sitellite looks at what the current URL is and forwards you back there after login. So if you log in as an admin through the sidebar on /some-page, then when you're logged in, Sitellite will take you back to /some-page so you don't lose your place if you wanted to start there to find the page you wanted to edit (such as the current page :). Otherwise, you'd have to browse back to it if that's where you wanted to be.</p>

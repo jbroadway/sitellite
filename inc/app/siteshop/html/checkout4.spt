@@ -1,0 +1,3 @@
+<p>{intl Your order has been submitted.  You will receive an email receipt in your inbox shortly.}</p>
+
+<p><a href="{site/prefix}/index/siteshop-app">{intl Continue}</a></p>

@@ -1,0 +1,28 @@
+<tr>
+<td style="width: 50px; vertical-align: top;" colspan="2">
+<h1 class="mjh1" style="padding-bottom: 4px; padding-top: 4px; margin-left: 0px;">{type}:</h1>
+</td>
+</tr>
+{loop obj[options]}
+<tr>
+<td style="padding: 0px; margin: 0px;" valign="middle">
+	<img height="20px" width="20px" style="padding: 0px; margin: 0px; padding-right: 5px;" src="{site/prefix}/
+	{if loop.has_thumbnail eq 'yes'}
+		{loop.thumbnail}
+	{end if}
+	{if else}
+		inc/app/siteshop/pix/product-option-trans.gif
+	{end if}
+	 " />
+</td>
+<td style="height: 0px; padding:0px; margin:0px;">
+	{if loop.available eq 'yes'}
+		<input type="radio" name="optiontype_{type}" value="{loop/id}" {if loop.selected eq 1}checked{end if}> {loop/name}</option> <br />
+	{end if}
+	{if loop.available eq 'no'}
+		<input type="radio" name="optiontype_{type}" value="{loop/id}" disabled> {loop/name} - Sold Out</option> <br />
+	{end if}
+</td>
+</tr>
+{end loop}
+

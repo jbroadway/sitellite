@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gallery>
+	<album title="{title}" description="{description}" lgPath="{site/prefix}/pix/{if not empty (obj[folder])}{folder}/{end if}">
+	{loop obj[images]}
+		<img src="{filter basename}{loop/_value}{end filter}" />
+	{end loop}
+	</album>
+</gallery>

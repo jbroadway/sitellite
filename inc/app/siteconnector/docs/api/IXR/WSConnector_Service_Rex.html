@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class WSConnector_Service_Rex</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class WSConnector_Service_Rex</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Base class for XML-RPC handlers</p>
+		<p class="notes">
+			Located in <a class="field" href="_Service_Rex_php.html">Program_Root/Service/Rex.php</a> (line <span class="field">5</span>)
+		</p>
+		
+				
+		<pre><a href="../IXR/IXR_Handler.html">IXR_Handler</a>
+   |
+   --<a href="../IXR/SiteConnector_Service.html">SiteConnector_Service</a>
+      |
+      --WSConnector_Service_Rex</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+									<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#clear" title="details" class="method-name">clear</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#compare" title="details" class="method-name">compare</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$rid1</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$rid2</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#create" title="details" class="method-name">create</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#delete" title="details" class="method-name">delete</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#deleteAll" title="details" class="method-name">deleteAll</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#determineAction" title="details" class="method-name">determineAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$newStatus</span> = <span class="var-default">false</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getCollections" title="details" class="method-name">getCollections</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getCurrent" title="details" class="method-name">getCurrent</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getHistory" title="details" class="method-name">getHistory</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$full</span> = <span class="var-default">false</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$limit</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getInfo" title="details" class="method-name">getInfo</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$rid</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getList" title="details" class="method-name">getList</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, [<span class="var-type">struct</span>&nbsp;<span class="var-name">$conditions</span> = <span class="var-default">array ()</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$limit</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$orderBy</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$count</span> = <span class="var-default">false</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getRevision" title="details" class="method-name">getRevision</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$rid</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$full</span> = <span class="var-default">false</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getSource" title="details" class="method-name">getSource</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getState" title="details" class="method-name">getState</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getStore" title="details" class="method-name">getStore</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getStoreList" title="details" class="method-name">getStoreList</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, [<span class="var-type">struct</span>&nbsp;<span class="var-name">$conditions</span> = <span class="var-default">array ()</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$limit</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$orderBy</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$count</span> = <span class="var-default">false</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#getStruct" title="details" class="method-name">getStruct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#modify" title="details" class="method-name">modify</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#replace" title="details" class="method-name">replace</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#republish" title="details" class="method-name">republish</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#restore" title="details" class="method-name">restore</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$rid</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$skipCreate</span> = <span class="var-default">true</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">struct</span>
+										<a href="#scan" title="details" class="method-name">scan</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#sync" title="details" class="method-name">sync</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#update" title="details" class="method-name">update</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodclear" id="clear"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">clear</span> (line <span class="line-number">166</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Deletes a document's change history from the store, leaving the  document itself unaffected.  Note: There is no undoing this action.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			clear
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodcompare" id="compare"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">compare</span> (line <span class="line-number">212</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Compares two revisions of a document.  $rid1 is the Revision ID  of the older revision, and $rid2 is the Revision ID of the newer.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			compare
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$rid1</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$rid2</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$rid1</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$rid2</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodcreate" id="create"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">create</span> (line <span class="line-number">15</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds a document to the specified collection.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			create
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">struct</span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$changes</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methoddelete" id="delete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">delete</span> (line <span class="line-number">129</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Deletes a document from the specified collection.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			delete
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$changes</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methoddeleteAll" id="deleteAll"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">deleteAll</span> (line <span class="line-number">148</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Deletes a document from the specified collection, removing  both the source document and its change history in the store.</p>
+<p class="description"><p>Note: There is no undoing this action.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			deleteAll
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methoddetermineAction" id="determineAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">determineAction</span> (line <span class="line-number">471</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Determines which of modify(), republish(), update(), and replace()  that you need to call on the current document, based on its current  status, and the provided status in your change.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			determineAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$newStatus</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$newStatus</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetCollections" id="getCollections"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCollections</span> (line <span class="line-number">486</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a list of available collections.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getCollections
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetCurrent" id="getCurrent"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCurrent</span> (line <span class="line-number">280</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the latest copy of a document from the store.  If not available,  gets it from the source.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getCurrent
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetHistory" id="getHistory"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getHistory</span> (line <span class="line-number">258</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the info or full contents for each verison of the specified  document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getHistory
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$full</span> = <span class="var-default">false</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$limit</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$full</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$limit</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetInfo" id="getInfo"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getInfo</span> (line <span class="line-number">233</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns all info about a specific a document.  $rid is the Revision ID.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getInfo
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$rid</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetList" id="getList"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getList</span> (line <span class="line-number">388</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a list of items from the source.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getList
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, [<span class="var-type">struct</span>&nbsp;<span class="var-name">$conditions</span> = <span class="var-default">array ()</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$limit</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$orderBy</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$count</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">struct</span>
+				<span class="var-name">$conditions</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$limit</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$orderBy</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sort</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$count</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetRevision" id="getRevision"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getRevision</span> (line <span class="line-number">345</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the specified revision of a document from the store.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getRevision
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$rid</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$full</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$rid</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$full</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetSource" id="getSource"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSource</span> (line <span class="line-number">301</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the latest copy of a document from the source.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getSource
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetState" id="getState"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getState</span> (line <span class="line-number">366</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the current state of a document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getState
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetStore" id="getStore"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStore</span> (line <span class="line-number">322</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the latest copy of a document from the store.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getStore
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetStoreList" id="getStoreList"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStoreList</span> (line <span class="line-number">419</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a list of items from the store.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getStoreList
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, [<span class="var-type">struct</span>&nbsp;<span class="var-name">$conditions</span> = <span class="var-default">array ()</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$limit</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$orderBy</span> = <span class="var-default">false</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$count</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">struct</span>
+				<span class="var-name">$conditions</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$limit</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$orderBy</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sort</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$count</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodgetStruct" id="getStruct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStruct</span> (line <span class="line-number">445</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a structure of the specified collection, which can be  used for auto-discovering collection field info.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			getStruct
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodmodify" id="modify"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">modify</span> (line <span class="line-number">41</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Modifies a document in the specified collection.  modify() affects  both the source and the store.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			modify
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">struct</span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$changes</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodreplace" id="replace"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">replace</span> (line <span class="line-number">109</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Replaces a document in the specified collection.  replace() affects  both the source and the store.  Synchronizes changes in the store  with the approved document in the source.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			replace
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">struct</span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$changes</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodrepublish" id="republish"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">republish</span> (line <span class="line-number">63</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Republishes a document in the specified collection.  republish() affects  only the store.  Used to begin a change to an approved document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			republish
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">struct</span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$changes</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodrestore" id="restore"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">restore</span> (line <span class="line-number">190</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Restores a document that was deleted.  $rid is the Revision ID.</p>
+<p class="description"><p>The $data is an optional update to apply to it upon restoration.  $skipCreate tells Rex to skip the creation of the document in the  source.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			restore
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$rid</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$skipCreate</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$rid</span>			</li>
+					<li>
+				<span class="var-type">struct</span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$changes</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$skipCreate</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodscan" id="scan"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">scan</span> (line <span class="line-number">516</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Synchronizes an entire collection.  Returns an array with two  sub-arrays, containing a list of IDs of scanned and fixed documents,  respectively.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">struct</span>
+		<span class="method-name">
+			scan
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodsync" id="sync"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">sync</span> (line <span class="line-number">498</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Synchronizes the store with the source for the specified document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			sync
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodupdate" id="update"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">update</span> (line <span class="line-number">86</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Updates a document in the specified collection.  update() affects  only the store.  Called instead of modify() when changing a republished  document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			update
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$collection</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">struct</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$changes</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$collection</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span>			</li>
+					<li>
+				<span class="var-type">struct</span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$changes</span>			</li>
+				</ul>
+		
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../IXR/SiteConnector_Service.html">SiteConnector_Service</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../IXR/SiteConnector_Service.html#method_getMethods">SiteConnector_Service::_getMethods()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../IXR/IXR_Handler.html">IXR_Handler</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../IXR/IXR_Handler.html#method_getHelp">IXR_Handler::_getHelp()</a></span><br>
+													<span class="method-name"><a href="../IXR/IXR_Handler.html#method_getMethods">IXR_Handler::_getMethods()</a></span><br>
+													<span class="method-name"><a href="../IXR/IXR_Handler.html#method_getSignatures">IXR_Handler::_getSignatures()</a></span><br>
+													<span class="method-name"><a href="../IXR/IXR_Handler.html#method_setServer">IXR_Handler::_setServer()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Tue,  4 May 2004 09:26:54 -0500 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.2.2</a>
+	</p>
+	</div></body>
+</html>

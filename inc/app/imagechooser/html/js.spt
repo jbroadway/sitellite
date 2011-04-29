@@ -1,0 +1,78 @@
+
+var imagechooser_{name}_form = false;
+var imagechooser_{name}_element = false;
+var imagechooser_{name}_attrs = false;
+dialogWin.scrollbars = 'yes';
+dialogWin.resizable = 'yes';
+
+function imagechooser_{name} () {
+	openDGDialog (
+		'{site/prefix}/index/imagechooser-app?name={name}&attrs=' + imagechooser_{name}_attrs,
+		400,
+		300,
+		imagechooser_{name}_handler
+	);
+}
+
+function imagechooser_{name}_get_image (f, e) {
+	imagechooser_{name}_form = f;
+	imagechooser_{name}_element = e;
+	imagechooser_{name} ();
+	return false;
+}
+
+function imagechooser_{name}_view (file, w, h) {
+	if (! file) {
+		return false;
+	}
+	if (! w) {
+		w = 400;
+	}
+	if (! h) {
+		h = 300;
+	}
+
+	win = window.open (
+		'about:blank',
+		'ImageChooser',
+		'top=50,left=50,width=' + (w + 30) + ',height=' + (h + 60) + ',toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,fullscreen=no'
+	);
+	win.document.write ('<html><head><title>' + file + '</title><' + '/head>');
+	win.document.write ('<body><p align="center"><a href="javascript: window.close ()"><img src="' + file + '" alt="{intl Click to close}" title="{intl Click to close}" border="0" /></a></p>');
+	win.document.write ('<p align="center" style="font: 12px Verdana, Arial, sans-serif"><a href="javascript: window.close ()" style="text-decoration: none; color: #d60">{intl Close Window}</a></p></body></html>');
+	win.document.close ();
+	return false;
+}
+
+function imagechooser_{name}_select (img) { // alt and flt are optional parameters
+	if (arguments.length > 1) {
+		src = arguments[0];
+		alt = arguments[1];
+		flt = arguments[2];
+		h = arguments[3];
+		w = arguments[4];
+	} else {
+		src = img;
+		alt = false;
+		h = false;
+	}
+	if (opener && ! opener.closed) {
+		if (h != false) {
+			opener.dialogWin.returnedValue = new Array ();
+			opener.dialogWin.returnedValue['src'] = src;
+			opener.dialogWin.returnedValue['alt'] = alt;
+			opener.dialogWin.returnedValue['float'] = flt;
+			opener.dialogWin.returnedValue['height'] = h;
+			opener.dialogWin.returnedValue['width'] = w;
+		} else {
+			opener.dialogWin.returnedValue = src;
+		}
+		opener.dialogWin.returnFunc ();
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+	window.close ();
+	if (h != false) {
+		return false;
+	}
+}

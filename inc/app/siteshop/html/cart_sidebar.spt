@@ -1,0 +1,8 @@
+{if obj[items] eq 0}
+<p>{intl Your shopping cart is empty.}</p>
+{end if}
+{if else}
+<p>{items} {intl Item(s)}<br />
+{intl Total}: ${total}</p>
+<p><a href="{site/prefix}/index/siteshop-cart-action">{intl View Cart}</a></p>
+{end if}

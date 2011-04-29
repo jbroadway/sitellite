@@ -1,0 +1,343 @@
+$Id: SaxFiltersGuide,v 1.1.1.1 2004/06/14 18:07:58 lux Exp $
+
++++XML_SaxFilters: A Rough Guide
+The purpose of SaxFilters is to provide a stucture to make it easy to parse
+XML documents with the SAX API. This is a rough guide to working with
+Sax Filters
+
++++What is SAX?
+SAX is the Simple API for XML. It is not an official standard but rather an 
+approach to parsing XML documents which has proved effective.
+
+The approach used by the SAX API is to regard an XML document as a list of
+"events". A SAX parser reads an XML document from start to finished and every
+time it encounters an "event", it calls a function or class method which is
+has been told is the "handler" for that event.
+
+The SAX API distinguishes between different "parts" of an XML document as
+being different types of event. For example the following snippet of an
+XML document is equivalent to three events;
+
+<myTag>Hello World!</myTag>
+
+The opening tag, <myTag>, the data between the tags (Hello World!) and the
+closing tag </myTag> are all distinguisable events. A SAX parser will generally
+have three different handlers defined to deal with these, for example;
+
+function startElementHandler($name,$attribs) {
+    echo ( 'The opening tag name is: '.$name ); // outputs "myTag"
+    echo ( 'The tag attributes are:' );
+    echo ( '<pre>' );
+    print_r($attribs);  // No attributes in this case
+    echo ( '</pre>' );
+}
+
+characterDataHandler($data) {
+    echo ( 'The data is: '.$data ); // output "Hello World!"
+}
+
+endElementHandler($name) {
+    echo ( 'The close tag is: '.$name ); // outputs "myTag"
+}
+
+Note that other elements of an XML document such as entities may also trigger
+seperate events, depending on the parser
+
++++Parsing with PHP and Expat
+PHP comes with it's own SAX parser (James Clarks Expat parser), described at
+http://www.php.net/xml. This provides a fully functional (and very reliable)
+SAX XML parser.
+
++++The Problem
+The "normal" approach to parsing XML with the native SAX parser in PHP typically
+involves implementing a "concrete" parser for a given document, the handlers being
+effectively "embedded" in the code that does the parsing.
+
+A common example in PHP is parsing an RSS feed such as described at
+http://www.sitepoint.com/print/560, the completed concrete parser being available
+at http://www.sitepoint.com/article/560/4
+
+While there's nothing wrong with the approach prescribed, an RSS document
+has a fairly simple structure which is also predicable. For more complex XML documents
+with a greater depth in nodes or a document where the heirarchy itself
+may vary from document to document (e.g. an [X]HTML page), attempting to tie
+handlers directly to the parser will result in giant switch statements an
+complex if/else conditions and quickly lead to an unmaintainable and easy to break
+parser.
+
++++Sax Filters
+The general approach taken by Sax Filters is to seperate the XML event handlers (referred
+to as a Filter from now on) from the code which reads the incoming XML "stream" and
+triggers the handlers (referred to as the Parser from now on).
+
+By doing so, it's possible to "plug in" a specific set of Filters to a generic Parser,
+meaning the coding effort concentrates purely on Filter and not the Parser.
+
+What's more it's possible to chain of multiple Filters together, making it easier
+to deal with XML documents with greater depth in nodes.
+
+For example a document like;
+
+<?xml version="1.0"?>
+<books>
+  <book>
+    <title>Programming PHP</title>
+    <authors>
+      <name>Rasmus Lerdorf</name>
+      <name>Kevin Tatroe</name>
+    </authors>
+  </book>
+  <book>
+    <title>PHP and MySQL Web Development, Second Edition</title>
+    <authors>
+      <name>Luke Welling</name>
+      <name>Laura Thomson</name>
+    </authors>
+  </book>
+</books>
+
+Using SAX filters the solution might be to define two handlers, one for <book />
+elements, say BookFilter and another for <authors /> elements; AuthorsFilter.
+The AuthorsFilter would then by chained to the BookFilter, the latter allowing
+the AuthorsFilter to look at the events it receives and respond if it finds
+events it's interested in handling. From a code perspective, setting this up 
+with XML_SaxFilters might look like;
+
+<?php
+// Create a steamer for fetching XML
+$reader = & new FileReader('books.xml');
+
+// Instantiate the generic parsing, giving it the XML stream
+$parser = & new ExpatParser($reader);
+
+// Create the BookFilter object
+$books = & new BooksFilter();
+
+// Create the AuthorsFilter object
+$authors = & new AuthorsFilter();
+
+// Chain the BookFilter to the parser
+$parser->setChild($books);
+
+// Chain the AuthorsFilter to the BookFilter
+$books->setChild($authors);
+
+// Parse the document
+$parser->parse();
+?>
+
++++XML_SaxFilters specifics
+PEAR::XML_SaxFilters differs a little from SaxFilters implemented in
+other languages in that it allows for "dynamic" chaining of Filters.
+This makes it possible to deal with XML documents of a given format
+where the heirarchy of XML elements can vary significantly from document
+to document (e.g. an XHTML document). More on that in a moment.
+
+-Readers
+From the perspective of how XML_SaxFilters "receives" an XML document,
+a set of "Reader" classes has been defined, which implement the
+ReaderInterface. These are used to stream the XML data source to a parser,
+and make it possible to break up the XML stream so the parser does not
+need hold alot of data in memory.
+
+In practice the readers act as a simple Iterator, providing a read() method
+to get some data an an inFinal() method which is really only there to help
+the native PHP SAX parser, which likes to know when the XML stream has finished.
+
+Right now the following Readers have been defined;
+
+FileReader - this uses PHP's fopen to stream data.
+StringReader - streams the data from a string
+StructReader - this is NOT meant to used by a parser (see Writers below)
+               but only for getting data from a StructWriter
+
+-Writers
+The Writer classes, which implement the WriterInterface, provide an 
+"outgoing data stream" to which the Filters can "write" data.
+
+Although there's no requirement to use a writer, it makes an effective
+mechanism to have a single object which all filters can use, without needing
+to resort to global variables.
+
+To fetch data from a Writer class, the getReader() method returns an instance
+of one of the Readers (above). This provides the additional option of having
+a second (or more) Parser (and Filters) which reads from the outgoing data stream,
+should that be required.
+
+The available methods in a writer are write() to add data, getReader() to return
+a Reader and close() which is provided specifically for the file writer, to close
+the file.
+
+The available writers right now are;
+FileWriter - uses fopen to write to a file - getReader() returns a FileReader
+StringWriter - writes data to a string - getReader() returns a StringReader
+StructWriter - used to write objects to an internal array- getReader() returns
+               a StructReader
+
+Note: Will be looking at possibilities to build a writer for XML::Tree at
+some point, so there's a writer for building heirarchical data structures.
+
+- Parsers
+XML_SaxFilters provides two concrete parsers today, ExpatParser which is
+uses the native PHP Sax parser and HTMLSaxParser, which uses PEAR::XML_HTMLSax,
+a parser for badly formed formed XML written purely in PHP (be warned,
+HTMLSax is alot slower than then native Sax parser - use only when you have to).
+
+The parsers define three handlers, startElementHandler, endElementHandler
+and characterDataHandler which when triggered, do nothing but pass on the
+event to the filter chained to the parser. These are implemented in the 
+AbstractParser class.
+
+The AbstractParser also provides two methods, setChild() and unsetChild() which
+are used to chain a filter to the parser and later detach it, respectively.
+
+The ParserInterface class defines two methods, setParserOption() and parse()
+which every concrete parser must implement. The ParserInterface is not actually
+used but is provided to guide developers writing their own concrete parsers.
+
+Note: the parsers do not check to see if you've already set a child filter
+when instructed to parse right now, so make sure you've set one before calling
+parse.
+
+- Filters
+For the filters, the AbstractFilter provides the following methods;
+
+- setChild(): for chaining another filter to the current one. Note that the
+              child has no "awareness" of it's parent unless setParent() is
+              used (see below)
+- unsetChild(): for removing a chained filter
+
+- setParent(): this connects a child back to the filter it's chained to. This
+               allows the child to manipulate it's parent, perhaps detaching itself
+               when it's finished filtering an XML element (after it's final
+               endElementHandler() method).
+- unsetParent(): this breaks the connect from child to parent established with
+                 setParent().
+
+- attachToParent(): this is a "shortcut" which allows a child to connect another
+                    child to it's parent (assuming setParent() was already used),
+                    by calling the parent setChild() method.
+- detachFromParent(): another "shortcut" which allows a child to disconnect a child
+                      from it's parent.
+
+- setWriter(): this adds a Writer class (see above) to a filter
+- getWriter(): gets the Writer
+
+Note that in most cases (fairly simple XML documents) it will only be necessary to
+use the setChild() and optionally the setWriter() methods. This rest are used for
+more complex XML documents where one filter may instantiate another filter
+"internally" depending on the XML events it encounters.
+
+***Dynamic Filtering
+For complex XML documents, where the element names are known but not the precise structure,
+filters can be used to "launch" new filters based on the encountered elements.
+
+The example provided with XML_SaxFilters, template.php, gives some idea of how this works.
+
+Look at that example in a little detail, the document to be parsed looks like this;
+
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> Runtime Components Example </title>
+</head>
+
+<body>
+<h1>Template for building runtime components</h1>
+<a href="http://www.php.net">
+    <img
+        id=phpLogo
+        src=http://static.php.net/www.php.net/images/php.gif
+        border=0
+        alt=PHP
+        width=120
+        height=67
+        hspace=3
+        runat=server>
+</a>
+<p>Tags marked with the attribute runat="server" are parsed into runtime components.</p>
+<table>
+<caption>The Founding Fathers</caption>
+<list id="myList" dataSource="myIterator" runat="server">
+    <row>
+        <tr>
+            <td><item id="first"></td>
+            <td><item id="last"></td>
+        </tr>
+    </row>
+</list>
+</caption>
+</body>
+</html>
+
+Now I want my filters to deal with any tag that contains the attribute: runat="server". But
+I need different filters depending on what element has that attribute.
+
+First I define the filter which will be chained directly to the parser, HTMLFilter. In the 
+constructor I "register" an array which will be used to map element names to the Filter to
+be instantiated;
+
+<?php
+    function HTMLFilter()
+    {
+        $this->registry['img']='HTMLImageFilter';
+        $this->registry['list']='ListFilter';
+    }
+?>
+
+Next in the startElementHandler I check to see if this filter already has a child, in
+which case I delegate any event to it;
+
+<?php
+    function startElementHandler($name,$attribs)
+    {
+        if ( isset ( $this->child ) )
+        {
+            $this->child->startElementHandler($name,$attribs);
+        }
+?>
+
+Simplifying the next step a little, I check for the runat="server" attribute which,
+if I find, tells me I need to instantiate a new filter;
+
+<?php
+        else if ( isset($attribs['runat']) && $attribs['runat']=='server' )
+        {
+            $childFilter = & new $this->registry[$name]();
+            $childFilter->setParent($this);
+            $childFilter->setWriter($this->getWriter());
+            $this->setChild($childFilter);
+        }
+?>
+
+Above I first find the class name from the registered elements then create an object
+using that name. Then I make a connection *from* the child *to* the parent, using the
+childs setParent() method. Following that I add the Writer to the child then
+make a connection *from* the parent *to* the child using setChild().
+
+Once the child filter is set, the next time HTMLFilter's startElementHandler is called,
+it will delegate the event to the child, rather than handling itself.
+
+Looking at one of the child filters, ListFilter, it's worth examing then endElementHandler.
+Remember that ListFilter will know about it's parent, HTMLFilter, because I used it's
+setParent() method just after it was created.
+
+<?php
+    function endElementHandler($name)
+    {
+        if ( $name == 'list' )
+        {
+            $this->detachFromParent();
+        }
+?>
+
+What the end element handler does is watch for the closing </list> tag which, if
+encountered, results in the detachFromParent() method being called, breaking the
+connection *from* Parent *to* Child. By doing so the parent filter, HTMLFilter,
+will no longer delegate events to the child, returning the responsibility to
+it for handling events.
+
+While this may seem confusing at first, once grasped it can be a very powerful
+approach to parsing XML, allowing the kind of flexibility with SAX that is
+normally only possible with DOM.
+

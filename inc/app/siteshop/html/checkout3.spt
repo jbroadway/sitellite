@@ -1,0 +1,90 @@
+<p>{intl Please review your order one more time to ensure all of the information is correct.  When you are ready, please click continue.}</p>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td valign="top" width="50%">
+			<h2>{intl Billing Address}</h2>
+			<p>{bill_to}<br />{bill_address}{if not empty (obj[bill_address2])}<br />{bill_address2}{end if}<br />{bill_city}, {filter strtoupper}{bill_state}{end filter}<br />{filter siteshop_filter_country}{bill_country}{end filter}<br />{bill_zip}</p>
+			<p>{phone}<br /><a href="mailto:{email}">{email}</a></p>
+		</td>
+		<td valign="top" width="50%">
+			<h2>{intl Shipping Address}</h2>
+			<p>{ship_to}<br />{ship_address}{if not empty (obj[ship_address2])}<br />{ship_address2}{end if}<br />{ship_city}, {filter strtoupper}{ship_state}{end filter}<br />{filter siteshop_filter_country}{ship_country}{end filter}<br />{ship_zip}</p>
+		</td>
+	</tr>
+</table>
+</p>
+
+<h2>{intl Cart Contents}</p>
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th>{intl Product Name}</th>
+		<th>{intl Options}</th>
+		<th width="20%">{intl Price}</th>
+		<th width="15%">{intl Qty}</th>
+		<th width="20%">{intl Total}</th>
+	</tr>
+{loop obj[cart]}
+	<tr style="background-color: {alt/next}">
+		<td>{loop/name}</td>
+		<td>			
+		{loop loop.options}
+			{loop/type}: {loop/name}{if loop[_total] eq loop[_index]}{end if}{if else},{end if}
+		{end loop}</td>
+		<td align="right">${loop/price}</td>
+		<td align="center">{loop/qty}</td>
+		<td align="right">${php Cart::subtotal (loop._key)}</td>
+	</tr>
+{end loop}
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="1"><strong>{intl Subtotal}</strong></td>
+		<td align="right" valign="top"><strong>${php Cart::subtotal ()}</strong></td>
+	</tr>
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="1"><strong>{intl Shipping}</strong></td>
+		<td align="right" valign="top"><strong>{if Cart::shipping () eq 0}{intl FREE!}{end if}{if else}${php Cart::shipping ()}{end if}</strong></td>
+	</tr>
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="1"><strong>{intl Tax}</strong></td>
+		<td align="right" valign="top"><strong>${php Cart::tax ()}</strong></td>
+	</tr>
+{if Cart::hasPromo ()}
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="1"><strong>{intl Promo}: {php Cart::promoName ()}</strong></td>
+		<td align="right" valign="top"><strong>${php Cart::promo ()}</strong></td>
+	</tr>
+{end if}
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="1"><strong>{intl Total}</strong></td>
+		<td align="right" valign="top"><strong>${php Cart::total ()}</strong></td>
+	</tr>
+</table>
+</p>
+
+<h2>{intl Redirecting to Paypal}</h2>
+
+<p>{intl If everything looks correct, please click continue.  You will then be redirected to Paypal to make your payment.  Paypal is the largest online payment processing service and ensures your payment information is secure.}</p>
+
+<p>{intl Once you have completed the payment with Paypal, you will be redirected back to the order confirmation screen on our website.}</p>
+
+<form method="post" name="form1" action="https://www.paypal.com/cgi-bin/webscr">
+<input type="hidden" name="cmd" value="_xclick" />
+<input type="hidden" name="business" value="{php appconf ('paypal_id')}" />
+<input type="hidden" name="currency_code" value="{php appconf ('currency_code')}" />
+<input type="hidden" name="return" value="http://{site/domain}{site/prefix}/index/siteshop-checkout-action?step=success" />
+<input type="hidden" name="cancel_return" value="http://{site/domain}{site/prefix}/index/siteshop-checkout-action?step=cancelled" />
+<input type="hidden" name="item_name" value="Shopping Cart Contents" />
+<input type="hidden" name="amount" value="{php Cart::pptotal ()}" />
+<input type="hidden" name="tax" value="{php Cart::tax ()}" />
+{if Cart::shipping () ne 0}<input type="hidden" name="shipping" value="{php Cart::shipping ()}" />{end if}
+
+<p><input type="submit" value="{intl Continue}" /></p>
+</form>

@@ -1,0 +1,104 @@
+<p>
+	<a href="javascript: history.go (-1)">{intl Back}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/cms-user-vcard-action?user={username}">{intl Save as vCard}</a>
+</p>
+
+<p><table border="0" cellpadding="3" cellspacing="1" width="75%">
+	{if obj.role}
+	<tr>
+		<td class="label" width="30%">{intl Role}</td>
+		<td class="field">{role}</td>
+	</tr>
+	{end if}
+	{if obj.team}
+	<tr>
+		<td class="label" width="30%">{intl Team}</td>
+		<td class="field">{team}</td>
+	</tr>
+	{end if}
+</table></p>
+
+<p><table border="0" cellpadding="3" cellspacing="1" width="75%">
+	{if obj.position}
+	<tr>
+		<td class="label" width="30%">{intl Title}</td>
+		<td class="field">{position}</td>
+	</tr>
+	{end if}
+	{if obj.company}
+	<tr>
+		<td class="label" width="30%">{intl Company}</td>
+		<td class="field">{company}</td>
+	</tr>
+	{end if}
+</table></p>
+
+<p><table border="0" cellpadding="3" cellspacing="1" width="75%">
+	{if obj.phone}
+	<tr>
+		<td class="label" width="30%">{intl Work}</td>
+		<td class="field">{phone}</td>
+	</tr>
+	{end if}
+	{if obj.cell}
+	<tr>
+		<td class="label" width="30%">{intl Cell}</td>
+		<td class="field">{cell}</td>
+	</tr>
+	{end if}
+	{if obj.fax}
+	<tr>
+		<td class="label" width="30%">{intl Fax}</td>
+		<td class="field">{fax}</td>
+	</tr>
+	{end if}
+	{if obj.home}
+	<tr>
+		<td class="label" width="30%">{intl Home}</td>
+		<td class="field">{home}</td>
+	</tr>
+	{end if}
+	{if obj.sms_address}
+	<tr>
+		<td class="label" width="30%">SMS #</td>
+		<td class="field">{sms_address}</td>
+	</tr>
+	{end if}
+	{if obj.jabber_id}
+	<tr>
+		<td class="label" width="30%">Jabber ID</td>
+		<td class="field">{jabber_id}</td>
+	</tr>
+	{end if}
+</table></p>
+
+<p><table border="0" cellpadding="3" cellspacing="1" width="75%">
+	{if obj.email}
+	<tr>
+		<td class="label" width="30%">{intl Email}</td>
+		<td class="field"><a href="mailto:{email}">{email}</a></td>
+	</tr>
+	{end if}
+	{if obj.website}
+	<tr>
+		<td class="label" width="30%">{intl Web Site}</td>
+		<td class="field"><a href="{website}" target="_blank">{website}</a></td>
+	</tr>
+	{end if}
+</table></p>
+
+<p><table border="0" cellpadding="3" cellspacing="1" width="75%">
+	{if obj.address1}
+	<tr>
+		<td class="label" width="30%" valign="top">{intl Address}</td>
+		<td class="field">
+			{address1}
+			{if obj.address2}<br />{address2}{end if}
+			{if obj.city}<br />{city}{end if}
+			{if obj.province}, {province}{end if}
+			{if obj.postal_code}, {postal_code}{end if}
+			{if obj.country}<br />{country}{end if}
+		</td>
+	</tr>
+	{end if}
+</table></p>

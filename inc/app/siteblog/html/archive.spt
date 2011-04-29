@@ -1,0 +1,39 @@
+{if obj[next] or obj[prev]}
+<p>
+{if obj[prev]}&larr; <a href="{site/prefix}/index/siteblog-archive-action/d.{prev}">{filter siteblog_filter_archive_date}{prev}{end filter}</a>{end if}
+{if obj[prev] and obj[next]} &nbsp;|&nbsp; {end if}
+{if obj[next]}<a href="{site/prefix}/index/siteblog-archive-action/d.{next}">{filter siteblog_filter_archive_date}{next}{end filter}</a> &rarr;{end if}
+</p>
+{end if}
+
+<ul class="siteblog-archive-toc">
+{loop obj[toc]}
+	<li><a href="#siteblog-post-{loop/_key}">{loop/_value}</a></li>
+{end loop}
+</ul>
+
+{box cms/buttons/add?collection=siteblog_post}
+
+{loop obj[post]}
+    <div class="siteblog-list-post siteblog-list-post-{loop/_index}">
+      <a name="siteblog-post-{loop/id}"></a>
+      {box cms/buttons?collection=siteblog_post&add=false&float=true&id=[loop/id]&status=[loop/sitellite_status]&access=public&team=none}
+      <h2><a href="{site/prefix}/index/siteblog-post-action/id.{loop/id}/title.{filter siteblog_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a></h2>
+      <p class="siteblog-post-info">
+       {filter siteblog_filter_nicedate}{loop/created}{end filter}
+       // By <a href="{site/prefix}/index/siteblog-author-action/author.{loop/author}">{loop/author}</a>
+       </p>
+     
+     <div class="siteblog-post-body">{filter template_parse_body}{loop/body}{end filter}</div>
+
+    <p class="siteblog-post-footer">
+     	<a href="/index/siteblog-topic-action/id.{loop/category}/title.{filter siteblog_filter_link_title}{loop/category_name}{end filter}">{loop/category_name}</a>
+		// <a href="{site/url}/index/siteblog-post-action/id.{loop/id}/title.{filter siteblog_filter_link_title}{loop/subject}{end filter}">{intl Permalink}</a>
+	{if loop.comments_on eq true}
+		// <a href="{site/prefix}/index/siteblog-post-action/id.{loop/id}/title.{filter siteblog_filter_link_title}{loop/subject}{end filter}#siteblog-comments">{intl Comments} ({loop/comments})</a> - <a href="{site/prefix}/index/siteblog-post-action/id.{loop/id}/title.{filter siteblog_filter_link_title}{loop/subject}{end filter}#siteblog-comment-form">{intl Add}</a>
+	{end if}
+	</p>
+    </div>
+{end loop}
+
+<p class="siteblog-rss-link"><a href="/index/siteblog-rss-action"><img src="{site/prefix}/inc/app/siteblog/pix/feed.png" alt="RSS Feed" title="RSS Feed" border="0" /></a></p>

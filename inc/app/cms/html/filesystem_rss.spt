@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:admin="http://webns.net/mvcb/"
+	xmlns="http://purl.org/rss/1.0/"
+>
+
+<channel rdf:about="{site/url}/index/cms-filesystem-action?path={cgi/path}">
+
+	<title>{rss_title}</title>
+	<link>{site/url}/index/cms-filesystem-action?path={path}</link>
+	<description></description>
+
+	<dc:language>{if intl_locale ()}{intl/locale}-{end if}{intl/language}</dc:language>
+	<dc:date>{rss_date}</dc:date>
+
+	<syn:updatePeriod>hourly</syn:updatePeriod>
+	<syn:updateFrequency>1</syn:updateFrequency>
+	<syn:updateBase>1970-01-01T00:00+00:00</syn:updateBase>
+
+	<admin:generatorAgent rdf:resource="http://www.sitellite.org/v.{SITELLITE_VERSION}" />
+
+	<items>
+		<rdf:Seq>
+{loop obj[list]}{if loop._type ne 'date'}
+			<rdf:li rdf:resource="{site/url}/index/cms-filesystem-action/{path}{loop/name}.{loop/extension}" />
+{end if}{end loop}
+		</rdf:Seq>
+	</items>
+
+</channel>
+
+{loop obj[list]}
+<item rdf:about="{site/url}/index/cms-filesystem-action/{path}{loop/name}.{loop/extension}">
+	<title>{loop/name}.{loop/extension}</title>
+	<link>{site/url}/index/cms-filesystem-action/{path}{loop/name}.{loop/extension}</link>
+	{if not empty (loop.description)}<description>{loop/description}</description>{end if}
+</item>
+
+{end loop}
+</rdf:RDF>

@@ -1,0 +1,51 @@
+{alt #fff #eee}
+
+<style type="text/css">
+
+h1 {
+	background-image: url('{site/prefix}/inc/app/siteconnector/pix/icon.gif');
+	background-repeat: no-repeat;
+	background-position: 0, 50%;
+	padding-left: 42px;
+	padding-top: 5px;
+	padding-bottom: 12px;
+	margin-bottom: 0px;
+}
+
+</style>
+
+<p>
+	<a href="{site/prefix}/index/siteconnector-admin-action">{intl Home}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=siteconnector">{intl Help}</a>
+</p>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+<p>
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th>{intl Query}</th>
+		<th width="15%">{intl Protocol}</th>
+		<th width="15%">{intl Response Code}</th>
+		<th width="25%">{intl Timestamp}</th>
+		<th width="20%">{intl User ID (IP Address)}</th>
+	</tr>
+	{loop obj[list]}
+		<tr style="background-color: {alt/next}">
+			<td>{filter ucfirst}{loop/service}{end filter} :: {loop/action} ()</td>
+			<td>{filter strtoupper}{loop/protocol}{end filter}</td>
+			<td>{filter strtoupper}{loop/response_code}{end filter}</td>
+			<td>{filter siteconnector_filter_datetime}{loop/ts}{end filter}</td>
+			<td>{loop/user_id} ({loop/ip})</td>
+		</tr>
+	{end loop}
+</table>
+</p>

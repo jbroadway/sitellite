@@ -1,0 +1,1370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- Generated with PHPDoc v1.5, http://www.phpdoc.de -->
+<html>
+<head>
+	<title>NuSOAP -  - Class: XMLSchema</title>
+	<link href="phpdoc.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<table width="100%" border="0">
+	<tr>
+		<td align="left" valign="top" bgcolor="#B0BAFF">			
+			<table width="100%">
+				<tr>
+					<td align="left" valign="top"><a href="phpdoc_packagelist.html">Packageindex</a></td>
+					<td align="left" valign="top"><a href="phpdoc_classtree.html">Classtrees</a></td>
+					<td align="left" valign="top"><a href="phpdoc_modulegroup.html">Modulegroups</a></td>
+					<td align="left" valign="top"><a href="phpdoc_elementlist.html">Elementlist</a></td>
+					<td align="left" valign="top"><a href="phpdoc_warnings.html">Report</a></td>
+					<td align="left" valign="top"><a href="phpdoc_xmlfiles.html">XML Files</a></td>
+				</tr>
+			</table>	
+		</td>
+	</tr>
+	<tr>	
+		<td height="20" align="left" valign="top"><hr></td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">			
+			<h6></h6>
+			<h1>XMLSchema</h1>
+			<pre><a href="nusoap_base.html">nusoap_base</a><br>&nbsp;&nbsp; |<br>&nbsp;&nbsp;+-- XMLSchema<br></pre>
+		</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">
+			<h4>public    class XMLSchema extends <a href="nusoap_base.html">nusoap_base</a></h4>
+			  no validation... yet.   very experimental and limited. As is discussed on XML-DEV, I'm one of the people   that just doesn't have time to read the spec(s) thoroughly, and just have a couple of trusty   tutorials I refer to :)
+			<p>
+			<table>
+				
+				
+				<tr><td align="left" valign="top">Authors</td><td align="left" valign="top">Dietrich Ayala &lt;<a href="mailto:dietricha@ganx4.com">dietricha@ganx4.com</a>&gt;</td></tr>
+				
+				<tr><td align="left" valign="top">Version</td><td align="left" valign="top">v 0.6</td></tr>
+				
+				
+				
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="10" align="left" valign="top">&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">
+			<b>Direct known subclasses:</b> <a href="wsdl.html">wsdl</a>
+		</td>
+	</tr>
+	
+	<tr>
+		<td height="20" align="left" valign="top"><hr></td>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td align="left" valign="top"><h2>Methods inherited from nusoap_base</h2></td>
+				</tr>
+				<tr>
+					<td align="left" valign="top"><a href="nusoap_base.html#function_nusoap_base">nusoap_base</a>, <a href="nusoap_base.html#function_debug">debug</a>, <a href="nusoap_base.html#function_geterror">geterror</a>, <a href="nusoap_base.html#function_seterror">seterror</a>, <a href="nusoap_base.html#function_serialize_val">serialize_val</a>, <a href="nusoap_base.html#function_serializeenvelope">serializeenvelope</a>, <a href="nusoap_base.html#function_timestamp_to_iso8601">timestamp_to_iso8601</a>, <a href="nusoap_base.html#function_iso8601_to_timestamp">iso8601_to_timestamp</a>, <a href="nusoap_base.html#function_formatdump">formatdump</a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td align="left" valign="top">		
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Public Method Summary</h2></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_XMLSchema()" class="head">XMLSchema([ string $schema, string $xml ])</a><br />constructor<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">boolean</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_parseFile()" class="head">parseFile(string $xml, string $type)</a><br />parse an XML file<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_serializeSchema()" class="head">serializeSchema()</a><br />serialize the schema<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">mixed</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getPHPType()" class="head">getPHPType(string $type, string $ns)</a><br />get the PHP type of a user defined type in the schema<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">string</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getLocalPart()" class="head">getLocalPart(string $str)</a><br />returns the local part of a prefixed string<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">mixed</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getPrefix()" class="head">getPrefix(string $str)</a><br />returns the prefix part of a prefixed string<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">mixed</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getNamespaceFromPrefix()" class="head">getNamespaceFromPrefix(string $prefix)</a><br />pass it a prefix, it returns a namespace<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">mixed</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getPrefixFromNamespace()" class="head">getPrefixFromNamespace(string $ns)</a><br />returns the prefix for a given namespace<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">mixed</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_getTypeDef()" class="head">getTypeDef(string $type)</a><br />returns an array of information about a given type<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">mixed</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_serializeTypeDef()" class="head">serializeTypeDef(string $type)</a><br />returns a sample serialization of a given type, or false if no type by the given name<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">string</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_typeToForm()" class="head">typeToForm(string $name, string $type)</a><br />returns HTML form elements that allow a user<br /></td>
+				</tr>
+				
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">		
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Private Method Summary</h2></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_parseString()" class="head">parseString(string $xml, string $type)</a><br />parse an XML string<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_schemaStartElement()" class="head">schemaStartElement(string $parser, string $name, string $attrs)</a><br />start-element handler<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_schemaEndElement()" class="head">schemaEndElement(string $parser, string $name)</a><br />end-element handler<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_schemaCharacterData()" class="head">schemaCharacterData(string $parser, string $data)</a><br />element content handler<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">string</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_expandQname()" class="head">expandQname(string $qname)</a><br />expands a qualified name<br /></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#functions_xdebug()" class="head">xdebug(string $string)</a><br />adds debug data to the clas level debug string<br /></td>
+				</tr>
+				
+			</table>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td align="left" valign="top"><h2>Fields inherited from nusoap_base</h2></td>
+				</tr>
+				<tr>
+					<td align="left" valign="top"><a href="nusoap_base.html#variable_$soap_defencoding">$soap_defencoding</a>, <a href="nusoap_base.html#variable_$namespaces">$namespaces</a>, <a href="nusoap_base.html#variable_$typemap">$typemap</a>, <a href="nusoap_base.html#variable_$xmlentities">$xmlentities</a>, <a href="nusoap_base.html#variable_$title">$title</a>, <a href="nusoap_base.html#variable_$version">$version</a>, <a href="nusoap_base.html#variable_$error_str">$error_str</a>, <a href="nusoap_base.html#variable_$charencoding">$charencoding</a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	
+	
+	
+	
+	
+	
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Public Method Details</h2></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_XMLSchema()"><h4>XMLSchema</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    void XMLSchema([ string $schema, string $xml ])</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$schema</td>
+								<td align="left" valign="top"><code>= >>&quot;&quot;<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">schema document URI</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$xml</td>
+								<td align="left" valign="top"><code>= >>&quot;&quot;<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">xml document URI</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_parseFile()"><h4>parseFile</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    boolean parseFile(string $xml, string $type)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$xml</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, path/URL to XML file</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$type</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, (schema | xml)</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>boolean <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_serializeSchema()"><h4>serializeSchema</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    void serializeSchema()</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getPHPType()"><h4>getPHPType</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    mixed getPHPType(string $type, string $ns)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						  PHP type is kind of a misnomer since it actually returns 'struct' for assoc. arrays   returns false if no type exists, or not w/ the given namespace   else returns a string that is either a native php type, or 'struct'
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$type</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, name of defined type</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$ns</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, namespace of type</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>mixed <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getLocalPart()"><h4>getLocalPart</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    string getLocalPart(string $str)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						  returns the original string, if not prefixed
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$str</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>string <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getPrefix()"><h4>getPrefix</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    mixed getPrefix(string $str)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						  returns false, if not prefixed
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$str</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>mixed <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getNamespaceFromPrefix()"><h4>getNamespaceFromPrefix</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    mixed getNamespaceFromPrefix(string $prefix)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						  or false if no prefixes registered for the given namespace
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$prefix</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>mixed <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getPrefixFromNamespace()"><h4>getPrefixFromNamespace</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    mixed getPrefixFromNamespace(string $ns)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						  returns false if no namespace registered with the given prefix
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$ns</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>mixed <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_getTypeDef()"><h4>getTypeDef</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    mixed getTypeDef(string $type)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						  returns false if no type exists by the given name             typeDef = array(           'elements' => array(), // refs to elements array          'restrictionBase' => '',          'phpType' => '',          'order' => '(sequence|all)',          'attrs' => array() // refs to attributes array          )
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$type</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>mixed <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_serializeTypeDef()"><h4>serializeTypeDef</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    mixed serializeTypeDef(string $type)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$type</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, name of type</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>mixed <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_typeToForm()"><h4>typeToForm</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    string typeToForm(string $name, string $type)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						  to enter values for creating an instance of the given type.
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$name</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, name for type instance</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$type</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, name of type</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>string <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+			</table>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Private Method Details</h2></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_parseString()"><h4>parseString</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void parseString(string $xml, string $type)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$xml</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">path or URL</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$type</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">, (schema|xml)</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_schemaStartElement()"><h4>schemaStartElement</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void schemaStartElement(string $parser, string $name, string $attrs)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$parser</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">XML parser object</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$name</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">element name</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$attrs</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">associative array of attributes</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_schemaEndElement()"><h4>schemaEndElement</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void schemaEndElement(string $parser, string $name)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$parser</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">XML parser object</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$name</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">element name</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_schemaCharacterData()"><h4>schemaCharacterData</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void schemaCharacterData(string $parser, string $data)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$parser</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">XML parser object</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$data</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">element content</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_expandQname()"><h4>expandQname</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    string expandQname(string $qname)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$qname</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">qname</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>string <p>expanded qname</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="functions_xdebug()"><h4>xdebug</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    void xdebug(string $string)</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$string</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">debug data</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+			</table>
+	</tr>
+		
+		
+	
+	
+	<tr>
+		<td height="10" align="left" valign="top"><hr></td>
+	</tr>
+	<tr>
+		<td align="left" valign="top" bgcolor="#C0C0C0">			
+			<table width="100%">
+				<tr>
+					<td align="left" valign="top"><a href="phpdoc_packagelist.html">Packageindex</a></td>
+					<td align="left" valign="top"><a href="phpdoc_classtree.html">Classtrees</a></td>
+					<td align="left" valign="top"><a href="phpdoc_modulegroup.html">Modulegroups</a></td>
+					<td align="left" valign="top"><a href="phpdoc_elementlist.html">Elementlist</a></td>
+					<td align="left" valign="top"><a href="phpdoc_warnings.html">Report</a></td>
+					<td align="left" valign="top"><a href="phpdoc_xmlfiles.html">XML Files</a></td>
+				</tr>
+			</table>	
+		</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Generated on Mon, 22 Apr 2002 16:07:52 -0700 by PHPDoc v1.5 <a href="http://www.phpdoc.de/">www.phpdoc.de</a</td>
+	</tr>
+</table>
+
+</body>
+</html>

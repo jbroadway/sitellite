@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<title>{page/title}</title>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog.js"></script>
+		<script language="javascript">
+		<!--
+
+{spt js.spt}
+
+		// -->
+		</script>
+		<style type="text/css">
+
+			body {
+				font: 12px Verdana, Arial, sans-serif;
+				margin: 0px;
+			}
+
+			td {
+				font: 12px Verdana, Arial, sans-serif;
+				padding: 3px;
+			}
+
+			.odd {
+				background-color: #fff;
+			}
+
+			.even {
+				background-color: #eee;
+			}
+
+			table {
+				width: 100%;
+			}
+
+			p#stripe {
+				width: 100%;
+				padding-top: 0px;
+				padding-left: 0px;
+				padding-right: 0px;
+				margin-top: 0px;
+				margin-left: 0px;
+				margin-right: 0px;
+				background-color: #0081d6;
+			}
+
+			h1,h2,h3,p,table {
+				margin: 10px;
+			}
+
+			hr {
+				border: 0px none;
+				height: 1px;
+				background-color: #999;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			a {
+				color: #0081d6;
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			h1 {
+				color: #0081d6;
+				font-size: 16px;
+			}
+
+			h2 {
+				color: #0081d6;
+				font-size: 14px;
+				font-weight: normal;
+			}
+
+			.err {
+				color: #900;
+			}
+
+		</style>
+	</head>
+	<body onload="{onload}"><a name="top"></a>
+
+<p id="stripe">&nbsp;</p>
+
+<h1>{page/title}</h1>
+
+<p>
+	<a href="javascript: window.location.href = '{site/prefix}/index/imagechooser-app{filter urlencode}?location={location}&format={cgi/format}&attrs={cgi/attrs}{end filter}'">{intl Back}</a>
+</p>
+
+{if obj[err]}
+	<p class="err">{err}</p>
+{end if}
+
+<form method="post" action="{site/prefix}/index/imagechooser-select-action" onsubmit="imagechooser_select (this.elements['src'].value, this.elements['alt'].value, this.elements['float'].value, this.elements['height'].value, this.elements['width'].value)">
+<input type="hidden" name="src" value="{location}/{src}" />
+<input type="hidden" name="height" value="{height}" />
+<input type="hidden" name="width" value="{width}" />
+<table cellspacing="0">
+	<tr>
+		<td valign="top">{intl Image}</td>
+		<td>
+			<strong>{location}/{src}</strong><br />
+			<a href="#" onclick="return imagechooser_view ('{site/prefix}{location}/{src}', {width}, {height})">{intl View Image}</a>
+		</td>
+	<tr>
+		<td valign="top">{intl Description}</td>
+		<td><textarea name="alt" cols="25" rows="2"></textarea></td>
+	</tr>
+	<tr>
+		<td>{intl Alignment}</td>
+		<td valign="top"><select name="float">
+			<option value="">-- {intl None} --</option>
+			<option value="left">{intl Left}</option>
+			<option value="right">{intl Right}</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" value="{intl Done}" /></td>
+	</tr>
+</table>
+</form>
+
+<p><a href="#top">[ {intl top} ]</a></p>
+
+<!-- hr />
+<p>
+Copyright &copy; {php date ('Y')} <a href="http://www.simian.ca/" target="_blank">SIMIAN systems Inc.</a><br />
+All rights reserved.
+</p -->
+
+	</body>
+</html>

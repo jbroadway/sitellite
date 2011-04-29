@@ -1,0 +1,33 @@
+<h1>Installation</h1>
+
+Installing the SlideshowPro app<br />
+-------------------------------<br />
+<br />
+Please Note: The SlideshowPro app requires you to first purchase a copy of<br />
+SlideshowPro from http://slideshowpro.net/  This app simply provides the<br />
+ability to embed SlideshowPro into pages with the Sitellite box chooser.<br />
+<br />
+1. Unpack the app into inc/app<br />
+<br />
+cp slideshowpro_app.tar.gz /path/to/sitellite/inc/app<br />
+cd /path/to/sitellite/inc/app<br />
+tar -zxf slideshowpro_app.tar.gz<br />
+<br />
+2. Set the permissions of the pix folder to 777<br />
+<br />
+chmod -R 777 slideshowpro/pix<br />
+<br />
+3. Generate a slideshowpro.swf file through Flash as you normally would using<br />
+SlideshowPro.  In this step, you can customize the features of SlideshowPro<br />
+however you like.<br />
+<br />
+4. Drop the generated slideshowpro.swf file into the slideshowpro/html folder.<br />
+<br />
+4. Embed into any page with the box chooser or with the XT command:<br />
+<br />
+&lt;xt:box name="slideshowpro/embed" folder="some_folder_inside_pix" /&gt;<br />
+<br />
+Make sure that "some_folder_inside_pix" is replaced with a real sub-folder<br />
+of pix/ that contains .jpg images.<br />
+<br />
+

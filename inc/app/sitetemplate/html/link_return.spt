@@ -1,0 +1,22 @@
+<script language="javascript" type="text/javascript">
+
+d = [];
+
+{loop obj[vals]}
+d.push (
+	{
+		name: '{loop/_key}',
+		value: '{loop/_value}'
+	}
+);
+{end loop}
+
+if (opener && ! opener.closed) {
+	opener.document.sitetemplate_add_link (d);
+} else {
+	alert ('Hey, where did my parent go?');
+}
+
+window.close ();
+
+</script>

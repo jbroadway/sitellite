@@ -1,0 +1,50 @@
+<style type="text/css">
+
+.panels {
+	width: 100%;
+	border-bottom: 1px solid #aaa;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.panels p {
+	padding: 0px;
+	margin: 0px;
+}
+
+.panels p strong {
+	font-size: 120%;
+	font-weight: normal;
+}
+
+.panels td {
+	padding: 10px;
+	background-image: url({site/prefix}/inc/app/cms/pix/pane-bg.png);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	/* border-top: 1px solid #eee; */
+}
+
+.panels td td {
+	padding: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 0px none;
+	background-image: none;
+}
+
+</style>
+<table class="panels" cellspacing="0">
+	<tr>
+		<td style="width: 33%">
+			{spt layout/panel.spt content_panel}
+		</td>
+		<td style="width: 33%">
+		   {spt layout/panel.spt admin_panel}
+		</td>
+		<td style="width: 33%">
+			{spt layout/panel.spt app_panel}
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,7 @@
+<ul>
+{loop obj}
+	<li>
+		<a href="{site/prefix}/index/sitestudy-app/case.{loop/id}">{loop/client}</a>
+	</li>
+{end loop}
+</ul>

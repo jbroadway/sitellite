@@ -1,0 +1,1 @@
+SAF Changelog-------------PHPUnit:- Replaced <? with <?php in GUI/HTML.tpl.- Altered stylesheet in GUI/HTML.tpl.DB_Pager:- Removed require ('DB.php');- Replaced DB::isError with PEAR::isError

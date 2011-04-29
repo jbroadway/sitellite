@@ -1,0 +1,4 @@
+<p>{intl Your message has been posted.}</p>
+
+<p><a href="{site/prefix}/index/siteforum-post-action/id.{id}">{intl Click here to return to the forum.}</a></p>
+

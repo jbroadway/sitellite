@@ -1,0 +1,5 @@
+<ul>
+	{loop obj.get_items (0, obj.limit)}
+		<li><a href="{loop/get_permalink}">{loop/get_title}</a></li>
+	{end loop}
+</ul>

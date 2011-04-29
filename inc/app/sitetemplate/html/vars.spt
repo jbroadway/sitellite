@@ -1,0 +1,76 @@
+<script language="javascript">
+
+function vars_def (s) {
+	f = s.form;
+	f.elements['var'].value = s.options[s.selectedIndex].value;
+	return false;
+}
+
+function vars_sub (f) {
+	if (opener && ! opener.closed) {
+		opener.document.sitetemplate_set_var (f.elements['var'].value);
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+
+	window.close ();
+
+	return false;
+}
+
+</script>
+
+<form>
+
+<p>
+	{intl Defaults}:<br />
+	<select name="defaults" onchange="return vars_def (this)" style="width: 200px">
+		<option value="">- {intl SELECT} -</option>
+		<option value="id">page/id</option>
+		<option value="title">page/title</option>
+		<option value="nav_title">page/nav_title</option>
+		<option value="head_title">page/head_title</option>
+		<option value="below_page">page/below_page</option>
+		<option value="php: page_get_section ()">page/section</option>
+		<option value="is_section">page/is_section</option>
+		<option value="template">page/template</option>
+		<option value="sitellite_status">page/sitellite_status</option>
+		<option value="sitellite_access">page/sitellite_access</option>
+		<option value="sitellite_owner">page/sitellite_owner</option>
+		<option value="sitellite_team">page/sitellite_team</option>
+		<option value="include">page/include</option>
+		<option value="include_in_search">page/include_in_search</option>
+		<option value="sort_weight">page/sort_weight</option>
+		<option value="keywords">page/keywords</option>
+		<option value="description">page/description</option>
+		<option value="body">page/body</option>
+		<option value="intl/charset">intl/charset</option>
+		<option value="intl/language">intl/language</option>
+		<option value="intl/locale">intl/locale</option>
+		<option value="session/admin">session/admin</option>
+		<option value="session/id">session/id</option>
+		<option value="session/username">session/username</option>
+		<option value="session/valid">session/valid</option>
+		<option value="site/docroot">site/docroot</option>
+		<option value="site/domain">site/domain</option>
+		<option value="site/prefix">site/prefix</option>
+		<option value="site/secure">site/secure</option>
+		<option value="site/url">site/url</option>
+		<option value="php: date ('F j, Y')">date</option>
+		<option value="php: date ('g:i A')">time</option>
+		<option value="php: date ('Y')">year</option>
+	</select>
+</p>
+
+<p>
+	{intl Other}:<br />
+	<input type="text" name="var" style="width: 300px" />
+</p>
+
+<p align="center">
+	<input type="submit" value="{intl Done}" onclick="return vars_sub (this.form)" />
+	&nbsp;
+	<input type="submit" value="{intl Cancel}" onclick="window.close (); return false" />
+</p>
+
+</form>

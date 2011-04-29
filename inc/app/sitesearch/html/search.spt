@@ -1,0 +1,80 @@
+<form method="get" action="{site/prefix}/index/sitesearch-app">
+<p class="sitesearch-form">
+	{intl Search for}:<br />
+	<input type="text" name="query" value="{filter sitesearch_filter_query}{cgi/query}{end filter}" /><br /><br />
+
+	{if obj[show_types]}
+		{intl Search section}:<br />
+		<select name="ctype{if obj[multiple]}[]" size="3" multiple="multiple{end if}">
+			<option value="all">{intl All Sections}</option>
+			{loop obj[types]}
+				<option value="{loop/_key}"{if cgi.ctype eq loop._key or in_array (loop._key, cgi.ctype)} selected="selected"{end if}>{loop/_value}</option>
+			{end loop}
+		</select><br /><br />
+
+		<input type="hidden" name="show_types" value="{cgi/show_types}" />
+		<input type="hidden" name="show_domains" value="{cgi/show_domains}" />
+		<input type="hidden" name="multiple" value="{cgi/multiple}" />
+	{end if}
+
+	{if not obj[show_types]}
+		<input type="hidden" name="ctype" value="{cgi/ctype}" />
+		<input type="hidden" name="show_types" value="{cgi/show_types}" />
+		<input type="hidden" name="show_domains" value="{cgi/show_domains}" />
+		<input type="hidden" name="multiple" value="{cgi/multiple}" />
+	{end if}
+
+	{if count (obj[domains]) gt 1 or obj[show_domains]}
+		{intl Search site}:<br />
+		<select name="domains{if obj[multiple]}[]" size="3" multiple="multiple{end if}">
+<!-- Semias -->
+<!--			<option value="all">{intl All Sites}</options>   -->
+			<option value="all">{intl All Sites}</option>
+<!-- Semias -->
+			{loop obj[domains]}
+				<option value="{loop/_value}"{if cgi.domains eq loop._value or in_array (loop._value, cgi.domains)} selected="selected"{end if}>{loop/_value}</option>
+			{end loop}
+		</select><br /><br />
+	{end if}
+
+	<input type="submit" value="{intl Go}" />
+
+</p>
+
+</form>
+
+{if not empty (cgi.query)}
+<hr />
+<p class="sitesearch-pager">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{if pager.total}{spt PAGER_TEMPLATE_FROM_TO}{end if}{if not pager.total}{intl No matches found.  Please try again.}{end if}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+{end if}
+
+{loop pager.results}
+	<p class="sitesearch-result">
+		<a href="http://{loop/domain}{loop/link}">{if not empty (loop[title])}{filter sitesearch_filter_highlight}{loop/title}{end filter}{end if}{if empty (loop[title])}{intl Untitled}{end if}</a><br />
+		{if empty (loop[description])}
+			{filter strip_tags}
+			{intl No description available.}
+			{end filter}
+		{end if}
+		{if not empty (loop[description])}
+			{filter sitesearch_filter_highlight}{loop/description}...{end filter}
+		{end if}
+		<br />
+		<small>{loop/domain}{loop/url} - <span class="sitesearch-score-title">Relevance:</span>
+		<span class="sitesearch-score">{filter sitesearch_filter_score}{loop/score}%{end filter}</span></small>
+	</p>
+{end loop}
+
+{if not empty (cgi.query) and appconf ('rss_links')}
+<p>
+	<a href="{site/prefix}/index/sitesearch-rss-action?nomenu=1&query={cgi/query}&ctype={cgi/ctype}">{intl Syndicated Feed (RSS)}</a> &nbsp;&nbsp;
+	<a href="{site/prefix}/index/sitesearch-opensearch-action/nomenu.1">{intl OpenSearch Description}</a>
+</p>
+{end if}

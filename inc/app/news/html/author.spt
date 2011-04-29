@@ -1,0 +1,43 @@
+{if session_admin ()}
+	{box cms/buttons/add?collection=sitellite_news&author=[cgi/author]}
+{end if}
+
+<h1 class="news-heading">{appconf/news_name} / {intl By} {cgi/author}</h1>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td><span style="float:right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</span></td>
+	</tr>
+</table>
+
+{loop obj[list]}
+	{if loop._type eq 'date'}
+	<h2 class="news-date-subhead">
+		{loop/date}
+	</h2>
+	{end if}
+	{if else}
+	<p class="news-story-summary">
+		{if session_admin ()}
+			{box cms/buttons?collection=sitellite_news&object=[loop]&add=false&float=true}
+		{end if}
+		<strong>
+			<a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{loop/title}</a>
+		</strong><br />
+		{if not empty (loop.thumb)}
+			<img src="{loop/thumb}" alt="{loop/title}" border="0" style="float: {appconf/align_thumbnails}; margin: 0px 5px 5px 5px" />
+		{end if}
+		{loop/summary}
+	</p>
+	{end if}
+{end loop}
+
+<p class="news-links">
+	<a href="{site/prefix}/index/news-app">{intl Home}</a> &nbsp;//&nbsp;
+	<a href="{site/prefix}/index/news-authors-action">{intl All Authors}</a> &nbsp;//&nbsp;
+	<a href="{site/prefix}/index/news-search-action">{intl Search}</a>
+	{if obj[rss]}
+		&nbsp;//&nbsp; <a href="{site/prefix}/index/news-rss-action?author={cgi/author}">{intl Subscribe (RSS)}</a>
+	{end if}
+</p>

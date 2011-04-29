@@ -1,0 +1,9 @@
+<h1>Are you sure you want to delete {file}?</h1>  
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="{site/prefix}/index/sitetemplate-templateselect-action?set_name={location}">No</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="{site/prefix}/index/sitetemplate-delete-action?file={file}&location={location}&c=y">Yes</a>
+
+{if obj[err]}
+	<p class="err">{err}</p>
+{end if}
+

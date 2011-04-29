@@ -1,0 +1,29 @@
+<form
+	name="changepass"
+	action="{site/prefix}/index/sitemember-changepass-action"
+	method="post">
+
+{if obj[error]}
+<p class="invalid">{intl Your password does not match.}</p>
+{end if}
+
+<p>
+	<label for="current">{intl Current Password}</label><br />
+	<input type="password" name="current" id="current" />
+</p>
+
+<p>
+	<label for="newpass">{intl New Password}</label><br />
+	<input type="password" name="newpass" id="newpass" />
+</p>
+
+<p>
+	<label for="verify">{intl Verify New Password}</label><br />
+	<input type="password" name="verify" id="verify" />
+</p>
+
+<p>
+	<input type="submit" value="{intl Save}" class="submit" />
+</p>
+
+</form>

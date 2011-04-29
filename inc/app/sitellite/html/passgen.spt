@@ -1,0 +1,6 @@
+<b>Passwords:</b><br />
+{loop obj[passwords]}
+{loop/_value}<br />
+{end loop}
+<br />
+<a href="sitellite-util-passgen-action">Generate a new Password</a>

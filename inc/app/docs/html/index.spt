@@ -1,0 +1,181 @@
+<div id="docs-sidebar">
+
+<h2>Packages</h2>
+
+<ul id="packages" class="treeview-gray">
+{loop obj[packages]}
+	<li>
+	{if obj[package] ne loop._value}
+	<a href="{site/prefix}/index/docs-app/package.{loop/_value}">{loop/_value}</a>
+	{end if}
+	{if obj[package] eq loop._value}
+	<a href="{site/prefix}/index/docs-app/package.{loop/_value}"><strong>{loop/_value}</strong></a>
+	<ul>
+		<li><strong>Classes</strong>
+		<ul>
+		{loop obj[classes]}
+			<li><a href="{site/prefix}/index/docs-app/package.{package}/class.{loop/_key}">{loop/_key}</a>
+			{if count (loop[_properties]) gt 0}
+			<ul>
+			{loop loop[_properties]}
+				<li><a href="{site/prefix}/index/docs-app/package.{package}/class.{loop/_value}">{loop/_value}</a></li>
+			{end loop}
+			</ul>
+			{end if}
+			</li>
+		{end loop}
+		</ul>
+		</li>
+	</ul>
+	<ul>
+		<li><strong>Functions</strong>
+		<ul>
+		{loop obj[functions]}
+			<li><a href="{site/prefix}/index/docs-app/package.{package}/class._functions_#{filter docs_filter_a_name}{loop/_value}{end filter}">{loop/_value}</a></li>
+		{end loop}
+		</ul>
+		</li>
+	</ul>
+	{end if}
+	</li>
+{end loop}
+</ul>
+
+</div>
+
+<div id="docs-content">
+
+<form method="get" action="{site/prefix}/index/docs-app" id="docs-apps">
+Application: <select name="package" onchange="this.form.submit ()">
+	<option value="saf"{if obj[current] eq 'saf'} selected="selected"{end if}>Sitellite Core</option>
+{loop obj[apps]}
+	<option value="{loop/_key}"{if loop._key eq obj[current]} selected="selected"{end if}>{loop/_value}</option>
+{end loop}
+</select>
+</form>
+
+{if obj[class]}
+
+	{if obj[class] eq '_functions_'}
+		<h2>Functions</h2>
+		<ul>
+			<li><strong>Package:</strong> <a href="{site/prefix}/index/docs-app/package.{package}">{package}</a></li>
+		</ul>
+	
+		{loop functions}
+			<hr />
+			<a name="{filter docs_filter_a_name}{loop/name}{end filter}"></a>
+			<h3>{filter docs_filter_function}{loop/line}{end filter}</h3>
+			{if count (loop.params) gt 0}
+				<ul>
+				{loop loop.params}
+					{if loop._key ne 'param'}
+						<li><strong>{filter ucfirst}{loop/_key}{end filter}:</strong> {loop/_value}</li>
+					{end if}
+				{end loop}
+				</ul>
+			{end if}
+			<p>{filter none}{loop/comment}{end filter}</p>
+		{end loop}
+	
+		<p align="right"><a href="#" onclick="scrollTo (0, 0); return false">Return to Top</a></p>
+	{end if}
+	
+	{if obj[class] ne '_functions_'}
+		<h2>Class: {class}{if class[extends]} extends <a href="{site/prefix}/index/docs-app/package.{package}/class.{class/extends}">{class/extends}</a>{end if}</h2>
+		<ul>
+			<li><strong>Package:</strong> <a href="{site/prefix}/index/docs-app/package.{package}">{package}</a></li>
+			{loop class[params]}
+			{if loop._key ne 'package'}
+			<li><strong>{filter ucfirst}{loop/_key}{end filter}:</strong> {loop/_value}</li>
+			{end if}
+			{end loop}
+		</ul>
+	
+		<p>{filter none}{class/comment}{end filter}</p>
+	
+		{if class[code]}
+		<h2>Usage Example</h2>
+	
+		<p>{filter none}{class/code}{end filter}</p>
+	
+		<p align="right"><a href="#" onclick="scrollTo (0, 0); return false">Return to Top</a></p>
+	
+		{end if}
+		<br /><br />
+	
+		<h2>Properties</h2>
+		{loop class[vars]}
+			<hr />
+			<a name="var-{filter docs_filter_a_name}{loop/name}{end filter}"></a>
+			<h3>{filter docs_filter_function}{loop/line}{end filter}</h3>
+			<ul>
+			{loop loop.params}
+				{if loop._key ne 'param'}
+					<li><strong>{filter ucfirst}{loop/_key}{end filter}:</strong> {loop/_value}</li>
+				{end if}
+			{end loop}
+			</ul>
+			<p>{filter none}{loop/comment}{end filter}</p>
+		{end loop}
+	
+		<p align="right"><a href="#" onclick="scrollTo (0, 0); return false">Return to Top</a></p>
+	
+		<br /><br />
+	
+		<h2>Methods</h2>
+		{loop class[methods]}
+			<hr />
+			<a name="{filter docs_filter_a_name}{loop/name}{end filter}"></a>
+			<h3>{filter docs_filter_function}{loop/line}{end filter}</h3>
+			{if count (loop.params) gt 0}
+				<ul>
+				{loop loop.params}
+					{if loop._key ne 'param'}
+						<li><strong>{filter ucfirst}{loop/_key}{end filter}:</strong> {loop/_value}</li>
+					{end if}
+				{end loop}
+				</ul>
+			{end if}
+			<p>{filter none}{loop/comment}{end filter}</p>
+		{end loop}
+	
+		<p align="right"><a href="#" onclick="scrollTo (0, 0); return false">Return to Top</a></p>
+	{end if}
+
+{end if}
+
+{if not obj[class] and obj[package]}
+	<h2>Choose a class or function:</h2>
+	<div id="docs-classes">
+	<strong>Classes</strong>
+	<ul>
+	{loop obj[classes]}
+		<li><a href="{site/prefix}/index/docs-app/package.{package}/class.{loop/_key}">{loop/_key}</a>
+		{if count (loop[_properties]) gt 0}
+		<ul>
+		{loop loop[_properties]}
+			<li><a href="{site/prefix}/index/docs-app/package.{package}/class.{loop/_value}">{loop/_value}</a></li>
+		{end loop}
+		</ul>
+		{end if}
+		</li>
+	{end loop}
+	</ul>
+	</div>
+	<div id="docs-functions">
+	<strong>Functions</strong>
+	<ul>
+	{loop obj[functions]}
+		<li><a href="{site/prefix}/index/docs-app/package.{package}/class._functions_#{loop/_value}">{loop/_value}</a></li>
+	{end loop}
+	</ul>
+	</div>
+{end if}
+
+{if not obj[package]}
+	<h1>{current_name}</h1>
+	<p>Choose a package from the left to view its documentation, or select another application from the dropdown list.</p>
+{end if}
+</div>
+<br clear="all" />

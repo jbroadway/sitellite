@@ -1,0 +1,83 @@
+--- IXR.php~	Fri Jan 31 15:14:24 2003
++++ IXR.php	Fri Jan 31 15:17:01 2003
+@@ -9,7 +9,6 @@
+    Made available under the Artistic License: http://www.opensource.org/licenses/artistic-license.php
+ */
+ 
+-
+ class IXR_Value {
+     var $data;
+     var $type;
+@@ -275,6 +274,11 @@
+     var $callbacks = array();
+     var $message;
+     var $capabilities;
++
++    // <lux> Hash of registered objects
++    var $registeredObjects = array ();
++    // </lux>
++
+     function IXR_Server($callbacks = false, $data = false) {
+         $this->setCapabilities();
+         if ($callbacks) {
+@@ -322,6 +326,13 @@
+         // Send it
+         $this->output($xml);
+     }
++
++    // <lux> Allow objects to be registered so that their methods may be harvested
++    function registerObject ($name, &$object) {
++        $this->registeredObjects[$name] =& $object;
++    }
++    // </lux>
++
+     function call($methodname, $args) {
+         if (!$this->hasMethod($methodname)) {
+             return new IXR_Error(-32601, 'server error. requested method '.$methodname.' does not exist.');
+@@ -341,6 +352,22 @@
+             }
+             // Call the method
+             $result = $this->$method($args);
++
++        // <lux> Allow for the use of external objects via 'objectName:methodName'
++        // objects must first be registered via registerObject ('name', $obj)
++        } elseif (count ($this->registeredObjects) > 0 && preg_match ('/^(' . join ('|', array_keys ($this->registeredObjects)) . '):/', $method, $regs)) {
++            // It's a class method - check it exists
++            $object = $regs[1];
++            $method = str_replace ($regs[0], '', $method);
++          //  $method = substr($method, 5);
++            if (!method_exists($this->registeredObjects[$object], $method)) {
++                return new IXR_Error(-32601, 'server error. requested class method "'.$method.'" does not exist.');
++            }
++            // Call the method
++            //$result = $this->registeredObjects[$object]->$method($args);
++            $result = call_user_func_array (array (&$this->registeredObjects[$object], $method), $args);
++        // </lux>
++
+         } else {
+             // It's a function - does it exist?
+             if (!function_exists($method)) {
+@@ -586,8 +613,7 @@
+       </struct>
+     </value>
+   </fault>
+-</methodResponse> 
+-
++</methodResponse>
+ EOD;
+         return $xml;
+     }
+@@ -725,6 +751,13 @@
+                     }
+                     break;
+                 case 'boolean':
++                    // <lux> Boolean fix
++                    if ($arg == 0) {
++                        $arg = false;
++                    } elseif ($arg == 1) {
++                        $arg = true;
++                    }
++                    // </lux>
+                     if ($arg !== false && $arg !== true) {
+                         $ok = false;
+                     }

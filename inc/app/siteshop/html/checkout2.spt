@@ -1,0 +1,27 @@
+<p>{intl Check each item you would like to add to your order then click continue.  To continue without these special offers, simply leave them all unchecked.}</p>
+
+<form method="post" action="{site/prefix}/index/siteshop-checkout-action">
+<input type="hidden" name="step" value="3" />
+
+{loop obj}
+<div class="siteshop-checkout-product">
+	<h2>{loop/offer_text}</h2>
+	<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td valign="top">
+				<p><img src="{php Product::getThumbnail (loop.product_id)}" alt="{loop/offer_text}" border="0" /></p>
+			</td>
+			<td valign="top">
+				<p>{loop/description}</p>
+				<p class="siteshop-notice">{intl Only} ${loop/sale_price}!<br />
+				<span class="siteshop-reg">({intl Reg.} ${loop/price})</p>
+				<p><input type="checkbox" name="add[]" value="{loop/product_id}" /> {intl Add to my order}</p>
+			</td>
+		</tr>
+	</table>
+</div>
+{end loop}
+
+<p><input type="submit" value="{intl Continue}" /></p>
+
+</form>

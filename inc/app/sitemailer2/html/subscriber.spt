@@ -1,0 +1,55 @@
+{alt #fff #eee}
+
+<p>
+	<a href="{site/prefix}/index/sitemailer-group-action?id={cgi/group}">{intl Back}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitemailer-message-send-form?groups[]={cgi/group}">{intl Send Message}</a> &nbsp; &nbsp;
+	<a href="#add">{intl Add Subscriber}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitemailer-import-form?group={cgi/group}">{intl Import vCard}</a> &nbsp; &nbsp;
+</p>
+
+<p>
+{if count (pager.results) gt 0}
+<table border="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}</td>
+	</tr>
+</table>
+{end if}
+{if count (pager.results) eq 0}
+	{intl No subscribers}.
+{end if}
+</p>
+
+<p>
+<table width="100%" cellpadding="3" cellspacing="1">
+	<tr>
+		{loop obj[headers]}
+			<th><a href="{site/current}{filter urlencode}?group={cgi/group}&orderBy={loop/name}&sort={loop/getSort}&offset={cgi/offset}">{php intl_get (loop.fullname)}</a>
+			{if loop.isCurrent ()}
+				<img src="{site/prefix}/inc/app/sitemailer/pix/arrow.{cgi/sort}.gif" alt="{cgi/sort}" border="0" />
+			{end if}
+			</th>
+		{end loop}
+	</tr>
+	{loop pager.results}
+		<tr style="background-color: {alt/next}">
+			<td><a href="{site/prefix}/index/sitemailer-subscriber-edit-form?email={loop/email}">{loop/email}</a></td>
+			<td>{loop/firstname} {loop/lastname}</td>
+			<td>
+				{if not empty (loop.website)}<a href="{loop/website}" target="_blank">{loop/organization}</a>{end if}
+				{if empty (loop.website)}{loop/organization}{end if}
+			</td>
+			<td>{filter sitemailer_date}{loop/registered}{end filter}</td>
+			<td>{loop/status}</td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+<hr />
+
+<a name="add"></a>
+<h2>{intl Add Subscriber}</h2>
+
+{form sitemailer/subscriber/add}

@@ -1,0 +1,30 @@
+<table class="simplecal" cellpadding="2" cellspacing="2" border="0" width="100%">
+	<tr>
+		<td align="center" class="previous-month" colspan="2">
+			<a href="{site/prefix}/index/siteevent-app/view.day/day.{prevDate}">&laquo; {prevDay}</a>
+		</td>
+		<td align="center" colspan="3" class="current-month">
+			{date}
+		</td>
+		<td align="center" class="next-month" colspan="2">
+			<a href="{site/prefix}/index/siteevent-app/view.day/day.{nextDate}">{nextDay} &raquo;</a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="7" class="full" valign="top">
+
+{if count (obj[list]) eq 0}
+<p>{intl No events.}</p>
+{end if}
+	{loop obj[list]}
+		{if loop.priority eq 'high'}
+			<p>{if not empty (loop.time)}{loop/time}<br />{end if}<a href="{site/prefix}/index/siteevent-details-action/id.{loop/id}/title.{filter siteevent_filter_link_title}{loop/title}{end filter}"><strong>{loop/title}</strong></a></p>
+		{end if}
+		{if else}
+			<p>{if not empty (loop.time)}{loop/time}<br />{end if}<a href="{site/prefix}/index/siteevent-details-action/id.{loop/id}/title.{filter siteevent_filter_link_title}{loop/title}{end filter}">{loop/title}</a></p>
+		{end if}
+	{end loop}
+
+		</td>
+	</tr>
+</table>

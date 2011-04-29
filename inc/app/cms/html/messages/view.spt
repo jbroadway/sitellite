@@ -1,0 +1,65 @@
+<p>
+	{if obj.category}
+		<a href="{site/prefix}/index/cms-messages-category-action?category={category}">{intl Back}</a> &nbsp; &nbsp;
+		{if obj.category ne 'Sent'}
+			<a href="{site/prefix}/index/cms-messages-compose-action?{filter urlencode}response_id={message_id}&subject={response_subject}&recipients[]={from_user}{end filter}">{intl Reply}</a> &nbsp; &nbsp;
+			<a href="{site/prefix}/index/cms-messages-compose-action?{filter urlencode}response_id={message_id}&subject={response_subject}{loop obj.user_list}&recipients[]={loop/_value}{end loop}{end filter}">{intl Reply All}</a>
+		{end if}
+	{end if}
+	{if not obj.category}
+		<a href="javascript: history.go (-1)">{intl Back}</a> &nbsp; &nbsp;
+		<a href="{site/prefix}/index/cms-messages-compose-action?{filter urlencode}response_id={message_id}&subject={response_subject}&recipients[]={from_user}{end filter}">{intl Reply}</a> &nbsp; &nbsp;
+		<a href="{site/prefix}/index/cms-messages-compose-action?{filter urlencode}response_id={message_id}&subject={response_subject}{loop obj.user_list}&recipients[]={loop/_value}{end loop}{end filter}">{intl Reply All}</a>
+	{end if}
+</p>
+
+<p><table border="0" cellpadding="3" cellspacing="1" width="75%">
+	<tr>
+		<td class="label" width="30%">{intl From}</td>
+		<td class="field">{filter msg_show_user}{from_user}{end filter}</td>
+	</tr>
+	<tr>
+		<td class="label" width="30%">{intl Date}</td>
+		<td class="field">{filter msg_date_format}{msg_date}{end filter}</td>
+	</tr>
+	<tr>
+		<td class="label" width="30%" valign="top">{intl To}</td>
+		<td class="field">
+			{loop obj.recipients}
+				{filter msg_show_user}{loop/_value}{end filter}<br />
+			{end loop}
+		</td>
+	</tr>
+	<tr>
+		<td class="label" width="30%">{intl Subject}</td>
+		<td class="field">{subject}</td>
+	</tr>
+</table></p>
+
+<p><table border="0" cellpadding="3" cellspacing="1" width="75%">
+	<tr>
+		<td class="label" colspan="2">{intl Message}</td>
+	</tr>
+	<tr>
+		<td class="field" colspan="2">{filter none}{body}{end filter}<br />&nbsp;</td>
+	</tr>
+</table></p>
+
+{if count (obj.attachments)}
+
+<p><table border="0" cellpadding="3" cellspacing="1" width="75%">
+	<tr>
+		<td class="label" colspan="2">{intl Attachments}</td>
+	</tr>
+	{loop obj.attachments}
+		<tr>
+			<td class="field" colspan="2">
+				<a href="{site/prefix}/index/cms-messages-attachment-action?message_id={message_id}&id={loop/id}" target="_blank">{loop/name}</a>
+				({loop/mimetype})
+				<a href="{site/prefix}/index/cms-messages-attachment-action?message_id={message_id}&id={loop/id}&save=true">[{intl Download}]</a>
+			</td>
+		</tr>
+	{end loop}
+</table></p>
+
+{end if}

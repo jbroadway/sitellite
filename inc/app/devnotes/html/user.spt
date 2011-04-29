@@ -1,0 +1,11 @@
+{eval loader_import ('saf.Date')}
+
+<h2>{intl Notes by} {user}</h2>
+
+{loop obj[thread]}
+	
+	<p style="background-color: {colour}; padding: 5px" class="devnotes-message">
+		<a href="{site/prefix}/index/devnotes-page-action?appname={filter urlencode}{loop/appname}{end filter}"><strong>{loop/appname}</strong></a> - {php Date::timestamp (loop.ts, 'g:ia - M j, Y')}<br /><br />
+		{loop/body}
+	</p>
+{end loop}

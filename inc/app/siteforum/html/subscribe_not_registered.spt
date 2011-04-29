@@ -1,0 +1,25 @@
+{if not empty (obj.username)}
+<p>{intl Invalid username or password.  Please try again.}</p>
+{end if}
+{if else}
+<p>{intl If you are already a member, you may sign in here.}</p>
+{end if}
+
+<form method="post" action="{site/prefix}/index/siteforum-subscribe-action">
+<input type="hidden" name="topic" value="{topic}" />
+<input type="hidden" name="post" value="{post}" />
+<input type="hidden" name="quote" value="{quote}" />
+
+<p>{intl Username}<br />
+<input type="text" name="username" /></p>
+
+<p>{intl Password}<br />
+<input type="password" name="password" /></p>
+
+<p><input type="submit" value="{intl Enter}" /></p>
+
+</form>
+
+<p><a href="{site/prefix}/index/sitemember-passrecover-action">{intl Forgot your password?}</a></p>
+
+<p>{intl Not a member?}  <a href="{site/prefix}/index/sitemember-register-form">{intl Click here to register.}</a></p>

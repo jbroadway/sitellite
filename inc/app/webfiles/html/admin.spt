@@ -1,0 +1,42 @@
+{alt eee fff}
+
+<p><a href="{site/prefix}/index/webfiles-admin-action?clear=yes">{intl Clear debug log}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/webfiles-admin-action?type={type}">{intl Refresh}</a></p>
+
+{if obj[type]}
+<p>{intl HTTP Status}: {type} &nbsp;|&nbsp; <a href="{site/prefix}/index/webfiles-admin-action">{intl Clear}</a></p>
+{end if}
+{if else}
+<form method="get">
+<p>{intl Limit by status}: <select name="type" onchange="this.form.submit ()">
+<option value="">- SELECT -</option>
+{loop obj[types]}
+<option value="{loop/_value}">{loop/_value}</option>
+{end loop}
+</select></p>
+</form>
+{end if}
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+{loop obj[log]}
+	<tr style="background-color: #{alt/next}">
+		<td valign="top" align="center" width="5%">{loop/http_status}</td>
+		<td valign="top">{loop/info}</td>
+		<td valign="top" width="12%">{loop/ts}</td>
+	</tr>
+	<tr style="background-color: #{alt/current}">
+		<td>&nbsp;</td>
+		<td colspan="2">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+{loop loop.code}
+	<tr>
+		<td valign="top" width="5%"><span style="color: #444">{loop/_key}</span></td>
+		<td valign="top"><pre style="display: inline; color: #444{if loop._key plus 1 eq parent.line}; font-weight: bold{end if}">{loop/_value}</pre></td>
+	</tr>
+{end loop}
+</table>
+
+		</td>
+	</tr>
+{end loop}
+</table>

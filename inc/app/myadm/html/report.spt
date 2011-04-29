@@ -1,0 +1,74 @@
+{alt fff eee}
+
+<p>
+	<a href="{site/prefix}/index/cms-browse-action?collection=myadm_report">{intl All Reports}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/myadm-report-action?id={id}">{intl Past Data}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/myadm-report-export-action?id={id}&ver={cgi/ver}">{intl Export (CSV)}</a>
+</p>
+
+<h2>{intl Generated}: {run|myadm_filter_datetime}</h2>
+
+{loop obj.results}
+<hr />
+{alt/reset}
+
+<h2>{intl Query} {loop/_index} &ndash; <a href="{site/prefix}/index/myadm-shell-action?sql={loop/_key|urlencode}" style="font-weight: normal">{intl Send to SQL Shell}</a></h2>
+
+<pre class="brush: sql">{loop/_key|none}</pre>
+
+
+<h2>{intl Results} ({loop/rows})</h2>
+
+<p>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+	<tr>
+{loop loop[headers]}
+		<th>{loop/_value}</th>
+{end loop}
+	</tr>
+{loop loop[data]}
+	<tr style="background-color: #{alt/next}">
+	{loop loop._properties}
+		{if is_numeric (loop._value)}
+		<td><a href="{site/prefix}/index/myadm-report-graph-action?id={id}&ver={cgi/ver}&query={loop0/_index}&col={loop/_index}&TB_iframe=true&height=325&width=500" style="display: block; color: #000; text-align: right" class="graph-this thickbox">{loop/_value}</a></td>
+		{end if}
+		{if else}
+		<td>{loop/_value}</td>
+		{end if}
+	{end loop}
+	</tr>
+{end loop}
+</table>
+</p>
+
+{end loop}
+
+<style type="text/css">
+
+.tip {
+	background: #ffe !important;
+	color: #000 !important;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready (function () {
+	$('a.graph-this').tooltip ({
+		bodyHandler: function () {
+			return "{intl Click to graph this column}";
+		},
+		track: true,
+		opacity: 0.95,
+		delay: 0,
+		extraClass: 'tip',
+		showURL: false
+	});
+});
+
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.config.clipboardSwf = '{site/prefix}/inc/app/myadm/js/clipboard.swf';
+SyntaxHighlighter.all ();
+
+</script>

@@ -1,0 +1,14 @@
+.user_submissions {
+    text-align: right;
+}
+.category {
+    padding-top: 20px;
+    font-weight: bold;
+    font-style: normal;
+}
+.answer {
+    padding: 10px;
+    border: 1px solid #DDDDDD;
+    background-color: #EEEEEE;
+}
+
