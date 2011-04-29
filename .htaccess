@@ -1,0 +1,46 @@
+####################################################################
+# Sitellite Content Server
+# http://www.sitellite.org/
+#
+# Copyright (c) 2001-2003 SIMIAN systems Inc.
+#
+# This software is released under the Simian Open License.
+# Please see the accompanying file docs/LICENSE for licensing
+# details!
+####################################################################
+
+# These directives are necessary in order to tell Apache to treat
+# the file 'index' as a PHP script.  Avoiding the .php extension
+# has some benefits, as some search engines don't parse .php files.
+# Otherwise, you can simply rename this file with a .php extension
+# and it should work fine with little or no modification.
+
+# Make sure PATH_INFO is available
+<IfDefine APACHE2>
+   AcceptPathInfo On
+</IfDefine>
+
+# Let Apache know that 'index' is really a PHP script in disguise.
+<Files index>
+   ForceType application/x-httpd-php5
+</Files>
+
+# Let Apache know that 'sitellite' is also a PHP script in disguise.
+<Files sitellite>
+   ForceType application/x-httpd-php5
+</Files>
+
+# Make SCS the directory index handler (instead of index.html or index.php).
+DirectoryIndex index index.html index.php
+
+# Instruct Apache to treat XT templates as HTML files upon direct access.
+# Useful for previewing.
+AddType text/html .tpl
+
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   RewriteCond %{REQUEST_FILENAME} -f [OR] 
+   RewriteCond %{REQUEST_FILENAME} -d
+   RewriteRule .* - [L]
+   RewriteRule ^(.+)$ index?_rewrite_sticky=$1 [QSA,L]
+</IfModule>
