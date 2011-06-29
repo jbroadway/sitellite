@@ -32,7 +32,7 @@
 
 loader_import ('cms.Versioning.Rex');
 
-if ($parameters['collection'] == 'sitellite_page') {
+if ($parameters['collection'] == 'sitellite_page' && $parameters['key'] != $parameters['data']['id']) {
 	$ids = db_shift_array (
 		'select id from sitellite_page where body like ?',
 		'%/' . $parameters['key'] . '"%'
@@ -49,7 +49,7 @@ if ($parameters['collection'] == 'sitellite_page') {
 		}
 	}
 
-} elseif ($parameters['collection'] == 'sitellite_filesystem') {
+} elseif ($parameters['collection'] == 'sitellite_filesystem' && $parameters['key'] != $parameters['data']['name']) {
 	$ids = db_shift_array (
 		'select id from sitellite_page where body like ?',
 		'%/' . $parameters['key'] . '"%'
