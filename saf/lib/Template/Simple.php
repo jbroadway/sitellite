@@ -655,8 +655,9 @@ class SimpleTemplate {
 
 		// Eval Inline PHP
 		ob_start ();
+		$use = str_replace ('<?xml', '<!xml', $use);
 		eval (CLOSE_TAG . $use);
-		$use = ob_get_contents ();
+		$use = str_replace ('<!xml', '<?xml', ob_get_contents ());
 		ob_end_clean ();
 
 		//$out = preg_replace ("/" . $this->delim[$this->use_delim][0] . "([a-zA-Z0-9\.:\/_-]+)" . $this->delim[$this->use_delim][1] . "/e", "\$this->determine ('$1', \$obj)", $use);
