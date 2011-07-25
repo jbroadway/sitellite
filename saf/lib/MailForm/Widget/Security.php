@@ -206,18 +206,18 @@ class MF_Widget_security extends MF_Widget {
             ");
 
             $html = '<img border="0" id="captcha" src="' . $image . '" alt="">
-                     &nbsp;<a href="JavaScript: new_captcha();"><img border="0" alt="" src="/saf/lib/Ext/phpcaptcha/refresh.png" align="bottom"></a>';
+                     &nbsp;<a href="JavaScript: new_captcha();"><img id="captcha-refresh" border="0" alt="" src="/saf/lib/Ext/phpcaptcha/refresh.png"></a>';
 
 			return sprintf (
 				"\t<tr>\n\t\t<td class='label' colspan='2'><label for='%s' id='%s-label'%s>%s</label></td></tr>
-				<tr><td class='field' colspan='2'>%s:<br />%s<br /><input type='hidden' name='%s' id='%s' /><input type='text' name='%s_hash' /></td></tr>\n",
+				<tr><td class='field-input' colspan='1'><input type='text' name='%s_hash' /></td><td class='field-captcha' colspan='1'>%s<input type='hidden' name='%s' id='%s' />
+                </td></tr>\n<tr><td class='field-help' colspan='2'>" . intl_get('Enter the string shown in the image. (Case sensitive)') . "</td></tr>\n",
 				$this->name,
 				$this->name,
 				$this->invalid (),
 				$simple->fill ($this->label_template, $this, '', true),
-				$html,
-				intl_get ('Please enter the words you see above (Case sensitive!)'),
-				$this->name,
+                $this->name,
+                $html,
 				$this->name,
 				$this->name
 			);
@@ -236,14 +236,14 @@ class MF_Widget_security extends MF_Widget {
 			$html = recaptcha_get_html (conf ('Other', 'recaptcha_public_key'));
 			return sprintf (
 				"\t<tr>\n\t\t<td class='label' colspan='2'><label for='%s' id='%s-label'%s>%s</label></td></tr>
-				<tr><td class='field' colspan='2'>%s:<br />%s<input type='hidden' name='%s' id='%s' /><input type='hidden' name='%s_hash' /></td></tr>\n",
+				<tr><td class='field-input' colspan='1'><input type='hidden' name='%s_hash' /></td><td class='field-captcha' colspan='1'>%s<input type='hidden' name='%s' id='%s' />
+                </td></tr>\n<tr><td class='field-help' colspan='2'>" . intl_get('Enter the string shown in the image. (Case sensitive)') . "</td></tr>\n",
 				$this->name,
 				$this->name,
 				$this->invalid (),
 				$simple->fill ($this->label_template, $this, '', true),
-				intl_get ('Please enter the words you see below'),
-				$html,
-				$this->name,
+                $this->name,
+                $html,
 				$this->name,
 				$this->name
 			);
@@ -255,8 +255,8 @@ class MF_Widget_security extends MF_Widget {
 
 		if ($generate_html) {
 			return "\t" . '<tr>' . "\n\t\t" . '<td class="label" colspan="2"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td></tr>' . "\n\t\t" .
-				'<tr><td class="field" colspan="2">' . $pre . intl_get ('Please type the letters and numbers you see above in the field below') . ':<br /><input type="hidden" name="' . $this->name . '_hash" value="' . $hash . '" /><input type="text" ' . $attrstr .
-				'" maxlength="6" size="20" style="margin-top: 5px" ' . $this->extra . ' /></td>' . "\n\t" . '</tr>' . "\n";
+				'<tr><td class="field-input" colspan="1"><input type="text" ' . $attrstr . ' " maxlength="6" size="20" style="margin-top: 5px" ' . $this->extra . ' /></td><td class="field-captcha" colspan="1">' . $pre .
+                '<input type="hidden" name="' . $this->name . '_hash" value="' . $hash . '" /></td>' . "\n\t" . '</tr>' . "\n<tr><td class='field-help' colspan='2'>" . intl_get('Enter the string shown in the image. (Case sensitive)') . "</td></tr>\n";
 		} else {
 			return '<input type="text" ' . $attrstr . ' value="' . htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '" ' . $this->extra . ' />';
 		}
