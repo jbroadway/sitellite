@@ -88,7 +88,17 @@ class MF_Widget_security extends MF_Widget {
 	 */
 	var $verify_method = 'figlet';
 
+//START: SEMIAS. #188 - form captcha improvements.
 	/**
+     * Image.php file for customized settings, see /saf/lib/ext/phpcaptcha/image.php
+     *
+     * @access  public
+     *
+     */
+    var $phpcaptcha_image = '';
+//END: SEMIAS.
+
+    /**
 	 * Public key from recaptcha.net
 	 *
 	 * @access	public
@@ -121,13 +131,26 @@ class MF_Widget_security extends MF_Widget {
 
 		$this->addRule (
 			'func "mailform_widget_security_verify"',
-			'Your input does not match the letters and numbers shown in the security field.  Please try again.'
+			intl_get ('Your input does not match the letters and numbers shown in the security field.  Please try again.')
 		);
 	}
 
 	function verify () {
 		global $cgi;
-		if ($this->verify_method == 'turing') {
+//START: SEMIAS. #188 - form captcha improvements.
+        if ($this->verify_method == 'phpcaptcha') {
+            $code = trim ($cgi->{$this->name . '_hash'} );
+            $to_check = md5 ($code);
+
+            if($to_check == $_SESSION['security_code']) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+		elseif ($this->verify_method == 'turing') {
+//END: SEMIAS.
 			loader_import ('saf.Security.Turing');
 			if (! SECURITY_TURING_GD_LOADED) {
 				die ('Your server does not have GD support, which is necessary to render the turing test for this form.');
@@ -163,13 +186,51 @@ class MF_Widget_security extends MF_Widget {
 		parent::display ($generate_html);
 		global $intl, $simple;
 		$attrstr = $this->getAttrs ();
+//START: SEMIAS. #188 - form captcha improvements.
+        if ($this->verify_method == 'phpcaptcha') {
 
-		if ($this->verify_method == 'turing') {
+            if(!empty ($this->phpcaptcha_image)) {
+                $image = $this->phpcaptcha_image;
+            } else {
+                $image = "/saf/lib/Ext/phpcaptcha/image.php";
+            }
+
+            page_add_script("
+                function new_captcha()
+                {
+                var c_currentTime = new Date();
+                var c_miliseconds = c_currentTime.getTime();
+
+                document.getElementById('captcha').src = ' " . $image . "?x='+ c_miliseconds;
+                }
+            ");
+
+            $html = '<img border="0" id="captcha" src="' . $image . '" alt="">
+                     &nbsp;<a href="JavaScript: new_captcha();"><img border="0" alt="" src="/saf/lib/Ext/phpcaptcha/refresh.png" align="bottom"></a>';
+
+			return sprintf (
+				"\t<tr>\n\t\t<td class='label' colspan='2'><label for='%s' id='%s-label'%s>%s</label></td></tr>
+				<tr><td class='field' colspan='2'>%s:<br />%s<br /><input type='hidden' name='%s' id='%s' /><input type='text' name='%s_hash' /></td></tr>\n",
+				$this->name,
+				$this->name,
+				$this->invalid (),
+				$simple->fill ($this->label_template, $this, '', true),
+				$html,
+				intl_get ('Please enter the words you see above (Case sensitive!)'),
+				$this->name,
+				$this->name,
+				$this->name
+			);
+
+
+        } elseif ($this->verify_method == 'turing') {
+//END: SEMIAS.
 			loader_import ('saf.Security.Turing');
 			if (! TURING_TEST_GD_LOADED) {
 				die ('Your server does not have GD support, which is necessary to render the turing test for this form.');
 			}
 			$sec = new Security_Turing ();
+            list ($pre, $hash) = $sec->makeTest ();
 		} elseif ($this->verify_method == 'recaptcha') {
 			loader_import ('ext.recaptcha');
 			$html = recaptcha_get_html (conf ('Other', 'recaptcha_public_key'));
@@ -189,8 +250,8 @@ class MF_Widget_security extends MF_Widget {
 		} else {
 			loader_import ('saf.Security.Figlet');
 			$sec = new Security_Figlet ();
+            list ($pre, $hash) = $sec->makeTest ();
 		}
-		list ($pre, $hash) = $sec->makeTest ();
 
 		if ($generate_html) {
 			return "\t" . '<tr>' . "\n\t\t" . '<td class="label" colspan="2"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $simple->fill ($this->label_template, $this, '', true) . '</label></td></tr>' . "\n\t\t" .
