@@ -33,6 +33,14 @@ alt = Comments/Questions
 type = textarea
 ;labelPosition = left
 
+;Start: SEMIAS #188 form captcha improvements.
+[security]
+
+alt = Security
+type = security
+verify_method = figlet
+;END: SEMIAS
+
 [submit_button]
 
 type = submit

@@ -40,9 +40,13 @@ setValues		= "eval: appconf ('user_age_list')"
 type			= textarea
 rule 1			= not empty, You forgot to enter your question.
 
+;START: SEMIAS. #188 - form captcha improvements.
 [security_test]
 
 type			= security
+alt             = Security test
+verify_method   = phpcaptcha
+;END: SEMIAS.
 
 [submit_button]
 

@@ -169,6 +169,20 @@ class SitelliteUtilCustomForm extends MailForm {
 			}
 		}
 
+// SEMIAS: START. #188 - form captcha improvements.
+        $w =& $this->addWidget ('security', 'Security');
+
+        $ps = new phpSniff ();
+        $version = substr(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE'),5,1);
+        if ($ps->property ('browser') == 'ie' && $version <= 7){
+          $w->verify_method = "figlet";
+        }
+        else
+          $w->verify_method = "turing";
+        // $w->verify_method = "turing";
+       	// $w->verify_method = "recaptcha";
+// SEMIAS: END.
+
 		if ($parameters['cc'] == 'optional') {
 			$w =& $this->addWidget ('checkbox', 'cc');
 			$w->fieldset = false;
