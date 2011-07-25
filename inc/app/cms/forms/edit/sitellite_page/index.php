@@ -386,11 +386,13 @@ class CmsEditSitellite_pageForm extends MailForm {
 		} else {
 			if ($key != $vals[$rex->key]) {
 				foreach (db_shift_array ('select id from sitellite_page where below_page = ?', $key) as $child) {
-					$method = $rex->determineAction ($key);
+					/*$method = $rex->determineAction ($key);
 					if (! $method) {
 						die ($rex->error);
 					}
-					$rex->{$method} ($child, array ('below_page' => $vals['id']), 'Updating renamed parent reference');
+					$rex->{$method} ($child, array ('below_page' => $vals['id']), 'Updating renamed parent reference');*/
+					db_execute ('update sitellite_page set below_page = ? where id = ?', $vals['id'], $child);
+					db_execute ('update sitellite_page_sv set below_page = ? where id = ? and (sv_current = "yes" or sitellite_status = "parallel")', $vals['id'], $child);
 				}
 			}
 

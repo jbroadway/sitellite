@@ -41,12 +41,14 @@ if ($parameters['collection'] == 'sitellite_page' && $parameters['key'] != $para
 	$rex = new Rex ('sitellite_page');
 
 	foreach ($ids as $id) {
-		$c = $rex->getCurrent ($id);
+		/*$c = $rex->getCurrent ($id);
 		if (is_object ($c)) {
 			$c->body = str_replace ('/' . $parameters['key'] . '"', '/' . $parameters['data']['id'] . '"', $c->body);
 			$method = $rex->determineAction ($id, $c->sitellite_status);
 			$rex->{$method} ($id, (array) $c, 'A page linked to in this page was renamed, updating link.');
-		}
+		}*/
+		db_execute ('update sitellite_page set body = replace(body, ?, ?) where id = ?', '/' . $parameters['key'] . '"', '/' . $parameters['data']['id'] . '"', $id);
+		db_execute ('update sitellite_page_sv set body = replace(body, ?, ?) where id = ? and (sv_current = "yes" or sitellite_status = "parallel")', '/' . $parameters['key'] . '"', '/' . $parameters['data']['id'] . '"', $id);
 	}
 
 } elseif ($parameters['collection'] == 'sitellite_filesystem' && $parameters['key'] != $parameters['data']['name']) {
@@ -58,12 +60,14 @@ if ($parameters['collection'] == 'sitellite_page' && $parameters['key'] != $para
 	$rex = new Rex ('sitellite_page');
 
 	foreach ($ids as $id) {
-		$c = $rex->getCurrent ($id);
+		/*$c = $rex->getCurrent ($id);
 		if (is_object ($c)) {
 			$c->body = str_replace ('/' . $parameters['key'] . '"', '/' . $parameters['data']['name'] . '"', $c->body);
 			$method = $rex->determineAction ($id, $c->sitellite_status);
 			$rex->{$method} ($id, (array) $c, 'A file linked to in this page was renamed, updating link.');
-		}
+		}*/
+		db_execute ('update sitellite_page set body = replace(body, ?, ?) where id = ?', '/' . $parameters['key'] . '"', '/' . $parameters['data']['name'] . '"', $id);
+		db_execute ('update sitellite_page_sv set body = replace(body, ?, ?) where id = ? and (sv_current = "yes" or sitellite_status = "parallel")', '/' . $parameters['key'] . '"', '/' . $parameters['data']['name'] . '"', $id);
 	}
 
 }
