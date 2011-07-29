@@ -27,7 +27,7 @@ var $caption = false;
  */
 function display ($generate_html = 0) {
 
-	page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
+	//page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
 	page_add_script (site_prefix () . '/js/jquery-ui-1.7.2.min.js');
 	page_add_script (site_prefix () . '/inc/app/ui/js/ui.stars.min.js');
 	page_add_style (site_prefix () . '/inc/app/ui/js/ui.stars.css');

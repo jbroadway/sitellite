@@ -25,6 +25,7 @@
 		links as well as a file CSS class to links to files, which can then be styled
 		separately from ordinary links (see example CSS for defaults).
 	-->
+	<script language="javascript" type="text/javascript" src="${site/prefix}/js/jquery-1.4.2.min.js"></script>
 	<script language="javascript" src="/js/linkmapper-compressed.js"> </script>
 
 	<!--

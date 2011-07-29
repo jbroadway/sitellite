@@ -76,7 +76,7 @@ function make_set ($set_name) {
 	     tag.  this syntax is required to make your templates XHTML and XT
 	     compatible -->
 	<link rel="stylesheet" type="text/css" href="\${site/prefix}/inc/html/$set_name/site.css" />
-
+	<script language="javascript" type="text/javascript" src="${site/prefix}/js/jquery-1.4.2.min.js"></script>
 </head>
 <body><a name="top"> </a>
 

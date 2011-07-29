@@ -76,7 +76,7 @@ page_add_style (site_prefix () . '/js/jquery.tooltip.css');
 page_add_style (site_prefix () . '/inc/app/myadm/js/thickbox.css');
 page_add_script (site_prefix () . '/inc/app/myadm/js/shCore.js');
 page_add_script (site_prefix () . '/inc/app/myadm/js/shBrushSql.js');
-page_add_script (site_prefix () . '/js/jquery-1.2.3.min.js');
+//page_add_script (site_prefix () . '/js/jquery-1.2.3.min.js');
 page_add_script (site_prefix () . '/js/jquery.dimensions.min.js');
 page_add_script (site_prefix () . '/js/jquery.bgiframe.js');
 page_add_script (site_prefix () . '/js/jquery.tooltip.min.js');

@@ -87,7 +87,7 @@ if (empty ($data['current_name'])) {
 }
 
 page_add_style (site_prefix () . '/inc/app/docs/html/docs.css');
-page_add_script (site_prefix () . '/js/jquery-1.2.3.min.js');
+//page_add_script (site_prefix () . '/js/jquery-1.2.3.min.js');
 page_add_script (site_prefix () . '/js/jquery.cookie.js');
 page_add_script (site_prefix () . '/js/jquery-treeview/jquery.treeview.min.js');
 page_add_script (site_prefix () . '/js/jquery-treeview/jquery.treeview.async.js');

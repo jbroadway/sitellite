@@ -23,7 +23,7 @@ if ($tc->canTag) {
 
 	$taglist = implode (' ', $tc->getAllTags());
 	page_add_style (site_prefix () . '/js/jquery.autocomplete.css');
-	page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
+	//page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
 	page_add_script (site_prefix () . '/js/jquery.bgiframe.min.js');
 	page_add_script (site_prefix () . '/js/jquery.dimensions.js');
 	page_add_script (site_prefix () . '/js/jquery.autocomplete.pack.js');

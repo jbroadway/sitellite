@@ -24,7 +24,7 @@ if (session_valid () || $parameters['anon'] == 'yes') {
 	$comments->createAddForm ($username);
 }
 
-page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
+//page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
 page_add_script (site_prefix () . '/js/rpc-compressed.js');
 page_add_script (template_simple ('comment-add.js', $comments));
 page_add_style (site_prefix () . '/inc/app/ui/html/comments.css');

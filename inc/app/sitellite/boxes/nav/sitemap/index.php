@@ -14,6 +14,39 @@ if (! defined ('SAF_VERSION')) {
   exit;
 }
 // END KEEPOUT CHECKING
+page_add_style ('<style type="text/css">
+ul#gray {
+	list-style-type: none;
+    list-style-image: none;
+    text-decoration: none;
+}
+ul#gray>li>a {
+	font-weight: bold;
+	list-style-type: none;
+    list-style-image: none;
+}
+#gray ul {
+    list-style-image: none;
+  	list-style-type: none;
+    background: transparent;
+}
+.treeview-gray a:hover {
+	list-style-type: none;
+    list-style-image: none;
+    color: #999;
+}
+.treeview-gray ul a:hover {
+	list-style-type: none;
+    list-style-image: none;
+    color: #999;
+}
+.treeview-gray li {
+	list-style-type: none;
+    list-style-image: none;
+    background: transparent;
+    color: #999;
+}
+</style>');
 
 loader_box ('sitellite/nav/init');
 
@@ -33,14 +66,14 @@ if ($context == 'action') {
 	page_title (intl_get ('Site Map'));
 }
 
-page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
+//page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
 page_add_script (site_prefix () . '/js/jquery.cookie.js');
 page_add_script (site_prefix () . '/js/jquery-treeview/jquery.treeview.min.js');
 page_add_style (site_prefix () . '/js/jquery-treeview/jquery.treeview.css');
 page_add_script ('<script type="text/javascript">
 
 $(function () {
-	$("#sitemap").treeview ({
+	$("#gray").treeview ({
 		animated: "medium",
 		control: "#sidetreecontrol",
 		persist: "location"
@@ -49,23 +82,8 @@ $(function () {
 
 </script>');
 
-page_add_style ('<style type="text/css">
 
-ul#sitemap {
-	list-style-type: none;
-    list-style-image: none;
-}
-ul#sitemap>li>a {
-	font-weight: bold;
-	list-style-type: none;
-    list-style-image: none;
-}
 
-</style>');
-#Start: SEMIAS. #194 site map.
-# ------------------------
-# echo preg_replace ('/^<ul>/', '<ul id="sitemap" class="treeview-gray">', $menu->display ('html', '<a href="{site/prefix}/index/{id}">{title}</a>', $recur));
-# ------------------------
-echo preg_replace ('/^<ul>/', '<ul id="sitemap" class="treeview-gray treeview">', $menu->display ('html', '<a href="{site/prefix}/index/{id}">{title}</a>', $recur));
-#END: SEMIAS.
+echo preg_replace ('/^<ul>/', '<ul id="gray" class="treeview-gray">', $menu->display ('html', '<a href="{site/prefix}/index/{id}">{title}</a>', $recur));
+
 ?>

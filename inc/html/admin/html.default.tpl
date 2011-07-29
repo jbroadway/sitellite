@@ -2,7 +2,7 @@
 	<head>
 	<title><xt:var name="php: PRODUCT_NAME" /></title>
 	<link rel="stylesheet" type="text/css" href="${site/prefix}/inc/html/admin/site.css" />
-	<script language="javascript" type="text/javascript" src="${site/prefix}/js/jquery-1.3.2.min.js"></script>
+	<script language="javascript" type="text/javascript" src="${site/prefix}/js/jquery-1.4.2.min.js"></script>
 	</head>
 	<body>
 <a name="top"> </a>

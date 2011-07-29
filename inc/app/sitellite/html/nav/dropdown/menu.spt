@@ -1,5 +1,6 @@
 <!-- Issue #187 dropdown menu -->
-<script type="text/javascript" language="javascript" src="/js/jquery-1.4.2.min.js"></script>
+<!-- <script type="text/javascript" language="javascript" src="/js/jquery-1.4.2.min.js"></script> -->
+
 <script type="text/javascript" language="javascript" src="/js/jquery.menu.js"></script>
 
 <!-- This is the basic structure for a three level menu. -->
