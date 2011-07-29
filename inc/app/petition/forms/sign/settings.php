@@ -63,6 +63,7 @@ alt = Zip/Postal Code
 
 type = security
 alt = Security Test
+verify_method = phpcaptcha
 
 [submit_button]
 
