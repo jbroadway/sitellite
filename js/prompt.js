@@ -322,7 +322,7 @@ Prompter.prototype.open = function (txt) {
 		document.getElementById ('prompt-window-' + n + '-user').focus ();
 	}});*/
 	$('#prompt-dialog-' + this.num).slideDown ('normal', function () {
-		n = obj.element.id.split ('-')[2];
+		n = this.id.split ('-')[2]; // semias edit: 'this' points to DOM element instead of 'obj.element'
 		document.getElementById ('prompt-window-' + n + '-user').style.overflow = 'auto';
 		document.getElementById ('prompt-window-' + n + '-user').focus ();
 	});
