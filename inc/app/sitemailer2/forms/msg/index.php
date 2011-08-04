@@ -1,4 +1,24 @@
 <?php
+//
+// +----------------------------------------------------------------------+
+// | Sitellite Content Management System                                  |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2010 Sitellite.org Community                           |
+// +----------------------------------------------------------------------+
+// | This software is released under the GNU GPL License.                 |
+// | Please see the accompanying file docs/LICENSE for licensing details. |
+// |                                                                      |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
+// +----------------------------------------------------------------------+
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
+// +----------------------------------------------------------------------+
+//
+// resolved tickets:
+// #174 CMS cancel.
+//
 
 global $cgi;
 
@@ -13,7 +33,7 @@ class Sitemailer2MsgForm extends MailForm {
 	function Sitemailer2MsgForm () {
 		parent::MailForm ();
 
-		global $cgi;
+		global $page, $cgi;
 
         page_add_script (site_prefix () . '/js/prompt.js');
         page_add_script ('

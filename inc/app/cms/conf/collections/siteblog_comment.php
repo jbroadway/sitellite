@@ -22,7 +22,7 @@ sorting_order = desc
 ; Additional fields to display
 
 add  = no
-edit = form:siteblog/comment
+;edit = form:siteblog/comment
 
 [Source]
 

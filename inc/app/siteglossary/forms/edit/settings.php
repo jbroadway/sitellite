@@ -51,8 +51,9 @@ type = xed.Widget.Xeditor
 
 [submit_button]
 
-type = msubmit
-button 1 = Save
-button 2 = Cancel
+type			= msubmit
+button 0		= Create
+button 1		= Save and continue
+button 2		= Cancel
 
 ; */ ?>

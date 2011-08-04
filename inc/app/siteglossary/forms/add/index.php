@@ -1,4 +1,26 @@
 <?php
+//
+// +----------------------------------------------------------------------+
+// | Sitellite Content Management System                                  |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2010 Sitellite.org Community                           |
+// +----------------------------------------------------------------------+
+// | This software is released under the GNU GPL License.                 |
+// | Please see the accompanying file docs/LICENSE for licensing details. |
+// |                                                                      |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
+// +----------------------------------------------------------------------+
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
+// +----------------------------------------------------------------------+
+//
+// resolved tickets:
+// #174 CMS cancel.
+//
+
+global $cgi;
 
 class SiteglossaryAddForm extends MailForm {
 	function SiteglossaryAddForm () {
@@ -6,10 +28,17 @@ class SiteglossaryAddForm extends MailForm {
 
 		$this->parseSettings ('inc/app/siteglossary/forms/add/settings.php');
 
+		global $page, $cgi;
+
 		page_title (intl_get ('Adding Glossary Term'));
+		
+		// include formhelp, edit panel init, and cancel handler
+		page_add_script (site_prefix () . '/js/formhelp-compressed.js');
+		page_add_script (CMS_JS_FORMHELP_INIT);
 
 		page_add_script ('
 			function cms_cancel (f) {
+				onbeforeunload_form_submitted = true;
 				if (arguments.length == 0) {
 					window.location.href = "/index/cms-app";
 				} else {
@@ -24,7 +53,9 @@ class SiteglossaryAddForm extends MailForm {
 		');
 
 		// add cancel handler
-		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="return cms_cancel (this.form)"';
+		$this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+		$this->widgets['submit_button']->buttons[2]->extra = 'onclick="return cms_cancel (this.form)"';
 	}
 
 	function onSubmit ($vals) {
@@ -43,6 +74,8 @@ class SiteglossaryAddForm extends MailForm {
 
 		$changelog = $vals['changelog'];
 		unset ($vals['changelog']);
+        
+		$continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 
 		unset ($vals['section']);
 		unset ($vals['submit_button']);
@@ -58,7 +91,7 @@ class SiteglossaryAddForm extends MailForm {
 		}
 
 		if (! $res) {
-			if (! $return) {
+			if (empty($return)) {
 				$return = site_prefix () . '/index/siteglossary-app';
 			}
 			echo loader_box ('cms/error', array (
@@ -84,8 +117,12 @@ class SiteglossaryAddForm extends MailForm {
 			);
 
 			session_set ('sitellite_alert', intl_get ('Your item has been created.'));
-
-			if ($return) {
+			
+			if ($continue) {
+				header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+				exit;
+			}
+			if (! empty ($return)) {
 				header ('Location: ' . $return);
 				exit;
 			}

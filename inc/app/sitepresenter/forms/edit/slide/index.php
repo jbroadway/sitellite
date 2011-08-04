@@ -1,11 +1,38 @@
 <?php
+//
+// +----------------------------------------------------------------------+
+// | Sitellite Content Management System                                  |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2010 Sitellite.org Community                           |
+// +----------------------------------------------------------------------+
+// | This software is released under the GNU GPL License.                 |
+// | Please see the accompanying file docs/LICENSE for licensing details. |
+// |                                                                      |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
+// +----------------------------------------------------------------------+
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
+// +----------------------------------------------------------------------+
+//
+// resolved tickets:
+// #174 CMS cancel.
+//
+
+global $cgi;
 
 class SitepresenterEditSlideForm extends MailForm {
 	function SitepresenterEditSlideForm () {
 		parent::MailForm ();
+		
 		$this->parseSettings ('inc/app/sitepresenter/forms/edit/slide/settings.php');
+		
+		global $page, $cgi;
+		
 		page_add_script ('
 			function cms_cancel (f) {
+				onbeforeunload_form_submitted = true;
 				if (arguments.length == 0) {
 					window.location.href = "/index/cms-app";
 				} else {
@@ -18,9 +45,8 @@ class SitepresenterEditSlideForm extends MailForm {
 				return false;
 			}
 		');
+		$this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
 		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="return cms_cancel (this.form)"';
-
-		global $cgi;
 
 		page_title (
 			intl_get ('Adding Slide to Presentation') . ': ' .
@@ -31,6 +57,8 @@ class SitepresenterEditSlideForm extends MailForm {
 		foreach (get_object_vars ($res) as $k => $v) {
 			$this->widgets[$k]->setValue ($v);
 		}
+		
+		
 	}
 
 	function onSubmit ($vals) {

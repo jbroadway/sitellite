@@ -39,10 +39,10 @@ class SiteeventEditForm extends MailForm {
 	function SiteeventEditForm () {
 		parent::MailForm ();
 
-		global $page, $cgi;
-		
 		$this->parseSettings ('inc/app/siteevent/forms/edit/settings.php');
 
+		global $page, $cgi;
+		
 		page_title (intl_get ('Editing Event') . ': ' . $cgi->_key);
 
 		loader_import ('ext.phpsniff');
@@ -63,7 +63,7 @@ class SiteeventEditForm extends MailForm {
 					if (f.elements[\'_return\'] && f.elements[\'_return\'].value.length > 0) {
 						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=" + encodeURIComponent (f.elements[\'_return\'].value);
 					} else {
-						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/news-app";
+						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/siteevent-app";
 					}
 				}
 				return false;
@@ -111,7 +111,7 @@ class SiteeventEditForm extends MailForm {
 
 		$rex = new Rex ($collection);
 
-                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
+		$continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -166,10 +166,10 @@ class SiteeventEditForm extends MailForm {
 
 			session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
 
-                        if ($continue) {
-                                header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
-                                exit;
-                        }
+			if ($continue) {
+					header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+					exit;
+			}
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

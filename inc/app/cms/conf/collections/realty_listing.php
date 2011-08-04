@@ -1,3 +1,5 @@
+; <?php /*
+
 [Collection]
 
 name = realty_listing
@@ -170,3 +172,5 @@ alt = Listing Status
 [hint:description]
 
 type = xed.Widget.Xeditor
+
+; */ ?>

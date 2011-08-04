@@ -16,10 +16,6 @@
 // | Authors: John Luxford <john.luxford@gmail.com>                       |
 // +----------------------------------------------------------------------+
 //
-// Menu is a class that is used to generate navigation systems on the
-// fly on web sites, based on a self-referencial database table structure.
-// It is mostly for use through EasyText.
-//
 // resolved tickets:
 // #174 CMS cancel.
 //
@@ -55,23 +51,19 @@ class SitestudyEditForm extends MailForm {
 		$this->_browser = $sniffer->property ('browser');
 
 		// include formhelp, edit panel init, and cancel handler
-		page_add_script (site_prefix () . '/js/formhelp.js');
+		page_add_script (site_prefix () . '/js/formhelp-compressed.js');
 		page_add_script (CMS_JS_FORMHELP_INIT);
 		page_onload ('cms_init_edit_panels ()');
 		page_add_script ('
 			function cms_cancel_unlock (f, collection, key) {
+				onbeforeunload_form_submitted = true;
 				if (arguments.length == 0) {
 					window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/cms-app";
 				} else {
 					if (f.elements[\'_return\'] && f.elements[\'_return\'].value.length > 0) {
-// Start: SEMIAS #174 CMS cancel.
-// ----------------------- 
-// window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=" + EncodeURIComponent (f.elements[\'_return\'].value);
-// -----------------------
 						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=" + encodeURIComponent (f.elements[\'_return\'].value);
-// END: SEMIAS
 					} else {
-						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/news-app";
+						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/sitestudy-app";
 					}
 				}
 				return false;
@@ -79,7 +71,9 @@ class SitestudyEditForm extends MailForm {
 		');
 
 		// add cancel handler
-		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="return cms_cancel_unlock (this.form, \'' . $cgi->_collection . '\', \'' . $cgi->_key . '\')"';
+        $this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+        $this->widgets['submit_button']->buttons[1]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+		$this->widgets['submit_button']->buttons[2]->extra = 'onclick="return cms_cancel_unlock (this.form, \'' . $cgi->_collection . '\', \'' . $cgi->_key . '\')"';
 
 		// get copy from repository
 		loader_import ('cms.Versioning.Rex');
@@ -113,7 +107,8 @@ class SitestudyEditForm extends MailForm {
 		unset ($vals['changelog']);
 
 		$rex = new Rex ($collection);
-
+		
+		$continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['edit-top']);
 		unset ($vals['edit-middle']);
@@ -132,7 +127,7 @@ class SitestudyEditForm extends MailForm {
 		lock_remove ($collection, $key);
 
 		if (! $res) {
-			if (! empty ($return)) {
+			if (empty ($return)) {
 				$return = site_prefix () . '/index/cms-browse-action?collection=sitestudy_item';
 			}
 			echo loader_box ('cms/error', array (
@@ -159,6 +154,11 @@ class SitestudyEditForm extends MailForm {
 			);
 
 			session_set ('sitellite_alert', intl_get ('Your item has been saved.'));
+			
+			if ($continue) {
+				header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+				exit;
+			}
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

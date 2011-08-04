@@ -116,7 +116,7 @@ class NewsEditForm extends MailForm {
 
 		$rex = new Rex ($collection);
 
-                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
+		$continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -133,7 +133,7 @@ class NewsEditForm extends MailForm {
 		lock_remove ($collection, $key);
 
 		if (! $res) {
-			if (! empty ($return)) {
+			if (empty ($return)) {
 				$return = site_prefix () . '/index/cms-browse-action?collection=sitellite_news';
 			}
 			echo loader_box ('cms/error', array (

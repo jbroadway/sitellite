@@ -62,9 +62,7 @@ class NewsAddForm extends MailForm {
 
 		$rex = new Rex ($collection);
 
-		//$vals['sitellite_owner'] = session_username ();
-		//$vals['sitellite_team'] = session_team ();
-                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
+		$continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -82,7 +80,7 @@ class NewsAddForm extends MailForm {
 		}
 
 		if (! $res) {
-			if (! empty ($return)) {
+			if (empty ($return)) {
 				$return = site_prefix () . '/index/cms-browse-action?collection=sitellite_news';
 			}
 			echo loader_box ('cms/error', array (

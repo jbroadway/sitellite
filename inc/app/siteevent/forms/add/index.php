@@ -20,17 +20,16 @@
 // #174 CMS cancel.
 //
 
-global $page, $cgi;
-
-loader_import ('cms.Workflow.Lock');
-
+global $cgi;
 
 class SiteeventAddForm extends MailForm {
 	function SiteeventAddForm () {
 		parent::MailForm ();
 
 		$this->parseSettings ('inc/app/siteevent/forms/add/settings.php');
-
+		
+		global $page, $cgi;
+		
 		page_title (intl_get ('Adding Event'));
 
 		loader_import ('ext.phpsniff');
@@ -51,7 +50,7 @@ class SiteeventAddForm extends MailForm {
 					if (f.elements["_return"] && f.elements["_return"].value.length > 0) {
 						window.location.href = f.elements["_return"].value;
 					} else {
-						window.location.href = "/index/news-app";
+						window.location.href = "/index/siteevent-app";
 					}
 				}
 				return false;
@@ -110,7 +109,7 @@ class SiteeventAddForm extends MailForm {
 
 
 		if (! $res) {
-			if (empty($return)) {
+			if (empty ($return)) {
 				$return = site_prefix () . '/index/cms-browse-action?collection=siteevent_event';
 			}
 			echo loader_box ('cms/error', array (
@@ -124,7 +123,6 @@ class SiteeventAddForm extends MailForm {
 			));
 			
 		} else {
-
 			loader_import ('cms.Workflow');
 			echo Workflow::trigger (
 				'add',
@@ -139,10 +137,10 @@ class SiteeventAddForm extends MailForm {
 
 			session_set ('sitellite_alert', intl_get ('Your item has been created.'));
 
-                        if ($continue) {
-                                header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
-                                exit;
-                        }
+			if ($continue) {
+				header ('Location: ' . site_prefix () . '/cms-edit-form?_collection=' . $collection . '&_key=' . $key . '&_return=' . $return);
+				exit;
+			}
 
 			if (! empty ($return)) {
 				header ('Location: ' . $return);

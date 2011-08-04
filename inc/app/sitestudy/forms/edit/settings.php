@@ -140,7 +140,8 @@ template		= ../../cms/html/page/edit-middle3.spt
 
 type			= msubmit
 button 0		= Save
-button 1		= Cancel
+button 1		= Save and continue
+button 2		= Cancel
 
 [edit-bottom]
 

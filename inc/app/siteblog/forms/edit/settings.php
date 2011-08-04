@@ -85,10 +85,11 @@ displayFormat	= "datetime"
 
 type        = xed.Widget.Xeditor
 
-[submit_buttons]
+[submit_button]
 
-type        = msubmit
-button 1    = Submit
-button 2    = Cancel
+type			= msubmit
+button 0		= Save
+button 1		= Save and continue
+button 2		= Cancel
 
 ; */ ?>
