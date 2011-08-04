@@ -39,9 +39,9 @@ class SiteeventEditForm extends MailForm {
 	function SiteeventEditForm () {
 		parent::MailForm ();
 
-		$this->parseSettings ('inc/app/siteevent/forms/edit/settings.php');
-
 		global $page, $cgi;
+		
+		$this->parseSettings ('inc/app/siteevent/forms/edit/settings.php');
 
 		page_title (intl_get ('Editing Event') . ': ' . $cgi->_key);
 
@@ -53,7 +53,7 @@ class SiteeventEditForm extends MailForm {
 		// include formhelp, edit panel init, and cancel handler
 		page_add_script (site_prefix () . '/js/formhelp-compressed.js');
 		page_add_script (CMS_JS_FORMHELP_INIT);
-		//page_onload ('cms_init_edit_panels ()');
+
 		page_add_script ('
 			function cms_cancel_unlock (f, collection, key) {
 				onbeforeunload_form_submitted = true;
@@ -61,12 +61,7 @@ class SiteeventEditForm extends MailForm {
 					window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/cms-app";
 				} else {
 					if (f.elements[\'_return\'] && f.elements[\'_return\'].value.length > 0) {
-// Start: SEMIAS #174 CMS cancel.
-// ----------------------- 
-// window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=" + EncodeURIComponent (f.elements[\'_return\'].value);
-// -----------------------
 						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=" + encodeURIComponent (f.elements[\'_return\'].value);
-// END: SEMIAS
 					} else {
 						window.location.href = "' . site_prefix () . '/index/cms-unlock-action?collection=" + collection + "&key=" + key + "&return=' . site_prefix () . '/index/news-app";
 					}
@@ -76,8 +71,8 @@ class SiteeventEditForm extends MailForm {
 		');
 
 		// add cancel handler
-                $this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
-                $this->widgets['submit_button']->buttons[1]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+        $this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+        $this->widgets['submit_button']->buttons[1]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
 		$this->widgets['submit_button']->buttons[2]->extra = 'onclick="return cms_cancel_unlock (this.form, \'' . $cgi->_collection . '\', \'' . $cgi->_key . '\')"';
 
 		// get copy from repository

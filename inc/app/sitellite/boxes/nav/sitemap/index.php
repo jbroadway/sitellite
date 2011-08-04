@@ -84,6 +84,6 @@ $(function () {
 
 
 
-echo preg_replace ('/^<ul>/', '<ul id="gray" class="treeview-gray">', $menu->display ('html', '<a href="{site/prefix}/index/{id}">{title}</a>', $recur));
+echo preg_replace ('/^<ul>/', '<ul id="gray" class="treeview-gray treeview">', $menu->display ('html', '<a href="{site/prefix}/index/{id}">{title}</a>', $recur));
 
 ?>

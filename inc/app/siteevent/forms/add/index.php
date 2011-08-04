@@ -1,10 +1,33 @@
 <?php
+//
+// +----------------------------------------------------------------------+
+// | Sitellite Content Management System                                  |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2010 Sitellite.org Community                           |
+// +----------------------------------------------------------------------+
+// | This software is released under the GNU GPL License.                 |
+// | Please see the accompanying file docs/LICENSE for licensing details. |
+// |                                                                      |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
+// +----------------------------------------------------------------------+
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
+// +----------------------------------------------------------------------+
+//
+// resolved tickets:
+// #174 CMS cancel.
+//
+
+global $page, $cgi;
+
+loader_import ('cms.Workflow.Lock');
+
 
 class SiteeventAddForm extends MailForm {
 	function SiteeventAddForm () {
 		parent::MailForm ();
-
-		global $page, $cgi;
 
 		$this->parseSettings ('inc/app/siteevent/forms/add/settings.php');
 
@@ -18,7 +41,7 @@ class SiteeventAddForm extends MailForm {
 		// include formhelp, edit panel init, and cancel handler
 		page_add_script (site_prefix () . '/js/formhelp-compressed.js');
 		page_add_script (CMS_JS_FORMHELP_INIT);
-		//page_onload ('cms_init_edit_panels ()');
+
 		page_add_script ('
 			function cms_cancel (f) {
 				onbeforeunload_form_submitted = true;
@@ -36,8 +59,8 @@ class SiteeventAddForm extends MailForm {
 		');
 
 		// add cancel handler
-                $this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
-                $this->widgets['submit_button']->buttons[1]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+		$this->widgets['submit_button']->buttons[0]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
+		$this->widgets['submit_button']->buttons[1]->extra = 'onclick="onbeforeunload_form_submitted = true;"';
 		$this->widgets['submit_button']->buttons[2]->extra = 'onclick="return cms_cancel (this.form)"';
 	}
 
@@ -58,9 +81,7 @@ class SiteeventAddForm extends MailForm {
 
 		$rex = new Rex ($collection);
 
-		//$vals['sitellite_owner'] = session_username ();
-		//$vals['sitellite_team'] = session_team ();
-                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
+        $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -87,8 +108,9 @@ class SiteeventAddForm extends MailForm {
 			$key = 'Unknown';
 		}
 
+
 		if (! $res) {
-			if (! $return) {
+			if (empty($return)) {
 				$return = site_prefix () . '/index/cms-browse-action?collection=siteevent_event';
 			}
 			echo loader_box ('cms/error', array (
@@ -100,7 +122,9 @@ class SiteeventAddForm extends MailForm {
 				'changelog' => $changelog,
 				'return' => $return,
 			));
+			
 		} else {
+
 			loader_import ('cms.Workflow');
 			echo Workflow::trigger (
 				'add',
@@ -120,7 +144,7 @@ class SiteeventAddForm extends MailForm {
                                 exit;
                         }
 
-			if ($return) {
+			if (! empty ($return)) {
 				header ('Location: ' . $return);
 				exit;
 			}
