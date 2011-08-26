@@ -230,16 +230,14 @@ class CmsAddSitellite_pageForm extends MailForm {
 		$t->alt = intl_get ('Publish On (If Status is "Queued")');
 		$t->nullable = true;
 		$t->showsTime = true;
-		$t->format = '%Y-%m-%d %H:%M:%S';
-		$t->displayFormat = '%a, %e %b, %Y - %l:%M%P';
+		$t->displayFormat = 'datetime';
 		$t->advanced = true;
 
 		$t =& $this->addWidget ('calendar', 'sitellite_expirydate');
 		$t->alt = intl_get ('Archive On (If Status is "Approved")');
 		$t->nullable = true;
 		$t->showsTime = true;
-		$t->format = '%Y-%m-%d %H:%M:%S';
-		$t->displayFormat = '%a, %e %b, %Y - %l:%M%P';
+		$t->displayFormat = 'datetime';
 		$t->advanced = true;
 
 		$t =& $this->addWidget ('owner', 'sitellite_owner');

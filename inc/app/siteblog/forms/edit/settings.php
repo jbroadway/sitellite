@@ -78,8 +78,6 @@ setValue = "eval: date ('Y-m-d H:i:s')"
 nullable		= false
 showsTime		= true
 displayFormat	= "datetime"
-;format			= "%Y-%m-%d %H:%M:%S"
-;displayFormat	= "%a, %e %b, %Y - %l:%M%P"
 
 [body]
 

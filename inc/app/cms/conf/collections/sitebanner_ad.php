@@ -3,7 +3,7 @@
 [Collection]
 
 name = sitebanner_ad
-app				= sitebanner
+app	= sitebanner
 display = Banner Ads
 singular = Banner Ad
 key_field = id

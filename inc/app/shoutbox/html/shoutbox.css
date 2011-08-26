@@ -1,0 +1,23 @@
+/* CSS FILE for Shoutbox */
+
+/* The UL in which the messages appear */
+#shoutboxmessages {
+ overflow: auto;
+ height: 150px;
+}
+
+/* Message (LI) */
+#shoutboxmessages li {
+  list-style-type: none;
+}
+
+/* Name */
+#shoutboxmessages li .name {
+ font-weight: bold;
+}
+
+/* Shoutbox error div */
+#shoutbox_content {
+  color: red;
+  font-weight: bold;
+}

@@ -25,8 +25,9 @@ echo join ('\', \'', $joins);
 echo '\');' . NEWLINE;
 echo '// --></script>' . NEWLINEx2;
 
-foreach ($sdm as $dm) {
-	echo $dm->write ();
+if(is_object($sdm) || is_array($sdm)){
+  foreach ($sdm as $dm) {
+    echo $dm->write ();
+  }
 }
-
 ?>

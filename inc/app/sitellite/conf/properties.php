@@ -32,6 +32,6 @@ $smileys = array (
 appconf_set("smileys",$smileys);
 
 // image tag, {filename} is filename of smiley image.
-appconf_set("imgtag","<img src=\"http://".site_domain().site_prefix()."/inc/app/sitellite/pix/{filename}\" />");
+appconf_set("imgtag","<img src=\"http://".site_domain().site_prefix()."/inc/app/sitellite/pix/smiley/{filename}\" />");
 
 ?>

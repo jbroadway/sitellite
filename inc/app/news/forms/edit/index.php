@@ -114,6 +114,57 @@ class NewsEditForm extends MailForm {
 		$changelog = $vals['changelog'];
 		unset ($vals['changelog']);
 
+                // handle thumbnail
+
+        // check if thumb is set
+        if( !empty( $vals['thumb'] ) ) {
+         // check if thumbnail path ends with "-thumb.jpg"
+         $string = substr($vals['thumb'], -10 );
+         if($string != "-thumb.jpg") {
+          // create a thumbnail
+
+          // get thumb_filename and thumb_dir
+          // remove http://
+          $path = str_replace("http://", "", $vals['thumb']);
+
+          // split path by /
+          $split = split("/", $path);
+          // the thumb body is the last item in the array
+          $thumb_filename = $split [ count($split) - 1];
+          // now get the directory, by deleting last entry...
+          unset($split [ count($split) - 1] );
+          // the first entry (i.e. the domain)...
+          $domain = $split[0];
+          unset($split [0] );
+          // and implode again
+          $dir = implode("/",$split);
+
+          // get thumb_body, i.e. filename without extension
+          $split2 = split("\.", $thumb_filename);
+          // extension is last part, so delete it and implode again.
+          unset($split2 [ count($split2) - 1] );
+          $thumb_body = implode(".",$split2);
+
+          $orig_filename = $dir . "/" . $thumb_filename;
+          $thumbnail = $dir . "/" . $thumb_body . "-thumb.jpg";
+
+          // load thumbnail class
+          loader_import("saf.Ext.thumbnail");
+
+          // get conf. parameters (settings.ini.php)
+          $max_width = appconf("thumb_width");
+          $max_height = appconf("thumb_height");
+
+          // make the thumbnail
+          makethumbnail($orig_filename , $thumbnail , $max_width , $max_height );
+
+          // set $vals['thumb'] to the new filename
+          $vals['thumb'] = "http://" . $domain . "/" . $thumbnail;
+         }
+        }
+
+        // end thumbnail
+
 		$rex = new Rex ($collection);
 
 		$continue = ($vals['submit_button'] == intl_get ('Save and continue'));

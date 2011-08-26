@@ -23,10 +23,6 @@ class ShoutboxAdd2Form extends MailForm {
 }
 */
 $form = new MailForm;
-
-// $form->template = 'mf2template.spt';
-// $form->message = 'Please take a moment to fill out our form.';
-
 $form->parseSettings("inc/app/shoutbox/forms/add/settings.php");
 $form->attr ('onsubmit', 'shoutbox.sendmessage(); return false;');
 

@@ -75,15 +75,20 @@ class MF_Widget_calendar extends MF_Widget {
 	 * @access	public
 	 *
 	 */
-	var $format = '%Y-%m-%d';
+//	var $format = '%Y-%m-%d';
+    var $format = '%Y-%m-%d %H:%M:%S';
 
 	/**
-	 * This determines the format of the date displayed to the user.
+     * This determines the format of the date displayed to the user.
+     *
+     * SEMIAS comment:
+     * Default options: time, shortdate, date, datetime
+     * See multilingual app -> dates   (multilingual-dates-action)
 	 *
 	 * @access	public
 	 *
 	 */
-	var $displayFormat = '%a, %e %b, %Y';
+	var $displayFormat = 'datetime';
 
 	/**
 	 * This determines the language file to load for the calendar
@@ -109,11 +114,12 @@ class MF_Widget_calendar extends MF_Widget {
 	/**
 	 * Determines whether to show the time selection options under the
 	 * calendar.
+     * Bug: see first lines in display() function
 	 *
 	 * @access	public
 	 *
 	 */
-	var $showsTime = false;
+	var $showsTime = true;
 
 	/**
 	 * Sets the display time to 24 hours, or 12 hours with AM/PM option.
@@ -132,8 +138,10 @@ class MF_Widget_calendar extends MF_Widget {
 	 * 
 	 */
 	function MF_Widget_calendar ($name) {
+		global $intl;
 		// initialize core Widget settings
 		parent::MF_Widget ($name);
+		$this->lang = $intl->language;
 	}
 
 	function displayValue () {
@@ -141,8 +149,7 @@ class MF_Widget_calendar extends MF_Widget {
 		if (empty ($out)) {
 			return intl_get ('No date selected.');
 		}
-		loader_import ('saf.Date');
-		 return Date::format ($out, $this->js2phpFormat ($this->displayFormat));
+		return intl_date ($out , $this->displayFormat);
 	}
 
 	function js2phpFormat ($date) {
@@ -211,6 +218,71 @@ class MF_Widget_calendar extends MF_Widget {
 		);
 	}
 
+	function php2jsFormat ($date) {
+		return str_replace (
+			array (
+				'D',
+				'l',
+				'M',
+				'F',
+				'',
+				'd',
+				'j',
+				'H',
+				'h',
+				'z',
+				'G',
+				'g',
+				'm',
+				'i',
+				"\n",
+				'A',
+				'a',
+				's',
+				'U',
+				"\t",
+				'W',
+				'W',
+				'W',
+				'',
+				'w',
+				'y',
+				'Y',
+			),
+			array (
+				'%a',
+				'%A',
+				'%b',
+				'%B',
+				'%C',
+				'%d',
+				'%e',
+				'%H',
+				'%I',
+				'%j',
+				'%k',
+				'%l',
+				'%m',
+				'%M',
+				'%n',
+				'%p',
+				'%P',
+				'%S',
+				'%s',
+				'%t',
+				'%U',
+				'%W',
+				'%V',
+				'%u',
+				'%w',
+				'%y',
+				'%Y',
+			),
+			$date
+		);
+	}
+
+
 	/**
 	 * Returns the display HTML for this widget.  The optional
 	 * parameter determines whether or not to automatically display the widget
@@ -222,11 +294,23 @@ class MF_Widget_calendar extends MF_Widget {
 	 * 
 	 */
 	function display ($generate_html = 0) {
-		$data = '';
+
+        // Semias comment
+
+        // This function uses a JavaScript calendar.
+        // This calendar has its own translation module,
+        // see below loading of js/calender/lang/calendar-lang.js
+
+        // Bug: when multiple calendars are in use, with different ShowTime settings,
+        //  the ShowTime setting from the calendar which is first clicked on,
+        //  will be used in all instances of the calendar on the page.
+        $data = '';
 		$attrstr = $this->getAttrs ();
 
 		if ($generate_html) {
 			static $includedJS = false;
+            static $calendar_counter = 0;
+            $calendar_counter++;
 
 			if (! $includedJS) {
 				$data .= '<link rel="stylesheet" type="text/css" href="' . site_prefix () . '/js/calendar/calendar-' . $this->style . '.css" />' . NEWLINE;
@@ -265,13 +349,17 @@ class MF_Widget_calendar extends MF_Widget {
 					inputField	: "mf-calendar-' . $this->name . '",
 					ifFormat	: "' . $this->format . '",
 					displayArea	: "mf-calendar-' . $this->name . '-display",
-					daFormat	: "' . $this->displayFormat . '",
+					daFormat	: "' . $this->php2jsFormat( intl_get_format ( $this->displayFormat ) ) . '",
 					button		: "mf-calendar-' . $this->name . '-trigger",
 					align		: "Bl",
 					showsTime	: ' . $showsTime . ',
 					timeFormat	: "' . $this->timeFormat . '"
 				});
 			</script>' . NEWLINEx2;
+
+            // daFormat is the display format of the JS calendar function.
+            // Input need to be (its own) JS data format.
+            // intl_get_format receives the PHP Date format string, php2jsFormat converts this.
 
 		} else {
 			$showsTime = ($this->showsTime) ? 'true' : 'false';

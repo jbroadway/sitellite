@@ -29,16 +29,18 @@ name			= Blank
 [browse:question]
 
 header			= Question
-length			= 40
+length			= 100
 
 [browse:category]
 
 header			= Category
+length          = 40
 
 [browse:answer]
 
 header			= Answer
-length			= 80
+width   		= "30%"
+filter			= strip_tags
 
 [hint:question]
 

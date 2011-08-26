@@ -32,6 +32,7 @@ loader_import ('saf.GUI.Pager');
 loader_import ('saf.Misc.TableHeader');
 loader_import ('cms.Versioning.Facets');
 loader_import ('cms.Workflow.Lock');
+loader_import ('sitellite.smiley.Smiley');
 
 lock_init ();
 

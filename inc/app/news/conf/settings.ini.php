@@ -8,6 +8,14 @@
 ; Sitellite administrator first.
 ;
 
+[tab1]
+
+type                    = tab
+
+title                   = Main
+
+value                   = Off
+
 [news_name]
 
 alt                     = Main page title
@@ -88,16 +96,6 @@ extra                   = "size='25'"
 
 value                   = Off
 
-[align_thumbnails]
-
-alt                     = Align thumbnails
-
-type                    = select
-
-setValues               = "eval: array ('left' => 'Left', 'right' => 'Right')"
-
-value                   = left
-
 [template]
 
 alt                     = Template
@@ -114,6 +112,71 @@ type                    = pagebrowser.Widget.Pagebrowser
 
 value                   = Off
 
+[tab2]
+
+type                    = tab
+
+title                   = Thumbnails
+
+value                   = Off
+
+[fixed_thumbnail_size]
+
+alt                     = "Thumbnail size fixed?"
+
+type                    = select
+
+setValues               = "eval: array ('yes' => 'Yes', 'no' => 'No')"
+
+value                   = yes
+
+[align_thumbnails]
+
+alt                     = Align thumbnails
+
+type                    = select
+
+setValues               = "eval: array ('left' => 'Left', 'right' => 'Right')"
+
+value                   = left
+
+[thumb_width]
+
+type                    = text
+
+alt                     = Thumb max width px
+
+value                   = 80
+
+extra                   = "size=`4`"
+
+[thumb_height]
+
+type                    = text
+
+alt                     = Thumb max height px
+
+value                   = 80
+
+extra                   = "size=`4`"
+
+[default_thumbnail]
+
+type                    = imagechooser
+
+alt                     = Default Thumbnail Image
+
+extra                   = "size=`30`"
+
+rule 0                  = "not empty, You must upload an image"
+
+value                   = pix/arrow.desc.gif
+
+[tab-end]
+
+type                    = tab
+
+value                   = Off
 ;
 ; THE END
 ;

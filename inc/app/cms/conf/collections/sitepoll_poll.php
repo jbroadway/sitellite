@@ -172,8 +172,7 @@ type			= calendar
 alt				= "Publish On (If Status is `Queued`)"
 nullable		= yes
 showsTime		= yes
-format			= "%Y-%m-%d %H:%M:%S"
-displayFormat	= "%a, %e %b, %Y - %l:%M%P"
+displayFormat	= "datetime"
 
 [hint:sitellite_expirydate]
 
@@ -181,8 +180,7 @@ type			= calendar
 alt				= "Archive On (If Status is `Approved`)"
 nullable		= true
 showsTime		= true
-format			= "%Y-%m-%d %H:%M:%S"
-displayFormat	= "%a, %e %b, %Y - %l:%M%P"
+displayFormat	= "datetime"
 
 [hint:sitellite_owner]
 

@@ -46,8 +46,10 @@ page_title (intl_get ('Creating folder in') . ': ' . $data['location']);
 if (! empty ($cgi->folder)) {
 	if (@file_exists ($prefix . '/' . $cgi->folder)) {
 		$data['err'] = intl_get ('The folder name you have chosen already exists.  Please choose another.');
+	} elseif (preg_match ('/\s/',$cgi->folder)) {
+		$data['err'] = intl_get ('Your folder name contains whitespace.');
 	} elseif (preg_match ('/^[^a-zA-Z0-9\. _-]+$/', $cgi->folder)) {
-		$data['err'] = intl_get ('Your folder name contains invalid characters.  Allowed characters are') . ': A-Z 0-9 . _ - and space.';
+		$data['err'] = intl_get ('Your folder name contains invalid characters.  Allowed characters are') . ': A-Z 0-9 . _ -.';
 	} else {
 		if (! mkdir ($prefix . '/' . $cgi->folder)) {
 			$data['err'] = intl_get ('Unknown error attempting to create folder.');

@@ -19,6 +19,8 @@ loader_import ('cms.Workflow.Lock');
 
 lock_init ();
 
+$i18n = new I18n ('inc/lang', 'http');
+
 if (lock_exists ($cgi->_collection, $cgi->_key)) {
 	page_title (intl_get ('Item Locked by Another User'));
 	echo '<p><a href="javascript: history.go (-1)">' . intl_get ('Back') . '</a></p>';
@@ -193,8 +195,7 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 		$t->alt = intl_get ('Publish On (If Status is "Queued")');
 		$t->nullable = true;
 		$t->showsTime = true;
-		$t->format = '%Y-%m-%d %H:%M:%S';
-		$t->displayFormat = '%a, %e %b, %Y - %l:%M%P';
+		$t->displayFormat = 'datetime';
 		$t->setValue ($_document->sitellite_startdate);
 		$t->advanced = true;
 
@@ -202,8 +203,7 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 		$t->alt = intl_get ('Archive On (If Status is "Approved")');
 		$t->nullable = true;
 		$t->showsTime = true;
-		$t->format = '%Y-%m-%d %H:%M:%S';
-		$t->displayFormat = '%a, %e %b, %Y - %l:%M%P';
+		$t->displayFormat = 'datetime';
 		$t->setValue ($_document->sitellite_expirydate);
 		$t->advanced = true;
 
@@ -257,7 +257,7 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 
 		$rex = new Rex ($collection); // default: database, database
 
-                $continue = ($vals['submit_button'] == intl_get ('Save and continue'));
+        	$continue = ($vals['submit_button'] == intl_get ('Save and continue'));
 		unset ($vals['submit_button']);
 		unset ($vals['tab1']);
 		unset ($vals['tab2']);
@@ -327,6 +327,7 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 				header ('Location: ' . $return);
 				exit;
 			}
+
 			header ('Location: ' . site_prefix () . '/index/cms-browse-action?collection=sitellite_sidebar');
 			exit;
 		}

@@ -209,8 +209,6 @@ alt				= "Publish On (If Status is `Queued`)"
 nullable		= true
 showsTime		= true
 displayFormat	= "datetime"
-;format			= "%Y-%m-%d %H:%M:%S"
-;displayFormat	= "%a, %e %b, %Y - %l:%M%P"
 
 [sitellite_expirydate]
 
@@ -219,8 +217,6 @@ alt				= "Archive On (If Status is `Approved`)"
 nullable		= true
 showsTime		= true
 displayFormat	= "datetime"
-;format			= "%Y-%m-%d %H:%M:%S"
-;displayFormat	= "%a, %e %b, %Y - %l:%M%P"
 
 [sitellite_owner]
 

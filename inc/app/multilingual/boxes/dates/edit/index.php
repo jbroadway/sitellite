@@ -49,14 +49,13 @@ $example = new DateTime('now');
 $intl->language = $cgi->lang;
 $a = array ('shortdate', 'date', 'time', 'datetime');
 
-//if(isset($dateini['formats'])) {
     foreach ($dateini['formats'] as $k=>$f) {
     	$data['formats'][$k]['name'] = $k;
     	$data['formats'][$k]['format'] = $ldateini['formats'][$k];
     	$data['formats'][$k]['example'] = $intl->date($dateini['formats'][$k], $example);
     	$data['formats'][$k]['editable'] = !in_array($k, $a);
     }
-//}
+
 echo template_simple ('dates_edit.spt', $data);
 
 ?>

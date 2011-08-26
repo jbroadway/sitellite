@@ -1,0 +1,166 @@
+<!-- load messages in the display template -->
+{spt list.spt}
+
+<!-- the used javascript -->
+<script language="javascript">
+// setup onload function
+// source: http://risperdal.student.utwente.nl/batjo/modules/mod_shoutbox/js/fatAjax.php?refresh=4
+if(typeof window.addEventListener != 'undefined')
+{
+	//.. gecko, safari, konqueror and standard
+	window.addEventListener('load', loadShout, false);
+}
+else if(typeof document.addEventListener != 'undefined')
+{
+	//.. opera 7
+	document.addEventListener('load', loadShout, false);
+}
+else if(typeof window.attachEvent != 'undefined')
+{
+	//.. win/ie
+	window.attachEvent('onload', loadShout);
+}
+
+// the actual onload function
+function loadShout() {
+ // loads the "continuing" function refreshout after x (micro)seconds
+ setTimeout('shoutbox.refreshout()', shoutbox.refreshtime);
+}
+
+// setup the rpc
+var rpc = new rpc ();
+
+// define shoutbox
+var shoutbox = {
+	// the RPC request is an ordinary Sitellite box call
+	url: '{site/prefix}/index/shoutbox-rpc-action',
+	action: rpc.action,
+    // include the lastid and refreshtime config parameters
+    lastid: {lastid},
+    refreshtime: {refreshtime},
+
+    refreshout: function (f) {
+     // get latest messages
+     this.getlatest();
+     // and load again after x (micro)seconds
+     setTimeout('shoutbox.refreshout()', shoutbox.refreshtime);
+    },
+
+    getlatest: function (f) {
+		// get latest messages from server
+		// the actual call to the server
+		rpc.call (
+			// we use the method getlates and send the id of the latest message we have received
+			this.action ("getlatest", [this.lastid]),
+
+			// the second parameter is an abstract function, which will
+			// handle the respnse from the server
+			function (request) {
+				// parsing the server's response
+				ans = eval (request.responseText);
+
+                if (ans === false) {
+                 // if no result, we exit
+                 return false;
+                 exit;
+				}
+
+                if(ans.length != 0) {
+                 // there are new messages
+                 // set the lastid
+                 shoutbox.lastid = ans[ans.length-1]['id'];
+
+                 for(i=0;i<ans.length;i++) {
+                    // restore img tags from smileys.
+                    ans[i]["message"] = ans[i]["message"].replace(/&close;/g,">");
+                    ans[i]["message"] = ans[i]["message"].replace(/&open;/g,"<");
+                    ans[i]["message"] = ans[i]["message"].replace(/&quot;/g,"\"");
+
+                    // build new message HTML and insert.
+                    // get the <ul>
+                    var shoutboxmessages = document.getElementById("shoutboxmessages");
+                    // create new li element
+                    oLi = document.createElement('li');
+//                	oLi.setAttribute('id','comment-new'+liId);
+
+                    // create new span element
+                    oSpan = document.createElement('span');
+                    // set class to "name"
+                	oSpan.setAttribute('class','name');
+
+                    // create Text Node, and fill it with name
+                    oName = document.createTextNode(ans[i]["name"]);
+
+                    // add oName to span
+                	oSpan.appendChild(oName);
+                    // add span to the list
+                    oLi.appendChild(oSpan);
+                    // add " : " after the name (and after span tag)
+                	oLi.appendChild(document.createTextNode(': '));
+
+                    // add message to innerHTML of the list
+                	oLi.innerHTML += ans[i]["message"];
+                    // add list to the ul
+                	shoutboxmessages.insertBefore(oLi, shoutboxmessages.firstChild);
+                }
+               }
+			}
+		);
+	},
+
+    sendmessage: function (f) {
+     // send new message
+     document.getElementById("shoutbox_content").innerHTML = "";
+     name = document.getElementById("shoutbox_name").value;
+     message = document.getElementById("shoutbox_message").value;
+     submit_button = "";
+     // if no name or message is given, give error message
+     errortxt = "";
+// INTL seems to afford an error
+
+//     if(name == "") { errortxt = " {intl No name given!} <br>"; }
+//     if(message == "") { errortxt += " {intl No message given!} "; }
+
+     if(name == "") { errortxt =  "No name given! <br>"; }
+     if(message == "") { errortxt += "No message given! "; }
+
+     if(errortxt != "") {
+      document.getElementById("shoutbox_content").innerHTML = errortxt;
+      return false;
+     }
+     // if okay, proceed and make the actual call
+     rpc.call (
+			// the first parameter is the URL in the form of a GET request
+			this.action ("sendmessage", [name, message, submit_button]),
+
+			// the second parameter is an abstract function, which will
+			// handle the response from the server
+			function (request) {
+				// parsing the server's response
+                ans = eval (request.responseText);
+
+                if(ans === true) {
+                 // refresh the output in the shoutbox; we need the (1) to not interfere with the "normal" refresh calls
+                 shoutbox.getlatest(1);
+                 // scroll to top
+                 document.getElementById("shoutboxmessages").scrollTop = 0;
+                 // clear form
+                 // document.getElementById("shoutbox_name").value = "";
+                 document.getElementById("shoutbox_message").value = "";
+                } else {
+                 // if there is an error
+                 alert("{intl There was an error in sending your message}");
+                }
+            }
+     );
+     return false;
+    }
+
+}
+</script>
+
+<!-- div for displaying eventual error messages -->
+<div id="shoutbox_content"></div>
+
+<!-- includes the form -->
+{form shoutbox/add}

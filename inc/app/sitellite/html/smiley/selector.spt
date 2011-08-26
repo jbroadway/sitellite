@@ -1,0 +1,9 @@
+<script type="text/javascript">
+    function add_smiley(scode) {
+     // replace smiley in given field.
+     document.getElementById("{field}").value += scode;
+    }
+</script>
+{loop obj}
+    <a href="#" onclick="add_smiley('{loop/_key}'); return false;"><img src="{site/prefix}/inc/app/sitellite/pix/smiley/{loop/_value}" border="0" /></a>
+{end loop}

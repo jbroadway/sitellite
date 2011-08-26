@@ -96,8 +96,7 @@ type			= calendar
 alt				= "Last Modified"
 nullable		= yes
 showsTime		= yes
-format			= "%Y-%m-%d %H:%M:%S"
-displayFormat	= "%a, %e %b, %Y - %l:%M%P"
+displayFormat		= "datetime"
 setValue		= DATETIME
 
 [hint:summary]

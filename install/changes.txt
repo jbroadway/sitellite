@@ -16,6 +16,8 @@ Changes in 5.0.4-stable (see http://sitellite.lighthouseapp.com for extra inform
 - Fixed editting roles error (LH #185)
 - Fixed pagination error (LH #177)
 - All dates are now multilingual (LH #192)
+- Added smiley functionality and used shoutbox to demonstrate usage 
+- Added PHPExcel Spreadsheet Engine to the library and used usradm export
 
 
 Changes in 5.0.3-stable

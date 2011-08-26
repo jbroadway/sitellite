@@ -73,8 +73,7 @@ labelPosition = left
 [hint:posted_on]
 type = calendar
 showsTime = yes
-format = "%Y-%m-%d %H:%M:%S"
-displayFormat = "%a, %e %b, %Y - %l:%M%P"
+displayFormat	= "datetime"
 setDefault = "eval: date('Y-m-d H:i:s')"
 
 [facet:title]

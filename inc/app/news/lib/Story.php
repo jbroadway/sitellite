@@ -25,7 +25,7 @@ class NewsStory extends Generic {
 			if (strlen ($story->title) > 33) {
 				$story->title = substr ($story->title, 0, 30) . '...';
 			}
-			$out[$story->id] = Date::format ($story->date, 'm/d') . ' - ' . $story->title;
+			$out[$story->id] = intl_shortdate ($story->date) . ' - ' . $story->title;
 		}
 		return $out;
 	}
