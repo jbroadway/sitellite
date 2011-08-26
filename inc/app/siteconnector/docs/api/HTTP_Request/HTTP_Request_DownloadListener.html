@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class HTTP_Request_DownloadListener</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class HTTP_Request_DownloadListener</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This class implements the Observer part of a Subject-Observer  design pattern. It listens to the events sent by a  HTTP_Request or HTTP_Response instance.</p>
+	<ul class="tags">
+				<li><span class="field">version:</span> $Revision: 1.1.1.1 $</li>
+				<li><span class="field">author:</span> Alexey Borzov &lt;<a href="mailto:avb@php.net">mailto:avb@php.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Ext_PEAR_HTTP_docs_download-progress_php.html">Program_Root/Ext/PEAR/HTTP/docs/download-progress.php</a> (line <span class="field">21</span>)
+		</p>
+		
+				
+		<pre><a href="../HTTP_Request/HTTP_Request_Listener.html">HTTP_Request_Listener</a>
+   |
+   --HTTP_Request_DownloadListener</pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+								<div class="var-title">
+					<span class="var-type">object</span>
+					<a href="#$_bar" title="details" class="var-name">$_bar</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$_fp" title="details" class="var-name">$_fp</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$_size" title="details" class="var-name">$_size</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$_target" title="details" class="var-name">$_target</a>
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">HTTP_Request_DownloadListener</span>
+										<a href="#HTTP_Request_DownloadListener" title="details" class="method-name">HTTP_Request_DownloadListener</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setTarget" title="details" class="method-name">setTarget</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$target</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#update" title="details" class="method-name">update</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$subject</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$event</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">null</span>])
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$_bar" id="$_bar"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">object</span>
+			<span class="var-name">$_bar</span>
+						(line <span class="line-number">33</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Console_ProgressBar intance used to display the indicator</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$_fp" id="$_fp"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">int</span>
+			<span class="var-name">$_fp</span>
+						(line <span class="line-number">27</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Handle for the target file</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$_size" id="$_size"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">int</span>
+			<span class="var-name">$_size</span>
+			 = <span class="var-default"> 0</span>			(line <span class="line-number">45</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Number of bytes received so far</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$_target" id="$_target"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_target</span>
+						(line <span class="line-number">39</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Name of the target file</p>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../HTTP_Request/HTTP_Request_Listener.html">HTTP_Request_Listener</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../HTTP_Request/HTTP_Request_Listener.html#var$_id">HTTP_Request_Listener::$_id</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodHTTP_Request_DownloadListener" id="HTTP_Request_DownloadListener"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor HTTP_Request_DownloadListener</span> (line <span class="line-number">47</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">HTTP_Request_DownloadListener</span>
+		<span class="method-name">
+			HTTP_Request_DownloadListener
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetTarget" id="setTarget"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setTarget</span> (line <span class="line-number">57</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Opens the target file</p>
+	<ul class="tags">
+				<li><span class="field">throws:</span> PEAR_Error</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setTarget
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$target</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$target</span><span class="var-description">: Target file name</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodupdate" id="update"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">update</span> (line <span class="line-number">66</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			update
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$subject</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$event</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">null</span>])
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../HTTP_Request/HTTP_Request_Listener.html#methodupdate">HTTP_Request_Listener::update()</a></dt>
+						<dd>This method is called when Listener is notified of an event</dd>
+					</dl>
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../HTTP_Request/HTTP_Request_Listener.html">HTTP_Request_Listener</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../HTTP_Request/HTTP_Request_Listener.html#methodHTTP_Request_Listener">HTTP_Request_Listener::HTTP_Request_Listener()</a></span><br>
+													<span class="method-name"><a href="../HTTP_Request/HTTP_Request_Listener.html#methodgetId">HTTP_Request_Listener::getId()</a></span><br>
+													<span class="method-name"><a href="../HTTP_Request/HTTP_Request_Listener.html#methodupdate">HTTP_Request_Listener::update()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Tue,  4 May 2004 09:34:37 -0500 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.2.2</a>
+	</p>
+	</div></body>
+</html>

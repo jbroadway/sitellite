@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class SOAP_WSDL_Parser</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class SOAP_WSDL_Parser</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SOAP_Base  Common base class of all Soap lclasses</p>
+	<ul class="tags">
+				<li><span class="field">version:</span> $Id: SOAP_WSDL_Parser.html,v 1.1.1.1 2004/06/14 18:08:00 lux Exp $</li>
+				<li><span class="field">author:</span> Shane Caraveo &lt;<a href="mailto:shane@php.net">mailto:shane@php.net</a>&gt; Conversion to PEAR and updates</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Ext_PEAR_SOAP_WSDL_php.html">Program_Root/Ext/PEAR/SOAP/WSDL.php</a> (line <span class="field">888</span>)
+		</p>
+		
+				
+		<pre>PEAR
+   |
+   --<a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a>
+      |
+      --<a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a>
+         |
+         --SOAP_WSDL_Parser</pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$cache" title="details" class="var-name">$cache</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$currentBinding" title="details" class="var-name">$currentBinding</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$currentComplexType" title="details" class="var-name">$currentComplexType</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$currentElement" title="details" class="var-name">$currentElement</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$currentMessage" title="details" class="var-name">$currentMessage</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$currentOperation" title="details" class="var-name">$currentOperation</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$currentPort" title="details" class="var-name">$currentPort</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$currentPortType" title="details" class="var-name">$currentPortType</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$element_stack" title="details" class="var-name">$element_stack</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$parentElement" title="details" class="var-name">$parentElement</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$schema" title="details" class="var-name">$schema</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$schemaStatus" title="details" class="var-name">$schemaStatus</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$schema_element_stack" title="details" class="var-name">$schema_element_stack</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$schema_stack" title="details" class="var-name">$schema_stack</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$soapns" title="details" class="var-name">$soapns</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$status" title="details" class="var-name">$status</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$tns" title="details" class="var-name">$tns</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$uri" title="details" class="var-name">$uri</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$wsdl" title="details" class="var-name">$wsdl</a>
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">SOAP_WSDL_Parser</span>
+										<a href="#SOAP_WSDL_Parser" title="details" class="method-name">SOAP_WSDL_Parser</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$uri</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">&$wsdl</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$docs</span> = <span class="var-default">false</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#characterData" title="details" class="method-name">characterData</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parser</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$data</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#endElement" title="details" class="method-name">endElement</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parser</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#merge_url" title="details" class="method-name">merge_url</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parsed</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$path</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#parse" title="details" class="method-name">parse</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$uri</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#startElement" title="details" class="method-name">startElement</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parser</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$attrs</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#_normalize" title="details" class="method-name">_normalize</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$path_str</span>)
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$cache" id="$cache"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$cache</span>
+						(line <span class="line-number">898</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$currentBinding" id="$currentBinding"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$currentBinding</span>
+						(line <span class="line-number">894</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$currentComplexType" id="$currentComplexType"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$currentComplexType</span>
+						(line <span class="line-number">912</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$currentElement" id="$currentElement"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$currentElement</span>
+						(line <span class="line-number">914</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$currentMessage" id="$currentMessage"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$currentMessage</span>
+						(line <span class="line-number">891</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$currentOperation" id="$currentOperation"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$currentOperation</span>
+						(line <span class="line-number">892</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$currentPort" id="$currentPort"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$currentPort</span>
+						(line <span class="line-number">895</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$currentPortType" id="$currentPortType"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$currentPortType</span>
+						(line <span class="line-number">893</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$element_stack" id="$element_stack"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$element_stack</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">906</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$parentElement" id="$parentElement"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$parentElement</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">907</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$schema" id="$schema"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$schema</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">909</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$schemaStatus" id="$schemaStatus"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$schemaStatus</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">910</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$schema_element_stack" id="$schema_element_stack"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$schema_element_stack</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">913</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$schema_stack" id="$schema_stack"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$schema_stack</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">911</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$soapns" id="$soapns"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$soapns</span>
+			 = <span class="var-default">array('soap')</span>			(line <span class="line-number">901</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$status" id="$status"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$status</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">905</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$tns" id="$tns"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$tns</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">900</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$uri" id="$uri"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$uri</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">902</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$wsdl" id="$wsdl"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$wsdl</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">903</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_auto_translation">SOAP_Base::$_auto_translation</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_doconversion">SOAP_Base::$_doconversion</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_namespaces">SOAP_Base::$_namespaces</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_ns_count">SOAP_Base::$_ns_count</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_section5">SOAP_Base::$_section5</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_typemap">SOAP_Base::$_typemap</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_type_translation">SOAP_Base::$_type_translation</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_wsdl">SOAP_Base::$_wsdl</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_xmlEntities">SOAP_Base::$_xmlEntities</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_XMLSchema">SOAP_Base::$_XMLSchema</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$_XMLSchemaVersion">SOAP_Base::$_XMLSchemaVersion</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../SOAP__Client/SOAP_Base.html#var$__attachments">SOAP_Base::$__attachments</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname"><a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$fault">SOAP_Base_Object::$fault</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_debug_data">SOAP_Base_Object::$_debug_data</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_debug_flag">SOAP_Base_Object::$_debug_flag</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_encodings">SOAP_Base_Object::$_encodings</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../siteconnector/SOAP_Base_Object.html#var$_myfaultcode">SOAP_Base_Object::$_myfaultcode</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodSOAP_WSDL_Parser" id="SOAP_WSDL_Parser"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor SOAP_WSDL_Parser</span> (line <span class="line-number">917</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">SOAP_WSDL_Parser</span>
+		<span class="method-name">
+			SOAP_WSDL_Parser
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$uri</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">&$wsdl</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$docs</span> = <span class="var-default">false</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodcharacterData" id="characterData"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">characterData</span> (line <span class="line-number">1497</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			characterData
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parser</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$data</span>)
+			</div>
+	
+		
+		
+	</div>
+<a name="methodendElement" id="endElement"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">endElement</span> (line <span class="line-number">1453</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			endElement
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parser</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+		
+		
+	</div>
+<a name="methodmerge_url" id="merge_url"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">merge_url</span> (line <span class="line-number">1529</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			merge_url
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parsed</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$path</span>)
+			</div>
+	
+		
+		
+	</div>
+<a name="methodparse" id="parse"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">parse</span> (line <span class="line-number">926</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			parse
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$uri</span>)
+			</div>
+	
+		
+		
+	</div>
+<a name="methodstartElement" id="startElement"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">startElement</span> (line <span class="line-number">954</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			startElement
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parser</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$attrs</span>)
+			</div>
+	
+		
+		
+	</div>
+<a name="method_normalize" id="_normalize"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_normalize</span> (line <span class="line-number">1562</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_normalize
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$path_str</span>)
+			</div>
+	
+		
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../SOAP__Client/SOAP_Base.html">SOAP_Base</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#methodSOAP_Base">SOAP_Base::SOAP_Base()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decode">SOAP_Base::_decode()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decodeDIMEMessage">SOAP_Base::_decodeDIMEMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_decodeMimeMessage">SOAP_Base::_decodeMimeMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_getNamespaceForPrefix">SOAP_Base::_getNamespaceForPrefix()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_getNamespacePrefix">SOAP_Base::_getNamespacePrefix()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isBase64">SOAP_Base::_isBase64()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isHash">SOAP_Base::_isHash()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_isSoapValue">SOAP_Base::_isSoapValue()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_makeDIMEMessage">SOAP_Base::_makeDIMEMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_makeMimeMessage">SOAP_Base::_makeMimeMessage()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_multiArrayType">SOAP_Base::_multiArrayType()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_resetNamespaces">SOAP_Base::_resetNamespaces()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_serializeValue">SOAP_Base::_serializeValue()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method_un_htmlentities">SOAP_Base::_un_htmlentities()</a></span><br>
+													<span class="method-name"><a href="../SOAP__Client/SOAP_Base.html#method__set_type_translation">SOAP_Base::__set_type_translation()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../siteconnector/SOAP_Base_Object.html">SOAP_Base_Object</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#methodSOAP_Base_Object">SOAP_Base_Object::SOAP_Base_Object()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method_debug">SOAP_Base_Object::_debug()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method_raiseSoapFault">SOAP_Base_Object::_raiseSoapFault()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method__getfault">SOAP_Base_Object::__getfault()</a></span><br>
+													<span class="method-name"><a href="../siteconnector/SOAP_Base_Object.html#method__isfault">SOAP_Base_Object::__isfault()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Tue,  4 May 2004 09:35:18 -0500 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.2.2</a>
+	</p>
+	</div></body>
+</html>

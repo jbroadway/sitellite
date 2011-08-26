@@ -1,0 +1,21 @@
+<h2>{intl Add File}</h2>
+
+<form method="post" action="{site/prefix}/index/devfiles-index-action" name="files" enctype="multipart/form-data">
+	<input type="hidden" name="appname" value="{appname}" />
+	<p><label for="name">{intl User Name}:</label><br />
+	<input type="text" name="name" size="8" />
+	{if count (obj[users]) gt 0}
+		<select name="nameChooser">
+			<option selected="selected" value="">-- {intl Existing User} --</option>
+			{loop obj[users]}
+				<option value="{loop/_value}">{loop/_value}</option>
+			{end loop}
+		</select>
+	{end if}
+	</p>
+	<p><label for="file">{intl File}:</label><br />
+	<input type="file" name="file" size="8" /></p>
+	<p><label for="file">{intl Rename File} ({intl Optional}):</label><br />
+	<input type="text" name="rename" size="8" /></p>
+	<p><input type="submit" value="{intl Save}" /></p>
+</form>

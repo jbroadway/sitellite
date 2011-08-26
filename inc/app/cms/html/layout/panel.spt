@@ -1,0 +1,167 @@
+<!-- select box form -->
+{if not obj[show_disabled]}
+<p align="center" id="panel-{name}-label">
+	<strong
+		style="font-weight: bold; font-size: 11px; padding: 3px; border: 1px solid #999;{if obj[disabled]}color: grey;{end if}"
+		{if not obj[disabled]}onmouseover="panel_show ('panel-{name}')"{end if}
+		{if not obj[disabled]}onmouseout="sdmMouseExitMenu()"{end if}
+	>&nbsp;&nbsp;{caption}&nbsp;&nbsp;<img src="{site/prefix}/inc/app/cms/pix/panel-down.gif" alt="{caption}" border="0" />&nbsp;&nbsp;</strong>
+</p>
+ {end if}
+<!--
+<form action="{action}" method="{method}" name="{name}" style="display: inline">
+	<p align="center">
+		<strong style="font-weight: bold; font-size: 11px">{caption}:</strong>&nbsp;&nbsp;<select name="{select}" {filter none}{select-extra}{end filter} style="font-size: 11px">
+			{loop obj[options]}
+				<option value="{loop/_key}" style="margin-top: 3px; vertical-align: bottom"
+				{if obj[selected] and obj[selected] eq loop._key}
+					selected="selected"
+				{end if}>{loop/_value}</option>
+			{end loop}
+		</select>
+	</p>
+</form>
+-->
+
+<!-- icons below -->
+
+<p align="center">
+<table border="0" cellpadding="5" cellspacing="0" style="height: 45px">
+<tr>
+{loop obj[icons]}
+		<td align="center" valign="top" style="padding-top: 8px">
+        {if obj[disabled]}
+        <p style="color: grey;"><img src="{loop/src}" onClick="alert('{intl You are not authorized to edit} {loop/alt}.');" alt="{loop/alt}" title="{loop/alt}" border="0" style="padding-bottom: 3px" /><br />{loop/alt}</p>
+        {end if}
+        {if else}
+        <a href="{loop/href}"><img src="{loop/src}" alt="{loop/alt}" title="{loop/alt}" border="0" style="padding-bottom: 3px" /><br />{loop/alt}</a>
+        {end if}
+        </td>
+{end loop}
+</tr>
+</table>
+</p>
+
+<style type="text/css">
+
+div#panel-{name} {
+	width: 251px;
+	border: 1px solid #999;
+	background: #fff;
+	visibility: hidden;
+	position: absolute;
+	z-index: 3;
+	left: 25px;
+	top: 25px;
+}
+
+div#panel-{name}-shade {
+	width: 251px;
+	background: #ccc;
+	visibility: hidden;
+	position: absolute;
+	z-index: 2;
+	left: 27px;
+	top: 27px;
+}
+
+div#panel-{name} td {
+	padding: 0px;
+	margin: 0px;
+	width: 125px;
+}
+
+div#panel-{name} a {
+	display: block;
+	padding: 3px;
+	color: #000;
+	width: 119px;
+	margin: 0px;
+}
+
+div#panel-{name} a:hover {
+	background: #ddd;
+	text-decoration: none;
+}
+
+</style>
+             {loop obj[options][0]}
+             {if obj[options][0]}{end if}
+             {end loop}
+
+<div id="panel-{name}">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td valign="top" style="border-right: 1px solid #999">
+{loop obj[options][0]}
+    <a href="{loop/_key}" onmouseover="sdmShowAndHide ('panel-{name}-shade'); sdmShow ('panel-{name}')" onmouseout="sdmMouseExitMenu()">{loop/_value}</a>
+{end loop}
+		</td>
+		<td valign="top">
+{loop obj[options][1]}
+	<a href="{loop/_key}" onmouseover="sdmShowAndHide ('panel-{name}-shade'); sdmShow ('panel-{name}')" onmouseout="sdmMouseExitMenu()">{loop/_value}</a>
+{end loop}
+		</td>
+	</tr>
+</table>
+{end loop}
+</div>
+
+<div id="panel-{name}-shade">
+	&nbsp;
+</div>
+
+<script language="javascript">
+
+sdmMenuList.unshift ('panel-{name}');
+sdmMenuList.unshift ('panel-{name}-shade');
+
+var panel_agent = navigator.userAgent.toLowerCase();
+var panel_msie = ((panel_agent.indexOf ('msie') != -1) && (panel_agent.indexOf ('opera') == -1));
+
+function panel_get_element_pos (e) {
+	var r = {
+		x: e.offsetLeft,
+		y: e.offsetTop
+	};
+
+	if (e.offsetParent) {
+		var tmp = panel_get_element_pos (e.offsetParent);
+		r.x += tmp.x;
+		r.y += tmp.y;
+	}
+
+	return r;
+}
+
+function panel_get_pos (e) {
+	var p = panel_get_element_pos (e);
+
+	return {
+		x: p.x,
+		y: p.y + e.offsetHeight
+	};
+}
+
+function panel_show (id) {
+	e = document.getElementById (id);
+	l = document.getElementById (id + '-label');
+	s = document.getElementById (id + '-shade');
+	p = panel_get_pos (l);
+	if (panel_msie) {
+		e.style.top = p.y - 5;
+		e.style.left = p.x + 24;
+		s.style.top = p.y - 3;
+		s.style.left = p.x + 26;
+	} else {
+		e.style.top = p.y + 3;
+		e.style.left = p.x + 40; //10;
+		s.style.top = p.y + 5;
+		s.style.left = p.x + 44; //14;
+	}
+	s.style.height = e.offsetHeight;
+	sdmShowAndHide (id + '-shade');
+	return sdmShow (id);
+}
+
+</script>

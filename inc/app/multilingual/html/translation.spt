@@ -1,0 +1,25 @@
+<p>
+	{if obj[appname] eq 'GLOBAL'}
+	<a href="{site/prefix}/index/multilingual-app">{intl Back}</a>
+	{end if}
+	{if else}
+	<a href="{site/prefix}/index/multilingual-translation-action">{intl Back}</a>
+	{end if}
+	&nbsp; &nbsp;
+	{if count (obj[langs]) gt 0}
+	<a href="{site/prefix}/index/multilingual-translation-build-action?appname={appname}">{intl Update Index}</a>
+	{end if}
+	{if else}
+	<a href="{site/prefix}/index/multilingual-translation-build-action?appname={appname}">{intl Create Index}</a>
+	{end if}
+</p>
+
+<h2>{intl Languages}</h2>
+
+<ul>
+	{loop obj[langs]}
+	{if loop[_key] ne obj[app_lang] }
+	<li><a href="{site/prefix}/index/multilingual-translation-strings-action?appname={appname}&lang={loop/_key}&charset={loop/charset}">{loop/name}</a></li>
+	{end if}
+	{end loop}
+</ul>

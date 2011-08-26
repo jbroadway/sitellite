@@ -1,0 +1,150 @@
+<html>
+	<head>
+		<title>{base_nice_url}/{friendly_path}</title>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog.js"></script>
+		<script language="javascript">
+		<!--
+
+{spt js.spt}
+
+		// -->
+		</script>
+		<style type="text/css">
+
+			body {
+				font: 12px Verdana, Arial, sans-serif;
+				margin: 0px;
+			}
+
+			td {
+				font: 12px Verdana, Arial, sans-serif;
+				padding: 3px;
+			}
+
+			.odd {
+				background-color: #fff;
+			}
+
+			.even {
+				background-color: #eee;
+			}
+
+			table {
+				width: 100%;
+			}
+
+			p#stripe {
+				width: 100%;
+				padding-top: 0px;
+				padding-left: 0px;
+				padding-right: 0px;
+				margin-top: 0px;
+				margin-left: 0px;
+				margin-right: 0px;
+				background-color: #0081d6;
+			}
+
+			h1,h2,h3,p,table {
+				margin: 10px;
+			}
+
+			hr {
+				border: 0px none;
+				height: 1px;
+				background-color: #999;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			a {
+				color: #0081d6;
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			h1 {
+				color: #0081d6;
+				font-size: 16px;
+			}
+
+			h2 {
+				color: #0081d6;
+				font-size: 14px;
+				font-weight: normal;
+			}
+
+			.err {
+				color: #900;
+			}
+
+		</style>
+	</head>
+	<body onload="if (opener) opener.blockEvents ()" onunload="if (opener) opener.unblockEvents ()"><a name="top"></a>
+
+<p id="stripe">&nbsp;</p>
+
+<h1>{base_nice_url}/{friendly_path}</h1>
+
+<p>
+	<a href="javascript: window.close ()">{intl Cancel}</a>
+
+	{if obj[up]}
+		&nbsp; &nbsp; <a href="{site/prefix}/index/filechooser-app{filter urlencode}?location={up}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl Up a Level}</a>
+	{end if}
+
+	{if obj[add]}
+		&nbsp; &nbsp; <a href="{site/prefix}/index/filechooser-add-form{filter urlencode}?return={_SERVER/REQUEST_URI}&folder={friendly_path}{end filter}">{intl Quick Add}</a>
+	{end if}
+</p>
+
+{if not is_writeable (site_docroot () . obj[location])}
+	<p class="err">{intl Please Note: You do not have permission to add new images to this folder.}</p>
+{end if}
+
+{alt even odd}
+
+<table cellspacing="0">
+	{loop obj[subfolders]}
+		<tr class="{alt/next}">
+			<td colspan="2">
+				<a href="{site/prefix}/index/filechooser-app{filter urlencode}?location={location}/{loop/_value}&format={cgi/format}&attrs={cgi/attrs}{end filter}"><img src="/inc/app/filechooser/pix/folder.gif" alt="{loop/_value}" border="0" /> &nbsp; {loop/_value}</a>
+			</td>
+			<td>
+			{if cgi.attrs and cgi.attrs ne 'false'}
+				<a href="javascript: filechooser_select_folder ('{folder_path}{loop/_value}')">{intl Select}</a>
+			{end if}
+			{if not cgi.attrs or cgi.attrs eq 'false'}
+				&nbsp;
+			</td>
+		</tr>
+	{end loop}
+
+	{loop obj[files]}
+		<tr class="{alt/next}">
+			<td>
+				<img src="{site/prefix}/inc/app/filechooser/pix/image.gif" alt="{loop/name}" border="0" />
+				&nbsp; {loop/name}
+			</td>
+			<td>
+				<a href="#" onclick="return filechooser_view ('{site/prefix}{url_prefix}{slash}{loop/name}')">{intl View}</a>
+			</td>
+			<td>
+				<a href="javascript: filechooser_select ('{site/prefix}{url_prefix}{slash}{loop/name}')">{intl Select}</a>
+			</td>
+		</tr>
+	{end loop}
+</table>
+
+<p><a href="#top">[ {intl top} ]</a></p>
+
+<!-- hr />
+<p>
+Copyright &copy; {php date ('Y')} <a href="http://www.simian.ca/" target="_blank">SIMIAN systems Inc.</a><br />
+All rights reserved.
+</p -->
+
+	</body>
+</html>

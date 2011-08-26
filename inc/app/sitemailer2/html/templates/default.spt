@@ -1,0 +1,11 @@
+<p align="right">
+	<a href="{site/url}/">YourWebSite.com</a>
+</p>
+
+{-- message body goes here -- do NOT change this line --}
+{filter none}{body}{end filter}
+{-- end message body --}
+
+<hr />
+
+<p>Copyright &copy; {php date ('Y')}, Your Company Inc.</p>

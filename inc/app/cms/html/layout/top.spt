@@ -1,0 +1,226 @@
+<html>
+	<head>
+		<title>{php PRODUCT_NAME}</title>
+		<style type="text/css">
+
+			body {
+				color: #fff;
+				margin: 0px;
+				padding: 0px;
+				font: 11px Helvetica, Arial, sans-serif;
+				background-color: #fff;
+				background-image: url('{site/prefix}/inc/app/cms/pix/top-bg.gif');
+				background-repeat: repeat-x;
+				background-position: 0px 79px;
+			}
+
+			td {
+				color: #fff;
+				font: 11px Helvetica, Arial, sans-serif;
+			}
+
+			a {
+				color: #000;
+				text-decoration: none;
+				font: 11px Helvetica, Arial, sans-serif;
+				padding-right: 7px;
+				padding-left: 7px;
+			}
+
+			a:hover {
+				text-decoration: none;
+			}
+
+			td.logo {
+				/*background-image: url('{site/prefix}/inc/app/cms/pix/top-shade.gif');
+				background-repeat: repeat-x;*/
+				padding-left: 18px;
+				padding-top: 15px;
+			}
+
+			div#product-version {
+				position: absolute;
+				top: 20px;
+				left: 255px;
+				color: #0081d6;
+				font-size: 16px;
+				letter-spacing: 3px;
+			}
+
+			div#swoop {
+				position: absolute;
+				top: 79px;
+				left: 0px;
+			}
+
+			td.edition {
+				/*background-image: url('{site/prefix}/inc/app/cms/pix/top-shade.gif');
+				background-repeat: repeat-x;*/
+				color: #0081d6;
+				font-size: 18px;
+				padding-top: 15px;
+				padding-bottom: 15px;
+				padding-right: 23px;
+			}
+
+			table.menu td {
+				border-top: 2px solid #fff;
+			}
+
+			table.menu td a {
+				display: block;
+				padding: 5px;
+				padding-left: 7px;
+				padding-right: 7px;
+				padding-bottom: 2px;
+				text-align: center;
+				/*color: #000;*/
+			}
+
+			table.menu-anonymous td {
+				color: #000;
+				padding: 5px;
+			}
+
+		</style>
+
+		<script language="javascript" type="text/javascript">
+			var links = ['web-view', 'control-panel', 'preferences', 'help', 'log-out'];
+			var active_link = false;
+
+			function on (id) {
+				try {
+					document.getElementById (id + '-link').style.color = '#fff';
+					document.getElementById (id).style.backgroundColor = '#0081d6';
+					document.getElementById (id).style.borderTop = '2px solid #c7e9ff';
+				} catch (e) {
+				}
+				return false;
+			}
+
+        // #75 Default view in preferences.
+           function onload () {
+                var forward = '{forward}';
+                if (forward.length > 0) {
+                    active ('web-view');
+                } else {
+                    active ('{php str_replace (' ', '-', session_pref ('start_page'))}');
+                }
+            }
+
+			function active (id) {
+				if (document.all) {
+					for (i = 0; i < links.length; i++) {
+						try {
+							document.getElementById (links[i] + '-link').style.paddingTop = '1px';
+						} catch (e) {
+						}
+					}
+				}
+				active_link = id;
+				return on (id);
+			}
+
+			function off (id) {
+				if (arguments.length == 0) {
+					for (i = 0; i < links.length; i++) {
+						off (links[i]);
+					}
+				} else {
+					document.getElementById (id + '-link').style.color = '#000';
+					document.getElementById (id).style.backgroundColor = 'transparent';
+					document.getElementById (id).style.borderTop = '2px solid #fff';
+				}
+				return false;
+			}
+		</script>
+	</head>
+    <!-- #75 Default view in preferences. -->
+    <!--<body onload="active ('{php str_replace (' ', '-', session_pref ('start_page'))}')">-->
+    <body onload="onload ()">
+<div id="product-version">{php array_shift (explode ('-', SITELLITE_VERSION))}</div>
+
+<div id="swoop"><img src="{site/prefix}/inc/app/cms/pix/top-bg-swoop.gif" alt="" border="0" /></div>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="50%" class="logo" valign="top">
+			<img src="{php PRODUCT_HEADER_GRAPHIC}" alt="{php PRODUCT_NAME}" title="{php PRODUCT_NAME}" border="0" />
+		</td>
+		<td width="50%" class="edition" align="right">
+			{php PRODUCT_EDITION}
+		</td>
+	</tr>
+	<tr>
+		<td align="right" colspan="2" width="100%">
+{if session_admin ()}
+			<table border="0" cellpadding="0" cellspacing="0" class="menu">
+				<tr>
+					<td id="web-view" width="90">
+						<a
+							id="web-view-link"
+							href="{site/prefix}/index"
+							target="cms-content-window"
+							onclick="off (); active ('web-view'); this.blur ()"
+							onmouseover="on ('web-view')"
+							onmouseout="if (active_link != 'web-view') off ('web-view');"
+						>{intl Web View}</a>
+					</td>
+					<td id="control-panel" width="110">
+						<a
+							id="control-panel-link"
+							href="{site/prefix}/index/cms-cpanel-action"
+							target="cms-content-window"
+							onclick="off (); active ('control-panel'); this.blur ()"
+							onmouseover="on ('control-panel')"
+							onmouseout="if (active_link != 'control-panel') off ('control-panel');"
+						>{intl Control Panel}</a>
+					</td>
+					<td id="preferences" width="100">
+						<a
+							id="preferences-link"
+							href="{site/prefix}/index/cms-user-preferences-action"
+							target="cms-content-window"
+							onclick="off (); active ('preferences'); this.blur ()"
+							onmouseover="on ('preferences')"
+							onmouseout="if (active_link != 'preferences') off ('preferences');"
+						>{intl Preferences}</a>
+					</td>
+					<td id="help" width="60">
+						<a
+							id="help-link"
+							href="{site/prefix}/index/help-app?appname=cms"
+							target="cms-content-window"
+							onclick="off (); active ('help'); this.blur ()"
+							onmouseover="on ('help')"
+							onmouseout="if (active_link != 'help') off ('help');"
+						>{intl Help}</a>
+					</td>
+					<td id="log-out" width="80">
+						<a
+							id="log-out-link"
+							href="{site/prefix}/index/sitellite-user-logout-action?goto=cms-app"
+							target="cms-content-window"
+							onclick="off (); active ('log-out'); this.blur ()"
+							onmouseover="on ('log-out')"
+							onmouseout="if (active_link != 'log-out') off ('log-out');"
+						>{intl Log Out}</a>
+					</td>
+				</tr>
+			</table>
+{end if}
+{if else}
+			<table border="0" cellpadding="0" cellspacing="0" class="menu-anonymous">
+				<tr>
+					<td width="90">
+						&nbsp;<span id="web-view"></span><span id="control-panel"></span>
+					</td>
+				</tr>
+			</table>
+{end if}
+		</td>
+	</tr>
+</table>
+
+	</body>
+</html>

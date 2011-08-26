@@ -1,0 +1,212 @@
+<?php
+
+//if (session_pref ('browse_level') != 'advanced' && $obj->height_easy) {
+//	$obj->height = $obj->height_easy;
+//}
+
+if (! $obj->height) {
+	$obj->height = 235;
+}
+
+$obj->height2 = $obj->height + 5;
+
+?>
+</table>
+<style type="text/css">
+
+	#cms-edit {
+		position: absolute;
+		width: 675px;
+		height: {height}px;
+		background-color: #eee;
+		z-index: 100;
+	}
+
+	#cms-edit table {
+		width: 100%;
+	}
+
+	#cms-properties {
+		position: absolute;
+		width: 675px;
+		height: {height}px;
+		background-color: #eee;
+		z-index: 1;
+	}
+
+	#cms-state {
+		position: absolute;
+		width: 675px;
+		height: {height}px;
+		background-color: #eee;
+		z-index: 1;
+	}
+
+	#cms-grey {
+		width: 675px;
+		height: {height}px;
+		background-color: #eee;
+		z-index: 50;
+		float: left;
+	}
+
+	#cms-edit table {
+		width: 99%;
+		margin-left: 2px;
+		margin-right: 2px;
+		margin-top: 10px;
+	}
+
+	#cms-properties table {
+		width: 99%;
+		margin-left: 2px;
+		margin-right: 2px;
+		margin-top: 10px;
+	}
+
+	#cms-state table {
+		width: 99%;
+		margin-left: 2px;
+		margin-right: 2px;
+		margin-top: 10px;
+	}
+
+	#cms-edit-button {
+		float: right;
+		width: 100px;
+		height: 16px;
+		margin-right: 1px;
+		text-align: center;
+		padding: 3px;
+		background-color: #eee;
+		font-weight: bold;
+		background-image: url('{site/prefix}/inc/app/cms/pix/corner.gif');
+		background-repeat: no-repeat;
+	}
+
+	#cms-properties-button {
+		float: right;
+		width: 100px;
+		height: 16px;
+		margin-right: 1px;
+		text-align: center;
+		padding: 3px;
+		background-color: #cde;
+		background-image: url('{site/prefix}/inc/app/cms/pix/corner.gif');
+		background-repeat: no-repeat;
+	}
+
+	#cms-state-button {
+		float: right;
+		width: 100px;
+		height: 16px;
+		text-align: center;
+		padding: 3px;
+		background-color: #cde;
+		background-image: url('{site/prefix}/inc/app/cms/pix/corner.gif');
+		background-repeat: no-repeat;
+	}
+
+</style>
+
+<script language="javascript" type="text/javascript">
+<!--
+
+function cms_focus (element, index) {
+	e = document.getElementById (element);
+
+	try {
+
+	if (element == 'cms-edit') {
+		if (index == 1) {
+			document.getElementById('file').style.display = 'none';
+			document.getElementById('folder').style.display = 'none';
+		} else {
+			document.getElementById('file').style.display = 'inline';
+			document.getElementById('folder').style.display = 'inline';
+		}
+	}
+
+	} catch (e) {}
+
+	if (element == 'cms-properties') {
+		if (index == 1) {
+			document.getElementById('keywords').style.display = 'none';
+			document.getElementById('description').style.display = 'none';
+		} else {
+			document.getElementById('keywords').style.display = 'inline';
+			document.getElementById('description').style.display = 'inline';
+		}
+	}
+
+	if (element == 'cms-state') {
+		if (index == 1) {
+			document.getElementById('sitellite_status').style.display = 'none';
+			document.getElementById('sitellite_access').style.display = 'none';
+			document.getElementById('sitellite_team').style.display = 'none';
+			document.getElementById('changelog').style.display = 'none';
+		} else {
+			document.getElementById('sitellite_status').style.display = 'inline';
+			document.getElementById('sitellite_access').style.display = 'inline';
+			document.getElementById('sitellite_team').style.display = 'inline';
+			document.getElementById('changelog').style.display = 'inline';
+		}
+	}
+
+	e.style.zIndex = index;
+
+	if (index == 99) {
+		b = document.getElementById (element + '-button');
+		b.style.fontWeight = 'bold';
+		b.style.backgroundColor = 'eee';
+	} else {
+		b = document.getElementById (element + '-button');
+		b.style.fontWeight = 'normal';
+		b.style.backgroundColor = 'cde';
+	}
+
+	return false;
+}
+
+function cms_copy_values (f) {
+	edit = document.getElementById ('cms-edit-form');
+	f.elements.file.value = edit.elements.file.value;
+	f.elements.name.value = edit.elements.name.value;
+	f.elements.folder.value = edit.elements.folder.value;
+
+	prop = document.getElementById ('cms-properties-form');
+	f.elements.keywords.value = prop.elements.keywords.value;
+	f.elements.description.value = prop.elements.description.value;
+
+	state = document.getElementById ('cms-state-form');
+	f.elements.sitellite_status.value = state.elements.sitellite_status.value;
+	f.elements.sitellite_access.value = state.elements.sitellite_access.value;
+	f.elements.changelog.value = state.elements.changelog.value;
+}
+
+function cms_preview_action (f) {
+	cms_copy_values (f);
+	return cms_preview (f);
+}
+
+function cms_cancel_action (f) {
+	cms_copy_values (f);
+	if (confirm ('Are you sure you want to cancel?')) {
+		return cms_cancel (f);
+	}
+	return false;
+}
+
+// -->
+</script>
+
+<div style="padding: 0px; width: 675px">
+<div id="cms-state-button"><a href="#" onclick="cms_focus ('cms-edit', 1); cms_focus ('cms-properties', 1); cms_focus ('cms-state', 99); this.blur (); return false">State</a></div>
+<div id="cms-properties-button"><a href="#" onclick="cms_focus ('cms-edit', 1); cms_focus ('cms-properties', 99); cms_focus ('cms-state', 1); this.blur (); return false">Properties</a></div>
+<div id="cms-edit-button"><a href="#" onclick="cms_focus ('cms-edit', 99); cms_focus ('cms-properties', 1); cms_focus ('cms-state', 1); this.blur (); return false">Edit</a></div>
+</div>{if obj._browser eq 'mz'}<br clear="all" />{end if}
+
+<div style="padding: 0px; margin: 0px; width: 675px; height: {height2}px" id="cms-panels">
+
+<div id="cms-edit">
+<table border="0" cellspacing="1" cellpadding="3" align="center">

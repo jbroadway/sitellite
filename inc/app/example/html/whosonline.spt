@@ -1,0 +1,15 @@
+<!--
+resolved tickets:
+#198 Allow for HTML mailing templates.
+-->
+{if obj[numvisitors] == 0}
+<p>{intl There are currently no visitors online.}</p>
+{end if}
+
+{if obj[numvisitors] == 1}
+<p>{intl There is currently} {numvisitors} {intl visitor online}.</p>
+{end if}
+
+{if obj[numvisitors] gt 1}
+<p>{intl There are currently} {numvisitors} {intl visitors online}.</p>
+{end if}

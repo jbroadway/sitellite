@@ -1,0 +1,60 @@
+<h1>Installation</h1>
+
+SITEWIKI INSTALL INSTRUCTIONS<br />
+
+<br />
+
+1. Ensure that your wiki settings are writeable, which are found in the file:<br />
+
+<br />
+
+inc/app/sitesearch/conf/server.ini.php<br />
+
+<br />
+
+The commands to change the permissions are:<br />
+
+<br />
+
+chmod 777 inc/app/sitewiki/conf<br />
+
+chmod 777 inc/app/sitewiki/conf/settings.php<br />
+
+<br />
+
+2. Install the necessary database tables:<br />
+
+<br />
+
+$ mysql -p -u USER DBNAME &lt; inc/app/sitewiki/install/install-mysql.sql<br />
+
+(enter password when prompted)<br />
+
+<br />
+
+3. Copy the wiki pages collection definition into the cms app:<br />
+
+<br />
+
+$ cp -R inc/app/sitewiki/install/sitewiki_page.php inc/app/cms/conf/collections/<br />
+<br />
+By default the SiteWiki collection page is not visible. (visible = no)<br />
+
+<br />
+
+4. Link to SiteWiki somewhere on your web site.  SiteWiki can be<br />
+
+accessed from the following URL (change www.yourWebSite.com to YOUR<br />
+
+WEB SITE, of course):<br />
+
+<br />
+
+http://www.yourWebSite.com/index/sitewiki-app<br />
+
+<br />
+
+That's all there is to it!<br />
+
+<br />
+

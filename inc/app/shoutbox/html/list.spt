@@ -1,0 +1,5 @@
+<ul id="shoutboxmessages">
+  {loop obj}
+      <li><span class="name">{loop/name}</span>: {filter filter_smiley}{loop/message}{end filter}</li>
+  {end loop}
+</ul>

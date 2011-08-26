@@ -1,0 +1,3 @@
+<p>{intl Your submission has been received.  Please allow some time for the administrator to review your submission before it appears on our web site.}</p>
+
+<p><a href="{site/prefix}/index/sitelinks-mylinks-action">{intl Click here to continue.}</a></p>

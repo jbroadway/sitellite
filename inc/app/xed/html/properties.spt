@@ -1,0 +1,33 @@
+<script language="javascript" type="text/javascript">
+
+function properties_ok (f) {
+	d = [];
+	for (i = 0; i < f.elements.length; i++) {
+		if (f.elements[i].name == 'submit_button' || f.elements[i].name == 'ifname' || f.elements[i].name == 'tpl') {
+			continue;
+		}
+		if (f.elements[i].value.length > 0) {
+			d.push (
+				{
+					name: f.elements[i].name,
+					value: f.elements[i].value
+				}
+			);
+		}
+	}
+
+	if (opener && ! opener.closed) {
+		opener.document.getElementById (f.elements.ifname.value).xed_set_properties (f.elements.ifname.value, d);
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+	window.close ();
+	return false;
+}
+
+function properties_cancel (f) {
+	window.close ();
+	return false;
+}
+
+</script>

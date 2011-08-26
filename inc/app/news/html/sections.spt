@@ -1,0 +1,15 @@
+<ul class="news-sections">
+	{loop obj[list]}
+		<li><a href="{site/prefix}/index/news-app/section.{loop/name}">{filter intl_get}{loop/name}{end filter} ({loop/total})</a></li>
+	{end loop}
+</ul>
+
+{if obj[menu] ne 'no'}
+<p class="news-links">
+	<a href="{site/prefix}/index/news-app">{intl News Home}</a> &nbsp;//&nbsp;
+	<a href="{site/prefix}/index/news-search-action">{intl Search}</a>
+	{if appconf ('submissions')}
+		&nbsp;//&nbsp; <a href="{site/prefix}/index/news-submissions-form">{intl Submissions}</a>
+	{end if}
+</p>
+{end if}

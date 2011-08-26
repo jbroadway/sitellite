@@ -1,0 +1,28 @@
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={key}" type="text/javascript"></script>
+
+<div id="googlemap-{id}" class="googlemap" style="width: 400px; height: 350px"></div>
+
+<script type="text/javascript">
+
+if (GBrowserIsCompatible ()) {
+	var googlemap_{id} = new GMap2 (document.getElementById ('googlemap-{id}'));
+	var geocoder = new GClientGeocoder ();
+
+	geocoder.getLatLng (
+		'{filter urldecode}{address}, {city}, {state}{if not empty (obj[country])}, {country}{end if}{end filter}',
+		function (point) {
+			if (! point) {
+				alert ('{intl The requested location could not be found}');
+			} else {
+				googlemap_{id}.setCenter (point, 13);
+				googlemap_{id}.addControl (new GSmallMapControl ());
+				googlemap_{id}.addControl (new GMapTypeControl ());
+				var marker_{id} = new GMarker (point);
+				googlemap_{id}.addOverlay (marker_{id});
+				marker_{id}.openInfoWindowHtml ('{filter urldecode}{address}, {city}, {state}{end filter}');
+			}
+		}
+	);
+}
+
+</script>

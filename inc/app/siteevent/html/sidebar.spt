@@ -1,0 +1,10 @@
+<ul>
+	{loop obj[list]}
+		{if loop.priority eq 'high'}
+			<li><a href="{site/prefix}/index/siteevent-details-action/id.{loop/id}/title.{filter siteevent_filter_link_title}{loop/title}{end filter}"><strong>{loop/date}: {loop/title}</strong>{if obj[location] and loop.loc_name} &ndash; {loop/loc_name}{end if}</a></li>
+		{end if}
+		{if else}
+			<li><a href="{site/prefix}/index/siteevent-details-action/id.{loop/id}/title.{filter siteevent_filter_link_title}{loop/title}{end filter}">{loop/date}: {loop/title}{if obj[location] and loop.loc_name} &ndash; {loop/loc_name}{end if}</a></li>
+		{end if}
+	{end loop}
+</ul>

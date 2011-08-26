@@ -1,0 +1,6 @@
+<div>
+    <b>{intl Name}:</b> {name}<br />
+    <b>{intl Email}:</b> {from}<br />
+    <b>{intl Message}:</b>
+    <p>{filter none}{message}{end filter}</p>
+</div>

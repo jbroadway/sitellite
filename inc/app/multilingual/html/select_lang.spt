@@ -1,0 +1,11 @@
+<form>
+<input type="hidden" name="_collection" value="{cgi/_collection}" />
+<input type="hidden" name="_key" value="{cgi/_key}" />
+<input type="hidden" name="_return" value="{cgi/_return}" />
+<select name="_lang" onchange="this.form.submit ()">
+<option value="">- {intl SELECT} -</option>
+{loop obj}
+<option value="{loop/_key}">{loop/_value}</option>
+{end loop}
+</select>
+</form>

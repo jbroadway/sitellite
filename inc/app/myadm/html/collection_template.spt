@@ -1,0 +1,81 @@
+; <{php_open} /*
+
+[Collection]
+
+name = {table}{if not empty (obj[app])}
+app = {app}{end if}
+display = {name}
+singular = {singular}
+key_field = {key_field}
+title_field = {title_field}{if not empty (obj[summary_field])}
+summary_field = {summary_field}{end if}{if not empty (obj[keywords_field])}
+keywords_field = {keywords_field}{end if}{if not empty (obj[body_field])}
+body_field = {body_field}{end if}{if not empty (obj[order_by])}
+order_by = {order_by}
+sorting_order = {sorting_order}{end if}
+is_versioned = {is_versioned}
+translate = {translate}
+scheduler_skip = {scheduler_skip}
+visible = {visible}{if not empty (obj[sitesearch_url])}
+sitesearch_url = "{sitesearch_url}"
+sitesearch_access = {sitesearch_access}{end if}{if not empty (obj[add])}
+add = {add}{end if}{if not empty (obj[edit])}
+edit = {edit}{end if}{if not empty (obj[delete])}
+delete = {delete}{end if}
+
+[Source]
+
+name = Database
+
+[Store]
+
+name = {if obj[is_versioned]}Database{end if}{if else}Blank{end if}
+
+{loop obj[browse]}
+{if not empty (loop[field])}
+[browse:{loop/field}]
+
+header = {loop/header}
+align = {loop/align}{if not empty (loop[width])}
+width = "{loop/width}%"{end if}
+{end if}
+{end loop}
+
+{loop obj[params]}
+{if not empty (loop[field])}
+[facet:{loop/field}]
+
+type = {loop/type}
+display = {loop/display}{if loop[type] eq "text"}
+fields = "{loop/values|none}"{end if}{if loop[type] ne "text"}
+values = "{loop/values|none}"{end if}
+{end if}
+{end loop}
+
+{loop obj[links]}
+{if not empty (loop[text])}
+[link:{loop/text}]
+
+text = {loop/text}
+url = "{loop/url}"
+requires = {loop/requires}{if not empty (loop[requires_resource])}
+requires resource = {loop/requires_resource}{end if}
+{end if}
+{end loop}
+
+{loop obj[hints]}
+[hint:{loop/name}]
+
+type = {loop/type}
+alt = {loop/alt}{if not empty (loop[default_value])}
+setDefault = "{loop/default_value}"{end if}{if not empty (loop[values])}
+setValues = "eval: {loop/values|none}"{end if}{if loop[nullable] eq '1'}
+nullable = yes{end if}{if not empty (loop[extra])}
+extra = "{loop/extra|none}"{end if}{if count (loop[rules]) gt 0}
+{loop loop[rules]}
+rule {loop/_index} = "{loop/_value|none}"
+{end loop}{end if}
+
+{end loop}
+
+; */ ?>

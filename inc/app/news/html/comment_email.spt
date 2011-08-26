@@ -1,0 +1,8 @@
+<div>
+    {intl A comment has been made on the news story}: <a href="{site/url}/index/news-app/story.{story_id}#news-comments">{intl news comment}</a><br />
+    <br />
+    <b>{intl User ID}:</b> {user_id}<br />
+    <b>{intl Subject}:</b> {subject}<br />
+    <b>{intl Message}:</b><br />
+    <span>{filter news_comment_body_email}{body}{end filter}</span>
+</div>

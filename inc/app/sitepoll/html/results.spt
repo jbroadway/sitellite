@@ -1,0 +1,53 @@
+{if not obj.action}
+<p>
+	<strong>{title}</strong>
+</p>
+{end if}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	{loop obj.options}
+		<tr>
+			<td width="5%">{loop/_index}.</td>
+			<td>{loop/answer}</td>
+			<td width="8%" align="right">{loop/percent}%</td>
+			<td width="8%" align="right">({loop/votes})</td>
+			<td style="width: 120px">
+				<div style="height: 12px; width: {loop/width}px; border: 0px none; background-color: #f90">&nbsp;</div>
+			</td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+<p>{intl Total Votes}: {total}</p>
+
+<p>
+{if obj.voted eq 0}
+	<a href="{site/prefix}/index/sitepoll-display-action/poll.{id}">{intl Voting Booth}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+{end if}
+	<a href="{site/prefix}/index/sitepoll-past-action">{intl Past Polls}</a>
+</p>
+
+{if obj.enable_comments eq 'yes'}
+	<h2>{intl Comments} ({total_comments})</h2>
+
+	<p>
+		<a href="{site/prefix}/index/sitepoll-comment-add-form/poll.{id}">{intl Add Comment}</a>
+	</p>
+
+	{loop obj.comments}
+		<p>
+			{if session_admin ()}
+				<div style="float: right">
+					<a href="{site/prefix}/index/sitepoll-comment-edit-form?id={loop/id}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" alt="{intl Edit Comment}" title="{intl Edit Comment}" border="0" /></a> &nbsp;
+					<a href="{site/prefix}/index/sitepoll-comment-delete-action?id={loop/id}" onclick="return confirm ('Are you sure you want to delete this comment?')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Comment}" title="{intl Delete Comment}" border="0" /></a>
+				</div>
+			{end if}
+			<strong>{loop/subject}</strong><br />
+			<em>{loop/user_id} - {filter sitepoll_filter_date_time}{loop/ts}{end filter}</em><br /><br />
+			{filter sitepoll_filter_comment_body}{loop/body}{end filter}
+		</p>
+	{end loop}
+{end if}

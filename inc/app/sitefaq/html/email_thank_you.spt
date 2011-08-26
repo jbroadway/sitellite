@@ -1,0 +1,9 @@
+<div>
+
+    {intl This email is to confirm that your question has been received and will be answered shortly.}<br />
+    <br />
+    {intl Sincerely},<br />
+    <br />
+    {intl The} {site/domain} {intl Team}
+
+</div>

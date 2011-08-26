@@ -1,0 +1,30 @@
+{box cms/buttons/add?collection=sitequotes_entry}
+
+{if count (obj[list]) eq 0}
+	<p style="height: 220px;">{intl No quotes found.}</p>
+{end if}
+{if else}
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+	        <td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+			<td><span style="float:right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</span></td>
+		</tr>
+	</table>
+{end if}
+
+<br>
+
+{loop obj[list]}
+	<div class="sitequotes">
+		{box cms/buttons?collection=sitequotes_entry&id=[loop/id]&status=approved&access=public&team=none&float=false&add=false&return=sitequotes-app}
+        {if not empty (loop.testimonial)}
+            <p>{filter none}{loop/testimonial}{end filter}</p>
+        {end if}
+        {if else}
+    		<p>{filter none}{loop/quote}{end filter}</p>
+        {end if}
+		<p class="sitequotes-byline">
+			&mdash; {loop/person}{if not empty (loop.company)}, <a href="{loop/website}">{loop/company}</a>{end if}
+		</p>
+	</div>
+{end loop}

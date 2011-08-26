@@ -1,0 +1,77 @@
+{box cms/buttons?collection=siteblog_post&id=[id]&status=[sitellite_status]&access=public&team=none}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="siteblog-adjacent-stories">
+	<tr>
+		<td align="left" valign="top" width="50%">
+			{if not empty (obj.previous)}
+				&larr;
+				<a href="{site/prefix}/index/siteblog-post-action/id.{previous}/title.{filter siteblog_filter_link_title}{prev_title}{end filter}">{prev_title}</a>
+			{end if}
+		</td>
+		<td align="right" valign="top" width="50%">
+			{if not empty (obj.next)}
+				<a href="{site/prefix}/index/siteblog-post-action/id.{next}/title.{filter siteblog_filter_link_title}{next_title}{end filter}">{next_title}</a>
+				&rarr;
+			{end if}
+		</td>
+	</tr>
+</table>
+
+<div class="siteblog-post">
+
+{if not empty (obj.sharethis)}
+<div style="float: right">
+<script language="javascript" type="text/javascript">
+SHARETHIS.addEntry ({
+	title: "{subject|htmlentities}",
+	url: document.URL
+}, {
+	button: true
+});
+</script>
+</div>
+{end if}
+
+  <p class="siteblog-post-info">
+   {filter siteblog_filter_nicedate}{created}{end filter}
+   // {intl By} <a href="{site/prefix}/index/siteblog-author-action/author.{author}">{author}</a>
+   </p>
+ 
+ <div class="siteblog-post-body">{filter siteblog_filter_body}{body}{end filter}</div>
+
+<p class="siteblog-post-footer">
+{if obj.comments_on eq true}
+	<a href="/index/siteblog-topic-action/id.{category}/title.{filter siteblog_filter_link_title}{category_name}{end filter}">{filter intl_get}{category_name}{end filter}</a>
+	//
+{end if}
+	<a href="{site/url}/index/siteblog-post-action/id.{id}/title.{filter siteblog_filter_link_title}{subject}{end filter}">{intl Permalink}</a>
+	// <a href="{site/prefix}/index/siteblog-post-action/id.{id}/title.{filter siteblog_filter_link_title}{subject}{end filter}#siteblog-comments">{intl Comments} ({comments})</a> - <a href="{site/prefix}/index/siteblog-post-action/id.{id}/title.{filter siteblog_filter_link_title}{subject}{end filter}#siteblog-comment-form">{intl Add}</a>
+</p>
+</div>
+
+<a name="#siteblog-comments"></a>
+{if count (obj.comment) gt 0}
+<h2>{comments} {intl Comments}</h2>
+
+{loop obj.comment}
+
+    <div class="siteblog-comment siteblog-comment-{loop/_index}">
+    <a name="siteblog-comment-{loop/id}"></a>
+    {box cms/buttons?collection=siteblog_comment&add=false&id=[loop/id]&status=approved&access=public&team=none}
+    {if session_admin ()}
+    <div style="float: right">IP: {filter siteblog_filter_ip}{loop/ip}{end filter}{filter siteblog_filter_akismet}{loop/id}{end filter}</div>
+  	{end if}
+    <div class="siteblog-comment-body">{filter siteblog_filter_comment}{loop/body}{end filter}</div>
+    <p class="siteblog-comment-info">{filter siteblog_filter_nicedate}{loop/date}{end filter} // {intl By} {if not empty (loop.url)}<a href="{loop/url}" rel="nofollow">{loop/author}</a>{end if}{if else}{loop/author}{end if}</p>
+    </div>
+
+{end loop}
+{end if}
+{if count (obj.comment) eq 0}
+<h2>{intl 0 Comments So Far}</h2>
+<p>{intl Kick start the discussion by filling out the form below.}</p>
+{end if}
+
+<a name="#siteblog-comment-form"></a>
+<h2>{intl Leave a Comment}</h2>
+{form siteblog/comment}

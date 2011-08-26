@@ -1,0 +1,6 @@
+<h1>{intl All smileys}</h1>
+<p>{intl Use /conf/properties.php to edit}</p>
+
+{loop obj}
+    <strong>{loop/_key}</strong>: <img src="{site/prefix}/inc/app/sitellite/pix/smiley/{loop/_value}" border="0" /><br />
+{end loop}

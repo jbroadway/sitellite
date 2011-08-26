@@ -1,0 +1,8 @@
+<iframe
+	id="news-ticker"
+	src="{site/prefix}/index/news-ticker-action?section={section}&bg={bg}&width={width}&border={border}"
+	scrolling="no"
+	frameborder="0"
+	width="100%"
+	height="32">
+</iframe>

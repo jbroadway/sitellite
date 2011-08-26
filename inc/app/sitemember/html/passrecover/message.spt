@@ -1,0 +1,7 @@
+<div>
+    {intl Please use the following link to reset your password}: <a href="{site/url}/index/sitemember-passrecover-action?email={email}&key={key}">{intl pass recover}</a><br />
+    <br />
+    <b>{intl Account username}:</b> {user}<br />
+    <br />
+    {intl If this message has been sent in error, please ignore it.}
+</div>

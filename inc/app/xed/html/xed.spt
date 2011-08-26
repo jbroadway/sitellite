@@ -1,0 +1,761 @@
+<!--                      BEGIN XED INTERFACE                     -->
+
+<style type="text/css">
+
+	td.field iframe {
+		border: #000 1px solid;
+		border-bottom: #999 1px solid;
+		border-right: #999 1px solid;
+		background-color: #fff;
+	}
+
+	#xed-{name}-source-bar {
+		position: absolute;
+		visibility: hidden;
+	}
+
+	#xed-{name}-table-bar {
+		display: none;
+		clear: left;
+	}
+
+	#xed-{name}-source {
+		{if obj.scroller ne 'false'}
+		width: 450px;
+		{end if}
+		{if else}
+		width: 662px;
+		{end if}
+		height: {source_height}px;
+		border: 1px solid #000;
+		border-bottom: #999 1px solid;
+		border-right: #999 1px solid;
+		position: absolute;
+		display: none;
+	}
+
+	#xed-{name}-mode-edit-button {
+		background-color: #eee; /* #cde */
+	}
+
+	#xed-{name}-mode-edit-button a {
+		color: #09f;
+		font-weight: bold;
+	}
+
+	#xed-{name}-mode-source-button {
+		background-color: #eee;
+	}
+
+	#xed-context-menu td {
+		height: 28px;
+		vertical-align: middle;
+	}
+
+	#xed-context-menu tr {
+		background-color: #fff;
+	}
+
+	#xed-context-menu tr:hover {
+		background-color: #eee;
+	}
+/*
+	td.xcm-icons {
+		width: 28px;
+		text-align: center;
+		background-color: #A9B7C4;
+	}
+
+	td.xcm-text {
+		padding-left: 3px;
+	}
+*/
+
+	#xed-context-menu {
+		position: absolute;
+		z-index: 100;
+	}
+
+	#xed-context-menu-shade {
+		position: absolute;
+		z-index: 99;
+	}
+
+	#xed-context-menu ul {
+		padding: 0px;
+		margin: 0px;
+	}
+
+	#xed-context-menu li {
+		list-style-type: none;
+		display: inline;
+	}
+
+	#xed-context-menu li img {
+		float: left;
+		height: 24px;
+		width: 24px;
+		padding-right: 5px;
+	}
+
+	#xed-context-menu li a {
+		background-image: url({site/prefix}/inc/app/xed/pix/menu-bg-off.gif);
+		display: block;
+		width: 145px;
+		height: 15px;
+		line-height: 28px;
+		vertical-align: middle;
+		text-decoration: none;
+		color: inherit;
+		color: #000;
+		padding: 2px 2px 11px 3px;
+	}
+
+	#xed-context-menu li a:hover {
+		background-image: url({site/prefix}/inc/app/xed/pix/menu-bg-on.gif);
+		display: block;
+		width: 145px;
+		height: 15px;
+		line-height: 28px;
+		vertical-align: middle;
+		text-decoration: none;
+		color: inherit;
+		color: #000;
+		padding: 2px 2px 11px 3px;
+	}
+
+	#xed-context-menu li.xcm-sep a {
+		background-image: url({site/prefix}/inc/app/xed/pix/menu-sep-off.gif);
+	}
+
+	#xed-context-menu li.xcm-sep a:hover {
+		background-image: url({site/prefix}/inc/app/xed/pix/menu-sep-on.gif);
+	}
+
+	{if obj.msie}
+		#xed-context-menu li.xcm-sep a {
+			background-image: url({site/prefix}/inc/app/xed/pix/menu-bg-off.gif);
+		}
+
+		#xed-context-menu li.xcm-sep a:hover {
+			background-image: url({site/prefix}/inc/app/xed/pix/menu-bg-on.gif);
+		}
+
+		#xed-context-menu li img {
+			padding: 0px;
+			padding-right: 5px;
+		}
+
+		#xed-context-menu li a {
+			padding: 0px 0px 0px 0px;
+		}
+
+		#xed-context-menu li a:hover {
+			padding: 0px 0px 0px 0px;
+		}
+	{end if}
+
+	div#xed-{name}-edit-bar {
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
+
+	div#xed-{name}-edit-bar a {
+		overflow: hidden;
+		width: 22px;
+		height: 21px;
+		display: block;
+		background: url({site/prefix}/inc/app/xed/pix/sprite.gif) 0px 0px no-repeat;
+		text-indent: -9999px;
+		padding: 0px;
+		margin-left: 3px;
+		margin-top: 2px;
+		margin-bottom: 2px;
+		float: left;
+	}
+
+	div#xed-{name}-table-bar {
+		padding-top: 0px;
+	}
+
+	div#xed-{name}-table-bar a {
+		overflow: hidden;
+		width: 22px;
+		height: 21px;
+		display: block;
+		background: url({site/prefix}/inc/app/xed/pix/sprite.gif) 0px 0px no-repeat;
+		text-indent: -9999px;
+		padding: 0px;
+		margin-left: 3px;
+		margin-top: 2px;
+		margin-bottom: 2px;
+		float: left;
+	}
+
+	a.sprite-charmap {
+		background-position: 0px 0px !important;
+	}
+	a.sprite-image {
+		background-position: -22px 0px !important;
+	}
+	a.sprite-table {
+		background-position: -44px 0px !important;
+		margin-right: 5px;
+	}
+	a.sprite-undo {
+		background-position: -66px 0px !important;
+	}
+	a.sprite-redo {
+		background-position: -88px 0px !important;
+		margin-right: 5px;
+	}
+	a.sprite-link {
+		background-position: -110px 0px !important;
+		margin-right: 5px;
+	}
+	a.sprite-boxchooser {
+		background-position: -132px 0px !important;
+	}
+	a.sprite-formchooser {
+		background-position: -154px 0px !important;
+		margin-right: 5px;
+	}
+	a.sprite-clean {
+		background-position: -176px 0px !important;
+	}
+	a.sprite-fullscreen {
+		background-position: -198px 0px !important;
+	}
+	a.sprite-help {
+		background-position: -220px 0px !important;
+		margin-right: 5px;
+	}
+	a.sprite-word {
+		background-position: -242px 0px !important;
+		margin-right: 5px;
+	}
+	a.sprite-bold {
+		background-position: -0px -21px !important;
+		{if obj.scroller eq 'false' and not obj.reference}
+		clear: left;
+		{end if}
+	}
+	a.sprite-italic {
+		background-position: -22px -21px !important;
+	}
+	a.sprite-underline {
+		background-position: -44px -21px !important;
+		margin-right: 5px;
+	}
+	a.sprite-sub {
+		background-position: -66px -21px !important;
+	}
+	a.sprite-sup {
+		background-position: -88px -21px !important;
+		margin-right: 5px;
+	}
+	a.sprite-rule {
+		background-position: -110px -21px !important;
+		margin-right: 5px;
+	}
+	a.sprite-left {
+		background-position: -132px -21px !important;
+		{if obj.scroller ne 'false' or obj.reference}
+		clear: left;
+		{end if}
+	}
+	a.sprite-center {
+		background-position: -154px -21px !important;
+	}
+	a.sprite-right {
+		background-position: -176px -21px !important;
+		margin-right: 5px;
+	}
+	a.sprite-bull {
+		background-position: -198px -21px !important;
+	}
+	a.sprite-num {
+		background-position: -220px -21px !important;
+		margin-right: 5px;
+	}
+	a.sprite-indent {
+		background-position: -242px -21px !important;
+	}
+	a.sprite-outdent {
+		background-position: -176px -42px !important;
+		margin-right: 5px;
+	}
+	a.sprite-ltr {
+		background-position: -198px -42px !important;
+	}
+	a.sprite-rtl {
+		background-position: -220px -42px !important;
+	}
+	a.sprite-row-before {
+		background-position: 0px -42px !important;
+	}
+	a.sprite-row-after {
+		background-position: -22px -42px !important;
+	}
+	a.sprite-row-delete {
+		background-position: -44px -42px !important;
+		margin-right: 5px;
+	}
+	a.sprite-col-before {
+		background-position: -66px -42px !important;
+	}
+	a.sprite-col-after {
+		background-position: -88px -42px !important;
+	}
+	a.sprite-col-delete {
+		background-position: -110px -42px !important;
+		margin-right: 5px;
+	}
+	a.sprite-table-merge {
+		background-position: -132px -42px !important;
+	}
+	a.sprite-table-split {
+		background-position: -154px -42px !important;
+		margin-right: 5px;
+	}
+
+	.tip {
+		background: #ffe !important;
+		color: #000 !important;
+	}
+
+</style>
+
+{if obj.scroller ne 'false'}
+<script language="javascript" type="text/javascript" src="{site/prefix}/inc/app/xed/js/scroller-compressed.js"></script>
+{end if}
+{if obj.reference}
+<script language="javascript" type="text/javascript" src="{site/prefix}/inc/app/xed/js/scroller-compressed.js"></script>
+{end if}
+
+<link rel="stylesheet" type="text/css" href="{site/prefix}/js/jquery.tooltip.css" />
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/jquery-1.4.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/jquery.dimensions.min.js"></script>
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/jquery.bgiframe.js"></script>
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/jquery.tooltip.min.js"></script>
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog-compressed.js"></script>
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/onbeforeunload.js"></script>
+<script language="javascript" type="text/javascript" src="{site/prefix}/inc/app/xed/js/md5-compressed.js"></script>
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc-compressed.js"></script>
+<!-- script language="javascript" type="text/javascript" src="{site/prefix}/js/debug.js"></script -->
+
+<script language="javascript" type="text/javascript">
+
+jQuery.noConflict ();
+
+jQuery(document).ready(function () {
+	jQuery('#xed-{name}-edit-bar a, #xed-{name}-table-bar a').tooltip ({
+		bodyHandler: function () {
+			return jQuery(this).html ();
+		},
+		track: true,
+		opacity: 0.95,
+		delay: 0,
+		extraClass: 'tip',
+		showURL: false
+	});
+});
+
+{filter none}{box imagechooser/js?name=[name]}{end filter}
+
+imagechooser_{name}_set_align = true;
+
+function imagechooser_{name}_handler () {
+	if (typeof dialogWin.returnedValue == 'object') {
+		url = '{site/prefix}' + dialogWin.returnedValue['src'];
+		alt = dialogWin.returnedValue['alt'];
+		flt = dialogWin.returnedValue['float'];
+		h = dialogWin.returnedValue['height'];
+		w = dialogWin.returnedValue['width'];
+	} else {
+		url = '{site/prefix}' + dialogWin.returnedValue;
+		alt = '';
+		flt = false;
+		h = false;
+		w = false;
+	}
+	xed_set_image (imagechooser_{name}_form, url, alt, flt, h, w);
+}
+
+{filter none}{box filechooser/js}{end filter}
+
+function filechooser_handler () {
+	if (typeof dialogWin.returnedValue == 'object') {
+		if (dialogWin.returnedValue['path'].length > 0) {
+			args = new Array ();
+			args.push (xed_attribute ('path', dialogWin.returnedValue['path']));
+			xed_insert_box (filechooser_form, 'cms/filesystem', xed_path + xed_box_image, args);
+			return;
+		}
+		src = dialogWin.returnedValue['src'];
+		name = dialogWin.returnedValue['name'];
+	} else {
+		src = dialogWin.returnedValue;
+		name = src.split ('file=');
+		name = name[1];
+	}
+	xed_set_file (filechooser_form, src, name);
+}
+
+{filter none}{box boxchooser/js?name=[name]}{end filter}
+
+function boxchooser_{name}_handler () {
+	if (typeof dialogWin.returnedValue == 'object') {
+		url = dialogWin.returnedValue['src'];
+		alt = dialogWin.returnedValue['alt'];
+		flt = dialogWin.returnedValue['float'];
+		h = dialogWin.returnedValue['height'];
+		w = dialogWin.returnedValue['width'];
+	} else {
+		url = dialogWin.returnedValue;
+		alt = '';
+		flt = false;
+		h = false;
+		w = false;
+	}
+	elements = xed_parse_uri (url);
+	xed_insert_box (boxchooser_{name}_form, elements.box, xed_path + xed_box_image, elements.args);
+	return;
+}
+
+{filter none}{box formchooser/js}{end filter}
+
+function formchooser_handler () {
+	if (typeof dialogWin.returnedValue == 'object') {
+		url = dialogWin.returnedValue['src'];
+		alt = dialogWin.returnedValue['alt'];
+		flt = dialogWin.returnedValue['float'];
+		h = dialogWin.returnedValue['height'];
+		w = dialogWin.returnedValue['width'];
+	} else {
+		url = dialogWin.returnedValue;
+		alt = '';
+		flt = false;
+		h = false;
+		w = false;
+	}
+	elements = xed_parse_uri (url);
+	xed_insert_form (formchooser_form, elements.box, xed_path + xed_form_image, elements.args);
+	return;
+}
+
+</script>
+
+<script language="javascript" type="text/javascript" src="{site/prefix}/inc/app/xed/js/xed-compressed.js"></script>
+
+<script language="javascript" type="text/javascript">
+<!--
+
+	// initializations
+	xed_debug_view = false;
+	xed_prefix = '{site/prefix}';
+	//xed_site_url = '{site/url}';
+	//xed_site_domain = '{site/domain}';
+	xed_path = '{site/prefix}/inc/app/xed';
+	xed_web_path = '{site/prefix}';
+	xed_initial_value['{name}'] = '{filter none}{initial_value}{end filter}';
+	xed_default_link = '/index/';
+	xed_images = {images};
+	xed_boxes = {boxes};
+	xed_forms = {forms};
+	xed_spellchecker = {spellchecker};
+	xed_scroller = {scroller};
+	xed_scroller_data = '{filter none}{scroller_data}{end filter}';
+	{if obj.reference}
+	xed_scroller = true;
+	xed_scroller_data = '{filter none}{reference}{end filter}';
+	{end if}
+	xed_max_height = {max_height};
+	xed_max_width = {max_width};
+	xed_img_popup = {img_popup};
+	xed_msie7 = {msie7};
+	xed_safari = {safari};
+	xed_ff36 = {ff36};
+	xed_adobeair = {adobeair};
+	xed_rpc.url = xed_prefix + '/index/xed-rpc-action';
+	{if obj.fullsize}
+	xed_fullsize = true;
+	{end if}
+
+	xed_templates = new Array ();
+{loop obj.templates}
+	xed_templates['{loop/id}'] = '{filter none}{loop/body}{end filter}';
+{end loop}
+
+var rpc_handler = new Function (
+	"if (arguments.length == 0 || arguments[0] === true || arguments[0] === false) { " +
+	"return false;" +
+	" } else { " +
+	//"alert (typeof arguments[0] + arguments[0]);" +
+	"xed_cleaner (arguments[0], arguments[1]);" +
+	" } " +
+	"return false;"
+);
+
+// -->
+</script>
+
+<tr>
+	{if obj.scroller ne 'false'}
+	<td class="label" colspan="1" valign="top">
+	{end if}
+	{if else}
+	<td class="label" colspan="2" valign="top">
+	{end if}
+		<div id="xed-{name}-edit-bar" style="line-height: 120%">
+		<div style="float: right; margin-top: 3px; margin-right: 3px; text-align: right">
+		<span style="font-weight: normal">{intl Content Guides}:</span>
+		<select		id="xed-{name}-templatelist"
+					onchange="return xed_template ('{name}', this.id)"
+					style="font-size: 11px">
+			<option value="" style="margin-top: 3px; vertical-align: bottom" selected="selected">- {intl SELECT} -</option>
+			{loop obj.templates}
+			<option value="{loop/id}" style="margin-top: 3px; vertical-align: bottom">{loop/name}</option>
+			{end loop}
+			{if session_admin () and session_allowed ('xed_templates_add', 'rw')}
+			<option value="ADD TEMPLATE" style="margin-top: 3px; vertical-align: bottom">{intl Save as Guide}</option>
+			{end if}
+		</select><br />
+		<span style="font-weight: normal">{intl Elements}:</span>
+		<select		id="xed-{name}-formatblock"
+					onchange="return xed_select ('{name}', this.id)"
+					style="margin-top: 5px; font-size: 11px">
+			<option value="" style="margin-top: 3px; vertical-align: bottom" selected="selected">{intl Normal}</option>
+			<option value="&lt;p&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Paragraph}</option>
+			<option value="&lt;h1&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Headline} (H1)</option>
+			<option value="&lt;h2&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Subhead} (H2)</option>
+			<option value="&lt;h3&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Heading 3}</option>
+			<option value="&lt;h4&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Heading 4}</option>
+			<option value="&lt;h5&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Heading 5}</option>
+			<option value="&lt;h6&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Heading 6}</option>
+			<option value="&lt;address&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Address}</option>
+			<option value="&lt;pre&gt;" style="margin-top: 3px; vertical-align: bottom">{intl Formatted}</option>
+		</select>
+		</div>
+
+		{if obj.scroller ne 'false' or obj.reference}
+		<a href="#" onclick="return xed_charmap ('{name}')" class="sprite sprite-charmap">{intl Character Map}</a>
+		<a href="#" onclick="return xed_image ('{name}')" class="sprite sprite-image">{intl Add Image}</a>
+		<a href="#" onclick="return xed_table ('{name}')" class="sprite sprite-table">{intl Add Table}</a>
+		<a href="#" onclick="return xed_undo ('{name}')" class="sprite sprite-undo">{intl Undo}</a>
+		<a href="#" onclick="return xed_redo ('{name}')" class="sprite sprite-redo">{intl Redo}</a>
+		<a href="#" onclick="return xed_link ('{name}')" class="sprite sprite-link">{intl Add/Remove Link}</a>
+		<a href="#" onclick="return xed_clean ('{name}')" class="sprite sprite-clean">{intl Clean Document}</a>
+		{if appconf ('wvhtml_location')}<a href="#" onclick="return xed_word_importer ('{name}')" class="sprite sprite-word">{intl Word Importer}</a>{end if}
+		<a href="#" onclick="return xed_full_screen ('{name}')" class="sprite sprite-fullscreen">{intl Full Screen Mode}</a>
+		<a href="#" onclick="return xed_help ('{name}')" class="sprite sprite-help">{intl Help}</a>
+		{if session_admin ()}
+		{if session_allowed ('app_boxchooser', 'rw')}<a href="#" onclick="return xed_create_box ('{name}')" class="sprite sprite-boxchooser">{intl Add Box}</a>{end if}
+		{if session_allowed ('app_formchooser', 'rw')}<a href="#" onclick="return xed_create_form ('{name}')" class="sprite sprite-formchooser">{intl Add Form}</a>{end if}
+		{end if}
+		{end if}
+		{if obj.scroller eq 'false' and not obj.reference}
+		<a href="#" onclick="return xed_charmap ('{name}')" class="sprite sprite-charmap">{intl Character Map}</a>
+		<a href="#" onclick="return xed_image ('{name}')" class="sprite sprite-image">{intl Add Image}</a>
+		<a href="#" onclick="return xed_table ('{name}')" class="sprite sprite-table">{intl Add Table}</a>
+		<a href="#" onclick="return xed_undo ('{name}')" class="sprite sprite-undo">{intl Undo}</a>
+		<a href="#" onclick="return xed_redo ('{name}')" class="sprite sprite-redo">{intl Redo}</a>
+		<a href="#" onclick="return xed_link ('{name}')" class="sprite sprite-link">{intl Add/Remove Link}</a>
+		{if session_admin ()}
+		{if session_allowed ('app_boxchooser', 'rw')}<a href="#" onclick="return xed_create_box ('{name}')" class="sprite sprite-boxchooser">{intl Add Box}</a>{end if}
+		{if session_allowed ('app_formchooser', 'rw')}<a href="#" onclick="return xed_create_form ('{name}')" class="sprite sprite-formchooser">{intl Add Form}</a>{end if}
+		{end if}
+		<a href="#" onclick="return xed_clean ('{name}')" class="sprite sprite-clean">{intl Clean Document}</a>
+		{if appconf ('wvhtml_location')}<a href="#" onclick="return xed_word_importer ('{name}')" class="sprite sprite-word">{intl Word Importer}</a>{end if}
+		<a href="#" onclick="return xed_full_screen ('{name}')" class="sprite sprite-fullscreen">{intl Full Screen Mode}</a>
+		<a href="#" onclick="return xed_help ('{name}')" class="sprite sprite-help">{intl Help}</a>
+		{end if}
+
+		<br />
+
+		<a href="#" onclick="return xed_bold ('{name}')" class="sprite sprite-bold">{intl Bold}</a>
+		<a href="#" onclick="return xed_italic ('{name}')" class="sprite sprite-italic">{intl Italic}</a>
+		<a href="#" onclick="return xed_underline ('{name}')" class="sprite sprite-underline">{intl Underline}</a>
+		<a href="#" onclick="return xed_subscript ('{name}')" class="sprite sprite-sub">{intl Subscript}</a>
+		<a href="#" onclick="return xed_superscript ('{name}')" class="sprite sprite-sup">{intl Superscript}</a>
+		<a href="#" onclick="return xed_horizontal_rule ('{name}')" class="sprite sprite-rule">{intl Horizontal Rule}</a>
+		<a href="#" onclick="return xed_align_left ('{name}')" class="sprite sprite-left">{intl Align Left}</a>
+		<a href="#" onclick="return xed_align_center ('{name}')" class="sprite sprite-center">{intl Align Center}</a>
+		<a href="#" onclick="return xed_align_right ('{name}')" class="sprite sprite-right">{intl Align Right}</a>
+		<a href="#" onclick="return xed_unordered_list ('{name}')" class="sprite sprite-bull">{intl Bulleted List}</a>
+		<a href="#" onclick="return xed_ordered_list ('{name}')" class="sprite sprite-num">{intl Numbered List}</a>
+		<a href="#" onclick="return xed_indent ('{name}')" class="sprite sprite-indent">{intl Indent}</a>
+		<a href="#" onclick="return xed_outdent ('{name}')" class="sprite sprite-outdent">{intl Outdent}</a>
+		<a href="#" onclick="return xed_ltr ('{name}')" class="sprite sprite-ltr">{intl Left-to-Right}</a>
+		<a href="#" onclick="return xed_rtl ('{name}')" class="sprite sprite-rtl">{intl Right-to-Left}</a>
+
+		</div>
+		<div id="xed-{name}-table-bar">
+		<a href="#" onclick="return xed_table_row_before ('{name}')" class="sprite sprite-row-before">{intl Insert row before}</a>
+		<a href="#" onclick="return xed_table_row_after ('{name}')" class="sprite sprite-row-after">{intl Insert row after}</a>
+		<a href="#" onclick="return xed_table_row_delete ('{name}')" class="sprite sprite-row-delete">{intl Delete row}</a>
+		<a href="#" onclick="return xed_table_col_before ('{name}')" class="sprite sprite-col-before">{intl Insert column before}</a>
+		<a href="#" onclick="return xed_table_col_after ('{name}')" class="sprite sprite-col-after">{intl Insert column after}</a>
+		<a href="#" onclick="return xed_table_col_delete ('{name}')" class="sprite sprite-col-delete">{intl Delete column}</a>
+		<a href="#" onclick="return xed_table_merge ('{name}')" class="sprite sprite-table-merge">{intl Merge cells}</a>
+		<a href="#" onclick="return xed_table_split_merged ('{name}')" class="sprite sprite-table-split">{intl Split merged cells}</a>
+		</div>
+		<div id="xed-{name}-source-bar">
+			{intl You are in HTML source mode.}
+		</div>
+	</td>
+
+	{if obj.scroller ne 'false'}
+	<td class="label" colspan="1" valign="top">
+		<strong>{intl Reference Document}</strong><br />
+	</td>
+	{end if}
+	{if obj.reference}
+	<td class="label" colspan="1' valign="top">
+		&nbsp;
+	</td>
+	{end if}
+</tr>
+<tr>
+	{if obj.scroller ne 'false'}
+	<td class="field" colspan="1">
+	{end if}
+	{if else}
+	<td class="field" colspan="2">
+	{end if}
+		<iframe
+			id="{name}"
+			src="{site/prefix}/inc/app/xed/html/blank.html"
+			{if obj.scroller ne 'false' or obj.reference}
+			width="450"
+			{end if}
+			{if else}
+			width="660"
+			{end if}
+			height="{height}"
+			align="left"
+			scrolling="auto"
+			{if obj.safari eq 'true'}contentEditable="true"{end if}
+			frameborder="1">
+		</iframe>
+		<!-- textarea name="xed-{name}-source" id="xed-{name}-source"></textarea -->
+		<input type="hidden" name="{name}" value="" />
+
+		<script language="javascript" type="text/javascript">
+			document.getElementById ('{name}').xed_insert_character = xed_insert_character;
+			document.getElementById ('{name}').xed_insert_table = xed_insert_table;
+			document.getElementById ('{name}').xed_set_properties = xed_set_properties;
+			document.getElementById ('{name}').xed_add_link = xed_add_link;
+			document.getElementById ('{name}').xed_set_source = xed_set_source;
+			document.getElementById ('{name}').xed_get_source = xed_get_source;
+			//document.getElementById ('{name}').xed_insert_box = xed_insert_box;
+			document.getElementById ('{name}').xed_word_importer_return = xed_word_importer_return;
+			document.getElementById ('{name}').xed_get_anchors = xed_get_anchors;
+			document.getElementById ('{name}').xed_cleaner = xed_cleaner;
+
+			//interval_id = setInterval ("xed_historian ('{name}');", 2000);
+
+		</script>
+	</td>
+
+	{if obj.scroller ne 'false'}
+	<td class="field" colspan="1">
+		<iframe
+			id="xed-{name}-reference"
+			src="{site/prefix}/inc/app/xed/html/blank.html"
+			{if obj.scroller ne 'false' or obj.reference}
+			width="450"
+			{end if}
+			{if else}
+			width="660"
+			{end if}
+			height="{height}"
+			align="left"
+			scrolling="auto"
+			frameborder="1">
+		</iframe>
+	</td>
+	{end if}
+	{if obj.reference}
+	<td class="reference" colspan="1">
+		<iframe
+			id="xed-{name}-reference"
+			src="{site/prefix}/inc/app/xed/html/blank.html"
+			{if obj.scroller ne 'false' or obj.reference}
+			width="450"
+			{end if}
+			{if else}
+			width="660"
+			{end if}
+			height="{height}"
+			align="left"
+			scrolling="auto"
+			frameborder="1">
+		</iframe>
+	</td>
+	{end if}
+</tr>
+
+<tr>
+	{if obj.scroller ne 'false'}
+	<td class="field" style="padding: 0px; margin: 0px" colspan="1">
+	{end if}
+	{if else}
+	<td class="field" style="padding: 0px; margin: 0px" colspan="2">
+	{end if}
+		<table border="0" cellpadding="3" cellspacing="0" width="100%" style="padding: 0px; margin: 0px">
+			<tr>
+				<td>
+					<!-- tag path -->
+					<div id="xed-{name}-path">{intl Path}:</div>
+				</td>
+				{if obj.scroller ne 'false' or obj.reference}
+				<!-- td width="20%" align="center" id="xed-{name}-mode-edit-button"><a href="#" onclick="this.blur (); return xed_mode ('{name}', 'edit')">{intl Editor}</a>
+				</td -->
+				<td width="20%" align="center" id="xed-{name}-mode-source-button"><a href="#" onclick="this.blur (); return xed_mode ('{name}', 'source')">&lt;{intl Source} /&gt;</a>
+				</td>
+				{end if}
+				{if obj.scroller eq 'false' and not obj.reference}
+				<!-- td width="15%" align="center" id="xed-{name}-mode-edit-button"><a href="#" onclick="this.blur (); return xed_mode ('{name}', 'edit')">{intl Editor}</a>
+				</td -->
+				<td width="15%" align="center" id="xed-{name}-mode-source-button"><a href="#" onclick="this.blur (); return xed_mode ('{name}', 'source')">&lt;{intl Source} /&gt;</a>
+				</td>
+				{end if}
+			</tr>
+		</table>
+	</td>
+	{if obj.scroller ne 'false' or obj.reference}
+	<td class="field" colspan="1" valign="top">
+		<table border="0" cellpadding="0" cellspacing="1" width="100%">
+			<tr>
+				<td width="12">
+					<input type="checkbox" checked="checked" onclick="scroller_event (this.checked)" />
+				</td>
+				<td>{intl Synchronize scrolling}</td>
+			</tr>
+		</table>
+	</td>
+	{end if}
+
+<tr style="height: 0px">
+	<td colspan="2" style="height: 0px">
+		<iframe id="rpc-caller" style="border: 0px none; width: 0px; height: 0px"></iframe>
+	
+		<div id="xed-context-menu-shade" style="display: none; width: 150px; height: 150px; background-color: #999; border: 0px none; position: absolute; z-index: 98;">
+		</div>
+	
+		<div id="xed-context-menu" style="display: none; width: 150px; height: 150px; background-color: #fff; border: 1px solid #666; position: absolute; z-index: 99;">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%" style="display: none">
+				<tr>
+					<td class="xcm-icons">&nbsp;</td>
+					<td class="xcm-text">Context Menu</td>
+				</tr>
+			</table>
+		</div>
+	</td>
+</tr>
+<tr id="xed-debug-tr" style="display: none">
+	<td colspan="2"><div id="xed-debug-msg" style="width: 100%; border: 1px solid #333; height: 96px; overflow: auto"></div></td>
+</tr>
+
+<!--                        END XED INTERFACE                     -->

@@ -1,0 +1,30 @@
+{if obj[context] eq 'action'}
+<h1>{intl My} {appconf/sitelinks_name}</h1>
+
+<p>
+	<a href="{site/prefix}/index/sitelinks-app">{appconf/sitelinks_name}</a> /
+	{intl My} {appconf/sitelinks_name}
+</p>
+{end if}
+
+{if obj[sitesearch] or appconf ('user_submissions')}
+<p>
+	{if obj[sitesearch]}
+	<a href="{site/prefix}/index/sitesearch-app?ctype=sitelinks_item&show_types=yes">{intl Search}</a>
+	&nbsp; &nbsp;
+	{end if}
+	{if appconf ('user_submissions')}
+	<a href="{site/prefix}/index/sitelinks-mylinks-submit-action">{intl Add} {appconf/sitelinks_name_singular}</a>
+	{end if}
+</p>
+{end if}
+
+{box cms/buttons/add?collection=sitelinks_item&return=[php site_prefix () _ '/index/sitelinks-app/category.' _ cgi.category]}
+
+<script language="javascript" type="text/javascript">
+
+function sitelinks_confirm_delete (title) {
+	return confirm ('{intl Are you sure you want to remove this listing?}  ' + title);
+}
+
+</script>

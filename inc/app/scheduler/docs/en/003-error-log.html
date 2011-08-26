@@ -1,0 +1,20 @@
+<h1>The Error Log</h1>
+
+Because Scheduler is supposed to be called repeatedly at various
+intervals (ie. nightly, hourly, etc.) via your server's scheduling
+utility (cron, the Windows Task Scheduler), and not by an actual
+administrative user, it is intended to produce no output to the
+screen.&nbsp; So the rule is, no response is a good response, when it
+comes to Scheduler.&nbsp; A response on the screen means a task is not
+functioning correctly.<br />
+<br />
+In fact, only warnings and error messages are shown on the screen,
+which usually causes the system's scheduling utility to email the
+server's administrator so you can fix the problem.<br />
+<br />
+Any deliberate output produced by a task (ie. echo "all done!";) isn't
+printed to the screen like you'd expect, but rather it is appended to a
+log file that lives in the inc/app/scheduler/log folder called
+scheduler.log.&nbsp; The format of a log message is as follows:<br />
+<br />
+2003-09-21 23:00:16 (task_name) Error: all done!<br />

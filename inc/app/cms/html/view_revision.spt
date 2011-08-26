@@ -1,0 +1,116 @@
+<style type="text/css">
+
+	.cms-tab-active {
+		float: right;
+		width: 150px;
+		height: 16px;
+		margin-right: 1px;
+		text-align: center;
+		padding: 3px;
+		background-color: #eee;
+		font-weight: bold;
+		background-image: url('{site/prefix}/inc/app/cms/pix/corner.gif');
+		background-repeat: no-repeat;
+	}
+
+	.cms-tab-button {
+		float: right;
+		width: 150px;
+		height: 16px;
+		margin-right: 1px;
+		text-align: center;
+		padding: 3px;
+		background-color: #cde;
+		background-image: url('{site/prefix}/inc/app/cms/pix/corner.gif');
+		background-repeat: no-repeat;
+	}
+
+</style>
+
+<h1>{intl Viewing Revision}: {collection} / {title} / {cgi/_rid}</h1>
+
+<p>
+	{if not strstr (obj[return], 'cms-deleted-items-action')}
+	<a href="{site/prefix}/index/cms-history-action?_collection={cgi/_collection}&_key={cgi/_key}&_return={cgi/_return}&_current={cgi/_current}">{intl Back}</a>
+	&nbsp;&nbsp;
+        <a href="{site/prefix}/cms-history-restore-action?collection={cgi/_collection}&key={cgi/_key}&rid={cgi/_rid}&_return={cgi/_return}&_current={cgi/_current}">{intl Restore}</a>
+	{end if}
+	{if strstr (obj[return], 'cms-deleted-items-action')}
+	<a href="{return}">{intl Back}</a>
+	&nbsp;&nbsp;
+        <a href="{site/prefix}/cms-deleted-restore-action?collection={cgi/_collection}&key={cgi/_key}&rid={cgi/_rid}&_return={return}">{intl Restore}</a>
+	{end if}
+</p>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td align="right" colspan="2" style="padding: 0px">
+			{if not strstr (obj[return], 'cms-deleted-items-action')}
+			<div class="cms-tab-button"><a href="{site/prefix}/index/cms-history-diff-action?_collection={cgi/_collection}&_key={cgi/_key}&_return={cgi/_return}&_rid={cgi/_rid}&_current={cgi/_current}">{intl Highlight Changes}</a></div>
+			<div class="cms-tab-button"><a href="{site/prefix}/index/cms-history-compare-action?_collection={cgi/_collection}&_key={cgi/_key}&_return={cgi/_return}&_rid={cgi/_rid}&_current={cgi/_current}">{intl Compare to Current}</a></div>
+			{end if}
+			<div class="cms-tab-active"><a href="#">{intl View}</a></div>
+		</td>
+	</tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="100%" style="background-color: #eee; height: 5px"><img src="{site/prefix}/inc/app/cms/pix/spacer.gif" alt="" border="0" height="5" /></td>
+	</tr>
+	<tr>
+		<td valign="top" style="border: 1px solid #eee">
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th align="left" colspan="2">{intl Revision Info}</th>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Revision ID}</th>
+		<td class="field" valign="top">{sv_autoid}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Author}</th>
+		<td class="field" valign="top">{sv_author}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Action}</th>
+		<td class="field" valign="top">{sv_action}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Date / Time}</th>
+		<td class="field" valign="top">{sv_revision}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Current}</th>
+		<td class="field" valign="top">{sv_current}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Deleted}</th>
+		<td class="field" valign="top">{sv_deleted}</td>
+	</tr>
+	<tr>
+		<td class="label" valign="top">{intl Change Summary}</th>
+		<td class="field" valign="top">{sv_changelog}</td>
+	</tr>
+	<tr>
+		<th align="left" colspan="2">{intl Revision Data}</th>
+	</tr>
+	{loop get_object_vars (obj[revision])}
+	<tr>
+		<td class="label" valign="top">{filter cms_filter_colname}{loop/_key}{end filter}</td>
+		{if cgi._collection eq 'sitellite_filesystem' and loop._key eq 'body'}
+		<td class="field" valign="top"><a href="{site/prefix}/index/cms-filesystem-action?file={cgi/_key}&rid={cgi/_rid}">{intl Download file}</a></td>
+		{end if}
+		{if else}
+		<td class="field" valign="top">{filter none}{loop/_value}{end filter}</td>
+		{end if}
+	</tr>
+	{end loop}
+</table>
+
+		</td>
+	</tr>
+</table>
+</p>

@@ -1,0 +1,419 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<title>MIDI CLASS v1.1</title>
+<style><!--
+h2 {
+  padding-top:20px;
+  padding-bottom:0px;
+}
+h3 {
+  text-decoration:underline;
+  padding-top:20px;
+  padding-bottom:0px;
+}
+.func {
+  font-weight:bold;
+}
+.sample {
+  padding-top:10px;
+  padding-bottom:5px;
+  font-family:"courier new",courier;
+  color:#000099;
+}
+-->
+</style>
+</head>
+<body>
+
+<h1>MIDI CLASS v1.1</h1>
+
+
+<h2>METHOD OVERVIEW</h2>
+
+<a href="#addMsg">addMsg()</a><br>
+<a href="#deleteMsg">deleteMsg()</a><br>
+<a href="#deleteTrack">deleteTrack()</a><br>
+<a href="#downloadMidFile">downloadMidFile()</a><br>
+<a href="#getBpm">getBpm()</a><br>
+<a href="#getDrumkitList">getDrumkitList()</a><br>
+<a href="#getDrumset">getDrumset()</a><br>
+<a href="#getInstrumentList">getInstrumentList()</a><br>
+<a href="#getMid">getMid()</a><br>
+<a href="#getMsg">getMsg()</a><br>
+<a href="#getNoteList">getNoteList()</a><br>
+<a href="#getTempo">getTempo()</a><br>
+<a href="#getTimebase">getTimebase()</a><br>
+<a href="#getTrackCount">getTrackCount()</a><br>
+<a href="#getTrackTxt">getTrackTxt()</a><br>
+<a href="#getTxt">getTxt()</a><br>
+<a href="#getXml">getXml()</a><br>
+<a href="#importMid">importMid()</a><br>
+<a href="#importTrackTxt">importTrackTxt()</a><br>
+<a href="#importTxt">importTxt()</a><br>
+<a href="#importXml">importXml()</a><br>
+<a href="#insertMsg">insertMsg()</a><br>
+<a href="#newTrack">newTrack()</a><br>
+<a href="#open">open()</a><br>
+<a href="#playMidFile">playMidFile()</a><br>
+<a href="#saveMidFile">saveMidFile()</a><br>
+<a href="#setBpm">setBpm()</a><br>
+<a href="#setTempo">setTempo()</a><br>
+<a href="#setTimebase">setTimebase()</a><br>
+<a href="#soloTrack">soloTrack()</a><br>
+<a href="#transpose">transpose()</a><br>
+<a href="#transposeTrack">transposeTrack()</a><br>
+
+<h2>METHODS IN DETAIL</h2>
+
+
+<h3>Binary Input</h3>
+
+<a name="importMid"><span class="func">importMid($smf_path)</span></a><br>
+imports standard MIDI file (SMF) of type 0 or 1.
+<br><br>
+Example:<br>
+<span class="sample">$midi->importMid($file);</span>
+
+
+
+<h3>Text Input</h3>
+
+<a name="importTxt"><span class="func">importTxt($txt)</span></a><br>
+imports MIDI song in <a href="#mf2t">MF2T/T2MF</a> ASCII format (e.g. fetched from database). If a line "TimestampType=Delta" is found at the beginning of a track (next line after "MTrk"), all timestamps of this track are interpreted as relative (delta) values, otherwise as absolute values.
+<br><br>
+Notice:<br>
+Relative timestamps and the "TimestampType=Delta" are not compatible with the original MF2T/T2MF format!
+<br><br>
+Example:<br>
+<span class="sample">$midi->importTxt($txt);</span>
+
+<br><br><br>
+<a name="importTrackTxt"><span class="func">importTrackTxt($txt [, $tn])</span></a><br>
+imports MIDI track in <a href="#mf2t">MF2T/T2MF</a> format. If optional track number $tn is specified, track $tn is replaced, otherwise new track is appended. If a line "TimestampType=Delta" is found at the beginning of the track (next line after "MTrk"), all timestamps of this track are interpreted as relative (delta) values, otherwise as absolute values.
+<br><br>
+Notice:<br>
+Relative timestamps and the "TimestampType=Delta" are not compatible with the original MF2T/T2MF format! 
+<br><br>
+Example:<br>
+<span class="sample">$midi->importTrackTxt($txt, 2);</span>
+
+
+
+<h3>XML Input</h3>
+
+<a name="importXML"><span class="func">importXML($txt)</span></a><br>
+imports MIDI song in <a href="#xml">MIDI XML</a> format
+<br><br>
+Example:<br>
+<span class="sample">$midi->importXML($xmlStr);</span>
+
+
+
+<h3>Binary Output</h3>
+
+<a name="getMid"><span class="func">getMid()</span></a><br>
+returns MIDI song as binary MIDI string (SMF).
+<br><br>
+Example:<br>
+<span class="sample">$smf = $midi->getMid();</span>
+
+<br><br><br>
+<a name="saveMidFile"><span class="func">saveMidFile($mid_path)</span></a><br>
+saves MIDI song as standard MIDI file (SMF).
+<br><br>
+Example:<br>
+<span class="sample">$midi->saveMidFile('/tmp/song1.mid');</span>
+
+<br><br><br>
+<a name="playMidFile"><span class="func">playMidFile($file [,$visible=1,$autostart=1,$loop=1,$plug=''])</a></span><br>
+embeds MIDI file in web page. Optional parameters for visibility, autostart and looping (1=yes,0=no). Optional parameter $plug determines preferred plugin, it can be 'bk' (beatnik),
+'qt' (QuickTime) or 'wm' (Windows Media Player), if it's omitted or empty string (''), the default player for MIDI files is used (&lt;embed type="audio/midi"...&gt;).
+<br><br>
+Examples:<br>
+<span class="sample">$midi->playMidFile($file);</span><br>
+<span class="sample">$midi->playMidFile($file,0,1,0,'bk');</span>
+
+<br><br><br>
+<a name="downloadMidFile"><span class="func">downloadMidFile($file,$output)</span></a><br>
+starts download of file $file. $output is the proposed filename for saving.
+<br><br>
+Example:<br>
+<span class="sample">$midi->downloadMidFile('/tmp/~tmp1.mid','song1.mid');</span>
+
+
+
+<h3>Text Output</h3>
+
+<a name="getTxt"><span class="func">getTxt([$ttype=0])</span></a><br>
+returns MIDI song in <a href="#mf2t">MF2T/T2MF</a> format (e.g. to save to database). Optional Parameter $ttype determines timestamp type, if $ttype==0 (or omitted), the timestamps are absolute values and the result is compatible to the original MF2T/T2MF format, if $ttype==1, timestamps are relative values (not compatible to original MF2T/T2MF format):
+<br><br>
+Notice:<br>
+As messages are internally stored with absolute timestamps, getTxt() is much faster than getTxt(1);
+<br><br>
+Example:<br>
+<span class="sample">$str = $midi->getTxt();</span>
+
+<br><br><br>
+<a name="getTrackTxt"><span class="func">getTrackTxt($tn[,$ttype=0])</span></a><br>
+returns track number $tn in <a href="#mf2t">MF2T/T2MF</a> format. For optional parameter $ttype see <a href="#getTxt">getTxt()</a>.
+<br><br>
+Example:<br>
+<span class="sample">$str = $midi->getTrackTxt(2,1);</span>
+
+
+
+<h3>XML Output</h3>
+
+<a name="getXml"><span class="func">getXml([$ttype=0])</span></a><br>
+returns MIDI song as <a href="#xml">MIDI XML</a>. Optional Parameter $ttype determines timestamp type, if $ttype==0 (or omitted), the timestamps are absolute values, if $ttype==1 timestamps are relative (delta) values. The output is compatible to the MIDI XML standard v0.8 by <a href="http://www.recordare.com/dtds/midixml.html">MusicXML/Recordare</a> (except for 2 bugs in the v0.8 <a href="http://www.musicxml.org/dtds/midixml.dtd">dtd</a>, which according to Recordare will be fixed in the next version 0.9).
+<br><br>
+Notice:<br>
+As messages are internally stored with absolute timestamps, getXml() is much faster than getXml(1);
+<br><br>
+Example:<br>
+<span class="sample">$xmlStr = $midi->getXml();</span>
+
+
+
+<h3>Info</h3>
+
+<a name="getTempo"><span class="func">getTempo()</span></a><br>
+returns MIDI tempo value (0 if not set).
+
+<br><br><br>
+<a name="getBpm"><span class="func">getBpm()</span></a><br>
+returns tempo as beats per minute (0 if tempo not set).
+
+<br><br><br>
+<a name="getTimebase"><span class="func">getTimebase()</span></a><br>
+returns timebase value.
+
+<br><br><br>
+<a name="getTrackCount"><span class="func">getTrackCount()</span></a><br>
+returns number of tracks.
+
+<br><br><br>
+<a name="getMsg"><span class="func">getMsg($tn,$mn)</span></a><br>
+returns message string number $mn of track number $tn. The message string is in <a href="#mf2t">MF2T/T2MF</a> format.
+<br><br>
+Example:<br>
+<span class="sample">$msgStr = $midi->getMsg(2, 23);</span>
+
+
+
+<h3>Generation/Manipulation</h3>
+
+<a name="open"><span class="func">open([$timebase=480])</span></a><br>
+creates(resets) new empty MIDI song for further processing (eg. with newTrack() and addMsg()). Optional parameter $timebase to set its timebase (default = 480).
+<br><br>
+Example:<br>
+<span class="sample">$midi->open(240);</span>
+
+<br><br><br>
+<a name="newTrack"><span class="func">newTrack()</span></a><br>
+adds new empty track, returns its track number.
+<br><br>
+Example:<br>
+<span class="sample">$newTrck = $midi->newTrack();</span>
+
+<br><br><br>
+<a name="addMsg"><span class="func">addMsg($tn, $msgStr[, $ttype=0])</span></a><br>
+appends message string $msgStr to end of track $tn. If $ttype==0 or omitted, timestamp is interpreted as absolute value, if $ttype==1, it's interpreted as relative (delta) value. The message string has to be in <a href="#mf2t">MF2T/T2MF</a> format.
+<br><br>
+Notice:<br>
+addMsg() is faster then insertMsg(), but it does not check for correct position according to time.
+<br><br>
+Example:<br>
+<span class="sample">$midi->addMsg(1, "4800 On ch=1 n=66 v=80");</span>
+
+<br><br><br>
+<a name="insertMsg"><span class="func">insertMsg($tn,$msgStr)</span></a><br>
+adds message at adequate position of track number $tn (slower than addMsg).<br>
+If other messages with same time are found, new message is inserted before
+those.  The message string has to be in <a href="#mf2t">MF2T/T2MF</a> format.
+<br><br>
+Example:<br>
+<span class="sample">$midi->insertMsg(0, "0 Meta Text \"created by fluxus\"");</span>
+
+<br><br><br>
+<a name="deleteMsg"><span class="func">deleteMsg($tn,$mn)</span></a><br>
+deletes message $mn of track $tn.
+
+<br><br><br>
+<a name="setBpm"><span class="func">setBpm($bpm)</span></a><br>
+sets tempo corresponding to given beats per minute $bpm.
+
+<br><br><br>
+<a name="setTempo"><span class="func">setTempo($tempo)</span></a><br>
+sets tempo by replacing set tempo msg in track 0 (or adding new track 0).
+
+<br><br><br>
+<a name="setTimebase"><span class="func">setTimebase($tb)</span></a><br>
+sets timebase
+
+<br><br><br>
+<a name="deleteTrack"><span class="func">deleteTrack($tn)</span></a><br>
+deletes track number $tn.
+
+<br><br><br>
+<a name="soloTrack"><span class="func">soloTrack($tn)</span></a><br>
+deletes all tracks except track number $tn (and $track 0 which contains tempo info).
+
+<br><br><br>
+<a name="transpose"><span class="func">transpose($dn)</span></a><br>
+transposes song by $dn (positive or negative) half tone steps.
+<br><br>
+Example:<br>
+<span class="sample">$midi->transpose(12); // 1 octave up</span>
+
+
+<br><br><br>
+<a name="transposeTrack"><span class="func">transposeTrack($tn, $dn)</span></a><br>
+transposes all notes of track number $tn by $dn (positive or negative) half tone steps.
+<br><br>
+Example:<br>
+<span class="sample">$midi->transposeTrack(1, -12); // 1 octave down</span>
+
+<h3>Utilities</h3>
+
+<a name="getDrumkitList"><span class="func">getDrumkitList()</span></a><br>
+returns list of standard gm drum kit names (associative array, key=number, value=name).
+
+<br><br><br>
+<a name="getDrumset"><span class="func">getDrumset()</span></a><br>
+returns list of gm drumset instrument names (associative array, key=number, value=name).
+
+<br><br><br>
+<a name="getInstrumentList"><span class="func">getInstrumentList()</span></a><br>
+returns list of standard instrument names.
+
+<br><br><br>
+<a name="getNoteList"><span class="func">getNoteList()</span></a><br>
+returns list of note names ('C0',...).
+<br><br>
+
+
+
+<h2><a name="mf2t">MF2T/T2MF text format</a></h2>
+excerpt of readme.txt in <a href="ftp://ftp.cs.ruu.nl/pub/MIDI/PROGRAMS/MSDOS/mf2t.zip">mf2t.zip</a>
+<pre>
+Format of the textfile:
+-----------------------
+
+File header:        Mfile &lt;format&gt; &lt;ntrks&gt; &lt;division&gt;
+Start of track:     MTrk
+End of track:       TrkEnd
+
+Note On:            On &lt;ch&gt; &lt;note&gt; &lt;vol&gt;
+Note Off:           Off &lt;ch&gt; &lt;note&gt; &lt;vol&gt;
+Poly Pressure:      PoPr[PolyPr] &lt;ch&gt; &lt;note&gt; &lt;val&gt;
+Channel Pressure:   ChPr[ChanPr] &lt;ch&gt; &lt;val&gt;
+Controller
+parameter:          Par[Param] &lt;ch&gt; &lt;con&gt; &lt;val&gt;
+Pitch bend:         Pb &lt;ch&gt; &lt;val&gt;
+Program change:     PrCh[ProgCh] &lt;ch&gt; &lt;prog&gt;
+Sysex message:      SysEx &lt;hex&gt;
+
+
+Sequence nr:        Seqnr &lt;num&gt;
+Key signature:      KeySig &lt;num&gt; &lt;manor&gt;
+Tempo:              Tempo &lt;num&gt;
+Time signature:     TimeSig &lt;num&gt;/&lt;num&gt; &lt;num&gt; &lt;num&gt;
+SMPTE event:        SMPTE &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+
+Meta text events:   Meta &lt;texttype&gt; &lt;string&gt;
+Meta end of track:  Meta TrkEnd
+Sequencer specific: SeqSpec &lt;type&gt; &lt;hex&gt;
+Misc meta events:   Meta &lt;type&gt; &lt;hex&gt;
+
+The &lt;&gt; have the following meaning:
+
+&lt;ch&gt;        ch=&lt;num&gt;
+&lt;note&gt;      n=&lt;noteval&gt;  [note=&lt;noteval&gt;]
+&lt;vol&gt;       v=&lt;num&gt; [vol=&lt;num&gt;]
+&lt;val&gt;       v=&lt;num&gt; [val=&lt;num&gt;]
+&lt;con&gt;       c=&lt;num&gt; [con=&lt;num&gt;]
+&lt;prog&gt;      p=&lt;num&gt; [prog=&lt;num&gt;]
+&lt;manor&gt;     minor or major
+&lt;noteval&gt;   either a &lt;num&gt; or A-G optionally followed by #,
+            followed by &lt;num&gt; without intermediate spaces.
+
+&lt;texttype&gt;  Text Copyright SeqName TrkName InstrName Lyric Marker Cue or &lt;type&gt;
+&lt;type&gt;      a hex number of the form 0xab
+&lt;hex&gt;       a sequence of 2-digit hex numbers (without 0x) separated by space
+&lt;string&gt;    a string between double quotes (like "text").
+
+Channel numbers are 1-based, all other numbers are as they appear in the midifile.
+
+&lt;division&gt;  is either a positive number (giving the time resolution in
+            clicks per quarter note) or a negative number followed by a positive
+            number (giving SMPTE timing).
+
+&lt;format&gt; &lt;ntrks&gt; &lt;num&gt; are decimal numbers.
+
+The &lt;num&gt; in the Pb is the real value (two midibytes combined).
+In Tempo it is a long (32 bits) value. Others are in the interval 0-127.
+The SysEx sequence contains the leading F0 and the trailing F7.
+</pre>
+
+<h2><a name="xml">MIDI XML format</a></h2>
+(for details see Standard MIDI File DTD by <a href="http://www.recordare.com/dtds/midixml.html">Recordare</a>, or my <a  href="http://dasdeck.de/staff/valentin/midi/dtds/midixml.dtd">fixed version</a>)
+<br><br>
+
+<b>Supported elements:</b>
+<pre>
+&lt;MIDIFile&gt;...&lt;/MIDIFile&gt;
+&lt;Format&gt;...&lt;/Format&gt;
+&lt;TrackCount&gt;...&lt;/TrackCount&gt;
+&lt;TicksPerBeat&gt;...&lt;/TicksPerBeat&gt;
+&lt;TimestampType&gt;...&lt;/TimestampType&gt;
+</pre>
+
+<b>Supported events:</b>
+<pre>
+&lt;ProgramChange Channel="..." Number="..."/&gt;
+&lt;NoteOn Channel="..." Note="..." Velocity="..."/&gt;
+&lt;NoteOff Channel="..." Note="..." Velocity="..."/&gt;
+&lt;PolyKeyPressure Channel="..." Note="..." Pressure="..."/&gt;
+&lt;ControlChange Channel="..." Control="..." Value="..."/&gt;
+&lt;ChannelKeyPressure Channel="..." Pressure="..."/&gt;
+&lt;PitchBendChange Channel="..." Value="..."/&gt;
+&lt;SequenceNumber Value="..."/&gt;
+&lt;TextEvent&gt;...&lt;/TextEvent&gt;
+&lt;CopyrightNotice&gt;...&lt;/CopyrightNotice&gt;
+&lt;TrackName&gt;...&lt;/TrackName&gt;
+&lt;InstrumentName&gt;...&lt;/InstrumentName&gt;
+&lt;Lyric&gt;...&lt;/Lyric&gt;
+&lt;Marker&gt;...&lt;/Marker&gt;
+&lt;CuePoint&gt;...&lt;/CuePoint&gt;
+&lt;EndOfTrack/&gt;
+&lt;MIDIChannelPrefix Value="..."/&gt;
+&lt;SetTempo Value="..."/&gt;
+&lt;SMPTEOffset TimeCodeType="1" Hour="..." Minute="..." Second="..." Frame="..." FractionalFrame="..."&gt;&lt;/SMPTEOffset&gt;
+&lt;TimeSignature Numerator="..." LogDenominator="..." MIDIClocksPerMetronomeClick="..." ThirtySecondsPer24Clocks="..."/&gt;
+&lt;KeySignature Fifths="..." Mode="..."/&gt;
+&lt;SequencerSpecific&gt;...&lt;/SequencerSpecific&gt;
+&lt;SystemExclusive&gt;...&lt;/SystemExclusive&gt;
+</pre>
+
+<b>Not (yet) supported elements:</b>
+<pre>
+&lt;!-- for SMPTE time codes --&gt;
+&lt;FrameRate&gt;...&lt;/FrameRate&gt;
+&lt;TicksPerFrame&gt;...&lt;TicksPerFrame&gt;
+</pre>
+
+<b>Not (yet) supported events:</b>
+<pre>
+&lt;EndOfExclusive&gt;...&lt;/EndOfExclusive&gt;
+&lt;ProgramName&gt;...&lt;/ProgramName&gt;
+&lt;DeviceName&gt;...&lt;/DeviceName&gt;
+&lt;XMFPatchTypePrefix Value="..."/&gt;
+&lt;Port Value="..."/&gt;
+&lt;OtherMetaEvent Number="..."&gt;...&lt;/OtherMetaEvent&gt;
+</pre>
+
+<br><br><br><br><br><br>
+</body>
+</html>

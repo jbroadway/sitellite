@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title>{php PRODUCT_NAME}</title>
+
+		<script language="javascript" type="text/javascript">
+
+		if (top.location != document.location) {
+			top.location = document.location;
+		}
+
+		</script>
+	</head>
+
+	<frameset rows="97,*" border="0" frameborder="0" framespacing="0">
+        <!-- #75 Default view in preferences. -->
+		<!-- src="{site/prefix}/index/cms-top-action" -->
+        <frame
+            src="{site/prefix}/index/cms-top-action?forward={if obj[forward]}{filter base64_encode}{forward}{end filter}{end if}"
+			name="cms-top-window"
+			id="cms-top-window"
+			scrolling="no"
+			noresize="noresize"
+			marginheight="0"
+			marginwidth="0"
+			border="0"
+			frameborder="0"
+			framespacing="0"
+		/>
+		<frame
+			src="{site/prefix}/index/cms-login-action?forward={if obj[forward]}{filter base64_encode}{forward}{end filter}{end if}{if session_admin ()}&refreshed=true{end if}{if not session_admin () and obj[user]}&username={user}{end if}"
+			name="cms-content-window"
+			id="cms-content-window"
+			marginheight="0"
+			marginwidth="0"
+			border="0"
+			frameborder="0"
+			framespacing="0"
+		/>
+	</frameset>
+	<noframes>
+		{intl You must use a browser that is capable of displaying frames in order to use this software.}
+	</noframes>
+</html>

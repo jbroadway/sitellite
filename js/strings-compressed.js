@@ -1,0 +1,1 @@
+String.prototype.nl2br=function(){return this.replace(/\n/g,"<br />")};String.prototype.br2nl=function(){return this.replace(/\<br ?\/?\>/g,"\n")};

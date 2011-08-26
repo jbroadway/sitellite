@@ -1,0 +1,22 @@
+{box cms/buttons/add?collection=sitefaq_question&return=[site/current]}
+
+{if appconf ('user_submissions')}
+<p>
+	<a href="{site/prefix}/index/sitefaq-submission-form">{intl Ask a Question}</a>
+</p>
+{end if}
+
+<ul>
+	{loop obj[list]}
+		<li><a href="#faq-{loop/id}">{loop/question}</a></li>
+	{end loop}
+</ul>
+
+{loop obj[list]}
+	{box cms/buttons?collection=sitefaq_question&id=[loop/id]&access=public&status=approved&team=none&add=false&float=true&return=[site/current]}
+
+	<a name="faq-{loop/id}"></a>
+	<p class="faq-question"><strong><span class="faq-q">Q.</span> {loop/question}</strong></p>
+
+	<div class="faq-answer"><span class="faq-a">A.</span> {filter none}{loop/answer}{end filter}</div>
+{end loop}

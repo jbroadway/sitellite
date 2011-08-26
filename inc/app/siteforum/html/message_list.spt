@@ -1,0 +1,108 @@
+<p>
+	<a href="{site/prefix}/index/siteforum-app">{forum_name}</a> /
+	<a href="{site/prefix}/index/siteforum-topic-action/topic.{cgi/topic}/title.{filter siteforum_filter_link_title}{topic}{end filter}">{topic}</a> /
+	{subject}
+</p>
+
+<p>
+	<a href="{site/prefix}/index/siteforum-post-form?topic={cgi/topic}&post={cgi/post}">{intl Reply}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/siteforum-subscribe-action?post={cgi/post}">{intl Subscribe}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/siteforum-post-form?topic={cgi/topic}">{intl Start new thread}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/siteforum-search-action?topic={cgi/topic}&post={cgi/post}">{intl Search}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	{if appconf ('rss_links')}
+		<a href="{site/prefix}/index/siteforum-rss-action/thread.{cgi/post}">{intl Syndicated Feed (RSS)}</a>
+		&nbsp; &nbsp; &nbsp; &nbsp;
+	{end if}
+</p>
+
+{alt #fff #eee}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th align="left" width="20%">{intl Author}</th>
+		<th align="left">{intl Message}</th>
+	</tr>
+	{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td valign="top">
+			{if loop.public eq 'yes'}
+			<strong>
+				<a href="{site/prefix}/index/sitemember-profile-action/user.{loop/user_id}">{loop/user_id}</a>
+			</strong>
+			<br />
+			<br />
+			{intl Posts}: {loop/posts}
+			<br />
+			{intl Location}: {loop/location}
+			{end if}
+			{if else}
+				<strong>{loop/user_id}</strong><br /><br />{intl Posts}: {loop/posts}
+			{end if}
+		</td>
+		<td valign="top">
+			<table border="0" cellpadding="0" width="100%">
+				<tr>
+					<td style="border-bottom: 1px solid #aaa">
+			<a name="siteforum-message-{loop/id}"></a>
+			<strong>{loop/subject}</strong> - {intl Posted}: {filter siteforum_filter_date}{loop/ts}{end filter}
+				{if session_admin ()}
+				        &nbsp;&nbsp;<a href="{site/prefix}/index/siteforum-post-edit-form?id={loop/id}"><img
+							src="{site/prefix}/inc/app/cms/pix/icons/edit.gif"
+							alt="{intl Edit Post}"
+							title="{intl Edit Post}"
+							border="0"
+						/></a>
+                        &nbsp;&nbsp;<a href="{site/prefix}/index/siteforum-post-delete-action?id={loop/id}" onclick="return confirm ('{intl Are you sure you want to delete this post?}')"><img
+                            src="{site/prefix}/inc/app/cms/pix/icons/delete.gif"
+                            alt="{intl Delete Post}"
+                            title="{intl Delete Post}"
+                            border="0"
+                        /></a>
+				{end if}
+					</td>
+					<td align="right">
+			<a href="{site/prefix}/index/siteforum-post-form?topic={cgi/topic}&post={cgi/post}&quote={loop/id}">{intl Quote and reply}</a>
+			{if session_username () eq loop.user_id}
+				&nbsp;&nbsp;<a href="{site/prefix}/index/siteforum-post-edit-form?id={loop/id}">{intl Edit post}</a>
+			{end if}
+					</td>
+				</tr>
+			</table>
+			{filter siteforum_filter_body}{loop/body}
+			{if not empty (loop.sig)}<br /><br />{loop/sig}{end if}
+			{end filter}
+			{if count (loop.attachments) gt 0}
+			<p><strong>{intl Attached file}:</strong></p>
+			<ul>
+			{loop loop.attachments}
+				<li><a href="{site/prefix}/index/siteforum-attachment-action/id.{loop/post_id}/{loop/name}">{loop/name} ({loop/size|format_filesize})</a></li>
+			{end loop}
+			</ul>
+			{end if}
+		</td>
+	</tr>
+	<tr style="background-color: {alt/current}">
+		<td>
+			<a href="#top">{intl Back to top}</a>
+		</td>
+		<td>
+			{if loop.public eq 'yes'}
+				<a href="{site/prefix}/index/sitemember-profile-action/user.{loop/user_id}">{intl View user profile}</a> &nbsp; &nbsp;
+				<a href="{site/prefix}/index/sitemember-contact-form?user={loop/user_id}">{intl Contact this member}</a>
+			{end if}
+		</td>
+	</tr>
+	{end loop}
+</table>
+

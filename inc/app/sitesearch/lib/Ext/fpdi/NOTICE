@@ -1,0 +1,9 @@
+
+   This software contains code derived from an article in the magazine
+   php|architect by Marco Tabini.
+
+   This software contains code derived from Oliver Plathey - The author of
+   FPDF. FPDF is available from: http://www.fpdf.org
+
+   The LZW- and the ASCII85-Decoder are adapted from the iText-Library
+   http://www.lowagie.com/iText/

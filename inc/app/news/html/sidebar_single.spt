@@ -1,0 +1,5 @@
+<p><a href="{site/prefix}/index/news-app/story.{id}/title.{filter news_link_title}{title}{end filter}">{if obj.show_thumb eq 'yes'}<img src="{thumb}" alt="{title}" border="0" class="news-thumbnail" />{end if}
+<span class="news-headline">{if obj.show_date ne 'no'}{date} - {end if}{title}</span></a></p>
+{if obj.show_summary eq 'yes'}
+<p>{summary}</p>
+{end if}

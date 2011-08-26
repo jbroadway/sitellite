@@ -1,0 +1,10 @@
+<div id="scm-toolbar"
+{if obj[float]}style="float: right"{end if}
+{if not obj[float]}align="right"{end if}
+>
+	<table>
+		<tr>
+			<td align="center"><a href="{site/prefix}/index/cms-add-form?collection={collection}&_return={return}{extra}"><img src="{site/prefix}/inc/app/cms/pix/icons/add.gif" alt="{intl Add New} {type}" title="{intl Add New} {type}" border="0" /></a></td>
+		</tr>
+	</table>
+</div>

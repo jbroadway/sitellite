@@ -1,0 +1,127 @@
+{if session_admin ()}
+	{box cms/buttons?collection=siteevent_event&object=[obj]&float=true}
+{end if}
+
+<p><a href="{site/prefix}/index/siteevent-app">{intl Back to Calendar}</a></p>
+
+<!-- p style="float: right; width: 175px">
+	{box siteevent/mini?minical=[cgi/minical]}
+</p -->
+
+<table border="0" cellpadding="5" cellspacing="1" width="100%" class="siteevent-details">
+	<tr>
+		<th colspan="2">{intl Details}</th>
+	</tr>
+	<tr>
+		<td width="20%" valign="top">{intl Title}:</td>
+		<td width="80%" valign="top"><strong>{title}</strong></td>
+	</tr>
+	{if obj._details}
+	<tr>
+		<td width="20%" valign="top">{intl Description}:</td>
+		<td width="80%" valign="top">{filter none}{details}{end filter}</td>
+	</tr>
+	{end if}
+	{if not empty (obj.sponsor)}
+	<tr>
+		<td width="20%" valign="top">{intl Sponsor}:</td>
+		<td width="80%" valign="top">{sponsor}</td>
+	</tr>
+	{end if}
+	<tr>
+		<td width="20%" valign="top">{intl When}:</td>
+		<td width="80%" valign="top">{date}{if obj.recur}, {recur}{end if}{if obj.time}, {time}{end if}</td>
+	</tr>
+	{if obj.loc_info}
+	<tr>
+		<td width="20%" valign="top">{intl Where}:</td>
+		<td width="80%" valign="top">
+			{if not empty (obj.loc_name)}{loc_name}<br />{end if}
+			{if not empty (obj.loc_address)}{filter nl2br}{loc_address}{end filter}<br />{end if}
+			{if not empty (obj.loc_city)}{loc_city}, {loc_province}<br />{end if}
+			{if not empty (obj.loc_country)}{loc_country}<br />{end if}
+			{if not empty (obj.loc_map)}<a href="{loc_map}" target="_blank">{intl Map}</a>{end if}
+			{if not empty (obj.loc_google)}{filter none}{loc_google}{end filter}{end if}
+		</td>
+	</tr>
+	{end if}
+	{if obj.contact_info}
+	<tr>
+		<td width="20%" valign="top">{intl Contact}:</td>
+		<td width="80%" valign="top">
+			{if not empty (obj.contact)}{contact}<br />{end if}
+			{if not empty (obj.contact_email)}<a href="mailto:{contact_email}?subject=Event: {title} ({site/domain})">{contact_email}</a><br />{end if}
+			{if not empty (obj.contact_phone)}{contact_phone}<br />{end if}
+			{if not empty (obj.contact_url)}<a href="{contact_url}" target="_blank">{contact_url}</a>{end if}
+		</td>
+	</tr>
+	{end if}
+	{if not empty (obj.rsvp)}
+	<tr>
+		<td width="20%" valign="top">{intl RSVP}:</td>
+		<td width="80%" valign="top">{rsvp}</td>
+	</tr>
+	{end if}
+<!--	<tr>
+		<td width="20%" valign="top">{intl Access}:</td>
+		<td width="80%" valign="top">
+
+			{if obj.public eq 'no'}{intl This event is not open to the public.}{end if}
+			{if obj.public eq 'yes'}{intl The public is welcome at this event.}{end if}<br />
+			{if obj.media eq 'no'}{intl This event is not open to the media.}{end if}
+			{if obj.media eq 'yes'}{intl This event is open to the media.}{end if}
+
+		</td>
+	</tr> -->
+	{if not empty (obj.category)}
+	<tr>
+		<td width="20%" valign="top">{intl Category}:</td>
+		<td width="80%" valign="top">{category}</td>
+	</tr>
+	{end if}
+	{if not empty (obj.audience)}
+	<tr>
+		<td width="20%" valign="top">{intl Audience}:</td>
+		<td width="80%" valign="top">{filter siteevent_filter_audience}{audience}{end if}</td>
+	</tr>
+	{end if}
+</table>
+
+<!--
+<p><strong>{intl Date}:</strong> {date}{if obj.recur}, {recur}{end if}</p>
+
+{if obj.time}
+<p><strong>{intl Time}:</strong> {time}</p>
+{end if}
+
+{if not empty (obj.category)}
+<p><strong>{intl Category}:</strong> {category}</p>
+{end if}
+
+{if obj.loc_info}
+<h2>{intl Location}</h2>
+
+<p>
+	
+</p>
+{end if}
+
+{if obj.contact_info}
+<h2>{intl Contact}</h2>
+
+<p>
+	{if not empty (obj.contact)}{contact}<br />{end if}
+	{if not empty (obj.contact_email)}<a href="mailto:{contact_email}?subject=Event: {title} ({site/domain})">{contact_email}</a><br />{end if}
+	{if not empty (obj.contact_phone)}{contact_phone}<br />{end if}
+	{if not empty (obj.contact_url)}<a href="{contact_url}" target="_blank">{contact_url}</a>{end if}
+</p>
+{end if}
+
+{if obj._details}
+<h2>{intl Details}</h2>
+
+<div class="siteevent-details">
+{filter none}{details}{end filter}
+</div>
+{end if}
+-->

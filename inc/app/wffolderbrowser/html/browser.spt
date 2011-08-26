@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<title>{page/title}</title>
+		<link rel="stylesheet" type="text/css" href="{site/prefix}/js/prompt.css" />
+		<!-- <script language="javascript" type="text/javascript" src="{site/prefix}/js/jquery-1.3.2.min.js"></script> -->
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/prompt.js"></script>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog.js"></script>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc.js"></script>
+		<script language="javascript">
+		<!--
+
+{spt js.spt}
+
+wf_current = '{id}';
+
+{if obj[limit] eq 'yes'}
+pagebrowser.limit = true;
+{end if}
+
+		// -->
+		</script>
+		<style type="text/css">
+
+{spt css.spt}
+
+		</style>
+	</head>
+	<body onload="if (opener) opener.blockEvents ()" onunload="if (opener) opener.unblockEvents ()"><a name="top"></a>
+
+<p id="stripe">&nbsp;</p>
+
+<h1>{page/title}</h1>
+
+<form style="display: none">
+<p class="blue">{intl Jump to Folder} &nbsp; <select name="jump" id="jump" onchange="return pagebrowser.setCurrent (this.options[this.selectedIndex].value)">
+	<option value="">- {intl SELECT} -</option>
+	{loop obj[sections]}
+		<option value="{loop/id}">{loop/title}</option>
+	{end loop}
+</select></p>
+</form>
+
+<p><a href="#" onclick="return pagebrowser.addFolder ()">{intl Add Folder}</a></p>
+
+<p class="blue">
+<span id="trail">{loop obj[trail]}
+	<a href="#" onclick="return pagebrowser.setCurrent ('{loop/id}')">{loop/title}</a> /
+{end loop}</span>
+<span id="title">{if not empty (obj[title])}{title}{end if}</span>
+</p>
+
+<table id="pages" border="0" cellpadding="3" cellspacing="1">
+	{loop obj[childfolders]}
+		<tr id="folder-{loop/id}">
+			<td width="20"><a href="#" onclick="return pagebrowser.deleteFolder ('{loop/id}')" title="{intl Delete this Folder}"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete this Folder}" title="{intl Delete this Folder}" border="0" /></a></td>
+			<td width="20"><a href="#" onclick="return pagebrowser.setCurrent ('{loop/id}')" title="{intl Enter this Folder}"><img src="{site/prefix}/inc/app/wffolderbrowser/pix/add.gif" border="0" alt="{intl Enter this Folder}" title="{intl Enter this Folder}" /></a></td>
+			<td><a href="#" onclick="return pagebrowser.select ('{loop/id}')" title="{intl Select this Folder}">{loop/name}</a></td>
+		</tr>
+	{end loop}
+<!--
+	{loop obj[children]}
+		<tr>
+-->
+<!--
+		{if loop.children gt 0}
+			<td width="20"><a href="#" onclick="return pagebrowser.setCurrent ('{loop/id}')" title="{intl Open}"><img src="{site/prefix}/inc/app/pagebrowser/pix/add.gif" border="0" alt="{intl Open}" title="{intl Open}" /></a></td>
+		{end if}
+		{if else}
+			<td width="20"><img src="{site/prefix}/inc/app/pagebrowser/pix/greyed.gif" border="0" alt="{intl No Children}" title="{intl No Children}" /></td>
+		{end if}
+			<td><a href="#" onclick="return pagebrowser.select ('{loop/id}')" title="{intl Select this Page}">{loop/title} ({loop/children})</a></td>
+-->
+<!--
+			<td width="20"><a href="#" onclick="return pagebrowser.select ('{loop/id}')" title="{intl Select this Page}"><img src="{site/prefix}/inc/app/wffolderbrowser/pix/file.gif" border="0" alt="{intl Select this Page}" title="{intl Select this Page}" /></a></td>
+			<td><a href="#" onclick="return pagebrowser.select ('{loop/id}')" title="{intl Select this Page}">{loop/title}</a></td>
+		</tr>
+	{end loop}
+-->
+</table>
+
+<!-- hr />
+<p>
+Copyright &copy; {php date ('Y')} <a href="http://www.simian.ca/" target="_blank">SIMIAN systems Inc.</a><br />
+All rights reserved.
+</p -->
+
+	</body>
+</html>

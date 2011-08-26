@@ -1,0 +1,41 @@
+<script language="javascript" type="text/javascript">
+
+function bookmark_select (url) {
+	if (opener && ! opener.closed) {
+		opener.dialogWin.returnedValue = url;
+		opener.dialogWin.returnFunc ();
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+	window.close ();
+	return false;
+}
+
+</script>
+
+<p>
+	<a href="{site/prefix}/index/xed-bookmarks-add-form">{intl Add Bookmark}</a>
+</p>
+
+{if count (obj[list]) gt 0}
+<form method="post" action="{site/prefix}/index/xed-bookmarks-delete-action" style="display: inline">
+
+{alt #eee #fff}
+
+<table border="0" cellpadding="3" cellspacing="1" width="95%">
+{loop obj[list]}
+	<tr style="background: {alt/next}"><td valign="top" style="width: 20px" align="center">
+		<input type="checkbox" name="del[]" value="{loop/id}" />
+	</td>
+	<td valign="middle" style="padding-left: 5px">
+		<a href="#" onclick="return bookmark_select ('{loop/url}')" title="{loop/url}">{loop/name}</a>
+	</td></tr>
+{end loop}
+</table>
+
+<p>
+	<input type="submit" value="{intl Delete}" onclick="return confirm ('{intl Are you sure you want to delete these bookmarks?}')" />
+</p>
+
+</form>
+{end if}

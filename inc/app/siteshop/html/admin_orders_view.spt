@@ -1,0 +1,150 @@
+<style type="text/css">
+
+div#print-header {
+	display: none !important;
+}
+
+@media print {
+	.hide-me, h1, .navbar, #footer, #return-to-top, form {
+		display: none !important;
+	}
+	div#print-header {
+		display: block !important;
+	}
+	table {
+		width: 100% !important;
+	}
+	th {
+		background-color: #ddd;
+		color: #000;
+	}
+	h2 {
+		color: #000;
+	}
+}
+
+</style>
+
+<h2>{intl Order} #{id}</h2>
+
+<p class="hide-me">
+	<a href="{site/prefix}/index/siteshop-admin-orders-action">{intl Back}</a>
+	&nbsp; &nbsp;
+	<a href="javascript: void window.print ()">{intl Print Order}</a>
+</p>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="80%">
+	<tr>
+		<td valign="top" width="50%">
+			<p><strong>{intl Ship To}</strong></p>
+			<p>{ship_to}<br />{ship_address}{if not empty (obj.ship_address2)}<br />{ship_address2}{end if}<br />{ship_city}, {filter strtoupper}{ship_state}{end filter}<br />{filter siteshop_filter_country}{ship_country}{end filter}<br />{ship_zip}</p>
+			<p class="hide-me">
+				<form method="post" action="{site/prefix}/index/siteshop-admin-orders-update-action">
+				<input type="hidden" name="id" value="{id}" />
+				<table border="0">
+					<tr>
+						<td>{intl Status}</td>
+						<td><select name="status">
+							<option value="new"{if obj.status eq 'new'} selected="selected"{end if}>{intl New}</option>
+							<option value="partly-shipped"{if obj.status eq 'partly-shipped'} selected="selected"{end if}>{intl Partly-Shipped}</option>
+							<option value="shipped"{if obj.status eq 'shipped'} selected="selected"{end if}>{intl Shipped}</option>
+							<option value="cancelled"{if obj.status eq 'cancelled'} selected="selected"{end if}>{intl Cancelled}</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>{intl Tracking Link}</td>
+						<td><input type="text" name="tracking" value="{tracking}" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><input type="submit" value="{intl Update}" /></td>
+					</tr>
+				</table>
+				</form>
+			</p>
+		</td>
+		<td valign="top" width="50%">
+			<p><strong>{intl Billed To}</strong></p>
+			<p>{bill_to}<br />{bill_address}{if not empty (obj.bill_address2)}<br />{bill_address2}{end if}<br />{bill_city}, {filter strtoupper}{bill_state}{end filter}<br />{filter siteshop_filter_country}{bill_country}{end filter}<br />{bill_zip}</p>
+			<p>{phone}<br /><a href="mailto:{email}">{email}</a></p>
+		</td>
+	</tr>
+</table>
+</p>
+
+<div class="hide-me">
+<h2>{intl Status History}</h2>
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="50%">
+	<tr>
+		<th width="50%">Date</th>
+		<th width="50%">Status</th>
+	</tr>
+{loop obj.history}
+	<tr>
+		<td>{filter siteshop_filter_date_time}{loop/ts}{end filter}</td>
+		<td>{filter ucwords}{loop/status}{end filter}</td>
+	</tr>
+{end loop}
+</table>
+</p>
+</div>
+
+<h2>{intl Items}</h2>
+
+{alt #fff #eee}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="75%">
+	<tr>
+		<th width="10%">SKU</th>
+		<th width="30%">{intl Product Name}</th>
+		<th width="20%">{intl Product Options}</th>
+		<th width="10%">{intl Price}</th>
+		<th width="10%">{intl Quantity}</th>
+		<th width="10%">{intl Total}</th>
+	</tr>
+{loop obj.products}
+	<tr style="background-color: {alt/next}">
+		<td align="center">{loop/sku}</td>
+		<td>{loop/name}</td>
+		<td>
+			{loop loop.options}
+				{loop/type}: {loop/name}{if loop[_total] eq loop[_index]}{end if}{if else},{end if}
+			{end loop}
+		</td>
+		<td align="right">${loop/price}</td>
+		<td align="center">{loop/quantity}</td>
+		<td align="right">${filter siteshop_filter_money}{php loop.price x loop.quantity}{end filter}</td>
+{end loop}
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="2"><strong>{intl Subtotal}</strong></td>
+		<td align="right"><strong>${subtotal}</strong></td>
+	</tr>
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="2"><strong>{intl Shipping}</strong></td>
+		<td align="right"><strong>${shipping}</strong></td>
+	</tr>
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="2"><strong>{intl Tax}</strong></td>
+		<td align="right"><strong>${taxes}</strong></td>
+	</tr>
+{if not empty (obj.promo_code)}
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="2"><strong>{intl Promo Code}: {promo_code}</strong></td>
+		<td align="right"><strong>${promo_discount}</strong></td>
+	</tr>
+{end if}
+	<tr>
+		<td colspan="3">&nbsp;</td>
+		<td colspan="2"><strong>{intl Total}</strong></td>
+		<td align="right"><strong>${total}</strong></td>
+	</tr>
+</table>
+</p>

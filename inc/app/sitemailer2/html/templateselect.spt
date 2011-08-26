@@ -1,0 +1,112 @@
+<style type="text/css">
+
+	.odd {
+		background-color: #fff;
+	}
+
+	.even {
+		background-color: #eee;
+	}
+
+</style>
+
+<script language="javascript">
+
+function imagechooser_view (file, w, h) {
+	if (! file) {
+		return false;
+	}
+	if (! w) {
+		w = 400;
+	}
+	if (! h) {
+		h = 300;
+	}
+
+	win = window.open (
+		'about:blank',
+		'Image Viewer',
+		'top=50,left=50,width=' + (w + 30) + ',height=' + (h + 60) + ',toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,fullscreen=no'
+	);
+	win.document.write ('<html><head><title>' + file + '</title></head>');
+	win.document.write ('<body><p align="center"><a href="javascript: window.close ()"><img src="' + file + '" alt="{intl Click to close}" title="{intl Click to close}" border="0" /></a></p>');
+	win.document.write ('<p align="center" style="font: 12px Verdana, Arial, sans-serif"><a href="javascript: window.close ()" style="text-decoration: none; color: #d60">{intl Close Window}</a></p></body></html>');
+	return false;
+}
+
+</script>
+
+<h1>{intl Template Set}: {name}</h2>
+
+<p>
+	<a href="{site/prefix}/index/sitetemplate-app">{intl Back}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitetemplate-newtpl-form?set_name={location}">{intl New Template}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitetemplate-newcss-form?set_name={location}">{intl New Stylesheet}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitetemplate-newimage-action{filter urlencode}?location={location}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl New Image}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/sitetemplate-editset-form{filter urlencode}?set={location}{end filter}">{intl Edit Properties}</a> &nbsp; &nbsp;
+</p>
+
+<h2>{intl Templates}</h1>
+
+{alt even odd}
+
+{loop obj[templates]}
+	<p><strong>{filter strtoupper}{loop/_key}{end filter}</strong></p>
+	{alt/reset}
+	<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	{loop loop}
+		<tr class="{alt/next}">
+			<td style="width: 20px">
+				{if loop[file] eq 'html.default.tpl'}
+				&nbsp;
+				{end if}
+				{if else}
+				<a href="{site/prefix}/index/sitetemplate-delete-action?file={loop/file}&location={location}&c=y" style="color: Red" title="{intl Click to delete file}" onclick="return confirm ('{intl Are you sure you want to delete this template?}')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" border="0" alt="{intl Delete}" title="{intl Delete}" /></a>
+				{end if}
+			</td>
+			<td>
+				<a href="{site/prefix}/index/sitetemplate-edit-form?path={loop/path}/{loop/file}" title="Click to edit">{filter ucfirst}{loop/name}{end filter}</a>
+			</td>
+		</tr>
+	{end loop}
+	</table>
+{end loop}
+
+<h2>{intl Styles}</h2>
+
+{alt/reset}
+
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	{loop obj[styles]}
+		<tr class="{alt/next}">
+			<td style="width: 20px">
+				{if loop[file] eq 'site.css'}
+				&nbsp;
+				{end if}
+				{if else}
+				<a href="{site/prefix}/index/sitetemplate-delete-action?file={loop/file}&location={location}&c=y" style="color: Red" title="{intl Click to delete file}" onclick="return confirm ('{intl Are you sure you want to delete this style?}')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" border="0" alt="{intl Delete}" title="{intl Delete}" /></a>
+				{end if}
+			</td>
+			<td>
+				<a href="{site/prefix}/index/sitetemplate-editcss-form?path={loop/path}/{loop/file}" title="Click to edit">{filter ucfirst}{loop/name}{end filter}</a>
+			</td>
+		</tr>
+	{end loop}
+</table>
+
+<h2>{intl Images}</h2>
+
+{alt/reset}
+
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	{loop obj[images]}
+		<tr class="{alt/next}">
+			<td style="width: 20px">
+				<a href="{site/prefix}/index/sitetemplate-delete-action?file={loop/file}&location={location}&c=y" style="color: Red" title="{intl Click to delete file}" onclick="return confirm ('{intl Are you sure you want to delete this image?}')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" border="0" alt="{intl Delete}" title="{intl Delete}" /></a>
+			</td>
+			<td>
+				<a href="#" onclick="return imagechooser_view ('{site/prefix}/inc/html/{loop/path}/{loop/file}', {loop/width}, {loop/height})" title="Click to view">{filter ucfirst}{loop/file}{end filter}</a>
+			</td>
+		</tr>
+	{end loop}
+</table>

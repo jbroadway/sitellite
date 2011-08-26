@@ -1,0 +1,161 @@
+
+function sitetemplate_set_caret (t) {
+	if (t.createTextRange) {
+		t.caretPos = document.selection.createRange ().duplicate ();
+	}
+}
+
+function sitetemplate_insert_text (i) {
+	f = document.getElementById ('sitetemplate-editor');
+	t = f.elements.body;
+
+	if (t.createTextRange && t.caretPos) { // msie
+		sitetemplate_set_caret (t);
+		var caretPos = t.caretPos;
+		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? i + '' : i;
+
+	} else if (t.selectionStart && t.setSelectionRange) { // Mozilla 1.3+
+		var val = t.value;
+		var cpos = t.selectionStart;
+		var fpos = cpos + i.length +1;
+
+		var before = val.substr (0, cpos);
+		var after = val.substr (cpos, val.length);
+		var aspace = after.charAt (0) == ' ' ? "" : "";
+		var bspace = before.charAt (before.length) == ' ' ? "" : "";
+
+		t.value = before + bspace + i + aspace + after;
+		t.setSelectionRange (fpos, fpos);
+		t.focus();
+
+	} else {
+		t.value	= t.value + i;
+	}
+
+	return true;
+}
+
+function sitetemplate_button_help () {
+	window.open (
+		'{site/prefix}/index/help-app?appname=sitetemplate',
+		'SiteTemplateHelp',
+		'left=50,top=50'
+	);
+	return false;
+}
+
+function sitetemplate_button_box () {
+	if (document.all) {
+		h = 400;
+	} else {
+		h = 350;
+	}
+	window.open (
+		'{site/prefix}/index/sitetemplate-boxes-action',
+		'SiteTemplateBoxes',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,copyhistory=no,fullscreen=no,width=480,height=' + h + ',top=100,left=150'
+	);
+	return false;
+}
+
+document.sitetemplate_set_box = function (b) {
+	sitetemplate_insert_text ('<xt:box name="' + b + '"><' + '/xt:box>');
+	return false;
+}
+
+function sitetemplate_button_dtd () {
+	sitetemplate_insert_text ('<xt:doctype root="html" access="public" name="-//W3C//DTD XHTML 1.0 Transitional//EN" uri="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />');
+	return false;
+}
+
+function sitetemplate_button_if_else () {
+	sitetemplate_insert_text ("<xt:condition>\n" + "\t<xt:if expr=\"\">\n\t<" + "/xt:if>\n" + "\t<xt:elseif expr=\"\">\n\t<" + "/xt:elseif>\n\t<xt:else>\n\t<" + "/xt:else>\n<" + "/xt:condition>");
+	return false;
+}
+
+function sitetemplate_button_intl () {
+	sitetemplate_insert_text ('<xt:intl><' + '/xt:intl>');
+	return false;
+}
+
+function sitetemplate_button_loop () {
+	sitetemplate_insert_text ('<xt:loop through=""><' + '/xt:loop>');
+	return false;
+}
+
+function sitetemplate_button_var () {
+	if (document.all) {
+		h = 250;
+	} else {
+		h = 200;
+	}
+	window.open (
+		'{site/prefix}/index/sitetemplate-vars-action',
+		'SiteTemplateVars',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,fullscreen=no,width=480,height=' + h + ',top=100,left=150'
+	);
+	return false;
+}
+
+document.sitetemplate_set_var = function (v) {
+	sitetemplate_insert_text ('<xt:var name="' + v + '" />');
+	return false;
+}
+
+function sitetemplate_button_xml () {
+	sitetemplate_insert_text ('<xt:xmldecl version="1.0" encoding="ISO-8859-1" />');
+	return false;
+}
+
+function sitetemplate_charmap () {
+	window.open (
+		'{site/prefix}/index/sitetemplate-charmap-action',
+		'SiteTemplateCharmap',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,fullscreen=no,width=480,height=250,top=100,left=150'
+	);
+	return false;
+}
+
+document.sitetemplate_charmap_handler = function (n) {
+	sitetemplate_insert_text ('&#' + n + ';');
+}
+
+function sitetemplate_image () {
+	imagechooser_body_attrs = true;
+	imagechooser_body_get_image (0);
+	return false;
+}
+
+{filter none}{box imagechooser/js?name=body}{end filter}
+
+function imagechooser_body_handler () {
+	if (typeof dialogWin.returnedValue == 'object') {
+		url = '{site/prefix}' + dialogWin.returnedValue['src'];
+		alt = dialogWin.returnedValue['alt'];
+		h = dialogWin.returnedValue['height'];
+		w = dialogWin.returnedValue['width'];
+		sitetemplate_insert_text ('<img src="' + url + '" alt="' + alt + '" height="' + h + '" width="' + w + '" border="0" />');
+	} else {
+		url = '{site/prefix}' + dialogWin.returnedValue;
+		alt = '';
+		sitetemplate_insert_text ('<img src="' + url + '" alt="' + alt + '" border="0" />');
+	}
+}
+
+function sitetemplate_link () {
+	if (document.all) {
+		h = 300;
+	} else {
+		h = 250;
+	}
+	w = window.open (
+		'{site/prefix}/index/sitetemplate-link-form',
+		'SitetemplateLinkWindow',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,fullscreen=no,width=480,height=' + h + ',top=100,left=150'
+	);
+	return false;
+}
+
+document.sitetemplate_add_link = function (l) {
+	sitetemplate_insert_text ('<a href="' + l[0].value + '"></a>');
+}

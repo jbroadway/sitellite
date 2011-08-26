@@ -1,0 +1,9 @@
+<div>
+    {intl A message has been posted to your forum in the thread: }<a href="{site/url}/index/siteforum-list-action/post.{post}/topic.{topic}">{topic}</a><br />
+    <p>
+        <b>{intl User ID}:</b> {session/username}<br />
+        <b>{intl Subject}:</b> {subject}<br />
+        <b>{intl Message}:</b><br />
+        <span>{filter siteforum_filter_body_email}{body}{end filter}</span>
+    </p>
+</div>

@@ -1,0 +1,16 @@
+<form id="ui-comments-add-form" onsubmit="return mycomment.add (this)">
+<h3>{intl Leave a Reply}</h3>
+
+<p style="display: none;" class="invalid" id="ui-comments-error">{intl Please fill required fields.}</p>
+<input type="hidden" id="item-id" name="itemid" value="{item}" />
+<input type="hidden" id="group" name="group" value="{group}" />
+<input type="hidden" id="approved" name="approved" value="{approved}" />
+
+<p><label id="comment-name-label" for="name">{intl Name}</label><input type="text" id="name" name="name" value="{name}" /> ({intl required})</p>
+<p><label id="comment-email-label" for="email">{intl Email (will not be shown)}</label><input type="text" id="email" name="email" value="{email}" /> ({intl required})</p>
+<p><label id="comment-website-label" for="website">{intl Website}</label><input type="text" id="website" name="website" value="{website}" /></p>
+
+<p>Your comments:<br />
+<textarea id="comment" name="comment" style="height: 80px; width: 100%"></textarea></p>
+<p><input type="submit" name="submit" value="{intl Submit Comment}" /></p>
+</form>

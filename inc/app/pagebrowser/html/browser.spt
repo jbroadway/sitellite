@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>{page/title}</title>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog.js"></script>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc.js"></script>
+		<script language="javascript">
+		<!--
+
+{spt js.spt}
+
+{if obj[limit] eq 'yes'}
+pagebrowser.limit = true;
+{end if}
+
+		// -->
+		</script>
+		<style type="text/css">
+
+{spt css.spt}
+
+		</style>
+	</head>
+	<body onload="if (opener) opener.blockEvents ()" onunload="if (opener) opener.unblockEvents ()"><a name="top"></a>
+
+<p id="stripe">&nbsp;</p>
+
+<h1>{page/title}</h1>
+
+<form>
+<p class="blue">{intl Jump to Section} &nbsp; <select name="jump" id="jump" onchange="return pagebrowser.setCurrent (this.options[this.selectedIndex].value)">
+	<option value="">- {intl SELECT} -</option>
+	{loop obj[sections]}
+		<option value="{loop/id}">{loop/title}</option>
+	{end loop}
+</select></p>
+</form>
+
+<p class="blue">
+<span id="trail">{loop obj[trail]}
+	<a href="#" onclick="return pagebrowser.setCurrent ('{loop/id}')">{loop/title}</a> /
+{end loop}</span>
+<span id="title">{if not empty (obj[title])}{title}{end if}</span>
+</p>
+
+<table id="pages" border="0" cellpadding="3" cellspacing="1">
+	<tr>
+		<td width="20"><img src="{site/prefix}/inc/app/pagebrowser/pix/greyed.gif" border="0" alt="{intl Currently Open}" title="{intl Currently Open}" /></td>
+		<td><a href="#" onclick="return pagebrowser.select ('{id}')" title="{intl Select this Page}">{title}</a></td>
+	</tr>
+	{loop obj[children]}
+		<tr>
+		{if loop.children gt 0}
+			<td width="20"><a href="#" onclick="return pagebrowser.setCurrent ('{loop/id}')" title="{intl Open}"><img src="{site/prefix}/inc/app/pagebrowser/pix/add.gif" border="0" alt="{intl Open}" title="{intl Open}" /></a></td>
+		{end if}
+		{if else}
+			<td width="20"><img src="{site/prefix}/inc/app/pagebrowser/pix/greyed.gif" border="0" alt="{intl No Children}" title="{intl No Children}" /></td>
+		{end if}
+			<td><a href="#" onclick="return pagebrowser.select ('{loop/id}')" title="{intl Select this Page}">{loop/title} ({loop/children})</a></td>
+		</tr>
+	{end loop}
+</table>
+
+<!-- hr />
+<p>
+Copyright &copy; {php date ('Y')} <a href="http://www.simian.ca/" target="_blank">SIMIAN systems Inc.</a><br />
+All rights reserved.
+</p -->
+
+	</body>
+</html>

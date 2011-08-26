@@ -1,0 +1,30 @@
+<p><a href="javascript: history.go (-1)">{intl Back}</a></p>
+
+<table width="100%" cellpadding="5" cellspacing="1">
+	<tr>
+		<td class="subheader" width="25%">{intl Subject}</td>
+		<td style="background-color: #eee">{subject}</td>
+	</tr>
+	<tr>
+		<td class="subheader" width="25%">{intl From}</td>
+		<td style="background-color: #eee">{from}</td>
+	</tr>
+	<tr>
+		<td class="subheader" width="25%">{intl Sent on}</td>
+		<td style="background-color: #eee">{filter sitemailer_date}{date}{end filter}</td>
+	</tr>
+	<tr>
+		<td class="subheader" width="25%" valign="top">{intl Send to Groups}</td>
+		<td style="background-color: #eee">
+			{loop obj.groups}
+				{loop/name}<br />
+			{end loop}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="subheader">{intl Message Body}</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="padding: 15px; border: #000 1px solid">{filter none}{body}{end filter}</td>
+	</tr>
+</table>

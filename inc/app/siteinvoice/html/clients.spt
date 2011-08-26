@@ -1,0 +1,63 @@
+<script language="javascript" type="text/javascript">
+<!--
+
+function cms_delete_confirm () {
+	return confirm ("Are you sure you want to delete this item?");
+}
+
+var cms_select_switch = false;
+
+function cms_select_all (f) {
+	if (cms_select_switch == false) {
+		for (i = 0; i < f.elements.length; i++) {
+			f.elements[i].checked = true;
+			cms_select_switch = true;
+		}
+	} else {
+		for (i = 0; i < f.elements.length; i++) {
+			f.elements[i].checked = false;
+			cms_select_switch = false;
+		}
+	}
+	return false;
+}
+
+// -->
+</script>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+<form method="post" action="{site/prefix}/index/siteinvoice-delete-client-action" id="mainform" style="display: inline">
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th align="center" width="50">
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return cms_select_all (this.form)" />&nbsp;
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return cms_delete_confirm ()" />
+		</th>
+		<th>Client</th>
+		<th>Contact</th>
+		<th>Email</th>
+		<th>Phone</th>
+	</tr>
+{alt #fff #eee}
+
+{loop obj[clients]}
+	<tr style="background: {alt/next}">
+		<td align="center"><input type="checkbox" name="_key[]" value="{loop/id}" /></td>
+		<td><a href="{site/prefix}/index/siteinvoice-edit-client-form?id={loop/id}">{loop/name}</a></td>
+		<td>{loop/contact_name}</td>
+		<td><a href="mailto:{loop/contact_email}">{loop/contact_email}</a></td>
+		<td>{loop/contact_phone}</td>
+	</tr>
+{end loop}
+<table>
+</p>
+</form>

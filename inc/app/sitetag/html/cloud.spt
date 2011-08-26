@@ -1,0 +1,4 @@
+{loop tags}
+{if loop._index neq 1}{separator}{end if}
+<span style="font-size: {loop/size}%; padding-right: 5px"><a href="{site/prefix}/sitetag-app/set.{set}/tag.{loop/tag}">{loop/tag}</a></span>
+{end loop}

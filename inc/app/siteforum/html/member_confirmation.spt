@@ -1,0 +1,14 @@
+<div>
+    {intl Welcome} {firstname} {lastname}!<br />
+
+    <p>
+        {intl This email confirms that your {site/domain} membership account has been created.}<br />
+        {intl However, before you can log in to your account, you need to activate your account by clicking on the following link: }
+        <a href="http://{site/domain}{site/prefix}/index/sitemember-activate-action?user={user_id}&key={verify}">Sitemember activation</a>
+        <br />
+        {intl If clicking the link doesn't open your web browser, try copying and pasting it into your browser's address bar.}<br />
+        <br />
+        {intl Sincerely},
+    </p>
+    - {intl The} {filter ucfirst}{site/domain}{end filter} {intl Team}
+</div>

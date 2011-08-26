@@ -1,0 +1,136 @@
+<script language="javascript" type="text/javascript">
+<!--
+
+function siteshop_delete_confirm () {
+	return confirm ("{intl Are you sure you want to delete this item?}");
+}
+
+var siteshop_select_switch = false;
+
+function siteshop_select_all (f) {
+	if (siteshop_select_switch == false) {
+		for (i = 0; i < f.elements.length; i++) {
+			f.elements[i].checked = true;
+			siteshop_select_switch = true;
+		}
+	} else {
+		for (i = 0; i < f.elements.length; i++) {
+			f.elements[i].checked = false;
+			siteshop_select_switch = false;
+		}
+	}
+	return false;
+}
+
+// -->
+</script>
+
+<style type="text/css">
+
+h1 {
+    background-image: url({site/prefix}/inc/app/siteshop/pix/icon.gif);
+    background-repeat: no-repeat;
+    background-position: 0, 50%;
+    padding-left: 45px;
+    padding-top: 5px;
+    padding-bottom: 12px;
+    margin-bottom: 0px;
+}
+
+table.navbar {
+    margin-top: 10px;
+    width: 100%;
+}
+
+table.navbar td {
+    padding-left: 5px;
+    padding-right: 5px;
+    border-bottom: 3px solid #eaeaea;
+}
+
+table.navbar span {
+	display: block;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	background: #ccc;
+	/*background-image: url({site/prefix}/inc/app/siteshop/pix/tab-left.gif);
+	background-repeat: no-repeat;*/
+}
+
+table.navbar span.current {
+	background-color: #eaeaea;
+}
+
+table.navbar a {
+    display: block;
+    float: left;
+    padding: 5px;
+	padding-left: 20px;
+	margin: 0px;
+	padding-right: 20px;
+	border-right: 1px solid #fff;
+    text-align: center;
+    background-image: url({site/prefix}/inc/app/siteshop/pix/corner.gif);
+    background-repeat: no-repeat;
+	background-position: 0px 0px;
+	color: #000;
+}
+
+table.navbar a.current {
+    background-image: url({site/prefix}/inc/app/siteshop/pix/corner.gif);
+    background-repeat: no-repeat;
+	background-position: 0px 0px;
+    color: #0081d6;
+    font-weight: bold;
+}
+
+table.navbar a:hover {
+    /*color: #fff;*/
+    text-decoration: underline;
+    background-image: url({site/prefix}/inc/app/siteshop/pix/corner.gif);
+    background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+
+tr.odd {
+    background-color: #fff;
+}
+
+tr.even {
+    background-color: #eee;
+}
+
+</style>
+
+<script language="javascript">
+
+function tab_hover_on (t) {
+	//t.parentNode.style.backgroundColor = '#ccc';
+}
+
+function tab_hover_off (t) {
+	//if (t.getAttribute ('class') != 'current') {
+	//	t.parentNode.style.backgroundColor = '#ccc';
+	//}
+}
+
+</script>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="navbar">
+    <tr>
+        <td>
+        <span{if obj[current] eq 'overview'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/siteshop-admin-index-action"{if obj[current] eq 'overview'} class="current"{end if}>{intl Overview}</a></span>
+        <span{if obj[current] eq 'products'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/siteshop-admin-products-action"{if obj[current] eq 'products'} class="current"{end if}>{intl Products}</a></span>
+        <span{if obj[current] eq 'orders'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/siteshop-admin-orders-action"{if obj[current] eq 'orders'} class="current"{end if}>{intl Orders}</a></span>
+		<span{if obj[current] eq 'sales'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/siteshop-admin-sales-action"{if obj[current] eq 'sales'} class="current"{end if}>{intl Sales}</a></span>
+		<span{if obj[current] eq 'offers'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/siteshop-admin-offers-action"{if obj[current] eq 'offers'} class="current"{end if}>{intl Checkout Offers}</a></span>
+        <span{if obj[current] eq 'promo'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/siteshop-admin-promo-action"{if obj[current] eq 'promo'} class="current"{end if}>{intl Promo Codes}</a></span>
+        <span{if obj[current] eq 'categories'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/siteshop-admin-categories-action"{if obj[current] eq 'categories'} class="current"{end if}>{intl Categories}</a></span>
+        <span{if obj[current] eq 'settings'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/siteshop-settings-form"{if obj[current] eq 'settings'} class="current"{end if}>{intl Settings}</a></span>
+        <span{if obj[current] eq 'help'} class="current"{end if}><a onmouseover="tab_hover_on (this)" onmouseout="tab_hover_off (this)" href="{site/prefix}/index/help-app?appname=siteshop"{if obj[current] eq 'help'} class="current"{end if}>{intl Help}</a></span>
+        </td>
+    </tr>
+</table>
+</p>

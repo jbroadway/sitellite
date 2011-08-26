@@ -1,0 +1,5 @@
+<ul>
+	{loop obj[list]}
+		<li><a href="{url}{loop/id}">{loop/title}</a> - {filter intl_get}{loop/category}{end filter} - {loop/date}</li>
+	{end loop}
+</ul>

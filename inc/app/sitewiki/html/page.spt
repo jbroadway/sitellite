@@ -1,0 +1,131 @@
+<style type="text/css">
+
+ins {
+	background: #afa;
+	padding-top: 2px;
+}
+
+del {
+	background: #faa;
+	padding-top: 2px;
+}
+
+</style>
+
+{spt nav.spt obj}
+
+<div id="sitewiki-body">
+{filter sitewiki_filter_body}{body}{end filter}
+</div>
+
+<p id="sitewiki-diff" style="font-family: monospace; display: none"></p>
+
+{if count (obj.files) gt 0}
+<div id="sitewiki-attached-files">
+<h3>{intl Attached Files}</h3>
+<ul>
+{loop obj.files}
+	<li><a href="{site/prefix}/index/sitewiki-dl-action/page.{id}/file.{loop/id}/name.{loop/name}">{loop/name}</a> ({filter strtoupper/format_filesize}{loop/size}{end filter}) - {loop/owner} - {filter sitewiki_filter_date}{loop/ts}{end filter}</li>
+{end loop}
+</ul>
+</div>
+{end if}
+
+{if obj.created_on eq obj.updated_on}
+<p class="sitewiki-info-bottom">
+	{intl Created on} {filter sitewiki_filter_date}{created_on}{end filter} {intl by} {owner}
+</p>
+{end if}
+{if else}
+<p class="sitewiki-info-bottom">
+	{if obj.revision}
+	{intl Revision from}
+	{end if}
+	{if not obj.revision}
+	{intl Revised on}
+	{end if}
+	{filter sitewiki_filter_date}{updated_on}{end filter} {intl by} {owner}
+</p>
+{end if}
+
+<p class="sitewiki-nav-bottom">
+	{if obj.editable}
+		<a href="{site/prefix}/index/sitewiki-edit-form?page={id}">{intl Edit}</a> |
+	{end if}
+	{if obj.forward}
+		<a href="{site/prefix}/index/sitewiki-app/show.{id}/rev.{next}">{intl Forward in time}</a> ({forward} {intl more}) |
+	{end if}
+	{if obj.back}
+		<a href="{site/prefix}/index/sitewiki-app/show.{id}/rev.{prev}">{intl Back in time}</a> ({back} {intl more}) |
+	{end if}
+	{if obj.forward}
+		<a href="{site/prefix}/index/sitewiki-app/show.{id}">{intl See current}</a> |
+		<a href="#" onclick="return sitewiki_toggle_differences ('{cgi/rev}')" id="sitewiki-changes-link">{intl See changes}</a> |
+	{end if}
+	{if obj.rollback}
+		<a href="#" onclick="document.getElementById ('sitewiki-rollback').submit (); return false">{intl Rollback}</a> |
+	{end if}
+	{if session_admin ()}
+		<a href="{site/prefix}/index/sitewiki-settings-form">{intl SiteWiki Settings}</a> |
+	{end if}
+	{if count (obj.linked_from) gt 0}
+		{intl Linked from}:
+		{loop obj.linked_from}
+			<a href="{site/prefix}/index/sitewiki-app/show.{loop/_value}">{filter sitewiki_filter_id}{loop/_value}{end filter}</a>{if loop._index ne loop._total}, {end if}
+		{end loop}
+	{end if}
+	{if count (obj.linked_from) eq 0}
+		{intl Linked from}: {intl None}
+	{end if}
+</p>
+
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/strings.js"> </script>
+<script language="javascript" type="text/javascript">
+
+var sitewiki_diff = false;
+var sitewiki_visible = 'body';
+
+function sitewiki_toggle_differences (rev) {
+	if (sitewiki_visible == 'diff') {
+		document.getElementById ('sitewiki-body').style.display = 'block';
+		document.getElementById ('sitewiki-diff').style.display = 'none';
+		document.getElementById ('sitewiki-changes-link').innerHTML = '{intl See changes}';
+		document.getElementById ('sitewiki-changes-link').blur ();
+		sitewiki_visible = 'body';
+	} else if (sitewiki_visible == 'body') {
+		if (sitewiki_diff) {
+			document.getElementById ('sitewiki-body').style.display = 'none';
+			document.getElementById ('sitewiki-diff').style.display = 'block';
+			document.getElementById ('sitewiki-changes-link').innerHTML = '{intl Hide changes}';
+			document.getElementById ('sitewiki-changes-link').blur ();
+			sitewiki_visible = 'diff';
+		} else {
+			rpc_call ('{site/prefix}/index/sitewiki-diff-action?page={id}&rev=' + rev);
+		}
+	}
+	return false;
+}
+
+function sitewiki_handler (diff) {
+	diff = diff.nl2br ();
+
+	document.getElementById ('sitewiki-diff').innerHTML = '<strong>{intl Changes}:<' + '/strong><br /><br />' + diff;
+	sitewiki_diff = true;
+
+	document.getElementById ('sitewiki-body').style.display = 'none';
+	document.getElementById ('sitewiki-diff').style.display = 'block';
+	document.getElementById ('sitewiki-changes-link').innerHTML = '{intl Hide changes}';
+	document.getElementById ('sitewiki-changes-link').blur ();
+	sitewiki_visible = 'diff';
+}
+
+rpc_handler = sitewiki_handler;
+
+</script>
+
+{if obj.rollback}
+<form style="display: hidden" action="{site/prefix}/index/sitewiki-edit-form" method="post" id="sitewiki-rollback">
+<input type="hidden" name="page" value="{id}" />
+<input type="hidden" name="body" value="{filter sitewiki_filter_rollback}{body}{end filter}" />
+</form>
+{end if}

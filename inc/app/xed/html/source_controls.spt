@@ -1,0 +1,223 @@
+	<tr>
+		<td class="field">
+			<iframe id="rpc-caller" style="border: 0px none; width: 0px; height: 0px"> </iframe>
+			<script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog.js"> </script>
+			<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc.js"> </script>
+			<!-- script language="javascript" type="text/javascript" src="{site/prefix}/inc/app/xed/js/editatea_0_7_0_2/edit_area/edit_area_full.js"> </script -->
+			<script language="javascript">
+
+function source_set_caret (t) {
+	if (t.createTextRange) {
+		t.caretPos = document.selection.createRange ().duplicate ();
+	}
+}
+
+function source_insert_text (i) {
+	f = document.getElementById ('source-form');
+	t = f.elements.html;
+
+	if (t.createTextRange && t.caretPos) { // msie
+		sitetemplate_set_caret (t);
+		var caretPos = t.caretPos;
+		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? i + '' : i;
+
+	} else if (t.selectionStart && t.setSelectionRange) { // Mozilla 1.3+
+		var val = t.value;
+		var cpos = t.selectionStart;
+		var fpos = cpos + i.length +1;
+
+		var before = val.substr (0, cpos);
+		var after = val.substr (cpos, val.length);
+		var aspace = after.charAt (0) == ' ' ? "" : "";
+		var bspace = before.charAt (before.length) == ' ' ? "" : "";
+
+		t.value = before + bspace + i + aspace + after;
+		t.setSelectionRange (fpos, fpos);
+		t.focus();
+
+	} else {
+		t.value	= t.value + i;
+	}
+
+	return true;
+}
+
+function source_replace () {
+	window.open (
+		'{site/prefix}/index/xed-replace-form?ifname=html',
+		'SourceReplace',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,fullscreen=no,width=480,height=250,top=100,left=150'
+	);
+	return false;
+}
+
+function source_charmap () {
+	window.open (
+		'{site/prefix}/index/xed-charmap-action?ifname=html',
+		'SourceCharmap',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,fullscreen=no,width=480,height=250,top=100,left=150'
+	);
+	return false;
+}
+
+function source_link () {
+	if (document.all) {
+		h = 300;
+	} else {
+		h = 250;
+	}
+	w = window.open (
+		'{site/prefix}/index/xed-link-form?ifname=html',
+		'SourceLinkWindow',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,fullscreen=no,width=480,height=' + h + ',top=100,left=150'
+	);
+	return false;
+}
+
+function source_image () {
+	imagechooser_html_attrs = true;
+	imagechooser_html_get_image (0);
+	return false;
+}
+
+{filter none}{box imagechooser/js?name=html}{end filter}
+
+function imagechooser_html_handler () {
+	if (typeof dialogWin.returnedValue == 'object') {
+		url = '{site/prefix}' + dialogWin.returnedValue['src'];
+		alt = dialogWin.returnedValue['alt'];
+		h = dialogWin.returnedValue['height'];
+		w = dialogWin.returnedValue['width'];
+		source_insert_text ('<img src="' + url + '" alt="' + alt + '" height="' + h + '" width="' + w + '" border="0" />');
+	} else {
+		url = '{site/prefix}' + dialogWin.returnedValue;
+		alt = '';
+		source_insert_text ('<img src="' + url + '" alt="' + alt + '" border="0" />');
+	}
+}
+
+function source_clean () {
+	/*rpc_call (
+		'{site/prefix}/index/xed-cleaners-action?ifname=html&data=' + escape (document.getElementById ('html').value)
+	);*/
+
+	w = window.open (
+		'about:blank',
+		'xedCleanersWindow',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,fullscreen=no,width=300,height=100,top=100,left=150'
+	);
+
+	f = document.forms[0];
+	//xed_copy_value (f, ifname);
+
+	i = f.elements['ifname'].value;
+	f.elements['ifname'].value = 'html';
+
+	t = f.target;
+	a = f.action;
+
+	f.target = 'xedCleanersWindow';
+	f.action = '{site/prefix}/index/xed-cleaners-action?ifname=html';
+	f.submit ();
+
+	f.elements['ifname'].value = i;
+
+	f.target = t;
+	f.action = a;
+	return false;
+}
+
+function source_cleaner (ifname, data) {
+	document.getElementById ('html').value = unescape (data);
+	return false;
+}
+
+function source_escape_regex (text) {
+	if (!arguments.callee.sRE) {
+		var specials = [
+			'/', '.', '*', '+', '?', '|',
+			'(', ')', '[', ']', '{', '}', '\\'
+		];
+		arguments.callee.sRE = new RegExp(
+			'(\\' + specials.join('|\\') + ')', 'g'
+		);
+	}
+	return text.replace(arguments.callee.sRE, '\\$1');
+}
+
+function source_find_and_replace (f, r, cs, rx) {
+	data = document.getElementById ('html').value;
+
+	if (! rx) {
+		f = source_escape_regex (f);
+	}
+	if (! cs) {
+		regex = new RegExp (f, 'gi');
+	} else {
+		regex = new RegExp (f, 'g');
+	}
+
+	matches = data.match (regex);
+
+	data = data.replace (regex, r);
+
+	document.getElementById ('html').value = data;
+
+	if (! matches) {
+		alert ('{intl No matches found.}');
+	} else {
+		alert (matches.length + ' {intl matches found.}');
+	}
+	return false;
+}
+
+/*var rpc_handler = function (h, d) {
+	source_cleaner (h, d);
+	return false;
+}*/
+
+/*editAreaLoader.init ({
+	id: 'html',
+	syntax: 'html',
+	start_highlight: true,
+	display: 'later',
+	allow_toggle: true,
+	allow_resize: 'both',
+	font_size: '8',
+	toolbar: 'undo, redo, |, go_to_line, reset_highlight',
+	EA_toggle_off_callback: function (id) {
+		document.getElementById (id).wrap = 'virtual';
+	}
+	
+});*/
+
+window.onload = function () {
+	if (opener && ! opener.closed) {
+		document.getElementById ('html').value = opener.document.getElementById ('{ifname}').xed_get_source ('{ifname}');
+	}
+	document.getElementById ('html').xed_insert_character = function (h, n) {
+		source_insert_text ('&#' + n + ';');
+	}
+	document.getElementById ('html').xed_add_link = function (h, d) {
+		source_insert_text ('<a href="' + d[0].value + '"></a>');
+	}
+	document.getElementById ('html').source_replace_text = function (f, r, cs, rx) {
+		source_find_and_replace (f, r, cs, rx);
+	}
+	document.getElementById ('html').xed_cleaner = function (h, d) {
+		source_cleaner (h, d);
+	}
+}
+
+			</script>
+			<a href="#" onclick="return source_replace ()"><img src="{site/prefix}/inc/app/xed/pix/icons/replace.gif" alt="{intl Find and Replace}" title="{intl Find and Replace}" border="0" /></a>
+			&nbsp;
+			<a href="#" onclick="return source_charmap ()"><img src="{site/prefix}/inc/app/xed/pix/icons/character-map.gif" alt="{intl Character Map}" title="{intl Character Map}" border="0" /></a>
+			&nbsp;
+			<a href="#" onclick="return source_image ()"><img src="{site/prefix}/inc/app/xed/pix/icons/image.gif" alt="{intl Add Image}" title="{intl Add Image}" border="0" /></a>
+			&nbsp;
+			<a href="#" onclick="return source_link ()"><img src="{site/prefix}/inc/app/xed/pix/icons/link.gif" alt="{intl Add Link}" title="{intl Add Link}" border="0" /></a>
+			&nbsp;
+			<a href="#" onclick="return source_clean ()"><img src="{site/prefix}/inc/app/xed/pix/icons/clean.gif" alt="{intl Clean Document}" title="{intl Clean Document}" border="0" /></a>
+		</td>
+	</tr>

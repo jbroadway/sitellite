@@ -1,0 +1,26 @@
+{spt nav.spt obj}
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td valign="top" width="50%">
+			<h2>{intl All Pages}</h2>
+			<p>{intl All pages in the web listed alphabetically}</p>
+			<ul>
+			{loop obj.all}
+				<li><a href="{site/prefix}/index/sitewiki-app/show.{loop/_value}">{filter sitewiki_filter_id}{loop/_value}{end filter}</a></li>
+			{end loop}
+			</ul>
+		</td>
+		<td valign="top" width="50%">
+			{if count (obj.wanted) gt 0}
+			<h2>{intl Wanted Pages}</h2>
+			<p>{intl Unexisting pages that other pages in the web reference}</p>
+			<ul>
+			{loop obj.wanted}
+				<li><a href="{site/prefix}/index/sitewiki-app/show.{loop/_key}">{filter sitewiki_filter_id}{loop/_key}{end filter}</a> {intl wanted by} <a href="{site/prefix}/index/sitewiki-app/show.{loop/_value}">{filter sitewiki_filter_id}{loop/_value}{end filter}</a></li>
+			{end loop}
+			</ul>
+			{end if}
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,48 @@
+<form method="get" class="news-search-box">
+<table border="0" cellpadding="3" cellspacing="0" style="width: auto">
+	<tr>
+		<td valign="top"><input type="text" name="query" value='{query}' /></td>
+		<td valign="top"><input type="submit" value="{intl Search}" /></td>
+	</tr>
+</table>
+</form>
+
+{if is_array (obj[results]) && count (obj[results]) eq 0}
+	<p>{intl No stories found.  Please try again.}</p>
+{end if}
+
+{if count (obj[results]) gt 0}
+	<p>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+			<td><span style="float:right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</span></td>
+		</tr>
+	</table>
+	</p>
+
+	{loop obj[results]}
+		<div class="news-story-summary">
+			{if session_admin ()}
+				{box cms/buttons?collection=sitellite_news&object=[loop]&add=false&float=true}
+			{end if}
+            {if not empty (loop.summary)}
+				{if not empty (loop.thumb)}
+					<img src="{loop/thumb}" alt="{loop/title}" border="0" style="margin: 0px 5px 5px 5px" align="left"/>
+				{end if}
+			{end if}
+			<a href="{site/prefix}/index/news-app?story={loop/id}&highlight={filter urlencode}{query}{end filter}">{loop/date} - {loop/title}</a>
+			<br>
+			{if empty (loop.summary)}
+				{filter template_parse_body}{loop/body}{end filter}
+			{end if}
+			{if else}
+				{loop/summary}
+                <div class="clear-left"> </div>
+			{end if}
+		</div>
+        <br/>
+	{end loop}
+{end if}
+
+<p class="news-links"><a href="{site/prefix}/index/news-app">{intl News Home}</a></p>

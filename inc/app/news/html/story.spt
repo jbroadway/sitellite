@@ -1,0 +1,79 @@
+{if session_admin ()}
+	{box cms/buttons?collection=sitellite_news}
+{end if}
+
+{if session_admin ()}
+	{box cms/buttons?collection=sitellite_news&object=[obj]&float=true}
+{end if}
+
+{if obj.context ne 'action'}
+<h1 class="news-headline">{title}</h1>
+{end if}
+
+{if obj.pagenum eq 1}
+
+{if not empty (obj.author)}
+<p class="news-byline">{intl By} <a href="{site/prefix}/index/news-app/author.{author}">{author}</a></p>
+{end if}
+
+<p class="news-dateline">{date}</p>
+
+{end if}
+
+{filter template_parse_body}{body}{end filter}
+
+{if obj.menu ne 'no'}
+<p class="news-links">
+	<a href="{site/prefix}/index/news-app">{intl Home}</a>
+	<a href="{site/prefix}/index/news-app/section.{category}">{filter intl_get}{category}{end filter}</a> &nbsp;//&nbsp;
+	<a href="{site/prefix}/index/news-search-action">{intl Search}</a>
+	{if appconf ('submissions')}
+		&nbsp;//&nbsp; <a href="{site/prefix}/index/news-submissions-form">{intl Submissions}</a>
+	{end if}
+</p>
+{end if}
+{if else}
+<p class="news-links">
+	{if obj.home}
+	<a href="{site/prefix}/index/{home}">{intl More News}</a>
+	{end if}
+	{if else}
+	<a href="{site/prefix}/index/news-app/menu.no/sec.{sec}">{intl More News}</a>
+	{end if}
+</p>
+{end if}
+
+{if obj.comments}
+	<a name="news-comments"></a>
+	<h2 class="news-comments">{intl Comments} ({php count (obj.commentList)})</h2>
+
+	{if count (obj.commentList) eq 0}
+		<p>{intl No comments.}</p>
+		<p><a href="{site/prefix}/index/news-comment-add-form/story_id.{id}">{intl Add Comment}</a></p>
+	{end if}
+	{if else}
+		<p>
+			<a href="{site/prefix}/index/news-comment-add-form/story_id.{id}">{intl Add Comment}</a>
+		</p>
+		{loop obj.commentList}
+			{if session_admin ()}
+				<div style="float: right">
+					<a href="{site/prefix}/index/news-comment-edit-form?id={loop/id}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" alt="{intl Edit Comment}" title="{intl Edit Comment}" border="0" /></a> &nbsp;
+					<a href="{site/prefix}/index/news-comment-delete-action?id={loop/id}" onclick="return confirm ('Are you sure you want to delete this comment?')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Comment}" title="{intl Delete Comment}" border="0" /></a>
+				</div>
+			{end if}
+			<a name="news-comments-{loop/id}"></a>
+			<p>
+				<strong>{loop/subject}</strong><br />
+				<em>{loop/user_id} - {filter news_date_comments}{loop/ts}{end filter}</em><br /><br />
+				{filter news_comment_body}{loop/body}{end filter}
+			</p>
+		{end loop}
+	{end if}
+{end if}
+
+<!-- More news items -->
+<div>
+	<h2>{intl More News Items}</h2>
+	{box news/overview}
+</div>

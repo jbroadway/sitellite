@@ -1,0 +1,57 @@
+<h1>Usage</h1>
+
+To create a photo gallery, log into Sitellite and go to the Control<br />
+Panel.  From there, under the Content menu choose "Web Files", then click the<br />
+"Add File" link on the next screen.<br />
+<br />
+Click "Browse..." and upload the first image file.  Next, click "Add" next<br />
+to the Folder field and create a new folder for your photo gallery files.<br />
+Make sure to select the new folder after creating it; it will appear in the<br />
+select box once it's been created.<br />
+<br />
+To ensure that visitors will be able to access the files, click on the "State"<br />
+tab and set the status to "Approved".  Click "Create" at the bottom of the<br />
+form and repeat for any additional files you wish to add to your photo<br />
+gallery.  This is also how you will add new images to your gallery later on.<br />
+<br />
+The next step is to link your photo gallery into your website.  The<br />
+easiest way to do this is to use the Xed 2 box chooser.  After installing<br />
+SiteGallery, Sitellite Pro users will see a new "SiteGallery" option in<br />
+that dialogue window.  Simply select "SiteGallery" from the list, then one of<br />
+the following:<br />
+<br />
+- Gallery from Web Files<br />
+- Gallery from Image Chooser<br />
+- Slideshow from Image Chooser<br />
+- Protected Image<br />
+- Slideshow from Web Files<br />
+<br />
+From here, fill out any information requested by the box you've selected, such<br />
+as the title and folder containing the images.  This will create a box that<br />
+will render your photo gallery or slideshow into the current page.<br />
+<br />
+For users of Sitellite GPL Edition, there are 3 ways to call SiteGallery<br />
+without Xed 2's box chooser.  These are:<br />
+<br />
+1. Linking directly to the podcast or playlist URLs<br />
+<br />
+The link format to link directly to a gallery is:<br />
+<br />
+http://www.example.com/index/sitegallery-pixgallery-action/path.foldername/title.Gallery Name<br />
+<br />
+2. Making a sidebar box an alias of the sitegallery/pixgallery box<br />
+<br />
+To do this, create a new sidebar and under the "Properties" tab enter the<br />
+following value into the "Alias" field:<br />
+<br />
+sitegallery/pixgallery?title=Gallery Name&amp;path=foldername<br />
+<br />
+3. Linking to the photo gallery boxes in an XT template<br />
+<br />
+The format of the XT box inclusion would look like this:<br />
+<br />
+&lt;xt:box name="sitegallery/pixgallery" title="Gallery Name" path="foldername" /&gt;<br />
+<br />
+That should be all you have to do to get up and running with a new photo<br />
+gallery or slideshow for your website.<br />
+

@@ -1,0 +1,6 @@
+<p class="notice">{intl No data found for this report version.}</p>
+
+<p>
+	<a href="{site/prefix}/index/cms-browse-action?collection=myadm_report">{intl All Reports}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/myadm-report-action?id={id}">{intl Past Data}</a>
+</p>

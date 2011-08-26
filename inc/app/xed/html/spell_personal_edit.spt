@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<title>{intl Personal Dictionary}</title>
+		<style type="text/css">
+			body {
+				margin: 0px;
+				padding: 0px;
+				font: 10px Arial, Helvetica, sans-serif;
+				line-height: 15px;
+			}
+
+			#blue {
+				position: absolute;
+				width: 100%;
+				height: 10px;
+				background: #4e7c93;
+			}
+
+			#highlight {
+				position: absolute;
+				top: 20px;
+				left: 10px;
+				width: 570px;
+				margin-bottom: 10px;
+				height: 350px;
+				border: 1px solid #aaa;
+				padding: 5px;
+				overflow: auto;
+			}
+
+			#buttons {
+				position: absolute;
+				top: 390px;
+				left: 10px;
+			}
+
+			input {
+				font-size: 10px;
+				width: 72px;
+				margin-bottom: 5px;
+				padding: 3px;
+				border: 1px solid #666;
+				border-top: 1px solid #ccc;
+				border-left: 1px solid #ccc;
+			}
+
+			h1 {
+				font-size: 16px;
+				margin-top: 5px;
+				margin-left: 5px;
+			}
+
+			p {
+				margin-left: 5px;
+			}
+		</style>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc.js"> </script>
+		<script language="javascript" type="text/javascript">
+
+			function delete_word (w) {
+				rpc_call ('{site/prefix}/index/xed-spell-unlearn-action?word=' + w);
+
+				li = document.getElementById ('xed-item-' + w);
+				if (li) {
+					li.style.display = 'none';
+				}
+
+				return false;
+			}
+
+			function close_window () {
+				opener.speler.reload (false);
+				window.close ();
+				return false;
+			}
+
+		</script>
+	</head>
+	<body>
+
+		<div id="blue"></div>
+
+		<div id="highlight">
+			<h1>{intl Personal Dictionary}</h1>
+			<p>{intl Click to delete.}</p>
+			<ol>
+			{loop obj.personal}
+				<li id="xed-item-{loop/_value}"><a href="#" onclick="return delete_word ('{loop/_value}')">{loop/_value}</a></li>
+			{end loop}
+			</ol>
+		</div>
+
+		<div id="buttons">
+			<form>
+				<input type="submit" value="{intl Done}" onclick="return close_window ()" />
+			</form>
+		</div>
+
+		<iframe id="rpc-caller" style="border: 0px none; width: 0px; height: 0px"> </iframe>
+
+	</body>
+</html>

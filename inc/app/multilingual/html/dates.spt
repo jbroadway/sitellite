@@ -1,0 +1,11 @@
+<p>
+	<a href="{site/prefix}/index/multilingual-app">{intl Back}</a>
+</p>
+
+<h2>{intl Dates}</h2>
+
+<ul>
+	{loop obj[langs]}
+	<li><a href="{site/prefix}/index/multilingual-dates-edit-action?lang={loop/_key}&charset={loop/charset}">{loop/name}</a></li>
+	{end loop}
+</ul>

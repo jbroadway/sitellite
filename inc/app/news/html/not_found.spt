@@ -1,0 +1,7 @@
+{if session_admin ()}
+	{box cms/buttons/add?collection=sitellite_news}
+{end if}
+
+<p>{intl Story not found.}</p>
+
+<p class="news-links"><a href="{site/prefix}/index/news-app">{intl Home}</a></p>

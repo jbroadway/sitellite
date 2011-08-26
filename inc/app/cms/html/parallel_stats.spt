@@ -1,0 +1,32 @@
+{alt #fff #eee}
+
+<p><a href="{site/prefix}/index/{id}">{intl Back}</a></p>
+
+<ul id="parallel-stats-graph">
+{loop obj[stats]}
+	<li class="version{if loop[highest]} highest{end if}" id="v{loop/_index}"><strong>V{loop/_index} ({php ceil (loop[ratio])}%)</strong><br />
+		<a href="{site/prefix}/index/{id}?parallel_show={loop/_key}">{intl View}</a> |
+		<a href="{site/prefix}/index/cms-parallel-approve-action?id={id}&revision_id={loop/_key}"
+			onclick="return confirm ('{intl Please note that this will end the parallel testing for this page and erase all stats for this test series.  Are you sure you want to continue?}')">{intl Approve}</a>
+		{if loop[highest]}
+			<br />{intl Recommended}
+		{end if}
+		<ul>
+			<li class="clicked bar" style="height: {loop/click_height}px"><p>{loop/clicked} {intl Clicks}</p></li>
+			<li class="viewed bar" style="height: {loop/view_height}px"><p>{loop/viewed} {intl Views}</p></li>
+		</ul>
+	</li>
+{end loop}
+	<li id="ticks">
+		<div class="tick" style="height: 59px"><p>&nbsp;</p></div>
+		<div class="tick" style="height: 59px"><p>&nbsp;</p></div>
+		<div class="tick" style="height: 59px"><p>&nbsp;</p></div>
+		<div class="tick" style="height: 59px"><p>&nbsp;</p></div>
+		<div class="tick" style="height: 59px"><p>&nbsp;</p></div>
+	</li>
+</ul>
+
+<p>{intl Goal Link}: <a href="{goal}">{goal}</a></p>
+<p>{intl Total Views}: {total_views}</p>
+<p>{intl Total Clicks}: {total_clicks}</p>
+<p>{intl Test Duration}: {duration} {intl days}</p>

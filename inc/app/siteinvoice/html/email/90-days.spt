@@ -1,0 +1,11 @@
+This is a notice that the attached invoice #{invoice_no} was submitted 90 days
+ago and has not yet been marked as paid.  The contact for this account is:
+
+{contact_name}
+{contact_email}
+{contact_phone}
+
+Account:
+
+{name}
+{address}

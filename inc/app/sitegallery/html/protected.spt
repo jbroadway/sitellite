@@ -1,0 +1,5 @@
+<div class="sitegallery-protected" style="background: url('{image}'); width: {width}px; height: {height}px; background-repeat: no-repeat{if obj[float]}; float: {float}{end if}">
+<div style="background: url({site/prefix}/inc/app/cms/pix/spacer.gif); width: {width}px; height: {height}px; font-size: 24px; font-weight: bold; opacity: 0.2; -moz-opacity: 0.2; -khtml-opacity: 0.2; filter: alpha(opacity=20); padding: 10px">
+{watermark}
+</div>
+</div>

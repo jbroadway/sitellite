@@ -1,0 +1,23 @@
+<h1>Developers</h1>
+
+For developers, you can also use the loader_box() function or the {box} tag<br />
+in .spt files to include SiteStreamer capabilities into your custom web<br />
+applications.  For example:<br />
+<br />
+&lt;?php<br />
+<br />
+echo loader_box (<br />
+    'sitestreamer/podcast',<br />
+    array (<br />
+        'title' =&gt; 'Podcast Name',<br />
+        'path' =&gt; 'foldername',<br />
+    )<br />
+);<br />
+<br />
+?&gt;<br />
+<br />
+And in an .spt file:<br />
+<br />
+{box sitestreamer/podcast?title=Podcast Name&amp;path=foldername}<br />
+<br />
+

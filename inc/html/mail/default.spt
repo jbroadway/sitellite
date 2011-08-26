@@ -1,0 +1,45 @@
+<!DOCTYPE	html
+			PUBLIC
+			"-//W3C//DTD XHTML 1.0 Transitional//EN"
+			"DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+
+	<base href="http://www.yourdomain.com" />
+
+	<title xt:content="php: intl_get ('Your Domain') . ' - ' . object.title">Your Domain</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<meta name="robots" content="index, follow" />
+	<meta name="description" content="description">
+	<meta name="keywords" content="keywords">
+	<meta name="generator" content="Sitellite 5 CMS">
+
+	<style type="text/css">
+	<!--
+	body, td {
+		table-layout: fixed;
+		font-family: Verdana;
+		font-size: 11px;
+		font-style: normal;
+		line-height: 16px;
+		padding: 1em 1em;
+		border: 0;
+	}
+	-->
+	</style>
+
+</head>
+
+<body>
+
+    {-- message body goes here -- do NOT change this line --}
+	{filter none}{body}{end filter}
+	{-- end message body --}
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" version="2.0">
+<channel>
+	<title>{title}</title>
+	<link>{site/url}</link>
+	<description>{site/domain} Podcast</description>
+
+{loop results}
+<item>
+	<title>{loop/display_title}</title>
+	<guid>{site/url}/index/cms-filesystem-action/type.{loop/extension}?file={path}/{loop/name}.{loop/extension}</guid>
+	{if obj[desc]}<description>{loop/description}</description>{end if}
+	<enclosure url="{site/url}/index/cms-filesystem-action/type.{loop/extension}?file={path}/{loop/name}.{loop/extension}" type="{loop/type}" length="{loop/filesize}" />
+</item>
+
+{end loop}
+</channel>
+</rss>

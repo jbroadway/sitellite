@@ -1,0 +1,27 @@
+<h1>Troubleshooting</h1>
+
+The following is a list of common problems and possible solutions.<br />
+
+<br />
+
+<h2>1. I'm getting duplicates in my search results.</h2>
+
+Try deleting the contents of the folder inc/app/sitesearch/data and
+
+re-index the site. This is usually the result of old test data
+
+lingering that doesn't have an expiry date in it.<br />
+
+<br />
+
+<h2>2. I get HTML output when I run the indexer.</h2>
+
+You likely don't have the PHP command line interface (CLI)
+
+installed. You can check by doing a "php -v" on the command line
+
+and it will likely say CGI instead of CLI. You will need to
+
+recompile PHP with the configure option --enable-cli specified.<br />
+
+<br />

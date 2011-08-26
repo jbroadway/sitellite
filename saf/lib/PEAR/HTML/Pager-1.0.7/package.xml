@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<package version="1.0">
+  <name>Pager</name>
+  <summary>Generic data paging class</summary>
+  <description>If you have data that needs paging (ie 1-10 on page one, 11-20 on page two)
+this class can help. Pass it an array of data and it will sort it into pages,
+picking up the current page id from the url. It can also give you back/next
+and page number links taking the current url and adding the correct page id
+to it.</description>
+  <maintainers>
+    <maintainer>
+      <user>richard</user>
+      <name>Richard Heyes</name>
+      <email>richard@php.net</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <release>
+    <version>1.0.7</version>
+    <date>2002-12-01</date>
+    <license>PHP</license>
+    <state>stable</state>
+    <notes>Minor patch for script_name vs php_self</notes>
+    <filelist>
+      <file role="php" baseinstalldir="Pager" md5sum="cf92c4504c92a487e9d9e9a72a51513f" name="Pager.php"/>
+      <file role="php" baseinstalldir="Pager" md5sum="3ca185cf8a925f51d5c2a1704f38190b" name="example.php"/>
+    </filelist>
+  </release>
+  <changelog>
+    <release>
+      <version>1.0.6</version>
+      <date>2002-09-08</date>
+      <state>stable</state>
+      <notes>Updated to no longer require an array of data. Now
+can be used with just a number of items. Thanks to
+Christian Dickmann for the patch.
+			
+</notes>
+    </release>
+    <release>
+      <version>1.0.5</version>
+      <date>2002-07-27</date>
+      <state>stable</state>
+      <notes>Changed getCurrentPage() to getCurrentPageID() and
+added getNextPageID() and getPreviousPageID()
+			
+</notes>
+    </release>
+    <release>
+      <version>1.0.4</version>
+      <date>2002-06-29</date>
+      <state>stable</state>
+      <notes>Changed getCurrentPage() to getCurrentPageID() and
+added getNextPageID() and getPreviousPageID()
+			
+</notes>
+    </release>
+    <release>
+      <version>1.0.3</version>
+      <date>2002-05-31</date>
+      <state>stable</state>
+      <notes>Couple of minor bugs
+			
+</notes>
+    </release>
+    <release>
+      <version>1.0.2</version>
+      <date>2002-05-31</date>
+      <state>stable</state>
+      <notes>Applied patch from Christian Dickmann adding getCurrentPage(), numItems() 
+and optional CSS class for links.
+			
+</notes>
+    </release>
+    <release>
+      <version>1.0.1</version>
+      <date>2002-05-27</date>
+      <state>stable</state>
+      <notes>o No longer barfs with no querystring
+o Now works with associative data array
+			
+</notes>
+    </release>
+    <release>
+      <version>1.0</version>
+      <date>2002-02-09</date>
+      <state>stable</state>
+      <notes>This is the initial release of the Pager package.
+			
+</notes>
+    </release>
+  </changelog>
+</package>

@@ -1,0 +1,8 @@
+The NetGeo server is provided by CAIDA (caida.org). If you are concerned with
+with anything to do with using the NetGeo server, please check their website
+(http://www.caida.org/tools/utilities/netgeo/)
+
+localizer is available from http://jan.kneschke.de/projects/localizer/
+
+Even though the NetGeo server will process domain names I find that success is
+sporadic. Using IP addresses or AS numbers will work everytime.

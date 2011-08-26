@@ -1,0 +1,15 @@
+<style type="text/css">
+
+h1 {
+	background-image: url('{site/prefix}/inc/app/sitesearch/pix/icon.gif');
+	background-repeat: no-repeat;
+	background-position: 0, 50%;
+	padding-left: 42px;
+	padding-top: 5px;
+	padding-bottom: 12px;
+	margin-bottom: 0px;
+}
+
+</style>
+
+<p>{intl You have not yet run the SiteSearch indexer.}</p>

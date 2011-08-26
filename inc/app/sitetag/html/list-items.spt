@@ -1,0 +1,7 @@
+<p><a href="{site/prefix}/sitetag-app">{intl All Tags}</a></p>
+<ul>
+{loop items}
+<li><strong><a href="{site/prefix}/{loop/url}">{loop/title}</a></strong>
+{if loop.description}<br />{loop/description}{end if}</li>
+{end loop}
+</ul>

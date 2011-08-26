@@ -1,0 +1,15 @@
+{loop obj[list]}
+
+<p>&nbsp;<br /><strong>{loop/_key}</strong></p>
+
+<p>
+{loop loop}
+{if loop.priority eq 'high'}
+	<a href="{site/prefix}/index/siteevent-details-action/id.{loop/id}/title.{filter siteevent_filter_link_title}{loop/title}{end filter}"><strong>{if loop.time}{loop/ftime}: {end if}{loop/title}</strong></a><br />
+{end if}
+{if loop.priority eq 'normal'}
+	<a href="{site/prefix}/index/siteevent-details-action/id.{loop/id}/title.{filter siteevent_filter_link_title}{loop/title}{end filter}">{if loop.time}{loop/ftime}: {end if}{loop/title}</a><br />
+{end if}
+{end loop}
+</p>
+{end loop}

@@ -1,0 +1,29 @@
+<p style="margin-top: 15px">
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<td width="50%" valign="top" align="left" style="background-color: #eee">
+			{if count (obj[langs]) > 1}
+				<form method="get" action="{site/current}" style="display: inline">
+					<input type="hidden" name="appname" value="{appname}" />
+					<input type="hidden" name="helpfile" value="{helpfile}" />
+					{intl Select a langage}:
+					<select name="lang" onchange="this.form.submit ()">
+				{loop obj[langs]}
+					<option value="{loop/_key}"{if loop._key eq obj[lang]} selected="selected"{end if} lang="{loop/_key}">{filter none}{loop/_value}{end filter}</option>
+				{end loop}
+					</select>
+				</form>
+			{end if}
+		</td>
+		<td width="50%" valign="top" align="right" style="background-color: #eee">
+<form method="get" action="{site/prefix}/index/help-search-action" style="display: inline">
+<input type="hidden" name="appname" value="{appname}" />
+<input type="hidden" name="lang" value="{lang}" />
+	{intl Search}:
+	<input type="text" name="query" lang="{lang}" />
+	<input type="submit" value="{intl Go}" />
+</form>
+		</td>
+	</tr>
+</table>
+</p>

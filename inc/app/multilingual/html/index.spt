@@ -1,0 +1,71 @@
+{alt #eee #fff}
+
+<p>
+	<a href="{site/prefix}/index/multilingual-languages-action">{intl Languages}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/multilingual-dates-action">{intl Dates}</a>
+	&nbsp;&nbsp;
+	<a href="{site/prefix}/index/multilingual-translation-action?appname=GLOBAL">{intl Global Templates}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/multilingual-translation-action">{intl Applications}</a>
+</p>
+
+{filter none}{facets}{end filter}
+
+<h2>{total} {intl Documents}</h2>
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr style="background-color: {alt/next}">
+		<th width="10%">{intl Translate}</th>
+		<th width="35%">{intl Title}</th>
+		<th width="17%">{intl Content Type}</th>
+		<th width="17%">{intl Status}</th>
+		<th width="25%">{intl Translated On}</th>
+	</tr>
+{if obj[_status] eq 'untranslated'}
+{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td>
+			<form method="get" action="{site/prefix}/index/multilingual-translate-form" style="display: inline">
+			<input type="hidden" name="_collection" value="{_collection}" />
+			<input type="hidden" name="_key" value="{loop/_key}" />
+			<select name="_lang" onchange="this.form.submit ()">
+				<option value="">- {intl Language} -</option>
+				{loop multilingual_get_langs ()}
+				<option value="{loop/_key}">{loop/_value}</option>
+				{end loop}
+			</select>
+			</form>
+		</td>
+		<td>{loop/title}</td>
+		<td>{collection}</td>
+		<td align="center">{intl Not Translated}</td>
+		<td align="center">{intl None}</td>
+	</tr>
+{end loop}
+{end if}
+{if obj[_status] ne 'untranslated'}
+{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td>
+			<form method="get" action="{site/prefix}/index/multilingual-translate-form" style="display: inline">
+			<input type="hidden" name="_collection" value="{loop/_collection}" />
+			<input type="hidden" name="_key" value="{loop/pkey}" />
+			<select name="_lang" onchange="this.form.submit ()">
+				<option value="">- {intl Language} -</option>
+				{loop multilingual_get_langs ()}
+				<option value="{loop/_key}">{loop/_value}</option>
+				{end loop}
+			</select>
+			</form>
+		</td>
+		<td>{loop/title}</td>
+		<td>{loop/collection}</td>
+		<td align="center">{if loop.expired eq 'yes'}{intl Expired}{end if}{if else}{if loop.sitellite_status eq 'approved' or loop.sitellite_status eq 'archived'}{intl Complete}{end if}{if else}{intl Incomplete}{end if}{end if}</td>
+		<td align="center">{filter multilingual_filter_datetime}{loop/ts}{end filter}</td>
+	</tr>
+{end loop}
+{end if}
+</table>
+</p>

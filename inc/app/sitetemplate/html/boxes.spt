@@ -1,0 +1,67 @@
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc.js"> </script>
+<script language="javascript">
+
+var rpc = new rpc ();
+var gapp = false;
+
+var sitetemplate = {
+	url: '{site/prefix}/index/sitetemplate-rpc-action',
+
+	getBoxes: function (app) {
+		gapp = app;
+		rpc.call (
+			this.url + '?method=getBoxes&app=' + app,
+			function (request) {
+				boxes = eval (request.responseText);
+				out = '';
+				for (i = 0; i < boxes.length; i++) {
+					out += '<a href="#" onclick="return boxes_submit (\'' + gapp + '/' + boxes[i] + '\')">' + gapp + '/' + boxes[i] + '<' + '/a><br /' + ">\n";
+				}
+				document.getElementById ('boxes-list').innerHTML = out;
+			}
+		);
+		return false;
+	}
+};
+
+function boxes_get_list (s) {
+	app = s.options[s.selectedIndex].value;
+	if (app != '') {
+		sitetemplate.getBoxes (app);
+	}
+	return false;
+}
+
+function boxes_submit (ln) {
+	if (opener && ! opener.closed) {
+		opener.document.sitetemplate_set_box (ln);
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+
+	window.close ();
+
+	return false;
+}
+
+</script>
+
+<h2>1. {intl Select an application}:</h2>
+
+<form>
+
+<p>
+	<select name="app" onchange="return boxes_get_list (this)">
+		<option value="">- {intl SELECT} -</option>
+{loop obj[apps]}
+		<option value="{loop/_value}">{loop/_value}</option>
+{end loop}
+	</select>
+</p>
+
+</form>
+
+<h2>2. {intl Select a box}:</h2>
+
+<p id="boxes-list">
+</p>

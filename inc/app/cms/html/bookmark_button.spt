@@ -1,0 +1,26 @@
+<script language="javascript" type="text/javascript">
+
+function cms_bookmark_add () {
+	prompt (
+		'{filter addslashes}{intl Please enter a name for this bookmark}{end filter}:',
+		'',
+		function (name) {
+			if (name == null || name == false || name.length == 0 || name == 'null') {
+				return false;
+			}
+			rpc_call ('{site/prefix}/index/cms-bookmarks-add-action?bk_name=' + name + '&bk_link={filter urlencode}{_SERVER/REQUEST_URI}{end filter}');
+			return false;
+		}
+	);
+	return false;
+}
+
+</script>
+<span id="cms-bookmark-button">
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top"><a href="#" onclick="return cms_bookmark_add ()"><img src="{site/prefix}/inc/app/cms/pix/icons/bookmark-darker.gif" alt="Bookmark this search" title="Bookmark this search" border="0" /></a></td>
+		<td valign="top" style="padding-left: 5px"><a href="#" onclick="return cms_bookmark_add ()">{intl Bookmark}</a></td>
+	</tr>
+</table>
+</span>

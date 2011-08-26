@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>{wiki_name}</title>
+		<link>{site/url}/index/sitewiki-app</link>
+		<description>{wiki_description}</description>
+		<language>{language}</language>
+		<ttl>40</ttl>
+
+{loop obj.list}
+	<item>
+		<title>{filter sitewiki_filter_id}{loop/id}{end filter}</title>
+		<pubDate>{filter sitewiki_filter_rss_date}{loop/sv_revision}{end filter}</pubDate>
+		<guid>{site/url}/index/sitewiki-app/show.{loop/id}</guid>
+		<link>{site/url}/index/sitewiki-app/show.{loop/id}</link>
+		<dc:creator>{loop/sv_author}</dc:creator>
+	</item>
+{end loop}
+
+	</channel>
+</rss>

@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<title>MIDI CLASS v1.1</title>
+<style><!--
+h2 {
+	padding-top:20px;
+	padding-bottom:0px;
+}
+-->
+</style>
+</head>
+<body>
+
+<h1>MIDI CLASS v1.1</h1>
+
+<h2>Description</h2>
+
+Class for reading, writing, analyzing, modifying, creating, downloading 
+and playing (embedding) standard MIDI files (type 0 or 1). MIDI songs are 
+internally represented as lists of tracks, where each track is a list of 
+messages, and each message is a string. The message string format is 
+the same as the one used by the commandline tools <a href="ftp://ftp.cs.ruu.nl/pub/MIDI/PROGRAMS/MSDOS/mf2t.zip">MF2T/T2MF</a>
+created by Piet van Oostrum.<br><br>
+The class provides methods to generate and manipulate MIDI data and to import and export binary midi files (SMF, *.mid), text in the MF2T/T2MF format and <a href="http://www.recordare.com/dtds/midixml.html">MIDI XML</a>.<br>
+
+<h2>Applications</h2>
+
+<ul>
+<li>audio toys</li>
+<li>mixers</li>
+<li>sequencers</li>
+<li>ringtone creators</li>
+<li>musical education/training</li>
+<li>...</li>
+</ul>
+
+<h2><a href="documentation.htm">Documentation</a></h2>
+
+<h2>Demos</h2>
+
+<a href="manipulate.php">manipulate.php</a><br>
+demonstrates manipulation of MIDI data (imported MIDI file) in various 
+ways
+<br><br>
+<a href="sequencer.php">sequencer.php</a><br>
+little online sequencer, 4 drum tracks, 4 instrument tracks, 1 bar 
+only, result can be saved (simple mix format: serialized post array).
+<br><br>
+<a href="mid2txt.php">mid2txt.php</a><br>
+demonstrates binary MIDI file to text (MF2T/T2MF format) conversion
+<br><br>
+<a href="txt2mid.php">txt2mid.php</a><br>
+demonstrates text (MF2T/T2MF format) to binary MIDI file conversion
+<br><br>
+<a href="mid2xml.php">mid2xml.php</a><br>
+demonstrates binary MIDI file to MIDI XML conversion
+<br><br>
+<a href="xml2mid.php">xml2mid.php</a><br>
+demonstrates MIDI XML to binary MIDI file conversion
+<br><br>
+
+<h2><a href="downloads/">Downloads</a></h2>
+
+<h2>Related Links</h2>
+<a href="http://www.midi.org/">MIDI Manufacturers Association (MMA)</a><br>
+<a href="http://www.midi.org/dtds/midi_xml.shtml">MMA's MIDI XML Specifications</a><br>
+<a href="http://www.recordare.com/default.asp">Recordare</a><br>
+<a href="http://www.recordare.com/dtds/midixml.html">Standard MIDI File DTD: MIDI XML</a><br>
+<a href="ftp://ftp.cs.ruu.nl/pub/MIDI/PROGRAMS/MSDOS/mf2t.zip">MF2T/T2MF</a><br>
+<a href="http://www.midiox.com/">MIDI-OX</a><br>
+<a href="http://www.beatnik.com/">Beatnik</a>
+
+<h2>Contact</h2>
+<a href="mailto:fluxus@freenet.de">fluxus@freenet.de</a>
+<br><br>
+
+</body>
+</html>

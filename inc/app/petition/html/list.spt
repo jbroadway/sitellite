@@ -1,0 +1,4 @@
+{loop obj}
+<p><a href="{site/prefix}/index/petition-app/id.{loop/id}">{loop/name}</a><br />
+{loop/description}</p>
+{end loop}

@@ -1,0 +1,17 @@
+<ul>
+
+	{if appconf ('home')}
+		<li><a href="{site/url}/index/sitemember-app">{intl Member Home}</a></li>
+	{end if}
+
+	{if appconf ('preferences')}
+		<li><a href="{site/url}/index/sitemember-preferences-form">{intl Preferences}</a></li>
+	{end if}
+
+	{if appconf ('changepass')}
+		<li><a href="{site/url}/index/sitemember-changepass-action">{intl Change Password}</a></li>
+	{end if}
+
+	<li><a href="{site/url}/index/sitemember-logout-action" target="_top">{intl Log out}</a></li>
+
+</ul>

@@ -1,0 +1,24 @@
+{alt fff eee}
+
+<p>
+	<a href="{site/prefix}/index/cms-browse-action?collection=myadm_report">{intl All Reports}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/myadm-report-action?id={id}&ver=new">{intl Get New Data}</a>
+</p>
+
+<p>
+<table cellpadding="3" cellspacing="1" border="0" width="30%">
+	<tr>
+		<th>{intl Date/Time}</th>
+		<th>{intl Options}</th>
+	</tr>
+{loop obj.versions}
+	<tr style="background-color: #{alt/next}">
+		<td>{loop/run|myadm_filter_datetime}</td>
+		<td align="center">
+			<a href="{site/prefix}/index/myadm-report-action?id={id}&ver={loop/id}">{intl View}</a> &nbsp; &nbsp;
+			<a href="{site/prefix}/index/myadm-report-export-action?id={id}&ver={loop/id}">{intl Export (CSV)}</a>
+		</td>
+	</tr>
+{end loop}
+</table>
+</p>

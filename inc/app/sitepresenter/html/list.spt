@@ -1,0 +1,40 @@
+<style type="text/css">
+
+span.sitepresenter-date {
+	color: #999;
+}
+
+</style>
+
+{if obj[categories]}
+	<form style="display: inline">
+		{if count (obj[list]) gt 0}
+			<p align="right">
+				<select name="category" onchange="this.form.submit ()">
+					<option value=""{if obj[category] eq ''} selected="selected"{end if}>- {intl SELECT} -</option>
+					{loop obj[categories]}
+						<option value="{loop/_value}"{if obj[category] eq loop._value} selected="selected"{end if}>{loop/_value}</option>
+					{end loop}
+				</select>
+			</p>
+		{end if}
+		{if count (obj[list]) eq 0}
+			<ul>
+				{loop obj[categories]}
+					<li><a href="{site/prefix}/index/sitepresenter-app/category.{loop/_value}">{loop/_value}</a></li>
+				{end loop}
+			</ul>
+		{end if}
+	</form>
+{end if}
+
+{if obj[action]}{box cms/buttons/add?collection=sitepresenter_presentation}{end if}
+
+<ul>
+{loop obj[list]}
+	<li>
+		{if obj[action]}{box cms/buttons?collection=sitepresenter_presentation&add=false&float=false&align=false&inline=true&id=[loop/id]&access=[loop/sitellite_access]&status=[loop/sitellite_status]&team=[loop/sitellite_team]}{end if}
+		<a href="{site/prefix}/index/sitepresenter-presentation-action/id.{loop/id}/title.{filter sitepresenter_filter_link_title}{loop/title}{end filter}" target="_blank">{loop/title}</a>{if obj[action]}{if appconf('show_date')}<br /><span class="sitepresenter-date">{intl Date}: {loop/fmdate}</span>{end if}<br />{loop/description}{end if}
+	</li>
+{end loop}
+</ul>

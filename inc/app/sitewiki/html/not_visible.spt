@@ -1,0 +1,14 @@
+<p>
+	{intl This page is marked private.}
+	{if obj.view_level eq 1}
+		{intl Only signed in members can view it.}
+	{end if}
+	{if obj.view_level eq 2}
+		{intl Only administrative users can view it.}
+	{end if}
+	{if obj.view_level eq 3}
+		{intl Only the owner can view it.}
+	{end if}
+</p>
+
+{box sitemember/index?goto=[site/current]}

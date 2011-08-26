@@ -1,0 +1,12 @@
+<p>{intl Please enter the complete URL of the goal link to track for this parallel test.}<br />
+{intl The goal link is the link you are trying to direct visitors to follow on this page.}</p>
+
+<form method="get">
+<input type="hidden" name="id" value="{id}" />
+
+<p>{intl Goal Link}: <input type="text" name="goal_url" /><br />
+<small><em>(ie. http://www.example.com/buy_now.html)</em></small></p>
+
+<p><input type="submit" value="{intl Save}" /></p>
+
+</form>

@@ -1,0 +1,49 @@
+<style type="text/css">
+
+div.preview {
+	border: 1px solid #444;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+div.preview h1 {
+	background-image: none;
+	padding-left: 0px;
+	color: black;
+}
+
+div.preview a {
+	color: blue;
+	text-decoration: underline;
+}
+
+div.preview a:hover {
+	color: purple;
+}
+
+</style>
+
+<p><a href="javascript: window.close ()">{intl Close Window}</a></p>
+
+<p>
+<table border="0" cellpadding="5" cellspacing="1" width="100%">
+	<tr style="background: #eee">
+		<td width="20%"><strong>{intl Subject}</strong></td>
+		<td>{subject}</td>
+	</tr>
+	<tr>
+		<td><strong>{intl From}</strong></td>
+		<td>{fromname} &lt;{fromemail}&gt;</td>
+	</tr>
+	<tr style="background: #eee">
+		<td><strong>{intl Date}</strong></td>
+		<td>{date}</td>
+	</tr>
+</table>
+</p>
+
+<div class="preview" style="border: 1px solid #444; padding: 15px">
+
+{filter none}{body}{end filter}
+
+</div>

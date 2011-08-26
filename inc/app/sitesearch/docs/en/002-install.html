@@ -1,0 +1,39 @@
+<h1>Installing SiteSearch</h1>
+
+<p>Please note that SiteSearch requires PHP version 5.1 or greater to run,
+due to its dependence on the <a href="http://framework.zend.com/">Zend
+Framework</a>.</p>
+
+<p>1. Install the necessary database tables:</p>
+
+<pre>$ mysql -p -u USER DBNAME < inc/app/sitesearch/install/install-mysql.sql
+(enter password when prompted)</pre>
+
+<p>2. Copy the indexer into the Scheduler app:</p>
+
+<pre>$ cd /PATH/TO/SITELLITE
+$ cp -R inc/app/sitesearch/install/sitesearch inc/app/scheduler/tasks/</pre>
+
+<p>3. Run the indexer for the first time.  Warning: Don't do this during
+rush-hour traffic on your web site!  If you have a big site, this could
+take some time and/or slow your site down while it's happening.</p>
+
+<pre>$ cd /PATH/TO/SITELLITE
+$ php -f index scheduler-app sitesearch</pre>
+
+<p>Subsequent indexes will run when the Scheduler runs (ie. whenever you
+told it to in your crontab).</p>
+
+<p>4. In the Sitellite Control Panel, choose Admin &gt; Workflow Services.
+Check off all three services under the SiteSearch section and click
+"Save".  This enables Sitellite to automatically add and manage records
+in the SiteSearch index when documents are created and modified within
+Sitellite, keeping the index in sync with the site at all times.</p>
+
+<p>5. Link to SiteSearch somewhere on your web site.  SiteSearch can be
+accessed from the following URL (change www.yourWebSite.com to YOUR
+WEB SITE, of course):</p>
+
+<pre>http://www.yourWebSite.com/index/sitesearch-app</pre>
+
+<p>That's all there is to it!</p>

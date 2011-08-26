@@ -1,0 +1,14 @@
+<p>
+	<a href="{site/prefix}/index/siteinvoice-app">Invoices</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/siteinvoice-invoice-action">New Invoice</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <a href="{site/prefix}/index/siteinvoice-clients-action">Clients</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <a href="{site/prefix}/index/siteinvoice-add-client-form">New Client</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <a href="{site/prefix}/index/siteinvoice-settings-form">Settings</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <a href="{site/prefix}/index/help-app?appname=siteinvoice">Help</a>
+</p>
+

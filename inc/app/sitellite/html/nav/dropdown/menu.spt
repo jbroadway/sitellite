@@ -1,0 +1,47 @@
+<!-- Issue #187 dropdown menu -->
+<!-- <script type="text/javascript" language="javascript" src="/js/jquery-1.4.2.min.js"></script> -->
+
+<script type="text/javascript" language="javascript" src="/js/jquery.menu.js"></script>
+
+<!-- This is the basic structure for a three level menu. -->
+<!-- For each level the next structure should be added to the template -->
+<!--
+	{if not empty (loop.submenu)}
+        <ul>
+            {loop loop[submenu]}
+                <li class="{if not empty (loop.active)} current{end if}">
+                    <a {if not empty (loop.submenu)}class="parent"{end if} href="{site/prefix}/index/{loop.id}"{active|none}><span>{loop.title}</span></a>
+                </li>
+            {end loop}
+        </ul>
+    {end if}
+-->
+
+<div id="menu">
+<ul class="dropdown menu">
+{loop obj[list]}
+	<li class="leaf{if not empty (loop.last)} last{end if}{if not empty (loop.active)} current{end if}">
+        <a class="parent" href="{site/prefix}/index/{loop.id}" ><span>{loop.title}</span></a>
+        {if not empty (loop.submenu)}
+        <ul>
+            {loop loop[submenu]}
+                <li class="{if not empty (loop.last)}last{end if}{if not empty (loop.active)} current{end if}">
+                    <a {if not empty (loop.submenu)}class="parent"{end if} href="{site/prefix}/index/{loop.id}"{active|none}><span>{loop.title}</span></a>
+                    {if not empty (loop.submenu)}
+                    <ul>
+                        {loop loop[submenu]}
+                            <li class="{if not empty (loop.last)}last{end if}{if not empty (loop.active)} current{end if}">
+                                <a {if not empty (loop.submenu)}class="parent"{end if} href="{site/prefix}/index/{loop.id}"{active|none}><span>{loop.title}</span></a>
+                            </li>
+                        {end loop}
+                    </ul>
+                    {end if}
+                </li>
+            {end loop}
+        </ul>
+        {end if}
+    </li>
+
+{end loop}
+</ul>
+</div>

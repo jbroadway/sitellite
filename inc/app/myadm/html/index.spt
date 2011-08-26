@@ -1,0 +1,81 @@
+<script language="javascript">
+<!--
+
+function confirmDrop (table) {
+	return confirm ('{intl Are you sure you want to drop the table "' + table + '"?}');
+}
+
+var myadm_select_switch = false;
+
+function selectAll (f) {
+	if (myadm_select_switch == false) {
+		for (i = 0; i < f.elements.length; i++) {
+			f.elements[i].checked = true;
+			myadm_select_switch = true;
+		}
+	} else {
+		for (i = 0; i < f.elements.length; i++) {
+			f.elements[i].checked = false;
+			myadm_select_switch = false;
+		}
+	}
+	return false;
+}
+
+// -->
+</script>
+
+<p>
+	<a href="{site/prefix}/index/myadm-shell-action">{intl SQL Shell}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=myadm">{intl Database Manager Help}</a>
+	<!-- &nbsp; <a href="{site/prefix}/index/sitellite-user-logout-action/goto.myadm-app">Log Out</a> -->
+</p>
+
+<p>{intl Choose a database table.}</p>
+
+<form method="post">
+
+{alt #eee #fff}
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr style="background-color: {alt/next}">
+		<th align="center" width="30">
+			&nbsp;<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return selectAll (this.form)" />&nbsp;
+		</th>
+		<th>{intl Table Name}</th>
+		<th>{intl Items}</th>
+		<th>{intl Actions}</th>
+	</tr>
+{loop obj[tables]}
+	<tr style="background-color: {alt/next}">
+		<td align="center">
+			<input type="checkbox" name="table[]" value="{loop/name}" />
+		</td>
+		<td>
+			<a href="{site/prefix}/index/myadm-browse-action?table={filter urlencode}{loop/name}{end filter}">{loop/name}</a>
+		</td>
+		<td width="10%" align="right">
+			{loop/count}
+		</td>
+		<td width="45%" align="left">
+			&nbsp; &nbsp; <a href="{site/prefix}/index/myadm-shell-action?sql=DESCRIBE+{filter urlencode}{loop/name}{end filter}#results">{intl Info}</a> &nbsp; &nbsp;
+			<a href="{site/prefix}/index/myadm-shell-action?sql=SHOW+INDEX+FROM+{filter urlencode}{loop/name}{end filter}#results">{intl Indexes}</a> &nbsp; &nbsp;
+			<a href="{site/prefix}/index/myadm-backup-action?table={filter urlencode}{loop/name}{end filter}&format=sql">{intl Backup}</a> &nbsp; &nbsp;
+			<a href="{site/prefix}/index/myadm-backup-action?table={filter urlencode}{loop/name}{end filter}&format=csv">{intl CSV}</a>{if loop[is_collection]} &nbsp; &nbsp;
+			<a href="{site/prefix}/index/cms-browse-action?collection={loop/name}">{intl Browse Collection}</a>{end if}{if not loop[is_collection] and not loop[is_version_data]} &nbsp; &nbsp;
+			<a href="{site/prefix}/index/myadm-collection-action?table={loop/name}">{intl Create Collection}</a>{end if}{if loop[is_version_data]} &nbsp; &nbsp;
+			{intl Change History Table}{end if}<!-- &nbsp; &nbsp;
+			<a href="{site/prefix}/index/myadm-drop-action?table={filter urlencode}{loop/name}{end filter}" onclick="return confirmDrop ('{loop/name}')">{intl Drop}</a> -->
+		</td>
+	</tr>
+{end loop}
+</table>
+</p>
+
+<p>
+	<input type="submit" value="{intl Drop}" onclick="this.form.action = '{site/prefix}/index/myadm-drop-action'; return confirm ('{intl Are you sure you want to drop these tables?}')" />
+	&nbsp; &nbsp;
+	<input type="submit" value="{intl Clear}" onclick="this.form.action = '{site/prefix}/index/myadm-clear-action'; return confirm ('{intl Are you sure you want to clear all of the items in these tables?}')" />
+	&nbsp; &nbsp;
+	<input type="submit" value="{intl Backup}" onclick="this.form.action = '{site/prefix}/index/myadm-backup-action'; return true" />
+</p>

@@ -1,0 +1,17 @@
+<tr>
+<td colspan="4" style="padding-top: 14px;">
+<h3>{type}</h3>
+</td>
+</tr>
+
+
+{loop obj[options]}
+	<tr>
+		<td class="field"><input type="checkbox" {if loop.available eq 'yes'}checked="checked"{end if} name="po-{loop/id}-yes" value="yes"></td>
+		<td class="label"><label for="po-{loop/id}-yes" id="radio-label">{loop/name}</label></td>
+		<td class="field"><input type="checkbox" {if loop.available eq 'no'}checked="checked"{end if} name="po-{loop/id}-no" value="no"></td>
+		<td class="label"><label for="po-{loop/id}-no" id="radio-label">sold out / unavailable</label></td>
+	</tr>
+{end loop}
+
+

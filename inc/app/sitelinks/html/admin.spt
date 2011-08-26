@@ -1,0 +1,101 @@
+<p>
+<table width="100%">
+	<tr>
+		<td>
+{if obj.drafts gt 0}
+<p><a href="{site/prefix}/index/cms-browse-action?collection=sitelinks_item&_sitellite_status=draft">{intl There are} {drafts} {intl links pending approval.}</a></p>
+{end if}
+{if else}
+<p>{intl There are no links pending approval.}</p>
+{end if}
+		</td>
+		<td align="right">
+<form method="get">
+	{intl Range}:
+	<select name="top_range" onchange="this.form.submit ()">
+		<option value="day" {if obj.top_range eq 'day'}selected="selected"{end if}>{intl Day}</option>
+		<!-- option value="week" {if obj.top_range eq 'week'}selected="selected"{end if}>{intl Week}</option -->
+		<option value="month" {if obj.top_range eq 'month'}selected="selected"{end if}>{intl Month}</option>
+		<option value="year" {if obj.top_range eq 'year'}selected="selected"{end if}>{intl Year}</option>
+	</select>
+	<input type="hidden" name="top_date" value="{top_date}" />
+</form>
+		</td>
+	</tr>
+</table>
+</p>
+
+<p>
+<table width="100%">
+	<tr>
+		<td width="33%">
+			<a href="{site/prefix}/index/sitelinks-admin-action?top_range={top_range}&top_date={top_prev}">{top_prev}</a>
+		</td>
+		<td width="33%" align="center">
+			<strong>{top_date}</strong>
+		</td>
+		<td width="33%" align="right">
+			<a href="{site/prefix}/index/sitelinks-admin-action?top_range={top_range}&top_date={top_next}">{top_next}</a>
+		</td>
+	</tr>
+</table>
+</p>
+
+<h2>{intl Top} {php count (obj.views)} {intl Views}</h2>
+
+<p>
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th width="10%">{intl Rank}</th>
+		<th width="15%"># {intl of Views}</th>
+		<th>{intl Link}</th>
+	</tr>
+	{loop obj.views}
+		<tr style="background-color: {alt/next}">
+			<td align="center">{loop/_index}</td>
+			<td align="right">{loop/total}</td>
+			<td><a href="{site/prefix}/index/sitelinks-app/item.{loop/item_id}">{filter sitelinks_filter_get_title}{loop/item_id}{end filter}</a></td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+<h2>{intl Top} {php count (obj.hits)} {intl Hits}</h2>
+
+<p>
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th width="10%">{intl Rank}</th>
+		<th width="15%"># {intl of Hits}</th>
+		<th>{intl Link}</th>
+	</tr>
+	{loop obj.hits}
+		<tr style="background-color: {alt/next}">
+			<td align="center">{loop/_index}</td>
+			<td align="right">{loop/total}</td>
+			<td><a href="{site/prefix}/index/sitelinks-app/item.{loop/item_id}">{filter sitelinks_filter_get_title}{loop/item_id}{end filter}</a></td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+<h2>{intl Top} {php count (obj.ratings)} {intl Ratings}</h2>
+
+<p>
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th width="10%">{intl Rank}</th>
+		<th width="15%">{intl Rating}</th>
+		<th width="15%">{intl Votes}</th>
+		<th>{intl Link}</th>
+	</tr>
+	{loop obj.ratings}
+		<tr style="background-color: {alt/next}">
+			<td align="center">{loop/_index}</td>
+			<td align="right">{loop/rating}</td>
+			<td align="right">{loop/votes}</td>
+			<td><a href="{site/prefix}/index/sitelinks-app/item.{loop/item_id}">{filter sitelinks_filter_get_title}{loop/item_id}{end filter}</a></td>
+		</tr>
+	{end loop}
+</table>
+</p>

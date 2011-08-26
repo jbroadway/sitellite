@@ -1,0 +1,7 @@
+; <?php /*
+
+[Type]
+
+name = Default
+
+; */ ?>

@@ -1,0 +1,3 @@
+<p>{intl Error message}: {message}</p>
+
+<p><a href="{return}">{intl Continue}</a></p>

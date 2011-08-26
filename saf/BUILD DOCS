@@ -1,0 +1,4 @@
+Building The SAF Docs
+
+Sitellite now has a separate API doc generator.  The current API reference site
+is http://api.sitellite.org/

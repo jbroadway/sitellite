@@ -1,0 +1,11 @@
+<h1>{title}</h1>
+    <p align="right">
+        Browse by 
+        <a href="{site/prefix}/index/siteblog-browse-action/by.date">Date</a>,
+        <a href="{site/prefix}/index/siteblog-browse-action/by.user">Poster</a> or
+        <a href="{site/prefix}/index/siteblog-browse-action/by.category">Category</a><br />
+        <a href="{site/prefix}/index/siteblog-browse-form">Advanced Search</a>
+    </p>
+        
+    
+

@@ -1,0 +1,72 @@
+<p>
+	<a href="#signature">&raquo; {intl Sign the declaration below}</a><br />
+	<a href="{site/prefix}/index/petition-signatures-action/id.{id}">&raquo; {intl View the signatures}</a>
+</p>
+
+<div id="petition-body">
+{filter none}{body}{end filter}
+</div>
+
+<a name="signature"></a>
+<h2>{intl Sign the declaration}</h2>
+
+<p><a href="{site/prefix}/index/petition-signatures-action/id.{id}">&raquo; {intl View the signatures}</a><br /></p>
+
+{form petition/sign}
+
+<!--
+<form method="post" action="{site/prefix}/index/petition-sign-form">
+<input type="hidden" name="id" value="{id}" />
+<table border="0" cellpadding="3" cellspacing="1" width="95%">
+	<tr>
+		<td valign="top" width="50%">
+			{intl First Name}:<br />
+			<input type="text" name="firstname" />
+		</td>
+		<td valign="top" width="50%">
+			{intl Last Name}:<br />
+			<input type="text" name="lastname" />
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" width="50%">
+			{intl Email Address}:<br />
+			<input type="text" name="email" />
+		</td>
+		<td valign="top" width="50%">
+			{intl City or Town}:<br />
+			<input type="text" name="firstname" />
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" width="50%">
+			{intl Province/Territory}:<br />
+			<select name="province">
+				<option value="">- SELECT -</option>
+				<option value="AB">Alberta</option>
+				<option value="BC">British Columbia</option>
+				<option value="MB">Manitoba</option>
+				<option value="NB">New Brunswick</option>
+				<option value="NF">Newfoundland/Labrador</option>
+				<option value="NS">Nova Scotia</option>
+				<option value="NV">Nunavut</option>
+				<option value="NT">Northwest Territories</option>
+				<option value="ON">Ontario</option>
+				<option value="PE">Prince Edward Island</option>
+				<option value="QC">Quebec</option>
+				<option value="SK">Saskatchewan</option>
+				<option value="YK">Yukon Territory</option>
+			</select>
+		</td>
+		<td valign="top" width="50%">
+			&nbsp;<br />
+			<input type="submit" value="{intl Submit now}" /><br /><br />
+			<a href="{site/prefix}/index/petition-signatures-action/id.{id}">&raquo; {intl View the signatures}</a><br />
+			&nbsp;
+		</td>
+	</tr>
+</table>
+</form>
+-->
+
+<br />&nbsp;

@@ -1,0 +1,23 @@
+<h1>Installation</h1>
+
+SITEPRESENTER INSTALL INSTRUCTIONS<br />
+<br />
+1. Install the necessary database tables:<br />
+<br />
+$ mysql -p -u USER DBNAME &lt; inc/app/sitepresenter/install/install-mysql.sql<br />
+(enter password when prompted)<br />
+<br />
+2. Copy the presentation collection definition into the cms app:<br />
+<br />
+$ cd /PATH/TO/SITELLITE<br />
+$ cp -R inc/app/sitepresenter/install/sitepresenter_presentation.php inc/app/cms/conf/collections/<br />
+<br />
+3. Link to SitePresenter somewhere on your web site.  SitePresenter can be<br />
+accessed from the following URL (change www.yourWebSite.com to YOUR<br />
+WEB SITE, of course):<br />
+<br />
+http://www.yourWebSite.com/index/sitepresenter-app<br />
+<br />
+That's all there is to it!<br />
+<br />
+

@@ -1,0 +1,64 @@
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/rpc.js">
+</script>
+<script language="javascript" type="text/javascript">
+
+var rpc = new rpc();
+
+var digger = {
+	url:'{site/prefix}/index/digger-rpc-action',
+
+	vote: function(score, id) {
+		var hscore = score;
+		var hid = id;
+		rpc.call (
+			this.url + '?method=vote&score=' + score + '&id=' + id,
+			function(request) {
+				id = hid;
+				if (hscore == 'yes') {
+					score = 1;
+				} else {
+					score = -1;
+				}
+				document.getElementById('digger-votebox-' + id).style.display = 'none';
+				document.getElementById('digger-score-' + id).childNodes[0].nodeValue = parseInt(document.getElementById('digger-score-' + id).childNodes[0].nodeValue) + score;
+				if (parseInt(document.getElementById('digger-score-' + id).childNodes[0].nodeValue) <= {banned_score}) {
+					document.getElementById('digger-item-' + id).style.display = 'none';
+				}
+			}
+		);
+
+		return false;
+	}
+}
+
+</script>
+
+{if session_valid()}
+<p><a href="{site/prefix}/index/digger-add-form">{intl Submit a Story}</a></p>
+{end if}
+
+{box cms/buttons/add?collection=digger_linkstory}
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+{loop obj[results]}
+<div class="digger-item" id="digger-item-{loop/id}">
+	{box cms/buttons?collection=digger_linkstory&status=approved&access=public&team=none&float=true&id=[loop/id]&add=false}
+	<h2><a href="{loop/link}">{loop/title}</a></h2>
+	<p>{loop/description}</p>
+	<p class="digger-item-info">
+		Category: {filter digger_filter_category}{loop/category}{end filter},
+		By: {filter digger_filter_user}{loop/user}{end filter},
+		Date: {filter digger_filter_date}{loop/posted_on}{end filter},
+		Score: <span id="digger-score-{loop/id}">{loop/score}</span><span id="digger-votebox-{loop/id}" {loop/voted}>
+		[ <a href="#" onclick="return digger.vote('yes', {loop/id})" rel="nofollow"><span style="font-size: 125%">+</span></a> / <a href="#" onclick="return digger.vote('no', {loop/id})" rel="nofollow"><span style="font-size: 125%">&ndash;</span></a> ]</span>,
+		<a href="{site/prefix}/index/digger-comments-action/id.{loop/id}/title.{filter digger_filter_title}{loop/title}{end filter}">Comments</a></p>
+</div>
+{end loop}

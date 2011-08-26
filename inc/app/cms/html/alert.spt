@@ -1,0 +1,8 @@
+<link rel="stylesheet" type="text/css" href="{site/prefix}/js/prompt.css" />
+<script language="javascript" src="{site/prefix}/js/jquery-1.4.2.min.js"></script>
+<script language="javascript" src="{site/prefix}/js/prompt-compressed.js"></script>
+<script language="javascript">
+
+alert ('{msg}');
+
+</script>

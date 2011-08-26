@@ -1,0 +1,50 @@
+{filter none}
+{CMS_JS_RESTORE_CONFIRM}
+{end filter}
+
+{alt #fff #eee}
+
+<p><a href="{cgi/_return}">{intl Back}</a></p>
+
+<p>
+<table border="0" cellpadding="3" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+<p>
+<table border="0" cellpadding="3" width="100%">
+	<tr>
+		<th>&nbsp;</th>
+		<th>{intl ID}</th>
+		<th>{intl Author}</th>
+		<th>{intl Action}</th>
+		<th>{intl Date}</th>
+		<th>{intl Change Summary}</th>
+	</tr>
+{loop obj[history]}
+	<tr style="background-color: {alt/next}">
+		<td align="center">
+		{if loop.sv_autoid eq obj[current]}
+			{intl Current}
+		{end if}
+		{if loop.sv_autoid ne obj[current]}
+			<a href="{site/prefix}/index/cms-history-view-action?_collection={cgi/_collection}&_key={cgi/_key}&_rid={loop/sv_autoid}&_return={cgi/_return}&_current={cgi/_current}">{intl View}</a>
+			{if obj[editable]}
+			&nbsp;
+			<a href="{site/prefix}/index/cms-history-restore-action?collection={cgi/_collection}&key={cgi/_key}&rid={loop/sv_autoid}&_return={cgi/_return}" onclick="return cms_restore_confirm ()">{intl Restore}</a>
+			{end if}
+		{end if}
+		</td>
+		<td>{loop/sv_autoid}</td>
+		<td>{loop/sv_author}</td>
+		<td>{loop/sv_action}</td>
+		<td>{filter pretty_date}{loop/sv_revision}{end filter}</td>
+		<td>{loop/sv_changelog}</td>
+	</tr>
+{end loop}
+</table>
+</p>

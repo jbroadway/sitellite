@@ -1,0 +1,1 @@
+<p>{intl Your vote has been added.}  <a href="{site/prefix}/index/sitelinks-app/item.{item}">{intl Click here to continue.}</a></p>

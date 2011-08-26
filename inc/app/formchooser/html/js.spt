@@ -1,0 +1,66 @@
+
+var formchooser_form = false;
+var formchooser_element = false;
+var formchooser_attrs = false;
+dialogWin.scrollbars = 'yes';
+dialogWin.resizable = 'yes';
+
+function formchooser () {
+	openDGDialog (
+		'{site/prefix}/index/formchooser-app?attrs=' + formchooser_attrs,
+		400,
+		300,
+		formchooser_handler
+	);
+}
+
+function formchooser_get_file (f, e) {
+	formchooser_form = f;
+	formchooser_element = e;
+	formchooser ();
+	return false;
+}
+
+function formchooser_view (file) {
+	if (! file) {
+		return false;
+	}
+	
+	win = window.open (
+		file,
+		'BoxChooser',
+		'top=50,left=50'
+	);
+	return false;
+}
+
+function formchooser_select (f) { // alt and flt are optional parameters
+	if (arguments.length > 1) {
+		alt = arguments[1];
+		flt = arguments[2];
+		h = arguments[3];
+		w = arguments[4];
+	} else {
+		alt = false;
+		h = false;
+	}
+	if (opener && ! opener.closed) {
+		if (h != false) {
+			opener.dialogWin.returnedValue = new Array ();
+			opener.dialogWin.returnedValue['src'] = f;
+			opener.dialogWin.returnedValue['alt'] = alt;
+			opener.dialogWin.returnedValue['float'] = flt;
+			opener.dialogWin.returnedValue['height'] = h;
+			opener.dialogWin.returnedValue['width'] = w;
+		} else {
+			opener.dialogWin.returnedValue = f;
+		}
+		opener.dialogWin.returnFunc ();
+	} else {
+		alert ('Hey, where did my parent go?');
+	}
+	window.close ();
+	if (h != false) {
+		return false;
+	}
+}

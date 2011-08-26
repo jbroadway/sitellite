@@ -1,0 +1,13 @@
+<div id="monoSlideshow">
+<!-- slideshow div -->
+</div>
+<script type="text/javascript">
+// <![CDATA[
+var so = new SWFObject("/inc/app/monoslideshow/html/monoslideshow.swf", "SOmonoSlideshow", "480", "360", "7", "#ffffff");
+so.addParam("base", "/inc/app/monoslideshow/html/");
+so.addVariable("showLogo", "false");
+//so.addVariable("dataFile", "/monoslideshow.xml");
+so.addVariable("dataFile", escape ("{site/prefix}/index/monoslideshow-app?folder={folder}&title={title}&description={description}"));
+so.write("monoSlideshow");
+// ]]>
+</script>

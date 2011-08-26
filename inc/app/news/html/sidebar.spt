@@ -1,0 +1,23 @@
+<div id="news">
+    <ul>
+    	{loop obj[list]}
+    	<li>
+            {if obj[thumbs] eq 'yes'}
+    			{if not empty (loop.thumb)}
+    				<img src="{loop/thumb}" alt="{loop/title}" border="0" style="float: {appconf/align_thumbnails}; margin: 0px 5px 5px 5px" />
+    			{end if}
+            {end if}
+	    <span class="news-headline">{if obj[dates] ne 'no'}{filter intl_date}{loop/date}{end filter} - {end if}{loop/title}</span>
+	    <br />
+	    <span class="news-summary">{loop/summary}</span>
+	    <br />
+	    <span class="news-readmore">
+	    	<a href="{site/prefix}/index/news-app/story.{loop/id}/title.{filter news_link_title}{loop/title}{end filter}">{intl Read more} &raquo;</a>
+	    </span>
+	</li>
+	{end loop}
+        {if obj[archive] eq 'yes'}
+            <p class="archive"><a href="/index/nieuws">{intl News archive} &raquo;</a></p>
+        {end if}
+    </ul>
+</div>

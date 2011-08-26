@@ -1,0 +1,27 @@
+<script language="javascript" type="text/javascript">
+
+i = '{ifname}';
+f = '{find}';
+r = '{replace}';
+{if not empty (obj[regex])}
+rx = 1;
+{end if}
+{if else}
+rx = 0;
+{end if}
+{if not empty (obj[case_sensitive])}
+cs = 1;
+{end if}
+{if else}
+cs = 0;
+{end if}
+
+if (opener && ! opener.closed) {
+	opener.document.getElementById (i).source_replace_text (f, r, cs, rx);
+} else {
+	alert ('Hey, where did my parent go?');
+}
+
+window.close ();
+
+</script>

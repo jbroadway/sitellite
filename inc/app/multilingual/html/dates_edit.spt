@@ -1,0 +1,43 @@
+{filter none}
+{HELPDOC_JS_DELETE_CONFIRM}
+{HELPDOC_JS_SELECT_ALL}
+{end filter}
+
+<p>
+	<a href="{site/prefix}/index/multilingual-dates-action">{intl Back}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/multilingual-dates-strings-form?lang={lang}&charset={charset}">{intl Translations}</a>
+	&nbsp;&nbsp;
+	<a href="{site/prefix}/index/multilingual-dates-add-form?lang={lang}&charset={charset}&default={default}">{intl Add Date Format}</a>
+</p>
+
+<form method="post" action="{site/prefix}/index/multilingual-dates-delete-action">
+	<input type="hidden" name="lang" value="{lang}" />
+	<input type="hidden" name="charset" value="{charset}" />
+	<input type="hidden" name="default" value="{default}" />
+<p>
+	<table border="0" width="100%" cellpadding="3" cellspacing="1">
+		<tr>
+			<th align="center" width="10%">
+				<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return helpdoc_select_all (this.form)" />&nbsp;
+				<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return helpdoc_delete_confirm ()" />
+			</th>
+			<th align="left" width="15%">{intl Name}</th>
+			<th align="left" width="15%">{intl Format}</th>
+			<th align="left">{intl Example}</th>
+		</tr>
+		{loop obj[formats]}
+		<tr>
+			<td align="center" width="10%">
+				{if loop[editable]}
+				<input type="checkbox" name="_key[]" value="{loop/_key}" />
+				{end if}
+			</td>
+			<td><a href="{site/prefix}/index/multilingual-dates-edit-form?lang={lang}&charset={charset}&default={default}&format={loop/_key}">{loop/name}</a></td>
+			<td>{loop/format}</td>
+			<td>{loop/example}</td>
+		</tr>
+		{end loop}
+	</table>
+</p>
+</form>

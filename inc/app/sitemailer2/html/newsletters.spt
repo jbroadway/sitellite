@@ -1,0 +1,86 @@
+{filter none}
+{CMS_JS_DELETE_CONFIRM}
+{CMS_JS_SELECT_ALL}
+{end filter}
+
+{alt even odd}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="navbar">
+	<tr>
+		<td>
+		<span class="current"><a href="{site/prefix}/index/sitemailer2-newsletters-action" class="current">{intl Newsletters}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-subscribers-action">{intl Subscribers}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-drafts-action">{intl Drafts}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-templates-action">{intl Templates}</a></span>
+        <span><a href="{site/prefix}/index/sitemailer2-campaigns-action">{intl Campaigns}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-stats-action">{intl Stats}</a></span>
+		<span><a href="{site/prefix}/index/sitemailer2-settings-form">{intl Settings}</a></span>
+		<span><a href="{site/prefix}/index/help-app?appname=sitemailer2">{intl Help}</a></span>
+		</td>
+	</tr>
+</table>
+
+<br clear="both" />
+
+<p style="margin-top: 0px"><a href="{site/prefix}/index/sitemailer2-newsletter-add-form">{intl Add Newsletter}</a></p>
+
+{-- spt facets.spt --}
+
+<form method="post" action="{site/prefix}/index/sitemailer2-newsletter-delete-action" style="display: inline">
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	<tr>
+		<th width="50">
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return cms_select_all (this.form)" />&nbsp;
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return cms_delete_confirm ()" />
+		</th>
+		<th width="15%">&nbsp;</th>
+		<th width="40%">{intl Newsletter}</th>
+		<th width="25%">{intl Last Sent}</th>
+		<th>{intl Subscribers}</th>
+	</tr>
+	{loop obj[list]}
+		<tr class="{alt/next}">
+			<td width="50" align="center">
+				<input type="checkbox" name="delete[]" value="{loop/id}" />
+			</td>
+			<td width="15%" align="center">
+				<a href="{site/prefix}/index/cms-add-form?collection=sitemailer2_message&newsletter[]={loop/id}"><img src="{site/prefix}/inc/app/sitemailer2/pix/icons/compose.gif" alt="{intl Compose Message}" title="{intl Compose Message}" border="0" /></a>
+				&nbsp;<a href="{site/prefix}/index/sitemailer2-subscribers-action?_newsletter={loop/id}"><img src="{site/prefix}/inc/app/sitemailer2/pix/icons/subscribers.gif" alt="{intl Subscribers}" title="{intl Subscribers}" border="0" /></a>
+				&nbsp;<a href="{site/prefix}/index/sitemailer2-archive-action?_newsletter={loop/id}"><img src="{site/prefix}/inc/app/sitemailer2/pix/icons/archive.gif" alt="{intl Sent Messages}" title="{intl Sent Messages}" border="0" /></a>
+				&nbsp;<a href="{site/prefix}/index/sitemailer2-newsletter-edit-form?id={loop/id}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" alt="{intl Edit}" title="{intl Edit}" border="0" /></a>
+			</td>
+			<td width="40%">
+				<!-- a href="{site/prefix}/index/sitemailer2-subscribers-action?newsletter={loop/id}" -->{loop/name}<!-- /a -->
+			</td>
+			<td>{filter sitemailer2_filter_last_sent}{loop/last_sent}{end filter}</td>
+			<td align="right">{loop/subscribers}</td>
+		</tr>
+	{end loop}
+	<tr class="{alt/next}">
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td><strong style="color: #369">{intl Total Subscribers}<strong></td>
+		<td>&nbsp;</td>
+		<td align="right">{total}</td>
+	</tr>
+</table>
+</form>
+
+<!--
+
+<p><a href="{site/prefix}/index/sitetemplate-newset-action">{intl New Template Set}</a></p>
+
+<table cellspacing="1" cellpadding="3" border="0" width="100%">
+	{loop obj[template_sets]}
+		<tr class="{alt/next}">
+-->			<!-- td style="width: 20px">
+				<a href="{site/prefix}/index/sitetemplate-editset-form?set={loop/path}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" border="0" alt="{intl Edit}" title="{intl Click to edit set properties}" /></a>
+			</td -->			
+<!--			<td>
+				<a href="{site/prefix}/index/sitetemplate-templateselect-action?set_name={loop/path}" title="{loop/description}">{loop/set_name}</a>
+			</td>
+		</tr>
+	{end loop}
+</table>
+
+-->

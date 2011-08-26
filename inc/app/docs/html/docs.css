@@ -1,0 +1,39 @@
+div#docs-sidebar {
+	float: left;
+	width: 25%;
+}
+
+div#docs-sidebar ul, div#docs-sidebar ul li {
+	list-style-image: none;
+}
+
+div#docs-content {
+	float: right;
+	width: 70%;
+}
+
+div#docs-classes {
+	float: left;
+	width: 45%;
+}
+
+div#docs-functions {
+	float: left;
+	width: 45%;
+}
+
+a.selected {
+	font-weight: bold;
+}
+
+form#docs-apps {
+	display: block;
+	width: 300px;
+	float: right;
+	text-align: right;
+}
+
+h3 {
+	font-size: 13px;
+	margin-top: 0px;
+}

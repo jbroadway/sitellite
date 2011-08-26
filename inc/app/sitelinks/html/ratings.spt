@@ -1,0 +1,34 @@
+<div class="sitelinks-ratings">
+	<h2>{intl User Ratings}</h2>
+
+	{if obj[ratings] gt 0}
+		<p><strong>{intl Average Rating}:</strong> {ratings}</p>
+
+		<p><strong>{intl Total Votes}:</strong> {votes}</p>
+	{end if}
+	{if else}
+		<p><strong>{intl No Votes Yet}</strong></p>
+	{end if}
+
+	{if not obj[has_voted]}
+
+	<h3>{intl Add Your Vote}</h3>
+
+	<form method="post" action="{site/prefix}/index/sitelinks-ratings-action">
+	<input type="hidden" name="item" value="{item}" />
+	<p>
+		<select name="rating">
+			<option value="" selected="selected">{intl Select Your Rating}</option>
+			<option value="5">{intl Excellent}!</option>
+			<option value="4">{intl Very Good}</option>
+			<option value="3">{intl Good}</option>
+			<option value="2">{intl Fair}</option>
+			<option value="1">{intl Poor}</option>
+		</select>
+		&nbsp;
+		<input type="submit" value="{intl Vote}!" />
+	</p>
+	</form>
+
+	{end if}
+</div>

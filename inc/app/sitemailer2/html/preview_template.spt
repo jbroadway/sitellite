@@ -1,0 +1,32 @@
+<style type="text/css">
+
+div.preview {
+	border: 1px solid #444;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+div.preview h1 {
+	background-image: none;
+	padding-left: 0px;
+	color: black;
+}
+
+div.preview a {
+	color: blue;
+	text-decoration: underline;
+}
+
+div.preview a:hover {
+	color: purple;
+}
+
+</style>
+
+<p><a href="javascript: window.close ()">{intl Close Preview Window}</a></p>
+
+<div class="preview" style="border: 1px solid #444; padding: 15px">
+
+{filter none}{body}{end filter}
+
+</div>

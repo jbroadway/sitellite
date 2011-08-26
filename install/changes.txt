@@ -1,0 +1,1546 @@
+Changes in 5.0.4-stable (see http://sitellite.lighthouseapp.com for extra information.)
+
+- Added file icons in front of web files (LH #197)
+- Added admin username choice during installation (LH #190)
+- Added jquery based menu structure (LH #187)
+- Blocked removing page with index id to prevent errors (LH #183)
+- Fixed siteinvoice errors (LH #181)
+- Fixed default Control panel view in preferences (LH #75)
+- Added digger functionality (LH #179)
+- Fixed RSS viewer limit in news app (LH #176)
+- Fixed PDF crashes when opening with Acrobat from webfiles (LH #175)
+- Fixed CMS cancel script (LH #174)
+- Changed deletion error when removing empty collection (LH #173)
+- Fixed error when loading third level menu structure (LH #172)
+- Added new error mode to Mailform (LH #171)
+- Fixed editting roles error (LH #185)
+- Fixed pagination error (LH #177)
+- All dates are now multilingual (LH #192)
+- Added smiley functionality and used shoutbox to demonstrate usage 
+- Added PHPExcel Spreadsheet Engine to the library and used usradm export
+
+
+Changes in 5.0.3-stable
+
+- Fixed pseudo-classes from showing up in Edit Properties CSS class list.
+- Fixed an issue with customized breadcrumb links for apps.
+- Fixed some time sorting issues in SiteEvent day lists.
+- Switched news/rss/viewer to use SimplePie for better i18n support.
+- Improved CSS for Sitellite web view edit buttons.
+- Added URL parameter checking to cms/filesystem box.
+- Added option to specify a custom template for the checkbox widget.
+- Added home link selector to breadcrumb box for better multi-site support.
+- Fixed rss error in siteblog.
+- Updated installer browser version warnings.
+- Added 3rd-party services section to site settings form.
+- Added reCaptcha.net support to saf.MailForm.Security.
+- Improved the audio embedding via SiteStreamer.
+- Internal page redirects fully obey the Site/remove_index setting.
+- Fixed a file path bug with the quick add in the file chooser.
+- Added news ticker box to the news app.
+- #139 Fixed a security issue with the activity log.
+- Fixed an issue with Tinyarea MF Widget.
+- Redid the algo for upcoming events in SiteEvent.
+- Added an parameter to specify base language of an app.
+- Only allow one default language in Multilingual [#3].
+- Allow better translation of SiteMember.
+- Added label tag to SiteMember forms.
+- Highlight current page in SiteMember sidebar
+- Fixed an issue with language selector when negociation method is url [#92].
+- Fixed a warning in Multilingual app.
+- Fixed an issue with rSelectFacet widget [#138].
+- Fixed an issue in docs-app about showing packages [#133].
+- Fixed an issue in SimpleTemplate with variable names in if conditions [#135].
+- Allow non-ascii chars into SimpleTemplate tokens [#93].
+- Added missing audience selector in ical and rss feeds for SiteEvent.
+- Fixed an issue with onbeforeload in Multilingual.
+- Don't allow spaces in filenames of new templates and css inSiteTemplate [#25].
+- Added restore links to view current and view deleted pages [#28].
+- Fixed a bug about team permissions [#29].
+- Added a categories sidebar box to news-app [#31].
+- Added pager to the end of cms-browse page [#83].
+- Restrict access level, roles and status names to alnum chars [#94].
+- Prevent to set a page parent as itself [#105].
+- Fixed bugs in activity log navigation [#111].
+- Fixed sorting by virtual fields in the control panel [#116].
+- Added fakeemail box in sitellite utilities.
+- Added ability to call page_add_*() functions from sidebars/includes.
+- Added title to message on activity log for news [#112].
+- Do not truncate messages in activity log [#67].
+- Allow to give names to snippets [#96].
+- Delete unused snippets [#113].
+- Added 'restore' workflow service [#131].
+- Removed 'session' option from language negotiation list [#140].
+- Use mbstring functions (when available) for browse length function [#76].
+- Disable blog style comments when disabling comments in news [#12].
+- Added service to prune activity log and version tables [#48].
+- Fixed an issue with imagechooser in Firefox [#49].
+- Translation of append and prepend fields in text and textarea widgets [#129].
+- Fixed an issue with encoding of return url [#128].
+- Translation of formhelp [#8].
+- Fixed extra sub-menu items appearing [#141].
+- Added an option to delete folders in imagechooser [#120].
+- Rotation of log file in scheduler-app [#48].
+- Fixed extra sub-menu items appearing [#141].
+- Fixed an issue that caused a wrong return url when editing sidebar or files.
+- Fixed an issue with template inheriting [#20].
+- Added GeSHi snippet box.
+- Added external field to news to allow redirection to another page [#70].
+- Added a save and continue feature [#30].
+- Fixed an issue with permissions on news search.
+- Added a search box to siteforum [#22].
+- Added filtering capabilities to MailForm widgets [#132].
+- Linkmapper now append class names instead of replacing them.
+- siteforum now show statistics according to user permissions.
+- Strip html tags when browsing member pages.
+- Added 'current' and 'parent' classes to items in nav/list.
+- Remember last sort order in cms browsing [#103].
+- Added option to delete permanently a collection item [#50].
+- Fixed checkbox widget to generate valid xhtml and to be translatable [#72].
+- Added "required" class to required fields (not empty) in MailForm.
+- Added option to replace an image file in imagechooser [#144].
+- Modified the way news story are splitted for better printing [#32].
+- Added possibility to upload many files together [#84].
+- Improved the email validation rules in saf.MailForm.Rule.
+- Fixed javascript rendering bug in SiteTemplate [#146].
+- Use alert in sitetemplate-edit-form.
+- Fixed an issue in sitetemplate. Create config file if it doesn't exist.
+- Fixed an issue with onbeforeload in AppDoc.
+- SiteTag application (first draft).
+- Use alert in usradm-settings-form.
+- Added autocompleted input box for sitetag.
+- Fixed a javascript error in the SiteTemplate edit form.
+- Added star rating ui component.
+- Added comments ui component.
+- Added web hooks to the CMS app settings and workflow services.
+- Removed prompt.js dependence on prototype.js, uses jquery instead.
+- Fixed a js error on the site maps, loading 2 versions of jquery.
+- Fixing PHP 5.3 compatibility issues and warnings.
+- Added reviews ui component.
+- Fix to use rpc_global object consistently.
+- Fixed bug creating extra versions in child page histories.
+- Added cgi_rewrite_filter to new template sets in SiteTemplate.
+- Fixed additional PHP 5.3 compatibility issues and warnings.
+- Fixed Xed box chooser output to be compatible with Firefox 3.6
+- Added script to fix existing boxes for Firefox 3.6 compatibility.
+- Merged Professional Edition features into the main codebase.
+- Merged Enterprise Edition features in the main codebase.
+- Replaced old ereg() uses with preg_match().
+- Fixed PHP 5.3 warnings in the web installer.
+- Added 'all' page to news app for reading/printing stories on one page.
+
+Changes in 5.0.2-stable
+
+- Fixed <br> tags being added to <pre> content in Xed in Firefox.
+- Fixed an issue with Xed's htmlentities decoding.
+- Added automatic support for gzip compression of AJAX responses.
+- Fixed potential issue with template selector missing templates.
+- Fixed an error on cancelling new css files in SiteTemplate.
+- Fixed issue with many team permissions - NOTE: Requires upgrade utility run.
+- Removed change history from browse if page is locked/not editable.
+- All related collections can now be disabled with their apps.
+- Fixed an encoding issue with international characters in Xed.
+- Added the ability to browse the docs of any app, not just SAF.
+- Added the ability to include custom CSS styles Xed.
+- Reworked the logic behind building the menu tree, much simpler now.
+- Changed all instances of access/status fields to 32 chars, role/team to 48.
+- Output compression is off by default, due to occasional incompatibilities.
+- Updated support links in the installer.
+- Added new 'preg' validation rule for better regular expression handling.
+- Added 2nd parameter with field name to custom validation rule functions.
+- Added 'requires resource = resource_name' to [link:name] collection blocks.
+- Fixed the ability to edit html snippets in Xed's property editor.
+- Fixed an issue in saf.MailForm causing form settings parsing to fail on Windows.
+- Added onbeforeunload handler to Xed, warning of accidentally browsing away.
+- SiteEvent: _eventsInRange() can have no end date set, fixes issues with getUpcoming().
+- SiteTemplate: Set new template names to lowercase, added examples in the forms.
+- Fixed source view character encoding for sending edited source back to Xed.
+- Fixed an issue with the new joiner mailform widget.
+- SiteStreamer: Added optional integration with the JW Flash Player.
+- Added phpt test for saf.Database.Generic and fixed count() method bug.
+- Fixed a date addition/subtraction bug for multiple months and years.
+- Added ability to translate settings names for application settings form.
+- Fixed a malformed URI error that could occur in decodeURIComponent().
+- Fixed a Javascript warning in IE in the top frame when not logged in.
+- Improved display of checkbox and radio fields.
+- saf.MailForm now sets page_title() if context=action for a form.
+- Customizable form now doesn't show its title, leaving the page to set it.
+- Added referrer and improved email validation to example email-a-friend form,
+  and limited it to one email at a time.
+- Added From email setting to SiteMember properties and updated confirmation email.
+- Fixed over-zealous unencoding of [ch:nbsp] characters in XT which caused template
+  editing issues in SiteTemplate.
+- Fixed an issue with the sitellite/intl/setLang box when the negotiate setting is 'url'.
+- Fixed a change that caused hidden pages to show in the site navigation.
+- Fixed an exception to the URL filter not adding /lang/ to certain links.
+- Fixed hard-coded RSS character encoding in siteevent [#86].
+- Fixed missing stylesheet when siteevent calendar is embedded [#89].
+- Partial fix for the SiteEvent list view confusing SimpleTemplate [#87].
+- Improved security of SiteFAQ submission form to prevent abuse.
+- Fixed an issue causing false negatives in session_approved_sql().
+- Fixed an IE warning in autosave.js
+- Improved the onbeforeunload warning so it doesn't show on cancel.
+- Fixed error in SiteSearch RSS feed.
+- Changed SiteSearch indexer to try to reduce memory usage.
+- Changed browse_level preference wording to match edit mode in add/edit forms.
+- Change history pager limit now matches your preferences.
+- Added back button to Deleted items screen in control panel.
+- Added loader_app_enabled() for checking if an app is enabled or disabled.
+- Added a check to limit the translations to only collections from enabled apps.
+- Titles of section widgets in MailForm should now be translatable.
+- Fixed potential warning notices in SiteForum and removed reference to SiteTracker.
+- Fixed html attribute output in sitellite/nav boxes for SimpleTemplate changes.
+- 404 handler now logs url and referrer to the activity log.
+- Added cms/error box for displaying errors and logging them as well.
+- Added cms/alert box for more consistent alert messages on completed actions.
+- Added filter for any w:* tags in saf.HTML.Messy to clean out more Word tags.
+- Added error message display for image chooser delete errors that weren't showing.
+- Added a notice when images are deleted successfully.
+- Deleted items limit is now the preferences default.
+- Updated all collections to use the new cms/error and cms/alert boxes.
+- Fixed issue saving form data with Tinyarea widget.
+- Added some new features to the SiteForum module.
+- News pager now always shows for news/index regardless of sections setting.
+- Fixed a bug with length validation on the file upload widget.
+- Made the auto-save language clearer so as to avoid confusion among users.
+- Fixed a bug causing draft edits of translations to show prematurely.
+- Fixed a possible type warning in Rex::getStruct().
+- Fixed invalid argument warning in googlesitemap scheduler task.
+- Added new MS Office mime types (docx, pptx, xlsx, etc) to mime().
+- Fixed a fatal error in the siteevent submissions form.
+- Removed search term highlighting from news app; use modes.php technique instead.
+- Updated XT code so <xt:sql> tags work again.
+- Added Memcache support to the saf.Cache package and Sitellite's page caching.
+- Changed default i18n mode to 'url' which is the more commonly desired setting.
+- Added a small fix to saf.CGI which improves support for FastCGI servers.
+- Fixed possible overzealous caching in saf.Cache.
+- Added google suggested translations in the string translator UI.
+- Fixed an issue with autosave when urls were longer than 255 characters.
+- Added optional X-SendFile/X-Accel-Redirect support to Web Files.
+- Fixed an output mode issue in the default error handler.
+- Added old_links.txt mapping to the default error handler.
+- Fixed an issue with non-padded date links in the SiteEvent mini calendar.
+- Top checkbox in role/user add/edit forms now checks all dynamically.
+- Default templates in alternate output modes now change to html if not found.
+- Added quick upload to Web Files file selector to streamline file links.
+- Added support for remove_index to googlesitemap scheduler task.
+- Added automatic pings to notify google of updated sitemaps.
+- Added a form for creating collections from tables in the DB Manager.
+- Added new {loop0/_value} tag to SimpleTemplate for referring to parent loops.
+- Added reporting to the DB Manager for saving useful SQL Shell queries.
+- Added countries to petition app.
+- Added SiteBlog to admin panel editable settings.
+- Added ShareThis.com widget integration to SiteBlog, simply paste code in settings.
+- Added blog post summary shortening to SiteBlog settings.
+- Added Twitter posting to SiteBlog, just add your Twitter info in the settings.
+
+Changes in 5.0.1-stable
+
+- Added basic support for multi-column primary keys to Rex editing.
+- Fixed ampersand issue in Xed editor.
+- Fixed case of Session::getUser() failing when simulating logins.
+- Updated user manual after testing Sitellite in Google Chrome.
+
+Changes in 5.0.0-stable
+
+- Fixed a double-quote escaping issue in Xed.
+- Fixed a bug detecting external vs local links in the Xed link editor.
+- Added prepend/append options to textarea widget.
+- Sitellite meta tag now obeys the send_version_header setting too.
+- Fixed a bug causing the menu cache to fail to save.
+- Updated default settings and db schema.
+- Added basic many-to-many table join widget, called Joiner.
+- Added basic many-to-many table join facet for collections.
+- Updated installer to be more flexible with updating the config files.
+
+Changes in 4.3.5-rc
+
+- Improved the column name output in the Change History view.
+- Removed PHPDocumentor in favour of new 'docs' app, reducing code size.
+- Removed extra pages from default site install.
+- Removed 'toc' box from default site templates.
+- Added the ability to enable/disable non-core apps in the admin menu.
+- Added new Sitellite 5 logo and colours.
+- Added all GPL add-ons into the inc/app folder.  You can now enable/disable each
+  as needed.
+- Fixed a conflict between a new filter change in SimpleTemplate and the Generic
+  object generation.
+- Added prepend and append properties to the Text MailForm widget.
+- Fixed a small table rendering issue with the Textarea MailForm widget.
+- Fixed CGI::parseUri() mapping of /foo.html to the page ID 'foo'.
+- Fixed a potential path issue in xed.
+- Updated the default site contents.
+- Added the manuals to the install and updated the built in docs.
+- Fixed page template inheritance conflicts with the new menu loading.
+
+Changes in 4.3.4-beta
+
+- Fixed a bug in the folder browser related to loading order in the Javascript.
+- Fixed some UTF-8 encoding issues in the js/rpc AJAX library.
+- Added multi-column (up to 4) suport in the checkbox and radio MailForm widgets.
+- Added missing update script for 4.2.x to 4.3.0 in the upgrade utility.
+- Fixed mod_rewrite warnings in the main htaccess file.
+- Fixed error notices on indexing apps with no translatable strings.
+- Added i18n calls to the upgrade utility.
+- Fixed a bug stripping out the window.close() on the 'close preview window' link.
+- Removed default French translations in the sitellite (Utilities) app.
+- Fixed an issue with the upgrade utility changelog view.
+- Fixed a conflict between the default site's /manual page and Apache's /manual alias.
+- You can now specify filters via {varname|filter1|filter2} in .spt files.
+- Fixed a single-quote issue in the page browser javascript for the French language.
+- Patched saf.I18n.Builder to catch more translation strings in inline spt templates.
+- Added new 'same as current page' option to where to place new pages in the tree.
+- Added conversion of accented chars to unaccented ones for suggested page ID values.
+- Added a new 'url' language negotiation method which adds a /fr/ to page URLs.
+- Added a new setInvalid() method to saf.MailForm for easier custom form handling.
+- Added intl_get() around a few missing strings in inc/app/cms/conf/properties.php.
+- Fixed an issue with the cancel not clearing autosave drafts intermittently.
+- Fixed an issue causing help manual editing in AppDoc to go blank.
+- Added new logo design to Sitellite and the installer.
+
+Changes in 4.3.3-beta
+
+- Fixed a bug in the Date::add() and Date::subtract() functions when passed
+  incomplete date info.
+- Added Quebec to the provinces in inc/conf/properties.php -- not sure why it wasn't
+  there already...
+- Fixed a warning for an array_merge() call in the cms.Workflow package.
+- Fixed a warning for an array_merge() call in the saf.I18n package.
+- Changed the logo/style of the installer to match the new Sitellite 5 design.
+- Specified latin1 for sitellite_filesystem(_sv|_download) file name fields, which
+  fixes issues with utf-8 and the field lengths.
+- Fixed an issue where the default template set setting stopped having any effect.
+- Fixed a bug in Safari with the superscript/subscript buttons in Xed.
+- Fixed a bug in Safari with the undo history of links in Xed.
+- Added the jQuery tooltip plugin to the /js libraries.
+- Modified Xed to use a CSS sprite instead of individual images for its toolbar.
+- Modified the update utility to handle releases without updates to apply.
+
+Changes in 4.3.2-beta
+
+- Added 'section index' field to web pages search parameter list.
+- saf.XML.RSS.Simple switches between cURL and file() now.
+- Added sitellite/nav/init to sitellite/sidebar so it can find section indexes.
+- Removed a warning of an undefined property in saf.XML.Sloppy.
+- Improved the parsing and writing of ini files in saf.Misc.Ini.
+- Wrote a test of saf.Misc.Ini in saf/tests/misc_ini.phpt.
+- Fixed a bug that caused Sitellite's version header setting to toggle incorrectly.
+- Fixed a bug in newer versions of PHP that caused Web Files uploads to fail.
+- Added optional default mime type to saf.Functions' mime() function.
+- Removed SAF version and powered-by header. One (Sitellite) is enough.
+- Fixed a bug preventing 0 byte files from being uploaded into Web Files.
+- Browse screen was adding extra columns for lock user and expiry time.
+- Set default limit to 30, added 50 and 100 to preferences options.
+- Added ability to store files without file extensions in Web Files.
+- Added the ability to download specific versions of Web Files via rid parameter.
+- Fixed change history view for Web Files to show download links of files.
+- Added optional gzip encoding for browsers that support it (requires zlib ext).
+- Fixed pagebrowser to allow more than one on a page at a time.
+- Added boxchooser into the main Sitellite tree.
+- Added formchooser into the main Sitellite tree.
+- Added filechooser into the main Sitellite tree.
+- Added Xed pro into main Sitellite tree.
+- Added xed.Widget.Linker widget to the page properties > external alias field.
+- Added boxchooser.widget.Boxchooser to the sidebar properties > alias field.
+- Updated colours for web files folder selector popup.
+- Fixed a missing permission check causing history restore links to show incorrectly.
+- Fixed a new problem with the keyword popup's remove button.
+- Session authentication now cross-references the user agent for added security.
+- Added password recovery tool on the CMS login page.
+- Added autocomplete=off to passwords in user add/edit forms.
+- Added password change capability to preferences form for admin users.
+- Added a new 'Duplicate this page' button to the Web View.
+- Added check for symbolic links to saf.File.Directory's rmdirRecursive().
+- Fixed an error causing Dir::build() to report false on successes.
+- Added new modified, created and token fields to cms.Workflow.Lock, requires
+  database update -- please refer to Tools > Upgrade Utility for updating sites.
+- Web Files directory listings now publish alternative meta tags for RSS discovery.
+- Web Files links now take the form /cms-filesystem-action/path/to/file.txt.
+- Solved issues with files having spaces in the names causing download quirks.
+- Fixed an issue with select boxes and the new application settings editor.
+- Fixed an issue in Xed in Adobe AIR where links could be clicked in the editor.
+- js/rpc now uses the JSON library for parsing values instead of eval() for added
+  security.
+- All scripts in /js/ folder now compressed using the YUI Compressor for added
+  performance.  Just call /js/library-compressed.js instead of /js/library.js.
+- Added REST API for Web Files at /cms-filesystem-rest-action, docs to follow.
+- Improved the look of the form help.
+- Added dynamic treeview to sitellite/nav/sitemap box using jQuery treeview plugin.
+- Added site map to the box chooser.
+- Added language selector to the box chooser.
+- Preview now correctly filters page contents through saf.HTML.Messy HTML cleaner.
+- Fixed the file chooser widget to correctly return paths with the new url scheme.
+- Xed now uses its own multilevel undo instead of the browser's, works much better.
+- Added edit form to image manager to allow for file moving and renaming.
+- You must now delete images in the image manager, not the selector.
+- Links to pages and files that are renamed are automatically updated.
+- Added a new 'pre-delete' workflow trigger so services can be called before deletion.
+- Added a new session source that lets a user log in from multiple places/devices at once.
+- Fixed a conflicting var/method name in saf.Misc.Document causing warnings.
+- Fixed harmless but unnecessary warnings in various libraries: saf.Parser, saf.XML.XT,
+  saf.XML.XT.Expression, saf.Loader, saf.Session.Acl.
+- Added workflow triggers to the new Web Files REST API.
+- New folders are now trimmed for leading or trailing spaces.
+- Added a setting to inc/app/cms/conf/properties.php to hide disabled panel options
+  instead of showing them greyed out in the control panel.
+- Added more documentation to the saf.Loader package.
+- Added new appconf_default_settings() function to the saf.Loader package.
+- Fixed a bug in how Sitellite read the list of cacheable/non-cacheable pages.
+- Added ability to include SimpleTemplate tags in values in conf/settings.ini.php files.
+- Added a conf/settings.ini.php file to the news app.
+- Updated the info in the various docs files in the docs folder.
+- Increased the field lengths in Web Files to support longer file names.
+- Fixed cgi_rewrite_filter() to not filter /index/ from external URLs.
+- Suppressed a potential getimagesize() error in the image chooser.
+- Updated the installer and upgrade tool to install an alternate schema for MySQL 4.1
+  and earlier with smaller field lengths in the sitellite_filesystem tables.
+
+Changes in 4.3.1-alpha
+
+- Updated the license notice throughout the SAF packages.
+- Added new Tinyarea MailForm widget which integrates the TinyMCE WYSIWYG editor for
+  cases where the full Xed editor may be overkill (e.g., public-facing custom apps).
+- Added login support for adobe air.
+- Added htmlentities property to Info form widget to allow HTML info values.
+- Fixed an AJAX problem causing errors in recursive asynchronous requests.
+- Fixed another AJAX problem causing rare 'invalid label' errors.
+- Fixed a problem with mapping AJAX POST requests to object method requests.
+- Fixed a bug causing web files file names with spaces in them to be truncated.
+- Added nomenu option to web files requests to improve performance.
+- Improved RSS performance in news and other apps.
+- Added current page to list in page chooser/browser, allowing easier selection.
+- Improved document cleaning compatibility with copy/paste from Word documents.
+- Cancel was showing a 'page added' notice in the control panel.
+- Fixed clear cache error when cache is not enabled.
+- Added a clearer error message when you click delete with no items selected.
+- Fixed a compatibility issue with saf.GUI.DataGrid and PHP 5.2+. 
+- Fixed a missing base64_decode in the login url forwarding chain of events.
+- Added lock info on hover over lock icon (owner, expires).
+- Fixed a problem of hidden save/cancel buttons in source view on Firefox/Windows.
+- Fixed a problem with admin-level logins through the public login not forwarding
+  correctly.
+- Moved the menu object initializations into their own box which is auto-loaded
+  by all built-in sitellite/nav boxes.  This eliminates the loading of the menu
+  tree from the sitellite_page table on all requests that don't require it,
+  improving load time on many areas of Sitellite.
+- Fixed a bug in the permissions that caused some team members to be restricted
+  from their own team.
+- Web page aliases/forwards now maintain the https on secure requests.
+- Fixed a bug causing the security letters to appear very light in Firefox/Windows.
+- Improved automatic entity parsing for XSS prevention.
+- Added test-generator script to generate the outline of a test for each of the SAF
+  libraries.
+- Added outlines of tests for each SAF library, now to turn those into complete
+  tests...
+- Alert dialogues from /js/prompt.js now hide select boxes behind them in IE.
+- Fixed problems with the autosave feature, now it works as expected and should
+  clear properly on save/cancel and also work with Xed content.
+
+Changes in 4.3.0-alpha
+
+- Added 'BUILD DOCS' file to SAF explaining how to regenerate API docs.
+- New admin interface colour scheme.
+- New example site design.
+- Global remove_index setting is now on by default.
+- Fixed an issue with adding/editing users.
+- Added Xed pro link chooser to Xed basic.
+- Help now generates a message instead of an error if it doesn't exist for an app.
+- Fixed a bug causing edit form tabs to fail.
+- Removed the PHP5 warning from the installer.
+- Updated the default resources and role definitions.
+- You can now limit access to the file chooser, form chooser, and box chooser.
+- Fixed a possible cross-site scripting attack in Rex::renderFacets().
+- Added Rex::addFacet() to make custom use of this outside of collections easier.
+- Fixed a potential bug in PHP5 with the appconf() and conf() functions.
+- Added support for Camino on Mac.
+- Added new features to the news/headlines box to be usable in more contexts.
+- Added a new news/single box which can be used for lead-ins to single stories.
+- Password in user add/edit forms is no longer prefilled automatically by Firefox.
+- Added 'add' resource to restrict the ability to add items, updated auth settings.
+- Fixed a bug causing the index page to always load on some systems with remove_index.
+- Fixed a bug in sitemember/logout pertaining to the new remove_index feature.
+- Fixed broken reference to install/installed and added ability to remove the install
+  folder completely.
+- Selector widget now shows options in alphabetical order.
+- Fixed a bug where XT's error value wasn't reset for subsequent template calls.
+- Fixed the sorting order of templates and other display data in the admin areas.
+- Fixed missing output filtering in meta tag values.
+- Fixed a problem allowing one to rename one page, sidebar or file over another.
+- Added a linkmapper.js script which adds external and file css attributes to links.
+- Added a parameter to automatically locate new pages beneath the current page by default.
+- Added improved escaping of values passed to the server in the js/rpc library.
+- Added POST capabilities to js/rpc library as well as new parse_form() method for
+  auto-filling POST requests from form data.
+- Added autosave capability to MailForm, enabled on all collection edit forms.
+- Added sitellite_mail() function to saf.Functions which uses Sitellite's internal
+  messaging system.
+- Updated the workflow notification service to use Sitellite's internal messaging.
+- Improved Sitellite's internal messaging system and simplified its interface.
+- Integrated the autosave/drafts interface into the control panel index.
+- Minor enhancements to saf.Date.Calendar.Simple.
+- Fixed broken RSS feeds in PHP5.
+- Changed the default for facets not to do a count, improves performance on large
+  data sets.
+- Fixed potential broken links on custom content types in the web view editing buttons.
+- Delete return handling now avoids returning to URLs with the deleted ID in them.
+- Added conditions around clone() calls in appconf() and conf() functions, eliminating
+  several warning messages when the clone()'d variable is not an object.
+- Added several new lingering Word tags to the cleaner in saf.HTML.Messy.
+- Fixed a bug in the saf.Database.LDAP package causing getEntries() to fail.
+- Added the ability to send emails to the form submissions lists, giving it basic
+  newsletter capabilities.
+- Fixed spacing issue with custom browse links.
+- Added ability to export form submissions contact info in CSV format.
+- Added ability to export users in CSV format from the user browse screen.
+- Added new source mode editor with basic utility buttons including find and replace.
+- Added new template_parse_body() function to saf.XML.XT which more efficiently
+  parses page contents for boxes and forms and for the 'toc' feature.
+- New documents now correctly set their default team ownership.
+- Fixed a missing team permission check in the control panel.
+- Fixed Sitellite's basic built-in search to choose the new SiteSearch or Ysearch
+  if installed.
+- Fixed a problem with special characters and search term highlighting.
+- Added optional 'Clear' button to the file upload widget to clear existing values.
+- Added a message showing the external link instead of forwarding if user is admin.
+- Fixed the approved/draft switching so it uses the new template_parse_body function.
+- Fixed the sidebar boxes to all use the new template_parse_body function.
+- Added new sitellite/util/snippet box for pasting HTML snippets into the box chooser.
+- Added the ability to embed boxes into news stories via the box chooser.
+- Added new sitellite_translation and sitellite_translation_sv tables for upcoming
+  multilingual additions.
+- Added reference capabilities to the text and textarea widgets for translators.
+- Added intl_default_lang() function to saf.I18n.
+- Added multilingual app which provides an interface for editing languages.
+- Added new translator role and multilingual app to the resources.
+- Updated collection definitions to work with the new multilingual translation tool.
+- Added multilingual support to web pages and sidebars.
+- Fixed a bug in cms.Versioning.Rex causing multiple getList() calls to fail.
+- Added workflow services to notify translators of new documents and document updates.
+- Updated AppDoc to eliminate existing translation tools at that location.
+- Updated saf.I18n to improve the index builder.
+- Added template/application translation features from appdoc to the multilingual app.
+- Added support for translators to the web view editing buttons.
+- New set of web view icons.
+- Translation index builder will now index fields in specific database tables, based
+  on a new conf/translate.ini.php file in each app.
+- Improved database connection error handling in saf.Database packages.
+- Fixed control panel drop menu positioning in Firefox.
+- Fixed an MSIE bug in the page chooser dialogue so pages are listed accurately.
+- Fixed a bug causing the easy/advanced mode switching to fail in MSIE.
+- Fixed the new top frame design in MSIE.
+- Added translation support in the site navigation.
+- Navigation caching now works with translation support.
+- Page cache now works with translation support.
+- Fixed a bug in saf.Loader causing translation calls to fail in properties.php files.
+- Updated news app to be multilingual.
+- SAF libraries can now be indexed and translated via the 'Sitellite Libraries' app
+  in the translator.
+- New pages can now appear at the top level or under the current page as a global
+  site setting.
+- Added a fix to the sitellite/nav/common box to better show parent levels -- thanks
+  to hennevl for the fix!
+- Added a fix to the xed_get_html() function that corrects output of certain elements
+  (Bug ID #71) -- thanks to hennevl for the fix!
+- Fixed a bug causing saved renamed pages to redirect to the old ID (Bug ID #67)
+- Fixed a bug causing renamed pages not to be able to be renamed back.
+- Fixed a bug causing pages not to render if they end in -form (Bug ID #69)
+- Fixed a problem with the image chooser and open_basedir restrictions on some systems.
+- Increased several field sizes related to access/status info from 16 to 32 characters.
+- Fixed a URL too long error in the new Xed source editor.
+- Fixed Xed insert before delete bug.
+- Added preliminary support for Safari and Opera browser users.
+- Added width/height/border editing for images in Xed.
+- Added dialog template to admin set.
+- Broken a potential infinite loop in sitellite/sidebar.
+- Added application settings editor to Control Panel - Admin menu.
+- Added fontsize.js script for easily allowing font size control in your pages.
+- Fixed a bug in the xt:intl tag rendering causing translations to fail on ampersands.
+- Fixed instances of the menu hierarchy failing on multiple levels of non-visible pages.
+- Improved localdate() function and made saf.Date now use it throughout.
+
+Changes in 4.2.12-stable
+
+- cms/filesystem box had change that was not checked in in 4.2.11.
+- News comments and submissions now verify the sender to help prevent abuse.
+- Fixed a conflict between the File and Xed form widgets.
+- Fixed a bug with the File widget when web_path isn't set.
+- Xed source button now opens a popup, fixing the missing cursor bug.
+- js/prompt.js now supports textarea prompt popups.
+- Added a box that lets you select a single sidebar item in the box chooser.
+- Limited access to IE7 while we work out compatibility issues with the editor.
+- You can now specify multi-function filters in .spt files using the syntax
+  {filter strtoupper/strrev/trim}{somevar}{end filter} which will apply the
+  filters in sequence from right-to-left.
+- Added optional feature to prevent 'slashdot effect' and 'digg effect' by
+  relying on a 3rd-party cache for such requests.  Simply include the box
+  'sitellite/util/slashcache' into your template or page and you're covered.
+- Added new site_name() function to package saf.Site which simply returns the
+  domain name minus the 'www.'.
+- Added images.php file to default template set.  This file when present in a
+  template set allows you to specify a maximum width and height for an image
+  in the various collections which correspond to areas in the web page.  This
+  ensures that images automatically meet the constraints of the web page,
+  since the max-height/max-width CSS properties are not supported in MSIE 6.
+- Added basic download stats to Web Files so you can see how many times a file
+  has been downloaded.
+- Added upgrade script for the 4.2.12 database schema changes.
+- Doubled the size of the sitellite_access and sitellite_status fields to 32.
+- Admin forms now enforce max on user/team/role/status/access/etc. field lengths.
+- Added clean_input option to saf.MailForm which strips all HTML and PHP from
+  input.  This setting is enabled on the default contact and customizable forms.
+- Added sitellite_form_blacklist table which blacklists IP addresses from
+  submitting forms, helping to prevent repeat abuse from one source.
+- Default forms (contact and customizable) now enforce max on field lengths.
+- saf.MailForm checks for cookie support as another step in rejecting spambots.
+- Added new 'security' widget which performs one of two types of CAPTCHA
+  verifications for forms.  The default method requires no PHP extension to
+  be installed.
+- Added security test to comments in the news app.
+- Centralized admin-specific CSS in Web View to extra.css in admin template set.
+- Added new 'remove_index' property in inc/conf/config.ini.php which causes
+  Sitellite to automatically remove /index/ from the URLs.  This feature is
+  BETA, and requires Apache mod_rewrite.  Feedback from users would be
+  appreciated.
+- Web View now provides visual signs for content not in approved state, also
+  extends the Approved/Draft preview links to sidebars.
+- Moved menu caching into saf.GUI.Menu and fixed an issue causing potentially
+  incorrect cache data based on incorrect user privilege checking.
+- Add page form in Web View was returning to previous page after creation not
+  to the newly created page.
+- Fixed an issue in saf.Cache causing potentially incorrect cache data based
+  on incorrect user privilege checking.
+- Added 'Clear Cache' button to Cache Settings page, as well as two new cache
+  workflow services clearing a page's cache after changes, or clearing the entire
+  cache after changes.  The latter option enables sites to use the cache to
+  significantly improve performance while keeping their site always up to the
+  second accurate.
+- Edit mode (easy/advanced) switching is now dynamic using Javascript/AJAX so
+  they no longer lose current changes.
+- Replaced current tab (Edit/Properties/State) implementation with a newer and
+  improved version.
+- Fixed template preview in page add/edit forms to be more like the one in
+  SiteTemplate.
+- Finished IE7 compatibility testing -- add forms were broken.
+- Added allowUppercaseKey property to collections, to make the lowercase
+  text keys optional (but still enabled by default).
+- Added google maps box to the utilities app for the box chooser.
+- Added goto parameter to sitemember/index box.
+- Integrated image manager with snipshot.com for in-browser touchups.
+- Fixed an issue with double-quotes in text widgets.
+- Fixed the home link in the breadcrumbs to point to /index not directly
+  to /index/index for sites with altered default_handler settings.
+- Fixed sidebar edit buttons return value on altered default_handler sites.
+- Fixed cancel button on selector widget.
+- Added prototype.js 1.5 and scriptaculous 1.7 to js libraries.
+- Replaced prompt() and alert() with in-browser dynamic equivalents to improve
+  the user experience.  Included via new saf.GUI.Prompt library in Sitellite.
+- Added 'googlesitemap' task to scheduler which generates a Google site map of
+  the website based on the collection definition files.
+- Fixed preview button for sites with non-document default_handler settings.
+- Fixed saf.Misc.RPC to work in remove_index mode.
+- Fixed folder chooser to work with new prompt windows.
+- Fixed custom forms output.
+
+Changes in 4.2.11-stable
+
+- ignoreEmpty fields are now unset in the default collection edit form so as
+  to preserve their current values.
+- Some primary keys were not passed on to workflow correctly on add forms.
+- Added filter property to info mailform widgets to make their display prettier.
+- chmod is now properly set on uploaded files by saf.MailForm.Widget.File.
+- Added cms/services/phonehome workflow service to track Sitellite version stats.
+- Added ' plus ' and ' x ' to SimpleTemplate shorthand for {php} blocks.
+- Abstracted product identification marks to eliminate repetition of common text.
+- Resource list now shows app or collection name so it's less technical for users.
+- Added new keywords selector which uses a textarea and popup, much simpler.
+- Minor update to saf.Misc.Search to remove slashes in search results.
+- Fixed a typecasting error in the value comparison in several form widgets.
+- Added ability to execute multiple queries at once to DB Manager's SQL Shell.
+- Added ability to back up from DB Manager in SQL and CSV formats.
+- mediumtext and longtext fields now show as textareas by default.
+- Increased the length of the firstname, lastname, role, and team fields for users.
+- Missing intl_get() in DevFiles added.
+- Fixed a bug in Xed causing the table layout of subsequent widgets to break.
+- Added page_head_title() and page_nav_title() functions to saf.Misc.Document.
+- Web Files downloads now support partial downloads and pause/resume capabilities.
+- saf.Database.LDAP now properly closes connections on bind failure.
+- Changed the default error handler to output a nicer message, moved the old one
+  to sitellite/error/apache
+- Fixed an issue with object cloning in XT causing blank screens in PHP 5.1+
+- Folders are now forced to lowercase in web files.
+- File size is now shown on web files browse screen.
+- Created a basic upgrade utility app which makes upgrading Sitellite a little
+  easier and more flexible too.
+- Fixed a bug in IE causing the expand button in the page browser to fail.
+
+Changes in 4.2.10-stable
+
+- Fixed a problem with ampersands in links causing XT parsing failures.
+- Added sitellite/nav/common box with navigation similar to simian.ca
+- cms.Versioning.Rev now forces text IDs to lowercase and so does the
+  page edit form.
+- Fixed a missing CSS problem in H1-H6 tags in XT as a result of the toc feature.
+- Fixed a bug causing pages not to show up in the link chooser.
+- Made the new default menu in the example site the new sitellite/nav/common.
+- Fixed i18n issues with the new sitellite/util/custom form builder.
+- Fixed a problem with missing field values in easy mode creation of new pages.
+- Added the new improved email validation to the SiteMember registration form.
+- Added missing library sitellite.CustomForm
+- Fixed permission checking for deleting images, causing permission denials.
+- Fixed cms.Versioning.Rev to not strtolower() for pkeys on non-versioned tables.
+- Made the sitellite/sidebar box selectable through the box chooser.
+- Added a sitellite/sidebar/randomizer box which shows one random sidebar.
+- Added image manager to the tools menu as an extension of the image chooser.
+- Added new function menu_is_child_of() to the saf.GUI.Menu package.
+- The page edit form now prevents the creation of circular referencing in the
+  website hierarchy.
+- Web Files downloads now use readfile_chunked() to avoid PHP5 readfile() limits.
+
+Changes in 4.2.9-stable
+
+- Fixed a missing return value on the add item link in the control panel.
+- Fixed the sitellite/util/contact box when embedded in pages.
+- Changed the mime types of powerpoint and excel files to more general ones.
+- Added error triggered on hacked from field in MailForm's default handler.
+- Updated mime type list to be more inclusive of popular file formats in use.
+- session_authorize() can now authorize based on ID as well as user/pass.
+- Facets now properly lazy-load options, which improves admin screen performance.
+- Fixed an issue with infinite loops in saf.CGI
+- Changed Description to Alt/Description for images in image chooser/Xed.
+- Moved dropmenu.js to the /js/ folder for easier reuse of SAF across sites.
+- Added mime() function to remove reliance on sometimes-flaky mime_content_type().
+- Pre-formatting of text now works properly in Xed.
+- Added PHP5 replacement for readfile() called readfile_chunked() in saf.Functions.
+- Fixed a bug in the browse template causing broken links in the change history.
+- If the installer hasn't been run, then a database connection error sends you there.
+- Fixed an odd bug in saf.GUI.Menu causing infinite loops.
+- Username field focuses automatically on loading of the Sitellite login page.
+- Increased team, role, firstname, and lastname field lengths in sitellite_user table.
+- Minor fix for the public [y/n] checkbox on member preferences form.
+- Fixed a bug in saf.MailForm.Widget.Team causing All to display instead of team list.
+- Added new security measures to saf.MailForm for verifying request method, referrer,
+  email address formatting, and other fields that may be used to inject extra mail
+  headers.
+- Secured the built-in contact form with the new saf.MailForm security measures.
+- Added a whole new folder selector popup dialogue to the Web Files collection.
+- You can now specify 'add = no' in a collection to remove the add item link.
+- New customizable form box under sitellite utilities allows common form creation.
+- Contact and customizable forms can save to new collection 'Form Submissions'.
+
+Changes in 4.2.8-stable
+
+- Added proper 404 error handling on nonexistent box/form requests.  Previously
+  they simply generated a blank web page.
+- Added automatic input validation via settings.php files (previously only used
+  for metadata and the box chooser).  This separates the input validation from
+  the application logic, and makes its execution automatic using the same
+  simple but powerful rules used in form data validation.
+- Fixed cancel button on Add Keywords under add/edit web pages.
+- Removing a missing workflow action which caused edit saves to show an error.
+  Note that the saving of the documents still happened successfully, so no data
+  loss occurred as a result of this bug, however the error message was
+  obviously disconcerting for users.
+- Fixed an issue with single quotes causing invalid translation files.
+- Added missing files for easy/advanced mode browse levels.
+- Added pagebrowser app which implements a dynamic page selector to replace
+  the current tree view select box.
+- Added the pagebrowser to the Location in Website field when adding/editing
+  web pages.
+- Page ID now auto-fills based on title if left blank in the add page form.
+- Image chooser path is now reset to /pix after an app changes it for its own
+  use.
+- Fixed another bug causing radiogroup widgets not to correctly set selected
+  values on form redrawing. -- thanks Brian!
+- Fixed an encoding issue with character entities in XT.  This simplifies and
+  corrects i18n issues in Sitellite content.
+- Changed the defaults of sitemember home and profile to what they should be.
+- Added localdate() function to saf.Functions which is a date() replacement
+  which respects the setlocale() setting.
+- Fixed reference to incorrect file name in DB connection error -- thanks Oleg!
+- Fixed a problem hiding the form help -- thanks Clay!
+
+Changes in 4.2.7-stable
+
+- Fixed a bug in rpc_decode in js/rpc.js
+- Added new method rpc.get_xml in js/rpc.js
+- Fixed a bug causing pending/rejected document notices to be sent from Apache
+  instead of from the address specified in the site settings.
+- Fixed a bug in Rex when going from approved to draft to archived.  Note that
+  this requires a small database schema change, found in the file
+  upgrade/4.2.6-4.2.7.sql -- thanks Oliver!
+- Fixed missing case of '<xt:' tag at start of body contents in xed_init
+- When you log in as an administrator from the SiteMember login forms, it now
+  opens Sitellite but sends you back to the last page you were at before you
+  logged in.
+- One can now use the resource 'sitellite_keyword' to restrict access to
+  adding/editing web page keywords.
+- Fixed a CSS error in the admin template set.
+- Replaced the former SAF test suite with one based on the 'pear run-tests'
+  command.
+- You can now specify 'advanced = yes' on any MailForm field and it will be
+  automatically hidden from users whose browse level preference is not set
+  to 'advanced'.
+- You can now specify 'safe = no' in Xed widgets and Xed will allow elements
+  such as javascript, onclick attributes and embedded object tags in its
+  output, even if cleaning is turned on (the default).  This allows you to
+  keep the XHTML conformance without the security restrictions.
+- The Xed links to switch between editor/source are now shown only for users
+  in the advanced mode/browse level.
+- Updated examples app with new examples and updates to existing examples.
+- Created a new default template set which is cleaner and which provides more
+  help by way of comments within the templates themselves to help get new users
+  up to speed faster.
+- Created new example website content to help users get off to a faster start.
+- Added username/password to the registration confirmation email.
+- Eliminated 'Call-time pass-by-reference' warning in PEAR/Net/Geo.
+- Added a $session->authorize() method and session_authorize() function to
+  saf.Session for easy authorization without completing the login process.
+- Fixed a problem with saf.GUI.Menu's getTree() and matching page id and
+  below_page values.
+- Password recovery message now specifies username, in case they forgot that
+  as well.
+- The default for Xed has now been changed to allow Javascript and other
+  dynamic elements, but to still clean the document for syntax errors.
+
+Changes in 4.2.6-stable
+
+- Fixed saf.Database.Generic to properly pleuralize object names ending in 'x'.
+- Fixed saf.Database.LDAP to use TLS if $secure is set to true.
+- Removed a rule preventing content greater than 65535 in the page body.
+- Fixed a case of MailForm getting the wrong default action on rare and
+  unusual server configurations.
+- Fixed session_user_get_email() assuming it receives an array instead of an
+  object.
+- User browse screen now checks if you're using a read-only session source
+  driver and disables itself with a notice.
+- Added forceHttps() and forceHttp() methods to saf.CGI as well as alias
+  functions cgi_force_https() and cgi_force_http().
+- saf.Loader now checks for the value 'sitellite_secure' in access.php files.
+  If set to on/yes, the box/form must be viewed under SSL, if set to off/no,
+  the box/form must be viewed without SSL.  If not set, the box/form may be
+  viewed under either.  This allows per-box and per-form granularity of
+  turning SSL on or off.
+- Fixed a bug preventing multiple image chooser widgets in the same form.
+- Added missing 'ignoreEmpty = no' on password fields in the
+  sitemember/register form.
+- Fixed saf.MailForm.Widget.Radiogroup so it now properly sets selected
+  values on form regeneration (ie. from a rule failure in another field).
+- Updated the MailForm Tie widget to work a little easier and to include
+  more up-to-date documentation.
+- Fixed error that occurs when modes.php is missing from the active template
+  set.
+- Fixed PHP5-related errors in numerous places related to object passing and
+  case sensitivity in get_class().
+- Fixed RSS feeds in news app so they don't force links to be under SSL when
+  SSL is enabled.
+- Fixed the back button when coming from the Change History screens.
+- Fixed bug where deleted pages link was showing for collections without
+  versioning.
+- Added the ability to specify custom links next to the 'Add' link on the
+  collection browse page.
+- Fixed some issues with getTree() in saf.GUI.Menu -- thanks Russ!
+- Added workflow action to relocate child pages of a deleted page to the
+  parent of the deleted page.
+- Fixed a _return parameter 404 error on deleted pages in the Web View.
+- Changed the installer to point to alternative configurations for web
+  servers other than PHP as an Apache module (ie. CGI-mode, FastCGI, IIS).
+
+Changes in 4.2.5-stable
+
+- Fixed table type for sitellite_news for MySQL 4.1+ -- thanks Oliver!
+- Fixed a reference to $this->current outside of an object.
+- Fixed saf.Database.Manager to properly call mysql_select_db() on setCurrent()
+  for multiple MySQL connections.
+- Added new methods and functions to saf.Session.Source including:
+  getActive() method and session_user_get_active() function, as well as
+  session_user_is_unique() and session_user_get_email().
+- Fixed cms/filesystem box to handle file sizes that take longer than 30
+  seconds to download.
+- Total users in sitemember/list just a count of $users array, eliminates
+  two database calls.
+
+Changes in 4.2.4-stable
+
+- Removed warning from passing a reference to array_shift() in
+  saf.MailForm.Widget.
+- Added set_time_limit(0) in Web Files add/edit forms to allow for larger
+  file uploads.  Note that upload sizes may still be limited by PHP's
+  settings such as max_upload_filesize, post_max_size, and max_input_time.
+- Removed an error when a user double-clicks the log out button.
+- head_title and nav_title now show title for boxes and forms if not set
+  explicitly themselves.
+- Added improvements to default handler in MailForm.
+- Actually checked in the formhelp fix from 4.2.3 -- argh!
+- Added session_get_roles() to saf.Session.Acl to match session_get_teams().
+
+Changes in 4.2.3-stable
+
+- Added workflow action to reset the menu cache whenever a page is added,
+  modified, or deleted.  This allows you to set the menu cache to store
+  cache changes for a much longer period of time, and guarantees the cache
+  is always in sync with the site.
+- Added the ability to delete images in the imagechooser app.  Permission
+  to delete images is controlled by the "imagechooser_delete" resource.
+- Imagechooser delete checks if the image is in use in any web page before
+  allowing the delete.
+- Form help tips now obey the form help on/off preference.
+- Added 'delete' property to the [Collection] block of the collection
+  definition files, similar to the 'add' and 'edit' properties.
+- Removed duplicate declaration of $pkey in saf.Database.Table.
+- Added optional thumbnail images to the news app.
+- Made imagechooser able to be called twice from the same page without
+  conflicts.
+- Fixed missing login failure notice in SiteMember.
+- Added missing intl_get() calls in MailForm.
+- Fixed broken external links with protocols other than http (ie. https, ftp).
+- Added a test for allow_url_fopen so that the DirectoryIndex tests could be
+  skipped but that a note would still be displayed in that case.
+- Updated file headers to point to the new license page.
+- Fixed viewing your rejected story submissions.
+- Fixed error handling on deleting pages.
+- Added title attribute to links created with page_add_link().
+
+Changes in 4.2.2-stable
+
+- Fixed a problem in saf.Misc.RPC where carriage returns weren't being properly
+  escaped -- thanks Jon for the fix!
+- Fixed a missing {site/prefix} in imagechooser -- thanks Jon for the fix!
+- Added option to continue installation process even if requirements checking
+  fails.
+- Sidebar section selector now shows 5 instead of 3.
+- Improved MS Word pasting.
+- Fixed a bug with using Xed in collection hints instead of custom forms.
+- Added ability to call setRules = "eval: formrules_get ('rule_name')" in
+  settings.php files now.
+- Added standard contact form which can be selected in the box chooser via
+  Sitellite Utilities > Contact Form.
+- Added parsing for body_parts in sitemember/homepage, so you can still break
+  up a page into multiple areas just like an ordinary page.
+- Renamed Database::abstract() to abstractSql() to avoid the PHP5 reserved
+  word.  PHP5 support is still a long way away, but this does bring us one
+  small step closer.
+- Added menucaching to the cache settings form.
+- Added proper file naming to downloads from the cms/filesystem box.
+- Fixed SiteTracker integration in cms/filesystem box.
+- Added links to manual and developer references in the help files.
+- Fixed broken images of screenshots in the help files.
+- Fixed a problem with SimpleTemplate caused by a bug in the file_exists()
+  function in PHP 4.3.11.
+- Added convenience methods action, append_field, and update_field to js/rpc.js
+- Fixed the version number in the admin template set.
+
+Changes in 4.2.1-stable
+
+- Removed extra site_prefix() in Xed and Imagechooser.
+- Fixed error in cms/buttons causing team check to fail.
+- Added a cURL wrapper script to saf.Misc.Curl which wraps around the command-
+  line utility when the cURL PHP extension is unavailable.
+- Added a sitemember/homepage box and Member Pages collection, which allows
+  you to configure a user homepage feature into SiteMember just by changing a
+  few options.
+
+Changes in 4.2.0-stable
+
+- Added modes.php support to ext.htmldoc.  See saf/lib/Ext/htmldoc/htmldoc.php
+  for sample usage for creating a PDF output mode of Sitellite.
+- Added import and extends values to Generic dynamic objects.
+- Fixed typo in default MailForm::onSubmit() handler.
+- Fixed a discrepancy in the template selection box in the page add/edit forms.
+- Loosened some over-zealous permission checking in saf.Loader.
+- Fixed case where a box at the start of a Xed editor still caused problems.
+- XT failed to add attributes to the bind path list, which caused attributes
+  to occasionally fail to bind at all.
+- Added a Cache-control:private header to cms/filesystem which fixes an issue
+  with PDFs in the MSIE Acrobat plugin -- thanks Oliver for the fix!
+
+Changes in 4.2.0-rc3
+
+- Fixed bug causing box chooser to fail to load in the WYSIWYG editor of the
+  sidebar forms.
+- Added support for MailForm rules in the [hint:field_name] blocks of
+  collection definition files.
+- Fixed bug causing a Javascript error in SiteTemplate while adding a new
+  template.
+- Fixed file permissions on newly created templates, CSS files, and images
+  in SiteTemplate.
+- Added disabled, public, and allowed teams facets to user browse screen.
+- When secure is on, meaning SSL is available, Sitellite requires SSL to
+  log in at /sitellite.
+- Fixed permission errors for certain cases that should have been allowed
+  but were not, specifically when 'All' was checked for just read or just
+  write and the other was checked for the other value.
+- Improved CSS compliance of SiteTemplate example CSS and included more
+  comments in the default template as well.  Also fixed a few default
+  template errors.
+- Fixed a bug causing sv_revision values to be reset.  To patch from a
+  previous release candidate, see the file upgrade/4.0.14-4.0.15.sql
+- In cms/buttons added a new UI element that, if there is a draft or
+  pending version of the current page available, allows you to toggle
+  between the approved and draft versions within the page itself.  This
+  should aid in allowing editors to see that the page has a new pending
+  change, and to view it without having to go through the edit form to
+  do so.
+- Changed the MySQL column type for page bodies from 'text' to 'mediumtext',
+  which allows for significantly longer page bodies.  This change, in
+  combination with the recent body_parts change, enables some new ways
+  of controlling the display of page contents.
+- Fixed a problem with image paths improperly including the full url.
+- Fixed a bug in evaluating the 'editable' check in cms/buttons.
+- Added some new methods to the saf.Database.Generic class, enabling
+  basic querying and management of relations between multiple tables.
+  Also defines a new method load() which allows multiple objects and their
+  relationships to be defined in a single INI file in your app's lib
+  folder and imported in the same standard manner as ordinary packages.
+  See saf/lib/Database/Generic.php for more information.
+- Bug in Radio widget fixed -- thanks Oliver for the patch!
+- Eliminated possible access to PhpDocumentor by adding a .htaccess
+  'deny from all' file to PhpDocumentor folder -- thanks Anthony!
+- Sorting order of Deleted Items is now descending by revision ID instead
+  of the other way around.
+- Added 'anonymous' role to allow customization of which statuses and
+  other permissions are accessible to public visitors.  An example use
+  would be to allow archived news stories to be visible to the public.
+- Added a 'delete' resource, which is checked to determine whether the
+  current user can access the delete functions of Sitellite.
+- Fixed a bug in the Selector widget causing the /js/prompt.js file to
+  fail to be loaded under certain circumstances, which affected the
+  SiteFAQ, SiteBanner, and SiteLinks in recent releases.
+
+Changes in 4.2.0-rc2
+
+- Added 'include in search?' field to web pages collection.
+- Added title of news stories to URLs for search engine optimization.
+- Added title of events to URLs for search engine optimization.
+- Changed 'Templates' to 'Content Templates' in Xed, to avoid confusion.
+- Fixed some rendering issues on the user add/edit forms.
+
+Changes in 4.2.0-beta and rc1
+
+- Updated install & requirements docs.
+- Added LDAP session driver to saf.Session.Source.LDAP.
+- Fixed a bug causing dashes to be misinterpreted in the URL.
+- New Xed 2 WYSIWYG editor.
+- Fixed permissions on new files added via the imagechooser.
+- Improved the built-in workflow services.
+- Fixed a bug in the add and edit forms.
+- Fixed a bug where a sole XT box in the Xed body would cause errors loading
+  in MSIE.
+- Added a new XT include type "virtual" for including CGI and other types
+  of scripts from different sources than PHP.
+- Fixed a bug in bold/italic/underline in Firefox/Mozilla.
+- Added new configuration file 'cache.php' and new logic in is_cacheable()
+  which allows subsequent rules to override previous ones.
+- Added SiteTracker inclusion automatically on all page requests, eliminating
+  the need for the sitetracker/bug inclusion, and fixing the problem with
+  tracking on cached pages.
+- Fixed toc anchors causing extra space around headings in XT.
+- Added examples to inc/conf/cache.php as well as non-caching for apps.
+- Added additional mime types to the mime_content_type() emulator function.
+- Replaced the Control Panel select boxes with JS drop menus showing 2 columns.
+- Fixed a bug where images selected in Firefox were being entered in as the
+  'delete' icon.
+- Added fuzzy matching (rLike instead of rEqual) for select facets.
+- Added new facets to sitellite_page: template, include, keywords,
+  sitellite_owner, and sitellite_team
+- Added inc/html to chmod list in install instructions - necessary for
+  SiteTemplate to work.
+- Integrated formhelp into MailForm via 'formhelp = on' in [Form] blocks
+  and 'formhelp = Message...' in widget blocks.
+- Added cache.info.php and config.info.php with descriptions of the settings,
+  since the descriptions will only appear in the settings forms now.
+- Added HTML table rendering class.
+- Fixed missing label ID in password widget.
+- Added cache settings form.
+- Added site settings form.
+- Added activity log browser.
+- Added workflow services selection form.
+- Fixed missing vCard export of users.
+- Renaming teams and roles maintains user associations now.
+- Renaming a page ID maintains child page associations now.
+- Fixed JS bug in folder creation in Web Files.
+- Added beginnings of a string helper Javascript package.
+- Fixed JS bug in position creation in Sidebars.
+- Added saf.GUI.Tagger, which shows a list of items with the size showing how
+  popular each item is.
+- Fixed XHTML validity of output for the sitellite/sidebar box -- thanks Oleg!
+- Added more detailed form help to the sort_weight field.
+- Fixed caching for CLI.
+- Added caption and home_link fields to the sitellite/nav/breadcrumb box as
+  parameters and in the chooser.
+- Fixed escaping problem in rLike searches.
+- Fixed occassional sorting order bug in getTree() method of the saf.GUI.Menu
+  package -- thanks Oliver!
+- Section pages that are not top-level pages now show up correctly in the
+  getSections() method of saf.GUI.Menu.
+- Added new rules to saf.HTML.Messy to improve MS Word cleaning, and also
+  to improve the cross-site scripting attack (XSS) protection in the parser.
+  For XSS protection, the following new attributes are no longer allowed:
+  dataformatas, data, datafld, datasrc, and dynsrc, and the following tags
+  are now also stripped as well: applet, object, iframe, frame, frameset,
+  layer, ilayer, embed, bgsound, link, meta, and xml, and any attribute
+  with javascript:, vbscript:, or about: in it is stripped as well.
+- Added body_parts property to global $page object, which breaks the page
+  body into an array based on <hr /> tags in it.  This allows for multi-column
+  and multi-part pages in a simple manner.
+- Added OO interface to doing Javascript RPC requests based on the
+  XMLHttpRequest object.  This is an extension to the existing js/rpc.js and
+  saf.Misc.RPC packages, which allows for more powerful and complex RPC-based
+  applications to be developed.
+- Added children, siblings, and tree boxes to sitellite/nav/*.
+- Added key bindings for undo/redo to Xed's multi-level history.
+
+Changes in 4.0.14
+
+- Added template, page_below, and page_alias properties to the news app.
+- Added a new feature called tag binding to XT, and changed saf.Misc.Document
+  to use it instead, eliminating several copy & paste tags from templates.
+- Made the $saveas value in sitellite/util/pdfmaker false by default.
+- Fixed newline issue affecting some documents with non-standard newline
+  characters.
+- Added id="sitellite-menu-current" to the current page's list item in
+  saf.GUI.MenuItem
+- Added error message display on PHPShorthand errors in XTE.
+- Added auto-detection of section root to sitellite/nav/section box.
+- Added defaulting of head_title and nav_title to normal title field.
+- Added getBoxAccess() and getFormAccess() to saf.Loader, and fixed some
+  other methods.  Also provided aliases loader_box_get_access() and
+  loader_form_get_access().
+- Added $page->addStyle() and page_add_style() to saf.Misc.Document.
+- Fixed /js/rpc.js and saf.Misc.RPC to handle multi-line and HTML content
+  in send and return values.
+- Added default teams/all=rw in saf.Session.Manager to the user add form.
+- If weight is unspecified for collections, they are now sorted secondarily
+  in alphabetical order.
+- Added function is_assoc() to saf.Functions.
+- Added adminRoles() method and session_admin_roles() function to
+  saf.Session.ACL.
+- Forms can now be submitted by submit buttons from inside template widgets,
+  but only when those buttons are listed in the template widget's
+  submitButtons property.
+- Fixed the saf.Misc.Search docs to refer to the template set modes.php files.
+- Upgraded PHPUnit to 1.0.1.
+- Silenced the error message when the 'Not Installed' tools fails to connect
+  to simian.ca
+- Added collection config settings order_by and sorting_order for specifying
+  the default of both in the browse view.
+- Fixed an error on the deleted items screen when viewing a collection without
+  versioning.
+- Default scheduler-app call now displays help instructions.
+- Changed the default writer role to restrict him from writing to the queue
+  (a way to bypass their inability to approve documents themselves).
+- Fixed a bug that let you set a new password without verifying it in the
+  user manager.
+- Removed sitellite_tab_list table from install-mysql.sql, since it is not
+  in use for anything.
+- Fixed a mistake in the docs/REQUIREMENTS file.
+- Added workflow triggers to the default add/edit forms, as well as for the
+  Web Pages, Web Files, Sidebars, and News Stories collections (ie. all of the
+  default collections).
+- Fixed a bug in saf.Database.Generic's single() method -- thanks to Shane
+  for the bug report.
+- Added menu structure caching to the content server, which should improve
+  the speed of sites with large numbers of pages.
+- Added display_title field to Web Files collection.
+- Added new class to SAF: saf.HTML.CSS_Parser -- a simple CSS parser that
+  correctly handles most CSS cases, and allows you to easily extract
+  information about any CSS data/file.
+- Fixed rename ID of page error (#0000004) -- thanks to kozmoz for the fix!
+- Fixed news browse view showing wrong date (#0000005) -- thanks to kozmoz for
+  the fix!
+- Fixed double-slash error in subdir installs (#0000007) -- thanks to kozmoz
+  for the fix!
+- Fixed missing site_prefix () references in imagechooser, default template
+  set, and xed (#0000010) -- thanks to kozmoz for the fix!
+- Fixed a bug in is_assoc() method in saf.Functions.
+- Fixed a bug in saf.Session causing sitemember/register to fail.
+- Fixed a bug in saf.Misc.Search causing search term highlighting to break
+  existing HTML tags, such as links.  Also adds automatic highlighting of
+  terms coming from the major search engines.  Thanks to kozmoz for the fix!
+- Fixed a bug in SiteMember's list box causing names that don't start with A-Z
+  not to display at all -- thanks to kozmoz for the fix!
+- Fixed a bug causing news story comment notices to fail to be sent -- thanks
+  to kozmoz for the fix!
+- Fixed a bug in sitellite/nav/top causing the currently active drop menu to
+  output incorrect HTML when dropmenus is on.
+- Fixed a bug where the id and below_page field sizes weren't the same in the
+  sitellite_page table.
+- Added a new sorting weight field to the web pages, to allow control over the
+  sorting of pages other than alphabetically.
+- Added limit option to news/rss/viewer.
+- Added new status of 'pending' to the existing list of default settings.
+
+Changes in 4.0.13
+
+- Added Owner and Team MailForm widget types.  The first is similar to the
+  Info widget, except it defaults to session_username (), and the second
+  displays either an Info field (if you're not allowed to change the team),
+  or the teams you can change it to if you're the owner, or all teams if
+  you're a master admin.
+- Added an $alt field to saf.Date.Calendar.Simple, which fills an alternate
+  title text for displaying on mouse hovers.
+- Changed the web pages, news, sidebars, and web files collections to use
+  the new Owner and Team widgets.
+- Fixed a bug in saf.Ext.IXR -- thanks to Greg for the fix!
+- Added error comments when XT include files contain syntax errors.  Thanks
+  to Pat for the discovery!
+- Added new database function db_pairs() which is ultra handy.  See
+  http://www.sitellite.org/docs/ for more info.
+- Added a check for the context of the news/rss/viewer box, and in 'action'
+  context it displays the news feed's title.
+- Added a new menu_get_sections() function and getSections() method to the
+  saf.GUI.Menu package/class, which retrieves a list of sections of the site.
+- Added a new property to the [browse:field_name] blocks in the Rex definition
+  files: virtual.  The virtual property allows you to specify a filter that
+  doesn't transform the value, but calculate an otherwise nonexistent value
+  based on the object as a whole (for that row in the browse screen).  This
+  is handy for doing things like statistical columns.
+- htmlentities() is only called on field values with no filters in the browse
+  view now.
+- Fixed the sitemember account activation where sometimes it would fail due
+  to a false value being sent instead of a null value.  Thanks to Pat for the
+  discovery!
+- Added sitellite_log table, cms/services/log box, and cms.Workflow class,
+  which implements the ability to trigger services registered to occur on
+  certain actions or document status transitions within the system.  Services
+  are simply Sitellite boxes or forms, allowing a great deal of flexibility
+  within them.  cms/services/log is registered as a default global service, as
+  well as a default error service, so Sitellite now logs all actions
+  automatically.  To add admin notices, simply write a quick
+  mail('admin@example.com', 'wake up!', 'error: ' . $parameters['message'])
+  box and add it to the error list in inc/app/cms/conf/services/error.php.
+- Loader now checks for permissions on all contexts other than normal, not
+  just action and inline any more.  This allows you to limit access to custom
+  contexts in addition to the defaults.
+- sitellite/sidebar now calls alias boxes with the 'sidebar' context.
+  cms.Workflow::trigger() calls them with the context 'service'.  So there
+  are now 5 built-in contexts: normal, inline, action, sidebar, and service.
+- Added single() and shift() methods to saf.Database.Generic, mimicking the
+  db_shift() and db_single() functions.
+- Added the ability to pass an object or array to cms/buttons instead of
+  specifying the id, status, access, and team properties individually.  The
+  new parameter is named 'object'.
+- cms/services/log has its own access.php file now, allowing it to be called
+  from public actions as well, but not directly from the url (so people can't
+  abuse it if they knew it was there).
+- You can now use the ${path} syntax in box and form calls in XT.  Some of
+  the XT class documentation has also been moved to a series of articles on
+  sitellite.org now.
+
+Changes in 4.0.12
+
+- Minor bug fixes from 4.0.11
+
+Changes in 4.0.11
+
+- Added new function loader_call() to saf.Loader.  This allows you to load
+  and call a method or function from a package in a single line of code,
+  which is ideal for things like filling in the setValues = "eval: ..."
+  values in a form settings file, or just shortening your code.
+- Added the ability to specify the "eval: ..." line in Rex collection
+  definition file [hint:field_name] sections.
+- Removed the 'not empty' rule on the sidebar body field, eliminating the
+  nag message when entering an alias to a box.
+- Added a session_password() function to saf.Session for retrieving the
+  encrypted form of the current user's password.  Also added a getUser()
+  method to saf.Session, which wraps around the saf.Session.Source getUser().
+- Added 5 new fields to sitellite_user: public, profile, sig, registered,
+  and modified.  These allow you to specify whether a user should be publicly
+  visible (in the case that you want a public user listing), a profile for
+  that user (ie. a self-description), a signature for signing forum
+  postings and things of that nature, and the date/time that a user was
+  registered and last modified.
+- Added a new SiteMember app, which provides standardized membership
+  services to Sitellite, which before were spread out over the sitellite
+  and org apps.  This includes built-in functions for user registration,
+  password recovery, changing passwords and profiles, member listings
+  (public only), member personal pages, member contact forms (public
+  only), and the optional ability to allow member logins to be remembered
+  across many visits to a site.
+- Added user-contributed submissions to the news app, including boxes
+  for displaying the submitted stories in the users' new home pages in
+  SiteMember.
+
+Changes in 4.0.10
+
+- Fixed a bug where the 'disabled' value was showing up as 'Yes' for all
+  users in the user browser.
+- Fixed a bug causing the DevFiles settings to try to save to the DevNotes
+  settings instead.  Thanks to Bob for the report!
+- Added a new column, head_title, to sitellite_page, which allows you to
+  specify an alternate page title for use in the <head><title></title></head>
+  tag of an HTML document.  This can help with tailoring a web site for
+  search engine optimization.
+- Removed the "not empty" rule on the sitellite_page/title field.
+- Fixed a bug where the title of pages with only a nav_title were showing
+  up blank in the below_page ("Location in Web Site") select box.
+- Fixed the permissions on uploaded files via the Web Files collection.
+  They now use permissions 0774 (read/write by user and group, read by all).
+- Added a {filter addslashes}{end filter} around the {intl ...} tags in the
+  AppDoc translation builder, specifically when the tags appear within
+  Javascript single-quotes, so that the single-quotes are not prematurely
+  terminated by the output of the {intl ...} call.  If there are any other
+  instances of {intl ...} within quoted strings in Javascript, they should
+  always be wrapped with {filter addslashes}{end filter}.  I'll have to
+  do a thorough walk-through of the translation strings to be sure.
+- Fixed a bug where an empty radio button wouldn't allow forms to submit,
+  even with no rules attached.  Thanks to Pat for the report!
+- Changed the behaviour of page_below() so that it only affects the
+  breadcrumb trails and not the rest of the navigation.  To affect the
+  rest of the navigation, you should use a page alias to your app, and
+  specify that alias within the app via page_id().  This allows better
+  control over the navigation with respect to apps/dynamic page requests.
+- Fixed a bug where cancelling the "Add Bookmark" prompt would add a "null"
+  bookmark.
+- Added proper parsing of form settings.php files to saf.I18n.Builder, as
+  well as automatic calling of intl_get() on the proper elements contained
+  therein by the parseSettings() method of MailForm.  Forms should now be
+  fully I18n capable, including titles, messages, names, buttons, and
+  validation rule messages.
+- Revamped the style of the example site included in Sitellite.
+- Revamped the style of the API docs templates, eliminated the use of frames
+  as well.
+- Fixed a bug in saf.XML.RSS.Simple and news/rss/viewer where it was only
+  parsing certain types of RSS files (apparently there are two, one based
+  on RDF, the other not, and the former places the <item> tags outside of
+  the <channel> where the latter puts them inside instead).  Thanks to Jeff
+  for the report!
+- The MailForm Selector widget is now access aware, checking whether there's
+  a resource defined by the name of the selector table, and whether the
+  current user has access to it.
+
+Changes in 4.0.9-rc
+
+- I missed a few commits that were intended for 4.0.8.  Hey, it's Sunday,
+  so technically I'm not even supposed to be working right now...
+
+Changes in 4.0.8-rc
+
+- Fixed XT template inclusion, so that when you call <xt:inc name="foo.tpl" />
+  you don't have to specify the path, and the starting point is set to
+  inc/html/{conf/default_template_set}/ for you.
+- The $cgi->mode behaviour has changed.  For $cgi->mode itself, a bug in
+  the new template layouts that caused the mode to always be set to 'html'
+  was fixed.  The output mode is now also determined by two other values:
+  $cgi->setMode, and session_get('output_mode').  If the $cgi->setMode is
+  set, it takes precedence over $cgi->mode, and also calls session_set()
+  to set the output_mode to its value.  Subsequent requests from that
+  user can now omit $cgi->setMode and $cgi->mode, because it will be
+  discovered from the session_get('output_mode') instead.  If $cgi->mode
+  is set, it overrides session_get() but does not override $cgi->setMode.
+  This gives developers the ability to change the output mode without
+  having to pass around a $cgi->mode value to every page of that new
+  mode, which is an error prone method anyway, but still allows the
+  default mode or the mode of the current session, to be overridden on
+  single screens in the same manner as before.
+- Output modes can now automatically be given a proper HTTP content type
+  header, using a modes.php file in the template set folder to specify
+  the content type of each mode.  See the default template set for an
+  example.
+- Added saf.XML.RSS.Simple class, which retrieves an RSS news feed from
+  another site (or from cache, caching is automatic) as an XMLDoc
+  object structure, ready for you to parse it and display it.  This
+  improves on the existing saf.XML.RSS package, which required XSLT
+  support in PHP.
+- Moved the news/rss/viewer box to using the new saf.XML.RSS.Simple
+  package, since the code for it was essentially lifted from the existing
+  news/rss/viewer anyway.
+- Moved content filtering to the modes.php file in each template set.
+  That way you can specify filters for specific modes only, and now also
+  for additional fields, not just the page body.
+- Added automatic field length validation to saf.Database.Table, as well
+  as to key fields in the web pages and sidebars collections.
+- Added a new MailForm rule "numeric" which allows you to easily verify
+  whether a field value is numeric or not.
+- Added a new field, nav_title, to the Web Pages, allowing you to specify
+  a separate title in your navigation than in the page itself.
+- Fixed a bug in saf.GUI.Pager so that now it properly obeys the $maxPages
+  value in the pre-made PAGER_TEMPLATE_PAGE_LIST template.
+- Added cms/filesystem/rss action so that file download lists can also be
+  easily syndicated.
+- Fixed a bug that was causing cms/filesystem downloads to sometimes fail.
+- Added a custom rule to the Web Files collection, ensuring that a file
+  extension is always present (required by the Rex Filesystem source driver).
+- Various bug fixes in saf.Database.NestedSet, including the completion of
+  the delete(), move(), and rename() functions.  This class is now feature-
+  complete and ready for use in the sitellite_page table in 4.1.0 (next
+  development release).
+- Added saf/lib/Database/NestedSet/shell.php, which is an interactive shell
+  for querying and testing the NestedSet package.  And it's pretty fun too!
+- Added "Clear table" option, as well as the ability to drop or clear
+  multiple tables at once, in the DB Manager.
+- Fixed a few bugs in the access control of the browse and deleted items
+  screens.
+- Extended the length of the sitellite_page id field to 72 characters, so
+  that people can add extra keywords to their urls to improve their search
+  engine relevance.
+- Fixed a bug in MailForm's createWidget() method that caused setValue and
+  setDefault not to work in settings.php files.
+- Added the ability to control the look of the news app paging links in
+  two ways: 1) the style, either a standard pager, previous/next links with
+  the headers from the respective pages, or header links from each page, and
+  2) location, either the top of the story, the bottom, or both.
+  Thanks to Amnon for the suggestion!
+- Added proper referencing of <label> with checkboxes and radio buttons.
+  Thanks to Didier for that!
+- SimpleRSS fetch() now returns an object reference like it's supposed to.
+- Fixed a looping bug in XT.
+- Updated saf.I18n and saf.I18n.Builder to handle .spt templates and the
+  intl_get() function properly.
+- Started adding translation capabilities to AppDoc, which will be what
+  supersedes the old Translation Builder app.  Also allows you to translate
+  strings from your global templates.  Still to do: test with lots of
+  languages! :)
+- Updated the I18n negotation to include the languages from an individual
+  app (automatically) when an app, box, or form is requested.  This way,
+  apps can define additional languages that will be added to the list of
+  possibilities while you're in that app (before, you'd have to define
+  all languages in the global list).
+
+Changes in 4.0.7-rc
+
+- Fixed a few bugs in the Session package, especially a timeout issue
+- Sessions now expire after an hour instead of a half an hour (which was
+  due to the above bug)
+- Increased the alias field length to 255 in the sitellite_sidebar table
+- Added rpc_decode() to the rpc.js package, because rpc_response() now
+  converts double quotes and angle braces into entities, and rpc_decode()
+  converts them back.
+- Updated the inc/conf/version.php file to reflect the new version (forgot
+  to do that for 4.0.6) -- thanks to Greg Ferguson for the head's up!
+- Copied inc/app/cms/html/facets.spt to inc/app/usradm/html/facets.spt and
+  changed Rex's renderFacets() to call the facets.spt or facets_twocols.spt
+  that is within the current app.  This fixes an intermittent bug where
+  the user manager facets wouldn't render.
+- Admin can no longer delete the role or team that they belong to.  Now
+  results in an alert message.
+- Fixed the ordering of sidebar items in the example site (default
+  installation).
+- Fixed an incorrect index definition on the sitellite_property_set table.
+- Changed sitellite_property_set's data_value column to type text instead
+  of char(255), which will make it more useful for a wider range of
+  applications (even simple caching of syndicated content...).  Also increased
+  the length of the other three columns to 84.
+- Added news/rss/viewer box, which syndicates content headlines in RSS format
+  from external web sites.  This can be called as a sidebar or anywhere else.
+  Uses saf.Database.PropertySet to handle caching of news feeds as serialized
+  SloppyDOM objects. :)
+- Fixed a bug in MailForm's setValues handling which caused comma-separate
+  values in settings.php files not to be properly parsed in some cases.
+- Added eqq and neq aliases for === and !==, respectively, to
+  saf.Misc.Shorthand.
+- Updated template preview button in web page add/edit forms to point to the
+  proper directory structure now.
+- Added new packages to SAF, saf.Date.Calendar.Mini, which implements a
+  mini calendar renderer called MiniCal, and saf.Date.Calendar.Simple, which
+  implements a simple monthly calendar renderer (with much less hassle, but
+  also less customizability, than saf.Date.Calendar).  Both MiniCal and
+  SimpleCal are setlocale()-aware, however calendars always begin on Sundays.
+  Both also provide a control of all aspects of the UI via CSS.
+- Fixed javascript error in cms_cancel() function.
+- Default add and edit forms now use the "Collection, singular" name if
+  available, instead of "Item", to refer to the document being created/edited.
+  For example, adding a news story it might print "Adding Story" instead of
+  "Adding Item".
+- Added [Server][content_filters] option to inc/conf/config.ini.php, to allow
+  configurable, and multiple, functions to transform content from pages before
+  they are sent to the XT templates.  This is how search term highlighting is
+  handled now.
+- help-app now checks for inc/app/$app/docs/en instead of just /docs, so that
+  it ensures there are actually docs available, before listing them in the
+  application list.
+- Fixed a bug where "anonymous" was coming up as a role in both the user and
+  role editing screens, or else it was coming up as a blank option in the
+  role selection boxes.
+- Fixed a bug where Web Files was not changing the folder of the file unless
+  you also entered a new name (or re-typed the name into the text box).
+- Added an <xt:code> tag to XT, allowing you to output literal PHP code that
+  is not evaluated (for example, if you wanted to publish a static site with
+  PHP, but wanted to still include _some_ dynamic pieces -- ie. you wanted
+  Sitellite for content management, but something custom for content serving).
+  An optional highlighted="yes" attribute will run it through the
+  highlight_string() function, which is useful for outputting example code.
+  Another optional attribute language="php" allows you to change the opening
+  and closing tags, to allow for output in different languages.  Possible
+  values are php (<?php ?>), asp (<% %>), jsp (<% %>), javascript (<script
+  language="javascript"></script>), runat_server (<script runat="server">
+  </script> wrapper), asp_include (<%@ %>), jsp_include (<%@ %>), eperl
+  (<: :>), and eruby (<% %>), and python (<% %>).  The reason for the
+  duplicates is so that you don't have to write, say, python code, and
+  call it asp.  Note that if highlighted="yes", XT doesn't care what
+  language you chose, it's outputting formatted PHP.
+- Added folder and file type facets to the Web Files browse screen, so you
+  can limit the list of files to a specific folder (a staple of all file
+  managers), as well as by file type (file extension), or any combination
+  of those two and the other facets (text search, status, and access level).
+  Powerful stuff.
+- Fixed a bug in Rex's getList() and getStoreList() functions that wasn't
+  properly setting the conditions when multiple calls to different collections
+  where being made in the same page request.
+- Fixed a bug with the scheduler's "documents" task, which publishes queued
+  documents and archives expired ones, based on the sitellite_startdate and
+  sitellite_expirydate fields.
+- Fixed a bug where allowed access levels and statuses weren't appearing in
+  the select boxes on add & edit screens, due to a 'rw' where read had been
+  set to 'all' for the user, and write was only set on specific values.
+  The fix makes read implied in write, since you need to see the values in
+  the list to select them. :)
+- Added sitellite_filesystem to the resource list.
+
+Changes in 4.0.6-rc
+
+- Added a workaround to a known PHP bug ("Problem with method call") that
+  affected some systems
+- Made Site/usedocroot setting work, and added Site/prefix setting as well
+- Added array_chunk() and array_change_key_case() functions for PHP 4.1
+  compatibility
+- Added xmlentities() function
+- Cleaned up saf.Functions documentation
+- Merged pix, css, and inc/html folders into one coherent "template set"
+  structure (like themes).  Also introduced the page_template_set() function
+  and the access.php sitellite_template_set setting.
+- SiteSearch checking in news/search and sitellite/search now looks for pid
+  file, not just the sitesearch directory.
+- Fixed a few drop menu bugs.
+- Added "form hints" to the collection definition format.  These are like
+  the MailForm settings.php files, except they pertain to the rendering of
+  Rex collections in the CMS default add/edit screens.  This solves one of
+  the main remaining missing features from Sitellite 3, and finally makes
+  Rex collections as equally configurable as the old table configurations.
+- Added DATE, TIME, and DATETIME as constants in the SAF init scripts.  This
+  is handy in form configurations for setting default values in date widgets.
+- Fixed a bug in the new template structure regarding templates of section
+  pages resolving for child pages.
+- Added page_get_section() function, handy for doing logic based on sections
+  (ie. alternating graphics), by being able to determine which section a
+  page is in.
+- Added saf.Database.PropertySet class.
+- Fixed a bug when specifying alternate ports in saf.Database.
+- Added createWidget() to take ini settings and create widgets in MailForm.
+- Added ability to pass PHP expressions to setValues in settings.php files,
+  like this: setValues = "eval: formdata_get ('myapp_fieldname')".
+- Made sure all fields referring to the username are 48 characters long,
+  especially sitellite_owner and sv_author fields.
+- Added Dir::fetch() and Dir::getStruct() to saf.File.Directory.
+- Fixed bugs with cms.Versioning.Rev.Store.Database::getDeleted() and the
+  cms-deleted-items-action script.
+- Various fixes added to better handle renaming within Rev/Rex.
+- New "Web Files" collection for managing online files.
+- Added an exec()-based version of mime_content_type() for those of us
+  without --with-mime-magic, used by the cms-filesystem-action script.
+- Added "sitesearch" facet to Rex facet types, which means SiteSearch can
+  now be integrated seamlessly into the Sitellite control panel browse
+  screen with a simple:
+    [facet:search]
+    display = Search
+    type = sitesearch
+- Added page_is_parent() function.
+- Made the title field optional for sitellite_sidebar.
+
+Changes in 4.0.5-beta
+
+- Numerous bug fixes.
+- Added messaging UI
+- Minor API enhancements
+- Implemented the privilege system throughout Sitellite now, not just at API
+  level but in the UI too (for example, logging in as a writer you'll see a
+  disabled drop menu and greyed out icons for the admin tools).

@@ -1,0 +1,16 @@
+<body onload="document.forms[0].submit ()">
+
+<form method="post" action="http://www.CynthiaSays.com/mynewtester/cynthia.exe">
+<input type="hidden" name="Url1" value="http://{site/domain}{site/prefix}/index/sitetemplate-viewer-action?id={id}" />
+<!-- input type="hidden" name="charset" value="ISO-8859-1" / -->
+<input type="hidden" name="rptmode" value="-1" />
+<input type="hidden" name="warnp2n3e" value="1" />
+<input type="hidden" name="runcr" value="1" />
+<input type="hidden" name="incsrc" value="1" />
+<input type="hidden" name="runpmc" value="" />
+<input type="hidden" name="runagc" value="" />
+<input type="hidden" name="BROWSE_EMUL" value="Cynthia 1.0" />
+<input type="hidden" name="RunJob" value="Test your site" />
+</form>
+
+</body>

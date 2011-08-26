@@ -1,0 +1,41 @@
+<script language="javascript" src="/js/jquery-ui-1.7.2.min.js"></script>
+<script>
+$(document).ready(function() {
+  $(".answer").hide();
+  $(".question").click(function() {
+   if ( $(this).next("div.answer").is(":hidden"))
+     $(this).next("div.answer").slideDown("normal");
+   else
+     $(this).next("div.answer").slideUp("normal");
+   return false;
+  });
+  $(".closeimage").click(function() {
+   $(this).parent().slideUp("normal");
+   return false;
+  });
+});
+</script>
+
+{if appconf ('user_submissions')}
+<div class="user_submissions">
+	<a href="{site/prefix}/index/sitefaq-submission-form">{intl Ask a Question}</a>
+</div>
+{end if}
+
+<div class="questions">
+    {loop obj[cats]}
+    	<div class="category">{loop/category}</div><br />
+    	{loop obj[res]}
+    		{if loop.category eq parent.category}
+    			<div>
+				<a href="#" class="question">{loop/question}<br /></a>
+    			<div class="answer" style="margin-bottom: 5px;">
+				{filter none}{loop/answer}{end filter}
+				<img src="{site/prefix}/inc/app/sitefaq/pix/close.gif" align="right" alt="{intl close}" class="closeimage" />&nbsp;
+				</div>
+				</div>
+    		{end if}
+    	{end loop}
+    {end loop}
+    <br />
+</div>

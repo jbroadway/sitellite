@@ -1,0 +1,68 @@
+<p>
+	<a href="{site/prefix}/index/siteforum-app">{forum_name}</a> /
+	{topic}
+</p>
+
+<p>
+	<a href="{site/prefix}/index/siteforum-post-form?topic={cgi/topic}">{intl Start new thread}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/siteforum-search-action?topic={cgi/topic}">{intl Search}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	{if appconf ('rss_links')}
+		<a href="{site/prefix}/index/siteforum-rss-action/threads.{cgi/topic}">{intl Syndicated Feed (RSS)}</a>
+		&nbsp; &nbsp; &nbsp; &nbsp;
+	{end if}
+</p>
+
+{alt #fff #eee}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="55%" align="left">{intl Threads}</th>
+		<th width="10%" align="left">{intl Replies}</th>
+		<th width="15%" align="left">{intl Author}</th>
+		<th width="20%" align="left">{intl Last Post}</th>
+	</tr>
+	{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td valign="top">
+			{if loop.notice eq 'yes'}
+				<strong>{intl Notice}: <a href="{site/prefix}/index/siteforum-list-action/post.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a>{if loop.attachments} <img src="{site/prefix}/inc/app/siteforum/pix/attach.png" alt="{intl Has attachments}" title="{intl Has attachments}" border="0" />{end if}</strong>
+			{end if}
+			{if else}
+				<a href="{site/prefix}/index/siteforum-list-action/post.{loop/id}/title.{filter siteforum_filter_link_title}{loop/subject}{end filter}">{loop/subject}</a>{if loop.attachments} <img src="{site/prefix}/inc/app/siteforum/pix/attach.png" alt="{intl Has attachments}" title="{intl Has attachments}" border="0" />{end if}
+			{end if}
+		</td>
+		<td valign="top" align="right">
+			{loop/count}
+		</td>
+		<td valign="top">
+			{if loop.public eq 'yes'}
+				<a href="{site/prefix}/index/sitemember-profile-action/user.{loop/user_id}">{loop/user_id}</a>
+			{end if}
+			{if else}
+				{loop/user_id}
+			{end if}
+		</td>
+		<td valign="top">
+			{filter siteforum_filter_shortdate}{loop/last_post}{end filter}<br />
+			{if loop.last_post_id gt 0}
+				<a href="{site/prefix}/index/siteforum-post-action/id.{loop/last_post_id}">{intl Read}</a>
+				{if loop.last_post_user_public eq 'yes'}
+					(<a href="{site/prefix}/index/sitemember-profile-action/user.{loop/last_post_user}">{loop/last_post_user}</a>)
+				{end if}
+				{if else}
+					({loop/last_post_user})
+				{end if}
+			{end if}
+		</td>
+	</tr>
+	{end loop}
+</table>

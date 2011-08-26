@@ -1,0 +1,7 @@
+
+<p>
+	<a href="javascript: window.close ()">{intl Close}</a> &nbsp; &nbsp;
+</p>
+
+	<p><strong>{error} ({intl Line} {err_ln}, {intl Column}
+	{err_cl})</strong></p>

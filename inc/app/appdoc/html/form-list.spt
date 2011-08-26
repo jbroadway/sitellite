@@ -1,0 +1,15 @@
+<ul>
+{loop obj[forms]}
+	<li>
+		{if loop[is_dir]}
+			{loop/alt}
+		{end if}
+		{if not loop[is_dir]}
+			<a href="{site/prefix}/index/appdoc-formviewer-action?appname={cgi/appname}&form={loop/name}">{loop/alt}</a>
+		{end if}
+		{if count (loop[forms])}
+			{filter none}{spt form-list.spt loop}{end filter}
+		{end if}
+	</li>
+{end loop}
+</ul>

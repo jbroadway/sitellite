@@ -1,0 +1,16 @@
+<style type="text/css">
+	a {
+		font: 12px Arial, Helvetica, sans-serif;
+	}
+</style>
+
+<div align="center">
+
+<a href="{site/prefix}/index/sitebanner-click-action?id={id}" target="_{target}">
+	<img src="{file}" alt="{display_url}" width="{width}" height="{height}" border="0" /></a>
+
+<br />
+<br />
+<a href="#" onclick="window.close ()">{intl Close Window}</a>
+
+</div>

@@ -1,0 +1,111 @@
+<style type="text/css">
+
+td {
+	padding: 3px;
+}
+
+.odd {
+	background-color: #fff;
+}
+
+.even {
+	background-color: #eee;
+}
+
+</style>
+
+<script language="javascript" type="text/javascript">
+<!--
+function imagechooser_update_image (src, location) {
+	win = window.open (
+			'about:blank',
+			'Choose image',
+			'top=50,left=50,width=400,height=300,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,fullscreen=no'
+        );
+	win.location = '{site/prefix}/imagechooser-admin-update-form?src='+src+'&location='+location
+}
+// -->
+</script>
+
+<p>
+	<!-- a href="javascript: window.close ()">{intl Cancel}</a> &nbsp; &nbsp; -->
+	{if not obj[writeable]}
+		{intl New Image} &nbsp; &nbsp;
+		{intl New Folder} &nbsp; &nbsp;
+	{end if}
+	{if obj[writeable]}
+	<a href="{site/prefix}/index/imagechooser-new-action{filter urlencode}?name={cgi/name}&location={location}&format={cgi/format}&attrs={cgi/attrs}{end filter}&admin=1">{intl New Image}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/imagechooser-folder-action{filter urlencode}?name={cgi/name}&location={location}&format={cgi/format}&attrs={cgi/attrs}{end filter}&admin=1">{intl New Folder}</a> &nbsp; &nbsp;
+	{end if}
+	{if obj[up]}
+		<a href="{site/prefix}/index/imagechooser-admin-action{filter urlencode}?name={cgi/name}&location={up}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl Up a Level}</a>
+	{end if}
+</p>
+
+{if not obj[writeable]}
+	<p class="err">{intl Please Note: You do not have permission to add new images to this folder.}</p>
+{end if}
+
+{if obj[err]}
+	<p class="err">{err}</p>
+	{if obj[pagelist]}
+		<ul>
+		{loop obj[pagelist]}
+			<li><a href="{site/prefix}/index/{loop/_value}" target="_blank">{loop/_value}</a></li>
+		{end loop}
+		</ul>
+	{end if}
+{end if}
+
+{box cms/alert}
+
+{alt even odd}
+
+<table cellspacing="0" width="50%">
+	{loop obj[subfolders]}
+		<tr class="{alt/next}">
+			<td width="25" align="center">
+				<a href="{site/prefix}/index/imagechooser-admin-action{filter urlencode}?name={cgi/name}&location={location}/{loop/_value}&format={cgi/format}&attrs={cgi/attrs}{end filter}"><img src="{site/prefix}/inc/app/imagechooser/pix/folder.gif" alt="{loop/_value}" title="{loop/_value}" border="0" /></a>
+			</td>
+			<td>
+				<a href="{site/prefix}/index/imagechooser-admin-action{filter urlencode}?name={cgi/name}&location={location}/{loop/_value}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{loop/_value}</a>
+			</td>
+			<td width="130" align="right">
+				{if obj[writeable]}
+					{if obj[delete]}
+					&nbsp; <a href="{site/prefix}/index/imagechooser-delete-folder-action{filter urlencode}?name={cgi/name}&src={loop/_value}&location={location}{end filter}&admin=1" onclick="return confirm ('{intl Are you sure you want to delete this folder?}')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete} {loop/_value}" title="{intl Delete} {loop/_value}" border="0" /></a>
+					{end if}
+				{end if}
+			</td>
+		</tr>
+	{end loop}
+
+	{loop obj[images]}
+		<tr class="{alt/next}">
+			<td width="25" align="center">
+				<a href="#" onclick="return imagechooser_{name}_view ('{site/prefix}{location}/{loop/name}', {loop/width}, {loop/height})"><img src="{site/prefix}/inc/app/imagechooser/pix/image.gif" alt="{loop/name}" title="{loop/name}" border="0" /></a>
+			</td>
+			<td>
+				<a href="#" onclick="return imagechooser_{name}_view ('{site/prefix}{location}/{loop/name}', {loop/width}, {loop/height})">{loop/name}</a>
+			</td>
+			<td width="130" align="right">
+				{if obj[writeable]}
+					&nbsp; <a href="{site/prefix}/index/imagechooser-admin-edit-form{filter urlencode}?name={cgi/name}&src={loop/name}&location={location}{end filter}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" border="0" alt="{intl Edit properties of} {loop/name}" title="{intl Edit properties of} {loop/name}" /></a>
+					&nbsp; <a href="javascript:imagechooser_update_image('{loop/name|urlencode}','{location|urlencode}')"><img src="{site/prefix}/inc/app/cms/pix/icons/update.gif" border="0" alt="{intl Update image} {loop/name}" title="{intl Update image} {loop/name}" /></a>
+					&nbsp; <a href="http://services.snipshot.com/?snipshot_input=http://{site/domain}{site/prefix}{location}/{loop/name}&snipshot_callback=http://{site/domain}{site/prefix}/index/imagechooser-admin-save-action%3Ffile%3D{filter urlencode}{location}%2F{loop/name}{end filter}&snipshot_callback_agent=user&snipshot_output_options={filter output_options}{loop/name}{end filter}" target="_blank"><img src="{site/prefix}/inc/app/imagechooser/pix/snipshot.gif" border="0" alt="{intl Edit image with Snipshot.com}" title="{intl Edit image with Snipshot.com}" /></a>
+					{if obj[delete]}
+					&nbsp; <a href="{site/prefix}/index/imagechooser-delete-action{filter urlencode}?name={cgi/name}&src={loop/name}&location={location}{end filter}&admin=1" onclick="return confirm ('{intl Are you sure you want to delete this image?}')"><img src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete} {loop/name}" title="{intl Delete} {loop/name}" border="0" /></a>
+					{end if}
+				{end if}
+			</td>
+			<!-- td>
+				{if cgi.attrs}
+				<a href="{site/prefix}/index/imagechooser-select-action{filter urlencode}?name={cgi/name}&src={loop/name}&location={location}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl Select}</a>
+				{end if}
+				{if not cgi.attrs}
+				<a href="javascript: imagechooser_{name}_select ('{location}/{loop/name}')">{intl Select}</a>
+				{end if}
+			</td -->
+		</tr>
+	{end loop}
+</table>

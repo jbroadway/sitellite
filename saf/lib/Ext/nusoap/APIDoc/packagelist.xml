@@ -1,0 +1,1 @@
+<?xml version="1.0"?><phpdoc><packagelist><package name="No Package specified"><class name="soap_parser"/><class name="soap_server"/><class name="wsdl"/><class name="XMLSchema"/><class name="soapclient"/><class name="soap_fault"/><class name="soap_transport_http"/><class name="soapval"/><class name="nusoap_base"/></package></packagelist></phpdoc>

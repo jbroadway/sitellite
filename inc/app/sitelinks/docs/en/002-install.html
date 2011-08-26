@@ -1,0 +1,18 @@
+<h1>Installation</h1>
+
+<p>1. From the Unix command-line, enter the following:</p>
+
+
+<pre><code><br />mysql -p -u USER DBNAME &lt; inc/app/sitelinks/install/install-mysql.sql<br /></code></pre>
+
+
+<p>Then enter your password when prompted. You may also use an
+alternate MySQL client, such as phpMyAdmin, if you prefer. This will
+create the necessary database tables that SiteTracker needs to store
+your site traffic information.<br />
+</p>
+<p>2. Copy the SiteLinks collection definition file into the global location:<br />
+</p>
+<pre><br />cp inc/app/sitelinks/install/sitelinks_item.php inc/app/cms/conf/collections/<br /></pre>
+<p>You should now be ready to start creating links for your web site.<br />
+</p>

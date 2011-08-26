@@ -1,0 +1,21 @@
+<p>{intl Current version is} {SITELLITE_VERSION}</p>
+
+<p><strong>{intl Actions}:</strong></p>
+
+<p>&nbsp;&bull;&nbsp; <a href="http://cookbook.sitellite.org/index/sitewiki-app/show.UpgradingHowto" target="_blank">{intl Read the upgrade guide}</a></p>
+
+<p>&nbsp;&bull;&nbsp; <a href="{site/prefix}/index/upgrade-changelog-action">{intl Read the change log}</a></p>
+
+{if upgrade_ran ()}
+<p>&nbsp;&bull;&nbsp; {intl The upgrade has been applied} ({php upgrade_version_num ()}). {intl Your installation is up-to-date.}</p>
+{end if}
+{if else}
+
+{if upgrade_exists ()}
+<p>&nbsp;&bull;&nbsp; <a href="{site/prefix}/index/upgrade-app?run=yes">{intl Apply the upgrade} ({php upgrade_version_num ()})</a></p>
+{end if}
+{if else}
+<p>&nbsp;&bull;&nbsp; {intl Your installation is up-to-date.}</p>
+{end if}
+
+{end if}

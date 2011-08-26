@@ -1,0 +1,39 @@
+<p><a href="{site/prefix}/index/siteshop-add-option-form">{intl Add Option}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{site/prefix}/index/siteshop-admin-products-action">{intl Products}</a></p>
+
+{alt #fff #eee}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="7%" align="center">
+			&nbsp;
+		</th>
+		<th width="30%">
+			{intl Type}
+		</th>
+		<th width="30%">
+			{intl Option}
+		</th>
+		<th width="30%">
+			{intl Extra Info}
+		</th>
+	</tr>
+{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td align="center" valign="top">
+			<a href="{site/prefix}/index/siteshop-admin-options-removeone-action?id={loop/id}" onclick="return confirm ('{intl Are you sure?}')"><img
+				src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete}" title="{intl Delete}" border="0" /></a>
+		</td>
+		<td valign="top">
+			{loop/type}
+		</td>
+		<td valign="top">
+			<a href="{site/prefix}/index/siteshop-edit-option-form?o={loop/id}">{loop/name}</a>
+		</td>
+		<td valign="top">
+			{loop/value}
+		</td>
+	</tr>
+{end loop}
+</table>
+</p>

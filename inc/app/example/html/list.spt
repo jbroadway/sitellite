@@ -1,0 +1,35 @@
+<h2>{intl Boxes}</h2>
+
+<ol>
+	{loop obj[boxes]}
+		<li>
+			<a href="{site/prefix}/index/example-{loop/file}-action">{loop/name}</a>
+			&nbsp;
+			[<a href="{site/prefix}/index/example-viewsource-action/example.{loop/file}">{intl View Source}</a>]
+			{if loop[template]}
+				&nbsp;
+				[<a href="{site/prefix}/index/example-viewsource-action/example.{loop/file}/type.html">{intl View Template}</a>]
+			{end if}
+		</li>
+	{end loop}
+</ol>
+
+<h2>{intl Forms}</h2>
+
+<ol>
+	{loop obj[forms]}
+		<li>
+			<a href="{site/prefix}/index/example-{loop/file}-form">{loop/name}</a>
+			&nbsp;
+			[<a href="{site/prefix}/index/example-viewsource-action/example.{loop/file}/type.forms">{intl View Source}</a>]
+			{if loop[settings]}
+				&nbsp;
+				[<a href="{site/prefix}/index/example-viewsource-action/example.{loop/file}/type.settings">{intl View Settings}</a>]
+			{end if}
+			{if loop[template]}
+				&nbsp;
+				[<a href="{site/prefix}/index/example-viewsource-action/example.{loop/file}/type.html">{intl View Template}</a>]
+			{end if}
+		</li>
+	{end loop}
+</ol>

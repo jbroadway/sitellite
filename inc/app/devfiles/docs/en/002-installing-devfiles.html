@@ -1,0 +1,16 @@
+<h1>Installing DevFiles</h1>
+
+<p>From the Unix command-line, enter the following:</p>
+
+<pre><code>
+mysql -p -u USER DBNAME &lt; inc/app/devfiles/install/install-mysql.sql
+</code></pre>
+
+<p>Then enter your password when prompted.  You may also use an alternate MySQL client, such as phpMyAdmin, if you prefer.  This will create the necessary database tables that DevFiles needs to store your file listings.</p>
+
+<p>Next you need to set the permissions on the directory where files are stored.  To do this, enter the following commands on the command-line:</p>
+
+<pre><code>
+bash$ cd inc/app/devfiles
+bash$ chmod o+w data
+</code></pre>

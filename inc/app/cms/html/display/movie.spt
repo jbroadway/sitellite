@@ -1,0 +1,8 @@
+<a href="{site/prefix}/cms-filesystem-action/{dirname}/{basename}"
+	style="display:block;width:320px;height:240px;" 
+	id="{filename}"> 
+</a>
+<script language="JavaScript"> 
+	flowplayer("{filename}",
+		"{site/prefix}/inc/app/cms/lib/flowplayer/flowplayer-3.1.1.swf"); 
+</script>

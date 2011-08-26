@@ -1,0 +1,3 @@
+<p>{intl Your subscription has been completed.}</p>
+
+<p><a href="{site/prefix}/index">{intl Continue browsing.}</a></p>

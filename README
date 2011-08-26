@@ -1,0 +1,31 @@
+README
+
+Sitellite is a mature, open source, PHP-based web content management system (CMS).
+
+Requirements
+
+Please refer to the file docs/REQUIREMENTS for a complete list of client and server
+requirements.
+
+Installation
+
+Please refer to the file docs/INSTALL for complete installation instructions.
+
+Troubleshooting
+
+For troubleshooting information, please refer to http://www.sitellite.org/
+
+Known Issues
+
+Please see the file docs/KNOWN ISSUES.
+
+License
+
+The Sitellite Content Server is licensed under the GNU General Public License (GPL),
+which can be found in the file docs/LICENSE.  Please read the license before using
+this software, as usage does indicate acceptance of the license terms.
+
+Documentation
+
+Documentation for the Sitellite Content Server can be found at
+http://www.sitellite.org/

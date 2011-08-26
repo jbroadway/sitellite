@@ -1,0 +1,107 @@
+</script>
+<script language="javascript">
+
+var add_f = null;
+
+function add (f) {
+	add_f = f;
+	prompt (
+		'{intl New keyword(s) -- separate multiple with commas (one, two, three)}',
+		'',
+		function (word) {
+			if (word == false || word == null || word.length == 0) {
+				return false;
+			}
+			add_f.elements['keyword'].value = word;
+			add_f.submit ();
+			return false;
+		}
+	);
+	return false;
+}
+
+function remove_keywords (f) {
+	kws = '';
+	sep = '';
+	for (i = 0; i < f.elements.length; i++) {
+		if (f.elements[i].checked) {
+			kws += sep + f.elements[i].value;
+			sep = ', ';
+		}
+	}
+	f.elements['keyword'].value = kws;
+	f.action = '{site/prefix}/index/cms-keywords-delete-action';
+	//f.submit ();
+	return true;
+}
+
+function in_array (arr, i) {
+	for (k = 0; k < arr.length; k++) {
+		if (arr[k] == i) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function done (f) {
+	orig_list = opener.document.forms[0].elements['{el}'].value.split (/, ?/);
+	good = [];
+	bad = [];
+
+	for (i = 0; i < f.elements.length; i++) {
+		if (f.elements[i].name.indexOf ('keywords_') != 0) {
+			continue;
+		}
+		if (f.elements[i].checked) {
+			if (! in_array (orig_list, f.elements[i].value)) {
+				good.push (f.elements[i].value);
+			}
+		} else {
+			bad.push (f.elements[i].value);
+		}
+	}
+
+	for (i = orig_list.length - 1; i >= 0; i--) {
+		if (! in_array (bad, orig_list[i])) {
+			good.unshift (orig_list[i]);
+		}
+	}
+
+	out = '';
+	sep = '';
+	for (i = 0; i < good.length; i++) {
+		out += sep + good[i];
+		sep = ', ';
+	}
+
+	opener.document.forms[0].elements['{el}'].value = out.replace (/^[ ,]+|[ ,]+$/g, '');
+	window.close ();
+	return false;
+}
+
+</script>
+
+<form action="{site/prefix}/index/cms-keywords-add-action">
+<input type="hidden" name="el" value="{el}" />
+<input type="hidden" name="sel" value="{sel}" />
+<input type="hidden" name="keyword" />
+<input type="submit" value="{intl Add}" onclick="return add (this.form)" />
+</form>
+
+{if count (obj[keywords])}
+<form>
+<input type="hidden" name="el" value="{el}" />
+<input type="hidden" name="sel" value="{sel}" />
+<input type="hidden" name="keyword" />
+<p>
+{loop obj[keywords]}
+	<input type="checkbox" name="keywords_{loop/name}" value="{loop/name}"{if loop[sel]} checked="checked"{end if} /> {loop/name}<br />
+{end loop}
+</p>
+
+<input type="submit" value="{intl Done}" onclick="return done (this.form)" /> &nbsp;
+<input type="submit" value="{intl Remove}" onclick="return remove_keywords (this.form)" />
+
+</form>
+{end if}

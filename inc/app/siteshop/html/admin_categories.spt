@@ -1,0 +1,62 @@
+<script language="javascript" type="text/javascript">
+<!--
+
+function add_category () {
+	prompt (
+		'{intl New category name}:',
+		'',
+		function (name) {
+			if (name == false || name == null || name.length == 0) {
+				return false;
+			}
+			window.location.href = '{site/prefix}/index/siteshop-admin-categories-add-action?name=' + name;
+			return false;
+		}
+	);
+	return false;
+}
+
+// -->
+</script>
+
+<p><a href="#" onclick="return add_category ()">{intl Add Category}</a></p>
+
+{alt #fff #eee}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="5%" align="center">
+			&nbsp;
+		</th>
+		<th width="45%">
+			{intl Name}
+		</th>
+		<th width="25%">
+			{intl Sorting Weight}
+		</th>
+		<th width="25%">
+			{intl Products}
+		</th>
+	</tr>
+{loop obj[list]}
+	<tr style="background-color: {alt/next}">
+		<td align="center">
+			<a href="{site/prefix}/index/siteshop-admin-categories-delete-action?_key={loop/id}" onclick="return confirm ('{intl Are you sure?}')"><img
+				src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete}" title="{intl Delete}" border="0" /></a>
+		</td>
+		<td>
+			{loop/name}
+		</td>
+		<td align="center">
+			{loop/weight}
+			&nbsp;<a href="{site/prefix}/index/siteshop-admin-categories-weight-action?_key={loop/id}&move=up"><img src="{site/prefix}/inc/app/cms/pix/icons/up.gif" alt="{intl Increase}" title="{intl Increase}" border="0" /></a>
+			&nbsp;<a href="{site/prefix}/index/siteshop-admin-categories-weight-action?_key={loop/id}&move=down"><img src="{site/prefix}/inc/app/cms/pix/icons/down.gif" alt="{intl Decrease}" title="{intl Decrease}" border="0" /></a>
+		</td>
+		<td align="center">
+			{filter siteshop_filter_category_products}{loop/id}{end filter}
+		</td>
+	</tr>
+{end loop}
+</table>
+</p>

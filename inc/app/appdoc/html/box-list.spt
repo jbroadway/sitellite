@@ -1,0 +1,15 @@
+<ul>
+{loop obj[boxes]}
+	<li>
+		{if loop[is_dir]}
+			{loop/alt}
+		{end if}
+		{if not loop[is_dir]}
+			<a href="{site/prefix}/index/appdoc-boxviewer-action?appname={cgi/appname}&box={loop/name}">{loop/alt}</a>
+		{end if}
+		{if count (loop[boxes])}
+			{filter none}{spt box-list.spt loop}{end filter}
+		{end if}
+	</li>
+{end loop}
+</ul>

@@ -1,0 +1,5 @@
+<ul>
+{loop obj}
+	<li><a href="{site/prefix}/index/siteshop-app/cid.{loop/id}/title.{filter siteshop_link_title}{loop/name}{end filter}">{loop/name}</a></li>
+{end loop}
+</ul>

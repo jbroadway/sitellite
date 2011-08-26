@@ -1,0 +1,51 @@
+<style type="text/css">
+
+h1 {
+	background-image: url('{site/prefix}/inc/app/sitesearch/pix/icon.gif');
+	background-repeat: no-repeat;
+	background-position: 0, 50%;
+	padding-left: 42px;
+	padding-top: 5px;
+	padding-bottom: 12px;
+	margin-bottom: 0px;
+}
+
+</style>
+
+<p>
+	<a href="{site/prefix}/index/sitesearch-stats-index-action">{intl Back}</a>
+</p>
+
+{alt #fff #eee}
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+<p>
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th>{intl Search Query}</th>
+		<th width="20%">{intl Content Types}</th>
+		<th width="20%">{intl Web Site}</th>
+		<th width="10%">{intl Results}</th>
+		<th width="10%">{intl Time}</th>
+		<th width="15%">{intl IP Address}</th>
+	</tr>
+	{loop obj[list]}
+		<tr style="background-color: {alt/next}">
+			<td><a href="{site/prefix}/index/sitesearch-stats-search-action?query={loop/query}">{loop/query}</a></td>
+			<td>{loop/ctype}</td>
+			<td>{loop/domain}</td>
+			<td align="right">{loop/results}</td>
+			<td align="right">{filter sitesearch_filter_time}{loop/ts}{end filter}</td>
+			<td>{loop/ip}</td>
+		</tr>
+	{end loop}
+</table>
+</p>

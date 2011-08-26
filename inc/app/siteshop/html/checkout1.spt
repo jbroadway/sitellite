@@ -1,0 +1,183 @@
+<script language="javascript">
+
+function form_error (msg) {
+	document.getElementById ('siteshop-message').innerHTML = '{intl Please correct the following to continue}:<br />' + msg;
+	document.getElementById ('siteshop-message').style.color = '#900';
+	document.getElementById ('siteshop-message').style.fontWeight = 'bold';
+	return false;
+}
+
+function form_validate (f) {
+	if (f.elements['bill_to'].value.length == 0) {
+		document.getElementById ('bill-to').style.border = '2px solid #900';
+		return form_error ('You must enter your full name.');
+	} else {
+		document.getElementById ('bill-to').style.border = '2px inset #ddd';
+	}
+	if (f.elements['phone'].value.length == 0) {
+		document.getElementById ('phone').style.border = '2px solid #900';
+		return form_error ('You must enter your phone number.');
+	} else {
+		document.getElementById ('phone').style.border = '2px inset #ddd';
+	}
+	if (f.elements['email'].value.length == 0) {
+		document.getElementById ('email').style.border = '2px solid #900';
+		return form_error ('You must enter your valid email address.');
+	} else {
+		document.getElementById ('email').style.border = '2px inset #ddd';
+	}
+	if (f.elements['bill_address'].value.length == 0) {
+		document.getElementById ('bill-address').style.border = '2px solid #900';
+		return form_error ('You must enter your billing address.');
+	} else {
+		document.getElementById ('bill-address').style.border = '2px inset #ddd';
+	}
+	if (f.elements['bill_city'].value.length == 0) {
+		document.getElementById ('bill-city').style.border = '2px solid #900';
+		return form_error ('You must enter your city.');
+	} else {
+		document.getElementById ('bill-city').style.border = '2px inset #ddd';
+	}
+	if (f.elements['bill_state'].selectedIndex == 0) {
+		document.getElementById ('bill-state').style.border = '2px solid #900';
+		return form_error ('You must enter your state or province.');
+	} else {
+		document.getElementById ('bill-state').style.border = '2px inset #ddd';
+	}
+	if (f.elements['bill_country'].selectedIndex == 0) {
+		document.getElementById ('bill-country').style.border = '2px solid #900';
+		return form_error ('You must enter your country.');
+	} else {
+		document.getElementById ('bill-country').style.border = '2px inset #ddd';
+	}
+	if (f.elements['bill_zip'].value.length == 0) {
+		document.getElementById ('bill-zip').style.border = '2px solid #900';
+		return form_error ('You must enter your zip or postal code.');
+	} else {
+		document.getElementById ('bill-zip').style.border = '2px inset #ddd';
+	}
+	if (f.elements['ship_same'].checked == true) {
+		return true;
+	}
+	if (f.elements['ship_to'].value.length == 0) {
+		document.getElementById ('ship-to').style.border = '2px solid #900';
+		return form_error ('You must enter your full name.');
+	} else {
+		document.getElementById ('ship-to').style.border = '2px inset #ddd';
+	}
+	if (f.elements['ship_address'].value.length == 0) {
+		document.getElementById ('ship-address').style.border = '2px solid #900';
+		return form_error ('You must enter your billing address.');
+	} else {
+		document.getElementById ('ship-address').style.border = '2px inset #ddd';
+	}
+	if (f.elements['ship_city'].value.length == 0) {
+		document.getElementById ('ship-city').style.border = '2px solid #900';
+		return form_error ('You must enter your city.');
+	} else {
+		document.getElementById ('ship-city').style.border = '2px inset #ddd';
+	}
+	if (f.elements['ship_state'].selectedIndex == 0) {
+		document.getElementById ('ship-state').style.border = '2px solid #900';
+		return form_error ('You must enter your state or province.');
+	} else {
+		document.getElementById ('ship-state').style.border = '2px inset #ddd';
+	}
+	if (f.elements['ship_country'].selectedIndex == 0) {
+		document.getElementById ('ship-country').style.border = '2px solid #900';
+		return form_error ('You must enter your country.');
+	} else {
+		document.getElementById ('ship-country').style.border = '2px inset #ddd';
+	}
+	if (f.elements['ship_zip'].value.length == 0) {
+		document.getElementById ('ship-zip').style.border = '2px solid #900';
+		return form_error ('You must enter your zip or postal code.');
+	} else {
+		document.getElementById ('ship-zip').style.border = '2px inset #ddd';
+	}
+	return true;
+}
+
+</script>
+
+<p id="siteshop-message">{intl All fields are required.}</p>
+
+<form method="post" action="{site/prefix}/index/siteshop-checkout-action" onsubmit="return form_validate (this)">
+<input type="hidden" name="step" id="step" value="2" />
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td valign="top" width="50%">
+
+<h2>{intl Billing Address}</h2>
+
+<p>{intl Full Name}:<br />
+<input type="text" name="bill_to" id="bill-to" size="30" /></p>
+
+<p>{intl Phone Number}:<br />
+<input type="text" name="phone" id="phone" /></p>
+
+<p>{intl Email Address}:<br />
+<input type="text" name="email" id="email" size="30" /></p>
+
+<p>{intl Address}:<br />
+<input type="text" name="bill_address" id="bill-address" style="margin-bottom: 7px" size="30" /><br />
+<input type="text" name="bill_address2" size="30" /></p>
+
+<p>{intl City}:<br />
+<input type="text" name="bill_city" id="bill-city" size="30" /></p>
+
+<p>{intl State/Province}:<br />
+<select name="bill_state" id="bill-state">
+{filter none}{php siteshop_get_states ()}{end filter}
+</select></p>
+
+<p>{intl Country}:<br />
+<select name="bill_country" id="bill-country">
+{filter none}{php siteshop_get_countries ()}{end filter}
+</select></p>
+
+<p>{intl Zip/Postal Code}:<br />
+<input type="text" name="bill_zip" id="bill-zip" size="15" /></p>
+
+		</td>
+		<td valign="top" width="50%">
+
+<h2>{intl Shipping Address}</h2>
+
+<p><input type="checkbox" name="ship_same" value="yes" /> {intl Same as billing address.}</p>
+
+<p>{intl Full Name}:<br />
+<input type="text" name="ship_to" id="ship-to" size="30" /></p>
+
+<p>{intl Address}:<br />
+<input type="text" name="ship_address" id="ship-address" style="margin-bottom: 7px" size="30" /><br />
+<input type="text" name="ship_address2" size="30" /></p>
+
+<p>{intl City}:<br />
+<input type="text" name="ship_city" id="ship-city" size="30" /></p>
+
+<p>{intl State/Province}:<br />
+<select name="ship_state" id="ship-state">
+{filter none}{php siteshop_get_states ()}{end filter}
+</select></p>
+
+<p>{intl Country}:<br />
+<select name="ship_country" id="ship-country">
+{filter none}{php siteshop_get_countries ()}{end filter}
+</select></p>
+
+<p>{intl Zip/Postal Code}:<br />
+<input type="text" name="ship_zip" id="ship-zip" size="15" /></p>
+
+<p>&nbsp;</p>
+
+<p><input type="submit" value="{intl Continue}" /></p>
+
+		</td>
+	</tr>
+</table>
+</p>
+
+</form>

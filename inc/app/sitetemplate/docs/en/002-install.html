@@ -1,0 +1,32 @@
+<h1>Installation</h1>
+
+1. Unpack the downloaded file into Sitellite's inc/app folder and<br />
+rename the newly created folder 'sitetemplate':<br />
+<br />
+cp sitetemplate-1.0.x-stable.tar.gz /PATH/TO/SITELLITE/inc/app<br />
+<br />
+cd /PATH/TO/SITELLITE/inc/app<br />
+<br />
+tar -zxf sitetemplate-1.0.x-stable.tar.gz<br />
+<br />
+rm sitetemplate-1.0.x-stable.tar.gz<br />
+<br />
+mv sitetemplate-1.0.x-stable sitetemplate<br />
+<br />
+2. Create the database tables:<br />
+<br />
+cd /PATH/TO/SITELLITE<br />
+<br />
+mysql -p -u USER DBNAME &lt; inc/app/sitetemplate/install/install-mysql.sql<br />
+<br />
+(enter password when prompted)<br />
+<br />
+3. Make sure your templates are writeable by Sitellite:<br />
+<br />
+cd /PATH/TO/SITELLITE<br />
+chmod -R 777 inc/html<br />
+<br />
+You should now be able to access SiteTemplate through Sitellite under<br />
+Control Panel &gt; Tools.<br />
+<br />
+

@@ -1,0 +1,26 @@
+{if session_admin ()}
+	{box cms/buttons/add?collection=siteglossary_term}
+{end if}
+
+<a href="siteglossary-app?l=all" name="lijst">{intl Show All}</a>&nbsp; - &nbsp;
+
+{loop obj[result]}
+    &nbsp;{filter none}{loop/_value}{end filter}&nbsp;
+{end loop}
+
+{if empty(obj.list)}
+    <p>{intl No results}</p>
+{end if}
+{if else}
+    {loop obj[list]}
+        {if session_admin ()}
+            {box cms/buttons?collection=siteglossary_term&id=[loop/word]&access=public&status=approved&team=none&add=false&float=true}
+        {end if}
+
+        <a name="{loop/word}"></a>
+        <h2>{loop/word}</h2>
+
+        {filter none}{loop/body}{end filter}
+
+    {end loop}
+{end if} 

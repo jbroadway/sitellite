@@ -1,0 +1,41 @@
+<h1>Installation</h1>
+
+SITEINVOICE INSTALL INSTRUCTIONS<br />
+<br />
+1. Install the necessary database tables:<br />
+<br />
+$ mysql -p -u USER DBNAME &lt; inc/app/siteinvoice/install/install-mysql.sql<br />
+(enter password when prompted)<br />
+<br />
+2. Set the siteinvoice/data folder and the siteinvoice/conf folder to be<br />
+writeable:<br />
+<br />
+$ cd /PATH/TO/SITELLITE<br />
+$ chmod -R 777 inc/app/siteinvoice/data<br />
+$ chmod -R 777 inc/app/siteinvoice/conf<br />
+<br />
+3. Copy the siteinvoice scheduled task to the scheduler's task folder:<br />
+<br />
+$ cd /PATH/TO/SITELLITE<br />
+$ cp -R inc/app/siteinvoice/install/siteinvoice inc/app/scheduler/tasks/<br />
+<br />
+4. Add a crontab entry to run the siteinvoice scheduler task nightly.<br />
+This crontab entry should look something like the following:<br />
+<br />
+0 8 * * * cd /PATH/TO/SITELLITE; php -f index scheduler-app siteinvoice<br />
+<br />
+The above example will run the siteinvoice task at 8 AM each morning.  The<br />
+task doesn't need to be run more than once a day.<br />
+<br />
+5. Modify the siteinvoice/pix/header.jpg graphic to include your company<br />
+name or logo instead of the default.<br />
+<br />
+6. You can use SiteInvoice either from within the Sitellite Control Panel<br />
+or by accessing it directly at the following URL (change www.yourWebSite.com<br />
+to YOUR WEB SITE, of course):<br />
+<br />
+http://www.yourWebSite.com/index/siteinvoice-app<br />
+<br />
+That's all there is to it!<br />
+<br />
+

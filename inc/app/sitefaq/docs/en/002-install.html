@@ -1,0 +1,25 @@
+<h1>Installation</h1>
+
+SITEFAQ INSTALL INSTRUCTIONS<br />
+<br />
+1. Install the necessary database tables:<br />
+<br />
+$ mysql -p -u USER DBNAME &lt; inc/app/sitefaq/install/install-mysql.sql<br />
+(enter password when prompted)<br />
+<br />
+2. Copy the faq collection definition into the cms app:<br />
+<br />
+$ cd /PATH/TO/SITELLITE<br />
+$ cp -R inc/app/sitefaq/install/sitefaq_glossary.php inc/app/cms/conf/collections/<br />
+$ cp -R inc/app/sitefaq/install/sitefaq_submission.php inc/app/cms/conf/collections/<br />
+
+<br />
+<br />
+3. Link to SiteFAQ somewhere on your web site.  SiteFAQ can be<br />
+accessed from the following URL (change www.yourWebSite.com to YOUR<br />
+WEB SITE, of course):<br />
+<br />
+http://www.yourWebSite.com/index/sitefaq-app<br />
+<br />
+That's all there is to it!<br />
+

@@ -1,0 +1,43 @@
+<h1>Installation</h1>
+
+SITEGLOSSARY INSTALL INSTRUCTIONS<br />
+<br />
+1. Install the necessary database tables:<br />
+<br />
+$ mysql -p -u USER DBNAME &lt; inc/app/siteglossary/install/install-mysql.sql<br />
+(enter password when prompted)<br />
+<br />
+2. Copy the glossary collection definition into the Cms app:<br />
+<br />
+$ cd /PATH/TO/SITELLITE<br />
+$ cp -R inc/app/siteglossary/install/siteglossary_term.php inc/app/cms/conf/collections/<br />
+<br />
+3. If you want glossary terms to be automatically highlighted in your web<br />
+pages, add the following line to your active template set's modes.php file:<br />
+<br />
+filter 2 = "body: siteglossary.Terms"<br />
+<br />
+For example:<br />
+<br />
+; before<br />
+[html]<br />
+<br />
+content_type = text/html<br />
+filter 1 = "body: saf.Misc.Search"<br />
+<br />
+; after<br />
+[html]<br />
+<br />
+content_type = text/html<br />
+filter 1 = "body: saf.Misc.Search"<br />
+filter 2 = "body: siteglossary.Terms"<br />
+<br />
+4. Link to SiteGlossary somewhere on your web site.  SiteGlossary can be<br />
+accessed from the following URL (change www.yourWebSite.com to YOUR<br />
+WEB SITE, of course):<br />
+<br />
+http://www.yourWebSite.com/index/siteglossary-app<br />
+<br />
+That's all there is to it!<br />
+<br />
+

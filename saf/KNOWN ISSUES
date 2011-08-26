@@ -1,0 +1,14 @@
+KNOWN ISSUES
+
+Please see http://www.sitellite.org/ for a current bug tracking list.
+
+- The Sitellite Application Framework (specifically the XML packages) rely on
+  a deprecated way of passing references in PHP.  This causes warning if
+  allow_call_time_pass_reference is set to Off in php.ini.  Until a better
+  way of doing what we need to do is available (ie. in PHP 5.0), we'll
+  be doing it this way.
+
+- If you have Apache configured where the document root of the site does not
+  match the file path (ie. you're using a symbolic link, or the like), you
+  may have problems.  If you experience such problems, please write to the
+  list, and we'll see what we can do.

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<package version="1.0">
+  <name>DB_DataObject</name>
+  <summary>An SQL Builder, Object Interface to Database Tables</summary>
+  <description>DataObject performs 2 tasks:
+  1. Builds SQL statements based on the objects vars and the builder methods.
+  2. acts as a datastore for a table row.
+  The core class is designed to be extended for each of your tables so that you put the 
+  data logic inside the data classes.
+  included is a Generator to make your configuration files and your base classes.</description>
+  <maintainers>
+    <maintainer>
+      <user>alan_k</user>
+      <name>Alan Knowles</name>
+      <email>alan@akbkhome.com</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <release>
+    <version>0.19</version>
+    <date>2003-05-22</date>
+    <license>PHP License</license>
+    <state>stable</state>
+    <notes>- fix bug #23712 - deleting (and probably updating as well) an object while 
+  being fetched. (Michael McCarthy for spotting this)
+
+- fix generator overwriting code when file was edited in a Windows editor 
+  (Robert Janeczek)
+  
+- validation will not produce errors on empty numeric data by default.
+
+- overload extension enabled to relay setFrom and toArray calls to get*, set*
+  methods, which are predefined as
+  getXXX = returns $object-&gt;XXX
+  setXXX($V) = returns true (or an error string if you create your own)
+  (only affects php-4.3.2RC2 or later..)
+  
+- selectAs($dataobject,'prefix_%s') to help control the way join queries return 
+  their data * doing selectAs() - clears the select and sets it to table.id as id ... etc.
+  
+- joinAdd has 2 extra optional arguments
+  $dataObject-&gt;joinAdd($otherDataObject, $joinType, $joinAs)
+  existing behaviour (INNER Joins) is default (eg. no value)
+  $joinType can be:
+    INNER,LEFT,RIGHT = eg. INNER JOIN ... etc.
+    '' = just added with a , and the link conditions are added with a WHERE statement.
+  $joinAs can be used to name the table differently in the join eg.
+    SELECT .. FROM person INNER JOIN address as homeaddress ......
+    
+- setFrom has an extra optional parameter for formating: eg.
+  $object-&gt;setFrom($_POST,'prefix_%s') would map prefix_name to $object-&gt;name
+  the default is '%s' which is the same as the previous behaviour
+  
+- added option dont_die (default no) to ini file
+  default (no) means that DataObjects will emit a PEAR_ERROR_DIE on configuration and 
+  programming errors
+  true or 1 means that you can write a PEAR::error handler to catch the errors and
+  display a nice it's not working message</notes>
+    <deps>
+      <dep type="php" rel="ge" version="4.3"/>
+      <dep type="pkg" rel="ge" version="1.3">DB</dep>
+      <dep type="pkg" rel="ge" version="0.1.1">Validate</dep>
+    </deps>
+    <provides type="class" name="DB_DataObject" />
+    <provides type="function" name="DB_DataObject::get" />
+    <provides type="function" name="DB_DataObject::staticGet" />
+    <provides type="function" name="DB_DataObject::find" />
+    <provides type="function" name="DB_DataObject::fetch" />
+    <provides type="function" name="DB_DataObject::whereAdd" />
+    <provides type="function" name="DB_DataObject::orderBy" />
+    <provides type="function" name="DB_DataObject::groupBy" />
+    <provides type="function" name="DB_DataObject::limit" />
+    <provides type="function" name="DB_DataObject::selectAdd" />
+    <provides type="function" name="DB_DataObject::selectAs" />
+    <provides type="function" name="DB_DataObject::insert" />
+    <provides type="function" name="DB_DataObject::update" />
+    <provides type="function" name="DB_DataObject::delete" />
+    <provides type="function" name="DB_DataObject::fetchRow" />
+    <provides type="function" name="DB_DataObject::count" />
+    <provides type="function" name="DB_DataObject::query" />
+    <provides type="function" name="DB_DataObject::escape" />
+    <provides type="function" name="DB_DataObject::staticAutoloadTable" />
+    <provides type="function" name="DB_DataObject::getLinks" />
+    <provides type="function" name="DB_DataObject::getLink" />
+    <provides type="function" name="DB_DataObject::getLinkArray" />
+    <provides type="function" name="DB_DataObject::joinAdd" />
+    <provides type="function" name="DB_DataObject::setFrom" />
+    <provides type="function" name="DB_DataObject::toArray" />
+    <provides type="function" name="DB_DataObject::validate" />
+    <provides type="function" name="DB_DataObject::getDatabaseConnection" />
+    <provides type="function" name="DB_DataObject::getDatabaseResult" />
+    <provides type="function" name="DB_DataObject::debug" />
+    <provides type="function" name="DB_DataObject::debugLevel" />
+    <provides type="function" name="DB_DataObject::raiseError" />
+    <provides type="class" name="DB_DataObject_Generator" />
+    <provides type="function" name="DB_DataObject_Generator::start" />
+    <provides type="function" name="DB_DataObject_Generator::generateDefinitions" />
+    <provides type="function" name="DB_DataObject_Generator::generateClasses" />
+    <provides type="function" name="DB_DataObject_Generator::derivedHookFunctions" />
+    <provides type="function" name="DB_DataObject_Generator::derivedHookVar" />
+    <filelist>
+      <file role="php" baseinstalldir="DB" md5sum="831d75b1d83b3553fd72022258d25f1a" name="DataObject.php"/>
+      <file role="php" baseinstalldir="DB" md5sum="e6bbdeebde16bdae493dc575fa2c220e" name="DataObject/Generator.php"/>
+      <file role="php" baseinstalldir="DB" md5sum="92802927e5cfd951ca06927a48f1d807" name="DataObject/createTables.php"/>
+      <file role="php" baseinstalldir="DB" md5sum="7bd888a853360b455e127cecc4058732" name="DataObject/example.ini"/>
+    </filelist>
+  </release>
+  <changelog>
+    <release>
+      <version>0.18</version>
+      <date>2003-05-17</date>
+      <state>stable</state>
+      <notes>- add table prefix to autobuilt queries (assist in ambigous querys for joins)
+  (Daniel Von Fange)
+- change update and delete to return the number of rows affected or false on failure
+- various code tidy ups - standards etc. (Arnaud Limbourg)
+- fix generator for postgres and mdb - use unique keys and look for 'nextval' as keys.
+- fix no key insert bug (G Moxley Kempster)
+- fix empty table bug in generator (Robert Janeczek)
+- staticAutoloadTable(), now handles parse errors in included files alot cleaner
+- added dependancies on PHP4.3, DB 1.3 and Validate (although Validate is optional)
+- added table prefix to count query (Richard Wallace)
+
+</notes>
+    </release>
+    <release>
+      <version>0.17</version>
+      <date>2003-03-12</date>
+      <state>stable</state>
+      <notes>- Usual post feature bug fix release
+- fix loading of links.ini for joinAdd, getLinks etc. (Geoff Hopson)
+  
+</notes>
+    </release>
+    <release>
+      <version>0.16</version>
+      <date>2003-03-06</date>
+      <state>stable</state>
+      <notes>- replaced config storage  - should improve performance
+- removed production option (not required due to improved config storage)
+- bugfix : added checks for is_array on ignore_sequence_keys (Hermen Heinen)
+- add toArray($format) which supports sprintf to enable easy integration with
+  Quickforms etc. (Demian Turner)
+- add optional dataobject as variable to update(), so you can update will 
+  only create an update based on what has changed. (Geoff Hopson)
+- add join condition to count() (Daniel Von Fange)
+- modify limit() to work with postgresql and make it emit a fatal error if you 
+  try this on databases that do not directly support limit queries. (Geoff Hopson)
+  * I'm open on better ideas for this - probably wrapping the find() select call
+  
+</notes>
+    </release>
+    <release>
+      <version>0.15</version>
+      <date>2003-02-13</date>
+      <state>stable</state>
+      <notes>- modified find(true), so that it calls fetch rather than fetchrow
+  so that overriding fetch will affect get() calls.
+  (probably depreciates fetchrow now .. shout if anyone is using it)
+- added escape method as a quasi quote wrapper into pear::DB - useful for
+  building your own queries - eg. like requests.. (does not add quotes)
+- fixed bug with delete not using primary key if it was set. (Ian Eure)
+
+</notes>
+    </release>
+    <release>
+      <version>0.14</version>
+      <date>2003-02-06</date>
+      <state>stable</state>
+      <notes>- added get affected rows to update/insert/delete
+  they will return false if no data is affected and set 
+  the Objects lastError value.
+  Note: databases that do not support affectedRows(), will always 
+  return false.
+  
+
+</notes>
+    </release>
+    <release>
+      <version>0.13</version>
+      <date>2003-01-23</date>
+      <state>stable</state>
+      <notes>- bug fix release - debug_ignore_updates worked in reverse.. (Alexander Mazurov)
+
+</notes>
+    </release>
+    <release>
+      <version>0.12</version>
+      <date>2003-01-22</date>
+      <state>stable</state>
+      <notes>- Usual post release bug fix.
+- fixes *.links.ini incorrectly using *.links (Damian Turner)
+- Adds the ability to get PEAR Connection and result objects
+  getDatabaseConnection() and getDatabaseResult() (jason rust)
+
+</notes>
+    </release>
+    <release>
+      <version>0.11</version>
+      <date>2003-01-21</date>
+      <state>stable</state>
+      <notes>- changed connecition and result caching to use global private variable, rather
+  than getStaticProperty
+- results objects are not stored on insert/update/delete (speed increase 
+  on large inserts can be as much as 10x faster)
+- bug fix - Checks that primary keys are integers (Anthony Juou)
+- typo on No data returned warning
+- unit tests in CVS
+- new configuration option for whether to use insert id's and sequences.
+- Generator no creates boolean bit (mitchell perilstein)
+
+</notes>
+    </release>
+    <release>
+      <version>0.10</version>
+      <date>2002-12-09</date>
+      <state>stable</state>
+      <notes>- bug fix - Generator incorrectly set _database, causing generation of database.ini files to fail
+- change addslashes to PEAR::DB::quote()
+- generator now only replaces DB_DataObjects with extends variable if set, 
+  you can use generator_rewrite_class to set what is a valid replacement.
+
+</notes>
+    </release>
+    <release>
+      <version>0.9</version>
+      <date>2002-12-06</date>
+      <state>stable</state>
+      <notes>- bug fix release - dsn was not set correctly
+</notes>
+    </release>
+    <release>
+      <version>0.8</version>
+      <date>2002-09-21</date>
+      <state>stable</state>
+      <notes>- changed to stable status as it appears to be pretty stable now.
+- update and insert now return FALSE on error conditions (Peter Gebauer)
+  which can be checked using === FALSE, and the error obtained using $object-&gt;_lastError
+- delete will only use primary keys if they are set, otherwise it will use all object 
+  variables to build the condition. (Daniel Ferreira)
+- Added derivedHookFunctions(), and derivedHookVar() to enable extensions to generator to
+  make user defined methods. (Michael Lund Rasmussen)
+- support for INT4, BPCHAR, TIMESTAMPTZ  and postres Primary keys (Xavier)
+- better PEAR CS complience (tabs and TRUE -&gt; true), removed short open tags in generator (Thomas Volkmar Worm)
+- experimental addJoin method (Stijn de Reede)
+- Allow active options array (eg. dynamic changing of database config) (Sergey Lipnevich)
+</notes>
+    </release>
+    <release>
+      <version>0.6</version>
+      <date>2002-09-10</date>
+      <state>beta</state>
+      <notes>- bug fix release on insert (broke due to compatibility fixes)
+</notes>
+    </release>
+    <release>
+      <version>0.5</version>
+      <date>2002-09-07</date>
+      <state>beta</state>
+      <notes>- fixed database.links.ini file loading in wrong location (Jens Fischer)
+- fixed type on extends (Jens Fischer)
+- added __clone() support to pre- php5 classes
+- added multiple linked table support
+</notes>
+    </release>
+    <release>
+      <version>0.4</version>
+      <date>2002-08-21</date>
+      <state>beta</state>
+      <notes>- Bug fix release - createTables used wrong argv
+
+</notes>
+    </release>
+    <release>
+      <version>0.3</version>
+      <date>2002-08-16</date>
+      <state>beta</state>
+      <notes>- Fixed Globals requirement in createTables,
+</notes>
+    </release>
+    <release>
+      <version>0.2</version>
+      <date>2002-07-12</date>
+      <state>beta</state>
+      <notes>Removed list method, First upload as pear package. - Documentation now in PEAR Manual
+</notes>
+    </release>
+    <release>
+      <version>0.1</version>
+      <date>2002-06-25</date>
+      <state>beta</state>
+      <notes>PEARified
+</notes>
+    </release>
+  </changelog>
+</package>

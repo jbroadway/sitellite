@@ -1,0 +1,27 @@
+<div id="ysearch">
+
+<form method="get">
+	<p>{intl Search for}:<br />
+	<input type="text" name="query" /></p>
+
+	{if is_array (appconf ('site'))}
+		<p>{intl Search site}:<br />
+		<select name="site">
+		<option value="">{intl All Sites}</option>
+		{loop appconf ('site')}
+			<option value="{loop/_value}">{loop/_value}</option>
+		{end loop}
+		</select></p>
+	{end if}
+
+	<p><input type="submit" value="{intl Go}" />
+&nbsp;
+<!-- Begin Yahoo Web Services HTML Attribution Snippet -->
+<a href="http://developer.yahoo.net/about/">
+Web Services by Yahoo!
+</a>
+<!-- End Yahoo Web Services HTML Attribution Snippet -->
+</p>
+</form>
+
+</div>

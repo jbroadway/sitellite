@@ -1,0 +1,68 @@
+<style type="text/css">
+
+td {
+	padding: 5px;
+}
+
+.odd {
+	background-color: #fff;
+}
+
+.even {
+	background-color: #eee;
+}
+
+.disabled {
+	color: #888;
+}
+
+</style>
+
+<p><a href="{site/prefix}/index/cms-cpanel-action">{intl Back}</a></p>
+
+<h2>{intl Core}</h2>
+
+{alt even odd}
+
+<p>
+<table cellspacing="0" width="40%">
+	{loop core}
+		<tr class="{alt/next}">
+			<td>{loop/name}</td>
+			<td width="40%">&nbsp;</td>
+			<td align="center" width="28">
+				{if loop[settings]}
+				<a href="{site/prefix}/index/usradm-applications-edit-action?appname={loop/_key}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" border="0" alt="{intl Edit Settings}" title="{intl Edit Settings}" /></a>
+				{end if}
+			</td>
+		</tr>
+	{end loop}
+</table>
+</p>
+
+<!-- p>{intl Please choose an application:}</p -->
+
+<h2>{intl Add-ons}</h2>
+
+<p>
+<table cellspacing="0" width="40%">
+	{loop obj}
+		<tr class="{alt/next}{if not loop[active]} disabled{end if}">
+			<td>{loop/name}</td>
+			<td align="center" width="40%">
+				{if loop[active]}
+				{intl Enabled} &ndash; <a href="{site/prefix}/index/usradm-applications-disable-action?appname={loop/_key}">{intl Disable}</a>
+				{end if}
+				{if not loop[active]}
+				{intl Disabled} &ndash; <a href="{site/prefix}/index/usradm-applications-enable-action?appname={loop/_key}">{intl Enable}</a>
+				{end if}
+			</td>
+			<td align="center" width="28">
+				{if loop[settings]}
+				<a href="{site/prefix}/index/usradm-applications-edit-action?appname={loop/_key}"><img src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" border="0" alt="{intl Edit Settings}" title="{intl Edit Settings}" /></a>
+				{end if}
+			</td>
+		</tr>
+	{end loop}
+</table>
+</p>

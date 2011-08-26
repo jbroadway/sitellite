@@ -1,0 +1,7 @@
+<div style="text-align:right;">
+{if obj[category_only] eq true}
+<a href="{site/prefix}/index/siteblog-properties-form?blog={blog}">
+<img title="Edit Category Properties" alt="Edit Category Properties" src="{site/prefix}/inc/app/cms/pix/icons/edit.gif" border="0" /></a>&nbsp;
+{end if}
+<a href="{site/prefix}/index/siteblog-edit-form">
+<img title="Add a Post" alt="Add a Post" src="{site/prefix}/inc/app/cms/pix/icons/add.gif" border="0" /></a>&nbsp;</div>

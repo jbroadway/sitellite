@@ -1,0 +1,164 @@
+<html>
+	<head>
+		<title>{page/title}</title>
+		<script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog.js"></script>
+		<script language="javascript">
+		<!--
+
+{spt js.spt}
+
+		// -->
+		</script>
+		<style type="text/css">
+
+			body {
+				font: 12px Verdana, Arial, sans-serif;
+				margin: 0px;
+			}
+
+			td {
+				font: 12px Verdana, Arial, sans-serif;
+				padding: 3px;
+			}
+
+			.odd {
+				background-color: #fff;
+			}
+
+			.even {
+				background-color: #eee;
+			}
+
+			table {
+				width: 100%;
+			}
+
+			p#stripe {
+				width: 100%;
+				padding-top: 0px;
+				padding-left: 0px;
+				padding-right: 0px;
+				margin-top: 0px;
+				margin-left: 0px;
+				margin-right: 0px;
+				background-color: #0081d6;
+			}
+
+			h1,h2,h3,p,table {
+				margin: 10px;
+			}
+
+			hr {
+				border: 0px none;
+				height: 1px;
+				background-color: #999;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			a {
+				color: #0081d6;
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			h1 {
+				color: #0081d6;
+				font-size: 16px;
+			}
+
+			h2 {
+				color: #0081d6;
+				font-size: 14px;
+				font-weight: normal;
+			}
+
+			.err {
+				color: #900;
+			}
+
+		</style>
+	</head>
+	<body onload="if (opener) opener.blockEvents ()" onunload="if (opener) opener.unblockEvents ()"><a name="top"></a>
+
+<p id="stripe">&nbsp;</p>
+
+<h1>{page/title}</h1>
+
+<p>
+	<a href="javascript: window.close ()">{intl Cancel}</a> &nbsp; &nbsp;
+	{if not obj[writeable]}
+		{intl New Image} &nbsp; &nbsp;
+		{intl New Folder} &nbsp; &nbsp;
+	{end if}
+	{if obj[writeable]}
+	<a href="{site/prefix}/index/imagechooser-new-action{filter urlencode}?name={cgi/name}&location={location}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl New Image}</a> &nbsp; &nbsp;
+	<a href="{site/prefix}/index/imagechooser-folder-action{filter urlencode}?name={cgi/name}&location={location}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl New Folder}</a> &nbsp; &nbsp;
+	{end if}
+	{if obj[up]}
+		<a href="{site/prefix}/index/imagechooser-app{filter urlencode}?name={cgi/name}&location={up}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl Up a Level}</a>
+	{end if}
+</p>
+
+{if not obj[writeable]}
+	<p class="err">{intl Please Note: You do not have permission to add new images to this folder.}</p>
+{end if}
+
+{if obj[err]}
+	<p class="err">{err}</p>
+	{if obj[pagelist]}
+		<ul>
+		{loop obj[pagelist]}
+			<li><a href="{site/prefix}/index/{loop/_value}" target="_blank">{loop/_value}</a></li>
+		{end loop}
+		</ul>
+	{end if}
+{end if}
+
+{box cms/alert}
+
+{alt even odd}
+
+<table cellspacing="0">
+	{loop obj[subfolders]}
+		<tr class="{alt/next}">
+			<td colspan="3">
+				<a href="{site/prefix}/index/imagechooser-app{filter urlencode}?name={cgi/name}&location={location}/{loop/_value}&format={cgi/format}&attrs={cgi/attrs}{end filter}"><img src="{site/prefix}/inc/app/imagechooser/pix/folder.gif" alt="{loop/_value}" border="0" /> &nbsp; {loop/_value}</a>
+			</td>
+		</tr>
+	{end loop}
+
+	{loop obj[images]}
+		<tr class="{alt/next}">
+			<td>
+				<img src="{site/prefix}/inc/app/imagechooser/pix/image.gif" alt="{loop/name}" border="0" />
+				&nbsp; {loop/name}
+			</td>
+			<td>
+				<a href="#" onclick="return imagechooser_{name}_view ('{site/prefix}{location}/{loop/name}', {loop/width}, {loop/height})">{intl View}</a>
+			</td>
+			<td>
+				{if cgi.attrs}
+				<a href="{site/prefix}/index/imagechooser-select-action{filter urlencode}?name={cgi/name}&src={loop/name}&location={location}&format={cgi/format}&attrs={cgi/attrs}{end filter}">{intl Select}</a>
+				{end if}
+				{if not cgi.attrs}
+				<a href="javascript: imagechooser_{name}_select ('{location}/{loop/name}')">{intl Select}</a>
+				{end if}
+			</td>
+		</tr>
+	{end loop}
+</table>
+
+<p><a href="#top">[ {intl top} ]</a></p>
+
+<!-- hr />
+<p>
+Copyright &copy; {php date ('Y')} <a href="http://www.simian.ca/" target="_blank">SIMIAN systems Inc.</a><br />
+All rights reserved.
+</p -->
+
+	</body>
+</html>

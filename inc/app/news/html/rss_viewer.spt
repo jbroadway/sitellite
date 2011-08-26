@@ -1,0 +1,5 @@
+<ul>
+	{loop obj.items}
+		<li><a href="{loop/link}">{loop/title}</a></li>
+	{end loop}
+</ul>

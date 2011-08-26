@@ -1,0 +1,7 @@
+<h2>{intl Related Links}</h2>
+
+<ul>
+	{loop obj}
+	<li><a href="{site/prefix}/index/sitelinks-app/item.{loop/id}">{loop/title}</a></li>
+	{end loop}
+</ul>

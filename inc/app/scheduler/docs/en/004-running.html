@@ -1,0 +1,24 @@
+<h1>Running Scheduler</h1>
+
+Scheduler is a command-line tool, so you don't use a browser to access
+it.&nbsp; On just about any Unix shell, you can manually call Scheduler
+with the following command (note: this command is executed from the
+base directory of your Sitellite installation):<br />
+<br />
+bash$ php -f index scheduler-app<br />
+<br />Here is an example of running this command hourly in cron.&nbsp; On the command-line, type:<br />
+<br />
+bash$ crontab -e<br />
+<br />
+Then enter the following info into the cron editor (this is usually the VI editor).<br />
+<br />
+# MIN HOUR DAY MONTH DAYOFWEEK&nbsp;&nbsp;&nbsp; COMMAND<br />
+# once an hour<br />
+0 * * * * cd /path/to/sitellite; php -f index scheduler-app<br />
+<br />
+For more informatino about scheduling tasks on your system, please
+consult your server operating system documentation.&nbsp; For cron, you
+can access this from the command-line by typing:<br />
+<br />
+bash$ man cron<br />
+<br />

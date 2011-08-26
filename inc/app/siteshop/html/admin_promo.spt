@@ -1,0 +1,45 @@
+<p><a href="{site/prefix}/index/siteshop-add-promo-form">{intl Add Promo Code}</a></p>
+
+{alt #fff #eee}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="7%" align="center">
+			&nbsp;
+		</th>
+		<th width="25%">
+			{intl Code}
+		</th>
+		<th width="15%">
+			{intl Type}
+		</th>
+		<th width="15%">
+			{intl Discount}
+		</th>
+		<th width="35%">
+			{intl Expires}
+		</th>
+	</tr>
+{loop obj[list]}
+	<tr style="background-color: {alt/next}{if loop.expires ge date ('Y-m-d H:i:s')}; font-weight: bold{end if}">
+		<td align="center" valign="top">
+			<a href="{site/prefix}/index/siteshop-admin-promo-delete-action?_key={loop/id}" onclick="return confirm ('{intl Are you sure?}')"><img
+				src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete}" title="{intl Delete}" border="0" /></a>
+		</td>
+		<td valign="top">
+			<a href="{site/prefix}/index/siteshop-edit-promo-form?id={loop/id}">{loop/code}</a>
+		</td>
+		<td valign="top">
+			{filter ucfirst}{loop/discount_type}{end filter}
+		</td>
+		<td valign="top">
+			{loop/discount}
+		</td>
+		<td valign="top">
+			{filter siteshop_filter_date}{loop/expires}{end filter}
+		</td>
+	</tr>
+{end loop}
+</table>
+</p>

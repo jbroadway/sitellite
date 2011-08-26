@@ -1,0 +1,89 @@
+<script language="javascript">
+<!--
+
+function confirmDelete () {
+	return confirm ('{intl Are you sure you want to delete the selected items?}');
+}
+
+var myadm_select_switch = false;
+
+function selectAll (f) {
+	if (myadm_select_switch == false) {
+		for (i = 0; i < f.elements.length; i++) {
+			f.elements[i].checked = true;
+			myadm_select_switch = true;
+		}
+	} else {
+		for (i = 0; i < f.elements.length; i++) {
+			f.elements[i].checked = false;
+			myadm_select_switch = false;
+		}
+	}
+	return false;
+}
+
+// -->
+</script>
+
+<p>
+	<a href="{site/prefix}/index/myadm-app">{intl Home}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/myadm-shell-action">{intl SQL Shell}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/myadm-add-action?_table={filter urlencode}{cgi/table}{end filter}">{intl Add}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/myadm-shell-action?sql=DESCRIBE+{filter urlencode}{cgi/table}{end filter}#results">{intl Table Info}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=myadm">{intl Help}</a>
+</p>
+
+<p>
+<table border="0" cellpadding="3" width="100%">
+	<tr>
+		<td>{spt PAGER_TEMPLATE_FROM_TO}</td>
+		<td align="right">{if pager.total}{spt PAGER_TEMPLATE_PREV_PAGE_LIST_NEXT}{end if}</td>
+	</tr>
+</table>
+</p>
+
+{alt #eee #fff}
+<form method="post" action="{site/prefix}/index/myadm-delete-action">
+	<input type="hidden" name="_table" value="{cgi/table}" />
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr style="background-color: {alt/next}">
+		<th align="center" width="52" valign="bottom">
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/select-all.gif" alt="{intl Select All}" title="{intl Select All}" border="0" onclick="return selectAll (this.form)" />&nbsp;
+			<input type="image" src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete Selected}" title="{intl Delete Selected}" border="0" onclick="return confirmDelete ()" />
+		</th>
+		<th width="72">&nbsp;</th>
+		{loop obj[headers]}
+			{if loop._index le 6}
+			<th><a href="{site/prefix}/index/myadm-browse-action?{filter urlencode}table={cgi/table}&offset={cgi/offset}&orderBy={loop/name}&sort={loop/getSort}{end filter}">{loop/name}</a>
+			{if loop.isCurrent ()}
+				<img src="{site/prefix}/inc/app/myadm/pix/arrow.{cgi/sort}.gif" alt="{cgi/sort}" border="0" />
+			{end if}
+			</th>
+			{end loop}
+		{end loop}
+	</tr>
+	{loop pager.results}
+		{exec loop.pkey = loop._properties[ obj[pkey] ]}
+		<tr style="background-color: {alt/next}">
+			<td align="center">
+				<input type="checkbox" name="_key[]" value="{loop/pkey}" />
+			</td>
+			<td align="center">
+				<a href="{site/prefix}/index/myadm-edit-action?{filter urlencode}_table={cgi/table}&_key={loop/pkey}{end filter}">{intl Edit}</a> &nbsp;
+				<a href="{site/prefix}/index/myadm-save-action?{filter urlencode}_table={cgi/table}&_key={loop/pkey}{end filter}">{intl Save}</a>
+			</td>
+			{loop loop._properties}
+				{if loop._index le 6}
+				{filter myadm_shorten}
+					<td>{loop/_value}</td>
+				{end filter}
+				{end if}
+			{end loop}
+		</tr>
+	{end loop}
+</table>
+</p>
+
+</form>

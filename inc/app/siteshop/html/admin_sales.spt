@@ -1,0 +1,45 @@
+<p><a href="{site/prefix}/index/siteshop-add-sale-form">{intl Add Sale}</a></p>
+
+{alt #fff #eee}
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th width="7%" align="center">
+			&nbsp;
+		</th>
+		<th width="25%">
+			{intl Name}
+		</th>
+		<th width="15%">
+			{intl From}
+		</th>
+		<th width="15%">
+			{intl To}
+		</th>
+		<th width="35%">
+			{intl Products}
+		</th>
+	</tr>
+{loop obj[list]}
+	<tr style="background-color: {alt/next}{if loop.start_date le date ('Y-m-d H:i:s') and loop.until_date ge date ('Y-m-d H:i:s')}; font-weight: bold{end if}">
+		<td align="center" valign="top">
+			<a href="{site/prefix}/index/siteshop-admin-sales-delete-action?_key={loop/id}" onclick="return confirm ('{intl Are you sure?}')"><img
+				src="{site/prefix}/inc/app/cms/pix/icons/delete.gif" alt="{intl Delete}" title="{intl Delete}" border="0" /></a>
+		</td>
+		<td valign="top">
+			<a href="{site/prefix}/index/siteshop-edit-sale-form?id={loop/id}">{loop/name}</a>
+		</td>
+		<td valign="top">
+			{filter siteshop_filter_date}{loop/start_date}{end filter}
+		</td>
+		<td valign="top">
+			{filter siteshop_filter_date}{loop/until_date}{end filter}
+		</td>
+		<td valign="top">
+			{filter siteshop_filter_sale_products}{loop/id}{end filter}
+		</td>
+	</tr>
+{end loop}
+</table>
+</p>

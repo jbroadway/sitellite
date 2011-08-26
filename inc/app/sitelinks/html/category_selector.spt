@@ -1,0 +1,16 @@
+<p>{intl Please select a category}:</p>
+
+<form>
+	<p>
+		<select name="category" onchange="this.form.submit ()">
+			<option value="">- {intl SELECT} -</option>
+		{loop obj}
+			<option value="{loop/id}">{loop/id}</option>
+		{end loop}
+		</select>
+	</p>
+
+	<p>
+		<input type="submit" value="{intl Next}" />
+	</p>
+</form>

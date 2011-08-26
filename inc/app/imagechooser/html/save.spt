@@ -1,0 +1,25 @@
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td valign="top" width="50%">
+			<p><strong>{intl Original}:</strong></p>
+			<p><img src="{site/prefix}/{orig}" alt="{intl Original}" width="{orig_w}" height="{orig_h}" border="0" /></p>
+		</td>
+		<td valign="top" width="50%">
+			<p><strong>{intl Changed}:</strong></p>
+			<p><img src="{site/prefix}/{remote}" alt="{intl Changed}" width="{remote_w}" height="{remote_h}" border="0" /></p>
+		</td>
+	</tr>
+</table>
+</p>
+
+<form>
+<input type="hidden" name="orig" value="{orig}" />
+<input type="hidden" name="remote" value="{remote}" />
+
+<p>{intl Save to new file name (optional)}:<br />
+<input type="text" name="new" /></p>
+
+<p><input type="submit" value="{intl Save Image}" /> &nbsp; <input type="submit" value="{intl Cancel}" onclick="location.href = '{site/prefix}/index/imagechooser-admin-action?location=/{dir}'; return false" /></p>
+
+</form>

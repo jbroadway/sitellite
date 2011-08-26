@@ -1,0 +1,55 @@
+<p>
+	<a href="{site/prefix}/index/appdoc-app">{intl Back}</a>
+	&nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=appdoc">{intl Help}</a>
+</p>
+
+<h2>{intl Summary}</h2>
+
+<p>{if empty (obj[description])}{intl No summary.}{end if}{description}</p>
+
+<ul>
+	{if not empty (obj[author])}<li><strong>{intl Author}:</strong> {filter none}{author}{end filter}</li>{end if}
+	{if not empty (obj[copyright])}<li><strong>{intl Copyright}:</strong> {copyright}</li>{end if}
+	{if not empty (obj[license])}<li><strong>{intl License}:</strong> <a href="{license}" target="_blank">{license}</a></li>{end if}
+	{if not empty (obj[version])}<li><strong>{intl Version}:</strong> {version}</li>{end if}
+</ul>
+
+{if obj[helpdocs]}
+<p><a href="{helpdocs}"><strong>{intl User Manual}</strong></a> [ <a href="{site/prefix}/index/appdoc-helpdoc-action?appname={cgi/appname}">{intl Edit Manual}</a> ]</p>
+{end if}
+{if not obj[helpdocs]}
+<p><strong>{intl No User Manual}</strong> [ <a href="{site/prefix}/index/appdoc-helpdoc-action?appname={cgi/appname}">{intl Create Manual}</a> ]</p>
+{end if}
+
+<!--
+{if obj[apidocs]}
+<p><a href="{apidocs}"><strong>{intl API Documentation}</strong></a> [ <a href="{site/prefix}/index/appdoc-apigen-action?appname={cgi/appname}"
+	onclick="return confirm ('{intl Are you sure you want to re-build the API documentation?  It is a memory-intensive process that may slow your web site down for a few minutes.}')"
+>{intl Re-build}</a> ]</p>
+{end if}
+{if not obj[apidocs]}
+<p><strong>{intl No API Documentation}</strong> [ <a href="{site/prefix}/index/appdoc-apigen-action?appname={cgi/appname}"
+	onclick="return confirm ('{intl Are you sure you want to build the API documentation?  It is a memory-intensive process that may slow your web site down for a few minutes.}')"
+>{intl Build}</a> ]</p>
+{end if}
+-->
+
+<!-- p><a href="{site/prefix}/index/appdoc-translation-action?appname={cgi/appname}"><strong>{intl Languages}</a></strong></p -->
+
+<p>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<th align="left">{intl Boxes}</th>
+		<th align="left">{intl Forms}</th>
+	</tr>
+	<tr>
+		<td valign="top" width="50%">
+			{spt box-list.spt}
+		</td>
+		<td valign="top" width="50%">
+			{spt form-list.spt}
+		</td>
+	</tr>
+</table>
+</p>

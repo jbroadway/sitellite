@@ -1,0 +1,38 @@
+{if count (obj[list]) gt 0}
+<form>
+<p class="siteevent-categories">
+	<input type="hidden" name="simplecal" value="{simplecal}" />
+	<select name="category" onchange="this.form.submit ()">
+	<option value="">- {intl All Categories} - </option>
+	{loop obj[list]}
+		<option value="{loop/name}"{if loop.name eq obj[current]} selected="selected"{end if}>{filter intl_get}{loop/name}{end filter}</option>
+	{end loop}
+	</select>
+	&nbsp;
+	<select name="audience" onchange="this.form.submit ()">
+	<option value="">- {intl For Everyone} - </option>
+	{loop obj[alist]}
+		<option value="{loop/id}"{if loop.id eq obj[audience]} selected="selected"{end if}>{filter intl_get}{loop/name}{end filter}</option>
+	{end loop}
+	</select>
+</p>
+</form>
+{end if}
+
+<p class="siteevent-views">
+{if appconf ('submissions')}
+<span class="siteevent-submissions" style="float: right"><a href="{site/prefix}/index/siteevent-submissions-form">{intl Submit an Event}</a></span>
+{end if}
+{if obj[view] eq 'day'}
+	<strong>{intl Day View}</strong> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.week">{intl Week View}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.month">{intl Month View}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.list">{intl List View}</a>
+{end if}
+{if obj[view] eq 'week'}
+	<a href="{site/prefix}/index/siteevent-app/view.day">{intl Day View}</a> &nbsp;|&nbsp; <strong>{intl Week View}</strong> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.month">{intl Month View}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.list">{intl List View}</a>
+{end if}
+{if obj[view] eq 'month'}
+	<a href="{site/prefix}/index/siteevent-app/view.day">{intl Day View}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.week">{intl Week View}</a> &nbsp;|&nbsp; <strong>{intl Month View}</strong> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.list">{intl List View}</a>
+{end if}
+{if obj[view] eq 'list'}
+	<a href="{site/prefix}/index/siteevent-app/view.day">{intl Day View}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.week">{intl Week View}</a> &nbsp;|&nbsp; <a href="{site/prefix}/index/siteevent-app/view.month">{intl Month View}</a> &nbsp;|&nbsp; <strong>{intl List View}</strong>
+{end if}
+</p>

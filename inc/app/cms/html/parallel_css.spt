@@ -1,0 +1,96 @@
+#parallel-stats-graph {
+	position: relative;
+	width: {php obj[versions] x 150}px;
+	height: 300px;
+	margin: 1.1em 0 3.5em;
+	padding: 0;
+	background: #eee;
+	border: 1px solid #0081d6;
+	list-style: none;
+	font: 9px Helvetica, Geneva, sans-serif;
+}
+
+#parallel-stats-graph ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#parallel-stats-graph li {
+	position: absolute;
+	bottom: 0;
+	width: 150px;
+	z-index: 2;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	list-style: none;
+}
+
+#parallel-stats-graph li.version {
+	height: 298px;
+	padding-top: 2px;
+	border-right: 1px solid #ddd;
+	color: #000;
+	font-size: 12px;
+}
+
+#parallel-stats-graph li.bar {
+	width: 60px;
+	border: 1px solid;
+	border-bottom: none;
+	color: #000;
+	/*font: 9px Helvetica, Arial, sans-serif;*/
+}
+
+#parallel-stats-graph li.bar p {
+	margin: 5px 0 0;
+	padding: 0;
+}
+
+#parallel-stats-graph li.highest {
+	/*background: #ffc8c8;
+	border: 1px solid #0081d6;*/
+}
+
+#parallel-stats-graph li.clicked {
+	left: 13px;
+	background: #ceffc8;
+	border: 0px none;
+	border-right: 1px solid #A6DA9F;
+}
+
+#parallel-stats-graph li.viewed {
+	left: 77px;
+	background: #c7e9ff;
+	border: 0px none;
+	border-right: 1px solid #A2C3D9;
+}
+
+{loop obj[stats]}
+	#parallel-stats-graph #v{loop/_index} {
+		left: {php (loop[_index] x 150) - 150}px;
+		{if loop[_index] eq obj[versions]}
+			border-right: none;
+		{end if}
+	}
+{end loop}
+
+#parallel-stats-graph #ticks {
+	width: {php obj[versions] x 150}px;
+	height: 300px;
+	z-index: 1;
+}
+
+#parallel-stats-graph #ticks .tick {
+	position: relative;
+	border-bottom: 1px solid #BBB;
+	width: {php obj[versions] x 150}px;
+}
+
+#parallel-stats-graph #ticks .tick p {
+	position: absolute;
+	left: 100%;
+	top: -0.67em;
+	margin: 0 0 0 0.5em;
+}

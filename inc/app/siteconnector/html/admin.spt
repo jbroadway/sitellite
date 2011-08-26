@@ -1,0 +1,185 @@
+{alt #fff #eee}
+
+<style type="text/css">
+
+h1 {
+	background-image: url('{site/prefix}/inc/app/siteconnector/pix/icon.gif');
+	background-repeat: no-repeat;
+	background-position: 0, 50%;
+	padding-left: 42px;
+	padding-top: 5px;
+	padding-bottom: 12px;
+	margin-bottom: 0px;
+}
+
+</style>
+
+<p>
+	<a href="{site/prefix}/index/siteconnector-admin-action">{intl Home}</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	<a href="{site/prefix}/index/help-app?appname=siteconnector">{intl Help}</a>
+</p>
+
+<p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%" style="background-color: #cde">
+	<tr>
+		<td colspan="10" style="background-color: #fff">
+		<td align="center" colspan="2" width="16%" style="background-image: url('{site/prefix}/inc/app/cms/pix/corner.gif'); background-repeat: no-repeat">
+
+<form method="get">
+	{intl Range}:
+	<select name="top_range" onchange="this.form.submit ()" style="font-size: 11px">
+		<option value="day" {if obj.top_range eq 'day'}selected="selected"{end if} style="margin-top: 3px; vertical-align: bottom">{intl Day}</option>
+		<!-- option value="week" {if obj.top_range eq 'week'}selected="selected"{end if} style="margin-top: 3px; vertical-align: bottom">{intl Week}</option -->
+		<option value="month" {if obj.top_range eq 'month'}selected="selected"{end if} style="margin-top: 3px; vertical-align: bottom">{intl Month}</option>
+		<option value="year" {if obj.top_range eq 'year'}selected="selected"{end if} style="margin-top: 3px; vertical-align: bottom">{intl Year}</option>
+	</select>
+	<input type="hidden" name="top_date" value="{top_date}" />
+	<input type="hidden" name="ttl_date" value="{ttl_date}" />
+</form>
+
+		</td>
+	</tr>
+	<tr>
+		<td width="33%" colspan="4">
+			<a href="{site/prefix}/index/siteconnector-admin-action?ttl_date={ttl_date}&top_range={top_range}&top_date={top_prev}">&lt;&lt; {filter siteconnector_filter_shortdate}{top_prev}{end filter}</a>
+		</td>
+		<td width="33%" align="center" colspan="4">
+			<strong>{filter siteconnector_filter_shortdate}{top_date}{end filter}</strong>
+		</td>
+		<td width="33%" align="right" colspan="4">
+			<a href="{site/prefix}/index/siteconnector-admin-action?ttl_date={ttl_date}&top_range={top_range}&top_date={top_next}">{filter siteconnector_filter_shortdate}{top_next}{end filter} &gt;&gt;</a>
+		</td>
+	</tr>
+</table>
+</p>
+
+<p>
+<table width="100%">
+	<tr>
+		<td style="padding-right: 5px; width: 50%; vertical-align: top">
+
+<h2>{intl Top} {php count (obj.top)} {intl Queries}</h2>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th width="10%">{intl Rank}</th>
+		<th width="30%"># {intl of Queries}</th>
+		<th>{intl Query}</th>
+	</tr>
+	{loop obj.top}
+		<tr style="background-color: {alt/next}">
+			<td align="center">{loop/_index}</td>
+			<td align="right">{loop/total}</td>
+			<td>{filter ucfirst}{loop/service}{end filter} :: {loop/action} ()</td>
+		</tr>
+	{end loop}
+</table>
+
+		</td>
+		<td style="padding-left: 5px; width: 50%; vertical-align: top">
+
+{alt/reset}
+
+<h2>{intl Top} {php count (obj.users)} {intl Users}</h2>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th width="10%">{intl Rank}</th>
+		<th width="30%"># {intl of Queries}</th>
+		<th>{intl User ID}</th>
+	</tr>
+	{loop obj.users}
+		<tr style="background-color: {alt/next}">
+			<td align="center">{loop/_index}</td>
+			<td align="right">{loop/total}</td>
+			<td>{loop/user_id}</td>
+		</tr>
+	{end loop}
+</table>
+
+		</td>
+	</tr>
+</table>
+</p>
+
+<p align="right">
+	<a href="#top">[ {intl top} ]</a>
+</p>
+
+{alt/reset}
+
+<p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%" style="background-color: #cde">
+	<tr>
+		<td width="33%">
+			<a href="{site/prefix}/index/siteconnector-admin-action?ttl_date={ttl_prev}&top_range={top_range}&top_date={top_date}">&lt;&lt; {filter siteconnector_filter_month}{ttl_prev}{end filter}</a>
+		</td>
+		<td width="33%" align="center">
+			<strong>{filter siteconnector_filter_month}{ttl_date}{end filter}</strong>
+		</td>
+		<td width="33%" align="right">
+			<a href="{site/prefix}/index/siteconnector-admin-action?ttl_date={ttl_next}&top_range={top_range}&top_date={top_date}">{filter siteconnector_filter_month}{ttl_next}{end filter} &gt;&gt;</a>
+		</td>
+	</tr>
+</table>
+</p>
+
+<p>
+<table width="100%">
+	<tr>
+		<td style="padding-right: 5px; width: 50%; vertical-align: top">
+
+<h2>{intl Query Log}</h2>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th width="20%">{intl Day}</th>
+		<th># {intl of Queries}</th>
+	</tr>
+	{loop obj.ttl}
+		<tr style="background-color: {alt/next}">
+			<td align="center">
+				<a href="{site/prefix}/index/siteconnector-admin-day-action?date={ttl_year}-{ttl_month}-{loop/day}">{loop/day}</a>
+			</td>
+			<td align="right">{loop/total}</td>
+		</tr>
+	{end loop}
+	<tr style="background-color: {alt/next}">
+		<td align="left"><strong>{intl Average}</strong></td>
+		<td align="right"><strong>{ttl_avg}</strong></td>
+	</tr>
+	<tr style="background-color: {alt/next}">
+		<td align="left"><strong>{intl Total}</strong></td>
+		<td align="right"><strong>{ttl_total}</strong></td>
+	</tr>
+</table>
+
+		</td>
+		<td style="padding-left: 5px; width: 50%; vertical-align: top">
+
+{alt/reset}
+
+<h2>{intl Response Codes}</h2>
+
+<table border="0" cellspacing="1" cellpadding="3" width="100%">
+	<tr>
+		<th width="10%">%</th>
+		<th width="30%"># {intl of Queries}</th>
+		<th>{intl Response Code}</th>
+	</tr>
+	{loop obj.codes}
+		<tr style="background-color: {alt/next}">
+			<td align="right">
+				{loop/percent}%
+			</td>
+			<td align="right">{loop/total}</td>
+			<td>{filter strtoupper}{loop/response_code}{end if}</td>
+		</tr>
+	{end loop}
+</table>
+
+		</td>
+	</tr>
+</table>
+</p>

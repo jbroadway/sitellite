@@ -1,0 +1,24 @@
+<h1>Star rating system</h1>
+
+The box is called <strong>ui/rating</strong>.<p>There is also a MailForm widget (<strong>ui.Widget.Rating</strong>) that acts like a select widget, but using stars. The widget is used in the above boxes. It is based on <a href="http://orkans-tmp.22web.net/star_rating/">http://orkans-tmp.22web.net/star_rating</a>.<br />
+
+</p>
+
+<p>Here are the parameters you can pass to the boxes:</p>
+
+<ul><li><strong>group</strong> (default: <em>sitellite_page</em>) : identify the kind of objects you want to rate.</li>
+
+<li><strong>item</strong> (default: current page id) : identify the item you want to rate.</li>
+
+<li><strong>nstars</strong> (default: <em>5</em>) : number of stars used to rate the item.</li>
+
+<li><strong>anon</strong> (default: <em>false</em>) : whether to allow getting rating from anonymous users.</li>
+
+<li><strong>readonly</strong> (default: <em>no</em>) : if <em>yes</em>, shows the average rating. If <em>no</em>, allows user to vote.<br />
+
+</li>
+
+</ul>
+
+An item is identified from group + item. A vote is identified from group + item + username, where <em>username</em> is the current logged user username, of the user IP address if user not logged and anonymous votes are allowed.<br />
+

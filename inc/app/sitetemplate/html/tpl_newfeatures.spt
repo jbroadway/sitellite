@@ -1,0 +1,39 @@
+<script language="javascript" type="text/javascript" src="{site/prefix}/js/dialog.js"> </script>
+<script language="javascript" type="text/javascript">
+{spt js_new.spt}
+</script>
+
+	<tr>
+		<td class="label" colspan="2">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="80%">
+						<a href="#" onclick="return sitetemplate_button_box ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/box.gif" alt="{intl Insert a box}" title="{intl Insert a box}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_dtd ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/dtd.gif" alt="{intl Insert a doctype definition}" title="{intl Insert a doctype definition}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_if_else ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/if_else.gif" alt="{intl Insert an if/else condition block}" title="{intl Insert an if/else condition block}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_intl ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/intl.gif" alt="{intl Insert multilingual text}" title="{intl Insert multilingual text}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_loop ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/loop.gif" alt="{intl Insert a loop}" title="{intl Insert a loop}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_var ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/var.gif" alt="{intl Insert a variable}" title="{intl Insert a variable}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_button_xml ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/xml.gif" alt="{intl Insert an XML declaration}" title="{intl Insert an XML declaration}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_charmap ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/charmap.gif" alt="{intl Insert a special character}" title="{intl Insert a special character}" border="0" /></a>
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_image ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/image.gif" alt="{intl Insert an image}" title="{intl Insert an image}" border="0" /></a>
+{if obj.link_chooser}
+						&nbsp;
+						<a href="#" onclick="return sitetemplate_link ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/link.gif" alt="{intl Insert an link}" title="{intl Insert an link}" border="0" /></a>
+{end if}
+					</td>
+					<td width="20%" align="right">
+						<a href="#" onclick="return sitetemplate_button_help ()"><img src="{site/prefix}/inc/app/sitetemplate/pix/icons/help.gif" alt="{intl Help}" title="{intl Help}" border="0" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>

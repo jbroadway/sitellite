@@ -1,0 +1,92 @@
+{errormsg}
+<form
+	name="change"
+	action="{site/prefix}/index/sitellite-user-change-action"
+	method="post">
+
+<p>
+	Email (mandatory)<br />
+	<input type="text" name="email" size="20" value="{email}" />
+</p>
+<p>
+	Company<br />
+	<input type="text" name="company" size="20" value="{company}" />
+</p>
+<p>
+	Position<br />
+	<input type="text" name="position" size="20" value="{position}"  />
+</p>
+
+<p>
+	Website<br />
+	<input type="text" name="website" size="20" value="{website}"  />
+</p>
+
+<p>
+	Jabber ID<br />
+	<input type="text" name="jabber_id" size="20" value="{jabber_id}"  />
+</p>
+
+<p>
+	SMS Address<br />
+	<input type="text" name="sms_address" size="20" value="{sms_address}"  />
+</p>
+
+<p>
+	Phone (redundancy)<br />
+	<input type="text" name="phone" size="20" value="{phone}"  />
+</p>
+
+<p>
+	Cell<br />
+	<input type="text" name="cell" size="20" value="{cell}"  />
+</p>
+
+<p>
+	Home (redundancy)<br />
+	<input type="text" name="home" size="20" value="{home}"  />
+</p>
+
+<p>
+	Fax<br />
+	<input type="text" name="fax" size="20" value="{fax}"  />
+</p>
+
+<p>
+	Address 1<br />
+	<input type="text" name="address1" size="20" value="{address1}"  />
+</p>
+
+<p>
+	Address 2<br />
+	<input type="text" name="address2" size="20" value="{address2}"  />
+</p>
+
+<p>
+	City<br />
+	<input type="text" name="city" size="20" value="{city}"  />
+</p>
+
+<p>
+	Province (this should probably be a drop-down)<br />
+	<input type="text" name="province" size="20" value="{province}"  />
+</p>
+
+<p>
+	Postal Code<br />
+	<input type="text" name="postal_code" size="20" value="{postal_code}"  />
+</p>
+
+<p>
+	Country (this should probably be a drop-down)<br />
+	<input type="text" name="country" size="20" value="{country}"  />
+</p>
+
+<p>
+	<input type="submit" value="Save/Finish" class="submit" /><br />
+</p>
+
+<input type="hidden" name="stage" value="optional" />
+<input type="hidden" name="Xusername" value="{Xusername}" />
+
+</form>

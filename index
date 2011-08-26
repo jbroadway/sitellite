@@ -1,0 +1,731 @@
+<?php
+//
+// +----------------------------------------------------------------------+
+// | Sitellite Content Management System                                  |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2010 Sitellite.org Community                           |
+// +----------------------------------------------------------------------+
+// | This software is released under the GNU GPL License.                 |
+// | Please see the accompanying file docs/LICENSE for licensing details. |
+// |                                                                      |
+// | You should have received a copy of the GNU GPL License               |
+// | along with this program; if not, visit www.sitellite.org.            |
+// | The license text is also available at the following web site         |
+// | address: <http://www.sitellite.org/index/license                     |
+// +----------------------------------------------------------------------+
+// | Authors: John Luxford <john.luxford@gmail.com>                       |
+// +----------------------------------------------------------------------+
+//
+// Sitellite Content Server
+//
+// $Id: index,v 1.22 2008/05/07 08:49:42 lux Exp $
+//
+// This script is used to generate all of the pages in your site.  It is
+// the base index file that you should have people default to seeing when
+// they hit your domain.  This can be accomplished using a simple redirect,
+// or through Apache directives, having a static splash page link to this
+// one, or by renaming this file accordingly, although there may be
+// consequences to some of these possibilities.  Our recommendation is to
+// use Apache directives to add this to the DirectoryIndex list, and to
+// use a ForceType directive to make the server aware that this is a PHP
+// file.  For more information, see the INSTALL file and the .htaccess
+// file that come with this file.
+//
+// This script implements the Controller component of the
+// Model-View-Controller (MVC) design pattern.  For more information about
+// MVC application design, please read the Sitellite Content Server
+// Developer Manual.
+//
+
+
+
+
+
+
+/*************************************************************************/
+/* Create Global $conf Array                                             */
+/*************************************************************************/
+$conf = parse_ini_file ('inc/conf/config.ini.php', true);
+$conf2 = parse_ini_file ('inc/conf/cache.php', true);
+if (file_exists ('inc/conf/product.php')) {
+	$conf3 = parse_ini_file ('inc/conf/product.php', true);
+	$conf = array_merge ($conf, $conf2, $conf3);
+} else {
+	$conf = array_merge ($conf, $conf2);
+}
+
+// set the error_reporting level
+eval ('?' . '><?php error_reporting (' . $conf['Server']['error_reporting'] . '); ?' . '>');
+if (function_exists ('date_default_timezone_set') && $conf['Server']['default_timezone']) {
+	date_default_timezone_set ($conf['Server']['default_timezone']);
+}
+// split values which should be arrays
+//$conf['Cache']['cacheable'] = preg_split ('/, ?/', $conf['Cache']['cacheable']);
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Send Sitellite HTTP Header                                            */
+/*************************************************************************/
+// We send a Sitellite HTTP header to track which version of the software
+// is being run.  This will produce a header in the form:
+// X-Powered-By: Sitellite/x.0.x
+include_once ('inc/conf/version.php');
+if ($conf['Server']['send_version_header']) {
+	header ('X-Powered-By: Sitellite/' . SITELLITE_VERSION);
+}
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Initialize Library Loader                                             */
+/*************************************************************************/
+// This simply imports the saf/init.php file.
+// This file also creates global $loader, $cgi, and $simple objects,
+// of the types Loader, CGI, and SimpleTemplate, respectively.
+include_once ($conf['Site']['safpath'] . '/init.php');
+/*************************************************************************/
+
+
+
+
+
+
+
+/*************************************************************************/
+/* I18n Initializations                                                  */
+/*************************************************************************/
+$loader->import ('saf.CGI.Cookie');
+$loader->import ('saf.I18n');
+$cookie = new Cookie; // holds cookie info
+$lang_dirs = array ($conf['I18n']['directory']);
+if ($type == 'app' && @is_dir ('inc/app/' . $request . '/lang')) {
+	$lang_dirs[] = 'inc/app/' . $request . '/lang';
+} elseif ($type == 'box' || $type == 'form') {
+	$app = array_shift (split ('/', $request));
+	if (@is_dir ('inc/app/' . $app . '/lang')) {
+		$lang_dirs[] = 'inc/app/' . $app . '/lang';
+	}
+}
+$intl = new I18n ($lang_dirs, $conf['I18n']['negotiate']); // translation object
+$intl->method = $conf['I18n']['serialize'];
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Cache Evaluation                                                      */
+/*************************************************************************/
+// If duration is 0, cache is turned off
+if ($conf['Cache']['duration'] > 0) {
+
+	// Load Cache class
+	$loader->import ('saf.Cache');
+
+	// Set the $uri variable
+	$uri = $_SERVER['REQUEST_URI'];
+
+	// Create a Cache object and tell it where to cache files (directory,
+	// berkeley database, or via proxy/caching)
+	$cache = new Cache ($conf['Cache']['location'], $conf['Cache']['duration']);
+
+	if (
+			// Make sure page is cacheable
+			$cache->is_cacheable ($uri, $conf['Cacheable']) &&
+			// Make sure no POST variables were sent (can't cache POSTed pages)
+			count ($_POST) == 0
+		) {
+
+		// If the cached copy has not expired, use it.
+		if (! $cache->expired ($uri, $conf['Cache']['duration'])) {
+			// Display page from cache.
+			//echo 'using cached copy';
+			if ($conf['Server']['compress_output'] && extension_loaded ('zlib')) {
+				ob_start ('ob_gzhandler');
+			}
+			echo $cache->show ($uri);
+			$loader->import ('sitetracker.Bug');
+			exit;
+		} else {
+			//echo $uri;
+			// Let the script carry its course, and cache the data before
+			// it is sent to the visitor.
+			//echo 'generating new copy: ' . $cache->serialize ($uri);
+		}
+
+	} else {
+		//echo $uri;
+		// Page is not cacheable, carry on
+		//echo 'page not cacheable';
+	}
+	// Below is essentially the else to the cache system.
+	// Remember, if we're caching the page, we need to hold
+	// all the data in an output buffer, then output it to
+	// the user and to the file.
+}
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Auto-Detect Values For $conf['Site']                                  */
+/*************************************************************************/
+// set domain
+if ($_SERVER['HTTP_HOST']) {
+	$conf['Site']['domain'] =& $_SERVER['HTTP_HOST'];
+}
+$_df = dirname (__FILE__);
+$_rt = rtrim ($_SERVER['DOCUMENT_ROOT'], '/');
+if (empty ($_rt)) {
+	$_rt = $_df;
+}
+
+$conf['Site']['abspath'] = $_df;
+
+if ($conf['Site']['usedocroot']) {
+	// get docroot and prefix from conf
+} elseif ($_df != $_rt) {
+	if (strstr ($_df, $_rt)) {
+		// it appears that the site is installed in a sub-directory -- use the path as the root
+		$conf['Site']['docroot'] = $_df;
+		list ($null, $conf['Site']['prefix']) = explode ($_rt, $_df);
+	} else {
+		// it appears that the document root doesn't match the file path
+		// now we need to look at the current request
+		// NOTE: this block needs testing
+		$current = $_SERVER['REQUEST_URI'];
+		$pos = strpos ($current, '?');
+		if ($pos > 0) {
+			$current = substr ($current, 0, $pos);
+		}
+
+ 		$pos = strpos ($current, '#');
+		if ($pos > 0) {
+			$current = substr ($current, 0, $pos);
+		}
+
+		list ($current, $null) = explode ('/index', $current);
+
+		if (! empty ($current)) {
+			if (substr ($current, -1) == '/' && strlen ($current) > 1) {
+				$current = substr ($current, 0, -1);
+			}
+			list ($conf['Site']['docroot'], $null) = explode ($current, $_df);
+		} else {
+			$conf['Site']['docroot'] = $_df;
+		}
+
+		$conf['Site']['prefix'] = $current;
+	}
+} else {
+	// same, we're working out of a root directory -- good!
+	$conf['Site']['docroot'] = $_df;
+	$conf['Site']['prefix'] = '';
+}
+
+/*
+// set docroot
+if (empty ($conf['Site']['docroot'])) {
+	if ($conf['Site']['usedocroot']) {
+		$conf['Site']['docroot'] =& $_SERVER['DOCUMENT_ROOT'];
+	} else {
+		$conf['Site']['docroot'] =& $_df;
+	}
+}
+*/
+
+// set appdir
+$conf['Site']['appdir'] =& $conf['Site']['docroot'];
+
+// set prefix
+//list ($null, $conf['Site']['prefix']) = explode ($conf['Site']['docroot'], $_df);
+
+// set webpath and adminpath
+if (empty ($conf['Site']['prefix'])) {
+	$conf['Site']['webpath'] = '/';
+} else {
+	$conf['Site']['webpath'] = $conf['Site']['prefix'];
+}
+
+//set level
+$c = substr_count ($conf['Site']['prefix'], '/');
+if ($c > 0) { // '/(\/)/', $conf['Site']['prefix'], $regs)) {
+	$conf['Site']['level'] = $c;
+} else {
+	$conf['Site']['level'] = 0;
+}
+if ($conf['Site']['remove_index'] && $conf['Site']['level'] > 0) {
+	$conf['Site']['level']--;
+}
+
+if ($intl->url_increase_level) {
+	$conf['Site']['level']++;
+	//$conf['Site']['prefix'] .= '/' . $intl->language;
+}
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Import Libraries                                                      */
+/*************************************************************************/
+// Import libraries and config files (initializes variables and establishes
+// the database connection)
+$loader->import ('saf.Database.Manager');
+$loader->import ('saf.Date');
+$loader->import ('saf.Site');
+$loader->import ('saf.Session');
+$loader->import ('saf.Template');
+$loader->import ('saf.MailForm.Functions');
+$loader->import ('saf.Misc.Document');
+$loader->import ('saf.Misc.Ini');
+// If you load files that contain more than classes (variables, functions, etc.),
+// they will be declared in the Loader namespace.
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Create Global Objects                                                 */
+/*************************************************************************/
+$site = new Site ($conf['Site']); // holds configuration info
+$tpl = new Template ('inc/html'); // XT template engine
+
+$dbm = new DBM ();
+if (! $dbm->add ($conf['Database']['connection_name'], $conf['Database']['driver'] . ':' . $conf['Database']['hostname'] . ':' . $conf['Database']['database'], $conf['Database']['username'], $conf['Database']['password'], $conf['Database']['persistent'])) {
+	if (@file_exists ('install') && ! @file_exists ('install/installed')) {
+		header ('Location: /install/index.php');
+		exit;
+	}
+	echo '<h1>Database Connection Error</h1>';
+	echo '<p>Either your database is not running, or this is the result of a misconfiguration or syntax error in the configuration file.  Please verify that your configurations in inc/conf/config.ini.php are correct.</p>';
+	echo '<p>Error Message: ' . $dbm->error . '</p>';
+	exit;
+}
+$dbm->setCurrent ($conf['Database']['connection_name']);
+$page = new Document;
+$ini = new Ini;
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Member Session Handling                                               */
+/*************************************************************************/
+// Create session now, if they've signed in or are already so
+
+// this will include multiple session configurations dynamically
+// in a fashion similar to the box setup.
+
+if ($dh = opendir ('inc/sessions')) {
+	while (($file = readdir ($dh)) !== false) {
+		if (@file_exists ('inc/sessions/' . $file . '/index.php')) {
+			include_once ('inc/sessions/' . $file . '/index.php');
+		}
+	}
+}
+closedir ($dh);
+
+// turn off url rewriting by the PHP session trans sid, as this causes
+// problems with Sitellite's own url rewriting, and also poses extra
+// security risks.
+@ini_set ('url_rewriter.tags', '');
+/*************************************************************************/
+
+
+
+
+
+
+
+/*************************************************************************/
+/* Global Properties                                                     */
+/*************************************************************************/
+// Load the global application properties from inc/conf/properties.php
+// and $app/conf/properties.php as well.
+
+if (@file_exists ('inc/conf/properties.php')) {
+	include_once ('inc/conf/properties.php');
+}
+$loader->import ('cms.Product');
+//if (@file_exists ('inc/app/' . $app . '/conf/properties.php')) {
+//	include_once ('inc/app/' . $app . '/conf/properties.php');
+//}
+/*************************************************************************/
+
+
+
+
+
+
+
+
+/*************************************************************************/
+/* CGI Request Data Handling                                             */
+/*************************************************************************/
+// tell cgi object to parse the URI for variables.  option is used
+// to get variables that were passed as directories so as to fake
+// out the search engines.  this method avoids the use of ? and &,
+// which searches tend not to like, and uses a . (looks like a file
+// extension to me!) in place of = to denote key/value pairs.
+$extras = $cgi->parseUri ();
+
+// 1. if $cgi->page is empty, look for it as the first value in the $extras.
+// this is how /index/pagename translates into /index?page=pagename without
+// having to specify /index/page.pagename (which also translates to the same).
+// 2. if we can't find a value for $cgi->page, the default is 'index'.
+
+if (empty ($cgi->page)) {
+	$cgi->page = $extras[$conf['Site']['level']];
+	$_GET['page'] = $cgi->page;
+}
+if (empty ($cgi->page) || strstr ($cgi->page, '..')) {
+	$cgi->page = $conf['Server']['default_handler'];
+	$_GET['page'] = $cgi->page;
+}
+
+// 1. if $cgi->setMode is set, go with that.  also call
+// session_set('output_mode') to save the setMode value for this visitor
+// (setMode changes the default mode for the current user).
+// 2. otherwise, look for $cgi->mode, and if available, go with that.
+// this way, $cgi->mode can be used still to override the
+// session_get('output_mode').
+// 3. if $cgi->mode is also not set, look for session_get('output_mode').
+// 4. if all else fails, the default mode is 'html'.
+
+if (! empty ($cgi->setMode) && ! strstr ($cgi->setMode, '..')) {
+	$cgi->mode = $cgi->setMode;
+	$_GET['mode'] = $cgi->setMode;
+	session_set ('output_mode', $cgi->setMode);
+} else {
+	if (empty ($cgi->mode)) {
+		$cgi->mode = $extras[$conf['Site']['level'] + 1];
+		$_GET['mode'] = $cgi->mode;
+	}
+	if (empty ($cgi->mode) || strstr ($cgi->mode, '..')) {
+		$mode = session_get ('output_mode');
+		if ($mode) {
+			$cgi->mode = $mode;
+			$_GET['mode'] = $cgi->mode;
+		} else {
+			$cgi->mode = 'html';
+			$_GET['mode'] = $cgi->mode;
+		}
+	}
+}
+/*************************************************************************/
+
+
+
+
+
+
+
+/*************************************************************************/
+/* Determine Request Type                                                */
+/*************************************************************************/
+// This stage determines how to call the Model and the View in order to
+// retrieve the request data structure (from the Model) and the output
+// template (from the View).
+if ($conf['Site']['level'] > 0) {
+	array_splice ($extras, 0, $conf['Site']['level']);
+}
+if (count ($extras) == 0) {
+	$request = $conf['Server']['default_handler'];
+	$type = $conf['Server']['default_handler_type'];
+} else {
+	$request = array_shift ($extras);
+	$strlen = strlen ($request);
+	if ($strlen > 7 && better_strrpos ($request, '-action') == ($strlen - 7)) {
+		$request = str_replace ('-', '/', substr ($request, 0, -7));
+		$type = 'box';
+	} elseif ($strlen > 5 && better_strrpos ($request, '-form') == ($strlen - 5)) {
+		$request = str_replace ('-', '/', substr ($request, 0, -5));
+		$type = 'form';
+	} elseif ($strlen > 4 && better_strrpos ($request, '-app') == ($strlen - 4)) {
+		$request = str_replace ('-', '/', substr ($request, 0, -4));
+		$type = 'app';
+	} else {
+		$type = 'document';
+	}
+}
+
+$loader->app =& $conf['Server']['default_app'];
+//if ($type != 'document') {
+	// determine $app before settling on the default
+	//$app = $loader->getApp ($request);
+	//$request = $loader->removeApp ($request, $app);
+//}
+/*************************************************************************/
+
+
+
+
+
+
+
+/*************************************************************************/
+/* Menu Initializations                                                  */
+/*************************************************************************/
+// to make requests where no menu object is instantiated (useful for
+// services that simply output XML content such as RDF/RSS or XML-RPC),
+// simply add /nomenu.true to the request URI.
+/*if (! isset ($cgi->nomenu)) {
+	$loader->import ('saf.GUI.Menu');
+	$menu = new Menu ('sitellite_page', 'id', 'if(nav_title != "", nav_title, title)', 'below_page', 'include', 'is_section', 'template');
+	$menu->sitelliteAllowed = true;
+	$menu->sortcolumn = 'sort_weight';
+	$menu->sortorder = 'desc';
+	$menu->cache = $conf['Cache']['menucaching'];
+	$menu->getTree ();*/
+	/*if ($conf['Cache']['menucaching'] > 0) {
+		if (@file_exists ('cache/.menu') && filemtime ('cache/.menu') > time () - $conf['Cache']['menucaching']) {
+			$menu->loadConfig ('cache/.menu');
+		} else {
+			$menu->getTree ();
+			if (@is_writeable ('cache/.menu') || (! @file_exists ('cache/.menu') && @is_writeable ('cache'))) {
+				$fp = fopen ('cache/.menu', 'w');
+				if ($fp) {
+					fwrite ($fp, $menu->makeConfig ());
+					fclose ($fp);
+				}
+			}
+		}
+	} else {
+		$menu->getTree ();
+	}*/
+//}
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Document Creation                                                     */
+/*************************************************************************/
+// At this stage, we are ready to ask the Model for our response data
+// structure.  This is stored in a $page object.
+
+$page->body = false;
+
+while (! $page->id) {
+	switch ($type) {
+
+		case 'app':
+
+			if ($cgi->mode == 'preview') {
+				$type = 'document';
+				break;
+			}
+
+			if (! @file_exists ('inc/app/' . $request . '/conf/config.ini.php')) {
+				$request = $conf['Server']['error_handler'];
+				$type = $conf['Server']['error_handler_type'];
+				$errno = E_NOT_FOUND;
+				break;
+			}
+
+			$appconf = $ini->parse ('inc/app/' . $request . '/conf/config.ini.php', false);
+			$request = $request . '/' . $appconf['default_handler'];
+			$type = $appconf['default_handler_type'];
+			break;
+
+		case 'box':
+
+			if ($cgi->mode == 'preview') {
+				$type = 'document';
+				break;
+			}
+
+			if (! $template = loader_box_allowed ($request, 'action')) {
+				$request = $conf['Server']['error_handler'];
+				$type = $conf['Server']['error_handler_type'];
+				$errno = E_NOT_FOUND;
+				break;
+			}
+
+			$page->id = $cgi->page;
+			$page->template = $template;
+			$page->set (loader_box ($request, get_object_vars ($cgi), 'action'));
+			if (empty ($page->head_title)) {
+				$page->head_title = $page->title;
+			}
+			if (empty ($page->nav_title)) {
+				$page->nav_title = $page->title;
+			}
+			break;
+
+		case 'form':
+
+			if ($cgi->mode == 'preview') {
+				$type = 'document';
+				break;
+			}
+
+			if (! $template = loader_form_allowed ($request, 'action')) {
+				$request = $conf['Server']['error_handler'];
+				$type = $conf['Server']['error_handler_type'];
+				$errno = E_NOT_FOUND;
+				break;
+			}
+
+			$page->id = $cgi->page;
+			$page->template = $template;
+			$page->set (loader_form ($request, 'action'));
+			if (empty ($page->head_title)) {
+				$page->head_title = $page->title;
+			}
+			if (empty ($page->nav_title)) {
+				$page->nav_title = $page->title;
+			}
+			break;
+
+		case 'document':
+
+			if ($cgi->mode == 'preview') {
+				// preview mode is a special case where request variables can replace page elements,
+				// even if the requested page doesn't exist.
+				if (! $pg) {
+					$pg = new StdClass;
+				}
+				$pg->id = $request;
+				$pg->title = $cgi->title;
+				$pg->body = $cgi->body;
+				loader_import ('saf.HTML.Messy');
+				$messy = new Messy ();
+				$pg->body = $messy->clean ($pg->body);
+				$pg->template = $cgi->template;
+				$pg->preview = true;
+				$cgi->mode = 'html';
+
+			} else {
+				if (session_admin ()) {
+					$function = 'session_allowed_sql';
+				} else {
+					$function = 'session_approved_sql';
+				}
+				$pg = db_fetch ('select * from sitellite_page where id = ? and ' . $function (), $request);
+
+				if (! $pg) {
+					$request = $conf['Server']['error_handler'];
+					$type = $conf['Server']['error_handler_type'];
+					$errno = E_NOT_FOUND;
+					break;
+				}
+			}
+
+			if ($pg->sitellite_status == 'parallel') {
+				loader_import ('cms.Versioning.Parallel');
+
+				$parallel = new Parallel ($pg);
+
+				// determine which parallel page to serve
+				// parallel object takes care of everything else
+				$pg = $parallel->next ();
+			}
+
+			if (intl_lang () != intl_default_lang ()) {
+				loader_import ('multilingual.Translation');
+				$tr = new Translation ('sitellite_page', intl_lang ());
+				if (session_admin ()) {
+					$translated = $tr->get ($pg->id);
+				} else {
+					$translated = $tr->get ($pg->id, true);
+				}
+				if ($translated) {
+					foreach ($translated->data as $k => $v) {
+						$pg->{$k} = $v;
+					}
+				}
+			}
+
+			$page->set ($pg);
+			if (! empty ($pg->keywords)) {
+				$page->addMeta ('keywords', $pg->keywords);
+			}
+			if (! empty ($pg->description)) {
+				$page->addMeta ('description', $pg->description);
+			}
+			if ($pg->include_in_search == 'no') {
+				$page->addMeta ('robots', 'noindex,follow');
+			}
+			if (empty ($pg->head_title)) {
+				$page->head_title = $page->title;
+			}
+			if (empty ($pg->nav_title)) {
+				$page->nav_title = $page->title;
+			}
+
+			$page->body = template_parse_body ($page->body);
+			$page->body_parts = preg_split ('|<hr[^>]*>|is', $page->body);
+			break;
+
+	} // end switch ($type)
+} // end while (! $page->id)
+/*************************************************************************/
+
+
+
+
+
+/*************************************************************************/
+/* Compile Response                                                      */
+/*************************************************************************/
+// Here the $page object, which now has the response data structure,
+// calls the View so that the data can be expanded into a template to
+// put it in the requested output mode, or format.
+$response = $page->compile ();
+/*************************************************************************/
+
+
+
+
+
+
+/*************************************************************************/
+/* Cache Cleanup                                                         */
+/*************************************************************************/
+// Perform a little last-minute cache magic...
+if ($conf['Cache']['duration'] > 0 && $cache->set) {
+	$cache->file ($uri, $response);
+	$cache->shutdown ();
+}
+
+// Respond.
+if ($conf['Server']['compress_output'] && extension_loaded ('zlib')) {
+	ob_start ('ob_gzhandler');
+}
+echo $response;
+if ($page->template_set != 'admin') {
+	$loader->import ('sitetracker.Bug');
+}
+
+// And they lived happily ever after.
+/*************************************************************************/
+
+?>

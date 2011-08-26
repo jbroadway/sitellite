@@ -1,0 +1,55 @@
+<style type="text/css">
+
+div.sitewiki-instructions {
+	float: right;
+	padding-top: 5px;
+	width: 270px;
+	color: #666;
+}
+
+div.sitewiki-instructions pre {
+	border: 1px dashed #666;
+	background: #eee;
+	padding: 5px;
+}
+
+div.sitewiki-instructions tt {
+	color: #000;
+}
+
+</style>
+
+<div class="sitewiki-instructions">
+	<p><strong>{intl General Formatting}</strong> (<a href="{site/prefix}/index/sitewiki-instructions-action" target="_blank">{intl Complete Instructions}</a>)</p>
+
+	<p><tt>//emphasis text//</tt></p>
+
+	<p><tt>**strong text**</tt></p>
+
+	<p><tt>@@--- deleted text @@</tt></p>
+
+	<p><tt>``Literal text does //not// get **parsed**.``</tt></p>
+
+	<p>Horizontal Rules: <tt>----</tt> (four dashes)</p>
+
+	<p><strong>{intl Headings}</strong></p>
+
+	<p><tt>++ Level 2 Heading<br />+++ Level 3 Heading<br />++++ Level 4 Heading</tt></p>
+
+	<p><strong>Links and Images</strong></p>
+
+	<p>Wiki Links: <tt>SmashWordsTogether</tt></p>
+
+	<p>URLs: <tt>http://ciaweb.net</tt></p>
+
+	<p>Images: <tt>http://c2.com/sig/wiki.gif</tt></p>
+
+	<p><strong>{intl Lists}</strong></p>
+
+	<p><tt>* Bulleted list<br />&nbsp; * Sub-bullet</tt></p>
+
+	<p><tt># Numbered list<br /># Number two<br />&nbsp; # Sub-item</tt></p>
+
+	<p><tt>: Word 1 : Definition<br />: Word 2 : Definition</tt></p>
+
+</div>

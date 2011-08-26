@@ -1,0 +1,62 @@
+{box cms/buttons/add?collection=realty_listing&return=[site/current]}
+
+{loop obj}
+<div class="listing">
+<h2>{if loop.status eq 'sold'}<span style="font-size: 12px">SOLD!</span> {end if}<a href="{site/prefix}/index/realty-details-action/id.{loop/id}">{loop/headline}</a></h2>
+{box cms/buttons?collection=realty_listing&id=[loop/id]&float=true&add=false&access=public&status=approved&team=none&return=[site/current]}
+<table border="0" cellpadding="0" width="100%">
+	<tr>
+		<td valign="top" width="120">
+{if not empty (loop.photo1)}
+<a href="{site/prefix}/index/realty-details-action/id.{loop/id}"><img src="{loop/photo1}" alt="" border="0" style="height: 180px; width: 225px; border: 1px solid #112055; float: left; margin-right: 10px" /></a>
+{end if}
+		</td>
+		<td valign="top">
+{if loop.property_type eq 'residential'}
+<table border="0" width="100%" cellpadding="0" cellspacing="2">
+	<tr>
+		<td width="50%" valign="top">
+			<strong>House Size:</strong> {loop/house_size}
+		</td>
+		<td width="50%" valign="top">
+			<strong>Gross Taxes:</strong> {loop/gross_taxes}
+		</td>
+	</tr>
+	<tr>
+		<td width="50%" valign="top">
+			<strong>Lot Size:</strong> {loop/lot_size}
+		</td>
+		<td width="50%" valign="top">
+			<strong>Net Taxes:</strong> {loop/net_taxes}
+		</td>
+	</tr>
+</table>
+
+{end if}
+{if loop.property_type eq 'commercial'}
+<table border="0" width="100%" cellpadding="0" cellspacing="2">
+	<tr>
+		<td width="50%" valign="top">
+			<strong>Business Type:</strong> {loop/house_size}
+		</td>
+		<td width="50%" valign="top">
+			<strong>For Lease:</strong> {loop/gross_taxes}
+		</td>
+	</tr>
+	<tr>
+		<td width="50%" valign="top">
+			<strong>Building Type:</strong> {loop/lot_size}
+		</td>
+		<td width="50%" valign="top">
+			<strong>Net Taxes:</strong> {loop/net_taxes}
+		</td>
+	</tr>
+</table>
+
+{end if}
+<p>{loop/summary} <a href="{site/prefix}/index/realty-details-action/id.{loop/id}"><strong>Asking {filter realty_filter_price}{loop/price}{end filter}</strong></a>{if loop.status eq 'sold'} <span style="color: #000; font-weight: bold">SOLD!</span>{end if}</p>
+		</td>
+	</tr>
+</table>
+</div>
+{end loop}
