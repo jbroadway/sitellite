@@ -1,0 +1,17 @@
+#.htaccess to prevent unauthorized directory browsing or access to .php files
+ IndexIgnore */*
+ <Files *.php>
+  Order Deny,Allow
+  Deny from all
+ </Files>
+
+ <Files *.html>
+  Order Deny,Allow
+  Deny from all
+ </Files>
+ 
+  <Files *.cgi>
+  Order Deny,Allow
+  Deny from all
+ </Files>
+ 

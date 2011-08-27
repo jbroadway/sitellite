@@ -1,0 +1,11 @@
+CMD = start
+
+Main:: Entering case 1 = start --> 
+----------------------
+CU3AppStarter::StartU3App AutoRun = true
+----------------------
+CU3AppStarter::StartU3App Current Lang= 1033
+CU3AppStarter::StartU3App Full exe path = C:\Documents and Settings\tvanderspek\Application Data\U3\000177713321358C\79EB5C19-AB0E-4dd7-BE89-BF96301D35Z8\Exec\master.exe 1033
+CU3AppStarter::StartU3App-->If First time?
+CU3AppStarter::IsFileExist-->File exists.
+CU3AppStarter::StartU3App-->No 
