@@ -671,8 +671,7 @@ function xed_select (ifname, format) {
 
 function xed_table (ifname) {
 	w = window.open (
-        alert(ifname);
-		xed_web_path + '/index/xed-tablesizer-action?ifname=' + ifname,
+        xed_web_path + '/index/xed-tablesizer-action?ifname=' + ifname,
 		'xedTableWindow',
 		'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,fullscreen=no,width=300,height=300,top=100,left=150'
 	);
@@ -715,9 +714,10 @@ function xed_insert_table (ifname, choice) {
 		}
         table.appendChild (tbody);
     }
+
+    document.getElementById (ifname).contentWindow.focus ();
 	xed_insert_node_at_selection (e.contentWindow, table);
 
-	document.getElementById (ifname).contentWindow.focus ();
 	return false;
 }
 
