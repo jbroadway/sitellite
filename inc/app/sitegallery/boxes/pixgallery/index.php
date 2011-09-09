@@ -1,11 +1,5 @@
-<script>
-<!--
-jQuery.noConflict();
--->
-
-</script>
 <?php
-
+page_add_script("<script type=\"text/javascript\">jQuery.noConflict();</script>");
 loader_import ('saf.File.Directory');
 loader_import ('sitegallery.Functions');
 
