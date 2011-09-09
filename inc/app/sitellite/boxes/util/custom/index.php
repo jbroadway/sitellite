@@ -23,6 +23,7 @@
 if (! class_exists ('sitelliteutilcustomform')) {
 
 loader_import ('saf.MailForm');
+loader_import ('ext.phpsniff');
 
 class SitelliteUtilCustomForm extends MailForm {
 	function SitelliteUtilCustomForm ($parameters) {
@@ -171,14 +172,14 @@ class SitelliteUtilCustomForm extends MailForm {
 
 // SEMIAS: START. #188 - form captcha improvements.
         $w =& $this->addWidget ('security', 'Security');
+        $w->verify_method = "phpcaptcha";
 
-        $ps = new phpSniff ();
-        $version = substr(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE'),5,1);
-        if ($ps->property ('browser') == 'ie' && $version <= 7){
-          $w->verify_method = "figlet";
-        }
-        else
-          $w->verify_method = "turing";
+        //$ps = new phpSniff ();
+        //$version = substr(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE'),5,1);
+        //if ($ps->property ('browser') == 'ie' && $version <= 7){
+        //  $w->verify_method = "figlet";
+        //}
+        //else
         // $w->verify_method = "turing";
        	// $w->verify_method = "recaptcha";
 // SEMIAS: END.
