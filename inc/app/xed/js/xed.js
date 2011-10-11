@@ -680,44 +680,42 @@ function xed_table (ifname) {
 
 function xed_insert_table (ifname, choice) {
 	xed_historian (ifname);
-	ch = choice.split ('x');
-	rows = ch.shift ();
-	cols = ch.shift ();
+	var ch = choice.split ('x');
+	var rows = ch.shift ();
+	var cols = ch.shift ();
 
-	e = document.getElementById(ifname);
+	var e = document.getElementById(ifname);
 
 	if (document.all) {
-		table = '<table border="2" cellpadding="5" cellspacing="2" width="98%">';
-		for (i = 0; i < rows; i++) {
+		var table = '<table border="2" cellpadding="5" cellspacing="2" width="98%">';
+		for (var i = 0; i < rows; i++) {
 			table = table + "\n\t<tr>";
-			for (j = 0; j < cols; j++) {
+			for (var j = 0; j < cols; j++) {
 				table = table + "\n\t\t<td border=\"2\" valign=\"top\"><br /></td>";
 			}
 			table = table + "\n\t</tr>";
 		}
 		table = table + "\n</table>\n";
 	} else {
-		table = e.contentWindow.document.createElement ('table');
+		var table = e.contentWindow.document.createElement ('table');
 		table.setAttribute ('width', '98%');
-		for (i = 0; i < rows; i++) {
-			row = e.contentWindow.document.createElement ('tr');
-			for (j = 0; j < cols; j++) {
-				col = e.contentWindow.document.createElement ('td');
+		for (var i = 0; i < rows; i++) {
+			var row = e.contentWindow.document.createElement ('tr');
+			for (var j = 0; j < cols; j++) {
+				var col = e.contentWindow.document.createElement ('td');
 				col.setAttribute ('valign', 'top');
-				//col.setAttribute ('colspan', 1);
-				//col.setAttribute ('rowspan', 1);
-				br = e.contentWindow.document.createElement ('br');
+				var br = e.contentWindow.document.createElement ('br');
 				col.appendChild (br);
 				row.appendChild (col);
 		    }
             table.appendChild (row);
 		}
-        table.appendChild (tbody);
     }
+	document.getElementById (ifname).contentWindow.focus ();
 
-    document.getElementById (ifname).contentWindow.focus ();
 	xed_insert_node_at_selection (e.contentWindow, table);
 
+	document.getElementById (ifname).contentWindow.focus ();
 	return false;
 }
 
