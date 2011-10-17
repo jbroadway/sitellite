@@ -168,15 +168,16 @@ alt                     = Default Thumbnail Image
 
 extra                   = "size=`30`"
 
-rule 0                  = "not empty, You must upload an image"
+value                   = "pix/arrow.desc.gif"
 
-value                   = pix/arrow.desc.gif
+rule 0                  = not empty
 
 [tab-end]
 
 type                    = tab
 
 value                   = Off
+
 ;
 ; THE END
 ;
