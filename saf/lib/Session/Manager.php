@@ -837,7 +837,7 @@ class SessionManager_Role { // Lives in inc/conf/auth/roles/${name}.php
 		$w =& $form->addWidget ('text', 'name');
 		$w->alt = intl_get ('Name');
 		$w->addRule ('not empty', intl_get ('Role name must not be empty.'));
-		$w->addRule ('regex "/^[-a-zA-Z0-9_]+$/"', intl_get ('Role same should only contains alphanumeric characters or underscores.'));
+		$w->addRule ('regex "^[-a-zA-Z0-9_]+$"', intl_get ('Role same should only contains alphanumeric characters or underscores.'));
 		$w->extra = 'maxlength="48"';
 
 
