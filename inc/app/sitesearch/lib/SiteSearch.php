@@ -54,7 +54,7 @@ class SiteSearch {
 	function _prepare ($val) {
 		//$val = iconv ($val);
 		//$val = strtolower (htmlentities_compat (strip_tags ($val)));
-		return preg_replace ('/([&\|\+!\(\)\[\]\{}~\*:\^"\?\-\\])/', '\\\\\1', strtolower ($val));
+		return preg_replace ('/([&\|\+!\(\)\[\]\{}~\*:\^"\?\\\-])/', '\\\\\1', strtolower ($val));
 	}
 
 	/**
