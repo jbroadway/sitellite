@@ -1570,14 +1570,7 @@ function xed_charmap (ifname) {
 
 function xed_insert_character (ifname, n) {
 	xed_historian (ifname);
-	if (document.all) {
-		sel = document.getElementById (ifname).contentWindow.document.selection;
-		range = sel.createRange ();
-		range.cutHTML;
-		range.pasteHTML ('&#' + n + ';');
-	} else {
 		xed_insert_html_at_selection (ifname, '&#' + n + ';');
-	}
 	document.getElementById (ifname).contentWindow.focus ();
 	return false;
 }
