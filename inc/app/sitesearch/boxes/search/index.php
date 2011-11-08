@@ -217,8 +217,10 @@ $pg->total = $total;
 $pg->setData ($results);
 $pg->update ();
 // END: SEMIAS
-page_id ('search');
-page_title ('Search');
+if ($context == 'action') {
+    page_id ('search');
+    page_title ('Search');
+}
 template_simple_register ('cgi', $cgi);
 template_simple_register ('pager', $pg);
 echo template_simple (

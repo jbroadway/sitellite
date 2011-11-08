@@ -144,10 +144,12 @@ class SiteSearch {
 	 */
 	function addDocument ($data) {
 		$doc = new Zend_Search_Lucene_Document ();
+		$url = false;
 		foreach ($data as $k => $v) {
 			switch ($k) {
 				case 'url':
-					$doc->addField (Zend_Search_Lucene_Field::Keyword ($k, strtolower ($v), 'utf-8'));
+					$url = strtolower ($v);
+					$doc->addField (Zend_Search_Lucene_Field::Keyword ($k, $url, 'utf-8'));
 					break;
 				case 'keywords':
 				case 'body':
@@ -164,6 +166,9 @@ class SiteSearch {
 			}
 		}
 		$doc->addField (Zend_Search_Lucene_Field::Keyword ('mtime', time ()));
+		if ($url) {
+			$this->delete ($url);
+		}
 		try {
 			$this->client->addDocument ($doc);
 		} catch (Zend_Search_Lucene_Exception $e) {
