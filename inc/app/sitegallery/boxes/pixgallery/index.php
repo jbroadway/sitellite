@@ -23,11 +23,9 @@ foreach ($d->readAll () as $file) {
 	$res[] = (object) $info;
 }
 
-if ($parameters['title']) {
+if (!empty($parameters['title'])) {
 	if ($box['context'] == 'action') {
 		page_title ($parameters['title']);
-	} else {
-		echo '<h2>' . $parameters['title'] . '</h2>';
 	}
 	if (appconf ('page_alias')) {
 		page_id ('sitegallery-pixgallery-action');

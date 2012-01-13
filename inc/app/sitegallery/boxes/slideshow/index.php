@@ -19,12 +19,8 @@ foreach (array_keys ($res) as $k) {
 	}
 }
 
-if ($parameters['title']) {
-	if ($box['context'] == 'action') {
+if ($parameters['title'] && $box['context'] == 'action') {
 		page_title ($parameters['title']);
-	} else {
-		echo '<h2>' . $parameters['title'] . '</h2>';
-	}
 }
 
 page_add_script (site_prefix () . '/js/rollover.js');

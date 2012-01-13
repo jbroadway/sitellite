@@ -18,9 +18,9 @@ locale                  = Off
 
 charset                 = UTF-8
 
-fallback                = no
+fallback                = Off
 
-default                 = yes
+default                 = no
 
 [fr]
 
@@ -48,7 +48,7 @@ charset                 = UTF-8
 
 fallback                = en
 
-default                 = no
+default                 = yes
 
 [de]
 

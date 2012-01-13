@@ -91,7 +91,7 @@
 	 * 
 	 * ? >
 	 * </code>
-	 * 
+	 *
 	 * @package	MailForm
 	 * @author	John Luxford <john.luxford@gmail.com>
 	 * @license	http://www.sitellite.org/index/license	GNU GPL License

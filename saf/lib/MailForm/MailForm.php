@@ -946,7 +946,7 @@ class MailForm {
 			$align = empty ($this->align) ? 'center' : $this->align;
 
 			//$data .= '<table border="0" cellspacing="0" cellpadding="0" align="' . $align . '">' . "\n";
-            		$data .= '<table border="0" cellspacing="0" cellpadding="0">' . "\n";
+            		$data .= '<table border="0" cellspacing="1" cellpadding="3" align="' . $align . '">' . "\n";
 			$data .= $_widgets;
 			return $data . '</table>' . "\n" . '</form>';
 		}

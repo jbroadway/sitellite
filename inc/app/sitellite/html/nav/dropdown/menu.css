@@ -72,7 +72,7 @@ div#menu span {
 }
 div#menu ul ul a.parent span {
     background-position:95% 8px;
-    background-image: url(images/item-pointer.gif);
+    background-image: url(../../../pix/nav/dropdown/item-pointer.gif);
 }
 div#menu ul ul a.parent:hover span {
     background-image: url(../../../pix/nav/dropdown/item-pointer-mover.gif);

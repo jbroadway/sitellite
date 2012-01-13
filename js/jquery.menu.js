@@ -258,41 +258,65 @@ jQuery(function() {
     };
 
     // base rules
-    $('ul ul', '#menu').css({display: 'none', left: -2});
-    $('li', '#menu').hover(
+    var ie6 = ($.browser.msie && $.browser.version.substr(0, 1) == '6');
+    if (ie6) $('#menu').addClass('ie6');
+    $('ul ul', '#menu').css({display: 'none', left: 0, top: 38});
+    $('.menu>li', '#menu').hover(
         function(){
-            var ul = $('ul:first', this);
-            $('span', ul).css('color', 'rgb(169,169,169)');
+            var ul     = $('ul:first', this);
             if (ul.length){
-                if (!ul[0].wid){
-                    ul[0].wid = ul.width();
-                    ul[0].hei = ul.height();
-                }
-                ul.css({width: 0, height: 0, overflow: 'hidden', display: 'block'}).retarder(100, function(i){
-                    i.animate({width: ul[0].wid, height: ul[0].hei}, {duration: 300, complete : function(){ ul.css('overflow', 'visible'); }});
+                if (!ul[0].hei) ul[0].hei = ul.height();
+                ul.css({height: 30, overflow: 'hidden'}).retarder(400, function(i){
+                    $('a:first', ul[0].parentNode).css({});
+                    i.css('display', 'block').animate({height: ul[0].hei}, {duration: 300, complete : function(){ ul.css('overflow', 'visible'); }});
                 });
             }
         },
         function(){
             var ul  = $('ul:first', this);
             if (ul.length){
-                var css = {display: 'none', width: ul[0].wid, height: ul[0].hei};
-                ul.stop().css('overflow', 'hidden').retarder(50, function(i){
-                    i.animate({width: 0, height: 0}, {duration: 100, complete : function(){  $(this).css(css); }});
+                var css = {display: 'none', height: ul[0].hei};
+                var a = $('a:first', this).css({borderColor: 'transparent'});
+                if (ie6) a.css({borderColor: '#171717', filter: 'chroma(color=#171717)'});
+                ul.stop().retarder(1, function(i){ i.css(css); });
+
+            }
+        }
+    );
+    $('ul ul li', '#menu').hover(
+        function(){
+            var ul = $('ul:first', this);
+            if (ul.length){
+                if (!ul[0].wid) ul[0].wid = ul.width();
+                ul.css({width: 0, overflow: 'hidden'}).retarder(100, function(i){
+                    i.css('display', 'block').animate({width: ul[0].wid}, {duration: 300, complete : function(){ ul.css('overflow', 'visible'); }});
+                });
+            }
+        },
+        function(){
+            var ul  = $('ul:first', this);
+            if (ul.length){
+                var css = {display: 'none', width: ul[0].wid};
+                ul.retarder(50, function(i){
+                    i.animate({width: 0}, {duration: 100, complete : function(){  $(this).css(css); }});
                 });
             }
         }
     );
     // lava lamp
-    $('#menu ul.menu').lavaLamp({
-        fx: 'backout',
-        speed: 800
-    });
+    $('#menu ul.menu').lavaLamp({ speed: 400 });
+    var links = $('.menu>li>a', '#menu').css({borderBottom: 'none'});
     // color animation
-    if (!($.browser.msie && $.browser.version.substr(0, 1) == '6')){
-        $('ul ul a span', '#menu').css('color', 'rgb(169,169,169)').hover(
-            function(){ $(this).animate({color: 'rgb(255,255,255)'}, 500); },
-            function(){ $(this).animate({color: 'rgb(169,169,169)'}, 200); }
+    if (ie6) links.css({borderColor: '#171717', filter: 'chroma(color=#171717)'});
+    else{
+        // first level
+        links.css('borderColor', 'transparent').hover(
+            function(){ $(this).animate({color: 'rgb(25,25,25)'}, 200); },
+            function(){ $(this).animate({color: 'rgb(25,25,25)'}, 100); }
+        );
+        $('.menu>li>a', '#menu').css('color', 'rgb(25,25,25)').hover(
+            function(){ $(this).animate({color: 'rgb(255,255,255)'}, 200); },
+            function(){ $(this).animate({color: 'rgb(25,25,25)'}, 100); }
         );
     }
 });

@@ -402,6 +402,16 @@ class Menu {
 
 		foreach ($tree as $k => $v) {
 			if ($v->{$this->listcolumn} == 'no') {
+			
+				// Set menu parent
+				$this->addParent (
+					$v->{$this->idcolumn},
+					$v->{$this->showcolumn},
+					$v->{$this->refcolumn},
+					$v->{$this->sectioncolumn},
+					$v->{$this->templatecolumn}
+				);
+								
 				continue;
 			} elseif (in_array ($v->{$this->refcolumn}, array_keys ($parents))) {
 				while (in_array ($v->{$this->refcolumn}, array_keys ($parents))) {
@@ -461,6 +471,38 @@ class Menu {
 		}
 		$ref = db_shift ('select below_page from sitellite_page where id = ?', $ref);
 		return $this->findParent ($ref);
+	}
+	
+	/**
+	 * Adds an item to the tree.  $ref is the id of the parent item.
+	 * 
+	 * @access	public
+	 * @param	string	$id
+	 * @param	string	$title
+	 * @param	string	$ref
+	 * @return	object reference
+	 * 
+	 
+	 13-1-2012
+	 */
+	function &addParent ($id, $title, $ref = '', $sect = '', $template = '') {
+		$this->{'items_' . $id} =& new MenuItem ($id, $title);
+		
+		
+		if (empty ($ref)) {
+			$this->tree[] =& $this->{'items_' . $id};
+		} else {
+			//$this->{'items_' . $ref}->children[] =& $this->{'items_' . $id};
+			$this->{'items_' . $id}->parent =& $this->{'items_' . $ref};
+		}
+
+		$this->{'items_' . $id}->colours = $this->colours;
+		$this->{'items_' . $id}->is_section = ($sect == 'yes') ? true : false;
+		if (! empty ($template)) {
+			$this->{'items_' . $id}->template = $template;
+		}
+		
+		return $this->{'items_' . $id};
 	}
 
 	/**

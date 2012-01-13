@@ -71,9 +71,11 @@ foreach ($collections as $collection) {
 		if (! isset ($rex->body)) {
 			$rex->body = 'body';
 		}
+
 		if (! isset ($item->{$rex->body})) {
 			$item->{$rex->body} = '';
 		}
+
 		if ($collection != 'sitellite_filesystem') {
 			$item->{$rex->body} = extractor_run ($item->{$rex->body}, 'HTML');
 		}

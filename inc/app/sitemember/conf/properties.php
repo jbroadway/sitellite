@@ -17,7 +17,7 @@
 // +----------------------------------------------------------------------+
 //
 // resolved tickets:
-// #179 Digger integrated into sitemember 
+// #179 Digger integrated into sitemember
 //
 
 

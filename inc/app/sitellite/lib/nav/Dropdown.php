@@ -41,7 +41,7 @@ function create_menu_item($item, $page) {
                 );
 
     // check if active
-    if ($page->id == $item->id || $item->id == page_get_section ()) {
+    if ($page->id == $item->id || $item->id == page_get_section () || $item->id == $page->below_page) {
         $menu['active'] = 1;
     }
     
@@ -75,7 +75,7 @@ function create_menu_item_nosubitems($item, $page) {
                 );
 
     // check if active
-    if ($page->id == $item->id || $item->id == page_get_section ()) {
+    if ($page->id == $item->id || $item->id == page_get_section () || $item->id == $page->below_page) {
         $menu['active'] = 1;
     }
     

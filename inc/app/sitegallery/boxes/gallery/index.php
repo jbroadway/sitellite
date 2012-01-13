@@ -13,12 +13,8 @@ $res = db_fetch_array (
 	$parameters['path']
 );
 
-if ($parameters['title']) {
-	if ($box['context'] == 'action') {
+if ($parameters['title'] && $box['context'] == 'action') {
 		page_title ($parameters['title']);
-	} else {
-		echo '<h2>' . $parameters['title'] . '</h2>';
-	}
 }
 
 $valid = appconf ('valid');
