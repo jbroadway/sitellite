@@ -202,7 +202,16 @@ class Pager {
 
 		$out['numpages'] = ceil ($this->total / $this->limit);
 
-		$out['current'] = floor ($this->offset / $this->limit) + 1;
+
+		if($this->limit == 1) {
+			$out['current'] = floor ($this->offset / $this->limit);
+			// EDIT Alex Semias 18-jan-2012, bug with limit == 1
+		} else {
+			$out['current'] = floor ($this->offset / $this->limit) + 1;
+		}
+
+		
+		
 
 		// remain
 		if ($out['next'] !== false) {
