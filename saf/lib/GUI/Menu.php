@@ -497,7 +497,7 @@ class Menu {
 		}
 
 		$this->{'items_' . $id}->colours = $this->colours;
-		$this->{'items_' . $id}->is_section = ($sect == 'yes') ? true : false;
+		//$this->{'items_' . $id}->is_section = ($sect == 'yes') ? true : false;
 		if (! empty ($template)) {
 			$this->{'items_' . $id}->template = $template;
 		}
