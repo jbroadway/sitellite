@@ -12,11 +12,13 @@ function create_menu($list, $page, $submenu_disabled) {
     // Check if the submenu is enabled
    	if (!$submenu_disabled) {
 	    foreach ($list as $item) {
-	        $menu[] = create_menu_item($item, $page);
+			if($item->include != 'no')
+				$menu[] = create_menu_item($item, $page);
     	}
     } else {
 	    foreach ($list as $item) {
-	        $menu[] = create_menu_item_nosubitems($item, $page);
+			if($item->include != 'no')
+				$menu[] = create_menu_item_nosubitems($item, $page);
     	}
     }
 

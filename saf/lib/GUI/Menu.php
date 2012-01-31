@@ -403,7 +403,7 @@ class Menu {
 		foreach ($tree as $k => $v) {
 			if ($v->{$this->listcolumn} == 'no') {
 			
-				// Set menu parent
+				/* Set menu parent */
 				$this->addParent (
 					$v->{$this->idcolumn},
 					$v->{$this->showcolumn},
@@ -492,12 +492,13 @@ class Menu {
 		if (empty ($ref)) {
 			$this->tree[] =& $this->{'items_' . $id};
 		} else {
-			//$this->{'items_' . $ref}->children[] =& $this->{'items_' . $id};
+			$this->{'items_' . $ref}->children[] =& $this->{'items_' . $id};
 			$this->{'items_' . $id}->parent =& $this->{'items_' . $ref};
 		}
 
+		$this->{'items_' . $id}->include = 'no';
 		$this->{'items_' . $id}->colours = $this->colours;
-		//$this->{'items_' . $id}->is_section = ($sect == 'yes') ? true : false;
+		$this->{'items_' . $id}->is_section = ($sect == 'yes') ? true : false;
 		if (! empty ($template)) {
 			$this->{'items_' . $id}->template = $template;
 		}
@@ -879,12 +880,20 @@ class Menu {
 		$sections = array ();
 		foreach ($this->getChildren ($item) as $child) {
 			if ($child->is_section == 'yes') {
-				$sections[$child->id] = $child->title;
+				if($child->title != '') {
+					$sections[$child->id] = $child->title;
+				} else {
+					$sections[$child->id] = $child->id;
+				}
 			}
 			$add = $this->getSections ($child->id);
 			if (count ($add) > 0) {
 				foreach ($add as $id => $title) {
-					$sections[$id] = $title;
+					if($title != '') {
+						$sections[$id] = $title;
+					} else {
+						$sections[$id] = $id;
+					}
 				}
 			}
 		}

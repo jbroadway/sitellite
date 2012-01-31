@@ -20,18 +20,18 @@
 <div id="menu">
 <ul class="dropdown menu">
 {loop obj[list]}
-	<li class="leaf{if not empty (loop.last)} last{end if}{if not empty (loop.active)} current{end if}">
+	<li class="leaf{if not empty (loop[last])} last{end if}{if not empty (loop[active])} current{end if}">
         <a class="parent" href="{site/prefix}/index/{loop.id}" ><span>{loop.title}</span></a>
-        {if not empty (loop.submenu)}
+        {if not empty (loop[submenu])}
         <ul>
             {loop loop[submenu]}
-                <li class="{if not empty (loop.last)}last{end if}{if not empty (loop.active)} current{end if}">
-                    <a {if not empty (loop.submenu)}class="parent"{end if} href="{site/prefix}/index/{loop.id}"{active|none}><span>{loop.title}</span></a>
-                    {if not empty (loop.submenu)}
+                <li class="{if not empty (loop[last])}last{end if}{if not empty (loop[active])}current{end if}">
+                    <a {if not empty (loop[submenu])}class="parent"{end if} href="{site/prefix}/index/{loop.id}"{active|none}><span>{loop.title}</span></a>
+                    {if not empty (loop[submenu])}
                     <ul>
                         {loop loop[submenu]}
-                            <li class="{if not empty (loop.last)}last{end if}{if not empty (loop.active)} current{end if}">
-                                <a {if not empty (loop.submenu)}class="parent"{end if} href="{site/prefix}/index/{loop.id}"{active|none}><span>{loop.title}</span></a>
+                            <li class="{if not empty (loop[last])}last{end if}{if not empty (loop[active])}current{end if}">
+                                <a {if not empty (loop[submenu])}class="parent"{end if} href="{site/prefix}/index/{loop.id}"{active|none}><span>{loop.title}</span></a>
                             </li>
                         {end loop}
                     </ul>
