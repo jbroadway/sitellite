@@ -443,7 +443,7 @@ class MF_Widget_checkbox extends MF_Widget {
 				} else {
 					$selected = '';
 				}
-				$data .= '<input type="checkbox" name="' . $this->name . '[]" value="' . htmlentities_compat ($value, ENT_COMPAT, $intl->charset) . '"' . $selected . ' ' . $this->extra . ' /><label for="' . $this->name . '[]">' . $display . '</label><br />' . "\n";
+				$data .= '<input type="checkbox" id="' . $this->name . '[]" name="' . $this->name . '[]" value="' . htmlentities_compat ($value, ENT_COMPAT, $intl->charset) . '"' . $selected . ' ' . $this->extra . ' /><label for="' . $this->name . '[]">' . $display . '</label><br />' . "\n";
 			}
 			return $data;
 		}
