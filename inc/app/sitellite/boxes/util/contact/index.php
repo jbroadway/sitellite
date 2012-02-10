@@ -99,7 +99,7 @@ class SitelliteUtilContactForm extends MailForm {
 			$this->parameters['email'],
 			'[' . site_domain () . '] ' . intl_get ('Contact Form'),
 			template_simple ('util_contact_email.spt', $vals),
-			'From: ' . $vals['name'] . ' <' . $vals['from'] . '>', //noreply@' . preg_replace ('/^www\./i', '', site_domain ())
+			'From: ' . $vals['from'], //noreply@' . preg_replace ('/^www\./i', '', site_domain ())
             array ("Is_HTML" => true)
 		)) {
 			page_title (intl_get ('An Error Occurred'));

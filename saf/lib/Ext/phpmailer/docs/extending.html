@@ -20,9 +20,9 @@ require("class.phpmailer.php");
 
 $mail = new phpmailer();
 
-$mail->From     = "list@mydomain.com";
+$mail->From     = "list@example.com";
 $mail->FromName = "List manager";
-$mail->Host     = "smtp1.site.com;smtp2.site.com";
+$mail->Host     = "smtp1.example.com;smtp2.example.com";
 $mail->Mailer   = "smtp";
 
 @MYSQL_CONNECT("localhost","root","password");
@@ -46,7 +46,7 @@ while ($row = mysql_fetch_array ($result))
 
     $mail->Body    = $body;
     $mail->AltBody = $text_body;
-    $mail->AddAddress($row["email"], $row["full_name");
+    $mail->AddAddress($row["email"], $row["full_name"]);
     $mail->AddStringAttachment($row["photo"], "YourPhoto.jpg");
 
     if(!$mail->Send())
@@ -87,9 +87,9 @@ require("class.phpmailer.php");
 
 class my_phpmailer extends phpmailer {
     // Set default variables for all new objects
-    var $From     = "from@email.com";
+    var $From     = "from@example.com";
     var $FromName = "Mailer";
-    var $Host     = "smtp1.site.com;smtp2.site.com";
+    var $Host     = "smtp1.example.com;smtp2.example.com";
     var $Mailer   = "smtp";                         // Alternative to IsSMTP()
     var $WordWrap = 75;
 
@@ -126,7 +126,7 @@ require("mail.inc.php");
 $mail = new my_phpmailer;
 
 // Now you only need to add the necessary stuff
-$mail->AddAddress("josh@site.com", "Josh Adams");
+$mail->AddAddress("josh@example.com", "Josh Adams");
 $mail->Subject = "Here is the subject";
 $mail->Body    = "This is the message body";
 $mail->AddAttachment("c:/temp/11-10-00.zip", "new_name.zip");  // optional name

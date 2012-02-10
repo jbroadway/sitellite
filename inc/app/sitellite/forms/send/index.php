@@ -81,7 +81,7 @@ class SitelliteSendForm extends MailForm {
 				$email,
 				$vals['subject'],
 				$vals['message'],
-				'From: ' . $vals['from_name'] . ' <' . $vals['from_email'] . ">\r\n",
+				'From: ' . $vals['from_email'],
                 array ("Is_HTML" => true)
 			);
 		}
@@ -91,7 +91,7 @@ class SitelliteSendForm extends MailForm {
 			$vals['from_email'],
 			$vals['subject'],
 			$vals['message'],
-			'From: ' . $vals['from_name'] . ' <' . $vals['from_email'] . ">\r\n",
+			'From: ' . $vals['from_email'],
             array ("Is_HTML" => true)
 		);
 //END: SEMIAS.

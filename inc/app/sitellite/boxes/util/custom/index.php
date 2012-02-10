@@ -261,17 +261,22 @@ class SitelliteUtilCustomForm extends MailForm {
 		}
 
 		if ($this->parameters['cc'] == 'yes' || $vals['cc'] == 'yes') {
-			$cc = "\r\nCC: " . $vals['email_address'];
+            $cc = $vals['email_address'];
 		} else {
 			$cc = '';
 		}
 
-		if (! @mail (
+        if (! site_mail (
 			$this->parameters['email'],
 			'[' . site_domain () . '] ' . $this->parameters['title'],
 			template_simple ('util_custom_email.spt', $vals),
-			'From: ' . $vals['first_name'] . ' ' . $vals['last_name'] . ' <' . $vals['email_address'] . '>' . $cc
-		)) {
+            null,
+            array (
+                "CC" => $cc,
+                "from_name" => $vals['first_name']. ' ' . $vals['last_name'],
+                "from_email" => $vals['email_address']
+            )
+        )) {
 			page_title (intl_get ('An Error Occurred'));
 			echo '<p>' . intl_get ('Our apologies, your form failed to be submitted.  Please try again later.') . '</p>';
 			return;
