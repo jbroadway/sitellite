@@ -204,9 +204,16 @@ foreach ($res as $key => $row) {
 
 		$body = template_parse_body ($row->body);
         $space = '&nbsp;';
+		
+		
+		if(trim($body) != '') {
+			$extra_style = '';
+		} else {
+			$extra_style = 'style="display:none;"';
+		}
 
 		echo '<div class="scm-sidebar-body">' . $body . '</div>';
-        echo '<div class="scm-sidebar-bottom" id="scm-sidebar-bottom-' . str_replace ('_', '-', $row->id) . '">' . $space . '</div></div>';
+        echo '<div '.$extra_style.' class="scm-sidebar-bottom" id="scm-sidebar-bottom-' . str_replace ('_', '-', $row->id) . '">' . $space . '</div></div>';
 	}
 }
 
