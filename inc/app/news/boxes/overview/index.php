@@ -43,6 +43,12 @@ foreach ($list as $item) {
     $item->date = intl_date ($item->date, 'shortcevdate');
 }
 
+foreach ($sub as $item) {
+	foreach ($item as $item2) {
+		$item2->date = intl_date ($item2->date, 'shortcevdate');
+	}
+}
+
 echo template_simple ('overview.spt', array ('list' => $list, 'sub' => $sub));
 
 ?>
