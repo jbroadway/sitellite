@@ -1053,7 +1053,9 @@ class MailForm {
 			$vals = $this->getValues ();
 			if ($this->clean_input) {
 				foreach ($vals as $k => $v) {
-					$vals[$k] = strip_tags ($v);
+					if(is_string($v)) {
+						$vals[$k] = strip_tags ($v);
+					}
 				}
 			}
 			return call_user_func ($this->handler, $vals);
