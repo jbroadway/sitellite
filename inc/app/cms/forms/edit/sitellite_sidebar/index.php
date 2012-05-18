@@ -63,6 +63,25 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 				}
 				return false;
 			}
+			
+			function sidebar_id_to_lower () {
+				f = document.forms[0];
+				f.elements[\'id\'].value = f.elements[\'id\'].value.toLowerCase ();
+			}
+			
+			function cms_rule_validate_id () {
+				f = document.forms[0];
+				sugg_id = f.elements[\'id\'].value;
+				if(sugg_id.match(/[^a-zA-Z0-9\-\_]+/)) {
+					alert(\'Page ID must contain only letters, numbers, dashes, and underscores (ie. product_info).\nOther symbols have been removed from the Page ID\');
+					setTimeout(function(){f.elements[\'id\'].focus()}, 3000);
+				}
+				while(sugg_id.match(/[^a-zA-Z0-9\-\_]+/)) {
+					sugg_id = f.elements[\'id\'].value;
+					sugg_id = sugg_id.replace (/[^a-zA-Z0-9\-\_]+/, \'\');
+					f.elements[\'id\'].value = sugg_id;
+				}
+			}
 		');
 		if (session_pref ('form_help') == 'off') {
 			page_add_script ('
@@ -86,7 +105,7 @@ class CmsEditSitellite_sidebarForm extends MailForm {
 		$w->addRule ('not regex "[^a-zA-Z0-9_-]"', 'Your sidebar ID contains invalid characters.');
 		$w->addRule ('func "rex_unique_id_rule"', 'Your modified sidebar ID already exists.');
 		$help = addslashes (intl_get ('Must contain only letters, numbers, underscores, and dashes (ie. product_info).'));
-		$w->extra = 'onfocus="formhelp_show (this, \''.$help.'\')" onblur="formhelp_hide ()"';
+		$w->extra = 'onfocus="formhelp_show (this, \''.$help.'\')" onblur="formhelp_hide (); sidebar_id_to_lower (); cms_rule_validate_id();"';
 		$w->setValue ($cgi->_key);
 		$w->length = 32;
 

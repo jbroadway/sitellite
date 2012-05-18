@@ -56,4 +56,11 @@ function sitelinks_timezone ($offset) {
 	return $out . str_pad ($h, 2, '0', STR_PAD_LEFT) . ':' . str_pad ($m, 2, '0', STR_PAD_LEFT);
 }
 
+function AddHttp($url) {
+	if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+		$url = "http://" . $url;
+	}
+	return $url;
+}
+
 ?>

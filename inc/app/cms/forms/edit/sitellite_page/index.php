@@ -86,6 +86,21 @@ class CmsEditSitellite_pageForm extends MailForm {
 				f = document.forms[0];
 				f.elements[\'id\'].value = f.elements[\'id\'].value.toLowerCase ();
 			}
+			
+			function cms_rule_validate_id () {
+				f = document.forms[0];
+				sugg_id = f.elements[\'id\'].value;
+				if(sugg_id.match(/[^a-zA-Z0-9\-\_]+/)) {
+					alert(\'Page ID must contain only letters, numbers, dashes, and underscores (ie. product_info).\nOther symbols have been removed from the Page ID\');
+					setTimeout(function(){f.elements[\'id\'].focus()}, 3000);
+				}
+				while(sugg_id.match(/[^a-zA-Z0-9\-\_]+/)) {
+					sugg_id = f.elements[\'id\'].value;
+					sugg_id = sugg_id.replace (/[^a-zA-Z0-9\-\_]+/, \'\');
+					f.elements[\'id\'].value = sugg_id;
+				}
+			}
+			
 		');
 		if (session_pref ('form_help') == 'off') {
 			page_add_script ('
@@ -122,7 +137,7 @@ class CmsEditSitellite_pageForm extends MailForm {
 		$w->addRule ('func "rex_unique_id_rule"', 'Your modified page ID already exists.');
 		$w->addRule ('func "cms_rule_no_actions"', 'Your page ID cannot end in -action, -app, or -form.');
 		$help = addslashes (intl_get ('The unique page identifier, used in the URL to request this page (ie. /index/page_id).  Must contain only letters, numbers, dashes, and underscores (ie. product_info).'));
-		$w->extra = 'size="40" onfocus="formhelp_show (this, \''.$help.'\')" onblur="formhelp_hide (); page_id_to_lower ()"';
+		$w->extra = 'size="40" onfocus="formhelp_show (this, \''.$help.'\')" onblur="formhelp_hide (); page_id_to_lower (); cms_rule_validate_id();"';
 		$w->setValue ($cgi->_key);
 		$w->length = 72;
 
