@@ -1,124 +1,128 @@
 ; <?php /* DO NOT ALTER THIS LINE, IT IS HERE FOR SECURITY REASONS
 ;
 ; WARNING: This file was automatically generated, and it may
-; not be wise to edit it by hand.  If there is an interface
+; not be wise to edit it by hand. If there is an interface
 ; to modify files of this type, please use that interface
-; instead of manually editing this file.  If you are not sure
+; instead of manually editing this file. If you are not sure
 ; or are not aware of such an interface, please talk to your
 ; Sitellite administrator first.
 ;
 
 [Database]
 
-connection_name         = mysqlweb
+connection_name = mysqlweb
 
-driver                  = MySQL
+driver = MySQL
 
-hostname                = localhost
+hostname = localhost
 
-database                = DBNAME
+database = DBNAME
 
-username                = USER
+username = USER
 
-password                = PASS
+password = PASS
 
-persistent              = Off
+persistent = Off
 
 [Site]
 
-domain                  = DOMAIN
+domain = DOMAIN
 
-usedocroot              = Off
+usedocroot = Off
 
-docroot                 = Off
+docroot = Off
 
-prefix                  = Off
+prefix = Off
 
-secure                  = Off
+secure = Off
 
-safpath                 = saf
+safpath = saf
 
-remove_index            = On
+remove_index = On
 
 new_pages_under_current = Off
 
 [Server]
 
-default_handler         = index
+default_handler = index
 
-default_handler_type    = document
+default_handler_type = document
 
-default_template_set    = default
+default_template_set = default
 
-default_template        = default
+default_template = default
 
-error_handler           = sitellite/error
+error_handler = sitellite/error
 
-error_handler_type      = box
+error_handler_type = box
 
-send_version_header     = On
+send_version_header = On
 
-default_app             = webapp
+default_app = webapp
 
-debug                   = Off
+debug = Off
 
-compress_output         = Off
+compress_output = Off
 
-error_reporting         = "E_ALL ^ E_NOTICE"
+error_reporting = "E_ALL ^ E_NOTICE"
 
-xsendfile               = readfile
+xsendfile = readfile
 
 [I18n]
 
-directory               = inc/lang
+directory = inc/lang
 
-negotiate               = url
+negotiate = url
 
-serialize               = plain
+serialize = plain
+
+[Security]
+
+min_password_length     = 8
 
 [Emailing]
 
-mta                     = mail
+mta = mail
 
-template                = default.spt
+template = default.spt
 
-from_name               = Sitellite OpenSource
+from_name = Sitellite OpenSource
 
-from_email              = info@sitellite.org
+from_email = info@sitellite.org
 
-use_html                = On
+use_html = On
 
-use_nomail              = Off
+use_nomail = Off
 
-overrule_from           = On
+overrule_from = On
 
 [Messaging]
 
-return_address          = Off
+return_address = Off
 
-email_server            = Off
+email_server = Off
 
-email_port              = 110
+email_port = 110
 
-email_username          = Off
+email_username = Off
 
-email_password          = Off
+email_password = Off
 
-jabber                  = Off
+jabber = Off
 
-jabber_server           = Off
+jabber_server = Off
 
-jabber_port             = 5222
+jabber_port = 5222
 
-jabber_username         = Off
+jabber_username = Off
 
-jabber_password         = Off
+jabber_password = Off
 
 [Services]
 
-recaptcha_public_key    = Off
+recaptcha_public_key = Off
 
-recaptcha_private_key   = Off
+recaptcha_private_key = Off
 
 ;
 ; THE END

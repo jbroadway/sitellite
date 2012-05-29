@@ -83,6 +83,31 @@ class MF_Widget_password extends MF_Widget {
 	var $ignoreEmpty = true;
 
 	/**
+	 * Semias Alex 29-5-2012
+	 * Password helper -> strength indicator & generator
+	 * verifyField is optional. If it's given the password generator
+	 * will also copy the password to that field.
+	 * 
+	 * @access	public
+	 * 
+	 */
+	var $passwordHelp = false;
+	
+	
+	//minLength is only used when turnOnHelp() or makeStrong() is used
+	var $minLength = 8;
+	var $verifyFieldId = '';
+	
+	function turnOnHelp ($verifyFieldId = '') {
+		global $intl;
+		$this->minLength = security_min_pass_length();
+		$this->addRule ('length "'.$this->minLength.'+"', $intl->get ('Your password must be at least '.$this->minLength.' characters in length.'));
+		$this->passwordHelp = true;
+		$this->verifyFieldId = $verifyFieldId;
+	}
+	
+
+	/**
 	 * Encrypts the value given with the optional salt.  If the
 	 * value is also missing, uses the $data_value property.  Returns the
 	 * encrypted string.
@@ -122,7 +147,8 @@ class MF_Widget_password extends MF_Widget {
 	 */
 	function makeStrong () {
 		global $intl;
-		$this->addRule ('length "8+"', $intl->get ('Your password must be at least eight characters in length.'));
+		$this->minLength = security_min_pass_length();
+		$this->addRule ('length "'.$this->minLength.'+"', $intl->get ('Your password must be at least '.$this->minLength.' characters in length.'));
 		$this->addRule ('regex "[a-z]"', $intl->get ('Your password must contain at least one lowercase letter.'));
 		$this->addRule ('regex "[A-Z]"', $intl->get ('Your password must contain at least one uppercase letter.'));
 		$this->addRule ('regex "[0-9]"', $intl->get ('Your password must contain at least one number.'));
@@ -214,12 +240,181 @@ class MF_Widget_password extends MF_Widget {
 	function display ($generate_html = 0) {
 		global $intl;
 		$attrstr = $this->getAttrs ();
+		
+		
+		
+		//Semias 29-5-2012 password helper
+		$helpHTML = '';
+		if($this->passwordHelp == true) {
+			page_add_script (site_prefix () . '/js/jquery.pstrength-1.2.min.js'); // -min
+			page_add_script('
+			$(function() {
+			$(\'#'.$this->_attrs['id'].'\').pstrength({
+							minchar: '.$this->minLength.',
+							verdects: ["'.intl_get('Very weak').'", "'.intl_get('Weak').'", "'.intl_get('Medium').'", "'.intl_get('Strong').'", "'.intl_get('Very strong').'", "'.intl_get('Unsafe password word!').'", "'.intl_get('Too short').'", "'.intl_get('Minimum number of characters is').'"]
+						});
+			$("#copybut").attr("disabled", true);
+			
+			$("#confirm").click(function() {
+			  if($("#confirm").attr("checked")) {
+				$("#copybut").attr("disabled", false);
+			  } else {
+				$("#copybut").attr("disabled", true);
+			  }
+			});
+			
+			});
+			');
+			page_add_style(site_prefix () . '/js/modalwindow.css');
+			page_add_script(site_prefix () . '/js/modalwindow.js');
+	
+	$verifyFieldCode = '';
+	if($this->verifyFieldId != '') {
+		$verifyFieldCode = '$("#'.$this->verifyFieldId.'").val($("#pass").val());';
+	}
+			
+			page_add_script('/* Password Generator, version 1.0a
+   February 17, 2010 (adjusted password length)
+   Version 1.0, January 19, 2010
+   Will Bontrager
+   http://www.willmaster.com/
+   Copyright 2010 Bontrager Connection, LLC
+
+   Bontrager Connection, LLC grants you a 
+   royalty free license to use or modify 
+   this software provided that this 
+   copyright notice appears on all copies. 
+   This software is provided "AS IS," 
+   without a warranty of any kind.
+*/
+function GeneratePassword() {
+var nc = "0123456789";
+var lc = "abcdefghijklmnopqrstuvwxyz";
+var uc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var oc = "-=[];\',./~!@#$%^&*()_+{}|:\"<>?";
+
+var s = new String($("#custom").val());
+
+if($("#fn").attr("checked")) { s += nc; } 
+if($("#fl").attr("checked")) { s += lc; } 
+if($("#fu").attr("checked")) { s += uc; } 
+if($("#fo").attr("checked")) { s += oc; } 
+
+var p = new String();
+var slen = s.length;
+if(slen) { p = s.charAt(Math.floor(Math.random()*slen)); }
+s = new String($("#custom").val());
+if($("#on").attr("checked")) { s += nc; } 
+if($("#ol").attr("checked")) { s += lc; } 
+if($("#ou").attr("checked")) { s += uc; } 
+if($("#oo").attr("checked")) { s += oc; } 
+slen = s.length;
+if(slen) {
+   for(var i=1; i<$("#len").val(); i++) {
+      p += s.charAt(Math.floor(Math.random()*slen));
+      }
+   }
+$("#pass").val(p);
+}
+
+
+
+
+function CopyToForm() {
+
+if($("#confirm").attr("checked")) {
+
+	$("#'.$this->_attrs['id'].'").val($("#pass").val());
+	'.$verifyFieldCode.'
+	$("#mask").trigger(\'click\');
+	
+	$("#confirm").attr("checked", false);
+	$("#pass").val("");
+	
+	$("#copybut").attr("disabled", true);
+	
+	$("#'.$this->_attrs['id'].'").trigger(\'keyup\');
+	
+}
+}
+
+
+');
+			
+			$helpHTML = '<!-- #dialog is the id of a DIV defined in the code below -->
+<a href="#dialog" name="modal" id="dialoglink">'.intl_get('Password Generator').'</a>
+ 
+<div id="boxes">
+ 
+     
+    <!-- #customize your modal window here -->
+ 
+    <div id="dialog" class="window">
+        <b>'.intl_get('Password Generator').'</b>
+        <!-- close button is defined as close class -->
+        <a href="#" class="close">'.intl_get('Close').'</a>
+		
+		<div id="passgen">
+<table border="0" cellpadding="0" cellspacing="5">
+<tr>
+<td>'.intl_get('First character').':</td>
+<td><input type="checkbox" id="fu" value="yes" checked="checked">'.intl_get('Uppercase').' 
+<input type="checkbox" id="fn" value="yes" checked="checked">'.intl_get('Number').'<br>
+<input type="checkbox" id="fl" value="yes" checked="checked">'.intl_get('Lowercase').' 
+<input type="checkbox" id="fo" value="yes">'.intl_get('Symbols').'</td>
+</tr>
+<tr>
+<td>'.intl_get('Remaining characters').':</td>
+<td><input type="checkbox" id="ou" value="yes" checked="checked">'.intl_get('Uppercase').' 
+<input type="checkbox" id="on" value="yes" checked="checked">'.intl_get('Numbers').'<br>
+<input type="checkbox" id="ol" value="yes" checked="checked">'.intl_get('Lowercase').' 
+<input type="checkbox" id="oo" value="yes">'.intl_get('Symbols').'</td>
+</tr>
+<tr>
+<td>'.intl_get('Custom characters').':</td>
+<td><input type="text" id="custom" size="8" style="width:200px;"></td>
+</tr>
+<tr>
+<td>'.intl_get('Password length').':</td>
+<td><input type="text" id="len" size="8" style="width:100px;" value="'.($this->minLength+4).'"></td>
+</tr>
+<tr>
+<td> </td>
+<td><input type="button" value="'.intl_get('Generate').'" onclick="GeneratePassword()"></td>
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td>'.intl_get('Generated password').':</td>
+<td><input type="text" id="pass" size="25" style="width:200px;" onclick="select()"></td>
+</tr>
+<tr>
+<td> </td>
+<td><input type="checkbox" id="confirm" name="confirm" /> <label for="confirm">'.intl_get('I have written down the password').'</label></td>
+</tr>
+<tr>
+<td> </td>
+<td><input type="button" id="copybut" value="'.intl_get('Copy to form').'" onclick="CopyToForm()"></td>
+</table>
+
+		</div>
+ 
+    </div>
+ 
+     
+    <!-- Do not remove div#mask, because you\'ll need it to fill the whole screen --> 
+    <div id="mask"></div>
+</div>';
+		}
+		
 		if ($generate_html) {
 			return "\t" . '<tr' . $this->getClasses () . '>' . "\n\t\t" . '<td class="label"><label for="' . $this->name . '" id="' . $this->name . '-label"' . $this->invalid () . '>' . $this->display_value . '</label></td>' . "\n\t\t" .
 				'<td class="field"><input type="password" ' . $attrstr . ' value="' . htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) .
-				'" ' . $this->extra . ' /></td>' . "\n\t" . '</tr>' . "\n";
+				'" ' . $this->extra . ' />'.$helpHTML.'</td>' . "\n\t" . '</tr>' . "\n";
 		} else {
-			return '<input type="password" ' . $attrstr . ' value="' . htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '" ' . $this->extra . ' />';
+			return '<input type="password" ' . $attrstr . ' value="' . htmlentities_compat ($this->data_value, ENT_COMPAT, $intl->charset) . '" ' . $this->extra . ' />'.$helpHTML;
 		}
 	}
 }

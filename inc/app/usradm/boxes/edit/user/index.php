@@ -47,6 +47,8 @@ function teams_select_all (field) {
 $snm =& session_get_manager ();
 $form =& $snm->user->getEditForm ($cgi->_key);
 
+$form->widgets['passwd']->turnOnHelp('password_verify'); //password generator & strength indicator
+
 if ($form->invalid ($cgi)) {
 	$form->extra = 'id="usradm-user" class="usradm-user" autocomplete="off"';
 	$form->widgets['passwd']->extra = 'autocomplete="off"';

@@ -1,0 +1,29 @@
+/* Z-index of #mask must lower than #boxes .window */
+#mask {
+  position:absolute;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+  top:0;
+  left: 0;
+}
+   
+#boxes .window {
+  position:absolute;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+ 
+ 
+/* Customize your modal window here, you can add background image too */
+#boxes #dialog {
+  width:475px;
+  height:280px;
+  background-color: #ffffff;
+}
+#boxes #dialog #passgen {
+	margin-top: 10px;
+}

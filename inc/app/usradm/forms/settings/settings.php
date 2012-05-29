@@ -200,6 +200,17 @@ formhelp = "The method of determining which language to use for each visitor.  S
 
 type = hidden
 
+[Security]
+
+type = section
+title = Security
+
+[Security_min_password_length]
+
+type = text
+alt = Min. password length
+formhelp = "Min. length of passwords with form help of makestrong on."
+
 [Emailing]
 
 type = section

@@ -252,6 +252,11 @@ function site_current () {
 	return $GLOBALS['site']->current;
 }
 
+function security_min_pass_length () {
+	global $conf;
+	return $conf['Security']['min_password_length'];
+}
+
 function site_name () {
 	return str_replace ('www.', '', $GLOBALS['site']->domain);
 }
