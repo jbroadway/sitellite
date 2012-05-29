@@ -36,6 +36,8 @@ class PreferencesForm extends MailForm {
 
 			$w =& $this->addWidget ('password', 'passwd');
 			$w->alt = intl_get ('New Password');
+			
+			$w->turnOnHelp('password_verify'); //password generator & strength indicator
 
 			$w =& $this->addWidget ('password', 'password_verify');
 			$w->alt = intl_get ('Verify Password');
