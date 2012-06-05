@@ -94,10 +94,10 @@ class MF_Widget_radio extends MF_Widget {
 
 			{loop obj.value}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -121,10 +121,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="50%" valign="top">
 			{loop obj.value1}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -135,10 +135,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="50%" valign="top">
 			{loop obj.value2}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -165,10 +165,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="33%" valign="top">
 			{loop obj.value1}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -179,10 +179,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="33%" valign="top">
 			{loop obj.value2}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -193,10 +193,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="33%" valign="top">
 			{loop obj.value3}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -223,10 +223,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="25%" valign="top">
 			{loop obj.value1}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -237,10 +237,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="25%" valign="top">
 			{loop obj.value2}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -251,10 +251,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="25%" valign="top">
 			{loop obj.value3}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -265,10 +265,10 @@ class MF_Widget_radio extends MF_Widget {
 					<td width="25%" valign="top">
 			{loop obj.value4}
 	<input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
@@ -290,10 +290,10 @@ class MF_Widget_radio extends MF_Widget {
 
 			{loop obj.value}
 	<td valign="top"><input
+					id="{name}_{loop/_key}"
 					type="radio"
 					{filter none}{attrstr}{end filter}
 					value="{loop/_key}"
-					id="{name}_{loop/_key}"
 					{if obj.data_value eq loop._key}checked="checked"{end if}
 					{filter none}{extra}{end filter}
 				/>
