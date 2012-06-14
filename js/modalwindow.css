@@ -1,6 +1,6 @@
 /* Z-index of #mask must lower than #boxes .window */
 #mask {
-  position:absolute;
+  position:fixed;
   z-index:9000;
   background-color:#000;
   display:none;
@@ -9,7 +9,7 @@
 }
    
 #boxes .window {
-  position:absolute;
+  position:fixed;
   width:440px;
   height:200px;
   display:none;

@@ -35,6 +35,9 @@ class SitememberRegisterForm extends MailForm {
 		parent::MailForm ();
 		$this->parseSettings ('inc/app/sitemember/forms/register/settings.php');
 
+
+		$this->widgets['password']->turnOnHelp('verify'); //password generator & strength indicator
+		
 		page_title (intl_get ('Member Registration'));
 	}
 
