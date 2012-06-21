@@ -154,7 +154,7 @@ class MF_Widget_date extends MF_Widget {
 				$this->data_value_YEAR,
 				$this->data_value_MONTH,
 				$this->data_value_DAY
-			) = preg_split ('/-/', $value);
+			) = explode ('-', $value);
 		}
 	}
 
@@ -189,7 +189,7 @@ class MF_Widget_date extends MF_Widget {
 	 * 
 	 */
 	function setDefault ($value) {
-		list ($this->data_value_YEAR, $this->data_value_MONTH, $this->data_value_DAY) = preg_split ('/-/', $value);
+		list ($this->data_value_YEAR, $this->data_value_MONTH, $this->data_value_DAY) = explode ('-', $value);
 	}
 
 	/**

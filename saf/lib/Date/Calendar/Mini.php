@@ -37,7 +37,7 @@ class MiniCal {
 	 */
 	function MiniCal ($mc) {
 		if (! empty ($mc)) {
-			list ($y, $m) = preg_split ('/-/', $mc);
+			list ($y, $m) = explode ('-', $mc);
 		} else {
 			$y = date ('Y');
 			$m = date ('m');

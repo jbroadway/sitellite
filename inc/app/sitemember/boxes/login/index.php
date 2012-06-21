@@ -18,7 +18,7 @@ if (! $on) {
 	header ('Location: ' . site_prefix () . '/index/sitemember-app');
 	exit;
 } elseif ($on != 'box:sitemember/login') {
-	list ($type, $call) = preg_split ('/:/', $on);
+	list ($type, $call) = explode (':', $on);
 	$func = 'loader_' . $type;
 	echo $func (trim ($call), $parameters, $context);
 	return;

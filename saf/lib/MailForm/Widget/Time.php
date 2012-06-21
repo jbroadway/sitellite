@@ -131,7 +131,7 @@ class MF_Widget_time extends MF_Widget {
 				$this->data_value_HOUR,
 				$this->data_value_MINUTE,
 				$this->data_value_SECOND
-			) = preg_split ('/:/', $value);
+			) = explode (':', $value);
 		}
 	}
 
@@ -144,7 +144,7 @@ class MF_Widget_time extends MF_Widget {
 	 * 
 	 */
 	function setDefault ($value) {
-		list ($this->data_value_HOUR, $this->data_value_MINUTE, $this->data_value_SECOND) = preg_split ('/:/', $value);
+		list ($this->data_value_HOUR, $this->data_value_MINUTE, $this->data_value_SECOND) = explode (':', $value);
 	}
 
 	/**

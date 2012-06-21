@@ -71,7 +71,7 @@ foreach (array_keys ($list) as $k) {
 		$item->time = ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
 		if ($item->until_time > $t) {
 			$item->time .= ' - ';
-			list ($h, $m, $s) = preg_split ('/:/', $item->until_time);
+			list ($h, $m, $s) = explode (':', $item->until_time);
 			$item->time .= ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
 		}
 	}

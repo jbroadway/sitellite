@@ -9,7 +9,7 @@ if (! $on && $parameters['user'] != session_username ()) {
 	header ('Location: ' . site_prefix () . '/index/sitemember-app');
 	exit;
 } elseif ($on != 'box:sitemember/profile') {
-	list ($type, $call) = preg_split ('/:/', $on);
+	list ($type, $call) = explode (':', $on);
 	$func = 'loader_' . $type;
 	echo $func (trim ($call), $parameters, $context);
 	return;
@@ -41,7 +41,7 @@ $data = array ();
 $services = appconf ('member_services');
 
 foreach ($services['profile'] as $name => $service) {
-	list ($type, $call) = preg_split ('/:/', $service);
+	list ($type, $call) = explode (':', $service);
 	$func = 'loader_' . $type;
 	$data[$name] = $func (trim ($call), $parameters);
 }

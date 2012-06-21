@@ -54,7 +54,7 @@ if ($parameters['save'] == 'yes') {
 	}
 
 	if (strstr ($cgi->lang, '-')) {
-		list ($code, $locale) = preg_split ('/-/', $cgi->lang);
+		list ($code, $locale) = explode ('-', $cgi->lang);
 	} else {
 		$code = $cgi->lang;
 		$locale = '';

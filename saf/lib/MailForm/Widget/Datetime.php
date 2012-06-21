@@ -115,12 +115,12 @@ class MF_Widget_datetime extends MF_Widget {
 			$this->data_value_DATE_YEAR,
 			$this->data_value_DATE_MONTH,
 			$this->data_value_DATE_DAY
-		) = preg_split ('/-/', $this->data_value_DATE);
+		) = explode ('-', $this->data_value_DATE);
 		list (
 			$this->data_value_TIME_HOUR,
 			$this->data_value_TIME_MINUTE,
 			$this->data_value_TIME_SECOND
-		) = preg_split ('/:/', $this->data_value_TIME);*/
+		) = explode (':', $this->data_value_TIME);*/
 	}
 
 	/**
@@ -150,12 +150,12 @@ class MF_Widget_datetime extends MF_Widget {
 			list (
 				$this->data_value_DATE,
 				$this->data_value_TIME
-			) = preg_split ('/ /', $value);
+			) = explode (' ', $value);
 			list (
 				$this->data_value_DATE_YEAR,
 				$this->data_value_DATE_MONTH,
 				$this->data_value_DATE_DAY
-			) = preg_split ('/-/', $this->data_value_DATE);
+			) = explode ('-', $this->data_value_DATE);
 			list (
 				$this->data_value_TIME_HOUR,
 				$this->data_value_TIME_MINUTE,
@@ -174,17 +174,17 @@ class MF_Widget_datetime extends MF_Widget {
 	 */
 	function setDefault ($value) {
 		if (strstr ($value, ' ')) {
-			list ($this->data_value_DATE, $this->data_value_TIME) = preg_split ('/ /', $value);
+			list ($this->data_value_DATE, $this->data_value_TIME) = explode (' ', $value);
 			list (
 				$this->data_value_DATE_YEAR,
 				$this->data_value_DATE_MONTH,
 				$this->data_value_DATE_DAY
-			) = preg_split ('/-/', $this->data_value_DATE);
+			) = explode ('-', $this->data_value_DATE);
 			list (
 				$this->data_value_TIME_HOUR,
 				$this->data_value_TIME_MINUTE,
 				$this->data_value_TIME_SECOND
-			) = preg_split ('/:/', $this->data_value_TIME);
+			) = explode (':', $this->data_value_TIME);
 		} else {
 			// handle YYYYMMDDHHMMSS format
 			if (preg_match ('/([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})/', $value, $regs)) {

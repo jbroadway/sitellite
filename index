@@ -110,7 +110,7 @@ $lang_dirs = array ($conf['I18n']['directory']);
 if ($type == 'app' && @is_dir ('inc/app/' . $request . '/lang')) {
 	$lang_dirs[] = 'inc/app/' . $request . '/lang';
 } elseif ($type == 'box' || $type == 'form') {
-	$app = array_shift (preg_split ('//', $request));
+	$app = array_shift (explode ('/', $request));
 	if (@is_dir ('inc/app/' . $app . '/lang')) {
 		$lang_dirs[] = 'inc/app/' . $app . '/lang';
 	}

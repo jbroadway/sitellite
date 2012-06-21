@@ -173,7 +173,7 @@ class Date {
 		if ($date == '0000-00-00') {
 			return 'Empty';
 		}
-		list ($y, $m, $d) = preg_split ('/-/', $date);
+		list ($y, $m, $d) = explode ('-', $date);
 		$unix = mktime (0, 0, 0, $m, $d, $y); */
 		$unix = Date::toUnix ($date);
 		if (is_array ($format)) {
@@ -389,7 +389,7 @@ class Date {
 	 * 
 	 */
 	function roundTime ($time, $interval = 15) {
-		list ($hour, $min, $sec) = preg_split ('/:/', $time);
+		list ($hour, $min, $sec) = explode (':', $time);
 
 		if ($interval == 15) {
 			$sec = '00';

@@ -67,12 +67,12 @@ $dates = array ();
 //	if ($event->time == '00:00:00') {
 //		$event->time = false;
 //	} else {
-//		list ($h, $m, $s) = preg_split ('/:/', $event->time);
+//		list ($h, $m, $s) = explode (':', $event->time);
 //		$t = $event->time;
 //		$event->ftime = ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $m, $y)), '0');
 //		if ($event->until_time > $t) {
 //			$event->ftime .= ' - ';
-//			list ($h, $m, $s) = preg_split ('/:/', $event->until_time);
+//			list ($h, $m, $s) = explode (':', $event->until_time);
 //			$event->ftime .= ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $m, $y)), '0');
 //		}
 //	}

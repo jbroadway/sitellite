@@ -357,7 +357,7 @@ class CGI {
 		$lose_these = preg_split ('/, ?/', $lose);
 
 		// compile array of key.value pairs
-		foreach (preg_split ('/&/', $params) as $p) {
+		foreach (explode ('&', $params) as $p) {
 			if (! empty ($p)) {
 				array_push ($vars, str_replace ('=', '.', $p));
 			}
