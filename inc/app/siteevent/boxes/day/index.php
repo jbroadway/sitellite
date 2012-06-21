@@ -14,7 +14,7 @@ $e = new SiteEvent_Event;
 
 $events = $e->getDay ($parameters['day']);
 
-list ($y, $mm, $d) = split ('-', $parameters['day']);
+list ($y, $mm, $d) = explode ('-', $parameters['day']);
 
 foreach (array_keys ($events) as $k) {
 	$event =& $events[$k];
@@ -22,19 +22,19 @@ foreach (array_keys ($events) as $k) {
 	if ($event->time == '00:00:00') {
 		$event->time = '';
 	} else {
-		list ($h, $m, $s) = split (':', $event->time);
+		list ($h, $m, $s) = explode (':', $event->time);
 		$t = $event->time;
 		$event->time = ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
 		if ($event->until_time > $t) {
 			$event->time .= ' - ';
-			list ($h, $m, $s) = split (':', $event->until_time);
+			list ($h, $m, $s) = explode (':', $event->until_time);
 			$event->time .= ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
 		}
 		$event->time .= ': ';
 	}
 }
 
-list ($y, $m, $d) = split ('-', $parameters['day']);
+list ($y, $m, $d) = explode ('-', $parameters['day']);
 page_title (intl_get ('Events For') . ' ' . strftime ('%B %e, %Y', mktime (5, 0, 0, $m, $d, $y)));
 echo template_simple (
 	'day.spt',

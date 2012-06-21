@@ -110,7 +110,7 @@ $lang_dirs = array ($conf['I18n']['directory']);
 if ($type == 'app' && @is_dir ('inc/app/' . $request . '/lang')) {
 	$lang_dirs[] = 'inc/app/' . $request . '/lang';
 } elseif ($type == 'box' || $type == 'form') {
-	$app = array_shift (split ('/', $request));
+	$app = array_shift (preg_split ('//', $request));
 	if (@is_dir ('inc/app/' . $app . '/lang')) {
 		$lang_dirs[] = 'inc/app/' . $app . '/lang';
 	}
@@ -682,7 +682,7 @@ while (! $page->id) {
 			}
 
 			$page->body = template_parse_body ($page->body);
-			$page->body_parts = preg_split ('|<hr[^>]*>|is', $page->body);
+			$page->body_parts = preg_split ('/|<hr[^>]*>|is/', $page->body);
 			break;
 
 	} // end switch ($type)

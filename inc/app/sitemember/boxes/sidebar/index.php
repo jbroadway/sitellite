@@ -18,7 +18,7 @@ if (session_valid ()) {
 	if ($sidebar == 'default') {
 		echo template_simple ('sidebar.spt', $parameters);
 	} else {
-		list ($type, $call) = split (':', $sidebar);
+		list ($type, $call) = preg_split ('/:/', $sidebar);
 		$func = 'loader_' . $type;
 		echo $func (trim ($call), array (), $box['context']);
 	}

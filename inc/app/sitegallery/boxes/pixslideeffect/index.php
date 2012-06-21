@@ -26,7 +26,7 @@ foreach ($d->readAll () as $file) {
 	}
 	$info = pathinfo ($file);
 	$info['name'] = preg_replace ('/\.' . $info['extension'] . '$/', '', $info['basename']);
-	list ($info['display_title'], $info['description']) = split (' - ', $info['name']);
+	list ($info['display_title'], $info['description']) = preg_split ('/ - /', $info['name']);
 	$info['display_title'] = ucwords (preg_replace ('/[^a-zA-Z0-9]+/', ' ', $info['display_title']));
 	unset ($info['dirname']);
 	unset ($info['basename']);

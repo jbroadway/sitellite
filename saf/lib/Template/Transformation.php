@@ -160,7 +160,7 @@ class TemplateTransformation {
 				return $value;
 			}
 		} elseif ($this->type == 'alternate') {
-			list ($first, $second) = split (':', $this->rule);
+			list ($first, $second) = preg_split ('/:/', $this->rule);
 			if (! isset ($this->_previous) || $this->_previous == $second) {
 				$this->_previous = $first;
 				return $first;
@@ -184,7 +184,7 @@ class TemplateTransformation {
 	 */
 	function &parse ($data = '') {
 		$list = array ();
-		$list = split ("[ \t]*[\r\n]+[ \t]*", $data);
+		$list = preg_split ('/[ \t]*[\r\n]+[ \t]*/', $data);
 		$transformations = array ();
 		foreach ($list as $line) {
 			if (preg_match ('/^([^:]+):(func|regex|alternate):(.*)$/i', $line, $regs)) {

@@ -326,13 +326,13 @@ class SOAP_Parser extends SOAP_Base
                     $this->message[$pos]['arraySize'] = $vqn->arraySize;
                 #$sa = strpos($type,'[');
                 #if ($sa > 0) {
-                #    $this->message[$pos]['arraySize'] = split(',',substr($type,$sa+1, strlen($type)-$sa-2));
+                #    $this->message[$pos]['arraySize'] = explode(',',substr($type,$sa+1, strlen($type)-$sa-2));
                 #    $type = substr($type, 0, $sa);
                 #}
                 $this->message[$pos]['arrayType'] = $vqn->name;
                 
             } elseif ($kqn->name == 'offset') {
-                $this->message[$pos]['arrayOffset'] = split(',',substr($value, 1, strlen($value)-2));
+                $this->message[$pos]['arrayOffset'] = explode(',',substr($value, 1, strlen($value)-2));
                 
             } elseif ($kqn->name == 'id') {
                 # save id to reference array

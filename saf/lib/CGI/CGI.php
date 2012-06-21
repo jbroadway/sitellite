@@ -352,12 +352,12 @@ class CGI {
 	 * 
 	 */
 	function translateUri ($uri = '', $lose = '') {
-		list ($start, $params) = split ("\?", $uri);
+		list ($start, $params) = preg_split ("/\?/", $uri);
 		$vars = array ();
-		$lose_these = split (', ?', $lose);
+		$lose_these = preg_split ('/, ?/', $lose);
 
 		// compile array of key.value pairs
-		foreach (split ('&', $params) as $p) {
+		foreach (preg_split ('/&/', $params) as $p) {
 			if (! empty ($p)) {
 				array_push ($vars, str_replace ('=', '.', $p));
 			}

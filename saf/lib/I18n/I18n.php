@@ -708,7 +708,7 @@ class I18n {
             $length = strlen ($string);
             $vowels = preg_replace ('/[^aeiouyAEIOUY]+/', '', $string);
             $words = array ();
-            $words = split ('[^a-zA-Z0-9_-]+', $string);
+            $words = preg_split ('/[^a-zA-Z0-9_-]+/', $string);
             if (count ($words) >= 3) {
                 return metaphone ($words[0]) . ' ' . metaphone ($words[1]) . ' ' . metaphone ($words[2]) . ' ' . $length . ' ' . $vowels;
             } else {
@@ -726,7 +726,7 @@ class I18n {
         } elseif ($this->method == 'old') {
             $length = strlen ($string);
             $words = array ();
-            $words = split ('[^a-zA-Z0-9_-]+', $string);
+            $words = preg_split ('/[^a-zA-Z0-9_-]+/', $string);
             if (count ($words) >= 3) {
                 return metaphone ($words[0]) . ' ' . metaphone ($words[1]) . ' ' . metaphone ($words[2]) . ' ' . $length;
             } else {

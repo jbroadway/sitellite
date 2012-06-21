@@ -22,16 +22,16 @@ foreach (array_keys ($list) as $k) {
 	$item->title = (! empty ($item->short_title)) ? $item->short_title : $item->title;
 	if ($item->recurring == 'no' || $item->recurring == 'daily') {
 		if ($item->until_date > $item->date) {
-			list ($y, $m, $d) = split ('-', $item->date);
-			list ($yy, $mm, $dd) = split ('-', $item->until_date);
+			list ($y, $m, $d) = explode ('-', $item->date);
+			list ($yy, $mm, $dd) = explode ('-', $item->until_date);
 			$item->date = strftime ('%b %e', mktime (5, 0, 0, $m, $d, $y)) . ' - ' . strftime ('%b %e', mktime (5, 0, 0, $mm, $dd, $yy));
 		} else {
-			list ($y, $m, $d) = split ('-', $item->date);
+			list ($y, $m, $d) = explode ('-', $item->date);
 			$item->date = strftime ('%b %e', mktime (5, 0, 0, $m, $d, $y));
 		}
 		$ids[] = $item->id;
 	} else {
-		list ($y, $m, $d) = split ('-', $item->date);
+		list ($y, $m, $d) = explode ('-', $item->date);
 		$item->date = strftime ('%b %e', mktime (5, 0, 0, $m, $d, $y));
 	}
 

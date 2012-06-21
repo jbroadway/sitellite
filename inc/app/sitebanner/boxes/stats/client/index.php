@@ -121,7 +121,7 @@ switch ($cgi->_range) {
 		);
 		break;
 	case 'month':
-		list ($y, $m, $d) = split ('-', $cgi->date);
+		list ($y, $m, $d) = explode ('-', $cgi->date);
 		if ($y . '-' . $m == date ('Y-m')) {
 			$days = date ('d');
 		} else {
@@ -136,7 +136,7 @@ switch ($cgi->_range) {
 		}
 		break;
 	case 'year':
-		list ($y, $m, $d) = split ('-', $cgi->date);
+		list ($y, $m, $d) = explode ('-', $cgi->date);
 		$parts = array (
 			intl_get ('January') => array ($y . '-01-01 00:00:00', $y . '-01-31 23:59:59'),
 			intl_get ('February') => array ($y . '-02-01 00:00:00', $y . '-02-31 23:59:59'),

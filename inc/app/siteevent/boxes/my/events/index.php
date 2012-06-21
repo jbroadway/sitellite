@@ -19,7 +19,7 @@ if ($box['context'] == 'action') {
 loader_import ('siteevent.Event');
 
 foreach (array_keys ($res) as $k) {
-	list ($y, $m, $d) = split ('-', $res[$k]->date);
+	list ($y, $m, $d) = explode ('-', $res[$k]->date);
 	$res[$k]->date = strftime ('%B %e, %Y', mktime (5, 0, 0, $m, $d, $y));
 }
 

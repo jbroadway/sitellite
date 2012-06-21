@@ -45,7 +45,7 @@ class SimpleCal {
 	 */
 	function SimpleCal ($mc) {
 		if (! empty ($mc)) {
-			list ($y, $m) = split ('-', $mc);
+			list ($y, $m) = preg_split ('/-/', $mc);
 		} else {
 			$y = date ('Y');
 			$m = date ('m');
@@ -149,7 +149,7 @@ class SimpleCal {
 	 * @return string
 	 */
 	function prevMonth () {
-		list ($y, $m) = split ('-', $this->prevDate ());
+		list ($y, $m) = preg_split ('/-/', $this->prevDate ());
 		return intl_month_name ($m);
 	}
 
@@ -160,7 +160,7 @@ class SimpleCal {
 	 * @return string
 	 */
 	function nextMonth () {
-		list ($y, $m) = split ('-', $this->nextDate ());
+		list ($y, $m) = preg_split ('/-/', $this->nextDate ());
 		return intl_month_name ($m);
 	}
 

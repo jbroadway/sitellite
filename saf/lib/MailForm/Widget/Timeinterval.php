@@ -163,7 +163,7 @@ class MF_Widget_timeinterval extends MF_Widget {
 	function parseTime ($time) {
 		global $loader;
 		$loader->import ('saf.Date');
-		list ($hour, $min, $sec) = split (':', Date::roundTime ($time, 15));
+		list ($hour, $min, $sec) = preg_split ('/:/', Date::roundTime ($time, 15));
 		$MINUTE = ':' . $min;
 		if ($hour >= 12) {
 			$HOUR = $hour - 12;

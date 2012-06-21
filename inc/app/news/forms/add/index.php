@@ -76,7 +76,7 @@ class NewsAddForm extends MailForm {
           $path = str_replace("http://", "", $vals['thumb']);
 
           // split path by /
-          $split = split("/", $path);
+          $split = explode("/", $path);
           // the thumb body is the last item in the array
           $thumb_filename = $split [ count($split) - 1];
           // now get the directory, by deleting last entry...
@@ -88,7 +88,7 @@ class NewsAddForm extends MailForm {
           $dir = implode("/",$split);
 
           // get thumb_body, i.e. filename without extension
-          $split2 = split("\.", $thumb_filename);
+          $split2 = explode("\.", $thumb_filename);
           // extension is last part, so delete it and implode again.
           unset($split2 [ count($split2) - 1] );
           $thumb_body = implode(".",$split2);

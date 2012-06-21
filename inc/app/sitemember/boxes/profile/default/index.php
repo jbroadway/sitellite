@@ -9,7 +9,7 @@ if (! $on && $parameters['user'] != session_username ()) {
 	header ('Location: ' . site_prefix () . '/index/sitemember-app');
 	exit;
 } elseif ($on != 'box:sitemember/profile') {
-	list ($type, $call) = split (':', $on);
+	list ($type, $call) = preg_split ('/:/', $on);
 	$func = 'loader_' . $type;
 	echo $func (trim ($call), array (), $context);
 	return;

@@ -1043,7 +1043,7 @@ class QName
             $this->name = $m[2];
             $this->namespace = $m[1];
         } else if (strpos($name, ':') != FALSE) {
-            $s = split(':',$name);
+            $s = explode(':',$name);
             $s = array_reverse($s);
             $this->name = $s[0];
             $this->ns = $s[1];
@@ -1058,7 +1058,7 @@ class QName
         if ($p) {
             # XXX need to re-examine this logic later
             # chop off []
-            $this->arraySize = split(',',substr($this->name,$p+1, strlen($this->name)-$p-2));
+            $this->arraySize = explode(',',substr($this->name,$p+1, strlen($this->name)-$p-2));
             $this->arrayInfo = substr($this->name, $p);
             $this->name = substr($this->name, 0, $p);
         }

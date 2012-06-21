@@ -66,12 +66,12 @@ foreach (array_keys ($list) as $k) {
 	if ($item->time == '00:00:00') {
 		$item->time = '';
 	} else {
-		list ($h, $m, $s) = split (':', $item->time);
+		list ($h, $m, $s) = explode (':', $item->time);
 		$t = $item->time;
 		$item->time = ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
 		if ($item->until_time > $t) {
 			$item->time .= ' - ';
-			list ($h, $m, $s) = split (':', $item->until_time);
+			list ($h, $m, $s) = preg_split ('/:/', $item->until_time);
 			$item->time .= ltrim (strftime ('%I:%M %p', mktime ($h, $m, $s, $d, $mm, $y)), '0');
 		}
 	}

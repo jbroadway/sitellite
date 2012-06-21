@@ -5,3 +5,4 @@ cache/*
 pix/*
 inc/app/*/data/*
 inc/conf/config.ini.php
+error_log

@@ -241,7 +241,7 @@ class Query {
 
 			if ($this->bdb_expiry_table->exists ($this->tmp_sql)) {
 				$dba_row = $this->bdb_expiry_table->fetch ($this->tmp_sql);
-				list ($expiry, $storefile, $this->rows, $fields) = split (':_:_:', $dba_row);
+				list ($expiry, $storefile, $this->rows, $fields) = preg_split ('/:_:_:/', $dba_row);
 				$this->fields = unserialize ($fields);
 				//echo $expiry . ' : ' . $storefile . "\n";
 				if ($expiry > time ()) {

@@ -28,7 +28,7 @@ if (! isset ($parameters['user']) || empty ($parameters['user'])) {
 // if date is past one year from present, tell robots to skip
 $cy = date ('Y');
 $cm = date ('m');
-list ($y, $m) = split ('-', $parameters['minical']);
+list ($y, $m) = explode ('-', $parameters['minical']);
 if ($y > ($cy + 1) || $y < ($cy - 1) || ($y == ($cy + 1) && $m >= $cm) || ($y == ($cy - 1) && $m <= $cm)) {
 	page_add_meta ('robots', 'noindex,nofollow');
 }
@@ -42,8 +42,8 @@ $list = $e->getMonthly ($parameters['minical'], $parameters['category'], $parame
 foreach (array_keys ($list) as $k) {
 	$item =& $list[$k];
 
-	list ($y, $m, $d) = split ('-', $item->date);
-	list ($yy, $mm, $dd) = split ('-', $item->until_date);
+	list ($y, $m, $d) = explode ('-', $item->date);
+	list ($yy, $mm, $dd) = explode ('-', $item->until_date);
 
     if (!empty ($item->short_title)) {
         $item->title = $item->short_title;

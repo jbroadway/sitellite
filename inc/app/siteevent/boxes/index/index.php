@@ -17,7 +17,7 @@ if (! isset ($parameters['simplecal'])) {
 // if date is past one year from present, tell robots to skip
 $cy = date ('Y');
 $cm = date ('m');
-list ($y, $m) = split ('-', $parameters['simplecal']);
+list ($y, $m) = explode ('-', $parameters['simplecal']);
 if ($y > ($cy + 1) || $y < ($cy - 1) || ($y == ($cy + 1) && $m >= $cm) || ($y == ($cy - 1) && $m <= $cm)) {
 	page_add_meta ('robots', 'noindex,nofollow');
 }

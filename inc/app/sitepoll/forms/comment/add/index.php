@@ -36,8 +36,14 @@ class SitepollCommentAddForm extends MailForm {
 
 		$ce = appconf ('comments_email');
 		if ($ce) {
-			@mail ($ce, intl_get ('Poll Comment Notice'), template_simple ('comment_email.spt', $vals), 'From: ' . 'sitepoll@' . site_domain ());
-		}
+			site_mail (
+                $ce,
+                intl_get ('Poll Comment Notice'),
+                template_simple ('comment_email.spt', $vals),
+                'From: ' . 'sitepoll@' . site_domain (),
+                array ("Is_HTML" => true)
+            );
+        }
 
 		page_title (intl_get ('Comment Added'));
 		echo template_simple ('comment_added.spt', $vals);

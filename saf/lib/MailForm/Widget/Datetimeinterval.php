@@ -118,7 +118,7 @@ class MF_Widget_datetimeinterval extends MF_Widget {
 			$this->data_value_DATE_YEAR,
 			$this->data_value_DATE_MONTH,
 			$this->data_value_DATE_DAY
-		) = split ('-', $this->data_value_DATE);
+		) = explode ('-', $this->data_value_DATE);
 		list (
 			$this->data_value_TIME_HOUR,
 			$this->data_value_TIME_MINUTE,
@@ -155,12 +155,12 @@ class MF_Widget_datetimeinterval extends MF_Widget {
 			list (
 				$this->data_value_DATE,
 				$this->data_value_TIME
-			) = split (' ', $value);
+			) = explode (' ', $value);
 			list (
 				$this->data_value_DATE_YEAR,
 				$this->data_value_DATE_MONTH,
 				$this->data_value_DATE_DAY
-			) = split ('-', $this->data_value_DATE);
+			) = explode ('-', $this->data_value_DATE);
 			list (
 				$this->data_value_TIME_HOUR,
 				$this->data_value_TIME_MINUTE,
@@ -233,8 +233,8 @@ class MF_Widget_datetimeinterval extends MF_Widget {
 	 */
 	function setDefault ($value) {
 		if (strstr ($value, ' ')) {
-			list ($d, $t) = split (' ', $value);
-			list ($this->data_value_DATE_YEAR, $this->data_value_DATE_MONTH, $this->data_value_DATE_DAY) = split ('-', $d);
+			list ($d, $t) = explode (' ', $value);
+			list ($this->data_value_DATE_YEAR, $this->data_value_DATE_MONTH, $this->data_value_DATE_DAY) = explode ('-', $d);
 			list ($this->data_value_TIME_HOUR, $this->data_value_TIME_MINUTE, $this->data_value_TIME_AMPM) = MF_Widget_timeinterval::parseTime ($t);
 		} else {
 			// handle YYYYMMDDHHMMSS format

@@ -86,10 +86,35 @@ function sitellite_nav_list_walker (&$list, $trail, $template, $level = 0) {
 
 		echo "<ul>\n";
 		foreach ($list as $key => $item) {
-			if ($item->id == $page->id && $page->include == 'no') {
+			
+			// START: TOEGEVOEGD SEMIAS 12-04-2012
+			// 
+			// de bestaande check om te controleren of een page wel in het menu moest was niet voldoende
+
+			if($item->include == 'no') {
 				continue;
 			}
-			echo "\t<li>" . template_simple ($template, $item);
+			
+			if ($item->id == $page->id && $item->include == 'no') {
+				continue;
+			}
+			
+			echo "\t<li";
+			
+			if ($item->id == $page->below_page && $level == 0) {
+				echo " class=\"current-li\" ";
+			}
+			if ($item->id == $page->id && $page->is_section == 'yes' && $level == 0) {
+				echo " class=\"current-li\" ";
+			}
+			if ($trail[0] == $item->id) {
+				echo " class=\"current-li\" ";
+			}
+			
+			echo ">" . template_simple ($template, $item);
+			
+			// EINDE
+			
 			if (in_array ($item->id, $trail)) {
 				sitellite_nav_list_walker ($list[$key]->children, $trail, $template, $level + 1);
 			}
@@ -101,6 +126,16 @@ function sitellite_nav_list_walker (&$list, $trail, $template, $level = 0) {
 
 		echo sitellite_nav_list_walker_tab ($level) . "<ul>\n";
 		foreach ($list as $key => $item) {
+			
+			// START: TOEGEVOEGD SEMIAS 12-04-2012
+			// 
+			// de bestaande check om te controleren of een page wel in het menu moest was niet voldoende
+
+			if($item->include == 'no') {
+				continue;
+			}
+			// EINDE
+
 			if ($item->id == $page->id && $page->include == 'no') {
 				continue;
 			}
@@ -124,6 +159,9 @@ function sitellite_nav_list_walker (&$list, $trail, $template, $level = 0) {
 
 		echo sitellite_nav_list_walker_tab ($level) . "<ul>\n";
 		foreach ($list as $key => $item) {
+			if($item->include == 'no') {
+				continue;
+			}
 			if (in_array ($item->id, $trail)) {
 				echo sitellite_nav_list_walker_tab ($level) . "\t<li>" . template_simple ($template, $list[$key]);
 				sitellite_nav_list_walker ($list[$key]->children, $trail, $template, $level + 1);

@@ -17,12 +17,12 @@ function makethumbnail($orig_file , $thumb_file , $max_width = 250 , $max_height
     }
 
     // Get directory
-    $split = split("/",$filename);
+    $split = explode("/",$filename);
     unset($split [ count($split) - 1 ] );
     $dir = implode("/",$split);
 
     // Get thumb dir
-    $split2 = split("/",$thumb_file);
+    $split2 = explode("/",$thumb_file);
     $thumb_body = $split2 [ count($split2) - 1];
     unset($split2 [ count($split2) - 1] );
     $dir_thumb = implode("/",$split2);
