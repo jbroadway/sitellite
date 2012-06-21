@@ -402,7 +402,7 @@ class DB_common extends PEAR
 
     function prepare($query)
     {
-        $tokens = explode("[\&\?\!]", $query);
+        $tokens = preg_split("/[\&\?\!]/", $query);
         $token = 0;
         $types = array();
 

@@ -341,7 +341,7 @@ class DB_oci8 extends DB_common
      */
     function prepare($query)
     {
-        $tokens = explode('[\&\?]', $query);
+        $tokens = preg_split('/[\&\?]/', $query);
         $token = 0;
         $types = array();
         for ($i = 0; $i < strlen($query); $i++) {
