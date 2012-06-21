@@ -6,12 +6,12 @@ action	= devfiles-settings-form
 
 [files]
 
-alt				= Allow new files
+alt				= "Allow new files"
 type			= select
 
 [files_date]
 
-alt				= Turn files off on
+alt				= "Turn files off on"
 type			= date
 
 [contact]

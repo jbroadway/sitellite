@@ -160,7 +160,7 @@ class TemplateTransformation {
 				return $value;
 			}
 		} elseif ($this->type == 'alternate') {
-			list ($first, $second) = preg_split ('/:/', $this->rule);
+			list ($first, $second) = explode (':', $this->rule);
 			if (! isset ($this->_previous) || $this->_previous == $second) {
 				$this->_previous = $first;
 				return $first;

@@ -6,12 +6,12 @@ action	= devnotes-settings-form
 
 [notes]
 
-alt				= Allow new notes
+alt				= "Allow new notes"
 type			= select
 
 [notes_date]
 
-alt				= Turn notes off on
+alt				= "Turn notes off on"
 type			= date
 
 [contact]
