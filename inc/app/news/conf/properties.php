@@ -151,6 +151,10 @@ appconf_set ('path', site_docroot () . '/inc/app/news/data');
 
 appconf_set ('webpath', site_prefix () . '/inc/app/news/data');
 
+
+appconf_set ('thumb_width',100);
+appconf_set ('thumb_height',100);
+
 /**
  * Set this to the template you wish to use to display the app, otherwise
  * the default is used.

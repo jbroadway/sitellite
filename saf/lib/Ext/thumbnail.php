@@ -23,6 +23,8 @@ function makethumbnail($orig_file , $thumb_file , $max_width = 250 , $max_height
 
     // Get thumb dir
     $split2 = explode("/",$thumb_file);
+	// Get extension
+	$split3 = explode(".",$split2[count($split2) - 1]);
     $thumb_body = $split2 [ count($split2) - 1];
     unset($split2 [ count($split2) - 1] );
     $dir_thumb = implode("/",$split2);

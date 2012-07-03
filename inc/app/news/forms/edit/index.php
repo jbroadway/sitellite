@@ -118,9 +118,7 @@ class NewsEditForm extends MailForm {
 
         // check if thumb is set
         if( !empty( $vals['thumb'] ) ) {
-         // check if thumbnail path ends with "-thumb.jpg"
          $string = substr($vals['thumb'], -10 );
-         if($string != "-thumb.jpg") {
           // create a thumbnail
 
           // get thumb_filename and thumb_dir
@@ -140,13 +138,19 @@ class NewsEditForm extends MailForm {
           $dir = implode("/",$split);
 
           // get thumb_body, i.e. filename without extension
-          $split2 = explode("\.", $thumb_filename);
+          $split2 = explode(".", $thumb_filename);
           // extension is last part, so delete it and implode again.
+		  $ext = $split2[count($split2) - 1];
           unset($split2 [ count($split2) - 1] );
           $thumb_body = implode(".",$split2);
 
           $orig_filename = $dir . "/" . $thumb_filename;
-          $thumbnail = $dir . "/" . $thumb_body . "-thumb.jpg";
+		  $dir = appconf('webpath');
+		  if($dir[0] == '/')
+			$dir = substr($dir,1);
+			
+		  
+		  $thumbnail = $dir . "/thumbnails/" . $thumb_body . "." . $ext;
 
           // load thumbnail class
           loader_import("saf.Ext.thumbnail");
@@ -160,7 +164,6 @@ class NewsEditForm extends MailForm {
 
           // set $vals['thumb'] to the new filename
           $vals['thumb'] = "http://" . $domain . "/" . $thumbnail;
-         }
         }
 
         // end thumbnail
