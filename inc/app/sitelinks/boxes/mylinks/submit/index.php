@@ -102,7 +102,7 @@ class SitelinksMylinksSubmitForm extends MailForm {
 				'user_id' => session_username (),
 				'category' => $vals['category'],
 				'ctype' => $this->_sitelinks_type,
-				'ts' => intl_date (date ('Y-m-d H:i:s'), 'shortcevdate'),
+				'ts' => date('Y-m-d H:i:s'),
 				'summary' => $vals['summary'],
 				'sitellite_status' => 'draft',
 				'sitellite_access' => 'public',
