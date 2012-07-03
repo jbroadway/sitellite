@@ -24,11 +24,13 @@ app_boxchooser          = rw
 
 delete                  = rw
 
+edit                    = rw
+
 sitellite_form_submission= rw
 
-imagechooser_delete     = rw
+app_imagechooser        = rw
 
-sitellite_news          = rw
+imagechooser_delete     = rw
 
 sitellite_sidebar       = rw
 

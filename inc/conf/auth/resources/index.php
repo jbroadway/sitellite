@@ -92,6 +92,22 @@ app_sitepublisher       = Off
 
 app_pbadmin             = Off
 
+edit                    = Off
+
+app_imagechooser        = Off
+
+app_siteinvoice         = Off
+
+myadm_report            = Off
+
+siteevent_event         = Off
+
+sitelinks_item          = Off
+
+SiteShop                = Off
+
+SiteEvent               = Off
+
 ;
 ; THE END
 ;

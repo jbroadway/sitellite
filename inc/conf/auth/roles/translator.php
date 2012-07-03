@@ -22,7 +22,7 @@ add                     = rw
 
 delete                  = rw
 
-sitellite_translation   = rw
+edit                    = rw
 
 app_multilingual        = rw
 

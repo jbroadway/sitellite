@@ -3,9 +3,10 @@
 [Collection]
 
 name = siteshop_product
+app = siteshop
 display = Products
 singular = Product
-visible = no
+visible = yes
 is_versioned = no
 
 key_field = id

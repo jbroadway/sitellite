@@ -22,6 +22,10 @@ add                     = rw
 
 app_boxchooser          = rw
 
+edit                    = rw
+
+app_imagechooser        = rw
+
 sitellite_news          = rw
 
 sitellite_sidebar       = rw

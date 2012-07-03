@@ -3,6 +3,7 @@
 [Collection]
 
 name		    = sitemailer2_recipient
+app = sitemailer2
 display			= Mailing List Recipients
 singular		= Mailing List Recipient
 key_field		= id
@@ -10,7 +11,7 @@ key_field_name	= ID
 title_field		= email
 title_field_name= Recipient
 is_versioned	= no
-visible        = no
+visible        = yes
 
 ; These allow you to override the add and edit forms for your collection,
 ; which gives you control over all aspects of the behaviour of the form.

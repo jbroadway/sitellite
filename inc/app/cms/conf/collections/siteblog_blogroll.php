@@ -3,6 +3,7 @@
 [Collection]
 
 name = siteblog_blogroll
+app = siteblog
 display = Blog Roll
 singular = Link
 key_field = id

@@ -9,7 +9,7 @@ singular = Wiki Page
 key_field = id
 title_field = id
 is_versioned	= yes
-visible = no
+visible = yes
 allow_uppercase_key = yes
 
 [Source]

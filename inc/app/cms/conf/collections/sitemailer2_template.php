@@ -3,6 +3,7 @@
 [Collection]
 
 name			= sitemailer2_template
+app = sitemailer2
 display			= Mailing List Templates
 singular		= Mailing List Templates
 is_versioned		= no
@@ -10,7 +11,7 @@ key_field		= id
 key_field_name		= ID
 title_field		= title
 title_field_name	= Title
-visible                 = no
+visible                 = yes
 
 ; These allow you to override the add and edit forms for your collection,
 ; which gives you control over all aspects of the behaviour of the form.

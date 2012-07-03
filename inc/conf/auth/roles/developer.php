@@ -18,6 +18,8 @@ disabled                = no
 
 [allow:resources]
 
+all                     = rw
+
 add                     = rw
 
 app_appdoc              = rw
@@ -25,6 +27,8 @@ app_appdoc              = rw
 app_boxchooser          = rw
 
 app_myadm               = rw
+
+myadm_report            = rw
 
 delete                  = rw
 
@@ -34,9 +38,17 @@ app_devnotes            = rw
 
 app_devtools            = rw
 
+edit                    = rw
+
+siteevent_event         = rw
+
 sitellite_form_submission= rw
 
+app_imagechooser        = rw
+
 imagechooser_delete     = rw
+
+sitelinks_item          = rw
 
 sitellite_homepage      = rw
 
@@ -54,6 +66,8 @@ app_siteconnector       = rw
 
 app_siteevent           = rw
 
+SiteEvent               = rw
+
 app_sitefaq             = rw
 
 app_siteforum           = rw
@@ -61,6 +75,8 @@ app_siteforum           = rw
 app_sitegallery         = rw
 
 app_siteglossary        = rw
+
+app_siteinvoice         = rw
 
 app_sitelinks           = rw
 
@@ -75,6 +91,8 @@ app_sitepublisher       = rw
 app_sitequotes          = rw
 
 app_sitesearch          = rw
+
+SiteShop                = rw
 
 app_sitestreamer        = rw
 
@@ -93,6 +111,8 @@ app_sitetracker         = rw
 app_multilingual        = rw
 
 app_upgrade             = rw
+
+app_usradm              = rw
 
 sitellite_filesystem    = rw
 
