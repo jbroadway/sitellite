@@ -73,17 +73,17 @@
 		<tr style="background-color: {alt/next}">
 			<td align="center">
                 {if not (loop._key == obj[handler])}
-                    {if locks[ loop._key ] or not editable[ loop._key ]}
+                    {if locks[ loop._key ] or not editable[ loop._key ] or not obj[edit]}
 					    <a href="#" class="lock-info"><img src="{site/prefix}/inc/app/cms/pix/icons/locked.gif" alt="{intl Locked}" title="{intl Locked}" border="0" />{if not empty (loop.lock_owner)}<span>{intl Lock Owner}: {loop/lock_owner}<br />{intl Expires}: {filter cms_filter_ts_time}{loop/lock_expires}{end filter}</span>{end if}</a>
 			    	{end if}
-				    {if not locks[ loop._key ] and editable[ loop._key ]}
+				    {if not locks[ loop._key ] and editable[ loop._key ] and obj[edit]}
 					    <input type="checkbox" name="_key[]" value="{loop/_key}" />
     				{end if}
                 {end if}
 			</td>
 			{if obj[is_versioned]}
 				<td align="center">
-					{if not locks[ loop._key ] and editable[ loop._key ]}
+					{if not locks[ loop._key ] and editable[ loop._key ] and obj[edit]}
 					<a href="{site/prefix}/index/cms-history-action?_key={loop/_key}&_collection={collection}&_return={filter urlencode}{return}{end filter}"><img src="{site/prefix}/inc/app/cms/pix/icons/history.gif" alt="{intl Change History}" title="{intl Change History}" border="0" /></a>
 					{end if}
 					{if else}
@@ -94,10 +94,10 @@
 			{loop loop._properties}
 				{if strpos (loop._key, '_') !== 0 and strpos (loop._key, 'lock_') !== 0}
 				{if loop._key eq obj[title_field]}
-					{if locks[ parent._key ] or not editable[ parent._key ]}
+					{if locks[ parent._key ] or not editable[ parent._key ] or not obj[edit]}
 					<td align="{php align[ loop._key ]}" width="{php width[ loop._key ]}">{filter none}{loop/_value}{end filter}</td>
 					{end if}
-					{if not locks[ parent._key ] and editable[ parent._key ]}
+					{if not locks[ parent._key ] and editable[ parent._key ] and obj[edit]}
 					<td align="{php align[ loop._key ]}" width="{php width[ loop._key ]}"><a href="{site/prefix}/index/cms-edit-form?_collection={collection}&_key={parent/_key}&_return={filter urlencode}{return}{end filter}">{filter none}{loop/_value}{end filter}</a></td>
 					{end if}
 				{end if}

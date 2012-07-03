@@ -89,6 +89,7 @@ foreach ($cgi->param as $p) {
 $pg->url .= $data['facet_url'];
 $data['return'] = $pg->url;
 
+
 // build column headers
 
 $struct = array_keys ($rex->getStruct ());
@@ -287,6 +288,12 @@ if (isset ($rex->info['Collection']['add']) && $rex->info['Collection']['add'] =
 	$data['add'] = false;
 } elseif (session_allowed ('add', 'rw', 'resource')) {
 	$data['add'] = true;
+}
+
+if (isset ($rex->info['Collection']['edit']) && $rex->info['Collection']['edit'] == false) {
+	$data['edit'] = false;
+} elseif (session_allowed ('edit', 'rw', 'resource')) {
+	$data['edit'] = true;
 }
 
 $data['links'] = array ();
