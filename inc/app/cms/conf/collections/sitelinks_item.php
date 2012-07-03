@@ -31,8 +31,8 @@ body_field		= summary
 
 ; These allow you to override the add and edit forms for your collection,
 ; which gives you control over all aspects of the behaviour of the form.
-;add				= sitelinks/add
-;edit			= sitelinks/edit
+add				= sitelinks/add
+edit			= sitelinks/edit
 
 ; Additional fields to display
 

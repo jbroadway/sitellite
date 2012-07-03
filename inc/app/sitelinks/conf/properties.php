@@ -115,7 +115,7 @@ appconf_set ('limit', 10);
  * If this is set to true, it will display a list of links that are
  * attributed to the same user_id.
  */
-appconf_set ('show_related', true);
+appconf_set ('show_related', false);
 
 /**
  * Set to true for RSS links to appear in the bottom navigation links
@@ -157,6 +157,7 @@ appconf_set ('time', '%I:%M %p');
 appconf_set ('date_time', '%B %e, %Y %I:%M %p');
 appconf_set ('admin_date_short', '%B %e');
 appconf_set ('admin_date_month', '%B, %Y');
+appconf_set ('admin_date_week', '%B, %W');
 appconf_set ('admin_date_year', '%Y');
 //END: SEMIAS.
 

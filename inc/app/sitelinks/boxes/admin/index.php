@@ -49,15 +49,65 @@ if (empty ($cgi->top_date)) {
 //$data->top_end = $end;
 //list ($prev, $next) = sitelinks_get_dates ($cgi->top_range, $cgi->top_date);
 //-----------------------------------------------
-$data->top_date = intl_date ($cgi->top_date, 'shortcevdate');
 
-list ($start, $end) = sitelinks_get_range ($cgi->top_range, intl_date ($cgi->top_date, 'shortcevdate')); //$cgi->top_date);
-$data->top_start = $start;
-$data->top_end = $end;
-list ($prev, $next) = sitelinks_get_dates ($cgi->top_range, intl_date ($cgi->top_date, 'shortcevdate')); //$cgi->top_date);
-//END: SEMIAS.
-$data->top_prev = $prev;
-$data->top_next = $next;
+//28-06-2012:
+//Arend: Bugfix in datedisplay (part 1) This bug creeped into some corners
+//resulting in non-displaying lists.
+//This is the old version:
+
+	//$data->top_date = intl_date ($cgi->top_date, 'shortcevdate');
+
+//End Bugfix (part 1)
+
+//28-06-2012:
+//Arend: Bugfix in datedisplay (part 2) This bug creeped into some corners
+//resulting in non-displaying lists.
+//This is the old version:
+
+	//	list ($start, $end) = sitelinks_get_range ($cgi->top_range, intl_date ($cgi->top_date, 'shortcevdate')); //$cgi->top_date);
+	//	$data->top_start = $start;
+	//	$data->top_end = $end;
+	//	list ($prev, $next) = sitelinks_get_dates ($cgi->top_range, intl_date ($cgi->top_date, 'shortcevdate')); //$cgi->top_date);
+	//	//END: SEMIAS.
+	//	$data->top_prev = $prev;
+	//	$data->top_next = $next;
+
+//	This it the correction:
+
+	list ($start, $end) = sitelinks_get_range ($cgi->top_range, $cgi->top_date);
+	$data->top_start = $start;
+	$data->top_end = $end;
+	list ($prev, $next) = sitelinks_get_dates ($cgi->top_range, $cgi->top_date);
+	$data->top_prev = $prev;
+	$data->top_next = $next;
+
+//End Bugfix (part 2)
+
+
+//28-06-2012:
+//Arend: Bugfix in datedisplay (part 3) This bug creeped into some corners
+//resulting in non-displaying lists.
+//Added the 'week' option.
+// date translations
+if (($data->top_range) == 'day') {
+    $data->display_top_date = intl_date ($cgi->top_date, 'cevdate');
+    $data->display_top_prev = intl_date ($data->top_prev, 'cevdate');
+    $data->display_top_next = intl_date ($data->top_next, 'cevdate');
+} else if ($data->top_range == 'week') {
+    $data->display_top_date = intl_date ($cgi->top_date, 'week');
+    $data->display_top_prev = intl_date ($data->top_prev, 'week');
+    $data->display_top_next = intl_date ($data->top_next, 'week');
+} else if ($data->top_range == 'month') {
+    $data->display_top_date = intl_date ($cgi->top_date, 'month');
+    $data->display_top_prev = intl_date ($data->top_prev, 'month');
+    $data->display_top_next = intl_date ($data->top_next, 'month');
+} else if ($data->top_range == 'year') {
+    $data->display_top_date = intl_date ($cgi->top_date, 'year');
+    $data->display_top_prev = intl_date ($data->top_prev, 'year');
+    $data->display_top_next = intl_date ($data->top_next, 'year');
+}
+//End bugfix (part 3)
+
 
 // views
 $list = db_fetch_array (
