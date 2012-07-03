@@ -56,31 +56,31 @@ align = center
 
 [browse:name]
 
-header = Report Name
+header = "Report Name"
 width = "30%"
 
 [browse:created]
 
-header = Created On
+header = "Created On"
 filter_import = cms.Filters
 filter = cms_filter_date_time
 width = "18%"
 
 [browse:sitellite_status]
 
-header = Status
+header = "Status"
 filter = ucfirst
 width = "12%"
 
 [browse:sitellite_access]
 
-header = Access Level
+header = "Access Level"
 filter = ucfirst
 width = "12%"
 
 [browse:sitellite_team]
 
-header = Owned By Team
+header = "Owned By Team"
 filter = ucfirst
 width = "12%"
 
