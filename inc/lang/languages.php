@@ -20,7 +20,7 @@ charset                 = UTF-8
 
 fallback                = Off
 
-default                 = no
+default                 = On
 
 [fr]
 
@@ -32,7 +32,7 @@ locale                  = Off
 
 charset                 = UTF-8
 
-fallback                = Off
+fallback                = en
 
 default                 = no
 
@@ -48,21 +48,7 @@ charset                 = UTF-8
 
 fallback                = en
 
-default                 = yes
-
-[de]
-
-name                    = Deutsch
-
-code                    = de
-
-locale                  = Off
-
-charset                 = UTF-8
-
-fallback                = nl
-
-default                 = no
+default                 = Off
 
 ;
 ; THE END

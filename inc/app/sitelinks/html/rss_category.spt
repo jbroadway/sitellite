@@ -14,7 +14,7 @@
 	<link>{site/url}/index/sitelinks-app/category.{cgi/category}</link>
 	<description>{rss_description}</description>
 
-	<dc:language>{if not empty (intl_locale ())}{intl/locale}-{end if}{intl/language}</dc:language>
+	<dc:language>{if not empty (intl.locale)}{intl/locale}-{end if}{intl/language}</dc:language>
 	<dc:date>{rss_date}</dc:date>
 
 	<syn:updatePeriod>hourly</syn:updatePeriod>

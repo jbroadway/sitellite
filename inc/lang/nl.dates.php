@@ -42,6 +42,12 @@ cevdate                 = j F Y
 
 longevdate              = "l, j F Y"
 
+year                    = Y
+
+week                    = Y - W
+
+month                   = F Y
+
 ;
 ; THE END
 ;
