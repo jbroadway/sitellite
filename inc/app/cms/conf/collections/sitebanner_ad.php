@@ -4,8 +4,8 @@
 
 name = sitebanner_ad
 app	= sitebanner
-display = Banner Ads
-singular = Banner Ad
+display = "Banner Ads"
+singular = "Banner Ad"
 key_field = id
 title_field = name
 
@@ -19,7 +19,7 @@ name = Blank
 
 [browse:stats]
 
-header = ""
+header = " "
 width = 5%
 align = center
 filter_import = sitebanner.Filters
@@ -27,19 +27,19 @@ virtual = sitebanner_virtual_stats
 
 [browse:name]
 
-header = Name
+header = "Name"
 width = 18%
 
 [browse:client]
 
-header = Client
+header = "Client"
 width = 25%
 filter_import = sitebanner.Filters
 filter = sitebanner_filter_client
 
 [browse:impressions]
 
-header = Impressions
+header = "Impressions"
 width = 8%
 align = right
 filter_import = sitebanner.Filters
@@ -47,7 +47,7 @@ filter = sitebanner_filter_impressions
 
 [browse:purchased]
 
-header = Remaining
+header = "Remaining"
 width = 8%
 align = right
 filter_import = sitebanner.Filters
@@ -55,7 +55,7 @@ filter = sitebanner_filter_purchased
 
 [browse:clicks]
 
-header = Clicks
+header = "Clicks"
 width = 8%
 align = right
 filter_import = sitebanner.Filters
@@ -63,39 +63,39 @@ virtual = sitebanner_virtual_clicks
 
 [browse:clicks_percent]
 
-header = %
-width = 8%
+header = "%"
+width = "8%"
 align = right
 filter_import = sitebanner.Filters
 virtual = sitebanner_virtual_clicks_percent
 
 [browse:active]
 
-header = Active
+header = "Active"
 width = 8%
 filter = ucwords
 
 [facet:client]
 
 type = select
-display = Client
+display = "Client"
 values = "db_shift_array ('select distinct client from sitebanner_ad order by client asc')"
 
 [facet:active]
 
 type = select
-display = Active
+display = "Active"
 values = "array ('yes' => 'Yes', 'no' => 'No')"
 
 [facet:section]
 
 type = select
-display = Section
+display = "Section"
 values = "loader_call ('sitebanner.MenuSections', 'menu_get_sections')"
 
 [hint:name]
 
-alt = Ad Name
+alt = "Ad Name"
 rule 1 = not empty, You must enter a name for your ad.
 
 [hint:purchased]
@@ -109,7 +109,7 @@ type = hidden
 
 [hint:url]
 
-alt = URL
+alt = "URL"
 extra = "size='40'"
 
 [hint:description]
@@ -126,7 +126,7 @@ setValues = "eval: db_pairs ('select username, concat(role, ` - `, lastname, ` `
 
 [hint:display_url]
 
-alt = Alternate Text
+alt = "Alternate Text"
 extra = "size='40'"
 
 [hint:file]
@@ -137,13 +137,13 @@ type = sitebanner.Widgets.Shapeshifter
 
 type = multiple
 size = 5
-alt = Display in Sections
+alt = "Display in Sections"
 setValues = "eval: array_merge (array ('' => '- ALL -'), loader_call ('sitebanner.MenuSections', 'menu_get_sections'))"
 
 [hint:position]
 
 type = selector
-alt = Screen Position
+alt = "Screen Position"
 table = sitebanner_position
 key = name
 

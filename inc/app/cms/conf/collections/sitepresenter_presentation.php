@@ -22,7 +22,7 @@ sitesearch_access	= public
 key_field		= id
 
 title_field		= title
-title_field_name= Title
+title_field_name= "Title"
 
 summary_field	= cover
 ;keywords_field	= category
@@ -53,16 +53,16 @@ align			= center
 
 [browse:title]
 
-header			= Title
+header			= "Title"
 
 [browse:category]
 
-header			= Category
+header			= "Category"
 width			= "15%"
 
 [browse:slides]
 
-header			= Slides
+header			= "Slides"
 filter_import	= sitepresenter.Filters
 virtual			= sitepresenter_virtual_slides
 width			= "8%"
@@ -70,7 +70,7 @@ align			= center
 
 [browse:views]
 
-header			= Views
+header			= "Views"
 filter_import	= sitepresenter.Filters
 virtual			= sitepresenter_virtual_views
 width			= "8%"
@@ -78,29 +78,29 @@ align			= center
 
 [browse:sitellite_status]
 
-header			= Status
+header			= "Status"
 width			= "10%"
 
 [browse:sitellite_access]
 
-header			= Access
+header			= "Access"
 width			= "10%"
 
 [facet:category]
 
-display			= Category
+display			= "Category"
 type			= select
 values			= "db_shift_array ('select distinct category from sitepresenter_presentation where category != `` order by category asc')"
 
 [facet:sitellite_status]
 
-display			= Status
+display			= "Status"
 type			= select
 values			= "session_get_statuses ()"
 
 [facet:sitellite_access]
 
-display			= Access Level
+display			= "Access Level"
 type			= select
 values			= "session_get_access_levels ()"
 

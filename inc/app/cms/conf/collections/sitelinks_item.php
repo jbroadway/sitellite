@@ -23,7 +23,7 @@ edit_extras		= "sitelinks/properties"
 key_field		= id
 
 title_field		= title
-title_field_name= Title
+title_field_name= "Title"
 
 summary_field	= summary
 keywords_field	= category
@@ -46,7 +46,7 @@ name			= Database
 
 [browse:title]
 
-header			= Link Name
+header			= "Link Name"
 
 [browse:category]
 
@@ -54,17 +54,17 @@ header			= Category
 
 [browse:sitellite_status]
 
-header			= Status
+header			= "Status"
 width			= "10%"
 
 [browse:sitellite_access]
 
-header			= Access
+header			= "Access"
 width			= "10%"
 
 [hint:url]
 
-alt				= Link URL
+alt				= "Link URL"
 extra			= "size=`40`"
 
 [hint:user_id]

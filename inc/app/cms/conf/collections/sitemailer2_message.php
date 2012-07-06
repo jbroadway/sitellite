@@ -31,43 +31,43 @@ name			= Database
 
 [browse:title]
 
-header			= MailMessageTitle
+header			= "MailMessageTitle"
 width			= "40%"
 
 [browse:date]
 
-header			= Created
+header			= "Created"
 width			= "15%"
 
 [browse:template]
 
-header			= Template Used
+header			= "Template Used"
 width			= "20%"
 filter_import = sitemailer2.Filters
 filter = sitemailer2_filter_template
 
 [browse:status]
 
-header			= Status
+header			= "Status"
 width			= "10%"
 
 
 [facet:id]
 
-display			= ID
+display			= "ID"
 type			= text
 fields			= "id"
 equal			= on
 
 [facet:title]
 
-display			= Title
+display			= "Title"
 type			= text
 fields			= "title"
 
 [facet:template]
 
-display			= Template Used
+display			= "Template Used"
 type			= select
 values			= "db_pairs ('select id,title from sitemailer2_template order by title asc')"
 

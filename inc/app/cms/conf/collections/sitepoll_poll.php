@@ -20,59 +20,59 @@ name = Database
 
 [browse:title]
 
-header = Question
+header = "Question"
 width = 28%
 filter_import = sitepoll.Filters
 filter = sitepoll_filter_title
 
 [browse:date_added]
 
-header = Date Added
+header = "Date Added"
 width = 18%
 filter_import = sitepoll.Filters
 filter = sitepoll_filter_date
 
 [browse:votes]
 
-header = Votes
+header = "Votes"
 width = 10%
 align = right
 virtual = sitepoll_virtual_votes
 
 [browse:enable_comments]
 
-header = Comments
+header = "Comments"
 width = 10%
 align = right
 virtual = sitepoll_virtual_enable_comments
 
 [browse:sitellite_status]
 
-header = Status
+header = "Status"
 width = 12%
 filter = ucwords
 
 [browse:sitellite_access]
 
-header = Access Level
+header = "Access Level"
 width = 12%
 filter = ucwords
 
 [facet:title]
 
 type = text
-display = Text
+display = "Text"
 fields = "title, option_1, option_2, option_3, option_4, option_5, option_6, option_7, option_8, option_9, option_10, option_11, option_12"
 
 [facet:sitellite_status]
 
-display			= Status
+display			= "Status"
 type			= select
 values			= "session_get_statuses ()"
 
 [facet:sitellite_access]
 
-display			= Access Level
+display			= "Access Level"
 type			= select
 values			= "session_get_access_levels ()"
 
@@ -84,7 +84,7 @@ values = "loader_call ('saf.GUI.Menu', 'menu_get_sections')"
 
 [hint:title]
 
-alt = Question
+alt = "Question"
 rule 1 = not empty, You must enter a question.
 extra = "size='50'"
 
@@ -140,7 +140,7 @@ extra = "size='45'"
 
 type = multiple
 size = 5
-alt = Display in Sections
+alt = "Display in Sections"
 setValues = "eval: array_merge (array ('' => '- ALL -'), loader_call ('saf.GUI.Menu', 'menu_get_sections'))"
 
 [hint:date_added]
@@ -157,13 +157,13 @@ default_value = "no"
 [hint:sitellite_status]
 
 type = status
-alt = Status
+alt = "Status"
 defalut_value = draft
 
 [hint:sitellite_access]
 
 type = access
-alt = Access Level
+alt = "Access Level"
 default_value = public
 
 [hint:sitellite_startdate]

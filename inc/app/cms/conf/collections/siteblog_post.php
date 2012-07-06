@@ -4,12 +4,12 @@
 
 name			        = siteblog_post
 app					= siteblog
-display			    = Blog Posts
-singular		        = Blog Post
+display			    = "Blog Posts"
+singular		        = "Blog Post"
 is_versioned		    = yes
 key_field		    = id
 key_field_name		= ID
-title_field         = subject 
+title_field         = subject
 
 
 ; These allow you to override the add and edit forms for your collection,
@@ -32,63 +32,63 @@ name			    = Database
 
 [browse:subject]
 
-header			= Title
+header			= "Title"
 width = "36%"
 
 [browse:author]
 
-header			= Author
+header			= "Author"
 width			= "10%"
 
 [browse:category]
 
-header = Category
+header = "Category"
 width = "12%"
 filter_import = "siteblog.Filters"
 filter = "siteblog_filter_category"
 
 [browse:status]
 
-header			= Status
+header			= "Status"
 width			= "10%"
 filter_import = "siteblog.Filters"
 filter = "siteblog_filter_status"
 
 [browse:created]
 
-header			= Created
+header			= "Created"
 width			= "20%"
 filter_import = "siteblog.Filters"
 filter = "siteblog_filter_nicedate"
 
 ;[facet:id]
 
-;display			= ID
+;display			= "ID"
 ;type			    = text
 ;fields			= "id"
-;equal			= on
+;equal			= "on"
 
 [facet:subject]
 
-display			= Text
+display			= "Text"
 type			    = text
 fields			= "subject, body"
 
 [facet:author]
 
-display = Author
+display = "Author"
 type = select
 values = "db_shift_array ('select distinct author from siteblog_post order by author asc')"
 
 [facet:Category]
 
-display = Category
+display = "Category"
 type = select
 values = "db_pairs ('select id, title from siteblog_category order by title asc')"
 
 [facet:status]
 
-display = Status
+display = "Status"
 type = select
 values = "array ('visible' => 'Published', 'not visible' => 'Draft')"
 

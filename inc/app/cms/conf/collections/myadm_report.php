@@ -4,7 +4,7 @@
 
 name = myadm_report
 app = myadm
-display = DB Reports
+display = "DB Reports"
 singular = Report
 key_field = id
 title_field = name
@@ -23,32 +23,32 @@ name = Database
 
 [link:myadm]
 
-text = DB Manager
-url = /myadm-app
+text = "DB Manager"
+url = "/myadm-app"
 requires resource = app_myadm
 requires = rw
 
 [facet:sitellite_status]
 
 type = select
-display = Status
+display = "Status"
 values = "session_get_statuses ()"
 
 [facet:sitellite_access]
 
 type = select
-display = Access Level
+display = "Access Level"
 values = "session_get_access_levels ()"
 
 [facet:sitellite_team]
 
 type = select
-display = Team
+display = "Team"
 values = "session_get_teams ()"
 
 [browse:run]
 
-header = ""
+header = " "
 filter_import = myadm.Filters
 virtual = myadm_report_run
 width = "5%"
@@ -108,7 +108,7 @@ alt = Status
 [hint:sitellite_access]
 
 type = access
-alt = Access Level
+alt = "Access Level"
 setDefault = private
 
 [hint:sitellite_startdate]

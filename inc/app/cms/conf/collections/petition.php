@@ -4,7 +4,7 @@
 
 name = petition
 app = petition
-display = Petitions
+display = "Petitions"
 singular = Petition
 
 is_versioned = no
@@ -13,7 +13,7 @@ sitesearch_access = public
 
 key_field = id
 title_field = name
-title_field_name = Title
+title_field_name = "Title"
 
 summary_field = description
 body_field = body
@@ -31,11 +31,11 @@ name = Blank
 
 [browse:name]
 
-header = Title
+header = "Title"
 
 [browse:signatures]
 
-header = Signatures
+header = "Signatures"
 filter_import = petition.Filters
 virtual = petition_filter_signatures
 align = center
@@ -43,7 +43,7 @@ width = "10%"
 
 [browse:ts]
 
-header = Date/Time
+header = "Date/Time"
 filter_import	= cms.Filters
 filter			= cms_filter_date_time
 align = center
@@ -51,39 +51,39 @@ width = "20%"
 
 [browse:sitellite_status]
 
-header = Status
+header = "Status"
 filter = ucwords
 align = center
 width = "10%"
 
 [browse:sitellite_access]
 
-header = Access
+header = "Access"
 filter = ucwords
 align = center
 width = "10%"
 
 [facet:name]
 
-display = Text
+display = "Text"
 type = text
 fields = name, description, body
 
 [facet:sitellite_status]
 
-display			= Status
+display			= "Status"
 type			= select
 values			= "session_get_statuses ()"
 
 [facet:sitellite_access]
 
-display			= Access Level
+display			= "Access Level"
 type			= select
 values			= "session_get_access_levels ()"
 
 [hint:name]
 
-alt = Title
+alt = "Title"
 extra = "size=`40`"
 
 [hint:ts]
@@ -108,23 +108,23 @@ type = xed.Widget.Xeditor
 [hint:sitellite_status]
 
 type = status
-alt = Status
+alt = "Status"
 defalut_value = draft
 
 [hint:sitellite_access]
 
 type = access
-alt = Access Level
+alt = "Access Level"
 default_value = public
 
 [hint:sitellite_owner]
 
 type = owner
-alt = Created By
+alt = "Created By"
 
 [hint:sitellite_team]
 
 type = team
-alt = Owned by Team
+alt = "Owned by Team"
 
 ; */ ?>

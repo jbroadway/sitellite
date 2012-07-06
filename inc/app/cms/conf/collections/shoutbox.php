@@ -4,14 +4,14 @@
 
 name = shoutbox
 app = shoutbox
-display = Shoutbox
-singular = Message
+display = "Shoutbox"
+singular = "Message"
 
 key_field = id
-key_field_name = ID
+key_field_name = "ID"
 
 title_field = name
-title_field_name = Name
+title_field_name = "Name"
 
 body_field = message
 
@@ -31,44 +31,44 @@ name = Blank
 
 [link:edit_settings]
 
-text = Edit settings
+text = "Edit settings"
 url = "/usradm-applications-edit-action?appname=shoutbox"
 
 [browse:posted_on]
 
-header = Posted on
+header = "Posted on"
 width = "150"
 
 [browse:name]
 
-header = Name
+header = "Name"
 
 [browse:message]
 
-header = Message
+header = "Message"
 filter = filter_smiley
 filter_import = smiley.Smiley
 
 [browse:ip_address]
 
-header = IP Address
+header = "IP Address"
 width = "110"
 
 [facet:name]
 
-display = Name
+display = "Name"
 type = text
 fields = "name"
 
 [facet:message]
 
-display = Message
+display = "Message"
 type = text
 fields = "message"
 
 [facet:ip_address]
 
-display = Ip Address
+display = "Ip Address"
 type = text
 fields = "ip_address"
 

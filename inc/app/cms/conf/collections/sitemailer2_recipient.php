@@ -31,58 +31,58 @@ name			= Database
 
 [browse:email]
 
-header			= Email Address
+header			= "Email Address"
 width			= "13%"
 length			= 30
 
 [browse:firstname]
 
-header			= First Name
+header			= "First Name"
 width			= "13%"
 length			= 20
 
 [browse:lastname]
 
-header			= Last Name
+header			= "Last Name"
 width			= "13%"
 length			= 20
 
 [browse:organization]
 
-header			= Organization
+header			= "Organization"
 width			= "13%"
 filter_import	= sitemailer2.Filters
 virtual			= sitemailer2_filter_org_link
 
 [browse:newsletter]
 
-header			= Newsletters
+header			= "Newsletters"
 width			= "13%"
 filter_import	= sitemailer2.Filters
 virtual			= sitemailer2_filter_newsletters
 
 [browse:status]
 
-header			= Status
+header			= "Status"
 width			= "11%"
 filter			= ucfirst
 
 [browse:created]
 
-header			= Created
+header			= "Created"
 width			= "11%"
 filter_import	= sitemailer2.Filters
 filter			= sitemailer2_filter_date
 
 [facet:email]
 
-display			= Text
+display			= "Text"
 type			= text
 fields			= "email, firstname, lastname, organization, website"
 
 [facet:newsletter]
 
-display			= Newsletter
+display			= "Newsletter"
 ;type	    	= sitemailer2.Facet.Join
 join_table  	= sitemailer2_recipient_in_newsletter
 key1			= recipient
@@ -99,7 +99,7 @@ count       	= off
 
 [facet:status]
 
-display			= Status
+display			= "Status"
 type			= select
 values			= "array ('active' => 'Active', 'unverified' => 'Unverified', 'disabled' => 'Disabled')"
 count			= off

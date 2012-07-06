@@ -4,11 +4,11 @@
 
 name			        = siteblog_comment
 app					= siteblog
-display			    = Blog Comments
-singular		        = Blog Comment
+display			    = "Blog Comments"
+singular		    = "Blog Comment"
 
 key_field		    = id
-key_field_name		= ID
+key_field_name		= "ID"
 title_field         = author
 is_versioned = no
 translate = no
@@ -34,56 +34,56 @@ name			    = Blank
 
 [link:akismet]
 
-url = /index/siteblog-akismet-action
-text = Comment Spam
+url = "/siteblog-akismet-action"
+text = "Comment Spam"
 
 [facet:author]
 
 type = text
-display = Text
+display = "Text"
 fields = author, email, url, body
 
 [facet:child_of_post]
 
 type = select
-display = Blog Post
+display = "Blog Post"
 values = "db_pairs ('select id, subject from siteblog_post order by subject asc')"
 
 [browse:author]
 
-header			= Name
+header			= "Name"
 width			= "10%"
 length = 18
 
 [browse:email]
 
-header			= Email
+header			= "Email"
 width			= "13%"
 length = 24
 
 [browse:ip]
 
-header = IP Address
+header = "IP Address"
 width = "13%"
 filter_import = "siteblog.Filters"
 filter = "siteblog_filter_ip"
 
 [browse:date]
 
-header			= Posted
+header			= "Posted"
 width			= "15%"
 filter_import = "siteblog.Filters"
 filter = "siteblog_filter_nicedate"
 
 [browse:body]
 
-header			= Comment
+header			= "Comment"
 width			= "18%"
 length			= 30
 
 [browse:child_of_post]
 
-header			= Blog Post
+header			= "Blog Post"
 width			= "24%"
 filter_import = "siteblog.Filters"
 filter = "siteblog_filter_blog_link"

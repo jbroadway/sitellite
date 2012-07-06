@@ -4,11 +4,11 @@
 
 name			= siteglossary_term
 app				= siteglossary
-display			= Glossary
-singular		= Term
+display			= "Glossary"
+singular		= "Term"
 key_field		= word
 title_field		= word
-title_field_name= Term
+title_field_name= "Term"
 summary_field	= description
 body_field		= description
 
@@ -31,32 +31,32 @@ name			= Blank
 
 [browse:word]
 
-header			= Term
+header			= "Term"
 
 [browse:category]
 
-header			= Category
+header			= "Category"
 
 [browse:description]
 
-header			= Summary
+header			= "Summary"
 length			= 40
 
 [browse:body]
 
-header			= Definition
+header			= "Definition"
 length			= 80
 filter			= strip_tags
 
 [facet:word]
 
-display			= Text
+display			= "Text"
 type			= text
 fields			= "word, description, body"
 
 [facet:category]
 
-display			= Category
+display			= "Category"
 type			= select
 values			= "db_shift_array ('select name from siteglossary_category order by name asc')"
 

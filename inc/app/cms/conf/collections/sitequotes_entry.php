@@ -27,23 +27,23 @@ name = Blank
 
 [browse:id]
 
-header = ID
+header = "ID"
 width = "7%"
 align = center
 
 [browse:person]
 
-header = Person
+header = "Person"
 width = "18%"
 
 [browse:company]
 
-header = Company
+header = "Company"
 width = "18%"
 
 [browse:quote]
 
-header = Quote
+header = "Quote"
 width = "50%"
 length = 70
 
@@ -54,7 +54,7 @@ type = xed.Widget.Xeditor
 [facet:person]
 
 type = text
-display = Text
+display = "Text"
 fields = "id, person, company, website, quote"
 
 ; */ ?>

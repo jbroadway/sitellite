@@ -4,14 +4,14 @@
 
 name = realty_listing
 app = realty
-display = Property Listings
-singular = Listing
+display = "Property Listings"
+singular = "Listing"
 
 key_field = id
-key_field_name = ID
+key_field_name = "ID"
 
 title_field = headline
-title_field_name = Headline
+title_field_name = "Headline"
 
 body_field = description
 
@@ -33,54 +33,54 @@ name = Blank
 
 [browse:headline]
 
-header = Headline
+header = "Headline"
 
 [browse:price]
 
-header = Asking Price
+header = "Asking Price"
 filter_import = realty.Filters
 filter = realty_filter_price
 align = right
 
 [browse:status]
 
-header = Status
+header = "Status"
 filter = ucwords
 align = center
 
 [browse:property_type]
 
-header = Property Type
+header = "Property Type"
 filter = ucwords
 align = center
 
 [browse:house_size]
 
-header = House Size
+header = "House Size"
 
 [browse:lot_size]
 
-header = Lot Size
+header = "Lot Size"
 
 [browse:gross_taxes]
 
-header = Gross Taxes
+header = "Gross Taxes"
 
 [facet:headline]
 
-display = Text
+display = "Text"
 type = text
 fields = headline, description
 
 [facet:status]
 
-display = Status
+display = "Status"
 type = select
 values = "array ('active','sold','archived')"
 
 [facet:property_type]
 
-display = Property Type
+display = "Property Type"
 type = select
 values = "array ('residential','commercial')"
 
@@ -90,19 +90,19 @@ extra = "size=`40`"
 
 [hint:price]
 
-alt = Asking Price
+alt = "Asking Price"
 
 [hint:house_size]
 
-alt = House Size / Business Type
+alt = "House Size / Business Type"
 
 [hint:lot_size]
 
-alt = Lot Size / Building Type
+alt = "Lot Size / Building Type"
 
 [hint:gross_taxes]
 
-alt = Gross Taxes / For Lease
+alt = "Gross Taxes / For Lease"
 
 [hint:summary]
 
@@ -161,13 +161,13 @@ clear = yes
 
 [hint:ts]
 
-alt = Listing Date
+alt = "Listing Date"
 type = calendar
 setValue = "eval: date ('Y-m-d')"
 
 [hint:status]
 
-alt = Listing Status
+alt = "Listing Status"
 
 [hint:description]
 

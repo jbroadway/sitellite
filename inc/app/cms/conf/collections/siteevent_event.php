@@ -4,8 +4,8 @@
 
 name			= siteevent_event
 app				= siteevent
-display			= Events
-singular		= Event
+display			= "Events"
+singular		= "Event"
 
 ; This determines whether versioning is enabled or not for this collection.
 is_versioned	= yes
@@ -22,7 +22,7 @@ sitesearch_access	= public
 key_field		= id
 
 title_field		= title
-title_field_name= Title
+title_field_name= "Title"
 
 summary_field	= details
 keywords_field	= category
@@ -30,8 +30,8 @@ body_field		= details
 
 ; These allow you to override the add and edit forms for your collection,
 ; which gives you control over all aspects of the behaviour of the form.
-add				= siteevent/add
-edit			= siteevent/edit
+add				= "siteevent/add"
+edit			= "siteevent/edit"
 
 order_by = date
 sorting_order = desc
@@ -48,84 +48,84 @@ name			= Database
 
 [browse:title]
 
-header			= Event Name
+header			= "Event Name"
 
 [browse:date]
 
-header			= Date
+header			= "Date"
 filter_import	= siteevent.Filters
 virtual			= siteevent_virtual_date
 width			= "15%"
 
 [browse:recurring]
 
-header			= Repeats
+header			= "Repeats"
 filter_import	= siteevent.Filters
 virtual			= siteevent_virtual_recurring
 width			= "6%"
 
 [browse:category]
 
-header			= Category
+header			= "Category"
 
 [browse:audience]
 
-header			= Audience
+header			= "Audience"
 filter			= siteevent_filter_audience
 filter_import	= siteevent.Filters
 
 [browse:sitellite_status]
 
-header			= Status
+header			= "Status"
 width			= "7%"
 filter			= ucwords
 
 [browse:sitellite_access]
 
-header			= Access
+header			= "Access"
 width			= "7%"
 filter			= ucwords
 
 [facet:category]
 
-display			= Category
+display			= "Category"
 type			= select
 values			= "db_shift_array ('select name from siteevent_category order by name asc')"
 
 ;[facet:audience]
 
-;display			= Audience
+;display		= "Audience"
 ;type			= select
 ;values			= "db_shift_array ('select name from siteevent_audience order by name asc')"
 
 [facet:sitellite_status]
 
-display			= Status
+display			= "Status"
 type			= select
 values			= "session_get_statuses ()"
 
 [facet:sitellite_access]
 
-display			= Access Level
+display			= "Access Level"
 type			= select
 values			= "session_get_access_levels ()"
 
 [facet:id]
 
-display			= ID
+display			= "ID"
 type			= text
 fields			= "id"
 equal			= on
 
 [facet:title]
 
-display			= Title
+display			= "Title"
 type			= text
 fields			= "title"
 
 [facet:summary]
 
-display			= Body
+display			= "Body"
 type			= text
 fields			= "summary"
 

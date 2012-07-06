@@ -4,11 +4,11 @@
 
 name			        = siteblog_category
 app = siteblog
-display			    = Blog Categories
-singular		        = Blog Category
+display			    = "Blog Categories"
+singular		    = "Blog Category"
 
 key_field		    = id
-key_field_name		= ID
+key_field_name		= "ID"
 title_field         = title
 translate = no
 
@@ -22,11 +22,11 @@ name			    = Database
 
 [browse:title]
 
-header			= Category Name
+header				= "Category Name"
 
 [hint:title]
 
-alt = Category Name
+alt = "Category Name"
 
 [hint:poster_visible]
 

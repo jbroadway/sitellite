@@ -18,7 +18,7 @@ key_field		= id
 key_field_name	= ID
 
 title_field		= subject
-title_field_name= Subject
+title_field_name= "Subject"
 
 body_field		= body
 

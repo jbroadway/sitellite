@@ -4,8 +4,8 @@
 
 name = sitestudy_item
 app = sitestudy
-display = Case Studies
-singular = Case Study
+display = "Case Studies"
+singular = "Case Study"
 
 key_field = id
 key_field_name = ID

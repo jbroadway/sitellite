@@ -3,7 +3,7 @@
 [Collection]
 
 name			= sitellite_undo
-display			= Undo
+display			= "Undo"
 singular		= Item
 
 ; This determines the display order of the collections in the control panel.
@@ -18,7 +18,7 @@ key_field		= id
 is_versioned	= yes
 visible			= no
 scheduler_skip	= yes
-translate = no
+translate 		= no
 
 [Source]
 

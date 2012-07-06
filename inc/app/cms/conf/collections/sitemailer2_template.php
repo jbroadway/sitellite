@@ -31,35 +31,35 @@ name			= Database
 
 [browse:title]
 
-header			= Template Title
+header			= "Template Title"
 width			="35%"
 
 [browse:subject]
 
-header			= Subject
+header			= "Subject"
 width			="35%"
 
 [browse:date]
 
-header			= Created
+header			= "Created"
 width			= "15%"
 
 [facet:id]
 
-display			= ID
+display			= "ID"
 type			= text
 fields			= "id"
 equal			= on
 
 [facet:title]
 
-display			= Title
+display			= "Title"
 type			= text
 fields			= "title"
 
 [facet:subject]
 
-display			= Subject
+display			= "Subject"
 type			= text
 fields			= "subject"
 

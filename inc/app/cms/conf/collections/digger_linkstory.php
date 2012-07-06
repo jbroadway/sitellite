@@ -18,36 +18,36 @@ name = Database
 name = Blank
 
 [browse:title]
-header = Title
+header = "Title"
 width = 33%
 length = 50
 
 [browse:score]
-header = Score
+header = "Score"
 width = 8%
 align = center
 
 [browse:category]
-header = Category
+header = "Category"
 width = 12%
 align = center
 filter = digger_filter_category_name
 filter_import = digger.Filters
 
 [browse:user]
-header = Posted By
+header = "Posted By"
 width = 10%
 align = center
 
 [browse:posted_on]
-header = Posted On
+header = "Posted On"
 width = 20%
 align = center
 filter = digger_filter_date
 filter_import = digger.Filters
 
 [browse:status]
-header = Status
+header = "Status"
 width = 10%
 align = center
 
@@ -65,7 +65,7 @@ setValues = "eval: db_pairs ('select username, concat(role, ` - `, lastname, ` `
 type = selector
 table = digger_category
 key = id
-title = category
+title = "category"
 
 [hint:description]
 labelPosition = left
@@ -77,22 +77,22 @@ displayFormat	= "datetime"
 setDefault = "eval: date('Y-m-d H:i:s')"
 
 [facet:title]
-display = Text
+display = "Text"
 type = text
 fields = "id, title, description"
 
 [facet:category]
-display = Category
+display = "Category"
 type = select
 values = "db_pairs ('select * from digger_category order by category asc')"
 
 [facet:user]
-display = Posted By
+display = "Posted By"
 type = select
 values = "db_shift_array ('select distinct user from digger_linkstory order by user asc')"
 
 [facet:status]
-display = Status
+display = "Status"
 type = select
 values = "array ('enabled', 'disabled')"
 

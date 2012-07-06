@@ -3,7 +3,7 @@
 [Collection]
 
 name			= sitellite_translation
-display			= Translation Data
+display			= "Translation Data"
 singular		= Translation
 visible			= no
 key_field		= id

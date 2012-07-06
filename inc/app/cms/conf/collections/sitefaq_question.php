@@ -28,23 +28,23 @@ name			= Blank
 
 [browse:question]
 
-header			= Question
+header			= "Question"
 length			= 100
 
 [browse:category]
 
-header			= Category
+header			= "Category"
 length          = 40
 
 [browse:answer]
 
-header			= Answer
+header			= "Answer"
 width   		= "30%"
 filter			= strip_tags
 
 [hint:question]
 
-alt				= Question
+alt				= "Question"
 type			= textarea
 rows			= 2
 labelPosition	= left
@@ -58,19 +58,19 @@ key				= name
 [hint:answer]
 
 type			= xed.Widget.Xeditor
-alt				= Answer
+alt				= "Answer"
 ;rows			= 8
 ;labelPosition	= left
 
 [facet:question]
 
-display			= Text
+display			= "Text"
 type			= text
 fields			= "question, answer"
 
 [facet:category]
 
-display			= Category
+display			= "Category"
 type			= select
 values			= "db_shift_array ('select name from sitefaq_category order by name asc')"
 

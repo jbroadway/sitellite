@@ -4,8 +4,8 @@
 
 name = siteblog_blogroll
 app = siteblog
-display = Blog Roll
-singular = Link
+display = "Blog Roll"
+singular = "Link"
 key_field = id
 title_field = title
 is_versioned = no
@@ -21,31 +21,31 @@ name = Blank
 
 [browse:title]
 
-header = Link Name
+header = "Link Name"
 
 [browse:url]
 
-header = Link URL
+header = "Link URL"
 filter_import = "siteblog.Filters"
 filter = "siteblog_filter_link"
 
 [browse:weight]
 
-header = Sorting Weight
+header = "Sorting Weight"
 align = right
 width = "15%"
 
 [hint:title]
 
-alt = Link Name
+alt = "Link Name"
 
 [hint:url]
 
-alt = Website URL
+alt = "Website URL"
 
 [hint:weight]
 
-alt = Sorting Weight
+alt = "Sorting Weight"
 default_value = "0"
 
 ; */ ?>
