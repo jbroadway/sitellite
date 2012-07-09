@@ -20,6 +20,13 @@ foreach (array_keys ($res) as $k) {
 }
 
 if ($parameters['title'] && $box['context'] == 'action') {
+	/* START FIX - SEMIAS 9 JULI 2012
+		fix waardoor titel niet als 'dit+is+de+titel' maar als 'dit is de titel' weergegeven wordt
+	*/
+	$parameters['title'] = str_replace("+", " ", $parameters['title']);
+	/* 
+	END FIX 
+	*/
 		page_title ($parameters['title']);
 }
 
