@@ -12,3 +12,12 @@
     background-color: #EEEEEE;
 }
 
+img.closeimage {
+	padding: 0 !important;
+	margin: 0 !important;
+	border: 0 !important;
+	background-color: transparent !important;
+	cursor: pointer;
+	margin-right: 5px !important;
+	float: right !important;
+}
