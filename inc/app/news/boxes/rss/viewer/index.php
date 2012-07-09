@@ -33,7 +33,8 @@ if (empty ($parameters['newsfeed'])) {
 
 loader_import ('news.simplepie');
 
-$feed = new SimplePie ($parameters['newsfeed']);
+$feed = new SimplePie ();
+$feed->set_feed_url($parameters['newsfeed']);
 
 if (! empty ($parameters['expires'])) {
 	$feed->set_cache_duration ($parameters['expires']);
@@ -51,7 +52,12 @@ if ($box['context'] == 'action') {
 // Start: SEMIAS #176 News - RSS viewer limit not working.
 $feed->limit = $parameters['limit'];
 // END: SEMIAS
-echo template_simple ('rss_viewer2.spt', $feed);
+
+if($feed->init() != true) {
+	echo $feed->error;
+} else {
+	echo template_simple ('rss_viewer2.spt', $feed);
+}
 
 /*if (empty ($parameters['newsfeed'])) {
 	//echo 'no feed<br />';
