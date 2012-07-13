@@ -10,6 +10,8 @@ if (empty ($parameters['category'])) {
 
 $res = 	db_fetch_array ('select * from sitefaq_question where category = ? order by question asc', $parameters['category']);
 
+page_add_style ( site_prefix () . '/inc/app/sitefaq/html/faq.css' );
+
 echo template_simple (
 	'category.spt',
 	array (

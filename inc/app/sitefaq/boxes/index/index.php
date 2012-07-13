@@ -15,6 +15,8 @@ foreach (array_keys ($res) as $k) {
 	$cats[$res[$k]->category][] = $res[$k];
 }
 
+page_add_style ( site_prefix () . '/inc/app/sitefaq/html/faq.css' );
+
 echo template_simple (
 	'faq.spt',
 	array (

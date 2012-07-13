@@ -1,4 +1,5 @@
 <script language="javascript" src="/js/jquery-ui-1.7.2.min.js"></script>
+
 <script>
 $(document).ready(function() {
   $(".answer").hide();
@@ -16,6 +17,8 @@ $(document).ready(function() {
 });
 </script>
 
+{box cms/buttons/add?collection=sitefaq_question&return=[site/current]}
+
 {if appconf ('user_submissions')}
 <div class="user_submissions">
 	<a href="{site/prefix}/index/sitefaq-submission-form">{intl Ask a Question}</a>
@@ -26,13 +29,14 @@ $(document).ready(function() {
     {loop obj[cats]}
     	<div class="category">{loop/category}</div><br />
     	{loop obj[res]}
-    		{if loop.category eq parent.category}
-    			<div>
-				<a href="#" class="question">{loop/question}<br /></a>
-    			<div class="answer" style="margin-bottom: 5px;">
-				{filter none}{loop/answer}{end filter}
-				<img src="{site/prefix}/inc/app/sitefaq/pix/close.gif" align="right" alt="{intl close}" class="closeimage" />&nbsp;
-				</div>
+			{if loop.category eq parent[category]}
+                {box cms/buttons?collection=sitefaq_question&id=[loop/id]&access=public&status=approved&team=none&add=false&float=true&return=[site/current]}
+                <div>
+    				<a href="#" class="question">{loop/question}<br /></a>
+        			<div class="answer" style="margin-bottom: 5px;">
+        				{filter none}{loop/answer}{end filter}
+        				<img src="{site/prefix}/inc/app/sitefaq/pix/close.gif" align="right" alt="{intl close}" class="closeimage" />&nbsp;
+    				</div>
 				</div>
     		{end if}
     	{end loop}
