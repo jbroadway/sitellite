@@ -10,6 +10,12 @@ key_field = id
 title_field = title
 is_versioned = yes
 
+; These allow you to override the add and edit forms for your collection,
+; which gives you control over all aspects of the behaviour of the form.
+add				= sitepoll/add
+edit			= sitepoll/edit
+
+
 [Source]
 
 name = Database
@@ -158,7 +164,7 @@ default_value = "no"
 
 type = status
 alt = "Status"
-defalut_value = draft
+default_value = draft
 
 [hint:sitellite_access]
 
