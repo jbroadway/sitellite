@@ -12,6 +12,18 @@ if (conf ('Product', 'shortname')) {
 	define ('PRODUCT_SHORTNAME', 'Sitellite');
 }
 
+if (conf ('Product', 'dealer')) {
+	define ('PRODUCT_DEALER', conf ('Product', 'dealer'));
+} else {
+	define ('PRODUCT_DEALER', 'Dealer');
+}
+
+if (conf ('Product', 'dealer_website')) {
+	define ('PRODUCT_DEALER_WEBSITE', conf ('Product', 'dealer_website'));
+} else {
+	define ('PRODUCT_DEALER_WEBSITE', 'http://yourwebsite.com/');
+}
+
 if (conf ('Product', 'copyright')) {
 	define ('PRODUCT_COPYRIGHT', conf ('Product', 'copyright'));
 } else {

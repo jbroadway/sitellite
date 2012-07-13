@@ -52,6 +52,7 @@
 </div>
 
 <p align="left" style="padding: 25px; padding-top: 0px" id="footer">
+    <xt:intl>Website build by</xt:intl>: <a href="${php: PRODUCT_DEALER_WEBSITE}" target="_blank"><xt:var name="php: PRODUCT_DEALER" /></a><br /><br />
 	<xt:intl>Copyright</xt:intl> <ch:copy /> <xt:var name="php: date ('Y')" />, <a href="${php: PRODUCT_COPYRIGHT_WEBSITE}"><xt:var name="php: PRODUCT_COPYRIGHT" /></a><br />
 	<xt:intl>All rights reserved.</xt:intl><br />
 	<a href="${php: PRODUCT_LICENSE}" target="_blank"><xt:intl>Click here to read the software license agreement.</xt:intl></a>
