@@ -1,5 +1,9 @@
 {alt #fff #eee}
-
+{if empty (obj[apikey])}
+	<div style="float: right">
+	{intl translate is not enabled}. <a href="{site/prefix}/usradm-applications-edit-action?appname=multilingual">{intl Add and enable your Google Api Key}</a> {intl to enable translations}
+	</div>
+{end if}
 <form method="post" action="{site/prefix}/index/multilingual-translation-strings-action">
 
 <p>
@@ -23,17 +27,17 @@
 		<td valign="top" class="field">
 			{if strlen (loop[_key]) ge 80}
 			<textarea name="values[{loop/_index}]" id="trv-{loop/_index}" style="width: 100%" rows="4">{if loop[current] ne null}{loop/current}{end if}</textarea><br />
-			{intl Google Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+			{if empty(loop[current])}{if not empty (obj[apikey])}{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>{end if}{end if}
 			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
 			{end if}
 			{if strlen (loop[_key]) ge 40 and strlen (loop[_key]) lt 80}
 			<textarea name="values[{loop/_index}]" id="trv-{loop/_index}" style="width: 100%" rows="2">{if loop[current] ne null}{loop/current}{end if}</textarea><br />
-			{intl Google Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+			{if empty(loop[current])}{if not empty (obj[apikey])}{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>{end if}{end if}
 			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
 			{end if}
 			{if strlen (loop[_key]) lt 40}
 			<input name="values[{loop/_index}]" id="trv-{loop/_index}" type="text" style="width: 100%" {if loop[current] ne null}value="{loop/current}"{end if} /><br />
-			{intl Google Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+			{if empty(loop[current])}{if not empty (obj[apikey])}{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>{end if}{end if}
 			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
 			{end if}
 		</td>
@@ -56,28 +60,34 @@
 </p>
 
 </form>
+{if not empty (obj[apikey])}
 
 <script type="text/javascript">
 
 $(document).ready (function () {
-	$.translate (
-		[
-{loop show}
-			'{loop/_key}'{if loop[_index] lt loop[_total]},{end if}
-{end loop}
-		],
-//		'{intl/default}', SEMIAS edit PHAGENS 26.10.10, as English 'en' is the default language used by the system, use it hardcoded here.
-        'en',
-		'{lang}',
-		{
-			complete: function (translations) {
-				for (i = 0; i < translations.length; i++) {
-					$('#tr-' + (i + 1)).html ($.trim (translations[i]));
-					$('#tru-' + (i + 1)).css ('display', 'inline');
-				}
-			}
-		}
-	);
+	$.translate.load('{apikey}');
+	var sourceText = [
+		{loop show}
+			{if empty(loop[current])}						
+				'{loop/_key}'{if loop[_index] lt loop[_total]},{end if}
+			{end if}
+		{end loop}
+	];
+	
+	$.translate(sourceText,'en','{lang}', {
+		complete:	function(translation) {
+						for (i = 0; i < translations.length; i++) {
+							$('#tr-' + (i + 1)).html ($.trim (translations[i]));
+							$('#tru-' + (i + 1)).css ('display', 'inline');
+						}
+					},
+		error: 		function(error) {
+						alert(error.message);
+						for (i = 0; i < sourceText.length; i++) 
+							$('#tr-' + (i + 1)).html("{intl Can't load translation}.");
+					}
+    });
 });
 
 </script>
+{end if}
