@@ -113,8 +113,7 @@ type			= textarea
 alt				= Change Summary
 rows			= 3
 labelPosition	= left
-extra			= "id=`changelog` style=`display: none` onfocus=`formhelp_show (this, 'The change summary helps give other site editors, including yourself, a more complete history of the changes that have been made to this document.')` onblur=`formhelp_hide ()`"
-setValue		= Story added.
+extra			= "id=`changelog` onfocus=`formhelp_show (this, 'The change summary helps give other site editors, including yourself, a more complete history of the changes that have been made to this document.')` onblur=`formhelp_hide ()`"
 
 
 [tab-end]

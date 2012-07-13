@@ -95,12 +95,14 @@ $langs = ini_parse ($file_langs);
 
 page_title (intl_get ('Editing Language') . ': ' . $langs[$cgi->lang]['name']);
 
-//page_add_script (site_prefix () . '/js/jquery-1.3.2.min.js');
-page_add_script (site_prefix () . '/js/jquery.translate-1.2.6.min.js');
+$settings = ini_parse ('inc/app/multilingual/conf/settings.ini.php'); 
+if(!empty($settings['translate_key']['value']) && !empty($settings['enable_translate_key']['value'])) 
+	$parameters['apikey'] = $settings['translate_key']['value'];
+else
+	$parameters['apikey'] = '';
+page_add_script (site_prefix () . '/js/jquery.translate-1.4.7.min.js');
 
 template_simple_register ('show', $show);
 echo template_simple ('translation_strings.spt', $parameters);
-
-//info ($show, true);
 
 ?>

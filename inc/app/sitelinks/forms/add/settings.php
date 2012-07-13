@@ -103,6 +103,14 @@ alt = Created By
 type = team
 alt = Owned by Team
 
+[changelog]
+
+type			= textarea
+alt				= Change Summary
+rows			= 3
+labelPosition	= left
+extra			= "id=`changelog` onfocus=`formhelp_show (this, 'The change summary helps give other site editors, including yourself, a more complete history of the changes that have been made to this document.')` onblur=`formhelp_hide ()`"
+data_value		= "Link added."
 
 [tab-end]
 
