@@ -15,6 +15,9 @@ if (! $res) {
 	exit;
 }
 
+$dir = appconf('webpath');
+$res->thumb = "http://" . site_domain() . $dir . "/thumbnails/" . $res->thumb;
+
 loader_import ('news.Functions');
 
 echo template_simple (

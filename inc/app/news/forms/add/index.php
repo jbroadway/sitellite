@@ -98,7 +98,7 @@ class NewsAddForm extends MailForm {
 		  if($dir[0] == '/')
 			$dir = substr($dir,1);
 		  
-		  $thumbnail = $dir . "/thumbnails/" . $thumb_body . "." . $ext;
+		  $thumbnail = $dir . "/thumbnails/" . $thumb_filename;
 
           // load thumbnail class
           loader_import("saf.Ext.thumbnail");
@@ -111,7 +111,7 @@ class NewsAddForm extends MailForm {
           makethumbnail($orig_filename , $thumbnail , $max_width , $max_height );
 
           // set $vals['thumb'] to the new filename
-          $vals['thumb'] = "http://" . $domain . "/" . $thumbnail;
+          $vals['thumb'] = $thumb_filename;
         }
 
         // end thumbnail

@@ -49,6 +49,12 @@ foreach ($sub as $item) {
 	}
 }
 
+$dir = appconf('webpath');
+foreach($list as &$value)
+	$value->thumb = "http://" . site_domain() . $dir . "/thumbnails/" . $value->thumb;
+
+
+
 echo template_simple ('overview.spt', array ('list' => $list, 'sub' => $sub));
 
 ?>

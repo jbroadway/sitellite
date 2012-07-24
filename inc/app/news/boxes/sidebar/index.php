@@ -45,6 +45,10 @@ if (! $res) {
 //echo template_simple ('sidebar.spt', array ('list' => $res, 'dates' => $parameters['dates'], 'thumbs' => $parameters['thumbs']));
 //-----------------------------------
 $story->date = intl_date ($obj->date, 'shortcevdate');
+$dir = appconf('webpath');
+foreach($res as &$value)
+	$value->thumb = "http://" . site_domain() . $dir . "/thumbnails/" . $value->thumb;
+
 
 echo template_simple (
     'sidebar.spt',

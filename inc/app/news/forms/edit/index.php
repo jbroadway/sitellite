@@ -91,7 +91,14 @@ class NewsEditForm extends MailForm {
 		// set values from repository entry
 		foreach (get_object_vars ($_document) as $k => $v) {
 			if (is_object ($this->widgets[$k])) {
-				$this->widgets[$k]->setValue ($v);
+				if($k == 'thumb'){
+					$dir = appconf('webpath');
+		  			$v = "http://" . site_domain() . $dir . "/thumbnails/" . $v;
+					$this->widgets[$k]->setValue ($v);
+				}
+				else {
+					$this->widgets[$k]->setValue ($v);
+				}
 			}
 		}
 	}
@@ -150,7 +157,7 @@ class NewsEditForm extends MailForm {
 			$dir = substr($dir,1);
 			
 		  
-		  $thumbnail = $dir . "/thumbnails/" . $thumb_body . "." . $ext;
+		  $thumbnail = $dir . "/thumbnails/" . $thumb_filename;
 
           // load thumbnail class
           loader_import("saf.Ext.thumbnail");
@@ -163,7 +170,7 @@ class NewsEditForm extends MailForm {
           makethumbnail($orig_filename , $thumbnail , $max_width , $max_height );
 
           // set $vals['thumb'] to the new filename
-          $vals['thumb'] = "http://" . $domain . "/" . $thumbnail;
+          $vals['thumb'] = $thumb_filename;
         }
 
         // end thumbnail

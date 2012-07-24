@@ -21,7 +21,7 @@
 // #192 Test all config files for multilingual dates.
 //
 
-global $cgi;
+global $cgi,$page;
 
 loader_import ('news.Story');
 loader_import ('news.Functions');
@@ -147,6 +147,9 @@ if (! empty ($parameters['story'])) { // view story
 			$list[$k]->comments = $c->count ($item->id);
 		}
 	}
+	$dir = appconf('webpath');
+	foreach($list as &$value)
+		$value->thumb = "http://" . site_domain() . $dir . "/thumbnails/" . $value->thumb;
 
 	template_simple_register ('pager', $pg);
 	echo template_simple (

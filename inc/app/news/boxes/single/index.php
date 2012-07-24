@@ -30,6 +30,8 @@ $story = $s->get ($parameters['story']);
 $story->show_thumb = $parameters['thumb'];
 $story->show_date = $parameters['date'];
 $story->show_summary = $parameters['summary'];
+$dir = appconf('webpath');
+$story->thumb = "http://" . site_domain() . $dir . "/thumbnails/" . $story->thumb;
 
 //START: SEMIAS. #192 Test all config files for multilingual dates
 $story->date = intl_date ($obj->date, 'shortcevdate');
