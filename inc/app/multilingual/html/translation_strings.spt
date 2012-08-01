@@ -65,7 +65,7 @@
 <script type="text/javascript">
 
 $(document).ready (function () {
-	$.translate.load('{apikey}');
+	
 	var sourceText = [
 		{loop show}
 			{if empty(loop[current])}						
@@ -74,19 +74,24 @@ $(document).ready (function () {
 		{end loop}
 	];
 	
-	$.translate(sourceText,'en','{lang}', {
-		complete:	function(translation) {
-						for (i = 0; i < translations.length; i++) {
-							$('#tr-' + (i + 1)).html ($.trim (translations[i]));
-							$('#tru-' + (i + 1)).css ('display', 'inline');
+	if(sourceText != ''){
+		$.translate.load('{apikey}');
+
+		$.translate(sourceText,'en','{lang}', {
+			complete:	function(translation) {	
+							for (i = 0; i < translation.length; i++) {
+								$('#tr-' + (i + 1)).html ($.trim (translation[i]));
+								$('#tru-' + (i + 1)).css ('display', 'inline');
+							}
+							
+						},
+			error: 		function(error) {
+							alert(error.message);
+							for (i = 0; i < sourceText.length; i++) 
+								$('#tr-' + (i + 1)).html("{intl Can't load translation}.");
 						}
-					},
-		error: 		function(error) {
-						alert(error.message);
-						for (i = 0; i < sourceText.length; i++) 
-							$('#tr-' + (i + 1)).html("{intl Can't load translation}.");
-					}
-    });
+		});
+	}
 });
 
 </script>
