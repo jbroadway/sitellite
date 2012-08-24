@@ -26,19 +26,31 @@
 		</td>
 		<td valign="top" class="field">
 			{if strlen (loop[_key]) ge 80}
-			<textarea name="values[{loop/_index}]" id="trv-{loop/_index}" style="width: 100%" rows="4">{if loop[current] ne null}{loop/current}{end if}</textarea><br />
-			{if empty(loop[current])}{if not empty (obj[apikey])}{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>{end if}{end if}
-			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+				<textarea name="values[{loop/_index}]" id="trv-{loop/_index}" style="width: 100%" rows="4">{if loop[current] ne null}{loop/current}{end if}</textarea><br />
+				{if empty(loop[current])}
+					{if not empty (obj[apikey])}
+						{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+						<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+					{end if}
+				{end if}
 			{end if}
 			{if strlen (loop[_key]) ge 40 and strlen (loop[_key]) lt 80}
-			<textarea name="values[{loop/_index}]" id="trv-{loop/_index}" style="width: 100%" rows="2">{if loop[current] ne null}{loop/current}{end if}</textarea><br />
-			{if empty(loop[current])}{if not empty (obj[apikey])}{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>{end if}{end if}
-			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+				<textarea name="values[{loop/_index}]" id="trv-{loop/_index}" style="width: 100%" rows="2">{if loop[current] ne null}{loop/current}{end if}</textarea><br />
+				{if empty(loop[current])}
+					{if not empty (obj[apikey])}
+						{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+						<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+					{end if}
+				{end if}
 			{end if}
 			{if strlen (loop[_key]) lt 40}
-			<input name="values[{loop/_index}]" id="trv-{loop/_index}" type="text" style="width: 100%" {if loop[current] ne null}value="{loop/current}"{end if} /><br />
-			{if empty(loop[current])}{if not empty (obj[apikey])}{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>{end if}{end if}
-			<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+				<input name="values[{loop/_index}]" id="trv-{loop/_index}" type="text" style="width: 100%" {if loop[current] ne null}value="{loop/current}"{end if} /><br />
+				{if empty(loop[current])}
+					{if not empty (obj[apikey])}
+						{intl Translation}: <span id="tr-{loop/_index}">{intl loading...}</span>
+						<a id="tru-{loop/_index}" style="display: none" href="#" onclick="$('#trv-{loop/_index}').attr ('value', $('#tr-{loop/_index}').html ()); return false">{intl Use this!}</a>
+					{end if}
+				{end if}
 			{end if}
 		</td>
 	</tr>
@@ -74,21 +86,29 @@ $(document).ready (function () {
 		{end loop}
 	];
 	
+	var sourceIds = [
+		{loop show}
+			{if empty(loop[current])}						
+				'{loop/id}'{if loop[_index] lt loop[_total]},{end if}
+			{end if}
+		{end loop}
+	];
+		
 	if(sourceText != ''){
 		$.translate.load('{apikey}');
 
 		$.translate(sourceText,'en','{lang}', {
 			complete:	function(translation) {	
 							for (i = 0; i < translation.length; i++) {
-								$('#tr-' + (i + 1)).html ($.trim (translation[i]));
-								$('#tru-' + (i + 1)).css ('display', 'inline');
+								$('#tr-' + sourceIds[i]).html ($.trim (translation[i]));
+								$('#tru-' + sourceIds[i]).css ('display', 'inline');
 							}
 							
 						},
 			error: 		function(error) {
 							alert(error.message);
 							for (i = 0; i < sourceText.length; i++) 
-								$('#tr-' + (i + 1)).html("{intl Can't load translation}.");
+								$('#tr-' + sourceIds[i]).html("{intl Can't load translation}.");
 						}
 		});
 	}

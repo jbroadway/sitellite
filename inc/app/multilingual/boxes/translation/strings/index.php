@@ -85,8 +85,11 @@ $parameters['more'] = (($cgi->offset + $limit) < count ($index)) ? true : false;
 
 $show = array_slice ($index, $cgi->offset, $limit);
 
+$i = 1;
 foreach ($show as $k => $v) {
 	$show[$k]['current'] = $this->lang_hash[$cgi->lang][stripslashes ($k)];
+	$show[$k]['id'] = $i;
+	$i++;
 }
 
 header ('Content-Type: text/html; charset=' . $cgi->charset);
