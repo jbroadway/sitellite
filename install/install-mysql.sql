@@ -207,7 +207,7 @@ CREATE TABLE sitellite_user (
   tips enum('on','off') NOT NULL default 'on',
   lang varchar(12) NOT NULL default '',
   session_id varchar(32) default NULL,
-  expires timestamp(14) NOT NULL,
+  expires timestamp NOT NULL,
   company varchar(48) NOT NULL default '',
   position varchar(48) NOT NULL default '',
   website varchar(72) NOT NULL default '',
@@ -242,7 +242,7 @@ CREATE TABLE sitellite_user (
 CREATE TABLE sitellite_user_session (
   username varchar(48) NOT NULL default '',
   session_id varchar(32) NOT NULL default '',
-  expires timestamp(14) NOT NULL,
+  expires timestamp NOT NULL,
   PRIMARY KEY  (username, session_id)
 );
 
