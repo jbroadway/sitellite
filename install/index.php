@@ -2,6 +2,8 @@
 // resolved tickets:
 // #190 - Admin user should be customizable during installation.
 
+error_reporting (E_ALL & ~E_STRICT & ~E_NOTICE & ~E_DEPRECATED);
+
 include_once ('../saf/init.php');
 
 $data = array ();
