@@ -28,7 +28,7 @@
 	 * <code>
 	 * <?php
 	 * 
-	 * $h = new SessionHandler;
+	 * $h = new SessionHandler_Sitellite;
 	 * 
 	 * $h->setProperties (array (
 	 * 	'foo'	=> 'bar',
@@ -47,7 +47,7 @@
 	 * 
 	 */
 
-class SessionHandler {
+class SessionHandler_Sitellite {
 	
 
 	/**
@@ -75,7 +75,7 @@ class SessionHandler {
 	 * @access	public
 	 * 
 	 */
-	function SessionHandler () {
+	function SessionHandler_Sitellite () {
 	}
 
 	/**

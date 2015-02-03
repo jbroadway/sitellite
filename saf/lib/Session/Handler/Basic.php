@@ -53,7 +53,7 @@ $GLOBALS['loader']->import ('saf.Session.Handler');
 	 * 
 	 */
 
-class SessionHandler_Basic extends SessionHandler {
+class SessionHandler_Basic extends SessionHandler_Sitellite {
 	// basic-specific properties
 	
 	var $realm;
