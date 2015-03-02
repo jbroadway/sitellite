@@ -59,7 +59,7 @@ $GLOBALS['loader']->import ('saf.Session.Handler');
 	 * 
 	 */
 
-class SessionHandler_Cookie extends SessionHandler {
+class SessionHandler_Cookie extends SessionHandler_Sitellite {
 	// cookie-specific properties
 	
 

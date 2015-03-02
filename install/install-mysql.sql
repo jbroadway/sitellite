@@ -15,7 +15,7 @@ CREATE TABLE sitellite_cache_file_list (
   filename char(255) NOT NULL default '',
   PRIMARY KEY  (filename),
   UNIQUE KEY filename (filename)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table 'sitellite_cache_file_list'
@@ -28,7 +28,7 @@ CREATE TABLE sitellite_cache_file_list (
 CREATE TABLE sitellite_category (
   id char(48) NOT NULL default '',
   PRIMARY KEY  (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_mime_type'
@@ -41,7 +41,7 @@ CREATE TABLE sitellite_mime_type (
   description varchar(72) NOT NULL default '',
   PRIMARY KEY  (extension),
   KEY type (type,icon)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table 'sitellite_mime_type'
@@ -130,7 +130,7 @@ CREATE TABLE sitellite_page (
   KEY viewed (below_page,sitellite_status,sitellite_access),
   FULLTEXT KEY title (title,keywords,description),
   KEY include (include, sort_weight)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table 'sitellite_page'
@@ -163,7 +163,7 @@ CREATE TABLE sitellite_sidebar (
   body text NOT NULL,
   PRIMARY KEY  (id),
   KEY side (position,sorting_weight,show_on_pages(255))
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `sitellite_sidebar`
@@ -182,7 +182,7 @@ UNLOCK TABLES;
 CREATE TABLE sitellite_sidebar_position (
   id varchar(32) NOT NULL default '',
   PRIMARY KEY  (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table 'sitellite_sidebar_position'
@@ -207,7 +207,7 @@ CREATE TABLE sitellite_user (
   tips enum('on','off') NOT NULL default 'on',
   lang varchar(12) NOT NULL default '',
   session_id varchar(32) default NULL,
-  expires timestamp(14) NOT NULL,
+  expires timestamp NOT NULL,
   company varchar(48) NOT NULL default '',
   position varchar(48) NOT NULL default '',
   website varchar(72) NOT NULL default '',
@@ -233,7 +233,7 @@ CREATE TABLE sitellite_user (
   UNIQUE KEY session_id (session_id),
   KEY lastname (lastname,email,role,team,tips,lang,disabled),
   KEY public (public,registered,modified)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_user_session'
@@ -242,7 +242,7 @@ CREATE TABLE sitellite_user (
 CREATE TABLE sitellite_user_session (
   username varchar(48) NOT NULL default '',
   session_id varchar(32) NOT NULL default '',
-  expires timestamp(14) NOT NULL,
+  expires timestamp NOT NULL,
   PRIMARY KEY  (username, session_id)
 );
 
@@ -299,7 +299,7 @@ CREATE TABLE sitellite_page_sv (
   PRIMARY KEY  (sv_autoid),
   KEY sv_author (sv_author,sv_action,sv_revision,sv_deleted,sv_current),
   KEY id (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `sitellite_page_sv`
@@ -339,7 +339,7 @@ CREATE TABLE sitellite_sidebar_sv (
   PRIMARY KEY  (sv_autoid),
   KEY sv_author (sv_author,sv_action,sv_revision,sv_deleted,sv_current),
   KEY id (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `sitellite_sidebar_sv`
@@ -358,7 +358,7 @@ UNLOCK TABLES;
 CREATE TABLE sitellite_keyword (
 	word char(72) NOT NULL,
 	PRIMARY KEY (word)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_message'
@@ -375,7 +375,7 @@ CREATE TABLE sitellite_message (
   PRIMARY KEY  (id),
   KEY msg_date (msg_date,from_user,priority,response_id),
   FULLTEXT KEY subject (subject,body)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_msg_queue'
@@ -387,7 +387,7 @@ CREATE TABLE sitellite_msg_queue (
   struct text NOT NULL default '',
   PRIMARY KEY  (id),
   KEY type (type)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_msg_attachment'
@@ -403,7 +403,7 @@ CREATE TABLE sitellite_msg_attachment (
   mimetype varchar(32) NOT NULL default '',
   PRIMARY KEY  (id),
   KEY name (type,name,message_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_msg_category'
@@ -413,7 +413,7 @@ CREATE TABLE sitellite_msg_category (
   name varchar(72) NOT NULL default '',
   user varchar(32) NOT NULL default '',
   PRIMARY KEY  (name,user)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_msg_forward'
@@ -427,7 +427,7 @@ CREATE TABLE sitellite_msg_forward (
   priority enum('all','normal','high','urgent') NOT NULL default 'all',
   PRIMARY KEY  (id),
   KEY user (user,priority)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_msg_recipient'
@@ -443,7 +443,7 @@ CREATE TABLE sitellite_msg_recipient (
   PRIMARY KEY  (id),
   KEY type (type,user,message_id,category),
   KEY status (status)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_bookmark'
@@ -456,7 +456,7 @@ CREATE TABLE sitellite_bookmark (
 	name varchar(72) NOT NULL default '',
 	PRIMARY KEY  (id),
 	KEY user (user,link)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_lock'
@@ -473,7 +473,7 @@ CREATE TABLE sitellite_lock (
 	token char(128) not null default '',
 	PRIMARY KEY  (id),
 	index (user, resource, resource_id, expires)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_undo_sv'
@@ -492,7 +492,7 @@ CREATE TABLE sitellite_undo_sv (
   PRIMARY KEY  (sv_autoid),
   KEY sv_author (sv_author,sv_action,sv_revision,sv_deleted,sv_current),
   KEY id (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_news'
@@ -518,7 +518,7 @@ create table sitellite_news (
 	thumb char(128) not null,
 	index (date, time, rank, category, sitellite_status, sitellite_access),
 	fulltext (title, summary, body)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table 'sitellite_news_category'
@@ -603,7 +603,7 @@ CREATE TABLE `sitellite_filesystem` (
   `description` text NOT NULL,
   PRIMARY KEY  (`name`,`path`,`extension`),
   KEY `collection` (`sitellite_status`,`sitellite_access`,`filesize`,`last_modified`,`date_created`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `sitellite_filesystem`
@@ -638,7 +638,7 @@ CREATE TABLE `sitellite_filesystem_sv` (
   PRIMARY KEY  (`sv_autoid`),
   KEY `sv_author` (`sv_author`,`sv_action`,`sv_revision`,`sv_deleted`,`sv_current`),
   KEY `name` (`name`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `sitellite_filesystem_sv`
@@ -1776,7 +1776,7 @@ create table siteblog_post_sv (
     poster_visible enum ('yes', 'no'),
     KEY sv_author (sv_author,sv_action,sv_revision,sv_deleted,sv_current),
     KEY id (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 create table siteblog_comment (
     id int not null auto_increment primary key,
@@ -1984,7 +1984,7 @@ CREATE TABLE siteglossary_term (
   body text NOT NULL,
   PRIMARY KEY  (word),
   index (category)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE siteglossary_category (
 	name char(48) not null primary key
