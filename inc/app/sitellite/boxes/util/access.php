@@ -60,11 +60,11 @@
 ;   "contains '@', length '3+'"
 ;
 
-sitellite_access = public
+sitellite_access = master
 sitellite_status = approved
 sitellite_action = on
 
 ;
 ; THE END
 ;
-; DO NOT ALTER THIS LINE, IT IS HERE FOR SECURITY REASONS */ ?>
+; DO NOT ALTER THIS LINE, IT IS HERE FOR SECURITY REASONS */
