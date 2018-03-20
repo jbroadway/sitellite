@@ -355,7 +355,7 @@ $language_data = array(
         2 => ':'
         ),
     'REGEXPS' => array(
-        // Macro definitions
+        // Macro definitions
         0 => array(
             GESHI_SEARCH => '(-define\s*\()([a-zA-Z0-9_]+)(\(|,)',
             GESHI_REPLACE => '\2',
@@ -403,7 +403,7 @@ $language_data = array(
             GESHI_BEFORE => '\1',
             GESHI_AFTER => ''
             ),
-        // ASCII codes
+        // ASCII codes
         6 => '(\$[a-zA-Z0-9_])',
         // Records
         7 => array(

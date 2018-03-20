@@ -10,7 +10,7 @@
 
 en                      = English
 
-fr                      = "Français"
+fr                      = "FranÃ§ais"
 
 ;
 ; THE END

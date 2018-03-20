@@ -12,9 +12,9 @@
 // | obtain it through the world-wide-web, please send a note to          |
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
-// | Authors: Bernd Römer <berndr@bonn.edu>                               |
+// | Authors: Bernd RÃ¶mer <berndr@bonn.edu>                               |
 // |          Sebastian Bergmann <sb@sebastian-bergmann.de>               |
-// |          Christian Kühn <ck@chkuehn.de> (escape xml entities)        |
+// |          Christian KÃ¼hn <ck@chkuehn.de> (escape xml entities)        |
 // |          Michele Manzato <michele.manzato@verona.miz.it>             |
 // +----------------------------------------------------------------------+
 //
@@ -24,7 +24,7 @@
 /**
  * PEAR::XML_Tree_Node
  *
- * @author  Bernd Römer <berndr@bonn.edu>
+ * @author  Bernd RÃ¶mer <berndr@bonn.edu>
  * @package XML_Tree
  * @version 1.0  16-Aug-2001
  */
@@ -519,9 +519,9 @@ class XML_Tree_Node {
 
     function encodeXmlEntities($xml)
     {
-        $xml = str_replace(array('ü', 'Ü', 'ö',
-                                 'Ö', 'ä', 'Ä',
-                                 'ß', '<', '>',
+        $xml = str_replace(array('Ã¼', 'Ãœ', 'Ã¶',
+                                 'Ã–', 'Ã¤', 'Ã„',
+                                 'ÃŸ', '<', '>',
                                  '"', '\''
                                 ),
                            array('&#252;', '&#220;', '&#246;',
