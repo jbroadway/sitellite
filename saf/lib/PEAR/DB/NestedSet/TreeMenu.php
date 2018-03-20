@@ -76,9 +76,9 @@ class DB_NestedSet_TreeMenu extends DB_NestedSet_Output {
         // so a root node will always be first, and sub children will always
         // be after them.
         if (!isset($params['treeMenu'])) {
-            $treeMenu =& new HTML_TreeMenu();
+            $treeMenu = new HTML_TreeMenu();
         } else {
-            $treeMenu =& $params['treeMenu'];
+            $treeMenu = $params['treeMenu'];
         }
 
         // always start at level 1
@@ -143,7 +143,7 @@ class DB_NestedSet_TreeMenu extends DB_NestedSet_Output {
      */		    
     function printTree() {
 		$options = $this->_getOptions('printTree');
-    	$tree =& new HTML_TreeMenu_DHTML($this->_structTreeMenu, $options);
+    	$tree = new HTML_TreeMenu_DHTML($this->_structTreeMenu, $options);
     	$tree->printMenu();
     }
 
@@ -157,7 +157,7 @@ class DB_NestedSet_TreeMenu extends DB_NestedSet_Output {
      */			    
     function printListbox() {
     	$options = $this->_getOptions('printListbox');
-    	$listBox  =& new HTML_TreeMenu_Listbox($this->_structTreeMenu, $options);
+    	$listBox  = new HTML_TreeMenu_Listbox($this->_structTreeMenu, $options);
     	$listBox->printMenu();
     }
 
