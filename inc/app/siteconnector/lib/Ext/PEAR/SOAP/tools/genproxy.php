@@ -12,7 +12,7 @@ require_once 'SOAP/WSDL.php';
  */
 
 function do_wsdl($uri) {
-    $wsdl =& new SOAP_WSDL($uri);
+    $wsdl = new SOAP_WSDL($uri);
     print $wsdl->generateAllProxies();
 }
 echo "<?php\n\nrequire_once 'SOAP/Client.php';\n\n";

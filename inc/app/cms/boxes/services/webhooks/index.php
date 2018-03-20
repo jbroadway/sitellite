@@ -56,7 +56,7 @@ loader_import ('pear.HTTP.Request');
 foreach (explode ("\n", appconf ('cms_webhooks')) as $url) {
 	$url = trim ($url);
 	if (! empty ($url)) {
-		$req =& new HTTP_request ($url);
+		$req = new HTTP_request ($url);
 		$req->setMethod ('POST');
 		$req->addPostData ('event', $parameters['transition']);
 		$req->addPostData ('summary', $parameters['message']);

@@ -43,7 +43,7 @@ $server->addObjectMap($soapclass,'urn:SOAP_Example_Server');
 
 /* Connect to a POP3 server and read the messages */
 
-$pop3 =& new Net_POP3();
+$pop3 = new Net_POP3();
 if ($pop3->connect('localhost', 110)) {
     if ($pop3->login('username', 'password')) {
         $listing = $pop3->getListing();

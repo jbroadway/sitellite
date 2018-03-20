@@ -60,7 +60,7 @@ EOD;
 $handler=new MyHandler();
 
 // Instantiate the parser
-$parser=& new XML_HTMLSax();
+$parser= new XML_HTMLSax();
 
 // Register the handler with the parser
 $parser->set_object($handler);

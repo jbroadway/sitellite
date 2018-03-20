@@ -25,9 +25,9 @@ class SOAPStruct {
     
     function &__to_soap($name = 'inputStruct', $header=false, $mustUnderstand=0, $actor='http://schemas.xmlsoap.org/soap/actor/next')
     {
-        $inner[] =& new SOAP_Value('varString','string',$this->varString);
-        $inner[] =& new SOAP_Value('varInt','int',$this->varInt);
-        $inner[] =& new SOAP_Value('varFloat','float',$this->varFloat);
+        $inner[] = new SOAP_Value('varString','string',$this->varString);
+        $inner[] = new SOAP_Value('varInt','int',$this->varInt);
+        $inner[] = new SOAP_Value('varFloat','float',$this->varFloat);
         if ($header) {
             return new SOAP_Header($name,'{http://soapinterop.org/xsd}SOAPStruct',$inner,$mustUnderstand,$actor);
         }

@@ -60,7 +60,7 @@ class XML_SaxFilters_HtmlSaxParser extends XML_SaxFilters_AbstractParser /* impl
     function XML_SaxFilters_HtmlSaxParser(& $reader)
     {
         parent::XML_SaxFilters_AbstractParser($reader);
-        $this->parser=& new XML_HTMLSax();
+        $this->parser= new XML_HTMLSax();
         $this->parser->set_object($this);
         $this->parser->set_element_handler('startElementHandler','endElementHandler');
         $this->parser->set_data_handler('characterDataHandler');
