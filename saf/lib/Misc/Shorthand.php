@@ -163,6 +163,40 @@ class PHPShorthand {
 	}
 
 	/**
+	 * Adds a quoted value to the $sprintfVars list and returns a quoted %s
+	 * for temporary insertion into an expression.  This allows vsprintf()
+	 * to be used to expand quoted strings from an expression into their
+	 * original form, untouched by the transformations being performed
+	 * to the expression.
+	 *
+	 * @access private
+	 * @param string $matches
+	 * @return string
+	 *
+	 */
+	private function addSprintfSingleQuote ($matches) {
+		$this->sprintfVars[] = stripslashes ($matches[1]);
+		return '\'%s\'';
+	}
+
+	/**
+	 * Adds a quoted value to the $sprintfVars list and returns a quoted %s
+	 * for temporary insertion into an expression.  This allows vsprintf()
+	 * to be used to expand quoted strings from an expression into their
+	 * original form, untouched by the transformations being performed
+	 * to the expression.
+	 *
+	 * @access private
+	 * @param string $matches
+	 * @return string
+	 *
+	 */
+	private function addSprintfDoubleQuote ($matches) {
+		$this->sprintfVars[] = stripslashes ($matches[1]);
+		return '"%s"';
+	}
+
+	/**
 	 * Transforms the specified expression into valid PHP
 	 *
 	 * @param string
@@ -172,17 +206,25 @@ class PHPShorthand {
 	function transform ($data) {
 		$this->sprintfVars = array ();
 
-		$data = preg_replace (
-			array (
-				'/\'([^\']+)\'/e',
-				'/"([^"]+)"/e',
-			),
-			array (
-				"\$this->addSprintf ('$1')",
-				"\$this->addSprintf (\"$1\", '\"')",
-			),
-			$data
-		);
+		if (version_compare (phpversion (), '7', '>=')) {
+			$data = preg_replace_callback_array ([
+				'/\'([^\']+)\'/' => [$this, 'addSprintfSingleQuote'],
+				'/"([^"]+)"/' => [$this, 'addSprintfDoubleQuote']],
+				$data
+			);
+		} else {
+			$data = preg_replace (
+				array (
+					'/\'([^\']+)\'/e',
+					'/"([^"]+)"/e',
+				),
+				array (
+					"\$this->addSprintf ('$1')",
+					"\$this->addSprintf (\"$1\", '\"')",
+				),
+				$data
+			);
+		}
 		//echo htmlentities ($data) . BR;
 		//echo '<pre>';
 		//print_r ($this->sprintfVars);
