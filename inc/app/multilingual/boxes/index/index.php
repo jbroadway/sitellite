@@ -104,8 +104,14 @@ if ($cgi->_status == 'untranslated') {
 	foreach ($list as $item) {
 		$parameters['list'][$item->{$r->key}] = $tr->get ($item->{$r->key});
 		if ($parameters['list'][$item->{$r->key}]->collection) {
+			if (! is_object ($parameters['list'][$item->{$r->key}])) {
+				$parameters['list'][$item->{$r->key}] = new stdClass;
+			}
 			$parameters['list'][$item->{$r->key}]->title = multilingual_filter_title ($parameters['list'][$item->{$r->key}]->collection, $item->{$r->key});
 		} else {
+			if (! is_object ($parameters['list'][$item->{$r->key}])) {
+				$parameters['list'][$item->{$r->key}] = new stdClass;
+			}
 			$parameters['list'][$item->{$r->key}]->title = multilingual_filter_title ($cgi->_collection, $item->{$r->key});
 		}
 	}

@@ -100,7 +100,10 @@ if (! is_array ($parameters['_key'])) {
 		}
 	}
     // index page cannot be deleted 
-	if ((count ($failed) > 0) || (in_array('index',$id))) {
+	if ((count ($failed) > 0) ||
+			(is_array ($id) && in_array ('index', $id)) ||
+			(! is_array ($id) && 'index' === $id))
+	{
 		page_title (intl_get ('An Error Occurred'));
 		echo '<p>' . $rex->error . '</p>';
 		echo '<p>' . intl_get ('The following items were not deleted') . ':</p>';
@@ -124,7 +127,7 @@ echo Workflow::trigger (
 
 session_set ('sitellite_alert', intl_get ('The items have been deleted.'));
 
-if (! empty ($parameters['_return']) && $parameters['_return'] != site_prefix () . '/index/' . $parameters['_key'][0] && ! strpos ($parameters['_return'], $parameters['_key'][0])) {
+if (! empty ($parameters['_return']) && $parameters['_return'] != site_prefix () . '/index/' . $parameters['_key'][0] && ! ('' !== $parameters['_key'][0] && strpos ($parameters['_return'], $parameters['_key'][0]))) {
 	header ('Location: ' . $parameters['_return']);
 	exit;
 }

@@ -116,7 +116,7 @@ class CmsAddSitellite_filesystemForm extends MailForm {
 		$this->widgets['submit_button']->buttons[2]->extra = 'onclick="return cms_cancel (this.form)"';
 	}
 
-	function show () {
+	function show ($template = '') {
 		return loader_box ('cms/user/preferences/level') . parent::show ();
 	}
 

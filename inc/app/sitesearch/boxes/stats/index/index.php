@@ -42,6 +42,8 @@ $logger = new SiteSearchLogger;
 
 // indexing info
 
+$data = new stdClass;
+
 /*
 $data = $logger->getCurrentIndex ();
 if (! $data) {

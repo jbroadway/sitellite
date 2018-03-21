@@ -20,7 +20,7 @@ class WysiwygEditorForm extends MailForm {
 		$b->extra = 'onclick="return xed_window_cancel (this.form)"';
 	}
 
-	function show () {
+	function show ($template = '') {
 		echo '<script language="javascript" type="text/javascript">
 			function xed_window_submit (f) {
 				opener.document.forms[f.elements["form_name"].value].elements[f.elements["field_name"].value].value = xed_get_source ("body");
