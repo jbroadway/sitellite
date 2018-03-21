@@ -152,7 +152,7 @@ class Dir extends Directory {
 			return array ();
 		}
 		$this->_ls = array ();
-		while ($file = $this->dir->read ()) {
+		while ($file = $this->dir->read ($this->handle)) {
 			array_push ($this->_ls, $file);
 		}
 		$this->_sort ($sorting_method);
@@ -175,8 +175,8 @@ class Dir extends Directory {
 	 * @return	string
 	 * 
 	 */
-	function read () {
-		return $this->dir->read ();
+	function read ($dir_handle = NULL) {
+		return $this->dir->read ($dir_handle);
 	}
 
 	/**
@@ -185,8 +185,8 @@ class Dir extends Directory {
 	 * @access	public
 	 * 
 	 */
-	function rewind () {
-		return $this->dir->rewind ();
+	function rewind ($dir_handle = NULL) {
+		return $this->dir->rewind ($dir_handle);
 	}
 
 	/**
@@ -195,8 +195,8 @@ class Dir extends Directory {
 	 * @access	public
 	 * 
 	 */
-	function close () {
-		return $this->dir->close ();
+	function close ($dir_handle = NULL) {
+		return $this->dir->close ($dir_handle);
 	}
 
 	/**
@@ -308,7 +308,7 @@ class Dir extends Directory {
 				}
 			}
 		}
-		$dir->close ();
+		$dir->close ($dir->handle);
 		return $res;
 	}
 
@@ -347,7 +347,7 @@ class Dir extends Directory {
 				}
 			}
 		}
-		$dir->close ();
+		$dir->close ($dir->handle);
 		return $res;
 	}
 
