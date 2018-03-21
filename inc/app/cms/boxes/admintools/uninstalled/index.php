@@ -1,5 +1,9 @@
 <?php
 
+// As http://www.sitellite.org/apps.xml does not return expected application list
+//	this box is ignored.
+return;
+
 $data = @join ('', @file ('http://www.sitellite.org/apps.xml'));
 if (! $data) {
 	return;
