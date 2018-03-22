@@ -128,7 +128,7 @@ thanks for your interest in Sitellite and welcome to the neighbourhood!</p>';
 			$data['body'] = '<p class="notice">Can\'t write to the Sitellite install directory</p>'
 				. '<h2>Solution:</h2>'
 				. '<ul><li>In your document root, execute the command `chmod 0777 install`</li></ul>';
-		} elseif (! extension_loaded ('mysql')) {
+		} elseif (! extension_loaded ('mysql') && ! extension_loaded ('mysqli')) {
 			// mysql check
 			$data['error'] = true;
 			$data['body'] = '<p class="notice">MySQL extension not found.</p>'
