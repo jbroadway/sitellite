@@ -24,7 +24,7 @@
  * @package Functions7
  * @access public
  * @since 07.03.2018
- * @version 1.0.0 08.03.2018
+ * @version 1.0.1 02.05.2018
  * @author Oleg Ivanchenko <oiv@ry.ru>
  * @copyright Copyright (C) 2018
  */
@@ -349,5 +349,19 @@ if (! function_exists ('mysql_real_escape_string')) {
 	function mysql_real_escape_string ($unescaped_string, $link_identifier = NULL) {
 
 		return mysqli_real_escape_string ($link_identifier, $unescaped_string);
+	}
+}
+
+if (! function_exists ('set_magic_quotes_runtime')) {
+
+	/**
+	 * This function was DEPRECATED in PHP 5.3.0, and REMOVED as of PHP 7.0.0.
+	 *
+	 * @param bool $new_setting
+   * @return bool
+	 */
+	function set_magic_quotes_runtime ($new_setting) {
+
+		return FALSE;
 	}
 }
