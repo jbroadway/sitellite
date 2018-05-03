@@ -20,7 +20,7 @@ class MyHandler {
     function closeHandler(& $parser,$name) {}
     function dataHandler(& $parser,$data) {}
 }
-$handler=& new MyHandler();
+$handler= new MyHandler();
 
 
 $parser = xml_parser_create();
@@ -36,7 +36,7 @@ $end = getmicrotime();
 echo ( "Expat took:\t\t".(getmicrotime()-$start)."<br />" );
 
 $start = getmicrotime();
-$parser =& new XML_HTMLSax();
+$parser = new XML_HTMLSax();
 $parser->set_object($handler);
 $parser->set_element_handler('openHandler','closeHandler');
 $parser->set_data_handler('dataHandler');

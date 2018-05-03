@@ -38,7 +38,7 @@ require_once "PEAR.php";
  * methods, an instance of each class providing separated methods is
  * stored and called every time the aggregated method is called.
  *
- * @author Stig Sæther Bakken <ssb@fast.no>
+ * @author Stig Sï¿½ther Bakken <ssb@fast.no>
  */
 class PEAR_Autoloader extends PEAR
 {
@@ -121,7 +121,7 @@ class PEAR_Autoloader extends PEAR
             $include_file = preg_replace('/[^a-z0-9]/i', '_', $classname);
             include_once $include_file;
         }
-        $obj =& new $classname;
+        $obj = new $classname;
         $methods = get_class_methods($classname);
         foreach ($methods as $method) {
             // don't import priviate methods and constructors

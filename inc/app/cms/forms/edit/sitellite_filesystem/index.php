@@ -180,7 +180,7 @@ class CmsEditSitellite_filesystemForm extends MailForm {
 		}*/
 	}
 
-	function show () {
+	function show ($template = '') {
 		return loader_box ('cms/user/preferences/level') . parent::show ();
 	}
 

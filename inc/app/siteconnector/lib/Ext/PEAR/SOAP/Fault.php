@@ -60,18 +60,18 @@ class SOAP_Fault extends PEAR_Error
      */
     function message()
     {
-        $msg =& new SOAP_Base();
+        $msg = new SOAP_Base();
         $params = array();
-        $params[] =& new SOAP_Value('faultcode', 'QName', 'SOAP-ENV:'.$this->code);
-        $params[] =& new SOAP_Value('faultstring', 'string', $this->message);
-        $params[] =& new SOAP_Value('faultactor', 'anyURI', $this->error_message_prefix);
+        $params[] = new SOAP_Value('faultcode', 'QName', 'SOAP-ENV:'.$this->code);
+        $params[] = new SOAP_Value('faultstring', 'string', $this->message);
+        $params[] = new SOAP_Value('faultactor', 'anyURI', $this->error_message_prefix);
         if (isset($this->backtrace)) {
-            $params[] =& new SOAP_Value('detail', 'string', $this->backtrace);
+            $params[] = new SOAP_Value('detail', 'string', $this->backtrace);
         } else {
-            $params[] =& new SOAP_Value('detail', 'string', $this->userinfo);
+            $params[] = new SOAP_Value('detail', 'string', $this->userinfo);
         }
         
-        $methodValue =& new SOAP_Value('{'.SOAP_ENVELOP.'}Fault', 'Struct', $params);
+        $methodValue = new SOAP_Value('{'.SOAP_ENVELOP.'}Fault', 'Struct', $params);
         $headers = NULL;
         return $msg->_makeEnvelope($methodValue, $headers);
     }
@@ -88,7 +88,7 @@ class SOAP_Fault extends PEAR_Error
     {
         global $SOAP_OBJECT_STRUCT;
         if ($SOAP_OBJECT_STRUCT) {
-            $fault =& new stdClass();
+            $fault = new stdClass();
             $fault->faultcode = $this->code;
             $fault->faultstring = $this->message;
             $fault->faultactor = $this->error_message_prefix;

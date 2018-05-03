@@ -129,7 +129,7 @@ class SOAP_WSDL extends SOAP_Base
      * @return void
      */
     function parseURL($wsdl_uri, $proxy = array()) {
-        $parser =& new SOAP_WSDL_Parser($wsdl_uri, $this);
+        $parser = new SOAP_WSDL_Parser($wsdl_uri, $this);
 
         if ($parser->fault) {
             $this->_raiseSoapFault($parser->fault);
@@ -146,7 +146,7 @@ class SOAP_WSDL extends SOAP_Base
      */
     function parseObject(&$wsdl_obj, $targetNamespace, $service_name, $service_desc = '')
     {
-        $parser =& new SOAP_WSDL_ObjectParser($wsdl_obj, $this, $targetNamespace, $service_name, $service_desc);
+        $parser = new SOAP_WSDL_ObjectParser($wsdl_obj, $this, $targetNamespace, $service_name, $service_desc);
 
          if ($parser->fault) {
              $this->_raiseSoapFault($parser->fault);
@@ -391,7 +391,7 @@ class SOAP_WSDL extends SOAP_Base
                 $comments .= "        // {$el['type']} may require attributes, refer to wsdl for more info\n";
             }
             $comments .= "        \${$attrname}['xmlns'] = '{$this->namespaces[$_argtype['namespace']]}';\n";
-            $comments .= "        \${$_argtype['type']} =& new SOAP_Value('{$_argtype['type']}',false,\${$_argtype['type']},\$$attrname);\n";
+            $comments .= "        \${$_argtype['type']} = new SOAP_Value('{$_argtype['type']}',false,\${$_argtype['type']},\$$attrname);\n";
             $this->_addArg($args,$argarray,$_argtype['type']);
             if (isset($this->complexTypes[$tns][$el['type']]['attribute'])) {
                 if ($args) $args .= ", ";
@@ -400,12 +400,12 @@ class SOAP_WSDL extends SOAP_Base
             #$comments = $this->_complexTypeArg($args,$argarray,$el,$_argtype['type']);
         } else if (isset($el['elements'])) {
             foreach ($el['elements'] as $ename => $element) {
-                $comments .= "        \$$ename =& new SOAP_Value('{{$this->namespaces[$element['namespace']]}}$ename','{$element['type']}',\$$ename);\n";
+                $comments .= "        \$$ename = new SOAP_Value('{{$this->namespaces[$element['namespace']]}}$ename','{$element['type']}',\$$ename);\n";
                 $this->_addArg($args,$argarray,$ename);
             }
         } else {
-            #$echoStringParam =& new SOAP_Value('{http://soapinterop.org/xsd}echoStringParam',false,$echoStringParam);
-            $comments .= "        \$$_argname =& new SOAP_Value('{{$this->namespaces[$tns]}}$_argname','{$el['type']}',\$$_argname);\n";
+            #$echoStringParam = new SOAP_Value('{http://soapinterop.org/xsd}echoStringParam',false,$echoStringParam);
+            $comments .= "        \$$_argname = new SOAP_Value('{{$this->namespaces[$tns]}}$_argname','{$el['type']}',\$$_argname);\n";
             $this->_addArg($args,$argarray,$_argname);
         }
         return $comments;
@@ -421,7 +421,7 @@ class SOAP_WSDL extends SOAP_Base
                 $comments .= "        // $_argname may require attributes, refer to wsdl for more info\n";
             }
             $wrapname = '{'.$this->namespaces[$_argtype['namespace']].'}'.$_argtype['type'];
-            $comments .= "        \$$_argname =& new SOAP_Value('$_argname','$wrapname',\$$_argname);\n";
+            $comments .= "        \$$_argname = new SOAP_Value('$_argname','$wrapname',\$$_argname);\n";
 
         }
         $this->_addArg($args,$argarray,$_argname);
@@ -538,7 +538,7 @@ class SOAP_WSDL extends SOAP_Base
                                 }*/
                                 if($el['complex'] && $argarray) {
                                     $wrapname = '{'.$this->namespaces[$_argtype['namespace']].'}'.$el['name'];
-                                    $comments .= "        \${$el['name']} =& new SOAP_Value('$wrapname',false,\$v=array($argarray));\n";
+                                    $comments .= "        \${$el['name']} = new SOAP_Value('$wrapname',false,\$v=array($argarray));\n";
                                     $argarray = "'{$el['name']}'=>\${$el['name']}";
                                 }
                         } else
@@ -849,7 +849,7 @@ class SOAP_WSDL_Cache extends SOAP_Base
                 }
             } else {
                 $uri = explode('?',$wsdl_fname);
-                $rq =& new HTTP_Request($uri[0], $proxy_params);
+                $rq = new HTTP_Request($uri[0], $proxy_params);
                 // the user agent HTTP_Request uses fouls things up
                 if (isset($uri[1])) {
                     $rq->addRawQueryString($uri[1]);
@@ -916,7 +916,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
     // constructor
     function SOAP_WSDL_Parser($uri, &$wsdl, $docs = false) {
         parent::SOAP_Base('WSDLPARSER');
-        $this->cache =& new SOAP_WSDL_Cache($wsdl->cacheUse, $wsdl->cacheMaxAge);
+        $this->cache = new SOAP_WSDL_Cache($wsdl->cacheUse, $wsdl->cacheMaxAge);
         $this->uri = $uri;
         $this->wsdl = &$wsdl;
         $this->docs = $docs;
@@ -953,7 +953,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
     // start-element handler
     function startElement($parser, $name, $attrs) {
         // get element prefix
-        $qname =& new QName($name);
+        $qname = new QName($name);
         if ($qname->ns) {
             $ns = $qname->ns;
             if ($ns && ((!$this->tns && strcasecmp($qname->name,'definitions') == 0) || $ns == $this->tns)) {
@@ -998,7 +998,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
                     if (!isset($attrs['namespace'])) $attrs['namespace'] = $this->schema;
                     $this->wsdl->complexTypes[$this->schema][$this->currentComplexType] = $attrs;
                     if (array_key_exists('base',$attrs)) {
-                        $qn =& new QName($attrs['base']);
+                        $qn = new QName($attrs['base']);
                         $this->wsdl->complexTypes[$this->schema][$this->currentComplexType]['type'] = $qn->name;
                         $this->wsdl->complexTypes[$this->schema][$this->currentComplexType]['namespace'] = $qn->ns;
                     } else {
@@ -1011,7 +1011,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
             break;
             case 'element':
                 if (isset($attrs['type'])) {
-                    $qn =& new QName($attrs['type']);
+                    $qn = new QName($attrs['type']);
                     $attrs['type'] = $qn->name;
                     #$this->wsdl->getNamespaceAttributeName
                     if ($qn->ns && array_key_exists($qn->ns, $this->wsdl->namespaces)) {
@@ -1056,7 +1056,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
             case 'restriction':
                 if ($this->schemaStatus == 'complexType') {
                     if ($attrs['base']) {
-                        $qn =& new QName($attrs['base']);
+                        $qn = new QName($attrs['base']);
                         $this->wsdl->complexTypes[$this->schema][$this->currentComplexType]['type'] = $qn->name;
                         $this->wsdl->complexTypes[$this->schema][$this->currentComplexType]['namespace'] = $qn->ns;
                     } else {
@@ -1089,10 +1089,10 @@ class SOAP_WSDL_Parser extends SOAP_Base
                         $this->wsdl->complexTypes[$this->schema][$this->currentComplexType]['attribute'][$attrs['name']] = $attrs;
                     } else
                     if (isset($attrs['ref'])) {
-                        $q =& new QName($attrs['ref']);
+                        $q = new QName($attrs['ref']);
                         foreach ($attrs as $k => $v) {
                             if ($k != 'ref' && strstr($k, $q->name)) {
-                                $vq =& new QName($v);
+                                $vq = new QName($v);
                                 if ($q->name == 'arrayType') {
                                     $this->wsdl->complexTypes[$this->schema][$this->currentComplexType][$q->name] = $vq->name.$vq->arrayInfo;
                                     $this->wsdl->complexTypes[$this->schema][$this->currentComplexType]['type'] = 'Array';
@@ -1116,9 +1116,9 @@ class SOAP_WSDL_Parser extends SOAP_Base
             case 'part':
                 $qn = NULL;
                 if (isset($attrs['type'])) {
-                    $qn =& new QName($attrs['type']);
+                    $qn = new QName($attrs['type']);
                 } else if (isset($attrs['element'])) {
-                    $qn =& new QName($attrs['element']);
+                    $qn = new QName($attrs['element']);
                 }
                 if ($qn) {
                     $attrs['type'] = $qn->name;
@@ -1154,7 +1154,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
                         $this->wsdl->portTypes[$this->currentPortType][$this->currentOperation][$name] = $attrs;
                     }
                     if (array_key_exists('message',$attrs)) {
-                        $qn =& new QName($attrs['message']);
+                        $qn = new QName($attrs['message']);
                         $this->wsdl->portTypes[$this->currentPortType][$this->currentOperation][$name]['message'] = $qn->name;
                         $this->wsdl->portTypes[$this->currentPortType][$this->currentOperation][$name]['namespace'] = $qn->ns;
                     }
@@ -1330,7 +1330,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
                 $this->currentPort = $attrs['name'];
                 $this->wsdl->services[$this->currentService]['ports'][$this->currentPort] = $attrs;
                 // XXX hack to deal with binding namespaces
-                $qn =& new QName($attrs['binding']);
+                $qn = new QName($attrs['binding']);
                 $this->wsdl->services[$this->currentService]['ports'][$this->currentPort]['binding'] = $qn->name;
                 $this->wsdl->services[$this->currentService]['ports'][$this->currentPort]['namespace'] = $qn->ns;
             break;
@@ -1371,7 +1371,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
                     $base = parse_url($this->uri);
                     $uri = $this->merge_url($base,$uri);
                 }
-                $import_parser =& new SOAP_WSDL_Parser($uri, $this->wsdl);
+                $import_parser = new SOAP_WSDL_Parser($uri, $this->wsdl);
                 if ($import_parser->fault) {
                     return FALSE;
                 }
@@ -1405,7 +1405,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
             if ($qname->ns && $qname->ns != $this->tns) break;
             $this->status = 'binding';
             $this->currentBinding = $attrs['name'];
-            $qn =& new QName($attrs['type']);
+            $qn = new QName($attrs['type']);
             $this->wsdl->bindings[$this->currentBinding]['type'] = $qn->name;
             $this->wsdl->bindings[$this->currentBinding]['namespace'] = $qn->ns;
         break;
@@ -1423,7 +1423,7 @@ class SOAP_WSDL_Parser extends SOAP_Base
             $this->wsdl->definition = $attrs;
             foreach ($attrs as $key => $value) {
                 if (strstr($key,'xmlns:') !== FALSE) {
-                    $qn =& new QName($key);
+                    $qn = new QName($key);
                     // XXX need to refactor ns handling
                     $this->wsdl->namespaces[$qn->name] = $value;
                     $this->wsdl->ns[$value] = $qn->name;

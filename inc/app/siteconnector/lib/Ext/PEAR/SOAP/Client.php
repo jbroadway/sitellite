@@ -146,7 +146,7 @@ class SOAP_Client extends SOAP_Base
         if ($wsdl) {
             $this->__endpointType = 'wsdl';
             // instantiate wsdl class
-            $this->_wsdl =& new SOAP_WSDL($this->_endpoint, $this->__proxy_params);
+            $this->_wsdl = new SOAP_WSDL($this->_endpoint, $this->__proxy_params);
             if ($this->_wsdl->fault) {
                 $this->_raiseSoapFault($this->_wsdl->fault);
             }
@@ -197,7 +197,7 @@ class SOAP_Client extends SOAP_Base
             $this->headersOut[] =& $soap_value;
         } else if (gettype($soap_value) == 'array') {
             // name, value, namespace, mustunderstand, actor
-            $this->headersOut[] =& new SOAP_Header($soap_value[0], NULL, $soap_value[1], $soap_value[2], $soap_value[3]);;
+            $this->headersOut[] = new SOAP_Header($soap_value[0], NULL, $soap_value[1], $soap_value[2], $soap_value[3]);;
         } else {
             $this->_raiseSoapFault("Don't understand the header info you provided.  Must be array or SOAP_Header.");
         }
@@ -434,7 +434,7 @@ class SOAP_Client extends SOAP_Base
                     if (gettype($nparams[$name]) != 'object' ||
                         !is_a($nparams[$name],'soap_value')) {
                         // type is a qname likely, split it apart, and get the type namespace from wsdl
-                        $qname =& new QName($part['type']);
+                        $qname = new QName($part['type']);
                         if ($qname->ns)
                             $type_namespace = $this->_wsdl->namespaces[$qname->ns];
                         else if (isset($part['namespace']))
@@ -445,7 +445,7 @@ class SOAP_Client extends SOAP_Base
                         $type = $qname->name;
                         $pqname = $name;
                         if ($xmlns) $pqname = '{'.$xmlns.'}'.$name;
-                        $nparams[$name] =& new SOAP_Value($pqname, $qname->fqn(), $nparams[$name],$attrs);
+                        $nparams[$name] = new SOAP_Value($pqname, $qname->fqn(), $nparams[$name],$attrs);
                     } else {
                         // wsdl fixups to the soap value
                     }
@@ -465,21 +465,21 @@ class SOAP_Client extends SOAP_Base
         if (!isset($this->__options['style']) || $this->__options['style'] == 'rpc') {
             $this->__options['style'] = 'rpc';
             $this->docparams = true;
-            $mqname =& new QName($method, $namespace);
-            $methodValue =& new SOAP_Value($mqname->fqn(), 'Struct', $params);
+            $mqname = new QName($method, $namespace);
+            $methodValue = new SOAP_Value($mqname->fqn(), 'Struct', $params);
             $soap_msg =& $this->_makeEnvelope($methodValue, $this->headersOut, $this->_encoding,$this->__options);
         } else {
             if (!$params) {
-                $mqname =& new QName($method, $namespace);
+                $mqname = new QName($method, $namespace);
                 $mynull = NULL;
-                $params =& new SOAP_Value($mqname->fqn(), 'Struct', $mynull);
+                $params = new SOAP_Value($mqname->fqn(), 'Struct', $mynull);
             } elseif ($this->__options['input'] == 'parse') {
                 if (is_array($params)) {
                     $nparams = array();
                     $keys = array_keys($params);
                     foreach ($keys as $k) {
                         if (gettype($params[$k]) != 'object') {
-                            $nparams[] =& new SOAP_Value($k, false, $params[$k]);
+                            $nparams[] = new SOAP_Value($k, false, $params[$k]);
                         } else {
                             $nparams[] =& $params[$k];
                         }
@@ -487,8 +487,8 @@ class SOAP_Client extends SOAP_Base
                     $params =& $nparams;
                 }
                 if ($this->__options['parameters']) {
-                    $mqname =& new QName($method, $namespace);
-                    $params =& new SOAP_Value($mqname->fqn(), 'Struct', $params);
+                    $mqname = new QName($method, $namespace);
+                    $params = new SOAP_Value($mqname->fqn(), 'Struct', $params);
                 }
             }
             $soap_msg =& $this->_makeEnvelope($params, $this->headersOut, $this->_encoding,$this->__options);
@@ -534,7 +534,7 @@ class SOAP_Client extends SOAP_Base
     function &__parse(&$response, $encoding, &$attachments)
     {
         // parse the response
-        $response =& new SOAP_Parser($response, $encoding, $attachments);
+        $response = new SOAP_Parser($response, $encoding, $attachments);
         if ($response->fault) {
             return $this->_raiseSoapFault($response->fault);
         }

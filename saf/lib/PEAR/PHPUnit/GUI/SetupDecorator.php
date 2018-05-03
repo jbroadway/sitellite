@@ -83,7 +83,7 @@ class PHPUnit_GUI_SetupDecorator
         foreach ($files as $className=>$aFile) {
             include_once($aFile);
             if (class_exists($className)) {
-                $suites[] =& new PHPUnit_TestSuite($className);
+                $suites[] = new PHPUnit_TestSuite($className);
             } else {
                 trigger_error("$className could not be found in $dir$aFile!");
             }

@@ -3496,7 +3496,7 @@ class soapclient extends nusoap_base  {
 			
 			// instantiate wsdl object and parse wsdl file
 			$this->debug('instantiating wsdl class with doc: '.$endpoint);
-			$this->wsdl =& new wsdl($this->wsdlFile);
+			$this->wsdl = new wsdl($this->wsdlFile);
 			$this->debug("wsdl debug: \n".$this->wsdl->debug_str);
 			// catch errors
 			if($errstr = $this->wsdl->getError()){

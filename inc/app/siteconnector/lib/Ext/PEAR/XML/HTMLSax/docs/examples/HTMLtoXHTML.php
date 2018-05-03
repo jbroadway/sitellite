@@ -97,10 +97,10 @@ class HTMLtoXHTMLHandler {
 $doc=file_get_contents('example.html');
 
 // Instantiate the handler
-$handler=& new HTMLtoXHTMLHandler();
+$handler= new HTMLtoXHTMLHandler();
 
 // Instantiate the parser
-$parser=& new XML_HTMLSax();
+$parser= new XML_HTMLSax();
 
 // Register the handler with the parser
 $parser->set_object($handler);

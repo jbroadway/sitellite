@@ -75,7 +75,7 @@ class SitewikiEditForm extends MailForm {
 		}
 	}
 
-	function show () {
+	function show ($template = '') {
 		if (! $this->editable) {
 			return;
 		}

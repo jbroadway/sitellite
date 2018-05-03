@@ -233,7 +233,7 @@ class DB
                                     null, null, null, 'DB_Error', true);
         }
 
-        @$obj =& new $classname;
+        @$obj = new $classname;
 
         return $obj;
     }
@@ -285,7 +285,7 @@ class DB
                                     'DB_Error', true);
         }
 
-        @$obj =& new $classname;
+        @$obj = new $classname;
 
         if (is_array($options)) {
             foreach ($options as $option => $value) {
@@ -751,7 +751,7 @@ class DB_result
             if ($object_class == 'stdClass') {
                 $ret = (object) $arr;
             } else {
-                $ret =& new $object_class($arr);
+                $ret = new $object_class($arr);
             }
             return $ret;
         }

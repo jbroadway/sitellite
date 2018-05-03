@@ -150,20 +150,20 @@ class SOAP_Transport_SMTP extends SOAP_Base
             'password' => $this->password,
             'auth' => $this->auth
         );
-        $mailer =& new Mail_smtp($mailer_params);
+        $mailer = new Mail_smtp($mailer_params);
         $result = $mailer->send($this->urlparts['path'], $headers, $out);
         #$result = mail($this->urlparts['path'], $headers['Subject'], $out, $header_text);
 
         if (!PEAR::isError($result)) {
-            $val =& new SOAP_Value('Message-ID','string',$headers['Message-ID']);
+            $val = new SOAP_Value('Message-ID','string',$headers['Message-ID']);
         } else {
-            $sval[] =& new SOAP_Value('faultcode','QName','SOAP-ENV:Client');
-            $sval[] =& new SOAP_Value('faultstring','string',"couldn't send SMTP message to {$this->urlparts['path']}");
-            $val =& new SOAP_Value('Fault','Struct',$sval);
+            $sval[] = new SOAP_Value('faultcode','QName','SOAP-ENV:Client');
+            $sval[] = new SOAP_Value('faultstring','string',"couldn't send SMTP message to {$this->urlparts['path']}");
+            $val = new SOAP_Value('Fault','Struct',$sval);
         }
 
-        $mqname =& new QName($method, $namespace);
-        $methodValue =& new SOAP_Value('Response', 'Struct', array($val));
+        $mqname = new QName($method, $namespace);
+        $methodValue = new SOAP_Value('Response', 'Struct', array($val));
 
         $this->incoming_payload =& $this->_makeEnvelope($methodValue, $this->headers, $this->encoding);
 

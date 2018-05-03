@@ -84,10 +84,10 @@ class SOAP_Value
     function SOAP_Value($name = '', $type = false, $value=NULL, $attributes = array())
     {
         // detect type if not passed
-        $this->nqn =& new QName($name);
+        $this->nqn = new QName($name);
         $this->name = $this->nqn->name;
         $this->namespace = $this->nqn->namespace;
-        $this->tqn =& new QName($type);
+        $this->tqn = new QName($type);
         $this->type = $this->tqn->name;
         $this->type_prefix = $this->tqn->ns;
         $this->type_namespace = $this->tqn->namespace;

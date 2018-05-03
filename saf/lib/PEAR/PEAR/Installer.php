@@ -796,7 +796,7 @@ class PEAR_Installer extends PEAR_Common
             }
             $n = count($failed_deps);
             if ($n > 0) {
-                $depinstaller =& new PEAR_Installer($this->ui);
+                $depinstaller = new PEAR_Installer($this->ui);
                 $to_install = array();
                 for ($i = 0; $i < $n; $i++) {
                     if (isset($failed_deps[$i]['type'])) {

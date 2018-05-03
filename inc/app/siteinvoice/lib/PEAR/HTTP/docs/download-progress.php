@@ -78,7 +78,7 @@ class HTTP_Request_DownloadListener extends HTTP_Request_Listener
                 } else {
                     $this->setTarget($this->_target);
                 }
-                $this->_bar =& new Console_ProgressBar(
+                $this->_bar = new Console_ProgressBar(
                     '* ' . $this->_target . ' %fraction% KB [%bar%] %percent%', '=>', '-', 
                     79, (isset($data['content-length'])? round($data['content-length'] / 1024): 100)
                 );
@@ -105,9 +105,9 @@ class HTTP_Request_DownloadListener extends HTTP_Request_Listener
 // to be able to see the progress bar
 $url = 'http://pear.php.net/get/HTML_QuickForm-stable';
 
-$req =& new HTTP_Request($url);
+$req = new HTTP_Request($url);
 
-$download =& new HTTP_Request_DownloadListener();
+$download = new HTTP_Request_DownloadListener();
 $req->attach($download);
 $req->sendRequest(false);
 ?>

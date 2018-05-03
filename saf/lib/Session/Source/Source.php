@@ -287,7 +287,7 @@ class SessionSource {
 	 * @access  public
 	 *
 	 */
-	function getList ($offset, $limit, $order, $ascdesc, $role, $team, $name) {
+	function getList ($offset, $limit, $order, $ascdesc, $role, $team, $name, $disabled, $public, $teams) {
 	}
 }
 

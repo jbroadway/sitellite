@@ -88,6 +88,11 @@ $loader = new Loader (array (
 // used occasionally within SAF packages.
 $loader->import ('saf.Functions');
 
+// PHP7 missing functions
+if (version_compare (phpversion (), '7', '>=')) {
+	$loader->import ('saf.Functions7');
+}
+
 // For those pear and ext packages that use the include_path:
 if (strtoupper (substr (PHP_OS, 0, 3)) === 'WIN') {
 	$join = ';';

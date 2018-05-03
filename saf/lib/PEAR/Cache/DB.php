@@ -338,7 +338,7 @@ class Cache_DB_Result {
             case DB_FETCHMODE_ASSOC: {
                 if (isset($return_object)) {
                     $class  =  $this->fetchmode_object_class;
-                    $object =& new $class($row);
+                    $object = new $class($row);
 
                     return $object;
                 } else {

@@ -73,7 +73,7 @@ alt         = Category
 [created]
 
 type = calendar
-alt = Posted On
+alt = "Posted On"
 setValue = "eval: date ('Y-m-d H:i:s')"
 nullable		= false
 showsTime		= true

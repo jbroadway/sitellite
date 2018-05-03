@@ -252,7 +252,7 @@ Wrote: /usr/src/redhat/RPMS/i386/PEAR::Net_Socket-1.0-1.i386.rpm
         include_once 'PEAR/Packager.php';
         $pkginfofile = isset($params[0]) ? $params[0] : 'package.xml';
         ob_start();
-        $packager =& new PEAR_Packager($this->config->get('php_dir'),
+        $packager = new PEAR_Packager($this->config->get('php_dir'),
                                        $this->config->get('ext_dir'),
                                        $this->config->get('doc_dir'));
         $packager->debug = $this->config->get('verbose');

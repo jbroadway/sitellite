@@ -36,13 +36,13 @@ if(!isset($GET_VARS['cc'])) $GET_VARS['cc'] = '';
 if(!isset($GET_VARS['dl'])) $GET_VARS['dl'] = '';
 if(!isset($GET_VARS['am'])) $GET_VARS['am'] = '';
 
-$timer =& new phpTimer();
+$timer = new phpTimer();
 $timer->start('main');
 $timer->start('client1');
 $sniffer_settings = array('check_cookies'=>$GET_VARS['cc'],
                           'default_language'=>$GET_VARS['dl'],
                           'allow_masquerading'=>$GET_VARS['am']);
-$client =& new phpSniff($GET_VARS['UA'],$sniffer_settings);
+$client = new phpSniff($GET_VARS['UA'],$sniffer_settings);
 
 $timer->stop('client1');
 

@@ -167,7 +167,7 @@ class Tree_Memory extends Tree_Common
         require_once("Tree/Memory/$type.php");
 
         $className = 'Tree_Memory_'.$type;
-        $this->dataSourceClass =& new $className( $dsn , $options );
+        $this->dataSourceClass = new $className( $dsn , $options );
         // copy the options to be able to get them via getOption(s)
 //FIXXME this is not really cool, maybe overwrite the *Option* methods!!!
         if( isset($this->dataSourceClass->options) )

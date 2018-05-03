@@ -13,7 +13,7 @@
 // | obtain it through the world-wide-web, please send a note to          |
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
-// | Author: Simon Brüchner <powtac@gmx.de>			                      |
+// | Author: Simon BrÃ¼chner <powtac@gmx.de>			                      |
 // +----------------------------------------------------------------------+
 //
 // $Id: Rates_NBI.php,v 1.1 2005/07/02 21:12:31 lux Exp $
@@ -25,8 +25,8 @@
  *
  * @link 	http://www.bankisrael.gov.il/eng.shearim/
  *
- * @author 	Simon Brüchner <powtac@gmx.de>	
- * @copyright Copyright 2003 Simon Brüchner
+ * @author 	Simon BrÃ¼chner <powtac@gmx.de>	
+ * @copyright Copyright 2003 Simon BrÃ¼chner
  * @license http://www.php.net/license/2_02.txt PHP License 2.0
  * @package Services_ExchangeRates
  */

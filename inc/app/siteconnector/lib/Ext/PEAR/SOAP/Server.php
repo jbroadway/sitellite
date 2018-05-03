@@ -271,8 +271,8 @@ class SOAP_Server extends SOAP_Base
                     if (is_a($method_response[$i],'soap_value')) {
                         $return_val[] = $method_response[$i++];
                     } else {
-                        $qn =& new QName($key, $namespace);
-                        $return_val[] =& new SOAP_Value($qn->fqn(),$type,$method_response[$i++]);
+                        $qn = new QName($key, $namespace);
+                        $return_val[] = new SOAP_Value($qn->fqn(),$type,$method_response[$i++]);
                     }
                 }
             } else {
@@ -282,9 +282,9 @@ class SOAP_Server extends SOAP_Base
                     $values = array_values($return_type);
                     $return_type = $values[0];
                 }
-                $qn =& new QName($return_name, $namespace);
+                $qn = new QName($return_name, $namespace);
                 $return_val = array();
-                $return_val[] =& new SOAP_Value($qn->fqn(),$return_type,$method_response);
+                $return_val[] = new SOAP_Value($qn->fqn(),$return_type,$method_response);
             }
         }
         return $return_val;
@@ -293,7 +293,7 @@ class SOAP_Server extends SOAP_Base
     function parseRequest($data = '', $attachments = null)
     {
         // parse response, get soap parser obj
-        $parser =& new SOAP_Parser($data,$this->xml_encoding,$attachments);
+        $parser = new SOAP_Parser($data,$this->xml_encoding,$attachments);
         // if fault occurred during message parsing
         if ($parser->fault) {
             $this->fault = $parser->fault;
@@ -415,8 +415,8 @@ class SOAP_Server extends SOAP_Base
             else
                 $return_val = $this->buildResult($method_response, $this->return_type);
 
-            $qn =& new QName($this->methodname.'Response',$this->method_namespace);
-            $methodValue =& new SOAP_Value($qn->fqn(), 'Struct', $return_val);
+            $qn = new QName($this->methodname.'Response',$this->method_namespace);
+            $methodValue = new SOAP_Value($qn->fqn(), 'Struct', $return_val);
         } else {
             $methodValue =& $method_response;
         }
@@ -668,7 +668,7 @@ class SOAP_Server extends SOAP_Base
      */
     function bindWSDL($wsdl_url) {
         // instantiate wsdl class
-        $this->_wsdl =& new SOAP_WSDL($wsdl_url);
+        $this->_wsdl = new SOAP_WSDL($wsdl_url);
         if ($this->_wsdl->fault) {
             $this->_raiseSoapFault($this->_wsdl->fault);
         }
@@ -679,7 +679,7 @@ class SOAP_Server extends SOAP_Base
      */
     function addObjectWSDL(&$wsdl_obj, $targetNamespace, $service_name, $service_desc = '') {
         if (!isset($this->_wsdl)) {
-            $this->_wsdl =& new SOAP_WSDL;
+            $this->_wsdl = new SOAP_WSDL;
         }
 
         $this->_wsdl->parseObject($wsdl_obj, $targetNamespace, $service_name, $service_desc);

@@ -109,6 +109,17 @@ class MySQL_Query extends Query {
 	 * 
 	 */
 	function MySQL_Query ($sql = '', &$conn, $cache = 0) {
+		if (version_compare (phpversion (), '7', '>=')) {
+			$this->_fetchModeFunctions = array (
+				DB_FETCHMODE_ASSOC		=> 'mysqli_fetch_array',
+				DB_FETCHMODE_OBJECT		=> 'mysqli_fetch_object',
+			);
+		} else {
+			$this->_fetchModeFunctions = array (
+				DB_FETCHMODE_ASSOC		=> 'mysql_fetch_array',
+				DB_FETCHMODE_OBJECT		=> 'mysql_fetch_object',
+			);
+		}
 		parent::Query ($sql, $conn, $cache);
 	}
 
